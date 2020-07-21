@@ -1,0 +1,5 @@
+configuration:
+  logging_level: INFO
+  module_name: ConfigurationModule
+  logPath: .\Results\
+  logName: ConfigurationModuleLog
