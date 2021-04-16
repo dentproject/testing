@@ -4,7 +4,7 @@
 * Used to Pre commit test to ensure successful commits 
 	* Test can be community + member tests
 
-## Funtional test bed (Community)
+## Functional test bed (Community)
 * Location TBD
 * New features not eligible yet for SIT
 * Essential if commit fail due to lack of pre commit testing in vendor labs
