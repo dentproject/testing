@@ -1,0 +1,14 @@
+- module: os
+  description: os level information
+  classes:
+   - name: linux_system
+     desc: system information
+     implements: "dent:os:system"
+     platforms: ['dentos', 'cumulus']
+     commands:
+      - name: reboot
+        apis: ['reboot']
+        cmd: [ '#reboot' ]
+        params: [ "options" ]
+        desc: |
+          Reboot the system

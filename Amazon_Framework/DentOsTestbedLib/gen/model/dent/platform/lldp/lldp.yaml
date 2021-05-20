@@ -1,0 +1,15 @@
+- module: lldp
+  description: lldp - LLDP module
+  classes:
+   - name: lldp
+     desc: |
+         LLDP module
+     apis: ['show', 'set' ]
+     members:
+      - name: interface
+        type: string
+        desc: "interface name"
+        key: True
+      - name: options
+        type: string
+        desc: command options
