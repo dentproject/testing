@@ -1,0 +1,56 @@
+- module: ip
+  tests:
+    - name: delete_add_ip
+      test_cases:
+        - name: delete_add_ip_route
+          template: "DeleteAndAdd"
+          class: "dent:ip:ip_route"
+          args: |
+            {
+               "cls_name": "'IpRoute'",
+               "delete_fn": "IpRoute.delete",
+               "show_fn": "IpRoute.show",
+               "add_fn": "IpRoute.add",
+               "device_object_filter": "obj.dev and re.compile('swp*').match(obj.dev)",
+               "device_objects" : "obj.network.layer3.routes"
+            }
+        - name: delete_add_ip_address
+          template: "DeleteAndAdd"
+          class: "dent:ip:ip_address"
+          args: |
+            {
+               "cls_name": "'IpAddress'",
+               "delete_fn": "IpAddress.delete",
+               "show_fn": "IpAddress.show",
+               "add_fn": "IpAddress.add",
+               "device_object_filter": "re.compile('swp*').match(obj.ifname)",
+               "device_objects" : "obj.network.layer3.addresses"
+            }
+        - name: delete_add_ip_link
+          template: "DeleteAndAdd"
+          class: "dent:ip:ip_link"
+          args: |
+            {
+               "cls_name": "'IpLink'",
+               "delete_fn": "IpLink.delete",
+               "show_fn": "IpLink.show",
+               "add_fn": "IpLink.add",
+               "device_object_filter": "re.compile('swp*').match(obj.ifname)",
+               "device_objects" : "obj.network.layer1.links"
+            }
+    - name: attr_set_unset_ip
+      test_cases:
+        - name: ip_link_up_down
+          template: "AttrSetAndUnset"
+          class: "dent:ip:ip_link"
+          args: |
+            {
+                "cls_name" : "'ip_link'",
+                "set_fn": "IpLink.set",
+                "show_fn": "IpLink.show",
+                "dev_objects" : "obj.network.layer1.links",
+                "dev_object_filter": "re.compile('swp*').match(obj.ifname) and obj.operstate == 'UP'",
+                "dev_object_set_params" : "{'device': obj.ifname, 'operstate':'down'}",
+                "dev_object_show_params" : "{'device': obj.ifname}",
+                "dev_object_reset_params" : "{'device': obj.ifname, 'operstate':'up'}"
+            }

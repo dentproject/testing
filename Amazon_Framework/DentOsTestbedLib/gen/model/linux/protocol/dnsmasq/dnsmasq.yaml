@@ -1,0 +1,18 @@
+- module: dnsmasq
+  description: dnsmasq - A lightweight DHCP and caching DNS server.
+  classes:
+   - name: linux_dnsmasq
+     desc: |
+      dnsmasq is a lightweight DNS, TFTP, PXE, router advertisement and DHCP server.
+      It is intended to provide coupled DNS and DHCP service to a LAN.
+      dnsmasq [OPTION]...
+     implements: "dent:dnsmasq:dnsmasq"
+     platforms: ['dentos', 'cumulus']
+     commands:
+      - name: test
+        apis: ['test']
+        cmd: [ 'dnsmasq' ]
+        params: [ 'options' ]
+        desc: |
+         --test - Read and syntax check configuration file(s). Exit with code 0 if
+           all is OK, or a non-zero code otherwise. Do not start up dnsmasq.

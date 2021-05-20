@@ -1,0 +1,50 @@
+- module: ntp
+  description: ntp protocol
+  classes:
+   - name: ntp_date
+     desc: |
+      ntpdate - set the date and time via NTP
+      ntpdate [-46bBdqsuv] [-a key] [-e authdelay] [-k keyfile] [-o version]
+        [-p samples] [-t timeout] server [...]
+     apis: ['set']
+     members:
+      - name: servers
+        type: string_list
+        desc: "List of servers to query from ntp"
+      - name: command_options
+        type: string
+        desc: "Command line options"
+      - name: key
+        type: string
+        desc: |
+          Enable the authentication function and specify the key identifier to be used for authentication
+          as the argument keyntpdate. The keys and key identifiers must match in both the client and server
+          key files. The default is to disable the authentication function.
+      - name: authdelay
+        type: float
+        desc: |
+          -e authdelay
+          Specify the processing delay to perform an authentication function as the value authdelay, in seconds
+          and fraction (see ntpd for details). This number is usually small enough to be negligible for most
+          purposes, though specifying a value may improve timekeeping on very slow CPU's.
+      - name: keyfile
+        type: string
+        desc: |
+          Specify the path for the authentication key file as the string keyfile. The default is /etc/ntp.keys.
+          This file should be in the format described in ntpd.
+      - name: version
+        type: string
+        desc: |
+          Specify the NTP version for outgoing packets as the integer version, which can be 1, 2, 3 or 4.
+          The default is 4. This allows ntpdate to be used with older NTP versions.
+      - name: samples
+        type: int
+        desc: |
+          Specify the number of samples to be acquired from each server as the integer samples,
+          with values from 1 to 8 inclusive. The default is 4.
+      - name: timeout
+        type: float
+        desc: |
+          Specify the maximum time waiting for a server response as the value timeout, in seconds and fraction.
+          The value is rounded to a multiple of 0.2 seconds. The default is 1 second, a value suitable for
+          polling across a LAN.

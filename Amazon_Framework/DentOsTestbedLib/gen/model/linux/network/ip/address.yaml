@@ -1,0 +1,90 @@
+- module: ip
+  description: ip route module to access kernel route table
+  classes:
+   - name: linux_ip_address
+     desc: |
+      ip [ OPTIONS ] address { COMMAND | help }
+      - ip address { add | change | replace } IFADDR dev IFNAME [ LIFETIME ] [ CONFFLAG-LIST ]
+      - ip address del IFADDR dev IFNAME [ mngtmpaddr ]
+      - ip address { save | flush } [ dev IFNAME ] [ scope SCOPE-ID ] [ metric METRIC ] [ to PREFIX ]
+        [ FLAG-LIST ] [ label PATTERN ] [ up ]
+      - ip address [ show [ dev IFNAME ] [ scope SCOPE-ID ] [ to PREFIX ] [ FLAG-LIST ] [ label PATTERN
+        ] [ master DEVICE ] [ type TYPE ] [ vrf NAME ] [ up ] ]
+      - ip address { showdump | restore }
+      IFADDR := PREFIX | ADDR peer PREFIX [ broadcast ADDR ] [ anycast ADDR ] [ label LABEL ] [ scope SCOPE-ID ]
+      SCOPE-ID := [ host | link | global | NUMBER ]
+      FLAG-LIST := [ FLAG-LIST ] FLAG
+      FLAG := [ [-]permanent | [-]dynamic | [-]secondary | [-]primary | [-]tentative | [-]deprecated |
+        [-]dadfailed | [-]temporary | CONFFLAG-LIST ]
+      CONFFLAG-LIST := [ CONFFLAG-LIST ] CONFFLAG
+      CONFFLAG := [ home | mngtmpaddr | nodad | noprefixroute | autojoin ]
+      LIFETIME := [ valid_lft LFT ] [ preferred_lft LFT ]
+      LFT := [ forever | SECONDS ]
+      TYPE := [ bridge | bridge_slave | bond | bond_slave | can | dummy | hsr | ifb | ipoib | macvlan |
+        macvtap | vcan | veth | vlan | vxlan | ip6tnl | ipip | sit | gre | gretap | erspan | ip6gre |
+        ip6gretap | ip6erspan | vti | vrf | nlmon | ipvlan | lowpan | geneve | macsec ]
+     implements: "dent:ip:ip_address"
+     platforms: ['dentos', 'cumulus']
+     commands:
+      - name: modify
+        apis: ['add', 'change', 'replace']
+        cmd: [ 'ip address' ]
+        params: ['prefix', 'peer', 'broadcast', 'anycast', 'label', 'scope', 'dev', 'valid_lft',
+                 'preferred_lft', 'confflag_list', 'options']
+        desc: |
+          Usage: ip address {add|change|replace} IFADDR dev IFNAME [ LIFETIME ] [ CONFFLAG-LIST ]
+          IFADDR := PREFIX | ADDR peer PREFIX [ broadcast ADDR ] [ anycast ADDR ] [ label IFNAME ]
+          [ scope SCOPE-ID ]
+          SCOPE-ID := [ host | link | global | NUMBER ]
+          CONFFLAG-LIST := [ CONFFLAG-LIST ] CONFFLAG
+          CONFFLAG  := [ home | nodad | mngtmpaddr | noprefixroute | autojoin ]
+          LIFETIME := [ valid_lft LFT ] [ preferred_lft LFT ]
+          LFT := forever | SECONDS
+      - name: delete
+        apis: ['delete']
+        cmd: [ 'ip address' ]
+        params: ['prefix', 'peer', 'broadcast', 'anycast', 'label', 'scope', 'options']
+        desc: |
+          ip address del IFADDR dev IFNAME [mngtmpaddr]
+          IFADDR := PREFIX | ADDR peer PREFIX
+                 [ broadcast ADDR ] [ anycast ADDR ]
+                 [ label IFNAME ] [ scope SCOPE-ID ]
+          SCOPE-ID := [ host | link | global | NUMBER ]
+      - name: save
+        apis: ['save', 'flush']
+        cmd: [ 'ip address' ]
+        params: [ 'dev', 'scope', 'prefix', 'flag_list', 'confflag_list' , 'options']
+        desc: |
+          ip address {save|flush} [ dev IFNAME ] [ scope SCOPE-ID ]
+                                   [ to PREFIX ] [ FLAG-LIST ] [ label LABEL ] [up]
+          SCOPE-ID := [ host | link | global | NUMBER ]
+          FLAG-LIST := [ FLAG-LIST ] FLAG
+          FLAG  := [ permanent | dynamic | secondary | primary |
+                      [-]tentative | [-]deprecated | [-]dadfailed | temporary |
+                      CONFFLAG-LIST ]
+          CONFFLAG-LIST := [ CONFFLAG-LIST ] CONFFLAG
+          CONFFLAG  := [ home | nodad | mngtmpaddr | noprefixroute | autojoin ]
+      - name: show
+        apis: ['show']
+        cmd: [ 'ip address' ]
+        params: [ 'dev', 'scope', 'master', 'type', 'prefix', 'flag_list', 'confflag_list', 'label', 'vrf', 'options' ]
+        desc: |
+          ip address [ show [ dev IFNAME ] [ scope SCOPE-ID ] [ master DEVICE ]
+                                [ type TYPE ] [ to PREFIX ] [ FLAG-LIST ]
+                                [ label LABEL ] [up] [ vrf NAME ] ]
+          FLAG-LIST := [ FLAG-LIST ] FLAG
+          FLAG  := [ permanent | dynamic | secondary | primary |
+                     [-]tentative | [-]deprecated | [-]dadfailed | temporary |
+                     CONFFLAG-LIST ]
+          CONFFLAG-LIST := [ CONFFLAG-LIST ] CONFFLAG
+          CONFFLAG  := [ home | nodad | mngtmpaddr | noprefixroute | autojoin ]
+          TYPE := { vlan | veth | vcan | dummy | ifb | macvlan | macvtap |
+                    bridge | bond | ipoib | ip6tnl | ipip | sit | vxlan | lowpan |
+                    gre | gretap | ip6gre | ip6gretap | vti | nlmon | can |
+                    bond_slave | ipvlan | geneve | bridge_slave | vrf | hsr | macsec }
+                   ip [ OPTIONS ] address { COMMAND | help }
+      - name: restore
+        apis: ['showdump', 'restore']
+        cmd: [ 'ip address' ]
+        params: [ "options" ]
+        desc: "Restore the config"

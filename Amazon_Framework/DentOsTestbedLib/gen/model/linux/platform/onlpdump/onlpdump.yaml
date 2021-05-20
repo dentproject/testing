@@ -1,0 +1,42 @@
+- module: onlpdump
+  description: onlpdump - ONLP dump information
+  classes:
+   - name: linux_onlp_system_info
+     desc: ONLP system details by running onlpdump -s
+     implements: "dent:onlpdump:onlp_system_info"
+     platforms: ['dentos', 'cumulus']
+     commands:
+      - name: show
+        apis: ['show']
+        cmd: [ 'onlpdump -s ' ]
+        desc: |
+         System Information:
+          Product Name: TN48M-P
+          Serial Number: TN481P2TW20220013
+          MAC: 18:be:92:12:ce:9a
+          MAC Range: 55
+          Manufacturer: DNI
+          Manufacture Date: 06/02/2020 13:24:13
+          Vendor: DNI
+          Platform Name: 88F7040/88F6820
+          Device Version: 1
+          Label Revision: C1
+          Country Code: TW
+          Diag Version: V1.2.1
+          Service Tag: 3810000054
+          ONIE Version: 2019.08-V02
+
+
+   - name: linux_onlp_sfp_info
+     desc: ONLP SFP details by running onlpdump -S
+     implements: "dent:onlpdump:onlp_sfp_info"
+     platforms: ['dentos', 'cumulus']
+     commands:
+      - name: show
+        apis: ['show']
+        cmd: [ 'onlpdump -S ' ]
+        desc: |
+         Port  Type            Media   Status  Len    Vendor            Model             S/N
+         ----  --------------  ------  ------  -----  ----------------  ----------------  ----------------
+         49  10GBASE-CR      Copper          2m     FS                SFP-10G-DAC       G1807081119-1
+         50  10GBASE-CR      Copper          1m     FCI Electronics   10110818-2010LF               0009
