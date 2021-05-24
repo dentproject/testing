@@ -1,0 +1,30 @@
+version: 1
+disable_existing_loggers: true
+
+formatters:
+    standard:
+        format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    error:
+        format: "%(levelname)s <PID %(process)d:%(processName)s> %(name)s.%(funcName)s(): %(message)s"
+
+handlers:
+    console:
+        class: logging.StreamHandler
+        formatter: standard
+        stream: ext://sys.stdout
+
+    file_handler:
+        class: logging.handlers.TimedRotatingFileHandler
+        formatter: standard
+        filename: "logs/dent_logs.txt"
+        interval: 1
+        when: 'h'
+        backupCount: 10
+        encoding: utf8
+
+loggers:
+    'DENT':
+        level: DEBUG
+        handlers: [console, file_handler]
+        propagate: no
+

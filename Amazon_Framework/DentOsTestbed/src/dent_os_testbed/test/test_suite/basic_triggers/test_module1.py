@@ -6,7 +6,7 @@ import pytest
 from dent_os_testbed.lib.ip.ip_link import IpLink
 from dent_os_testbed.lib.ip.ip_route import IpRoute
 from dent_os_testbed.utils.decorators import TestCaseSetup
-from dent_os_testbed.utils.test_suite.tb_utils import tb_get_device_object_from_dut
+from dent_os_testbed.utils.test_utils.tb_utils import tb_get_device_object_from_dut
 
 pytestmark = pytest.mark.suite_iproute2
 

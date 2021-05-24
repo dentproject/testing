@@ -6,7 +6,7 @@
 
 import asyncio
 
-from dent_os_testbed.lib.onlpdump.onlp_sfp_info import OnlpSfpInfo
+from dent_os_testbed.lib.onlp.onlp_sfp_info import OnlpSfpInfo
 
 from .utils import TestDevice
 

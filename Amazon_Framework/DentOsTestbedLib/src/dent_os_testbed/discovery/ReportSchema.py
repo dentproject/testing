@@ -612,7 +612,7 @@ class LldpSchemaList(SchemaList):
 
 class OnlpSfpInfoSchemaDict(SchemaDict):
     """
-    Refer ./gen/model/dent/platform/onlpdump/onlpdump.yaml onlp_sfp_info
+    Refer ./gen/model/dent/platform/onlp/onlpdump.yaml onlp_sfp_info
     """
 
     __schema_slots__ = {
@@ -635,7 +635,7 @@ class OnlpSfpInfoSchemaList(SchemaList):
 
 class OnlpSystemInfoSchemaDict(SchemaDict):
     """
-    Refer ./gen/model/dent/platform/onlpdump/onlpdump.yaml onlp_system_info
+    Refer ./gen/model/dent/platform/onlp/onlpdump.yaml onlp_system_info
     """
 
     __schema_slots__ = {
@@ -823,9 +823,9 @@ class LldpSchemaDict(SchemaDict):
     }
 
 
-class OnlpDumpSchemaDict(SchemaDict):
+class OnlpSchemaDict(SchemaDict):
     """
-    Refer ./gen/model/dent/platform/platform.yaml onlp_dump
+    Refer ./gen/model/dent/platform/platform.yaml onlp
     """
 
     __schema_slots__ = {
@@ -940,7 +940,7 @@ class PlatformSchemaDict(SchemaDict):
         "software": LeafSchemaDict,
         "fru": FruSchemaDict,
         "poe": PoeSchemaDict,
-        "onlp_dump": OnlpDumpSchemaDict,
+        "onlp": OnlpSchemaDict,
         "lldp": LldpSchemaDict,
     }
 

@@ -64,7 +64,7 @@ class Device(object):
             self.os = params["os"]
             self.host_name = params["hostName"]
             self.ip = params["ip"]
-            self.force_update = True if params["forceUpdate"] == "true" else False
+            self.force_update = params.get("forceUpdate", True)
             self.login = params["login"]
             self.serial_dev = params["serialDev"]
             self.baudrate = params["baudrate"]
@@ -80,7 +80,6 @@ class Device(object):
                     self.links_dict[dut] = [[], []]  # from and port seperate array
                 self.links_dict[dut][0].append(fr)
                 self.links_dict[dut][1].append(port)
-            self.force_update = params["forceUpdate"]
             self.username = self.login["userName"]
             self.password = self.login["password"]
             self.ssh_log = DeviceLogger(

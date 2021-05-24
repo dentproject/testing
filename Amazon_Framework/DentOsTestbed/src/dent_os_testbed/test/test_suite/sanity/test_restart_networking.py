@@ -5,7 +5,8 @@ import time
 import pytest
 
 from dent_os_testbed.lib.interfaces.interface import Interface
-from dent_os_testbed.utils.test_suite.tb_utils import (
+from dent_os_testbed.lib.os.service import Service
+from dent_os_testbed.utils.test_utils.tb_utils import (
     tb_device_check_health,
     tb_flap_links,
     tb_get_all_devices,
@@ -32,19 +33,28 @@ async def do_trigger(testbed, trigger_obj):
             # "networking",
         ]
         for s in services:
-            rc, out = await device.run_cmd(f"systemctl status {s}", sudo=True)
-            if rc != 0:
+            input_data = [{device.host_name: [{"name": s}]}]
+            out = await Service.show(
+                input_data=input_data,
+            )
+            if out[0][device.host_name]["rc"]:
                 device.applog.info(f"{s} not running on {device.host_name}")
                 continue
-            rc, out = await device.run_cmd(f"systemctl restart {s}", sudo=True)
-            assert rc == 0, f"Failed to restart the service {s} {out}"
+            out = await Service.restart(
+                input_data=input_data,
+            )
+            assert out[0][device.host_name]["rc"] == 0, f"Failed to restart the service {s} {out}"
             device.applog.info("zzZZZ(60s)")
             time.sleep(60)
-            rc, out = await device.run_cmd(f"systemctl status {s}", sudo=True)
-            assert rc == 0, f" service didnt come up {s} {out} on {device.host_name}"
+            out = await Service.show(
+                input_data=input_data,
+            )
+            assert (
+                out[0][device.host_name]["rc"] == 0
+            ), f" service didnt come up {s} {out} on {device.host_name}"
     elif trigger == TRIGGER_IFRELOAD:
-        rc, out = await device.run_cmd(f"ifreload -a", sudo=True)
-        assert rc == 0, f"Failed to ifreload -a {rc} {out} on {device.host_name}"
+        out = await Interface.reload(input_data=[{device.host_name: [{"options": "-a"}]}])
+        assert out[0][device.host_name]["rc"] == 0, f"Failed to ifreload -a "
         device.applog.info(out)
     else:
         device.applog.info(f"unknown trigger {trigger} on {device.host_name}")

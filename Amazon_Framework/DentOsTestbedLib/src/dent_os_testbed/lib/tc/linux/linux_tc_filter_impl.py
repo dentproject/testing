@@ -15,9 +15,11 @@ class LinuxTcFilterImpl(LinuxTcFilter):
 
         """
         params = kwarg["params"]
-        cmd = "tc filter {} ".format(command)
-        ############# Implement me ################
-
+        cmd = "tc {} filter {} ".format(params.get("options", ""), command)
+        if "dev" in params:
+            cmd += "dev {} ".format(params.get("dev"))
+        if "block" in params:
+            cmd += "block {} ".format(params.get("block"))
         return cmd
 
     def format_show(self, command, *argv, **kwarg):
@@ -27,7 +29,9 @@ class LinuxTcFilterImpl(LinuxTcFilter):
 
         """
         params = kwarg["params"]
-        cmd = "tc filter {} ".format(command)
-        ############# Implement me ################
-
+        cmd = "tc {} filter {} ".format(params.get("options", ""), command)
+        if "dev" in params:
+            cmd += "dev {} ".format(params.get("dev"))
+        if "direction" in params:
+            cmd += "{} ".format(params.get("direction"))
         return cmd

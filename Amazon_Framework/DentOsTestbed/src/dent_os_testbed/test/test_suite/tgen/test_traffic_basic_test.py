@@ -3,8 +3,8 @@ import time
 import pytest
 
 from dent_os_testbed.lib.iptables.ip_tables import IpTables
-from dent_os_testbed.utils.test_suite.tb_utils import tb_reload_nw_and_flush_firewall
-from dent_os_testbed.utils.test_suite.tgen_utils import (
+from dent_os_testbed.utils.test_utils.tb_utils import tb_reload_nw_and_flush_firewall
+from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_connect_to_tgen,
     tgen_utils_get_dent_devices_with_tgen,
     tgen_utils_get_traffic_stats,
@@ -52,7 +52,7 @@ async def test_basic_tgen_w_traffic(testbed):
         },
     }
     await tgen_utils_setup_streams(
-        tgen_dev, pytest._args.ncm_config_dir + f"/{dent}/tgen_basic_config.ixncfg", streams
+        tgen_dev, pytest._args.config_dir + f"/{dent}/tgen_basic_config.ixncfg", streams
     )
     await tgen_utils_start_traffic(tgen_dev)
     # - check the traffic stats

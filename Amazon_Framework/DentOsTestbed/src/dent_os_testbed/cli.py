@@ -134,8 +134,8 @@ def get_args():
         type=str,
     )
     parser.add_argument(
-        "--ncm-config-dir",
-        help="Directory path to NCM config file for the testbed",
+        "--config-dir",
+        help="Directory path to config file for the testbed",
         type=str,
     )
     parser.add_argument(
@@ -169,9 +169,9 @@ def validate_args(args):
                 "--discovery-reports-dir: Given path %s does not exist" % args.discovery_reports_dir
             )
             raise argparse.ArgumentTypeError(msg)
-    if args.ncm_config_dir:
-        if not os.path.isdir(args.ncm_config_dir):
-            msg = "--ncm-config-dir: Given path %s does not exist" % args.ncm_config_dir
+    if args.config_dir:
+        if not os.path.isdir(args.config_dir):
+            msg = "--config-dir: Given path %s does not exist" % args.config_dir
             raise argparse.ArgumentTypeError(msg)
     if args.config and not os.path.exists(args.config):
         raise argparse.ArgumentTypeError("--config: Given path does not exist")

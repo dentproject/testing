@@ -6,9 +6,11 @@ import time
 import pytest
 
 from dent_os_testbed.Device import DeviceType
-from dent_os_testbed.utils.test_suite.tb_utils import (
+from dent_os_testbed.lib.os.service import Service
+from dent_os_testbed.utils.test_utils.tb_utils import (
     check_asyncio_results,
     tb_clean_config,
+    tb_get_all_devices,
     tb_reset_ssh_connections,
 )
 
@@ -17,10 +19,14 @@ pytestmark = pytest.mark.suite_clean_config
 
 async def disable_ztp(device):
     await device.run_cmd(f"rm -f /etc/network/if-up.d/ntpdate || true")
-    await device.run_cmd(f"systemctl stop IhmInfraCommodityZTP  || true")
-    await device.run_cmd(f"systemctl disable IhmInfraCommodityZTP  || true")
-    await device.run_cmd(f"systemctl stop snmpd  || true")
-    await device.run_cmd(f"systemctl disable snmpd  || true")
+    for s in ["IhmInfraCommodityZTP", "snmpd"]:
+        input_data = [{device.host_name: [{"name": s}]}]
+        out = await Service.stop(
+            input_data=input_data,
+        )
+        out = await Service.disable(
+            input_data=input_data,
+        )
 
 
 async def setup_dent_tools(device, package):
@@ -46,7 +52,7 @@ async def test_clean_config(testbed):
     if not os.path.exists(package):
         assert 0, f"{package} could not be found!"
 
-    devices = tb_get_all_devices(testbed)
+    devices = await tb_get_all_devices(testbed)
     cos = []
     for device in devices:
         cos.append(disable_ztp(device))
