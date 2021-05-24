@@ -209,10 +209,12 @@ def main():
         loop = asyncio.get_event_loop()
         pytest.testbed = TestBed(applog, loop, args)
         loop.run_until_complete(setup(args, applog))
+        loop = asyncio.get_event_loop()
         loop.run_until_complete(
             testbed_update_login_banner(pytest.testbed.devices, args, applog, add=True)
         )
         run_tests(args, applog)
+        loop = asyncio.get_event_loop()
         loop.run_until_complete(
             testbed_update_login_banner(pytest.testbed.devices, args, applog, add=False)
         )
