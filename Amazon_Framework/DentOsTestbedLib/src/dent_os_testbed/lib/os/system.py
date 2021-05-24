@@ -78,3 +78,22 @@ class System(TestLibObject):
 
         """
         return await System._run_command("reboot", *argv, **kwarg)
+
+    async def shutdown(*argv, **kwarg):
+        """
+        Platforms: ['dentos', 'cumulus']
+        Usage:
+        System.shutdown(
+            input_data = [{
+                # device 1
+                'dev1' : [{
+                    # command 1
+                        'options':'string',
+                }],
+            }],
+        )
+        Description:
+        Shutdown the system
+
+        """
+        return await System._run_command("shutdown", *argv, **kwarg)

@@ -3,9 +3,12 @@ import time
 import pytest
 
 from dent_os_testbed.Device import DeviceType
-from dent_os_testbed.lib.iptables.ip_tables import IpTables
-from dent_os_testbed.utils.test_suite.tb_utils import tb_reload_nw_and_flush_firewall
-from dent_os_testbed.utils.test_suite.tgen_utils import (
+from dent_os_testbed.lib.ip.ip_route import IpRoute
+from dent_os_testbed.utils.test_utils.tb_utils import (
+    tb_ping_device,
+    tb_reload_nw_and_flush_firewall,
+)
+from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_connect_to_tgen,
     tgen_utils_get_dent_devices_with_tgen,
     tgen_utils_get_traffic_stats,
@@ -31,14 +34,13 @@ async def check_ping_to_tgen_link(testbed, dev_groups, dent_dev):
             continue
         for ep in dev_groups.values():
             ip = ep[0]["ip"]
-            cmd = f"ip route get {ip}"
-            rc, out = await dev.run_cmd(cmd, sudo=True)
-            dev.applog.info(f"Ran {cmd} rc {rc} out {out}")
-            cmd = f"ping -c 10 {ip}"
-            rc, out = await dev.run_cmd(cmd, sudo=True)
-            dev.applog.info(f"Ran {cmd} rc {rc} out {out}")
+            out = await IpRoute.get(
+                input_data=[{dev.host_name: [{"dst": f"{ip}", "cmd_options": "-j"}]}]
+            )
+            dev.applog.info(f"Ran IpRoute.get {ip} out {out}")
+            rc = await tb_ping_device(dev, f"{ip}", dump=True)
             if rc != 0:
-                dev.applog.info(f"Failed to reach {ip} on {peer} {rc} {out}")
+                dev.applog.info(f"Failed to reach {ip} on {peer} {rc}")
                 # assert 0, f"Failed to ping the tgen {ip} from {peer}"
 
 
@@ -78,7 +80,7 @@ async def test_arp_flush_w_traffic(testbed):
         },
     }
     await tgen_utils_setup_streams(
-        tgen_dev, pytest._args.ncm_config_dir + f"/{dent}/tgen_basic_config.ixncfg", streams
+        tgen_dev, pytest._args.config_dir + f"/{dent}/tgen_basic_config.ixncfg", streams
     )
     await tgen_utils_start_traffic(tgen_dev)
     # - check the traffic stats

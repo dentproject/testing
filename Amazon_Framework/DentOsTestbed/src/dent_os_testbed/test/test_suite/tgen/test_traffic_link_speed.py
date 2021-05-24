@@ -5,10 +5,11 @@ import time
 import pytest
 
 from dent_os_testbed.Device import DeviceType
+from dent_os_testbed.lib.ethtool.ethtool import Ethtool
 from dent_os_testbed.lib.interfaces.interface import Interface
 from dent_os_testbed.lib.ip.ip_link import IpLink
-from dent_os_testbed.utils.test_suite.tb_utils import tb_reload_nw_and_flush_firewall
-from dent_os_testbed.utils.test_suite.tgen_utils import (
+from dent_os_testbed.utils.test_utils.tb_utils import tb_reload_nw_and_flush_firewall
+from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_create_devices_and_connect,
     tgen_utils_get_dent_devices_with_tgen,
     tgen_utils_get_traffic_stats,
@@ -99,7 +100,7 @@ async def test_tgen_link_speed_change(testbed):
 
     await tgen_utils_setup_streams(
         tgen_dev,
-        pytest._args.ncm_config_dir + f"/{tgen_dev.host_name}/tgen_vlan_streams",
+        pytest._args.config_dir + f"/{tgen_dev.host_name}/tgen_vlan_streams",
         streams,
         force_update=True,
     )
@@ -111,10 +112,12 @@ async def test_tgen_link_speed_change(testbed):
     for speed, rate in zip(speeds, rx_rates):
         # set the speed on the inter infra link
         for swp in infra1.links_dict[infra2.host_name][0]:
-            cmd = f"ethtool -s {swp} speed {speed} autoneg on"
-            rc, out = await infra1.run_cmd(cmd, sudo=True)
-            msg = f"Ran {cmd} with rc {rc} out {out}"
-            infra1.applog.info(msg)
+            out = Ethtool.set(
+                input_data=[
+                    {infra1.host_name: [{"devname": swp, "speed": speed, "autoneg": "on"}]}
+                ],
+            )
+            infra1.applog.info(out)
 
         await tgen_utils_start_traffic(tgen_dev)
         time.sleep(duration)

@@ -1,6 +1,7 @@
 """ConnectionManager module to manage SSH and serial connections
 """
 
+from dent_os_testbed.utils.ConnectionHandlers.PSSHHandler import PSSHConnection
 from dent_os_testbed.utils.ConnectionHandlers.SerialHandler import SerialConsole
 from dent_os_testbed.utils.ConnectionHandlers.SSHHandler import SSHConnection
 
@@ -36,7 +37,10 @@ class ConnectionManager:
         self.serial_connection = None
         self.loop = loop
         if ssh_conn_params:
-            self.ssh_connection = SSHConnection(logger, self.loop, ssh_conn_params)
+            if ssh_conn_params.pssh:
+                self.ssh_connection = PSSHConnection(logger, self.loop, ssh_conn_params)
+            else:
+                self.ssh_connection = SSHConnection(logger, self.loop, ssh_conn_params)
         if serial_conn_params:
             self.serial_connection = SerialConsole(logger, self.loop, serial_conn_params)
 

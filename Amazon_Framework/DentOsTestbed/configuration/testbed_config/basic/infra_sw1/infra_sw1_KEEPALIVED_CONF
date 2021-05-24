@@ -1,0 +1,19 @@
+
+
+vrrp_instance VI_1 {
+    state MASTER
+    interface vlan100
+    vrrp_garp_master_delay 5
+    vrrp_garp_master_refresh 60
+    vrrp_garp_lower_prio_repeat 3
+    virtual_router_id 1
+    priority 101
+    advert_int 1
+    authentication {
+        auth_type PASS
+        auth_pass 1111
+    }
+    virtual_ipaddress {
+        10.1.4.1 label vlan100:MASTER
+    }
+}

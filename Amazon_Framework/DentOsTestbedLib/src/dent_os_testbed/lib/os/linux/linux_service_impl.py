@@ -59,3 +59,15 @@ class LinuxServiceImpl(LinuxService):
             )
 
         return services
+
+    def format_operation(self, command, *argv, **kwarg):
+        """
+        > systemctl <operation> <name>
+
+        """
+        params = kwarg["params"]
+        cmd = "systemctl  {} ".format(command)
+        ############# Implement me ################
+        if "name" in params:
+            cmd += params["name"]
+        return cmd

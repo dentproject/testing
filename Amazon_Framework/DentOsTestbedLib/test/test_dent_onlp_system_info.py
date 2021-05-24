@@ -6,7 +6,7 @@
 
 import asyncio
 
-from dent_os_testbed.lib.onlpdump.onlp_system_info import OnlpSystemInfo
+from dent_os_testbed.lib.onlp.onlp_system_info import OnlpSystemInfo
 
 from .utils import TestDevice
 

@@ -8,7 +8,7 @@ import pytest
 
 from dent_os_testbed.lib.interfaces.interface import Interface
 from dent_os_testbed.utils.decorators import TestCaseSetup
-from dent_os_testbed.utils.test_suite.tb_utils import tb_get_device_object_from_dut
+from dent_os_testbed.utils.test_utils.tb_utils import tb_get_device_object_from_dut
 
 pytestmark = pytest.mark.suite_basic_trigger
 

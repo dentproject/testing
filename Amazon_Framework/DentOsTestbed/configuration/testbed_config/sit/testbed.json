@@ -1,0 +1,106 @@
+{
+    "devices": [
+        {
+            "friendlyName":"Dent OOB switch1",
+            "os":"dentos",
+            "type" : "OUT_OF_BOUND_SWITCH",
+            "hostName": "oob_sw1",
+            "ip": "10.1.4.4",
+            "login":{
+                "userName":"root",
+                "password":"onl"
+            },
+            "serialDev":"/dev/ttyUSB6",
+            "baudrate": 115200,
+            "links" : [
+                ["eth0", "oob_sw2:swp40"],
+                ["swp49", "agg_r1:swp5"],
+                ["swp50", "agg_r2:swp9"]
+            ]
+        },
+        {
+            "friendlyName":"Dent infra1",
+            "os":"dentos",
+            "type" : "INFRA_SWITCH",
+            "hostName": "infra_sw1",
+            "ip": "10.1.254.98",
+            "login":{
+                "userName":"root",
+                "password":"onl"
+            },
+            "serialDev":"/dev/ttyUSB7",
+            "baudrate": 115200,
+            "links" : [
+                ["eth0", "oob_sw2:swp25"],
+                ["swp49", "agg_r1:swp7"],
+                ["swp50", "agg_r2:swp5"],
+                ["swp51", "infra_sw2:swp51"],
+                ["swp52", "infra_sw2:swp52"]
+            ]
+        },
+        {
+            "friendlyName":"Dent agg1",
+            "os":"dentos",
+            "type" : "AGGREGATION_ROUTER",
+            "hostName": "agg_r1",
+            "ip": "10.1.252.14",
+            "login":{
+                "userName":"root",
+                "password":"onl"
+             },
+            "serialDev":"/dev/ttyUSB4",
+            "baudrate": 115200,
+            "links" : [
+                ["eth0", "oob_sw2:swp27"],
+                ["swp5", "oob_sw1:swp49"],
+                ["swp6", "oob_sw2:swp50"],
+                ["swp7", "infra_sw1:swp49"],
+                ["swp8", "infra_sw2:swp49"]
+            ]
+        },
+        {
+            "friendlyName":"Dent agg2",
+            "os":"dentos",
+            "type" : "AGGREGATION_ROUTER",
+            "hostName": "agg_r2",
+            "ip": "10.1.253.14",
+            "login":{
+                "userName":"root",
+                "password":"onl"
+            },
+            "serialDev":"/dev/ttyUSB3",
+            "baudrate": 115200,
+            "links" : [
+                ["eth0", "oob_sw2:swp28"],
+                ["swp5", "infra_sw1:swp50"],
+                ["swp6", "infra_sw2:swp50"],
+                ["swp9", "oob_sw1:swp50"],
+                ["swp10", "oob_sw2:swp50"]
+            ]
+        },
+        {
+            "friendlyName":"Ixia Traffic Generator",
+            "os":"ixnetwork",
+            "type" : "TRAFFIC_GENERATOR",
+            "hostName": "ixia",
+            "ip": "54.240.208.142",
+            "login":{
+                "userName":"admin",
+                "password":"admin"
+            },
+            "serialDev":"/dev/ttyUSBXX",
+            "baudrate": 115200,
+            "links" : [
+                ["192.168.122.5:1:1", "infra_sw1:swp51"],
+                ["192.168.122.5:1:2", "infra_sw2:swp46"],
+                ["192.168.122.5:1:3", "agg_r2:swp12"],
+                ["192.168.122.5:1:4", "agg_r1:swp9"],
+                ["192.168.122.5:1:5", "infra_sw1:swp52"],
+                ["192.168.122.5:1:6", "infra_sw2:swp51"]
+            ]
+        }
+    ],
+    "operator" : "dent",
+    "topology" : "gordion-knot",
+    "force_discovery" : false
+}

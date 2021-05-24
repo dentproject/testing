@@ -86,3 +86,98 @@ class Service(TestLibObject):
 
         """
         return await Service._run_command("show", *argv, **kwarg)
+
+    async def start(*argv, **kwarg):
+        """
+        Platforms: ['dentos', 'cumulus']
+        Usage:
+        Service.start(
+            input_data = [{
+                # device 1
+                'dev1' : [{
+                    # command 1
+                        'name':'string',
+                }],
+            }],
+        )
+        Description:
+        > systemctl <operation> <name>
+
+        """
+        return await Service._run_command("start", *argv, **kwarg)
+
+    async def restart(*argv, **kwarg):
+        """
+        Platforms: ['dentos', 'cumulus']
+        Usage:
+        Service.restart(
+            input_data = [{
+                # device 1
+                'dev1' : [{
+                    # command 1
+                        'name':'string',
+                }],
+            }],
+        )
+        Description:
+        > systemctl <operation> <name>
+
+        """
+        return await Service._run_command("restart", *argv, **kwarg)
+
+    async def stop(*argv, **kwarg):
+        """
+        Platforms: ['dentos', 'cumulus']
+        Usage:
+        Service.stop(
+            input_data = [{
+                # device 1
+                'dev1' : [{
+                    # command 1
+                        'name':'string',
+                }],
+            }],
+        )
+        Description:
+        > systemctl <operation> <name>
+
+        """
+        return await Service._run_command("stop", *argv, **kwarg)
+
+    async def enable(*argv, **kwarg):
+        """
+        Platforms: ['dentos', 'cumulus']
+        Usage:
+        Service.enable(
+            input_data = [{
+                # device 1
+                'dev1' : [{
+                    # command 1
+                        'name':'string',
+                }],
+            }],
+        )
+        Description:
+        > systemctl <operation> <name>
+
+        """
+        return await Service._run_command("enable", *argv, **kwarg)
+
+    async def disable(*argv, **kwarg):
+        """
+        Platforms: ['dentos', 'cumulus']
+        Usage:
+        Service.disable(
+            input_data = [{
+                # device 1
+                'dev1' : [{
+                    # command 1
+                        'name':'string',
+                }],
+            }],
+        )
+        Description:
+        > systemctl <operation> <name>
+
+        """
+        return await Service._run_command("disable", *argv, **kwarg)

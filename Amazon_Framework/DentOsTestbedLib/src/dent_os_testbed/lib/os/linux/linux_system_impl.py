@@ -12,3 +12,16 @@ class LinuxSystemImpl(LinuxSystem):
         # custom code here
 
         return cmd
+
+    def format_shutdown(self, command, *argv, **kwarg):
+        """
+        Shutdown the system
+
+        """
+        params = kwarg["params"]
+        cmd = "shutdown"
+        ############# Implement me ################
+        if "options" in params:
+            cmd += params["options"]
+
+        return cmd

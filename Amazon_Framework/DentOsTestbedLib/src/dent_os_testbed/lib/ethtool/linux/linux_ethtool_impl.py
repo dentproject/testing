@@ -148,9 +148,13 @@ class LinuxEthtoolImpl(LinuxEthtool):
 
         """
         params = kwarg["params"]
-        cmd = "ethtool {} ".format(command)
-        ############# Implement me ################
-
+        cmd = "ethtool -s {} ".format(params.get("options", ""), command)
+        if "devname" in params:
+            cmd += "{} ".format(params["devname"])
+        if "speed" in params:
+            cmd += "speed {}".format(params["speed"])
+        if "autoneg" in params:
+            cmd += "autoneg {}".format(params["autoneg"])
         return cmd
 
     def parse_set(self, command, output, *argv, **kwarg):

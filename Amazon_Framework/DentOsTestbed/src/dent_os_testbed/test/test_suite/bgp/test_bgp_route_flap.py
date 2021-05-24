@@ -6,12 +6,13 @@ import pytest
 
 from dent_os_testbed.Device import DeviceType
 from dent_os_testbed.lib.interfaces.interface import Interface
-from dent_os_testbed.utils.test_suite.tb_utils import (
+from dent_os_testbed.lib.os.service import Service
+from dent_os_testbed.utils.test_utils.tb_utils import (
     tb_clean_config,
     tb_flap_links,
     tb_reload_nw_and_flush_firewall,
 )
-from dent_os_testbed.utils.test_suite.tgen_utils import (
+from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_util_flap_bgp_peer,
     tgen_utils_clear_traffic_stats,
     tgen_utils_create_bgp_devices_and_connect,
@@ -44,8 +45,12 @@ async def do_trigger(tgen_dev, src, devices, trigger):
                 "frr.service",
             ]
             for s in services:
-                rc, out = await device.run_cmd(f"systemctl restart {s}")
-                assert rc == 0, f"Failed to restart the service {s} {out}"
+                out = await Service.restart(
+                    input_data=[{device.host_name: [{"name": s}]}],
+                )
+                assert (
+                    out[0][device.host_name]["rc"] == 0
+                ), f"Failed to restart the service {s} {out}"
         elif trigger == TRIGGER_IFRELOAD:
             out = await Interface.reload(input_data=[{device.host_name: [{"options": "-a"}]}])
             assert out[0][device.host_name]["rc"] == 0, f"Failed to ifreload -a "
@@ -148,7 +153,7 @@ async def test_bgp_route_and_interface_flap(testbed):
 
     await tgen_utils_setup_streams(
         tgen_dev,
-        pytest._args.ncm_config_dir + f"/{tgen_dev.host_name}/tgen_bgp_route_flap_config.ixncfg",
+        pytest._args.config_dir + f"/{tgen_dev.host_name}/tgen_bgp_route_flap_config.ixncfg",
         streams,
         force_update=True,
     )

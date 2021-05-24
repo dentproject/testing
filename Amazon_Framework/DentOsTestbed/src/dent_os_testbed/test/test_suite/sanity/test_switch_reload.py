@@ -9,8 +9,9 @@ import pytest
 
 from dent_os_testbed.lib.interfaces.interface import Interface
 from dent_os_testbed.lib.ip.ip_link import IpLink
+from dent_os_testbed.lib.os.system import System
 from dent_os_testbed.test.test_suite.sanity.test_check_links import check_and_validate_switch_links
-from dent_os_testbed.utils.test_suite.tb_utils import tb_get_all_devices, tb_reset_ssh_connections
+from dent_os_testbed.utils.test_utils.tb_utils import tb_get_all_devices, tb_reset_ssh_connections
 
 pytestmark = pytest.mark.suite_system_wide_testing
 
@@ -69,7 +70,7 @@ async def test_switch_reload_all(testbed):
                 #    )
 
         for dev in devices:
-            rc, out = await dev.run_cmd(f"shutdown -r +1", sudo=True)
+            await System.shutdown(input_data=[{dev.host_name: [{"options": "-r +1"}]}])
 
         await tb_reset_ssh_connections(devices)
         testbed.applog.info("zzzZZZ! (5min)")
@@ -109,7 +110,7 @@ async def test_switch_reload_one_switch(testbed):
         )
         for dev in devices:
             # reboot this node
-            rc, out = await dev.run_cmd(f"shutdown -r +1", sudo=True)
+            out = await System.shutdown(input_data=[{dev.host_name: [{"options": "-r +1"}]}])
             await tb_reset_ssh_connections(devices)
             testbed.applog.info("zzzZZZ! (5min)")
             for i in progressbar.progressbar(range(5)):
