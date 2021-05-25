@@ -1,3 +1,0 @@
-archive_system: archive_python
-python_version: "3.6"
-handler_path: lib/python3.6/site-packages/
