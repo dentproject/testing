@@ -357,7 +357,10 @@ async def tb_ping_device(device, target, pkt_loss_treshold=50, dump=False):
         pkt_loss_percent = int(pkt_loss_percent[: pkt_loss_percent.find("%")])
     else:
         pkt_loss_percent = -1
-    return True if pkt_loss_percent <= pkt_loss_treshold else False
+    # 0 for success
+    # 1 for failure
+    return 0 if pkt_loss_percent <= pkt_loss_treshold else 1
+
 
 
 async def tb_device_onie_install(dev):
