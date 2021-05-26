@@ -17,7 +17,7 @@ from dent_os_testbed.utils.test_utils.tb_utils import (
 
 async def check_certificates(dev, devices_dict):
     # certificates - should be refreshed every 10mins at /var/shared_resources/credentials/*.sts
-    cmd = "find /var/shared_resources/credentials/ -name '*.sts' -mmin -10 -type f -exec ls  {} \;"
+    cmd = "find /var/shared_resources/credentials/ -name '*.sts' -mmin -10 -type f -exec ls  {} \\;"
     rc, out = await dev.run_cmd(cmd, sudo=True)
     dev.applog.info(f"Ran {cmd} rc {rc} out {out}")
     # there should be atleast two files
@@ -269,7 +269,7 @@ async def check_ntp_sync(dev, devices_dict):
     +10.2.190.100    10.2.191.100     3 u  246  256  377    0.151   -0.580   0.630
     *10.2.191.100    163.237.218.19   2 u   40  256  377    0.162   -2.040   0.137 <--- looking for this
     """
-    cmd = "ntpq -np | grep '^\*'"
+    cmd = "ntpq -np | grep '^\\*'"
     rc, out = await dev.run_cmd(cmd, sudo=True)
     dev.applog.info(f"Ran {cmd} rc {rc} out {out}")
     if rc != 0:

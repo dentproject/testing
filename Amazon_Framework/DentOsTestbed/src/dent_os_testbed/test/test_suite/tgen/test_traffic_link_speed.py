@@ -34,7 +34,7 @@ async def test_tgen_link_speed_change(testbed):
         testbed, [DeviceType.INFRA_SWITCH], 1
     )
     if not tgen_dev or not infra_devices or len(infra_devices) < 2:
-        tgen_dev.applog.info(
+        testbed.applog.info(
             "The testbed does not have enough dent with tgen connections or infra devices with tgen connections"
         )
         return
