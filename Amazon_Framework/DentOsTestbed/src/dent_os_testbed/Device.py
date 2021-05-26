@@ -249,6 +249,9 @@ class Device(object):
             Exception: For generic failures
         """
         result = False
+        if self.ssh_conn_params.pssh:
+            # disconnect before trying to check if its connected on pssh channel
+            await self.conn_mgr.get_ssh_connection().disconnect()
         try:
             exit_status, _ = await self.conn_mgr.get_ssh_connection().run_cmd("date")
             if exit_status == 0:
