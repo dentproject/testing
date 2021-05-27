@@ -19,7 +19,7 @@ class LinuxSystemImpl(LinuxSystem):
 
         """
         params = kwarg["params"]
-        cmd = "shutdown"
+        cmd = "shutdown "
         ############# Implement me ################
         if "options" in params:
             cmd += params["options"]

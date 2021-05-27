@@ -19,3 +19,9 @@
           faultd.service                     loaded active running LSB: Start Faultd Agent
           frr.service                        loaded active running FRRouting
           ....
+      - name: operation
+        apis: ['start', 'stop', 'restart', 'enable', 'disable']
+        cmd: [ 'systemctl ' ]
+        params: ['name']
+        desc: |
+          > systemctl <operation> <name>

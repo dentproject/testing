@@ -11,7 +11,7 @@ from dent_os_testbed.utils.test_utils.bgp_routing_utils import (
     bgp_routing_get_local_as,
     bgp_routing_get_prefix_list,
 )
-from dent_os_testbed.utils.test_utils.tb_utils import tb_reload_nw_and_flush_firewall
+from dent_os_testbed.utils.test_utils.tb_utils import tb_reload_nw_and_flush_firewall, tb_reset_ssh_connections
 from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_util_flap_bgp_peer,
     tgen_utils_create_bgp_devices_and_connect,
@@ -101,6 +101,9 @@ async def test_alpha_lab_bgp_routing_loop_detection(testbed):
     stats = await tgen_utils_get_traffic_stats(tgen_dev, "Flow Statistics")
     stats = await tgen_utils_get_traffic_stats(tgen_dev, "Port Statistics")
 
+    # Reset the connections to make it work in pssh environment.
+    await tb_reset_ssh_connections(devices)
+
     # install a route filter on the first device and block all ips on it
     d1 = devices[0]
     d1_as = await bgp_routing_get_local_as(d1)
@@ -127,8 +130,13 @@ async def test_alpha_lab_bgp_routing_loop_detection(testbed):
     # allow some time to take effect
     time.sleep(30)
 
+    await tb_reset_ssh_connections(devices)
+
     # check community on all the devices it should be set to above.
     for dd in devices[1:]:
+        d2_as = await bgp_routing_get_local_as(dd)
+        if d1_as == d2_as:
+            continue
         for i in range(num_routes):
             cmd = f"vtysh -c 'show bgp ipv4 30.0.{i}.0/24 json'"
             rc, out = await dd.run_cmd(cmd, sudo=True)

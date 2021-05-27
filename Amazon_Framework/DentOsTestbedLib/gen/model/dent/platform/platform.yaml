@@ -20,8 +20,8 @@
         cls: "dent:platform:poe"
         desc: |
           Power Over Ethernet related information
-      - name: onlp_dump
-        cls: "dent:platform:onlp_dump"
+      - name: onlp
+        cls: "dent:platform:onlp"
         desc: |
           Open Network Linux Platform Dump information
       - name: lldp
@@ -122,21 +122,21 @@
         cls: "dent:poe:poectl"
         desc: |
           Device fan information
-   - name: onlp_dump
+   - name: onlp
      singleton: True
      desc: |
          ONLP system level information
      members:
       - name: system_information
-        cls: "dent:onlpdump:onlp_system_info"
+        cls: "dent:onlp:onlp_system_info"
         desc: |
           Device fan information
       - name: sfps
-        cls: "dent:onlpdump:onlp_sfp_info"
+        cls: "dent:onlp:onlp_sfp_info"
    - name: lldp
      singleton: True
      members:
       - name: interfaces
         cls: "dent:lldp:lldp"
         desc: |
-          LLDP inforation
+          LLDP information

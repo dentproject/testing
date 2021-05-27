@@ -13,3 +13,9 @@
       - name: options
         type: string
         desc: command options
+      - name: remote_host
+        type: string
+        desc: remote host name
+      - name: remote_interface
+        type: string
+        desc: remote interface name
