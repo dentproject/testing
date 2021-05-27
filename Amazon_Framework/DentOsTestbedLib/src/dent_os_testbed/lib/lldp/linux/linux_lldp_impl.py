@@ -28,11 +28,18 @@ class LinuxLldpImpl(LinuxLldp):
         return cmd
 
     def parse_show(self, command, output, *argv, **kwarg):
+        interfaces = []
         try:
             parsed_out = json.loads(output)
+            for interface in parsed_out["lldp"]["interface"]:
+                for port, data in interface.items():
+                    item = {"interface": port, "remote_interface": data["port"]["id"]["value"]}
+                    for chassis in data["chassis"]:
+                        item["remote_host"] = chassis
+                    interfaces.append(item)
         except:
             return []
-        return parsed_out["lldp"]["interface"]
+        return interfaces
 
     def format_set(self, command, *argv, **kwarg):
         """

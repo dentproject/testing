@@ -18,6 +18,10 @@ class LldpMod(Module):
                 dst[i].interface = lldp.get("interface")
             if "options" in lldp:
                 dst[i].options = lldp.get("options")
+            if "remote_host" in lldp:
+                dst[i].remote_host = lldp.get("remote_host")
+            if "remote_interface" in lldp:
+                dst[i].remote_interface = lldp.get("remote_interface")
 
     async def discover(self):
         # need to get device instance to get the data from

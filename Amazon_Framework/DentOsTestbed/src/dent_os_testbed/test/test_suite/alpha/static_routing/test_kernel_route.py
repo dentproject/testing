@@ -7,6 +7,7 @@ import pytest
 
 from dent_os_testbed.Device import DeviceType
 from dent_os_testbed.lib.ip.ip_link import IpLink
+from dent_os_testbed.lib.ip.ip_route import IpRoute
 from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_connect_to_tgen,
     tgen_utils_create_devices_and_connect,

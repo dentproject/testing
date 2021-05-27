@@ -601,6 +601,8 @@ class LldpSchemaDict(SchemaDict):
     __schema_slots__ = {
         "interface": str,
         "options": str,
+        "remote_host": str,
+        "remote_interface": str,
     }
 
 

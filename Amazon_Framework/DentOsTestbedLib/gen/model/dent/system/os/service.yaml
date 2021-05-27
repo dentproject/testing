@@ -3,7 +3,7 @@
   classes:
    - name: service
      desc: service related inforamtion
-     apis: [ 'show' ]
+     apis: [ 'show', 'start', 'restart', 'stop', 'enable', 'disable' ]
      members:
       - name: name
         type: string

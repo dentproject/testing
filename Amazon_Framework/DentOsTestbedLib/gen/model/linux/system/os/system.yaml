@@ -12,3 +12,9 @@
         params: [ "options" ]
         desc: |
           Reboot the system
+      - name: shutdown
+        apis: ['shutdown']
+        cmd: [ 'shutdown' ]
+        params: [ "options" ]
+        desc: |
+          Shutdown the system

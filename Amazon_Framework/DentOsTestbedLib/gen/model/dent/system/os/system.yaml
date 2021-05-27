@@ -3,7 +3,7 @@
   classes:
    - name: system
      desc: system details
-     apis: [ 'reboot' ]
+     apis: [ 'reboot' , 'shutdown']
      members:
       - name: options
         type: string
