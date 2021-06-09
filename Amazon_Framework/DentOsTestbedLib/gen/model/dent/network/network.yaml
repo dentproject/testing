@@ -1,0 +1,254 @@
+- module: network
+  description: "Network module containing information for L1,L2,L3,interfaces..."
+  classes:
+   - name: device_network
+     singleton: True
+     members:
+      - name: layer1
+        cls: "dent:network:l1"
+        desc: "Layer 1 information"
+      - name: layer2
+        cls: "dent:network:l2"
+        desc: "Layer 2 information"
+      - name: layer3
+        cls: "dent:network:l3"
+        desc: "Layer3 information"
+   - name: l1
+     singleton: True
+     members:
+      - name: management_mac
+        type: mac_t
+        desc: "Management mac address"
+      - name: interfaces
+        cls: "dent:network:interfaces"
+        desc: "L1 interfaces"
+      - name: links
+        cls: "dent:ip:ip_link"
+        desc: "IP link information"
+      - name: lags
+        cls: "dent:network:lags"
+        desc: "Link Aggregation Group information"
+   - name: interfaces
+     members:
+      - name: name
+        type: str
+        desc: "Interface Name"
+      - name: speed
+        type: int
+        desc: "Integeration speed"
+      - name: media
+        type: str
+        desc: "media type"
+      - name: configured_state
+        type: str
+        desc: "interface state"
+      - name: peer_device_id
+        type: str
+        desc: "Peer device id"
+      - name: peer_interface
+        type: str
+        desc: "Peer interface name"
+      - name: operstate
+        type: str
+        desc: "Operationational state"
+      - name: flags
+        type: list
+        desc: "Interface Flags"
+      - name: mtu
+        type: int
+        desc: "Interface Maximum Transmission Unit"
+      - name: index
+        type: int
+        desc: "IFindex"
+      - name: qdisc
+        type: str
+        desc: "Queue discipline of this interface"
+      - name: group
+        type: str
+        desc: "interface group"
+      - name: txqlen
+        type: int
+        desc: "TX Q length"
+      - name: link_type
+        type: str
+        desc: "Link Type of the interface"
+      - name: address
+        type: str
+        desc: "Interface address"
+      - name: broadcast
+        type: str
+        desc: "Broadcast address"
+      - name: sfp
+        cls: "dent:network:sfp"
+        desc: "SFP related information"
+      - name: addr_info
+        cls: "dent:network:interface_addr"
+        desc: "Address configured information"
+   - name: sfp
+     singleton: True
+     members:
+      - name: vendor
+        type: str
+        desc: "SFP vendor name"
+      - name: model
+        type: str
+        desc: "SFP model"
+      - name: serial
+        type: str
+        desc: "SFP serial number"
+   - name: interface_addr
+     members:
+      - name: family
+        type: str
+        desc: "IF Family"
+      - name: local
+        type: str
+        desc: "is Local address"
+      - name: prefixlen
+        type: int
+        desc: "Prefix length"
+      - name: scope
+        type: str
+        desc: "Scope"
+      - name: label
+        type: str
+        desc: "address label"
+   - name: lags
+     members:
+      - name: name
+        type: str
+        desc: "LAG name"
+      - name: interfaces
+        cls: "dent:network:interface_names"
+        desc: "Interfaces under lags"
+   - name: interface_names
+     members:
+      - name: name
+        type: str
+        desc: "LAG"
+   - name: l2
+     singleton: True
+     members:
+      - name: vlans
+        cls: "dent:network:vlans"
+        desc: "VLAN related information"
+      - name: bridges
+        cls: "dent:network:bridge"
+        desc: "Bridge related information"
+   - name: vlans
+     members:
+      - name: vlan_id
+        type: int
+        desc: "VLAN Id"
+      - name: access_ports
+        cls: "dent:network:interface_names"
+        desc: "Access ports"
+      - name: trunk_ports
+        cls: "dent:network:interface_names"
+        desc: "Trunk ports"
+   - name: bridge
+     members:
+      - name: name
+        type: str
+        desc: "Bridge name"
+      - name: interfaces
+        cls: "dent:network:interface_names"
+        desc: "Interfaces under this bridge"
+      - name: stp
+        type: bool
+        desc: "STP enabled"
+   - name: l3
+     singleton: True
+     members:
+      - name: management_ip
+        type: ip_addr_t
+        desc: ""
+      - name: addresses
+        cls: "dent:ip:ip_address"
+        desc: "IP addresses"
+      - name: routes
+        cls: "dent:ip:ip_route"
+        desc: "Route information"
+      - name: iptables
+        cls: "dent:iptables:ip_tables"
+        desc: "Ip table information"
+      - name: acls
+        cls: "dent:network:acls"
+        desc: "ACLs configured"
+      - name: bgp
+        cls: "dent:network:bgp"
+        desc: "BGP information"
+      - name: ospf
+        cls: "dent:network:ospf"
+        desc: "OSPF information"
+   - name: routes
+     members:
+      - name: dst
+        type: ip_addr_t
+        desc: "Destination IP address"
+      - name: gateway
+        type: str
+        desc: "Gateway for this route"
+      - name: dev
+        type: str
+        desc: "interface on which the route is present"
+      - name: protocol
+        type: str
+        desc: "IP Protocol"
+      - name: metric
+        type: str
+        desc: "Route Metric"
+      - name: flag
+        type: str
+        desc: "Route flags"
+   - name: acls
+   - name: bgp
+     members:
+      - name: as_
+        type: int
+        desc: "BGP AS"
+      - name: router
+        type: str
+        desc: "BGP Router name"
+      - name: neighbors
+        cls:  "dent:network:bgp_neigh"
+        desc: "BGP neighbor"
+   - name: bgp_neigh
+     members:
+      - name: neighbor
+        type: str
+        desc: "BGP neighbor name"
+      - name: as_
+        type: str
+        desc: "BGP AS name"
+      - name: up
+        type: str
+        desc: "BGP up"
+      - name: state
+        type: str
+        desc: "BGP state"
+   - name: ospf
+     members:
+      - name: router_id
+        type: str
+        desc: "OSPF router id"
+      - name: neighbors
+        cls:  "dent:network:ospf_neigh"
+        desc: "OSPF neighbor information"
+   - name: ospf_neigh
+     members:
+      - name: address
+        type: str
+        desc: "OSPF address"
+      - name: router_id
+        type: str
+        desc: "OSPF router id"
+      - name: priority
+        type: str
+        desc: "Priority"
+      - name: state
+        type: str
+        desc: "OSPF state"
+      - name: interface
+        type: str
+        desc: "Interface name"
