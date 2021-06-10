@@ -92,7 +92,7 @@ pytrafficgen==1.6.0
 pytrex==0.7.4
 pytz==2019.3
 pywin32==227
-PyYAML==5.1.2
+PyYAML==5.4.1
 pyzmq==18.1.1
 requests==2.24.0
 scandir==1.10.0
