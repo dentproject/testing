@@ -15,7 +15,7 @@ colormath==3.0.0
 configparser==5.0.0
 contextlib2==0.6.0.post1
 coverage==4.5.4
-cryptography==2.8
+cryptography>=3.2
 cycler==0.10.0
 ddt==1.1.1
 decorator==4.4.1
@@ -37,7 +37,7 @@ iniconfig==1.0.1
 ipaddress==1.0.23
 IPy==1.0
 jdcal==1.4
-Jinja2==2.10.3
+jinja2>=2.11.3
 json5==0.8.5
 jsonpickle==1.2
 jsonrpclib-pelix==0.4.0
@@ -61,7 +61,7 @@ pluggy==0.13.1
 ply==3.11
 prettytable==0.7.2
 protobuf==3.5.1
-psutil==5.4.6
+psutil>=5.6.6
 PTable==0.9.2
 py>=1.10.0
 pyaml==19.4.1
