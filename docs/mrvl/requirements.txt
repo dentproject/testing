@@ -109,10 +109,9 @@ texttable==1.6.2
 toml==0.10.1
 tox==3.20.0
 typing==3.6.4
-urllib3==1.25.10
+urllib3==1.26.5
 virtualenv==20.0.31
 wcwidth==0.1.8
-#xenavalkyrie==1.2.1
 xlrd==1.2.0
 xmltodict==0.11.0
 xmodem==0.4.5
