@@ -63,10 +63,9 @@ prettytable==0.7.2
 protobuf==3.5.1
 psutil==5.4.6
 PTable==0.9.2
-py==1.9.0
+py>=1.10.0
 pyaml==19.4.1
 pyasn1==0.4.3
-#pycore==0.0.3
 pycparser==2.20
 pycryptodome==3.9.4
 pycryptodomex==3.9.4
