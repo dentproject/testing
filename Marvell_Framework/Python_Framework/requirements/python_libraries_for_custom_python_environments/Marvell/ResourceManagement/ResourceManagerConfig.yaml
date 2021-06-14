@@ -1,0 +1,14 @@
+configuration:
+  need_logging: False
+  logging_level: INFO
+  module_name: ResourceManagerModule
+  logPath: Results
+  logName: ResourceManagerLog
+  show_func_parameters: True
+
+setup_reasource_data:
+  setup_list_path: \\fileril103\TESTING\New structure\Projects\Automation\Python\Shared\Setups\SetupList\SetupLists.xls
+  common_settings_section_name: setupslist.common settings
+  communication_section_name: setupinfo.communication settings
+  base_setup_attr_name: setup path
+  base_entry_name: setupinfo.

@@ -1,0 +1,26 @@
+{
+  "lag1_members": {
+    "1": "sw1p3",
+    "2": "sw1p5",
+    "3": "sw1p7",
+    "4": "sw1p9",
+    "5": "sw1p11",
+    "6": "sw1p15",
+    "7": "sw1p19",
+    "8": "sw1p21"
+  },
+  "lag2_members": {
+    "1": "sw1p4",
+    "2": "sw1p6",
+    "3": "sw1p8",
+    "4": "sw1p10",
+    "5": "sw1p12",
+    "6": "sw1p16",
+    "7": "sw1p20",
+    "8": "sw1p22"
+  },
+  "tx_duration": 30,
+  "balance_tolerance_percent": 0.01,
+  "losses_tolerance_percent": 0.00001,
+  "dip_incr_count": 10000
+}

@@ -1,0 +1,7 @@
+configuration:
+  need_logging: False
+  logging_level: INFO
+  module_name: CommWrapperModule
+  logPath: .\Results\
+  logName: CommWrapperLog
+  show_func_parameters: True

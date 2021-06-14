@@ -1,0 +1,29 @@
+{
+  "Topology#1":{
+       "br0": ["sw1p14", "sw1p24"],
+       "br1": ["sw1p17", "sw1p36"],
+       "br2": ["sw1p26", "sw1p38"]
+       // "br0": ["sw1p5", "sw1p7"],
+       // "br1": ["sw1p6", "sw1p9"],
+       // "br2": ["sw1p8", "sw1p10"]
+
+       //"br0": ["sw1p14", "sw1p26"],
+       //"br1": ["sw1p23", "sw1p51"],
+       //"br2": ["sw1p35", "sw1p52"]
+  },
+  "Topology#2":{
+        //"sw1p14": "sw1p23",
+        //"sw1p26": "sw1p35"
+       "sw1p14": "sw1p17",
+       "sw1p24": "sw1p26",
+  },
+   "Topology#3":{
+        //"sw1p14": "sw1p23",
+       // "sw1p26": "sw1p35",
+       // "sw1p51": "sw1p52"
+
+       "sw1p14": "sw1p17",
+       "sw1p24": "sw1p26",
+       "sw1p36": "sw1p38"
+    }
+}

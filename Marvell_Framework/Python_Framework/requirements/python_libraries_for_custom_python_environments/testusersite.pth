@@ -1,0 +1,3 @@
+# This pth script uses a helper script to inject the testing path to module search path i.e. sys.path
+# see http://bob.ippoli.to/archives/2005/02/06/using-pth-files-for-python-development/ for ref
+import TestusersitePatch;TestusersitePatch.SetMyRootPath(TestusersitePatch.GetMyRootPath())

@@ -1,0 +1,355 @@
+{
+  "Common Params": {
+    "packet_size": 64,
+    "packets_per_burst": 10000
+  },////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  "Tests":                                   //  Holds the data for each test
+  {/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    "basic_functionality":                   //  Test name
+    {///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      "tx_interfaces":                       //  Represents the transmitting interfaces
+      {/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        "1":                                 //  The number of the port in TGDutLinks dictionary
+        {///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+          "packet_vids": [                   //
+            "X"                              //   Specifies the VIDs of the packets the tx port will send
+          ]                                  //
+        },                                   //
+      },////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      "group_1": {                           //
+        "ports": [                           //   Each group Represents a group of ports/interfaces with the same
+          1,                                 //   VLAN settings, e.g.,
+          2,                                 //       "group_2": {
+          3                                  //           "ports": [
+        ],                                   //             4
+        "vid": 1,                            //           ],
+        "more_settings": [                   //           "vid": 2,
+          "pvid",                            //            "more_settings": [
+          "untagged",                        //             "untagged"
+        ]                                    //           ]
+       },                                    //          }
+       "group_2": {                          //       }
+         "ports": [                          //   means a group with port number 4 in TGDutLinks dict, in VLAN 2 with
+           4,                                //   Untagged Egress.
+        ],                                   //
+        "vid": 2,                            //
+        "more_settings": [                   //
+          "untagged"                         //
+        ]                                    //
+      }                                      //
+    },//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    "access_mode":                           //  Test name
+    {///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      "tx_interfaces":                       //  Represents the transmitting interfaces
+      {/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        "2":                                 //  The number of the port in TGDutLinks dictionary
+        {///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+          "packet_vids": [                   //
+            "X"                              //  Specifies the VIDs of the packets the tx port will send
+          ]                                  //
+        }                                    //
+      },////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      "group_1": {                           //   Each group Represents a group of ports/interfaces with the same
+        "ports": [                           //   VLAN settings, e.g.,
+          1,                                 //   "group_2": {
+          2,                                 //       "ports": [
+          3,                                 //             4
+          4                                  //           ],
+        ],                                   //           "vid": 2,
+        "vid": 2,                            //            "more_settings": [
+        "more_settings": [                   //             "untagged"
+          "pvid",                            //           ]
+          "untagged"                         //          }
+        ]                                    //      }
+      }                                      //   means a group with port number 4 in TGDutLinks dict, in VLAN 2 with
+    },                                       //   Untagged Egress.
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    "trunk_mode":                            //  Test name
+    {///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      "tx_interfaces":                       //  Represents the transmitting interfaces
+      {/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        "1":                                 //  The number of the port in TGDutLinks dictionary
+        {///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+          "packet_vids": [                   //
+            "X",                             //  Specifies the VIDs of the packets the tx port will send
+            0,                               //
+            1,                               //
+            22,                              //
+            23,                              //
+            24                               //
+          ]                                  //
+        }                                    //
+      }, ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      "group_1": {                           //
+        "ports": [                           //   Each group Represents a group of ports/interfaces with the same
+          1,                                 //   VLAN settings, e.g.,
+          2,                                 //       "group_2": {
+          3,                                 //           "ports": [
+          4                                  //             4
+        ],                                   //           ],
+        "vid": 22,                           //           "vid": 2,
+        "more_settings": [                   //            "more_settings": [
+        ]                                    //             "untagged"
+      },                                     //           ]
+      "group_2": {                           //          }
+        "ports": [                           //       }
+          1,                                 //   means a group with port number 4 in TGDutLinks dict, in VLAN 2 with
+          2,                                 //   Untagged Egress.
+          3,                                 //
+          4                                  //
+        ],                                   //
+        "vid": 23,                           //
+        "more_settings": [                   //
+        ]                                    //
+      },                                     //
+      "group_3": {                           //
+        "ports": [                           //
+          1,                                 //
+          2,                                 //
+          3,                                 //
+          4                                  //
+        ],                                   //
+        "vid": 24,                           //
+        "more_settings": [                   //
+          "pvid"                             //
+        ]                                    //
+      }                                      //
+    },//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    "all_port_supported_modes":              //  Test name
+    {///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      "tx_interfaces":                       //  Represents the transmitting interfaces
+      {/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        "1":                                 //  The number of the port in TGDutLinks dictionary
+        {///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+          "packet_vids": [                   //
+            "X",                             //   Specifies the VIDs of the packets the tx port will send
+            0,                               //
+            1,                               //
+            2,                               //
+            3,                               //
+            4                                //
+          ]                                  //
+        }                                    //
+      },////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      "group_1": {                           //
+        "ports": [                           //
+          1,                                 //   Each group Represents a group of ports/interfaces with the same
+          2                                  //   VLAN settings, e.g.,
+        ],                                   //       "group_2": {
+        "vid": 2,                            //           "ports": [
+        "more_settings": [                   //             4
+        ]                                    //           ],
+      },                                     //           "vid": 2,
+      "group_2": {                           //            "more_settings": [
+        "ports": [                           //             "untagged"
+          1                                  //           ]
+        ],                                   //          }
+        "vid": 3,                            //       }
+        "more_settings": [                   //   means a group with port number 4 in TGDutLinks dict, in VLAN 2 with
+          "untagged"                         //   Untagged Egress.
+        ]                                    //
+      },                                     //
+      "group_3": {                           //
+        "ports": [                           //
+          3                                  //
+        ],                                   //
+        "vid": 3,                            //
+        "more_settings": [                   //
+          "pvid",                            //
+          "untagged"                         //
+        ]                                    //
+      },                                     //
+      "group_4": {                           //
+        "ports": [                           //
+          1,                                 //
+          4                                  //
+        ],                                   //
+        "vid": 4,                            //
+        "more_settings": [                   //
+          "pvid",                            //
+          "untagged"                         //
+        ]                                    //
+      }                                      //
+    },//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    "default_configuration":                 //  Test name
+    {///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      "tx_interfaces":                       //  Represents the transmitting interfaces
+      {/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        "1":                                 //  The number of the port in TGDutLinks dictionary
+        {///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+          "packet_vids": [                   //
+            "X",                             //   Specifies the VIDs of the packets the tx port will send
+            1,                               //
+            2                                //
+          ]                                  //
+        }                                    //
+      },////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      "group_1": {                           //   Each group Represents a group of ports/interfaces with the same
+        "ports": [                           //   VLAN settings, e.g.,
+          1,                                 //       "group_2": {
+          2,                                 //           "ports": [
+          3,                                 //             4
+          4                                  //           ],
+        ],                                   //           "vid": 2,
+        "vid": 1,                            //            "more_settings": [
+        "more_settings": [                   //             "untagged"
+          "pvid",                            //           ]
+          "untagged"                         //          }
+        ]                                    //       }
+      }                                      //   means a group with port number 4 in TGDutLinks dict, in VLAN 2 with
+    },                                       //   Untagged Egress.
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    "other_vlan's_fields_verification":      //  Test name
+    {///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      "tx_interfaces":                       //  Represents the transmitting interfaces
+      {/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        "1":                                 //  The number of the port in TGDutLinks dictionary
+        {///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+          "packet_vids": [                   //
+            "X",                             //   Specifies the VIDs of the packets the tx port will send
+            0,                               //
+            5,                               //
+            7                                //
+          ]                                  //
+        }                                    //
+      },////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      "group_1": {                           //   Each group Represents a group of ports/interfaces with the same
+        "ports": [                           //   VLAN settings, e.g.,
+          1,                                 //       "group_2": {
+          2                                  //           "ports": [
+        ],                                   //             4
+        "vid": 5,                            //           ],
+        "more_settings": [                   //           "vid": 2,
+        ]                                    //            "more_settings": [
+      }                                      //             "untagged"
+    },                                       //           ]
+                                             //          }
+                                             //       }
+                                             //   means a group with port number 4 in TGDutLinks dict, in VLAN 2 with
+                                             //   Untagged Egress.
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    "switching_modes_through_cli":           //  Test name
+    {///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      "tx_interfaces":                       //  Represents the transmitting interfaces
+      {/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        "1":                                 //  The number of the port in TGDutLinks dictionary
+        {///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+          "packet_vids": [                   //
+            "X",                             //  Specifies the VIDs of the packets the tx port will send
+            0,                               //
+            5,                               //
+            101,                             //
+            500,                             //
+            4094                             //
+          ]                                  //
+        }                                    //
+      },////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      "group_1": {                           //   Each group Represents a group of ports/interfaces with the same
+        "ports": [                           //   VLAN settings, e.g.,
+          1,                                 //       "group_2": {
+          2                                  //           "ports": [
+        ],                                   //             4
+        "vid": 5,                            //           ],
+        "more_settings": [                   //           "vid": 2,
+          "pvid",                            //            "more_settings": [
+          "untagged"                         //             "untagged"
+        ]                                    //           ]
+      },                                     //          }
+      "group_2": {                           //       }
+        "ports": [                           //   means a group with port number 4 in TGDutLinks dict, in VLAN 2 with
+          1                                  //   Untagged Egress.
+        ],                                   //
+        "vid": 101,                          //
+        "more_settings": [                   //
+        ]                                    //
+      },                                     //
+      "group_3": {                           //
+        "ports": [                           //
+          4                                  //
+        ],                                   //
+        "vid": 101,                          //
+        "more_settings": [                   //
+          "pvid",                            //
+          "untagged"                         //
+        ]                                    //
+      },                                     //
+      "group_4": {                           //
+        "ports": [                           //
+          1                                  //
+        ],                                   //
+        "vid": 4094,                         //
+        "more_settings": [                   //
+          "untagged"                         //
+        ]                                    //
+      },                                     //
+      "group_5": {                           //
+        "ports": [                           //
+          2                                  //
+        ],                                   //
+        "vid": 4094,                         //
+        "more_settings": [                   //
+        ]                                    //
+      }                                      //
+    },//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    "changing_the_default_vid":              //  Test name
+    {///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      "tx_interfaces":                       //  Represents the transmitting interfaces
+      {/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        "1":                                 //  The number of the port in TGDutLinks dictionary
+        {///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+          "packet_vids": [                   //
+            "X",                             //   Specifies the VIDs of the packets the tx port will send
+            4094,                            //
+            2                                //
+          ]                                  //
+        }                                    //
+      },////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      "group_1": {                           //   Each group Represents a group of ports/interfaces with the same
+        "ports": [                           //   VLAN settings, e.g.,
+          1,                                 //       "group_2": {
+          2,                                 //           "ports": [
+          3,                                 //             4
+          4                                  //           ],
+        ],                                   //           "vid": 2,
+        "vid": 4094,                         //            "more_settings": [
+        "more_settings": [                   //             "untagged"
+          "pvid",                            //           ]
+          "untagged"                         //          }
+        ]                                    //       }
+      }                                      //   means a group with port number 4 in TGDutLinks dict, in VLAN 2 with
+    },                                       //   Untagged Egress.
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    "tagged_size":                           //  Test name
+    {///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      "tx_interfaces":                       //  Represents the transmitting interfaces
+      {/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        "1":                                 //  The number of the port in TGDutLinks dictionary
+        {///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+          "packet_vids": [                   //
+            "X"                              //   Specifies the VIDs of the packets the tx port will send
+          ]                                  //
+        }                                    //
+      },////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      "group_1": {                           //   Each group Represents a group of ports/interfaces with the same
+        "ports": [                           //   VLAN settings, e.g.,
+          1,                                 //       "group_2": {
+          3,                                 //        "ports": [
+          4,                                 //          4
+        ],                                   //        ],
+        "vid": 1,                            //        "vid": 2,
+        "more_settings": [                   //        "more_settings": [
+          "pvid", "untagged"                 //          "untagged"
+        ]                                    //        ]
+      },                                     //       }
+    "group_2": {                             //    }
+        "ports": [                           //
+          2 //                               //
+        ],                                   //
+        "vid": 1,                            //
+        "more_settings": [                   //
+          "pvid"                             //
+        ]                                    //
+      }                                      //
+    }                                        //
+  }/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+}///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

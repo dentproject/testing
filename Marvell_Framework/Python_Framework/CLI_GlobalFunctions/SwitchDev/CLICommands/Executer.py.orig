@@ -1,0 +1,38 @@
+<<<<<<< HEAD
+=======
+from builtins import str
+from PyInfra.BaseTest_SV.DutCLIInfra.CLIBaseClass import CliBase
+from collections import OrderedDict
+>>>>>>> futurize script  fixes for Python3 compatibility
+
+class Executer(object):
+
+    def __init__(self, channel=None):
+        from PyInfra.BaseTest_SV import AppType
+        self.channel = channel
+        self.apptype = AppType.SwitchDev
+
+    def __getattr__(self, name):
+        command = ' '.join(name.split("_"))
+<<<<<<< HEAD
+        return lambda *args : self._setAndSendResult("{} {}".format(command, ' '.join(map(str,list(args)))))
+
+    # def __getattr__(self, name):
+    #     command = ' '.join(name.split("_"))
+    #     return lambda **kwargs=None :self._setAndSendResult("{} ".format(command) +
+    #                 ' '.join("{!s}{!s}".format(key, " " + str(val) if val else "")
+    #                          for key, val in kwargs.items()) if kwargs else "")
+=======
+        return lambda od=None :self._setAndSendResult("{} ".format(command) +
+                    ' '.join("{!s}{!s}".format(key, " " + str(val) if val else "")
+                             for key, val in list(OrderedDict(od).items())) if od else "")
+>>>>>>> futurize script  fixes for Python3 compatibility
+
+    def _setAndSendResult(self, command):
+        self.channel.GetBuffer()
+        self.channel.SendCommandAndWaitForPattern(command, ExpectedPrompt=self.channel.shellPrompt, timeOutSeconds=10)
+        lastBuffer = self.channel.lastBufferTillPrompt.replace('\r', '').strip(command).strip(self.channel.shellPrompt.pattern).strip(
+            '\n')
+        if lastBuffer:
+            return lastBuffer
+        return None
