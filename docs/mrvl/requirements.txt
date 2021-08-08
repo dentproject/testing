@@ -75,7 +75,7 @@ pypacker==4.9
 pypacker27==4.2.1
 pyparser==1.0
 pyparsing==2.4.7
-pypiwin32==223
+pywin32>=301
 Pypubsub==4.0.3
 pyreadline==2.1
 Pyro4==4.77
@@ -90,7 +90,7 @@ python-dateutil==2.8.1
 pytrafficgen==1.6.0
 pytrex==0.7.4
 pytz==2019.3
-pywin32==227
+pywin32>=301
 PyYAML==5.4.1
 pyzmq==18.1.1
 requests==2.24.0
