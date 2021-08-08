@@ -1,0 +1,31 @@
+- module: lldp
+  description: lldp - LLDP module
+  classes:
+   - name: linux_lldp
+     desc: |
+      LLDP module
+     implements: "dent:lldp:lldp"
+     platforms: ['dentos', 'cumulus']
+     commands:
+      - name: show
+        apis: ['show']
+        cmd: ['lldpctl']
+        params: ['interface', 'options']
+        desc: |
+          Usage:   lldpctl [OPTIONS ...] [COMMAND ...]
+          Version: lldpd 2020-09-23
+          -d          Enable more debugging information.
+          -u socket   Specify the Unix-domain socket used for communication with lldpd(8).
+          -f format   Choose output format (plain, keyvalue, json, json0, xml).
+          see manual page lldpcli(8) for more information
+      - name: set
+        apis: ['set']
+        cmd: ['lldpcli']
+        params: ['interface', 'options']
+        desc: |
+          Usage:   lldpcli [OPTIONS ...] [COMMAND ...]
+          Version: lldpd 2020-09-23
+          -d          Enable more debugging information.
+          -u socket   Specify the Unix-domain socket used for communication with lldpd(8).
+          -f format   Choose output format (plain, keyvalue, json, json0, xml).
+          see manual page lldpcli(8) for more information

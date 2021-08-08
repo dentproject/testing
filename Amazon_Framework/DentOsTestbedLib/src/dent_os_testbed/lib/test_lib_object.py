@@ -1,0 +1,2 @@
+class TestLibObject(object):
+    pass
