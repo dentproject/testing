@@ -90,7 +90,7 @@ python-dateutil==2.8.1
 pytrafficgen==1.6.0
 pytrex==0.7.4
 pytz==2019.3
-pywin32==227
+pywin32>=301
 PyYAML==5.4.1
 pyzmq==18.1.1
 requests==2.24.0
