@@ -75,7 +75,7 @@ pypacker==4.9
 pypacker27==4.2.1
 pyparser==1.0
 pyparsing==2.4.7
-pypiwin32==223
+pywin32>=301
 Pypubsub==4.0.3
 pyreadline==2.1
 Pyro4==4.77
