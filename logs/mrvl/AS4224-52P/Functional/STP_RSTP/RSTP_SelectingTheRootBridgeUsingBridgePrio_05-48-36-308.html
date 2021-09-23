@@ -1,0 +1,1889 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>RSTP_SelectingTheRootBridgeUsingBridgePrio_05-48-36-308601 Log</title>
+<!-- Latest compiled and minified CSS -->
+<!--
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs-3.3.7/jq-3.2.1/jq-3.2.1/dt-1.10.16/datatables.min.css"/>
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.7/jq-3.2.1/jq-3.2.1/dt-1.10.16/datatables.min.js"></script>
+-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+  
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+<style>
+pre {
+margin : 0;
+white-space: pre-wrap;
+background-color: inherit;
+border: none;
+border-radius: inherit;
+}
+</style>
+</head>
+
+<body>
+<div class="col-md-12 col-xs-12 col-lg-12">
+<br>
+<h1 style="text-align:center">RSTP_SelectingTheRootBridgeUsingBridgePrio_05-48-36-308601 Log</h1>
+<br>
+<div class="input-group">
+    <select class="form-control" id="min-severity" placeholder="Min Severity">
+    </select>
+    <span class="input-group-addon">-</span>
+    <select class="form-control" id="max-severity" placeholder="Max Severity">
+    </select>
+</div>
+&nbsp
+<table id="data_table" class="table table-striped table-bordered" cellspacing="0">
+<thead>
+    <tr>
+        <th style="width: 180px;">Time</th>
+        <th style="width: 90px;">Log Level</th>
+        <th>Message</th>
+    </tr>
+</thead>
+<tbody>
+
+<tr class="success">
+<td>2021-09-03 05:48:36,309</td>
+<td>TRACE</td>
+<td><pre>BaseTest_SD::_BasicTestInit: this test has been launched with the following input arguments:
+Namespace(conn_table=None, dummy_test=False, excel_path='/swdev/fileril103/testing/Projects/Automation/Python/Setups/AGO/CI/Setup_23.xlsx', excel_setups_db_path=None, seed=None, setup_info=None, setup_name=None, stress=None, test_args=None)</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:36,309</td>
+<td>TRACE</td>
+<td><pre>BaseTest_SD::_BasicTestInit: this test is running from the following Setup Excel file /swdev/fileril103/testing/Projects/Automation/Python/Setups/AGO/CI/Setup_23.xlsx</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:36,310</td>
+<td>TRACE</td>
+<td><pre>
++-------------------------------------------------------+
+|                    TG Mapping Table                   |
++----+------------+------------+------+------+----------+
+| ID | IP Address |  TG Type   | Card | Port | Dut Port |
++----+------------+------------+------+------+----------+
+| 1  | 10.5.236.4 | ixia_linux |  11  |  5   |  sw1p1   |
+| 2  | 10.5.236.4 | ixia_linux |  11  |  6   |  sw1p23  |
+| 3  | 10.5.236.4 | ixia_linux |  11  |  7   |  sw1p35  |
+| 4  | 10.5.236.4 | ixia_linux |  11  |  8   |  sw1p48  |
++----+------------+------------+------+------+----------+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:36,310</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: connecting to IxiaSSH on IP 10.5.236.4 using TCL/API Server IP 10.5.236.4</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:46,212</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect:  Connection Successful</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:46,580</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:48,579</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:50,571</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:52,646</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 05:48:55,643</td>
+<td>INFO</td>
+<td><pre>Used cached DutInfo: dutmainchannel__/swdev/fileril103/testing/Projects/Automation/Python/Setups/AGO/CI/Setup_23.xlsx__1620569885.7663186</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:55,644</td>
+<td>TRACE</td>
+<td><pre>SwitchDevDutManager::login: Connecting to 10.5.236.85:root:22 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:55,756</td>
+<td>TRACE</td>
+<td><pre>SwitchDevDutManager::login: Connection Successful</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:55,756</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "
+
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:55,859</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: Linux localhost 5.10.4 #1 SMP PREEMPT Tue Aug 31 15:40:33 UTC 2021 aarch64
+Last login: Fri Sep  3 05:41:01 2021 from 10.5.116.193
+
+
+root@localhost:~# 
+root@localhost:~# 
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:56,860</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "
+
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:56,962</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 
+root@localhost:~# 
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:56,968</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_clear_dmesg: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:57,070</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  echo "" &#62 /var/log/messages
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:57,170</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   echo "" &#62 /var/log/messages
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:57,171</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_clear_cmd_history: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:57,272</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  history -c
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:57,372</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   history -c
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:57,373</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::stressCpus: </pre></td>
+</tr>
+
+
+<tr>
+<td width="100"></td>
+<td width="100"></td>
+<td class="info"><pre>+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                                             Test Description                                                                             |
++------------+--------------------------------------------+------------------------------------------------------------------------+-------------+-------------------------+
+| Suite Name | Test Name                                  | Purpose                                                                | Author      | Test Document Reference |
++------------+--------------------------------------------+------------------------------------------------------------------------+-------------+-------------------------+
+| STP_RSTP   | RSTP_SelectingTheRootBridgeUsingBridgePrio |                                                                        | Maya Peretz |                         |
+|            |                                            |             Verify the root bridge is selected by the lowest priority  |             |                         |
+|            |                                            | number.                                                                |             |                         |
+|            |                                            |                                                                        |             |                         |
++------------+--------------------------------------------+------------------------------------------------------------------------+-------------+-------------------------+
+
++-------------------------------------------------------------------------------+
+|                                 Test Procedure                                |
++------+------------------------------------------------------------------------+
+| Step | Step Description                                                       |
++------+------------------------------------------------------------------------+
+| 1    | Create 3 bridge entities: br0, br1, br2 and set link up on them        |
++------+------------------------------------------------------------------------+
+| 2    | Enslave ports according to the test's setup topology                   |
++------+------------------------------------------------------------------------+
+| 3    | Change the MAC addresses for all bridges; change the priority for all  |
+|      | bridges.                                                               |
++------+------------------------------------------------------------------------+
+| 4    | Set link up on all participant ports                                   |
++------+------------------------------------------------------------------------+
+| 5    | Wait ~40 seconds until topology fully converges                        |
++------+------------------------------------------------------------------------+
+| 6    | Verify the bridge root is br1 by the lowest MAC rule; verify other     |
+|      | bridges do not consider themselves as root-bridge                      |
++------+------------------------------------------------------------------------+
+| 7    | Verify br2 has a blocking port.                                        |
++------+------------------------------------------------------------------------+
+| 8    | Verify br1 doesn’t have any blocking port.                             |
++------+------------------------------------------------------------------------+
+| 9    | Change the highest bridge priority to a priority with lower value then |
+|      | the root bridge.                                                       |
++------+------------------------------------------------------------------------+
+| 10   | Wait ~40 seconds for topology to re-build.                             |
++------+------------------------------------------------------------------------+
+| 11   | Verify it has become the new root bridge.                              |
++------+------------------------------------------------------------------------+
+| 12   | Verify br2 has a blocking port.                                        |
++------+------------------------------------------------------------------------+
+| 13   | Verify br1 doesn’t have any blocking port.                             |
++------+------------------------------------------------------------------------+</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 05:48:57,382</td>
+<td>INFO</td>
+<td><pre>Executing step 1: Create 3 bridge entities: br0, br1, br2 and set link up on them</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:57,382</td>
+<td>DEBUG</td>
+<td><pre>SpanningTreeAPI::createAndSetSoftEntityUp: set link up on bridge entity</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:57,482</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: " sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='y'" /etc/bridge-stp.conf && mstpd
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:57,583</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='y'" /etc/bridge-stp.conf && mstpd
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:57,683</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link add br0 type bridge vlan_filtering 0 stp_state 1
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:57,784</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link add br0 type bridge vlan_filtering 0 stp_state 1
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:57,885</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "mstpctl addbridge br0
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:57,985</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: mstpctl addbridge br0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:58,086</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev br0 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:58,186</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev br0 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:58,186</td>
+<td>DEBUG</td>
+<td><pre>SpanningTreeAPI::createAndSetSoftEntityUp: set link up on bridge entity</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:58,287</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: " sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='y'" /etc/bridge-stp.conf && mstpd
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:58,387</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='y'" /etc/bridge-stp.conf && mstpd
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:58,488</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link add br1 type bridge vlan_filtering 0 stp_state 1
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:58,589</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link add br1 type bridge vlan_filtering 0 stp_state 1
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:58,690</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "mstpctl addbridge br1
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:58,790</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: mstpctl addbridge br1
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:58,891</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev br1 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:58,991</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev br1 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:58,992</td>
+<td>DEBUG</td>
+<td><pre>SpanningTreeAPI::createAndSetSoftEntityUp: set link up on bridge entity</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:59,092</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: " sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='y'" /etc/bridge-stp.conf && mstpd
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:59,194</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='y'" /etc/bridge-stp.conf && mstpd
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:59,295</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link add br2 type bridge vlan_filtering 0 stp_state 1
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:59,395</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link add br2 type bridge vlan_filtering 0 stp_state 1
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:59,496</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "mstpctl addbridge br2
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:59,596</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: mstpctl addbridge br2
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:59,698</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev br2 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:59,798</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev br2 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:59,799</td>
+<td>DEBUG</td>
+<td><pre>verifyStpInRightSpace  verify STP runs in the right space (kernel/user space)</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:48:59,899</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "cat /sys/class/net/br0/bridge/stp_state
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:00,000</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: cat /sys/class/net/br0/bridge/stp_state
+2
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:00,000</td>
+<td>DEBUG</td>
+<td><pre>verifyStpInRightSpace  verify STP runs in the right space (kernel/user space)</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:00,100</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "cat /sys/class/net/br1/bridge/stp_state
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:00,203</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: cat /sys/class/net/br1/bridge/stp_state
+2
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:00,203</td>
+<td>DEBUG</td>
+<td><pre>verifyStpInRightSpace  verify STP runs in the right space (kernel/user space)</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:00,303</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "cat /sys/class/net/br2/bridge/stp_state
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:00,404</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: cat /sys/class/net/br2/bridge/stp_state
+2
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 05:49:00,404</td>
+<td>INFO</td>
+<td><pre>Executing step 2: Enslave ports according to the test's setup topology</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:00,404</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::enslavePortsToSoftLink: set enslaved interfaces</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:00,505</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p4 master br0
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:00,606</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p4 master br0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:00,706</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p6 master br0
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:00,807</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p6 master br0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:00,807</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::enslavePortsToSoftLink: set enslaved interfaces</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:00,907</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p3 master br1
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:01,008</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p3 master br1
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:01,109</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p8 master br1
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:01,210</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p8 master br1
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:01,210</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::enslavePortsToSoftLink: set enslaved interfaces</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:01,311</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p5 master br2
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:01,411</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p5 master br2
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:01,512</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p7 master br2
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:01,613</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p7 master br2
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 05:49:01,614</td>
+<td>INFO</td>
+<td><pre>Executing step 3: Change the MAC addresses for all bridges; change the priority for all bridges.</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:01,715</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ifconfig br0 hw ether 44:5E:85:A5:36:2D
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:01,816</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ifconfig br0 hw ether 44:5E:85:A5:36:2D
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:01,917</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ifconfig br1 hw ether 22:AD:93:73:1B:CA
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:02,018</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ifconfig br1 hw ether 22:AD:93:73:1B:CA
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:02,119</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ifconfig br2 hw ether 00:39:09:67:A8:CA
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:02,219</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ifconfig br2 hw ether 00:39:09:67:A8:CA
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:02,320</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "mstpctl settreeprio br0 0 2
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:02,422</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: mstpctl settreeprio br0 0 2
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:02,523</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "mstpctl settreeprio br1 0 3
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:02,624</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: mstpctl settreeprio br1 0 3
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:02,724</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "mstpctl settreeprio br2 0 4
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:02,826</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: mstpctl settreeprio br2 0 4
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 05:49:02,826</td>
+<td>INFO</td>
+<td><pre>Executing step 4: Set link up on all participant ports</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:02,827</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::setLinkStateOnInterfaces: set link up on ports</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:02,927</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p4 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:03,028</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p4 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:03,129</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p6 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:03,230</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p6 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:03,331</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p3 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:03,432</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p3 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:03,534</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p8 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:03,634</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p8 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:03,735</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p5 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:03,836</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p5 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:03,937</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p7 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:04,038</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p7 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 05:49:04,038</td>
+<td>INFO</td>
+<td><pre>Executing step 5: Wait ~40 seconds until topology fully converges</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:44,160</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "mstpctl --format json showportdetail br0
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:44,262</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: mstpctl --format json showportdetail br0
+[{"port":"sw1p4","bridge":"br0","enabled":"yes","role":"Designated","port-id":"8.001","state":"forwarding","external-port-cost":"20000","internal-port-cost":"20000","admin-external-cost":"0","admin-internal-cost":"0","designated-root":"2.000.44:5E:85:A5:36:2D","dsgn-external-cost":"0","dsgn-regional-root":"2.000.44:5E:85:A5:36:2D","dsgn-internal-cost":"0","designated-bridge":"2.000.44:5E:85:A5:36:2D","designated-port":"8.001","admin-edge-port":"no","auto-edge-port":"yes","oper-edge-port":"no","topology-change-ack":"no","point-to-point":"yes","admin-point-to-point":"auto","restricted-role":"no","restricted-TCN":"no","port-hello-time":"2","disputed":"no","bpdu-guard-port":"no","bpdu-guard-error":"no","bpdu-filter-port":"no","network-port":"no","ba-inconsistent":"no","num-tx-bpdu":"21","num-rx-bpdu":"4","num-rx-bpdu-filtered":"0","num-tx-tcn":"4","num-rx-tcn":"4","num-transition-fwd":"1","num-transition-blk":"1","received-bpdu":"no","received-stp":"no","received-rstp":"yes","received-tc-ack":"no","received-tcn":"no","send-rstp":"yes"},{"port":"sw1p6","bridge":"br0","enabled":"yes","role":"Designated","port-id":"8.002","state":"forwarding","external-port-cost":"20000","internal-port-cost":"20000","admin-external-cost":"0","admin-internal-cost":"0","designated-root":"2.000.44:5E:85:A5:36:2D","dsgn-external-cost":"0","dsgn-regional-root":"2.000.44:5E:85:A5:36:2D","dsgn-internal-cost":"0","designated-bridge":"2.000.44:5E:85:A5:36:2D","designated-port":"8.002","admin-edge-port":"no","auto-edge-port":"yes","oper-edge-port":"no","topology-change-ack":"no","point-to-point":"yes","admin-point-to-point":"auto","restricted-role":"no","restricted-TCN":"no","port-hello-time":"2","disputed":"no","bpdu-guard-port":"no","bpdu-guard-error":"no","bpdu-filter-port":"no","network-port":"no","ba-inconsistent":"no","num-tx-bpdu":"20","num-rx-bpdu":"5","num-rx-bpdu-filtered":"0","num-tx-tcn":"4","num-rx-tcn":"3","num-transition-fwd":"1","num-transition-blk":"1","received-bpdu":"no","received-stp":"no","received-rstp":"yes","received-tc-ack":"no","received-tcn":"no","send-rstp":"yes"}]root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:44,436</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "mstpctl --format json showbridge br0
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:44,538</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: mstpctl --format json showbridge br0
+[{"bridge":"br0","enabled":"yes","bridge-id":"2.000.44:5E:85:A5:36:2D","designated-root":"2.000.44:5E:85:A5:36:2D","regional-root":"2.000.44:5E:85:A5:36:2D","root-port":"","path-cost":"0","internal-path-cost":"0","max-age":"20","bridge-max-age":"20","forward-delay":"15","bridge-forward-delay":"15","tx-hold-count":"6","max-hops":"20","hello-time":"2","ageing-time":"300","force-protocol-version":"rstp","time-since-topology-change":"28","topology-change-count":"1","topology-change":"no","topology-change-port":"sw1p4","last-topology-change-port":"sw1p6"}]root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:44,661</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "mstpctl --format json showportdetail br1
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:44,762</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: mstpctl --format json showportdetail br1
+[{"port":"sw1p3","bridge":"br1","enabled":"yes","role":"Root","port-id":"8.001","state":"forwarding","external-port-cost":"20000","internal-port-cost":"20000","admin-external-cost":"0","admin-internal-cost":"0","designated-root":"2.000.44:5E:85:A5:36:2D","dsgn-external-cost":"0","dsgn-regional-root":"2.000.44:5E:85:A5:36:2D","dsgn-internal-cost":"0","designated-bridge":"2.000.44:5E:85:A5:36:2D","designated-port":"8.001","admin-edge-port":"no","auto-edge-port":"yes","oper-edge-port":"no","topology-change-ack":"no","point-to-point":"yes","admin-point-to-point":"auto","restricted-role":"no","restricted-TCN":"no","port-hello-time":"2","disputed":"no","bpdu-guard-port":"no","bpdu-guard-error":"no","bpdu-filter-port":"no","network-port":"no","ba-inconsistent":"no","num-tx-bpdu":"5","num-rx-bpdu":"21","num-rx-bpdu-filtered":"0","num-tx-tcn":"4","num-rx-tcn":"4","num-transition-fwd":"1","num-transition-blk":"1","received-bpdu":"no","received-stp":"no","received-rstp":"yes","received-tc-ack":"no","received-tcn":"no","send-rstp":"yes"},{"port":"sw1p8","bridge":"br1","enabled":"yes","role":"Designated","port-id":"8.002","state":"forwarding","external-port-cost":"20000","internal-port-cost":"20000","admin-external-cost":"0","admin-internal-cost":"0","designated-root":"2.000.44:5E:85:A5:36:2D","dsgn-external-cost":"20000","dsgn-regional-root":"3.000.22:AD:93:73:1B:CA","dsgn-internal-cost":"0","designated-bridge":"3.000.22:AD:93:73:1B:CA","designated-port":"8.002","admin-edge-port":"no","auto-edge-port":"yes","oper-edge-port":"no","topology-change-ack":"no","point-to-point":"yes","admin-point-to-point":"auto","restricted-role":"no","restricted-TCN":"no","port-hello-time":"2","disputed":"no","bpdu-guard-port":"no","bpdu-guard-error":"no","bpdu-filter-port":"no","network-port":"no","ba-inconsistent":"no","num-tx-bpdu":"20","num-rx-bpdu":"3","num-rx-bpdu-filtered":"0","num-tx-tcn":"4","num-rx-tcn":"0","num-transition-fwd":"1","num-transition-blk":"1","received-bpdu":"no","received-stp":"no","received-rstp":"no","received-tc-ack":"no","received-tcn":"no","send-rstp":"yes"}]root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:44,938</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "mstpctl --format json showbridge br1
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:45,039</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: mstpctl --format json showbridge br1
+[{"bridge":"br1","enabled":"yes","bridge-id":"3.000.22:AD:93:73:1B:CA","designated-root":"2.000.44:5E:85:A5:36:2D","regional-root":"3.000.22:AD:93:73:1B:CA","root-port":"sw1p3 (#1)","path-cost":"20000","internal-path-cost":"0","max-age":"20","bridge-max-age":"20","forward-delay":"15","bridge-forward-delay":"15","tx-hold-count":"6","max-hops":"20","hello-time":"2","ageing-time":"300","force-protocol-version":"rstp","time-since-topology-change":"28","topology-change-count":"3","topology-change":"no","topology-change-port":"sw1p3","last-topology-change-port":"sw1p8"}]root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:45,167</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "mstpctl --format json showportdetail br2
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:45,268</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: mstpctl --format json showportdetail br2
+[{"port":"sw1p5","bridge":"br2","enabled":"yes","role":"Root","port-id":"8.001","state":"forwarding","external-port-cost":"20000","internal-port-cost":"20000","admin-external-cost":"0","admin-internal-cost":"0","designated-root":"2.000.44:5E:85:A5:36:2D","dsgn-external-cost":"0","dsgn-regional-root":"2.000.44:5E:85:A5:36:2D","dsgn-internal-cost":"0","designated-bridge":"2.000.44:5E:85:A5:36:2D","designated-port":"8.002","admin-edge-port":"no","auto-edge-port":"yes","oper-edge-port":"no","topology-change-ack":"no","point-to-point":"yes","admin-point-to-point":"auto","restricted-role":"no","restricted-TCN":"no","port-hello-time":"2","disputed":"no","bpdu-guard-port":"no","bpdu-guard-error":"no","bpdu-filter-port":"no","network-port":"no","ba-inconsistent":"no","num-tx-bpdu":"5","num-rx-bpdu":"20","num-rx-bpdu-filtered":"0","num-tx-tcn":"3","num-rx-tcn":"4","num-transition-fwd":"1","num-transition-blk":"1","received-bpdu":"no","received-stp":"no","received-rstp":"yes","received-tc-ack":"no","received-tcn":"no","send-rstp":"yes"},{"port":"sw1p7","bridge":"br2","enabled":"yes","role":"Alternate","port-id":"8.002","state":"discarding","external-port-cost":"20000","internal-port-cost":"20000","admin-external-cost":"0","admin-internal-cost":"0","designated-root":"2.000.44:5E:85:A5:36:2D","dsgn-external-cost":"20000","dsgn-regional-root":"3.000.22:AD:93:73:1B:CA","dsgn-internal-cost":"0","designated-bridge":"3.000.22:AD:93:73:1B:CA","designated-port":"8.002","admin-edge-port":"no","auto-edge-port":"yes","oper-edge-port":"no","topology-change-ack":"no","point-to-point":"yes","admin-point-to-point":"auto","restricted-role":"no","restricted-TCN":"no","port-hello-time":"2","disputed":"no","bpdu-guard-port":"no","bpdu-guard-error":"no","bpdu-filter-port":"no","network-port":"no","ba-inconsistent":"no","num-tx-bpdu":"3","num-rx-bpdu":"19","num-rx-bpdu-filtered":"0","num-tx-tcn":"0","num-rx-tcn":"4","num-transition-fwd":"0","num-transition-blk":"1","received-bpdu":"no","received-stp":"no","received-rstp":"yes","received-tc-ack":"no","received-tcn":"no","send-rstp":"yes"}]root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:45,444</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "mstpctl --format json showbridge br2
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:45,545</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: mstpctl --format json showbridge br2
+[{"bridge":"br2","enabled":"yes","bridge-id":"4.000.00:39:09:67:A8:CA","designated-root":"2.000.44:5E:85:A5:36:2D","regional-root":"4.000.00:39:09:67:A8:CA","root-port":"sw1p5 (#1)","path-cost":"20000","internal-path-cost":"0","max-age":"20","bridge-max-age":"20","forward-delay":"15","bridge-forward-delay":"15","tx-hold-count":"6","max-hops":"20","hello-time":"2","ageing-time":"300","force-protocol-version":"rstp","time-since-topology-change":"32","topology-change-count":"1","topology-change":"no","topology-change-port":"None","last-topology-change-port":"sw1p5"}]root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:45,672</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:45,773</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 05:49:45,774</td>
+<td>INFO</td>
+<td><pre>Executing step 6: Verify the bridge root is br1 by the lowest MAC rule; verify other bridges do not consider themselves as root-bridge</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 05:49:45,774</td>
+<td>INFO</td>
+<td><pre>Executing step 7: Verify br2 has a blocking port.</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 05:49:45,775</td>
+<td>INFO</td>
+<td><pre>Executing step 8: Verify br1 doesn’t have any blocking port.</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 05:49:45,775</td>
+<td>INFO</td>
+<td><pre>Executing step 9: Change the highest bridge priority to a priority with lower value then the root bridge.</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:45,876</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "mstpctl settreeprio br2 0 1
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:49:45,978</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: mstpctl settreeprio br2 0 1
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 05:49:45,979</td>
+<td>INFO</td>
+<td><pre>Executing step 10: Wait ~40 seconds for topology to re-build.</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 05:50:26,017</td>
+<td>INFO</td>
+<td><pre>Executing step 11: Verify it has become the new root bridge.</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:26,118</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "mstpctl --format json showportdetail br0
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:26,219</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: mstpctl --format json showportdetail br0
+[{"port":"sw1p4","bridge":"br0","enabled":"yes","role":"Designated","port-id":"8.001","state":"forwarding","external-port-cost":"20000","internal-port-cost":"20000","admin-external-cost":"0","admin-internal-cost":"0","designated-root":"1.000.00:39:09:67:A8:CA","dsgn-external-cost":"20000","dsgn-regional-root":"2.000.44:5E:85:A5:36:2D","dsgn-internal-cost":"0","designated-bridge":"2.000.44:5E:85:A5:36:2D","designated-port":"8.001","admin-edge-port":"no","auto-edge-port":"yes","oper-edge-port":"no","topology-change-ack":"no","point-to-point":"yes","admin-point-to-point":"auto","restricted-role":"no","restricted-TCN":"no","port-hello-time":"2","disputed":"no","bpdu-guard-port":"no","bpdu-guard-error":"no","bpdu-filter-port":"no","network-port":"no","ba-inconsistent":"no","num-tx-bpdu":"43","num-rx-bpdu":"6","num-rx-bpdu-filtered":"0","num-tx-tcn":"6","num-rx-tcn":"4","num-transition-fwd":"1","num-transition-blk":"1","received-bpdu":"no","received-stp":"no","received-rstp":"yes","received-tc-ack":"no","received-tcn":"no","send-rstp":"yes"},{"port":"sw1p6","bridge":"br0","enabled":"yes","role":"Root","port-id":"8.002","state":"forwarding","external-port-cost":"20000","internal-port-cost":"20000","admin-external-cost":"0","admin-internal-cost":"0","designated-root":"1.000.00:39:09:67:A8:CA","dsgn-external-cost":"0","dsgn-regional-root":"1.000.00:39:09:67:A8:CA","dsgn-internal-cost":"0","designated-bridge":"1.000.00:39:09:67:A8:CA","designated-port":"8.001","admin-edge-port":"no","auto-edge-port":"yes","oper-edge-port":"no","topology-change-ack":"no","point-to-point":"yes","admin-point-to-point":"auto","restricted-role":"no","restricted-TCN":"no","port-hello-time":"2","disputed":"no","bpdu-guard-port":"no","bpdu-guard-error":"no","bpdu-filter-port":"no","network-port":"no","ba-inconsistent":"no","num-tx-bpdu":"24","num-rx-bpdu":"27","num-rx-bpdu-filtered":"0","num-tx-tcn":"4","num-rx-tcn":"5","num-transition-fwd":"1","num-transition-blk":"1","received-bpdu":"no","received-stp":"no","received-rstp":"yes","received-tc-ack":"no","received-tcn":"no","send-rstp":"yes"}]root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:26,394</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "mstpctl --format json showbridge br0
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:26,494</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: mstpctl --format json showbridge br0
+[{"bridge":"br0","enabled":"yes","bridge-id":"2.000.44:5E:85:A5:36:2D","designated-root":"1.000.00:39:09:67:A8:CA","regional-root":"2.000.44:5E:85:A5:36:2D","root-port":"sw1p6 (#2)","path-cost":"20000","internal-path-cost":"0","max-age":"20","bridge-max-age":"20","forward-delay":"15","bridge-forward-delay":"15","tx-hold-count":"6","max-hops":"20","hello-time":"2","ageing-time":"300","force-protocol-version":"rstp","time-since-topology-change":"36","topology-change-count":"2","topology-change":"no","topology-change-port":"sw1p6","last-topology-change-port":"sw1p4"}]root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:26,619</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "mstpctl --format json showportdetail br1
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:26,719</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: mstpctl --format json showportdetail br1
+[{"port":"sw1p3","bridge":"br1","enabled":"yes","role":"Alternate","port-id":"8.001","state":"discarding","external-port-cost":"20000","internal-port-cost":"20000","admin-external-cost":"0","admin-internal-cost":"0","designated-root":"1.000.00:39:09:67:A8:CA","dsgn-external-cost":"20000","dsgn-regional-root":"2.000.44:5E:85:A5:36:2D","dsgn-internal-cost":"0","designated-bridge":"2.000.44:5E:85:A5:36:2D","designated-port":"8.001","admin-edge-port":"no","auto-edge-port":"yes","oper-edge-port":"no","topology-change-ack":"no","point-to-point":"yes","admin-point-to-point":"auto","restricted-role":"no","restricted-TCN":"no","port-hello-time":"2","disputed":"no","bpdu-guard-port":"no","bpdu-guard-error":"no","bpdu-filter-port":"no","network-port":"no","ba-inconsistent":"no","num-tx-bpdu":"7","num-rx-bpdu":"44","num-rx-bpdu-filtered":"0","num-tx-tcn":"4","num-rx-tcn":"6","num-transition-fwd":"1","num-transition-blk":"2","received-bpdu":"no","received-stp":"no","received-rstp":"yes","received-tc-ack":"no","received-tcn":"no","send-rstp":"yes"},{"port":"sw1p8","bridge":"br1","enabled":"yes","role":"Root","port-id":"8.002","state":"forwarding","external-port-cost":"20000","internal-port-cost":"20000","admin-external-cost":"0","admin-internal-cost":"0","designated-root":"1.000.00:39:09:67:A8:CA","dsgn-external-cost":"0","dsgn-regional-root":"1.000.00:39:09:67:A8:CA","dsgn-internal-cost":"0","designated-bridge":"1.000.00:39:09:67:A8:CA","designated-port":"8.002","admin-edge-port":"no","auto-edge-port":"yes","oper-edge-port":"no","topology-change-ack":"no","point-to-point":"yes","admin-point-to-point":"auto","restricted-role":"no","restricted-TCN":"no","port-hello-time":"2","disputed":"no","bpdu-guard-port":"no","bpdu-guard-error":"no","bpdu-filter-port":"no","network-port":"no","ba-inconsistent":"no","num-tx-bpdu":"22","num-rx-bpdu":"25","num-rx-bpdu-filtered":"0","num-tx-tcn":"4","num-rx-tcn":"2","num-transition-fwd":"1","num-transition-blk":"1","received-bpdu":"no","received-stp":"no","received-rstp":"yes","received-tc-ack":"no","received-tcn":"no","send-rstp":"yes"}]root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:26,892</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "mstpctl --format json showbridge br1
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:26,993</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: mstpctl --format json showbridge br1
+[{"bridge":"br1","enabled":"yes","bridge-id":"3.000.22:AD:93:73:1B:CA","designated-root":"1.000.00:39:09:67:A8:CA","regional-root":"3.000.22:AD:93:73:1B:CA","root-port":"sw1p8 (#2)","path-cost":"20000","internal-path-cost":"0","max-age":"20","bridge-max-age":"20","forward-delay":"15","bridge-forward-delay":"15","tx-hold-count":"6","max-hops":"20","hello-time":"2","ageing-time":"300","force-protocol-version":"rstp","time-since-topology-change":"70","topology-change-count":"3","topology-change":"no","topology-change-port":"sw1p3","last-topology-change-port":"sw1p8"}]root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:27,119</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "mstpctl --format json showportdetail br2
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:27,220</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: mstpctl --format json showportdetail br2
+[{"port":"sw1p5","bridge":"br2","enabled":"yes","role":"Designated","port-id":"8.001","state":"forwarding","external-port-cost":"20000","internal-port-cost":"20000","admin-external-cost":"0","admin-internal-cost":"0","designated-root":"1.000.00:39:09:67:A8:CA","dsgn-external-cost":"0","dsgn-regional-root":"1.000.00:39:09:67:A8:CA","dsgn-internal-cost":"0","designated-bridge":"1.000.00:39:09:67:A8:CA","designated-port":"8.001","admin-edge-port":"no","auto-edge-port":"yes","oper-edge-port":"no","topology-change-ack":"no","point-to-point":"yes","admin-point-to-point":"auto","restricted-role":"no","restricted-TCN":"no","port-hello-time":"2","disputed":"no","bpdu-guard-port":"no","bpdu-guard-error":"no","bpdu-filter-port":"no","network-port":"no","ba-inconsistent":"no","num-tx-bpdu":"28","num-rx-bpdu":"23","num-rx-bpdu-filtered":"0","num-tx-tcn":"5","num-rx-tcn":"4","num-transition-fwd":"2","num-transition-blk":"2","received-bpdu":"no","received-stp":"no","received-rstp":"yes","received-tc-ack":"no","received-tcn":"no","send-rstp":"yes"},{"port":"sw1p7","bridge":"br2","enabled":"yes","role":"Designated","port-id":"8.002","state":"forwarding","external-port-cost":"20000","internal-port-cost":"20000","admin-external-cost":"0","admin-internal-cost":"0","designated-root":"1.000.00:39:09:67:A8:CA","dsgn-external-cost":"0","dsgn-regional-root":"1.000.00:39:09:67:A8:CA","dsgn-internal-cost":"0","designated-bridge":"1.000.00:39:09:67:A8:CA","designated-port":"8.002","admin-edge-port":"no","auto-edge-port":"yes","oper-edge-port":"no","topology-change-ack":"no","point-to-point":"yes","admin-point-to-point":"auto","restricted-role":"no","restricted-TCN":"no","port-hello-time":"2","disputed":"no","bpdu-guard-port":"no","bpdu-guard-error":"no","bpdu-filter-port":"no","network-port":"no","ba-inconsistent":"no","num-tx-bpdu":"25","num-rx-bpdu":"21","num-rx-bpdu-filtered":"0","num-tx-tcn":"2","num-rx-tcn":"4","num-transition-fwd":"1","num-transition-blk":"1","received-bpdu":"no","received-stp":"no","received-rstp":"yes","received-tc-ack":"no","received-tcn":"no","send-rstp":"yes"}]root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:27,394</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "mstpctl --format json showbridge br2
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:27,495</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: mstpctl --format json showbridge br2
+[{"bridge":"br2","enabled":"yes","bridge-id":"1.000.00:39:09:67:A8:CA","designated-root":"1.000.00:39:09:67:A8:CA","regional-root":"1.000.00:39:09:67:A8:CA","root-port":"","path-cost":"0","internal-path-cost":"0","max-age":"20","bridge-max-age":"20","forward-delay":"15","bridge-forward-delay":"15","tx-hold-count":"6","max-hops":"20","hello-time":"2","ageing-time":"300","force-protocol-version":"rstp","time-since-topology-change":"37","topology-change-count":"2","topology-change":"no","topology-change-port":"sw1p7","last-topology-change-port":"sw1p5"}]root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:27,617</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:27,718</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 05:50:27,718</td>
+<td>INFO</td>
+<td><pre>Executing step 12: Verify br2 has a blocking port.</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 05:50:27,719</td>
+<td>INFO</td>
+<td><pre>Executing step 13: Verify br1 doesn’t have any blocking port.</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:27,719</td>
+<td>TRACE</td>
+<td><pre>BaseTest::_OnPostTest:  starting to run registered post test functions</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:27,719</td>
+<td>TRACE</td>
+<td><pre>BaseTest::TestTearDown:  starting to call to cleanup functions of test</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:27,820</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p7 down
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:27,921</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p7 down
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:28,022</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p5 down
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:28,122</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p5 down
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:28,223</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p8 down
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:28,324</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p8 down
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:28,425</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p3 down
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:28,526</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p3 down
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:28,626</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p6 down
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:28,727</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p6 down
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:28,828</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p4 down
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:28,930</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p4 down
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:29,031</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link delete dev br2
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:29,132</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link delete dev br2
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:29,233</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:29,334</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='n'" /etc/bridge-stp.conf && killall mstpd
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:29,434</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='n'" /etc/bridge-stp.conf && killall mstpd
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:29,535</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link delete dev br1
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:29,636</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link delete dev br1
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:29,736</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:29,837</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='n'" /etc/bridge-stp.conf && killall mstpd
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:29,938</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='n'" /etc/bridge-stp.conf && killall mstpd
+mstpd: no process found
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:30,039</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link delete dev br0
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:30,140</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link delete dev br0
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:30,240</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:30,342</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='n'" /etc/bridge-stp.conf && killall mstpd
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:30,443</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='n'" /etc/bridge-stp.conf && killall mstpd
+mstpd: no process found
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:30,443</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_parse_dmesg: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:30,544</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  history
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:30,644</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   history
+    3   sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='y'" /etc/bridge-stp.conf && mstpd
+    4  ip link add br0 type bridge vlan_filtering 0 stp_state 1
+    5  mstpctl addbridge br0
+    6  ip link set dev br0 up
+    7   sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='y'" /etc/bridge-stp.conf && mstpd
+    8  ip link add br1 type bridge vlan_filtering 0 stp_state 1
+    9  mstpctl addbridge br1
+   10  ip link set dev br1 up
+   11   sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='y'" /etc/bridge-stp.conf && mstpd
+   12  ip link add br2 type bridge vlan_filtering 0 stp_state 1
+   13  mstpctl addbridge br2
+   14  ip link set dev br2 up
+   15  cat /sys/class/net/br0/bridge/stp_state
+   16  cat /sys/class/net/br1/bridge/stp_state
+   17  cat /sys/class/net/br2/bridge/stp_state
+   18  ip link set dev sw1p4 master br0
+   19  ip link set dev sw1p6 master br0
+   20  ip link set dev sw1p3 master br1
+   21  ip link set dev sw1p8 master br1
+   22  ip link set dev sw1p5 master br2
+   23  ip link set dev sw1p7 master br2
+   24  ifconfig br0 hw ether 44:5E:85:A5:36:2D
+   25  ifconfig br1 hw ether 22:AD:93:73:1B:CA
+   26  ifconfig br2 hw ether 00:39:09:67:A8:CA
+   27  mstpctl settreeprio br0 0 2
+   28  mstpctl settreeprio br1 0 3
+   29  mstpctl settreeprio br2 0 4
+   30  ip link set dev sw1p4 up
+   31  ip link set dev sw1p6 up
+   32  ip link set dev sw1p3 up
+   33  ip link set dev sw1p8 up
+   34  ip link set dev sw1p5 up
+   35  ip link set dev sw1p7 up
+   36  mstpctl --format json showportdetail br0
+   37  mstpctl --format json showbridge br0
+   38  mstpctl --format json showportdetail br1
+   39  mstpctl --format json showbridge br1
+   40  mstpctl --format json showportdetail br2
+   41  mstpctl --format json showbridge br2
+   42  echo $?
+   43  mstpctl settreeprio br2 0 1
+   44  mstpctl --format json showportdetail br0
+   45  mstpctl --format json showbridge br0
+   46  mstpctl --format json showportdetail br1
+   47  mstpctl --format json showbridge br1
+   48  mstpctl --format json showportdetail br2
+   49  mstpctl --format json showbridge br2
+   50  echo $?
+   51  ip link set dev sw1p7 down
+   52  ip link set dev sw1p5 down
+   53  ip link set dev sw1p8 down
+   54  ip link set dev sw1p3 down
+   55  ip link set dev sw1p6 down
+   56  ip link set dev sw1p4 down
+   57  ip link delete dev br2
+   58  sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='n'" /etc/bridge-stp.conf && killall mstpd
+   59  ip link delete dev br1
+   60  sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='n'" /etc/bridge-stp.conf && killall mstpd
+   61  ip link delete dev br0
+   62  sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='n'" /etc/bridge-stp.conf && killall mstpd
+   63    history
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:30,645</td>
+<td>DEBUG</td>
+<td><pre>commands history:
+    3   sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='y'" /etc/bridge-stp.conf && mstpd
+    4  ip link add br0 type bridge vlan_filtering 0 stp_state 1
+    5  mstpctl addbridge br0
+    6  ip link set dev br0 up
+    7   sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='y'" /etc/bridge-stp.conf && mstpd
+    8  ip link add br1 type bridge vlan_filtering 0 stp_state 1
+    9  mstpctl addbridge br1
+   10  ip link set dev br1 up
+   11   sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='y'" /etc/bridge-stp.conf && mstpd
+   12  ip link add br2 type bridge vlan_filtering 0 stp_state 1
+   13  mstpctl addbridge br2
+   14  ip link set dev br2 up
+   15  cat /sys/class/net/br0/bridge/stp_state
+   16  cat /sys/class/net/br1/bridge/stp_state
+   17  cat /sys/class/net/br2/bridge/stp_state
+   18  ip link set dev sw1p4 master br0
+   19  ip link set dev sw1p6 master br0
+   20  ip link set dev sw1p3 master br1
+   21  ip link set dev sw1p8 master br1
+   22  ip link set dev sw1p5 master br2
+   23  ip link set dev sw1p7 master br2
+   24  ifconfig br0 hw ether 44:5E:85:A5:36:2D
+   25  ifconfig br1 hw ether 22:AD:93:73:1B:CA
+   26  ifconfig br2 hw ether 00:39:09:67:A8:CA
+   27  mstpctl settreeprio br0 0 2
+   28  mstpctl settreeprio br1 0 3
+   29  mstpctl settreeprio br2 0 4
+   30  ip link set dev sw1p4 up
+   31  ip link set dev sw1p6 up
+   32  ip link set dev sw1p3 up
+   33  ip link set dev sw1p8 up
+   34  ip link set dev sw1p5 up
+   35  ip link set dev sw1p7 up
+   36  mstpctl --format json showportdetail br0
+   37  mstpctl --format json showbridge br0
+   38  mstpctl --format json showportdetail br1
+   39  mstpctl --format json showbridge br1
+   40  mstpctl --format json showportdetail br2
+   41  mstpctl --format json showbridge br2
+   42  echo $?
+   43  mstpctl settreeprio br2 0 1
+   44  mstpctl --format json showportdetail br0
+   45  mstpctl --format json showbridge br0
+   46  mstpctl --format json showportdetail br1
+   47  mstpctl --format json showbridge br1
+   48  mstpctl --format json showportdetail br2
+   49  mstpctl --format json showbridge br2
+   50  echo $?
+   51  ip link set dev sw1p7 down
+   52  ip link set dev sw1p5 down
+   53  ip link set dev sw1p8 down
+   54  ip link set dev sw1p3 down
+   55  ip link set dev sw1p6 down
+   56  ip link set dev sw1p4 down
+   57  ip link delete dev br2
+   58  sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='n'" /etc/bridge-stp.conf && killall mstpd
+   59  ip link delete dev br1
+   60  sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='n'" /etc/bridge-stp.conf && killall mstpd
+   61  ip link delete dev br0
+   62  sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='n'" /etc/bridge-stp.conf && killall mstpd
+   63    history</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:30,645</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_parse_dmesg: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:30,760</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  cat /var/log/messages
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:30,766</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   cat /var/log/messages
+
+Sep  3 05:48:52 localhost kernel: [ 3762.190521] br0: port 1(sw1p4) entered blocking state
+Sep  3 05:48:52 localhost kernel: [ 3762.195634] br0: port 1(sw1p4) entered disabled state
+Sep  3 05:48:52 localhost kernel: [ 3762.217657] device sw1p4 entered promiscuous mode
+Sep  3 05:48:52 localhost kernel: [ 3762.391581] br0: port 2(sw1p6) entered blocking state
+Sep  3 05:48:52 localhost kernel: [ 3762.396688] br0: port 2(sw1p6) entered disabled state
+Sep  3 05:48:52 localhost kernel: [ 3762.414417] device sw1p6 entered promiscuous mode
+Sep  3 05:48:53 localhost kernel: [ 3762.593282] br1: port 1(sw1p3) entered blocking state
+Sep  3 05:48:53 localhost kernel: [ 3762.598390] br1: port 1(sw1p3) entered disabled state
+Sep  3 05:48:53 localhost kernel: [ 3762.619137] device sw1p3 entered promiscuous mode
+Sep  3 05:48:53 localhost kernel: [ 3762.794624] br1: port 2(sw1p8) entered blocking state
+Sep  3 05:48:53 localhost kernel: [ 3762.799741] br1: port 2(sw1p8) entered disabled state
+Sep  3 05:48:53 localhost kernel: [ 3762.818273] device sw1p8 entered promiscuous mode
+Sep  3 05:48:53 localhost kernel: [ 3762.996426] br2: port 1(sw1p5) entered blocking state
+Sep  3 05:48:53 localhost kernel: [ 3763.001531] br2: port 1(sw1p5) entered disabled state
+Sep  3 05:48:53 localhost kernel: [ 3763.023011] device sw1p5 entered promiscuous mode
+Sep  3 05:48:53 localhost kernel: [ 3763.197525] br2: port 2(sw1p7) entered blocking state
+Sep  3 05:48:53 localhost kernel: [ 3763.202633] br2: port 2(sw1p7) entered disabled state
+Sep  3 05:48:53 localhost kernel: [ 3763.219974] device sw1p7 entered promiscuous mode
+Sep  3 05:48:59 localhost kernel: [ 3769.406718] IPv6: ADDRCONF(NETDEV_CHANGE): sw1p3: link becomes ready
+Sep  3 05:48:59 localhost kernel: [ 3769.415462] br1: port 1(sw1p3) entered blocking state
+Sep  3 05:48:59 localhost kernel: [ 3769.426107] IPv6: ADDRCONF(NETDEV_CHANGE): sw1p4: link becomes ready
+Sep  3 05:48:59 localhost kernel: [ 3769.433793] br0: port 1(sw1p4) entered blocking state
+Sep  3 05:49:00 localhost kernel: [ 3769.459371] br1: port 1(sw1p3) entered learning state
+Sep  3 05:49:00 localhost kernel: [ 3769.466409] br1: port 1(sw1p3) entered forwarding state
+Sep  3 05:49:00 localhost kernel: [ 3769.477586] br0: port 1(sw1p4) entered learning state
+Sep  3 05:49:00 localhost kernel: [ 3769.486924] br0: port 1(sw1p4) entered forwarding state
+Sep  3 05:49:00 localhost kernel: [ 3769.757314] IPv6: ADDRCONF(NETDEV_CHANGE): sw1p6: link becomes ready
+Sep  3 05:49:00 localhost kernel: [ 3769.765039] br0: port 2(sw1p6) entered blocking state
+Sep  3 05:49:00 localhost kernel: [ 3769.787855] IPv6: ADDRCONF(NETDEV_CHANGE): sw1p5: link becomes ready
+Sep  3 05:49:00 localhost kernel: [ 3769.795481] br2: port 1(sw1p5) entered blocking state
+Sep  3 05:49:00 localhost kernel: [ 3770.203619] IPv6: ADDRCONF(NETDEV_CHANGE): sw1p8: link becomes ready
+Sep  3 05:49:00 localhost kernel: [ 3770.212870] br1: port 2(sw1p8) entered blocking state
+Sep  3 05:49:00 localhost kernel: [ 3770.230703] IPv6: ADDRCONF(NETDEV_CHANGE): sw1p7: link becomes ready
+Sep  3 05:49:00 localhost kernel: [ 3770.238394] br2: port 2(sw1p7) entered blocking state
+Sep  3 05:49:01 localhost kernel: [ 3771.172923] br2: port 1(sw1p5) entered learning state
+Sep  3 05:49:01 localhost kernel: [ 3771.178140] br2: port 1(sw1p5) entered forwarding state
+Sep  3 05:49:01 localhost kernel: [ 3771.199910] br0: port 2(sw1p6) entered learning state
+Sep  3 05:49:01 localhost kernel: [ 3771.205144] br0: port 2(sw1p6) entered forwarding state
+Sep  3 05:49:02 localhost kernel: [ 3772.173013] br1: port 2(sw1p8) entered learning state
+Sep  3 05:49:02 localhost kernel: [ 3772.178325] br1: port 2(sw1p8) entered forwarding state
+Sep  3 05:49:38 localhost kernel: [ 3808.173219] br2: port 1(sw1p5) entered blocking state
+Sep  3 05:49:38 localhost kernel: [ 3808.180230] br1: port 1(sw1p3) entered blocking state
+Sep  3 05:49:38 localhost kernel: [ 3808.197377] br2: port 1(sw1p5) entered learning state
+Sep  3 05:49:38 localhost kernel: [ 3</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:30,867</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 808.204939] br2: port 1(sw1p5) entered forwarding state
+Sep  3 05:49:38 localhost kernel: [ 3808.231392] br2: port 2(sw1p7) entered learning state
+Sep  3 05:49:38 localhost kernel: [ 3808.237574] br2: port 2(sw1p7) entered forwarding state
+Sep  3 05:50:20 localhost kernel: [ 3849.510819] br2: port 2(sw1p7) entered disabled state
+Sep  3 05:50:20 localhost kernel: [ 3849.718097] br2: port 1(sw1p5) entered disabled state
+Sep  3 05:50:20 localhost kernel: [ 3849.911704] br1: port 2(sw1p8) entered disabled state
+Sep  3 05:50:20 localhost kernel: [ 3849.923336] br1: port 1(sw1p3) entered learning state
+Sep  3 05:50:20 localhost kernel: [ 3849.930515] br1: port 1(sw1p3) entered forwarding state
+Sep  3 05:50:20 localhost kernel: [ 3850.116962] br1: port 1(sw1p3) entered disabled state
+Sep  3 05:50:20 localhost kernel: [ 3850.314566] br0: port 2(sw1p6) entered disabled state
+Sep  3 05:50:21 localhost kernel: [ 3850.520454] br0: port 1(sw1p4) entered disabled state
+Sep  3 05:50:21 localhost kernel: [ 3850.714967] device sw1p7 left promiscuous mode
+Sep  3 05:50:21 localhost kernel: [ 3850.719799] br2: port 2(sw1p7) entered disabled state
+Sep  3 05:50:21 localhost kernel: [ 3850.759749] device sw1p5 left promiscuous mode
+Sep  3 05:50:21 localhost kernel: [ 3850.764294] br2: port 1(sw1p5) entered disabled state
+Sep  3 05:50:21 localhost kernel: [ 3851.218763] device sw1p8 left promiscuous mode
+Sep  3 05:50:21 localhost kernel: [ 3851.223332] br1: port 2(sw1p8) entered disabled state
+Sep  3 05:50:21 localhost kernel: [ 3851.264628] device sw1p3 left promiscuous mode
+Sep  3 05:50:21 localhost kernel: [ 3851.269166] br1: port 1(sw1p3) entered disabled state
+Sep  3 05:50:22 localhost kernel: [ 3851.722542] device sw1p6 left promiscuous mode
+Sep  3 05:50:22 localhost kernel: [ 3851.727111] br0: port 2(sw1p6) entered disabled state
+Sep  3 05:50:22 localhost kernel: [ 3851.769533] device sw1p4 left promiscuous mode
+Sep  3 05:50:22 localhost kernel: [ 3851.774077] br0: port 1(sw1p4) entered disabled state
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:30,869</td>
+<td>DEBUG</td>
+<td><pre>dmesg lines that matched regex for issues:</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:30,870</td>
+<td>DEBUG</td>
+<td><pre>{
+    "call trace:": {
+        found: false,
+        regex: "Call trace:",
+    },
+    "cut here": {
+        found: false,
+        regex: "\\[ cut here \\]",
+    },
+    "hw routing offloading disabled:": {
+        found: false,
+        regex: "Abort. HW routing offloading disabled",
+    },
+}</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:34,398</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Cleanup:  clearing ports ownership...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:34,830</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Cleanup:  Disconnecting from chassis...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 05:50:34,852</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Cleanup:  TG disconnect time is 0.02</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 05:50:34,852</td>
+<td>INFO</td>
+<td><pre>Test Passed</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 05:50:34,858</td>
+<td>INFO</td>
+<td><pre>
+CI_META:
+{"Software_Version": "2.0.0-v3.0.0-rc4", "Linux_Version": ""}
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                                  Dut Information                                                                   |
++--------+-------------+------+------------------+--------------------------------+---------------+---------------+---------------------+------------+
+| ODM    | Board_Model | ASIC | Software_Version | UBOOT_Version                  | Linux_Version | CPU_CoreClock | Host_kernel_version | PCBVersion |
++--------+-------------+------+------------------+--------------------------------+---------------+---------------+---------------------+------------+
+| Accton | AS4224-52T  | AC3X | 2.0.0-v3.0.0-rc4 | U-Boot 2019.10-10.0.0-g9518192 |               |               | 5.10.4              | R0A        |
++--------+-------------+------+------------------+--------------------------------+---------------+---------------+---------------------+------------+
+
+None
+
++---------------------------------------+
+|              PDU Settings             |
++----------------+-------------+--------+
+| Connect_To_PDU | ip_address  | outlet |
++----------------+-------------+--------+
+| True           | 10.5.236.19 | 11     |
++----------------+-------------+--------+
+
+None
++-----------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                               Test Steps Summary                                                              |
++------+------------------------------------------------------------------------------------------------------+--------+------------------------+
+| Step | Description                                                                                          | Result | Run Time               |
++------+------------------------------------------------------------------------------------------------------+--------+------------------------+
+| 1    | Create 3 bridge entities: br0, br1, br2 and set link up on them                                      | Passed | 0.0                    |
++------+------------------------------------------------------------------------------------------------------+--------+------------------------+
+| 2    | Enslave ports according to the test's setup topology                                                 | Passed | 1.2101006507873535     |
++------+------------------------------------------------------------------------------------------------------+--------+------------------------+
+| 3    | Change the MAC addresses for all bridges; change the priority for all bridges.                       | Passed | 1.2121233940124512     |
++------+------------------------------------------------------------------------------------------------------+--------+------------------------+
+| 4    | Set link up on all participant ports                                                                 | Passed | 1.2121965885162354     |
++------+------------------------------------------------------------------------------------------------------+--------+------------------------+
+| 5    | Wait ~40 seconds until topology fully converges                                                      | Passed | 41.73552989959717      |
++------+------------------------------------------------------------------------------------------------------+--------+------------------------+
+| 6    | Verify the bridge root is br1 by the lowest MAC rule; verify other bridges do not consider           | Passed | 0.0004253387451171875  |
+|      | themselves as root-bridge                                                                            |        |                        |
++------+------------------------------------------------------------------------------------------------------+--------+------------------------+
+| 7    | Verify br2 has a blocking port.                                                                      | Passed | 0.00035643577575683594 |
++------+------------------------------------------------------------------------------------------------------+--------+------------------------+
+| 8    | Verify br1 doesn’t have any blocking port.                                                           | Passed | 0.000354766845703125   |
++------+------------------------------------------------------------------------------------------------------+--------+------------------------+
+| 9    | Change the highest bridge priority to a priority with lower value then the root bridge.              | Passed | 0.2035822868347168     |
++------+------------------------------------------------------------------------------------------------------+--------+------------------------+
+| 10   | Wait ~40 seconds for topology to re-build.                                                           | Passed | 40.038180112838745     |
++------+------------------------------------------------------------------------------------------------------+--------+------------------------+
+| 11   | Verify it has become the new root bridge.                                                            | Passed | 1.7017920017242432     |
++------+------------------------------------------------------------------------------------------------------+--------+------------------------+
+| 12   | Verify br2 has a blocking port.                                                                      | Passed | 0.0003838539123535156  |
++------+------------------------------------------------------------------------------------------------------+--------+------------------------+
+| 13   | Verify br1 doesn’t have any blocking port.                                                           | Passed | 0.0006537437438964844  |
++------+------------------------------------------------------------------------------------------------------+--------+------------------------+
++-----------------------------------------------------------------------------------------------------------------------+
+|                                                    Test Information                                                   |
++------------+--------------------------------------------+--------+-----------------+-----------------+----------------+
+| Suite_Name | Test_Name                                  | Result | start_time      | end_time        | run_time       |
++------------+--------------------------------------------+--------+-----------------+-----------------+----------------+
+| STP_RSTP   | RSTP_SelectingTheRootBridgeUsingBridgePrio | Passed | 05:48:36.308455 | 05:50:34.852666 | 0:01:58.544211 |
++------------+--------------------------------------------+--------+-----------------+-----------------+----------------+</pre></td>
+</tr>
+
+</tbody></table></div>
+</body>
+<script>
+    $.fn.dataTable.ext.search.push(
+        function( settings, data, dataIndex ) {
+            let minIndex = severities.indexOf($('#min-severity').find(':selected').text());
+            let maxIndex = severities.indexOf($('#max-severity').find(':selected').text());
+            var severity = data[1] || 'NOT SET';// use data for the Log Level column
+            var severityIndex = severities.indexOf(severity);
+            if ( ( maxIndex == -1 && minIndex == -1 ) ||
+                 ( minIndex <= severityIndex && severityIndex <= maxIndex ) )
+            {
+                return true;
+            }
+            return false;
+        }
+    );
+    
+    function fill_select(id, items){
+        for(t of items){
+            $('#'+id).append(new Option(t, t));
+        }
+    }
+    
+    function selectionChanged(selectChanged, selectAffected, selectedOption, startFrom, end){
+        let selected = $('#'+selectAffected).find(':selected').text(); //keep affected value
+        $('#'+selectAffected).empty(); //empty the affected one
+
+        fill_select(selectAffected, severities.slice(startFrom, end));
+        selected = $('#'+selectAffected).find("option:contains('" + selected  + "')").length > 0 ? selected : $("#"+selectAffected+" option:first").val();
+        $('#'+selectAffected).val(selected);
+    }
+    
+    var severities = ['NOT SET','TRACE','DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL']
+    $(document).ready(function() {
+        for(severity of severities){
+            $('#min-severity, #max-severity').append(new Option(severity, severity));
+        }
+        
+        $('#max-severity option:last').attr('selected', 'selected');
+        
+        var table = $('#data_table').DataTable({
+            "lengthMenu": [[-1, 10, 25, 50], ["All", 10, 25, 50]]
+        });
+        
+        $('#min-severity, #max-severity').change( function(e) {
+            if(e.target.id == 'min-severity'){
+                selectionChanged(e.target.id, 'max-severity', e.target.selectedOptions[0].text, severities.indexOf(e.target.selectedOptions[0].text), severities.length+1);
+            }
+            else if(e.target.id == 'max-severity'){
+                selectionChanged(e.target.id, 'min-severity',e.target.selectedOptions[0].text, 0 ,severities.indexOf(e.target.selectedOptions[0].text) + 1);
+            }
+            table.draw();
+        } );
+    } );
+    
+    
+</script>
+</html>

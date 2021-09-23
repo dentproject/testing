@@ -1,0 +1,1088 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>PortIsolation_InteractionWithOtherFeatures_SpanRule_08-47-30-280853 Log</title>
+<!-- Latest compiled and minified CSS -->
+<!--
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs-3.3.7/jq-3.2.1/jq-3.2.1/dt-1.10.16/datatables.min.css"/>
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.7/jq-3.2.1/jq-3.2.1/dt-1.10.16/datatables.min.js"></script>
+-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+  
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+<style>
+pre {
+margin : 0;
+white-space: pre-wrap;
+background-color: inherit;
+border: none;
+border-radius: inherit;
+}
+</style>
+</head>
+
+<body>
+<div class="col-md-12 col-xs-12 col-lg-12">
+<br>
+<h1 style="text-align:center">PortIsolation_InteractionWithOtherFeatures_SpanRule_08-47-30-280853 Log</h1>
+<br>
+<div class="input-group">
+    <select class="form-control" id="min-severity" placeholder="Min Severity">
+    </select>
+    <span class="input-group-addon">-</span>
+    <select class="form-control" id="max-severity" placeholder="Max Severity">
+    </select>
+</div>
+&nbsp
+<table id="data_table" class="table table-striped table-bordered" cellspacing="0">
+<thead>
+    <tr>
+        <th style="width: 180px;">Time</th>
+        <th style="width: 90px;">Log Level</th>
+        <th>Message</th>
+    </tr>
+</thead>
+<tbody>
+
+<tr class="success">
+<td>2021-10-08 08:47:30,282</td>
+<td>TRACE</td>
+<td><pre>BaseTest_SD::_BasicTestInit: this test has been launched with the following input arguments:
+Namespace(conn_table=None, dummy_test=False, excel_path='/swdev/fileril103/testing/Projects/Automation/Python/Setups/AGO/CI/Setup_23.xlsx', excel_setups_db_path=None, seed=None, setup_info=None, setup_name=None, stress=None, test_args=None)</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:30,282</td>
+<td>TRACE</td>
+<td><pre>BaseTest_SD::_BasicTestInit: this test is running from the following Setup Excel file /swdev/fileril103/testing/Projects/Automation/Python/Setups/AGO/CI/Setup_23.xlsx</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:30,283</td>
+<td>TRACE</td>
+<td><pre>
++-------------------------------------------------------+
+|                    TG Mapping Table                   |
++----+------------+------------+------+------+----------+
+| ID | IP Address |  TG Type   | Card | Port | Dut Port |
++----+------------+------------+------+------+----------+
+| 1  | 10.5.236.4 | ixia_linux |  11  |  5   |  sw1p1   |
+| 2  | 10.5.236.4 | ixia_linux |  11  |  6   |  sw1p23  |
+| 3  | 10.5.236.4 | ixia_linux |  11  |  7   |  sw1p35  |
+| 4  | 10.5.236.4 | ixia_linux |  11  |  8   |  sw1p48  |
++----+------------+------------+------+------+----------+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:30,283</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: connecting to IxiaSSH on IP 10.5.236.4 using TCL/API Server IP 10.5.236.4</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:39,503</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect:  Connection Successful</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:39,877</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:41,867</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:43,898</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:45,912</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 08:47:48,924</td>
+<td>INFO</td>
+<td><pre>Used cached DutInfo: dutmainchannel__/swdev/fileril103/testing/Projects/Automation/Python/Setups/AGO/CI/Setup_23.xlsx__1632647710.5673652</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:48,925</td>
+<td>TRACE</td>
+<td><pre>SwitchDevDutManager::login: Connecting to 10.5.236.85:root:22 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:49,036</td>
+<td>TRACE</td>
+<td><pre>SwitchDevDutManager::login: Connection Successful</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:49,038</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "
+
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:49,138</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: Linux localhost 5.10.4 #1 SMP PREEMPT Fri Sep 10 16:54:31 UTC 2021 aarch64
+Last login: Fri Oct  8 08:44:14 2021 from 10.5.116.193
+
+
+root@localhost:~# 
+root@localhost:~# 
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:50,140</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "
+
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:50,242</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 
+root@localhost:~# 
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:50,243</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_clear_dmesg: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:50,343</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  echo "" &#62 /var/log/messages
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:50,444</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   echo "" &#62 /var/log/messages
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:50,445</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_clear_cmd_history: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:50,546</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  history -c
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:50,647</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   history -c
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:50,648</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::stressCpus: </pre></td>
+</tr>
+
+
+<tr>
+<td width="100"></td>
+<td width="100"></td>
+<td class="info"><pre>+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                                                     Test Description                                                                                     |
++---------------+-----------------------------------------------------+------------------------------------------------------------------------+-----------------+-------------------------+
+| Suite Name    | Test Name                                           | Purpose                                                                | Author          | Test Document Reference |
++---------------+-----------------------------------------------------+------------------------------------------------------------------------+-----------------+-------------------------+
+| PortIsolation | PortIsolation_InteractionWithOtherFeatures_SpanRule | This test comes to verify:                                             | Nitzan Horovitz |                         |
+|               |                                                     |             * Verify traffic is copied from/to isolated ports when     |                 |                         |
+|               |                                                     | SPAN rule is defined.                                                  |                 |                         |
+|               |                                                     |                                                                        |                 |                         |
++---------------+-----------------------------------------------------+------------------------------------------------------------------------+-----------------+-------------------------+
+
++-------------------------------------------------------------------------------+
+|                                 Test Procedure                                |
++------+------------------------------------------------------------------------+
+| Step | Step Description                                                       |
++------+------------------------------------------------------------------------+
+| 1    | Init test paras                                                        |
++------+------------------------------------------------------------------------+
+| 2    | Set link up on interfaces                                              |
++------+------------------------------------------------------------------------+
+| 3    | Create a bridge entity and set link up on it. Enslave all participant  |
+|      | ports to the bridge                                                    |
++------+------------------------------------------------------------------------+
+| 4    | Define 2 bridge interfaces connected to Ixia as isolated               |
++------+------------------------------------------------------------------------+
+| 5    | Define SPAN rule with one isolated port as source port and the other   |
+|      | isolated port as monitor port.                                         |
++------+------------------------------------------------------------------------+
+| 6    | Set up random L2 selectors stream on source port                       |
++------+------------------------------------------------------------------------+
+| 7    | Transmit traffic                                                       |
++------+------------------------------------------------------------------------+
+| 8    | Verify all packets from source port are copied to the monitor port,    |
+|      | verify traffic is not doubled (regular bridge traffic is not received  |
+|      | on the isolated monitor port).                                         |
++------+------------------------------------------------------------------------+
+| 9    | Delete the SPAN rule                                                   |
++------+------------------------------------------------------------------------+
+| 10   | Transmit traffic again                                                 |
++------+------------------------------------------------------------------------+
+| 11   | Verify traffic is not received on the isolated port                    |
++------+------------------------------------------------------------------------+</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 08:47:50,659</td>
+<td>INFO</td>
+<td><pre>Randomize::__init__: Random seed value is 0.7864734847124116</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 08:47:50,660</td>
+<td>INFO</td>
+<td><pre>Executing step 1: Init test paras</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:50,660</td>
+<td>DEBUG</td>
+<td><pre>PortIsoaltionAPI::initTestParams: Initiate all relevant test parameters</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 08:47:50,661</td>
+<td>INFO</td>
+<td><pre>Executing step 2: Set link up on interfaces</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:50,662</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::setLinkStateOnInterfaces: set link up on ports</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:50,762</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p1 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:50,863</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p1 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:50,964</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p23 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:51,066</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p23 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 08:47:51,066</td>
+<td>INFO</td>
+<td><pre>Executing step 3: Create a bridge entity and set link up on it. Enslave all participant ports to the bridge</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:51,067</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::createAndSetSoftEntityUp: set link up on bridge entity</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:51,168</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link add br0 type bridge vlan_filtering 1
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:51,268</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link add br0 type bridge vlan_filtering 1
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:51,370</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev br0 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:51,471</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev br0 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:51,471</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::enslavePortsToSoftLink: set enslaved interfaces</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:51,572</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p1 master br0
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:51,673</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p1 master br0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:51,774</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p23 master br0
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:51,874</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p23 master br0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 08:47:51,875</td>
+<td>INFO</td>
+<td><pre>Executing step 4: Define 2 bridge interfaces connected to Ixia as isolated</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:51,875</td>
+<td>DEBUG</td>
+<td><pre>setInterfacesAsIsolated Set sw1p1 as Isolated Port</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:51,976</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "bridge link set dev sw1p1 isolated on
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:52,077</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: bridge link set dev sw1p1 isolated on
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:52,077</td>
+<td>DEBUG</td>
+<td><pre>setInterfacesAsIsolated Set sw1p23 as Isolated Port</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:52,178</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "bridge link set dev sw1p23 isolated on
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:52,278</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: bridge link set dev sw1p23 isolated on
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 08:47:52,279</td>
+<td>INFO</td>
+<td><pre>Executing step 5: Define SPAN rule with one isolated port as source port and the other isolated port as monitor port.</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:52,279</td>
+<td>DEBUG</td>
+<td><pre>configureQdisc configure ingress qdisc</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:52,380</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc qdisc add dev sw1p1 ingress
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:52,481</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc qdisc add dev sw1p1 ingress
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:52,582</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc filter add dev sw1p1 ingress matchall skip_sw action mirred egress mirror dev sw1p23
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:52,683</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc filter add dev sw1p1 ingress matchall skip_sw action mirred egress mirror dev sw1p23
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:52,784</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 08:47:52,784</td>
+<td>INFO</td>
+<td><pre>Executing step 6: Set up random L2 selectors stream on source port</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:53,083</td>
+<td>DEBUG</td>
+<td><pre>Stream name: bridgeStream
+Stream uri: 1 11 5 1
+Stream port name: 1
+Stream packet: L2: MAC: DA[00:00:00:00:00:02, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[00:00:00:00:00:01, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[64], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.CONTINUOUS_PACKET], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.STREAM_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:53,084</td>
+<td>DEBUG</td>
+<td><pre>PortIsoaltionAPI::setUpFixedStreamSettings:  Setting up fixed settings on all streams of port: Port name: 1, Port uri: 10.5.236.4/11/5</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 08:47:55,856</td>
+<td>INFO</td>
+<td><pre>Executing step 7: Transmit traffic</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:47:59,951</td>
+<td>DEBUG</td>
+<td><pre>wait 15 seconds...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:48:14,966</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::transmitTraffic: Transmitting traffic:
+Port name: 1, Port uri: 10.5.236.4/11/5 ----------&#62 Port name: 2, Port uri: 10.5.236.4/11/6
+</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 08:48:18,551</td>
+<td>INFO</td>
+<td><pre>Executing step 8: Verify all packets from source port are copied to the monitor port, verify traffic is not doubled (regular bridge traffic is not received on the isolated monitor port).</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:48:19,391</td>
+<td>DEBUG</td>
+<td><pre>PASS: No packet loss for stream bridgeStream on port/s Port name: 2, Port uri: 10.5.236.4/11/6: expected: 1000000, actual 1000000</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 08:48:19,392</td>
+<td>INFO</td>
+<td><pre>Executing step 9: Delete the SPAN rule</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:48:19,494</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc filter delete dev sw1p1 ingress pref 49152 
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:48:19,595</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc filter delete dev sw1p1 ingress pref 49152 
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 08:48:29,605</td>
+<td>INFO</td>
+<td><pre>Executing step 10: Transmit traffic again</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:48:33,698</td>
+<td>DEBUG</td>
+<td><pre>wait 15 seconds...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:48:48,713</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::transmitTraffic: Transmitting traffic:
+Port name: 1, Port uri: 10.5.236.4/11/5 ----------&#62 Port name: 2, Port uri: 10.5.236.4/11/6
+</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 08:48:52,294</td>
+<td>INFO</td>
+<td><pre>Executing step 11: Verify traffic is not received on the isolated port</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:48:53,094</td>
+<td>DEBUG</td>
+<td><pre>PASS: No packet loss for stream bridgeStream on port/s Port name: 2, Port uri: 10.5.236.4/11/6: expected: -1, actual -1</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:48:53,095</td>
+<td>TRACE</td>
+<td><pre>BaseTest::_OnPostTest:  starting to run registered post test functions</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:48:53,095</td>
+<td>TRACE</td>
+<td><pre>BaseTest::TestTearDown:  starting to call to cleanup functions of test</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:48:53,195</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc qdisc del dev sw1p1 ingress
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:48:53,296</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc qdisc del dev sw1p1 ingress
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:48:53,396</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "bridge link set dev sw1p23 isolated off
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:48:53,497</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: bridge link set dev sw1p23 isolated off
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:48:53,598</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "bridge link set dev sw1p1 isolated off
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:48:53,698</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: bridge link set dev sw1p1 isolated off
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:48:53,799</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link delete dev br0
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:48:53,900</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link delete dev br0
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:48:54,000</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:48:54,101</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p23 down
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:48:54,202</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p23 down
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:48:54,303</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p1 down
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:48:54,403</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p1 down
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:48:54,403</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_parse_dmesg: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:48:54,504</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  history
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:48:54,605</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   history
+    3  ip link set dev sw1p1 up
+    4  ip link set dev sw1p23 up
+    5  ip link add br0 type bridge vlan_filtering 1
+    6  ip link set dev br0 up
+    7  ip link set dev sw1p1 master br0
+    8  ip link set dev sw1p23 master br0
+    9  bridge link set dev sw1p1 isolated on
+   10  bridge link set dev sw1p23 isolated on
+   11  tc qdisc add dev sw1p1 ingress
+   12  tc filter add dev sw1p1 ingress matchall skip_sw action mirred egress mirror dev sw1p23
+   13  tc filter delete dev sw1p1 ingress pref 49152 
+   14  tc qdisc del dev sw1p1 ingress
+   15  bridge link set dev sw1p23 isolated off
+   16  bridge link set dev sw1p1 isolated off
+   17  ip link delete dev br0
+   18  ip link set dev sw1p23 down
+   19  ip link set dev sw1p1 down
+   20    history
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:48:54,606</td>
+<td>DEBUG</td>
+<td><pre>commands history:
+    3  ip link set dev sw1p1 up
+    4  ip link set dev sw1p23 up
+    5  ip link add br0 type bridge vlan_filtering 1
+    6  ip link set dev br0 up
+    7  ip link set dev sw1p1 master br0
+    8  ip link set dev sw1p23 master br0
+    9  bridge link set dev sw1p1 isolated on
+   10  bridge link set dev sw1p23 isolated on
+   11  tc qdisc add dev sw1p1 ingress
+   12  tc filter add dev sw1p1 ingress matchall skip_sw action mirred egress mirror dev sw1p23
+   13  tc filter delete dev sw1p1 ingress pref 49152 
+   14  tc qdisc del dev sw1p1 ingress
+   15  bridge link set dev sw1p23 isolated off
+   16  bridge link set dev sw1p1 isolated off
+   17  ip link delete dev br0
+   18  ip link set dev sw1p23 down
+   19  ip link set dev sw1p1 down
+   20    history</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:48:54,606</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_parse_dmesg: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:48:54,718</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  cat /var/log/messages
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:48:54,819</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   cat /var/log/messages
+
+Oct  8 08:47:24 localhost kernel: [  668.247023] br0: port 1(sw1p1) entered blocking state
+Oct  8 08:47:24 localhost kernel: [  668.252139] br0: port 1(sw1p1) entered disabled state
+Oct  8 08:47:24 localhost kernel: [  668.257928] device sw1p1 entered promiscuous mode
+Oct  8 08:47:24 localhost kernel: [  668.448868] br0: port 2(sw1p23) entered blocking state
+Oct  8 08:47:24 localhost kernel: [  668.454061] br0: port 2(sw1p23) entered disabled state
+Oct  8 08:47:24 localhost kernel: [  668.459455] device sw1p23 entered promiscuous mode
+Oct  8 08:47:25 localhost kernel: [  669.283307] Mirror/redirect action on
+Oct  8 08:47:27 localhost kernel: [  670.592330] br0: port 1(sw1p1) entered blocking state
+Oct  8 08:47:27 localhost kernel: [  670.597419] br0: port 1(sw1p1) entered forwarding state
+Oct  8 08:47:28 localhost kernel: [  671.835057] br0: port 2(sw1p23) entered blocking state
+Oct  8 08:47:28 localhost kernel: [  671.840234] br0: port 2(sw1p23) entered forwarding state
+Oct  8 08:48:27 localhost kernel: [  730.472982] device sw1p23 left promiscuous mode
+Oct  8 08:48:27 localhost kernel: [  730.477636] br0: port 2(sw1p23) entered disabled state
+Oct  8 08:48:27 localhost kernel: [  730.527012] device sw1p1 left promiscuous mode
+Oct  8 08:48:27 localhost kernel: [  730.531660] br0: port 1(sw1p1) entered disabled state
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:48:54,820</td>
+<td>DEBUG</td>
+<td><pre>dmesg lines that matched regex for issues:</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:48:54,822</td>
+<td>DEBUG</td>
+<td><pre>{
+    "call trace:": {
+        found: false,
+        regex: "Call trace:",
+    },
+    "cut here": {
+        found: false,
+        regex: "\\[ cut here \\]",
+    },
+    "hw routing offloading disabled:": {
+        found: false,
+        regex: "Abort. HW routing offloading disabled",
+    },
+}</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:48:56,330</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Cleanup:  clearing ports ownership...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:48:56,769</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Cleanup:  Disconnecting from chassis...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 08:48:56,798</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Cleanup:  TG disconnect time is 0.03</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 08:48:56,799</td>
+<td>INFO</td>
+<td><pre>Test Passed</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 08:48:56,807</td>
+<td>INFO</td>
+<td><pre>
+CI_META:
+{"Software_Version": "2.0.0-v3.0.1", "Linux_Version": ""}
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                                  Dut Information                                                                   |
++--------+-------------+------+------------------+--------------------------------+---------------+---------------+---------------------+------------+
+| ODM    | Board_Model | ASIC | Software_Version | UBOOT_Version                  | Linux_Version | CPU_CoreClock | Host_kernel_version | PCBVersion |
++--------+-------------+------+------------------+--------------------------------+---------------+---------------+---------------------+------------+
+| Accton | AS4224-52T  | AC3X | 2.0.0-v3.0.1     | U-Boot 2019.10-10.0.0-g7c9e534 |               |               | 5.10.4              | R0A        |
++--------+-------------+------+------------------+--------------------------------+---------------+---------------+---------------------+------------+
+
+None
+
++--------------------------------------+
+|             PDU Settings             |
++----------------+------------+--------+
+| Connect_To_PDU | ip_address | outlet |
++----------------+------------+--------+
+| True           | 10.5.236.5 | 11     |
++----------------+------------+--------+
+
+None
++--------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                             Test Steps Summary                                                             |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| Step | Description                                                                                          | Result | Run Time            |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 1    | Init test paras                                                                                      | Passed | 0.0                 |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 2    | Set link up on interfaces                                                                            | Passed | 0.4053041934967041  |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 3    | Create a bridge entity and set link up on it. Enslave all participant ports to the bridge            | Passed | 0.8084876537322998  |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 4    | Define 2 bridge interfaces connected to Ixia as isolated                                             | Passed | 0.40416479110717773 |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 5    | Define SPAN rule with one isolated port as source port and the other isolated port as monitor port.  | Passed | 0.5052640438079834  |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 6    | Set up random L2 selectors stream on source port                                                     | Passed | 3.072174072265625   |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 7    | Transmit traffic                                                                                     | Passed | 22.694919109344482  |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 8    | Verify all packets from source port are copied to the monitor port, verify traffic is not doubled    | Passed | 0.8406100273132324  |
+|      | (regular bridge traffic is not received on the isolated monitor port).                               |        |                     |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 9    | Delete the SPAN rule                                                                                 | Passed | 10.2131826877594    |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 10   | Transmit traffic again                                                                               | Passed | 22.689268827438354  |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 11   | Verify traffic is not received on the isolated port                                                  | Passed | 0.8007378578186035  |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
++-----------------------------------------------------------------------------------------------------------------------------------+
+|                                                          Test Information                                                         |
++---------------+-----------------------------------------------------+--------+-----------------+-----------------+----------------+
+| Suite_Name    | Test_Name                                           | Result | start_time      | end_time        | run_time       |
++---------------+-----------------------------------------------------+--------+-----------------+-----------------+----------------+
+| PortIsolation | PortIsolation_InteractionWithOtherFeatures_SpanRule | Passed | 08:47:30.280708 | 08:48:56.799270 | 0:01:26.518562 |
++---------------+-----------------------------------------------------+--------+-----------------+-----------------+----------------+</pre></td>
+</tr>
+
+</tbody></table></div>
+</body>
+<script>
+    $.fn.dataTable.ext.search.push(
+        function( settings, data, dataIndex ) {
+            let minIndex = severities.indexOf($('#min-severity').find(':selected').text());
+            let maxIndex = severities.indexOf($('#max-severity').find(':selected').text());
+            var severity = data[1] || 'NOT SET';// use data for the Log Level column
+            var severityIndex = severities.indexOf(severity);
+            if ( ( maxIndex == -1 && minIndex == -1 ) ||
+                 ( minIndex <= severityIndex && severityIndex <= maxIndex ) )
+            {
+                return true;
+            }
+            return false;
+        }
+    );
+    
+    function fill_select(id, items){
+        for(t of items){
+            $('#'+id).append(new Option(t, t));
+        }
+    }
+    
+    function selectionChanged(selectChanged, selectAffected, selectedOption, startFrom, end){
+        let selected = $('#'+selectAffected).find(':selected').text(); //keep affected value
+        $('#'+selectAffected).empty(); //empty the affected one
+
+        fill_select(selectAffected, severities.slice(startFrom, end));
+        selected = $('#'+selectAffected).find("option:contains('" + selected  + "')").length > 0 ? selected : $("#"+selectAffected+" option:first").val();
+        $('#'+selectAffected).val(selected);
+    }
+    
+    var severities = ['NOT SET','TRACE','DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL']
+    $(document).ready(function() {
+        for(severity of severities){
+            $('#min-severity, #max-severity').append(new Option(severity, severity));
+        }
+        
+        $('#max-severity option:last').attr('selected', 'selected');
+        
+        var table = $('#data_table').DataTable({
+            "lengthMenu": [[-1, 10, 25, 50], ["All", 10, 25, 50]]
+        });
+        
+        $('#min-severity, #max-severity').change( function(e) {
+            if(e.target.id == 'min-severity'){
+                selectionChanged(e.target.id, 'max-severity', e.target.selectedOptions[0].text, severities.indexOf(e.target.selectedOptions[0].text), severities.length+1);
+            }
+            else if(e.target.id == 'max-severity'){
+                selectionChanged(e.target.id, 'min-severity',e.target.selectedOptions[0].text, 0 ,severities.indexOf(e.target.selectedOptions[0].text) + 1);
+            }
+            table.draw();
+        } );
+    } );
+    
+    
+</script>
+</html>

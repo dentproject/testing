@@ -1,0 +1,3904 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Ifupdown2_Ipv4_Ecmp_BiDirectionalTrafficBasic_22-51-47-595709 Log</title>
+<!-- Latest compiled and minified CSS -->
+<!--
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs-3.3.7/jq-3.2.1/jq-3.2.1/dt-1.10.16/datatables.min.css"/>
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.7/jq-3.2.1/jq-3.2.1/dt-1.10.16/datatables.min.js"></script>
+-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+  
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+<style>
+pre {
+margin : 0;
+white-space: pre-wrap;
+background-color: inherit;
+border: none;
+border-radius: inherit;
+}
+</style>
+</head>
+
+<body>
+<div class="col-md-12 col-xs-12 col-lg-12">
+<br>
+<h1 style="text-align:center">Ifupdown2_Ipv4_Ecmp_BiDirectionalTrafficBasic_22-51-47-595709 Log</h1>
+<br>
+<div class="input-group">
+    <select class="form-control" id="min-severity" placeholder="Min Severity">
+    </select>
+    <span class="input-group-addon">-</span>
+    <select class="form-control" id="max-severity" placeholder="Max Severity">
+    </select>
+</div>
+&nbsp
+<table id="data_table" class="table table-striped table-bordered" cellspacing="0">
+<thead>
+    <tr>
+        <th style="width: 180px;">Time</th>
+        <th style="width: 90px;">Log Level</th>
+        <th>Message</th>
+    </tr>
+</thead>
+<tbody>
+
+<tr class="success">
+<td>2021-09-03 22:51:47,596</td>
+<td>TRACE</td>
+<td><pre>BaseTest_SD::_BasicTestInit: this test has been launched with the following input arguments:
+Namespace(conn_table=None, dummy_test=False, excel_path='/swdev/fileril103/testing/Projects/Automation/Python/Setups/AGO/CI/Setup_23.xlsx', excel_setups_db_path=None, seed=None, setup_info=None, setup_name=None, stress=None, test_args=None)</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:51:47,596</td>
+<td>TRACE</td>
+<td><pre>BaseTest_SD::_BasicTestInit: this test is running from the following Setup Excel file /swdev/fileril103/testing/Projects/Automation/Python/Setups/AGO/CI/Setup_23.xlsx</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:51:47,599</td>
+<td>TRACE</td>
+<td><pre>
++-------------------------------------------------------+
+|                    TG Mapping Table                   |
++----+------------+------------+------+------+----------+
+| ID | IP Address |  TG Type   | Card | Port | Dut Port |
++----+------------+------------+------+------+----------+
+| 1  | 10.5.236.4 | ixia_linux |  11  |  5   |  sw1p1   |
+| 2  | 10.5.236.4 | ixia_linux |  11  |  6   |  sw1p23  |
+| 3  | 10.5.236.4 | ixia_linux |  11  |  7   |  sw1p35  |
+| 4  | 10.5.236.4 | ixia_linux |  11  |  8   |  sw1p48  |
++----+------------+------------+------+------+----------+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:51:47,599</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: connecting to IxiaSSH on IP 10.5.236.4 using TCL/API Server IP 10.5.236.4</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:51:55,046</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect:  Connection Successful</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:51:55,364</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:51:57,188</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:51:59,073</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:00,971</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 22:52:04,095</td>
+<td>INFO</td>
+<td><pre>Used cached DutInfo: dutmainchannel__/swdev/fileril103/testing/Projects/Automation/Python/Setups/AGO/CI/Setup_23.xlsx__1620569885.7663186</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:04,096</td>
+<td>TRACE</td>
+<td><pre>SwitchDevDutManager::login: Connecting to 10.5.236.85:root:22 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:04,212</td>
+<td>TRACE</td>
+<td><pre>SwitchDevDutManager::login: Connection Successful</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:04,213</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "
+
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:04,314</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: Linux localhost 5.10.4 #1 SMP PREEMPT Tue Aug 31 15:40:33 UTC 2021 aarch64
+Last login: Fri Sep  3 22:50:11 2021 from 10.5.116.193
+
+
+root@localhost:~# 
+root@localhost:~# 
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:05,315</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "
+
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:05,416</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 
+root@localhost:~# 
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:05,417</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_clear_dmesg: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:05,518</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  echo "" &#62 /var/log/messages
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:05,619</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   echo "" &#62 /var/log/messages
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:05,619</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_clear_cmd_history: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:05,720</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  history -c
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:05,821</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   history -c
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:05,822</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::stressCpus: </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 22:52:05,822</td>
+<td>INFO</td>
+<td><pre>Randomize::__init__: Random seed value is 0.7687178283891932</pre></td>
+</tr>
+
+
+<tr>
+<td width="100"></td>
+<td width="100"></td>
+<td class="info"><pre>+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                                            Test Description                                                                            |
++------------+-----------------------------------------------+------------------------------------------------------------------------+--------+-------------------------+
+| Suite Name | Test Name                                     | Purpose                                                                | Author | Test Document Reference |
++------------+-----------------------------------------------+------------------------------------------------------------------------+--------+-------------------------+
+| ifupdown2  | Ifupdown2_Ipv4_Ecmp_BiDirectionalTrafficBasic | This test comes to verify IPv4 basic routing and ECMP routing using    | Maya P |                         |
+|            |                                               | persistent configuration                                               |        |                         |
++------------+-----------------------------------------------+------------------------------------------------------------------------+--------+-------------------------+
+
++-------------------------------------------------------------------------------+
+|                                 Test Procedure                                |
++------+------------------------------------------------------------------------+
+| Step | Step Description                                                       |
++------+------------------------------------------------------------------------+
+| 1    | Prepare ifupdown2 environment config                                   |
+|      | (/etc/network/ifupdown2/ifupdown2.conf)                                |
++------+------------------------------------------------------------------------+
+| 2    | Create IPv4 addresses on 2 Ixia ports and set an ECMP route for some   |
+|      | random network to exit via the RIFs' neighbors                         |
++------+------------------------------------------------------------------------+
+| 3    | Verify (ifquery) no errors in configuration file                       |
++------+------------------------------------------------------------------------+
+| 4    | Apply (ifreload) ifupdown configuration                                |
++------+------------------------------------------------------------------------+
+| 5    | Check (ifquery --check) running vs actual configuration                |
++------+------------------------------------------------------------------------+
+| 6    | Verify ip addr exists for each RIF and route is offloaded              |
++------+------------------------------------------------------------------------+
+| 7    | Verify ECMP route exist and offloaded                                  |
++------+------------------------------------------------------------------------+
+| 8    | Send bi-directional routed traffic                                     |
++------+------------------------------------------------------------------------+
+| 9    | Verify all traffic is forwarded to each host without packet loss       |
++------+------------------------------------------------------------------------+
+| 10   | Transmit traffic matching the EMCP route with INC DIP                  |
++------+------------------------------------------------------------------------+
+| 11   | Verify traffic is sent to the 2 Ixia hosts and the sum of the received |
+|      | rate is as the sent rate                                               |
++------+------------------------------------------------------------------------+
+| 12   | Reboot DUT                                                             |
++------+------------------------------------------------------------------------+
+| 13   | Check (ifquery --check) running vs actual configuration                |
++------+------------------------------------------------------------------------+
+| 14   | Verify ip addr exists for each RIF and route is offloaded              |
++------+------------------------------------------------------------------------+
+| 15   | Verify ECMP route exist and offloaded                                  |
++------+------------------------------------------------------------------------+
+| 16   | Transmit traffic matching the EMCP route with INC DIP                  |
++------+------------------------------------------------------------------------+
+| 17   | Verify traffic is sent to the 2 Ixia hosts and the sum of the received |
+|      | rate is as the sent rate                                               |
++------+------------------------------------------------------------------------+
+| 18   | Send bi-directional routed traffic                                     |
++------+------------------------------------------------------------------------+
+| 19   | Verify all traffic is forwarded to each host without packet loss       |
++------+------------------------------------------------------------------------+
+| 20   | Roll back ifupdown configuration to default                            |
++------+------------------------------------------------------------------------+
+| 21   | Apply (ifreload) ifupdown configuration                                |
++------+------------------------------------------------------------------------+
+| 22   | Verify RIFs were deleted                                               |
++------+------------------------------------------------------------------------+</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 22:52:05,923</td>
+<td>INFO</td>
+<td><pre>Executing step 1: Prepare ifupdown2 environment config (/etc/network/ifupdown2/ifupdown2.conf)</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:06,024</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "sed -i -E "s/^(template_lookuppath\s*=)(.*$)/\1\/etc\/network\/ifupdown2\/templates/g; s/^(addon_syntax_check\s*=)(.*$)/\11/g; s/^(default_interfaces_configfile\s*=)(.*$)/\1\/etc\/network\/interfaces.d\/cfg-file-1/g" /etc/network/ifupdown2/ifupdown2.conf
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:06,126</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: sed -i -E "s/^(template_lookuppath\s*=)(.*$)/\1\/etc\/network\/ifupdown2\/templates/g; s/^(addon_syntax_check\s*=)(.*$)/\11/g; s/^(default_interfaces_configfile\s*=)(.*$)/\1\/etc\/network\/interfaces.d\/cfg-file-1/g" /etc/network/ifupdown2/ifupdown2.conf
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 22:52:06,127</td>
+<td>INFO</td>
+<td><pre>Executing step 2: Create IPv4 addresses on 2 Ixia ports and set an ECMP route for some random network to exit via the RIFs' neighbors</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:06,128</td>
+<td>DEBUG</td>
+<td><pre>IfupdownConfigManager::write: Writing file /etc/network/interfaces.d/cfg-file-1</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:06,229</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo -e '# element-1
+# Test: None
+
+            auto sw1p1
+            iface sw1p1 inet static
+                address 4.28.140.182/19
+                % if "":
+                broadcast 
+                % endif
+        
+            auto sw1p23
+            iface sw1p23 inet static
+                address 105.39.212.75/18
+                % if "":
+                broadcast 
+                % endif
+        
+            
+            up ip route add 137.135.0.0/16 nexthop via 4.28.142.70 nexthop via 105.39.224.107
+        ' &#62 /etc/network/interfaces.d/cfg-file-1
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:06,330</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo -e '# element-1
+&#62 # Test: None
+&#62 
+&#62             auto sw1p1
+&#62             iface sw1p1 inet static
+&#62                 address 4.28.140.182/19
+&#62                 % if "":
+&#62                 broadcast 
+&#62                 % endif
+&#62         
+&#62             auto sw1p23
+&#62             iface sw1p23 inet static
+&#62                 address 105.39.212.75/18
+&#62                 % if "":
+&#62                 broadcast 
+&#62                 % endif
+&#62         
+&#62             
+&#62             up ip route add 137.135.0.0/16 nexthop via 4.28.142.70 nexthop via 105.39.224.107
+&#62         ' &#62 /etc/network/interfaces.d/cfg-file-1
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 22:52:06,331</td>
+<td>INFO</td>
+<td><pre>Executing step 3: Verify (ifquery) no errors in configuration file</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:06,432</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ifquery -a -i /etc/network/interfaces.d/cfg-file-1
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:06,532</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ifquery -a -i /etc/network/interfaces.d/cfg-file-1
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:06,734</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: auto sw1p1
+iface sw1p1 inet static
+	address 4.28.140.182/19
+
+auto sw1p23
+iface sw1p23 inet static
+	address 105.39.212.75/18
+	up ip route add 137.135.0.0/16 nexthop via 4.28.142.70 nexthop via 105.39.224.107
+
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:06,835</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:06,835</td>
+<td>DEBUG</td>
+<td><pre>CMD 'ifquery -a -i /etc/network/interfaces.d/cfg-file-1' exec time 0:00:00.504107</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:06,936</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:07,038</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 22:52:07,038</td>
+<td>INFO</td>
+<td><pre>Executing step 4: Apply (ifreload) ifupdown configuration</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:07,139</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ifreload -a -v
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:07,240</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ifreload -a -v
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:07,340</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: info: loading builtin modules from ['/usr/share/ifupdown2/addons']
+info: module ppp not loaded (module init failed: no /usr/bin/pon found)
+
+info: module batman_adv not loaded (module init failed: no /usr/sbin/batctl found)
+
+info: executing /sbin/sysctl net.bridge.bridge-allow-multiple-vlans
+info: executing /bin/pidof mstpd
+info: executing /bin/ip rule show
+info: executing /bin/ip -6 rule show
+info: address: using default mtu 1500
+info: module ppp not loaded (module init failed: no /usr/bin/pon found)
+
+info: module batman_adv not loaded (module init failed: no /usr/sbin/batctl found)
+
+info: looking for user scripts under /etc/network
+info: loading scripts under /etc/network/if-pre-up.d ...
+info: loading scripts under /etc/network/if-up.d ...
+info: loading scripts under /etc/network/if-post-up.d ...
+info: loading scripts under /etc/network/if-pre-down.d ...
+info: loading scripts under /etc/network/if-down.d ...
+info: loading scripts under /etc/network/if-post-down.d ...
+info: 'link_master_slave' is set. slave admin state changes will be delayed till the masters admin state change.
+info: processing interfaces file /etc/network/interfaces.d/cfg-file-1
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:07,441</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: info: template processing on interfaces file ...
+info: reload: scheduling down on interfaces: ['lo']
+info: lo: running ops ...
+info: lo: netlink: ip link set dev lo down
+info: netlink: ip link show
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:07,542</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: info: netlink: ip addr show
+info: executing /bin/ip addr help
+info: address metric support: OK
+info: executing /etc/network/if-down.d/resolvconf
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:07,643</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: info: reload: scheduling up on interfaces: ['sw1p1', 'sw1p23']
+info: sw1p23: running ops ...
+info: sw1p23: netlink: ip link set dev sw1p23 up
+info: reading '/proc/sys/net/mpls/conf/sw1p23/input'
+info: executing /sbin/sysctl net.mpls.conf.sw1p23.input=0
+info: executing /bin/ip -force -batch - [addr add 105.39.212.75/18 dev sw1p23
+]
+info: executing ip route add 137.135.0.0/16 nexthop via 4.28.142.70 nexthop via 105.39.224.107
+warning: sw1p23: up cmd 'ip route add 137.135.0.0/16 nexthop via 4.28.142.70 nexthop via 105.39.224.107' failed: returned 2 (Error: Nexthop has invalid gateway.
+)
+info: executing /etc/network/if-up.d/000resolvconf
+info: executing /etc/network/if-up.d/arping
+info: executing /etc/network/if-up.d/ntpdate
+warning: sw1p23: up cmd '/etc/network/if-up.d/ntpdate' failed ([Errno 13] Permission denied)
+info: executing /etc/network/if-up.d/openssh-server
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:07,743</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: info: sw1p1: running ops ...
+info: sw1p1: netlink: ip link set dev sw1p1 up
+info: reading '/proc/sys/net/mpls/conf/sw1p1/input'
+info: executing /sbin/sysctl net.mpls.conf.sw1p1.input=0
+info: executing /bin/ip -force -batch - [addr add 4.28.140.182/19 dev sw1p1
+]
+info: executing /etc/network/if-up.d/000resolvconf
+info: executing /etc/network/if-up.d/arping
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:07,843</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: info: executing /etc/network/if-up.d/ntpdate
+warning: sw1p1: up cmd '/etc/network/if-up.d/ntpdate' failed ([Errno 13] Permission denied)
+info: executing /etc/network/if-up.d/openssh-server
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:07,844</td>
+<td>DEBUG</td>
+<td><pre>CMD 'ifreload -a -v' exec time 0:00:00.804807</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:07,944</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:08,046</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:08,147</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ifreload -a -v
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:08,247</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ifreload -a -v
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:08,348</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: info: loading builtin modules from ['/usr/share/ifupdown2/addons']
+info: module ppp not loaded (module init failed: no /usr/bin/pon found)
+
+info: module batman_adv not loaded (module init failed: no /usr/sbin/batctl found)
+
+info: executing /sbin/sysctl net.bridge.bridge-allow-multiple-vlans
+info: executing /bin/pidof mstpd
+info: executing /bin/ip rule show
+info: executing /bin/ip -6 rule show
+info: address: using default mtu 1500
+info: module ppp not loaded (module init failed: no /usr/bin/pon found)
+
+info: module batman_adv not loaded (module init failed: no /usr/sbin/batctl found)
+
+info: looking for user scripts under /etc/network
+info: loading scripts under /etc/network/if-pre-up.d ...
+info: loading scripts under /etc/network/if-up.d ...
+info: loading scripts under /etc/network/if-post-up.d ...
+info: loading scripts under /etc/network/if-pre-down.d ...
+info: loading scripts under /etc/network/if-down.d ...
+info: loading scripts under /etc/network/if-post-down.d ...
+info: 'link_master_slave' is set. slave admin state changes will be delayed till the masters admin state change.
+info: processing interfaces file /etc/network/interfaces.d/cfg-file-1
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:08,448</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: info: template processing on interfaces file ...
+info: no interfaces to down ..
+info: reload: scheduling up on interfaces: ['sw1p1', 'sw1p23']
+info: sw1p23: running ops ...
+info: netlink: ip link show
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:08,548</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: info: netlink: ip addr show
+info: executing /bin/ip addr help
+info: address metric support: OK
+info: sw1p23: netlink: ip link set dev sw1p23 up
+info: reading '/proc/sys/net/mpls/conf/sw1p23/input'
+info: executing /sbin/sysctl net.mpls.conf.sw1p23.input=0
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:08,650</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: info: executing ip route add 137.135.0.0/16 nexthop via 4.28.142.70 nexthop via 105.39.224.107
+info: executing /etc/network/if-up.d/000resolvconf
+info: executing /etc/network/if-up.d/arping
+info: executing /etc/network/if-up.d/ntpdate
+warning: sw1p23: up cmd '/etc/network/if-up.d/ntpdate' failed ([Errno 13] Permission denied)
+info: executing /etc/network/if-up.d/openssh-server
+info: sw1p1: running ops ...
+info: sw1p1: netlink: ip link set dev sw1p1 up
+info: reading '/proc/sys/net/mpls/conf/sw1p1/input'
+info: executing /sbin/sysctl net.mpls.conf.sw1p1.input=0
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:08,750</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: info: executing /etc/network/if-up.d/000resolvconf
+info: executing /etc/network/if-up.d/arping
+info: executing /etc/network/if-up.d/ntpdate
+warning: sw1p1: up cmd '/etc/network/if-up.d/ntpdate' failed ([Errno 13] Permission denied)
+info: executing /etc/network/if-up.d/openssh-server
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:08,851</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:08,851</td>
+<td>DEBUG</td>
+<td><pre>CMD 'ifreload -a -v' exec time 0:00:00.804491</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:08,952</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:09,052</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 22:52:09,060</td>
+<td>INFO</td>
+<td><pre>Executing step 5: Check (ifquery --check) running vs actual configuration</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:09,162</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ifquery -a -c -i /etc/network/interfaces.d/cfg-file-1
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:09,263</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ifquery -a -c -i /etc/network/interfaces.d/cfg-file-1
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:09,564</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: auto sw1p1
+iface sw1p1 inet static                                             [pass]
+	address 4.28.140.182/19                                     [pass]
+
+auto sw1p23
+iface sw1p23 inet static                                            [pass]
+	up ip route add 137.135.0.0/16 nexthop via 4.28.142.70 nexthop via 105.39.224.107         []
+	address 105.39.212.75/18                                    [pass]
+
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:09,665</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:09,666</td>
+<td>DEBUG</td>
+<td><pre>CMD 'ifquery -a -c -i /etc/network/interfaces.d/cfg-file-1' exec time 0:00:00.605387</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:09,767</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:09,867</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 22:52:09,868</td>
+<td>INFO</td>
+<td><pre>Executing step 6: Verify ip addr exists for each RIF and route is offloaded</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:09,968</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "bash -c "if [ -z '$(ip -4 addr show sw1p1)' ]; then exit 1; fi"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:10,070</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: bash -c "if [ -z '$(ip -4 addr show sw1p1)' ]; then exit 1; fi"
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:10,070</td>
+<td>DEBUG</td>
+<td><pre>CMD 'bash -c "if [ -z '$(ip -4 addr show sw1p1)' ]; then exit 1; fi"' exec time 0:00:00.201838</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:10,170</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "bash -c "if [ -z '$(ip -4 route show dev sw1p1 | grep offload )' ]; then exit 1; fi"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:10,271</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: bash -c "if [ -z '$(ip -4 route show dev sw1p1 | grep offload )' ]; then exit 1; fi"
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:10,272</td>
+<td>DEBUG</td>
+<td><pre>CMD 'bash -c "if [ -z '$(ip -4 route show dev sw1p1 | grep offload )' ]; then exit 1; fi"' exec time 0:00:00.201545</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:10,372</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "bash -c "if [ -z '$(ip -4 addr show sw1p23)' ]; then exit 1; fi"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:10,475</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: bash -c "if [ -z '$(ip -4 addr show sw1p23)' ]; then exit 1; fi"
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:10,475</td>
+<td>DEBUG</td>
+<td><pre>CMD 'bash -c "if [ -z '$(ip -4 addr show sw1p23)' ]; then exit 1; fi"' exec time 0:00:00.203031</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:10,575</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "bash -c "if [ -z '$(ip -4 route show dev sw1p23 | grep offload )' ]; then exit 1; fi"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:10,676</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: bash -c "if [ -z '$(ip -4 route show dev sw1p23 | grep offload )' ]; then exit 1; fi"
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:10,676</td>
+<td>DEBUG</td>
+<td><pre>CMD 'bash -c "if [ -z '$(ip -4 route show dev sw1p23 | grep offload )' ]; then exit 1; fi"' exec time 0:00:00.200891</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 22:52:10,676</td>
+<td>INFO</td>
+<td><pre>Executing step 7: Verify ECMP route exist and offloaded</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:10,778</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "bash -c "if [ '$(ip -4 route show 137.135.123.89/16 | grep -c offload )' -lt 2 ]; then exit 1; fi"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:10,878</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: bash -c "if [ '$(ip -4 route show 137.135.123.89/16 | grep -c offload )' -lt 2 ]; then exit 1; fi"
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:10,879</td>
+<td>DEBUG</td>
+<td><pre>CMD 'bash -c "if [ '$(ip -4 route show 137.135.123.89/16 | grep -c offload )' -lt 2 ]; then exit 1; fi"' exec time 0:00:00.201194</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 22:52:10,879</td>
+<td>INFO</td>
+<td><pre>Executing step 8: Send bi-directional routed traffic</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:10,880</td>
+<td>DEBUG</td>
+<td><pre>CommonStreams::addIPv4ProtocolInterface: Setting up IPv4 protocol interface on port Port name: 1, Port uri: 10.5.236.4/11/5</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:10,974</td>
+<td>DEBUG</td>
+<td><pre>Stream name: test#0
+Stream uri: 1 11 5 1
+Stream port name: 1
+Stream packet: L2: MAC: DA[00:00:00:00:00:02, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[00:00:00:00:00:01, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+IPV4_HEADER: IPV4: SIP[0.0.0.0, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], DIP[105.39.224.107, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], TTL[64], PROTOCOL[255], IDENTIFIER[0], OPTIONS[], CUSTOM CHECKSUM[], FRAGMENT ENABLED[True], FRAGMENT OFFSET[0], FRAGMENT LAST[True]DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[64], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.CONTINUOUS_PACKET], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.STREAM_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:10,975</td>
+<td>DEBUG</td>
+<td><pre>CommonStreams::addIPv4ProtocolInterface: Setting up IPv4 protocol interface on port Port name: 2, Port uri: 10.5.236.4/11/6</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:52:11,054</td>
+<td>DEBUG</td>
+<td><pre>Stream name: test#1
+Stream uri: 1 11 6 1
+Stream port name: 2
+Stream packet: L2: MAC: DA[00:00:00:00:00:02, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[00:00:00:00:00:01, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+IPV4_HEADER: IPV4: SIP[0.0.0.0, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], DIP[4.28.142.70, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], TTL[64], PROTOCOL[255], IDENTIFIER[0], OPTIONS[], CUSTOM CHECKSUM[], FRAGMENT ENABLED[True], FRAGMENT OFFSET[0], FRAGMENT LAST[True]DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[64], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.CONTINUOUS_PACKET], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.STREAM_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:53:44,584</td>
+<td>DEBUG</td>
+<td><pre>wait 2 seconds...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:53:46,588</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::transmitTraffic: Transmitting traffic:
+Port name: 1, Port uri: 10.5.236.4/11/5 ----------&#62 Port name: 2, Port uri: 10.5.236.4/11/6
+Port name: 2, Port uri: 10.5.236.4/11/6 ----------&#62 Port name: 1, Port uri: 10.5.236.4/11/5
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:53:49,963</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::transmitTraffic: Transmitting traffic for 11 time...</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 22:54:01,348</td>
+<td>INFO</td>
+<td><pre>Executing step 9: Verify all traffic is forwarded to each host without packet loss</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:54:02,656</td>
+<td>DEBUG</td>
+<td><pre>PASS: No packet loss for stream test#1 on port/s Port name: 1, Port uri: 10.5.236.4/11/5: expected: 11876919, actual 11876919</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:54:02,656</td>
+<td>DEBUG</td>
+<td><pre>PASS: No packet loss for stream test#0 on port/s Port name: 2, Port uri: 10.5.236.4/11/6: expected: 11876919, actual 11876919</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 22:54:02,656</td>
+<td>INFO</td>
+<td><pre>Executing step 10: Transmit traffic matching the EMCP route with INC DIP</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:54:02,942</td>
+<td>DEBUG</td>
+<td><pre>Setting up more settings on stream: Port name: 1
+Port uri: 10.5.236.4/11/5
+Port stream names: [test#2, ]
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:54:02,942</td>
+<td>DEBUG</td>
+<td><pre>Stream name: test#2
+Stream uri: 1 11 5 1
+Stream port name: 1
+Stream packet: L2: MAC: DA[00:00:00:00:00:02, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[00:00:00:00:00:01, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+IPV4_HEADER: IPV4: SIP[0.0.0.0, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], DIP[137.135.123.89, mode=MODIFIER_IPV4_ADDRESS_MODE.INCREMENT_HOST, count=3, mask=255.0.0.0], TTL[64], PROTOCOL[255], IDENTIFIER[0], OPTIONS[], CUSTOM CHECKSUM[], FRAGMENT ENABLED[True], FRAGMENT OFFSET[0], FRAGMENT LAST[True]DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[64], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.CONTINUOUS_PACKET], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.STREAM_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:54:48,867</td>
+<td>DEBUG</td>
+<td><pre>wait 2 seconds...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:54:50,869</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::transmitTraffic: Transmitting traffic:
+Port name: 1, Port uri: 10.5.236.4/11/5 ----------&#62 Port name: 2, Port uri: 10.5.236.4/11/6
+Port name: 2, Port uri: 10.5.236.4/11/6 ----------&#62 Port name: 1, Port uri: 10.5.236.4/11/5
+</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 22:55:03,496</td>
+<td>INFO</td>
+<td><pre>Executing step 11: Verify traffic is sent to the 2 Ixia hosts and the sum of the received rate is as the sent rate</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:55:09,374</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::verifyRateIsAsExpected: Verify rate matches the configuration</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:55:09,374</td>
+<td>DEBUG</td>
+<td><pre>PASS: No packet loss on port/s Port name: 1, Port uri: 10.5.236.4/11/5, Port name: 2, Port uri: 10.5.236.4/11/6: expected: 1488096, actual 1488098</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 22:55:09,375</td>
+<td>INFO</td>
+<td><pre>Executing step 12: Reboot DUT</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:55:09,375</td>
+<td>DEBUG</td>
+<td><pre>PduSocket_SNMP::reboot: Action 'Reboot' requested for PDU 10.5.236.19 socket#11 (CI_S23_AC3X_Accton_Func)
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:56:30,763</td>
+<td>TRACE</td>
+<td><pre>SwitchDevDutManager::login: Connecting to 10.5.236.85:root:22 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:56:30,922</td>
+<td>TRACE</td>
+<td><pre>SwitchDevDutManager::login: Connection Successful</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:56:30,923</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "
+
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:56:31,024</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: Linux localhost 5.10.4 #1 SMP PREEMPT Tue Aug 31 15:40:33 UTC 2021 aarch64
+Last login: Fri Sep  3 22:51:53 2021 from 10.5.116.193
+
+
+root@localhost:~# 
+root@localhost:~# 
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:56:32,027</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "
+
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:56:32,128</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 
+root@localhost:~# 
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 22:56:32,129</td>
+<td>INFO</td>
+<td><pre>SwitchDevDutManager::reboot: Waiting 30s after power cycle to give CPSS time for init</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:57:02,260</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ifreload -a -v
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:57:02,362</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ifreload -a -v
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:57:02,463</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: info: loading builtin modules from ['/usr/share/ifupdown2/addons']
+info: module ppp not loaded (module init failed: no /usr/bin/pon found)
+
+info: module batman_adv not loaded (module init failed: no /usr/sbin/batctl found)
+
+info: executing /sbin/sysctl net.bridge.bridge-allow-multiple-vlans
+info: executing /bin/pidof mstpd
+info: executing /bin/ip rule show
+info: executing /bin/ip -6 rule show
+info: address: using default mtu 1500
+info: module ppp not loaded (module init failed: no /usr/bin/pon found)
+
+info: module batman_adv not loaded (module init failed: no /usr/sbin/batctl found)
+
+info: looking for user scripts under /etc/network
+info: loading scripts under /etc/network/if-pre-up.d ...
+info: loading scripts under /etc/network/if-up.d ...
+info: loading scripts under /etc/network/if-post-up.d ...
+info: loading scripts under /etc/network/if-pre-down.d ...
+info: loading scripts under /etc/network/if-down.d ...
+info: loading scripts under /etc/network/if-post-down.d ...
+info: 'link_master_slave' is set. slave admin state changes will be delayed till the masters admin state change.
+info: processing interfaces file /etc/network/interfaces.d/cfg-file-1
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:57:02,564</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: info: template processing on interfaces file ...
+info: no interfaces to down ..
+info: reload: scheduling up on interfaces: ['sw1p1', 'sw1p23']
+info: sw1p23: running ops ...
+info: netlink: ip link show
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:57:02,664</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: info: netlink: ip addr show
+info: executing /bin/ip addr help
+info: address metric support: OK
+info: sw1p23: netlink: ip link set dev sw1p23 up
+info: reading '/proc/sys/net/mpls/conf/sw1p23/input'
+info: executing /sbin/sysctl net.mpls.conf.sw1p23.input=0
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:57:02,766</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: info: executing ip route add 137.135.0.0/16 nexthop via 4.28.142.70 nexthop via 105.39.224.107
+info: executing /etc/network/if-up.d/000resolvconf
+info: executing /etc/network/if-up.d/arping
+info: executing /etc/network/if-up.d/ntpdate
+warning: sw1p23: up cmd '/etc/network/if-up.d/ntpdate' failed ([Errno 13] Permission denied)
+info: executing /etc/network/if-up.d/openssh-server
+info: sw1p1: running ops ...
+info: sw1p1: netlink: ip link set dev sw1p1 up
+info: reading '/proc/sys/net/mpls/conf/sw1p1/input'
+info: executing /sbin/sysctl net.mpls.conf.sw1p1.input=0
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:57:02,866</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: info: executing /etc/network/if-up.d/000resolvconf
+info: executing /etc/network/if-up.d/arping
+info: executing /etc/network/if-up.d/ntpdate
+warning: sw1p1: up cmd '/etc/network/if-up.d/ntpdate' failed ([Errno 13] Permission denied)
+info: executing /etc/network/if-up.d/openssh-server
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:57:02,967</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:57:02,968</td>
+<td>DEBUG</td>
+<td><pre>CMD 'ifreload -a -v' exec time 0:00:00.808193</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:57:03,069</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:57:03,170</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 22:57:03,171</td>
+<td>INFO</td>
+<td><pre>Executing step 13: Check (ifquery --check) running vs actual configuration</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:57:03,271</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ifquery -a -c -i /etc/network/interfaces.d/cfg-file-1
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:57:03,372</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ifquery -a -c -i /etc/network/interfaces.d/cfg-file-1
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:57:03,674</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: auto sw1p1
+iface sw1p1 inet static                                             [pass]
+	address 4.28.140.182/19                                     [pass]
+
+auto sw1p23
+iface sw1p23 inet static                                            [pass]
+	up ip route add 137.135.0.0/16 nexthop via 4.28.142.70 nexthop via 105.39.224.107         []
+	address 105.39.212.75/18                                    [pass]
+
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:57:03,774</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:57:03,774</td>
+<td>DEBUG</td>
+<td><pre>CMD 'ifquery -a -c -i /etc/network/interfaces.d/cfg-file-1' exec time 0:00:00.603456</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:57:03,875</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:57:03,976</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 22:57:03,976</td>
+<td>INFO</td>
+<td><pre>Executing step 14: Verify ip addr exists for each RIF and route is offloaded</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:57:04,078</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "bash -c "if [ -z '$(ip -4 addr show sw1p1)' ]; then exit 1; fi"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:57:04,179</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: bash -c "if [ -z '$(ip -4 addr show sw1p1)' ]; then exit 1; fi"
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:57:04,180</td>
+<td>DEBUG</td>
+<td><pre>CMD 'bash -c "if [ -z '$(ip -4 addr show sw1p1)' ]; then exit 1; fi"' exec time 0:00:00.201417</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:57:04,280</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "bash -c "if [ -z '$(ip -4 route show dev sw1p1 | grep offload )' ]; then exit 1; fi"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:57:04,381</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: bash -c "if [ -z '$(ip -4 route show dev sw1p1 | grep offload )' ]; then exit 1; fi"
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:57:04,382</td>
+<td>DEBUG</td>
+<td><pre>CMD 'bash -c "if [ -z '$(ip -4 route show dev sw1p1 | grep offload )' ]; then exit 1; fi"' exec time 0:00:00.201808</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:57:04,482</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "bash -c "if [ -z '$(ip -4 addr show sw1p23)' ]; then exit 1; fi"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:57:04,583</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: bash -c "if [ -z '$(ip -4 addr show sw1p23)' ]; then exit 1; fi"
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:57:04,584</td>
+<td>DEBUG</td>
+<td><pre>CMD 'bash -c "if [ -z '$(ip -4 addr show sw1p23)' ]; then exit 1; fi"' exec time 0:00:00.201479</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:57:04,684</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "bash -c "if [ -z '$(ip -4 route show dev sw1p23 | grep offload )' ]; then exit 1; fi"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:57:04,786</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: bash -c "if [ -z '$(ip -4 route show dev sw1p23 | grep offload )' ]; then exit 1; fi"
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:57:04,786</td>
+<td>DEBUG</td>
+<td><pre>CMD 'bash -c "if [ -z '$(ip -4 route show dev sw1p23 | grep offload )' ]; then exit 1; fi"' exec time 0:00:00.202431</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 22:57:04,787</td>
+<td>INFO</td>
+<td><pre>Executing step 15: Verify ECMP route exist and offloaded</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:57:04,888</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "bash -c "if [ '$(ip -4 route show 137.135.123.89/16 | grep -c offload )' -lt 2 ]; then exit 1; fi"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:57:04,988</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: bash -c "if [ '$(ip -4 route show 137.135.123.89/16 | grep -c offload )' -lt 2 ]; then exit 1; fi"
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 22:57:04,989</td>
+<td>INFO</td>
+<td><pre>Executing step 16: Transmit traffic matching the EMCP route with INC DIP</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:57:07,227</td>
+<td>DEBUG</td>
+<td><pre>wait 2 seconds...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:57:09,229</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::transmitTraffic: Transmitting traffic:
+Port name: 1, Port uri: 10.5.236.4/11/5 ----------&#62 Port name: 2, Port uri: 10.5.236.4/11/6
+Port name: 2, Port uri: 10.5.236.4/11/6 ----------&#62 Port name: 1, Port uri: 10.5.236.4/11/5
+</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 22:57:11,860</td>
+<td>INFO</td>
+<td><pre>Executing step 17: Verify traffic is sent to the 2 Ixia hosts and the sum of the received rate is as the sent rate</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:57:17,744</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::verifyRateIsAsExpected: Verify rate matches the configuration</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:57:17,745</td>
+<td>DEBUG</td>
+<td><pre>PASS: No packet loss on port/s Port name: 1, Port uri: 10.5.236.4/11/5, Port name: 2, Port uri: 10.5.236.4/11/6: expected: 1488096, actual 1488096</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 22:57:18,118</td>
+<td>INFO</td>
+<td><pre>Executing step 18: Send bi-directional routed traffic</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:57:18,399</td>
+<td>DEBUG</td>
+<td><pre>Stream name: test#3
+Stream uri: 1 11 5 1
+Stream port name: 1
+Stream packet: L2: MAC: DA[00:00:00:00:00:02, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[00:00:00:00:00:01, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+IPV4_HEADER: IPV4: SIP[0.0.0.0, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], DIP[105.39.224.107, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], TTL[64], PROTOCOL[255], IDENTIFIER[0], OPTIONS[], CUSTOM CHECKSUM[], FRAGMENT ENABLED[True], FRAGMENT OFFSET[0], FRAGMENT LAST[True]DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[64], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.CONTINUOUS_PACKET], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.STREAM_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:57:18,491</td>
+<td>DEBUG</td>
+<td><pre>Stream name: test#4
+Stream uri: 1 11 6 1
+Stream port name: 2
+Stream packet: L2: MAC: DA[00:00:00:00:00:02, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[00:00:00:00:00:01, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+IPV4_HEADER: IPV4: SIP[0.0.0.0, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], DIP[4.28.142.70, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], TTL[64], PROTOCOL[255], IDENTIFIER[0], OPTIONS[], CUSTOM CHECKSUM[], FRAGMENT ENABLED[True], FRAGMENT OFFSET[0], FRAGMENT LAST[True]DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[64], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.CONTINUOUS_PACKET], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.STREAM_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:58:52,047</td>
+<td>DEBUG</td>
+<td><pre>wait 2 seconds...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:58:54,049</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::transmitTraffic: Transmitting traffic:
+Port name: 1, Port uri: 10.5.236.4/11/5 ----------&#62 Port name: 2, Port uri: 10.5.236.4/11/6
+Port name: 2, Port uri: 10.5.236.4/11/6 ----------&#62 Port name: 1, Port uri: 10.5.236.4/11/5
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:58:57,470</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::transmitTraffic: Transmitting traffic for 21 time...</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 22:59:18,862</td>
+<td>INFO</td>
+<td><pre>Executing step 19: Verify all traffic is forwarded to each host without packet loss</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:20,195</td>
+<td>DEBUG</td>
+<td><pre>PASS: No packet loss for stream test#4 on port/s Port name: 1, Port uri: 10.5.236.4/11/5: expected: 22352464, actual 22352464</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:20,195</td>
+<td>DEBUG</td>
+<td><pre>PASS: No packet loss for stream test#3 on port/s Port name: 2, Port uri: 10.5.236.4/11/6: expected: 22352464, actual 22352464</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 22:59:20,195</td>
+<td>INFO</td>
+<td><pre>Executing step 20: Roll back ifupdown configuration to default</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:20,296</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "sed -i -E "s/^(addon_syntax_check\s*=)(.*$)/\10/g; s/^(template_lookuppath\s*=)(.*$)/\10/g; s/^(default_interfaces_configfile\s*=)(.*$)/\1\/etc\/network\/interfaces/g" /etc/network/ifupdown2/ifupdown2.conf
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:20,397</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: sed -i -E "s/^(addon_syntax_check\s*=)(.*$)/\10/g; s/^(template_lookuppath\s*=)(.*$)/\10/g; s/^(default_interfaces_configfile\s*=)(.*$)/\1\/etc\/network\/interfaces/g" /etc/network/ifupdown2/ifupdown2.conf
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:20,398</td>
+<td>DEBUG</td>
+<td><pre>IfupdownConfigManager::remove: Removing file /etc/network/interfaces.d/cfg-file-1</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:20,499</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "rm -f /etc/network/interfaces.d/cfg-file-1
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:20,599</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: rm -f /etc/network/interfaces.d/cfg-file-1
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:20,700</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo "${?}"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:20,800</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo "${?}"
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 22:59:20,801</td>
+<td>INFO</td>
+<td><pre>Executing step 21: Apply (ifreload) ifupdown configuration</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:20,902</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ifreload -a -v
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:21,003</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ifreload -a -v
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:21,103</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: info: loading builtin modules from ['/usr/share/ifupdown2/addons']
+info: module ppp not loaded (module init failed: no /usr/bin/pon found)
+
+info: module batman_adv not loaded (module init failed: no /usr/sbin/batctl found)
+
+info: executing /sbin/sysctl net.bridge.bridge-allow-multiple-vlans
+info: executing /bin/pidof mstpd
+info: executing /bin/ip rule show
+info: executing /bin/ip -6 rule show
+info: address: using default mtu 1500
+info: module ppp not loaded (module init failed: no /usr/bin/pon found)
+
+info: module batman_adv not loaded (module init failed: no /usr/sbin/batctl found)
+
+info: looking for user scripts under /etc/network
+info: loading scripts under /etc/network/if-pre-up.d ...
+info: loading scripts under /etc/network/if-up.d ...
+info: loading scripts under /etc/network/if-post-up.d ...
+info: loading scripts under /etc/network/if-pre-down.d ...
+info: loading scripts under /etc/network/if-down.d ...
+info: loading scripts under /etc/network/if-post-down.d ...
+info: 'link_master_slave' is set. slave admin state changes will be delayed till the masters admin state change.
+info: processing interfaces file /etc/network/interfaces
+info: reload: scheduling down on interfaces: ['sw1p1', 'sw1p23']
+info: sw1p1: running ops ...
+info: netlink: ip link show
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:21,204</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: info: netlink: ip addr show
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:21,305</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: info: executing /bin/ip addr help
+info: address metric support: OK
+info: sw1p1: netlink: ip link set dev sw1p1 down
+info: executing /bin/ip addr del 4.28.140.182/19 dev sw1p1
+info: executing /etc/network/if-down.d/resolvconf
+info: sw1p23: running ops ...
+info: sw1p23: netlink: ip link set dev sw1p23 down
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:21,406</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: info: executing /bin/ip addr del 105.39.212.75/18 dev sw1p23
+info: executing /etc/network/if-down.d/resolvconf
+info: reload: scheduling up on interfaces: ['lo']
+info: lo: running ops ...
+info: lo: netlink: ip link set dev lo up
+info: reading '/proc/sys/net/mpls/conf/lo/input'
+info: executing /sbin/sysctl net.mpls.conf.lo.input=0
+info: executing /etc/network/if-up.d/000resolvconf
+info: executing /etc/network/if-up.d/arping
+info: executing /etc/network/if-up.d/ntpdate
+warning: lo: up cmd '/etc/network/if-up.d/ntpdate' failed ([Errno 13] Permission denied)
+info: executing /etc/network/if-up.d/openssh-server
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:21,406</td>
+<td>DEBUG</td>
+<td><pre>CMD 'ifreload -a -v' exec time 0:00:00.604662</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:21,507</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:21,607</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 22:59:21,608</td>
+<td>INFO</td>
+<td><pre>Executing step 22: Verify RIFs were deleted</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:21,709</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "bash -c "if [ -z '$(ip -4 addr show sw1p1)' ]; then exit 1; fi"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:21,809</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: bash -c "if [ -z '$(ip -4 addr show sw1p1)' ]; then exit 1; fi"
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:21,809</td>
+<td>DEBUG</td>
+<td><pre>CMD 'bash -c "if [ -z '$(ip -4 addr show sw1p1)' ]; then exit 1; fi"' exec time 0:00:00.200788</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:21,910</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "bash -c "if [ -z '$(ip -4 route show dev sw1p1 | grep offload )' ]; then exit 1; fi"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:22,010</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: bash -c "if [ -z '$(ip -4 route show dev sw1p1 | grep offload )' ]; then exit 1; fi"
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:22,010</td>
+<td>DEBUG</td>
+<td><pre>CMD 'bash -c "if [ -z '$(ip -4 route show dev sw1p1 | grep offload )' ]; then exit 1; fi"' exec time 0:00:00.200824</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:22,111</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "bash -c "if [ -z '$(ip -4 addr show sw1p23)' ]; then exit 1; fi"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:22,211</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: bash -c "if [ -z '$(ip -4 addr show sw1p23)' ]; then exit 1; fi"
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:22,211</td>
+<td>DEBUG</td>
+<td><pre>CMD 'bash -c "if [ -z '$(ip -4 addr show sw1p23)' ]; then exit 1; fi"' exec time 0:00:00.200963</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:22,312</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "bash -c "if [ -z '$(ip -4 route show dev sw1p23 | grep offload )' ]; then exit 1; fi"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:22,412</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: bash -c "if [ -z '$(ip -4 route show dev sw1p23 | grep offload )' ]; then exit 1; fi"
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:22,412</td>
+<td>DEBUG</td>
+<td><pre>CMD 'bash -c "if [ -z '$(ip -4 route show dev sw1p23 | grep offload )' ]; then exit 1; fi"' exec time 0:00:00.200900</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:22,413</td>
+<td>TRACE</td>
+<td><pre>BaseTest::_OnPostTest:  starting to run registered post test functions</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:22,414</td>
+<td>TRACE</td>
+<td><pre>BaseTest::TestTearDown:  starting to call to cleanup functions of test</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:22,414</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_parse_dmesg: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:22,515</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  history
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:22,521</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   history
+   15  echo $?
+   16  tc qdisc del dev sw1p48 ingress
+   17  ip add del 192.166.1.4/24 dev sw1p35
+   18  ip add del 192.167.1.4/24 dev sw1p23
+   19  ip add del 192.168.1.4/24 dev sw1p1
+   20  ip link set dev sw1p48 down
+   21  ip link set dev sw1p35 down
+   22  ip link set dev sw1p23 down
+   23  ip link set dev sw1p1 down
+   24    history
+   25    cat /var/log/messages
+   26  ls /sys/class/net/ | grep sw1p* | sort -t p -k 2 -g
+   27  ip link set dev sw1p1 up
+   28  ip link set dev sw1p23 up
+   29  ip link set dev sw1p35 up
+   30  ip link set dev sw1p48 up
+   31  sysctl -w net.ipv4.conf.default.ignore_routes_with_linkdown=1
+   32  ip addr add 1.1.1.1/24 dev sw1p1
+   33  ip addr add 11.0.0.1/8 dev sw1p23
+   34  ip addr add 12.0.0.1/16 dev sw1p35
+   35  ip addr add 13.0.0.1/20 dev sw1p48
+   36  ip neigh add 11.0.0.2 lladdr 00:AD:20:B2:A7:75 dev sw1p23
+   37  ip neigh add 12.0.0.2 lladdr 00:59:CD:1E:83:1B dev sw1p35
+   38  ip neigh add 13.0.0.2 lladdr 00:76:69:89:E0:7B dev sw1p48
+   39  ip route add 100.0.0.0/8 nexthop via 11.0.0.2 weight 1 nexthop via 12.0.0.2 weight 1 nexthop via 13.0.0.2 weight 1
+   40  ip link set dev sw1p23 down
+   41  ip link set dev sw1p23 up
+   42  ip neigh del 13.0.0.2 lladdr 00:76:69:89:E0:7B dev sw1p48
+   43  ip neigh del 12.0.0.2 lladdr 00:59:CD:1E:83:1B dev sw1p35
+   44  ip neigh del 11.0.0.2 lladdr 00:AD:20:B2:A7:75 dev sw1p23
+   45  ip addr del 13.0.0.1/20 dev sw1p48
+   46  ip addr del 12.0.0.1/16 dev sw1p35
+   47  ip addr del 11.0.0.1/8 dev sw1p23
+   48  ip addr del 1.1.1.1/24 dev sw1p1
+   49  sysctl -w net.ipv4.conf.default.ignore_routes_with_linkdown=0
+   50  echo 0 &#62 /proc/sys/net/ipv4/neigh/default/gc_thresh1
+   51  echo 128 &#62 /proc/sys/net/ipv4/neigh/default/gc_thresh1
+   52    history
+   53    cat /var/log/messages
+   54  ls /sys/class/net/ | grep sw1p* | sort -t p -k 2 -g
+   55  ip link set dev sw1p1 up
+   56  ip link set dev sw1p23 up
+   57  ip link set dev sw1p35 up
+   58  ip link set dev sw1p48 up
+   59  sysctl -w net.ipv4.conf.default.ignore_routes_with_linkdown=1
+   60  ip addr add 1.1.1.1/24 dev sw1p1
+   61  ip addr add 11.0.0.1/8 dev sw1p23
+   62  ip addr add 12.0.0.1/16 dev sw1p35
+   63  ip addr add 13.0.0.1/20 dev sw1p48
+   64  ip neigh add 11.0.0.2 lladdr 00:AD:20:B2:A7:75 dev sw1p23
+   65  ip neigh add 12.0.0.2 lladdr 00:59:CD:1E:83:1B dev sw1p35
+   66  ip neigh add 13.0.0.2 lladdr 00:76:69:89:E0:7B dev sw1p48
+   67  ip route add 100.0.0.0/8 nexthop via 11.0.0.2 weight 1 nexthop via 12.0.0.2 weight 1 nexthop via 13.0.0.2 weight 1
+   68  ip link set dev sw1p23 down
+   69  ip link set dev sw1p35 down
+   70  ip link set dev sw1p48 down
+   71  ip link set dev sw1p48 up
+   72  ip link set dev sw1p35 up
+   73  ip link set dev sw1p23 up
+   74  ip neigh del 13.0.0.2 lladdr 00:76:69:89:E0:7B dev sw1p48
+   75  ip neigh del 12.0.0.2 lladdr 00:59:CD:1E:83:1B dev sw1p35
+   76  ip neigh del 11.0.0.2 lladdr 00:AD:20:B2:A7:75 dev sw1p23
+   77  ip addr del 13.0.0.1/20 dev sw1p48
+   78  ip addr del 12.0.0.1/16 dev sw1p35
+   79  ip addr del 11.0.0.1/8 dev sw1p23
+   80  ip addr del 1.1.1.1/24 dev sw1p1
+   81  sysctl -w net.ipv4.conf.default.ignore_routes_with_linkdown=0
+   82  echo 0 &#62 /proc/sys/net/ipv4/neigh/default/gc_thresh1
+   83  echo 128 &#62 /proc/sys/net/ipv4/neigh/default/gc_thresh1
+   84    history
+   85    cat /var/log/messages
+   86  ls /sys/class/net/ | grep sw1p* | sort -t p -k 2 -g
+   87  ip link set dev sw1p1 up
+   88  ip link set dev sw1p23 up
+   89  ip link set dev sw1p35 up
+   90  ip link set dev sw1p48 up
+   91  sysctl -w net.ipv4.fib_multipath_hash_policy=1
+   92  ip addr add 1.1.1.1/24 dev sw1p1
+   93  ip addr add 11.0.0.1/8 dev sw1p23
+   94  ip addr add 12.0.0.1/16 dev sw1p35
+   95  ip addr add 13.0.0.1/20 dev sw1p48
+   96  ip neigh add 11.0.0.2 lladdr 00:AD:20:B2:A7:75 dev sw1p23
+   97  ip neigh add 12.0.0.2 lladdr 00:59:CD:1E:83:1B dev sw1p35
+   98  ip neigh add 13.0.0.2 lladdr 00:76:69:89:E0:7B dev sw1p48
+   99  ip route add 100.0.0.0/8 nexthop via 11.0.0.2 weight 1 nexthop via</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:22,527</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  12.0.0.2 weight 1 nexthop via 13.0.0.2 weight 1
+  100  ip neigh del 13.0.0.2 lladdr 00:76:69:89:E0:7B dev sw1p48
+  101  ip neigh del 12.0.0.2 lladdr 00:59:CD:1E:83:1B dev sw1p35
+  102  ip neigh del 11.0.0.2 lladdr 00:AD:20:B2:A7:75 dev sw1p23
+  103  ip addr del 13.0.0.1/20 dev sw1p48
+  104  ip addr del 12.0.0.1/16 dev sw1p35
+  105  ip addr del 11.0.0.1/8 dev sw1p23
+  106  ip addr del 1.1.1.1/24 dev sw1p1
+  107  sysctl -w net.ipv4.fib_multipath_hash_policy=0
+  108  echo 0 &#62 /proc/sys/net/ipv4/neigh/default/gc_thresh1
+  109  echo 128 &#62 /proc/sys/net/ipv4/neigh/default/gc_thresh1
+  110    history
+  111    cat /var/log/messages
+  112  ls /sys/class/net/ | grep sw1p* | sort -t p -k 2 -g
+  113  ip link set dev sw1p1 up
+  114  ip link set dev sw1p23 up
+  115  ip link set dev sw1p35 up
+  116  ip link set dev sw1p48 up
+  117  ip addr add 1.1.1.1/24 dev sw1p1
+  118  ip addr add 11.0.0.1/8 dev sw1p23
+  119  ip addr add 12.0.0.1/16 dev sw1p35
+  120  ip addr add 13.0.0.1/20 dev sw1p48
+  121  ip neigh add 11.0.0.2 lladdr 00:AD:20:B2:A7:75 dev sw1p23
+  122  ip neigh add 12.0.0.2 lladdr 00:59:CD:1E:83:1B dev sw1p35
+  123  ip neigh add 13.0.0.2 lladdr 00:76:69:89:E0:7B dev sw1p48
+  124  ip route add 100.0.0.0/8 nexthop via 11.0.0.2 weight 1 nexthop via 12.0.0.2 weight 1 nexthop via 13.0.0.2 weight 1
+  125  ip neigh del 13.0.0.2 lladdr 00:76:69:89:E0:7B dev sw1p48
+  126  ip neigh del 12.0.0.2 lladdr 00:59:CD:1E:83:1B dev sw1p35
+  127  ip neigh del 11.0.0.2 lladdr 00:AD:20:B2:A7:75 dev sw1p23
+  128  ip addr del 13.0.0.1/20 dev sw1p48
+  129  ip addr del 12.0.0.1/16 dev sw1p35
+  130  ip addr del 11.0.0.1/8 dev sw1p23
+  131  ip addr del 1.1.1.1/24 dev sw1p1
+  132  echo 0 &#62 /proc/sys/net/ipv4/neigh/default/gc_thresh1
+  133  echo 128 &#62 /proc/sys/net/ipv4/neigh/default/gc_thresh1
+  134    history
+  135    cat /var/log/messages
+  136  ls /sys/class/net/ | grep sw1p* | sort -t p -k 2 -g
+  137  ip link set dev sw1p1 up
+  138  ip link set dev sw1p23 up
+  139  ip link set dev sw1p35 up
+  140  ip link set dev sw1p48 up
+  141  ip addr add 1.1.1.1/24 dev sw1p1
+  142  ip addr add 11.0.0.1/8 dev sw1p23
+  143  ip addr add 12.0.0.1/16 dev sw1p35
+  144  ip addr add 13.0.0.1/20 dev sw1p48
+  145  ip route add 100.0.0.0/8 nexthop via 11.0.0.2 weight 1 nexthop via 12.0.0.2 weight 1 nexthop via 13.0.0.2 weight 1
+  146  ip addr del 13.0.0.1/20 dev sw1p48
+  147  ip addr del 12.0.0.1/16 dev sw1p35
+  148  ip addr del 11.0.0.1/8 dev sw1p23
+  149  ip addr del 1.1.1.1/24 dev sw1p1
+  150  echo 0 &#62 /proc/sys/net/ipv4/neigh/default/gc_thresh1
+  151  echo 128 &#62 /proc/sys/net/ipv4/neigh/default/gc_thresh1
+  152    history
+  153    cat /var/log/messages
+  154  ls /sys/class/net/ | grep sw1p* | sort -t p -k 2 -g
+  155  ip link add name bond1 type bond mode 802.3ad
+  156  ip link show type bond bond1
+  157  echo $?
+  158  ip link add name bond2 type bond mode 802.3ad
+  159  ip link show type bond bond2
+  160  echo $?
+  161  ip link set dev sw1p23 down
+  162  ip link set dev sw1p35 down
+  163  ip link set dev sw1p48 down
+  164  ip link set sw1p23 master bond1
+  165  ip link set sw1p35 master bond2
+  166  ip link set sw1p48 master bond2
+  167  ip link set dev sw1p1 up
+  168  ip link set dev bond1 up
+  169  ip link set dev bond2 up
+  170  ip addr add 1.1.1.1/24 dev sw1p1
+  171  ip addr add 11.0.0.1/8 dev bond1
+  172  ip addr add 12.0.0.1/16 dev bond2
+  173  ip neigh add 11.0.0.2 lladdr 00:AD:20:B2:A7:75 dev bond1
+  174  ip neigh add 12.0.0.2 lladdr 00:59:CD:1E:83:1B dev bond2
+  175  ip route add 100.0.0.0/8 nexthop via 11.0.0.2 weight 1 nexthop via 12.0.0.2 weight 1
+  176  ip neigh del 12.0.0.2 lladdr 00:59:CD:1E:83:1B dev bond2
+  177  ip neigh del 11.0.0.2 lladdr 00:AD:20:B2:A7:75 dev bond1
+  178  ip addr del 12.0.0.1/16 dev bond2
+  179  ip addr del 11.0.0.1/8 dev bond1
+  180  ip addr del 1.1.1.1/24 dev sw1p1
+  181  ip link set sw1p48 nomaster
+  182  ip link set sw1p35 nomaster
+  183  ip link set sw1p23 nomaster
+  184  ip link set dev sw1p48 up
+  185  ip link set dev sw1p35 up
+  186  ip link s</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:22,532</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: et dev sw1p23 up
+  187  ip link delete bond2
+  188  ip link delete bond1
+  189  echo 0 &#62 /proc/sys/net/ipv4/neigh/default/gc_thresh1
+  190  echo 128 &#62 /proc/sys/net/ipv4/neigh/default/gc_thresh1
+  191    history
+  192    cat /var/log/messages
+  193  ls /sys/class/net/ | grep sw1p* | sort -t p -k 2 -g
+  194  ip link set dev sw1p1 up
+  195  ip link set dev sw1p23 up
+  196  ip link set dev sw1p35 up
+  197  ip link set dev sw1p48 up
+  198  ip addr add 1.1.1.1/24 dev sw1p1
+  199  ip addr add 11.0.0.1/8 dev sw1p23
+  200  ip addr add 12.0.0.1/16 dev sw1p35
+  201  ip addr add 13.0.0.1/20 dev sw1p48
+  202  ip neigh add 11.0.0.2 lladdr 00:AD:20:B2:A7:75 dev sw1p23
+  203  ip neigh add 12.0.0.2 lladdr 00:59:CD:1E:83:1B dev sw1p35
+  204  ip neigh add 13.0.0.2 lladdr 00:76:69:89:E0:7B dev sw1p48
+  205  ip route add 100.0.0.0/8 nexthop via 11.0.0.2 weight 1 nexthop via 12.0.0.2 weight 1 nexthop via 13.0.0.2 weight 1
+  206  ip link set dev sw1p23 down
+  207  ip link set dev sw1p23 up
+  208  ip neigh del 13.0.0.2 lladdr 00:76:69:89:E0:7B dev sw1p48
+  209  ip neigh del 12.0.0.2 lladdr 00:59:CD:1E:83:1B dev sw1p35
+  210  ip neigh del 11.0.0.2 lladdr 00:AD:20:B2:A7:75 dev sw1p23
+  211  ip addr del 13.0.0.1/20 dev sw1p48
+  212  ip addr del 12.0.0.1/16 dev sw1p35
+  213  ip addr del 11.0.0.1/8 dev sw1p23
+  214  ip addr del 1.1.1.1/24 dev sw1p1
+  215  echo 0 &#62 /proc/sys/net/ipv4/neigh/default/gc_thresh1
+  216  echo 128 &#62 /proc/sys/net/ipv4/neigh/default/gc_thresh1
+  217    history
+  218    cat /var/log/messages
+  219  cat /sys/class/net/sw1p1/address
+  220  cat /sys/class/net/sw1p23/address
+  221  ip link set dev sw1p1 up
+  222  ip link set dev sw1p23 up
+  223  ip link set dev sw1p35 up
+  224  ip link set dev sw1p48 up
+  225  ip add add 2.2.2.1/24 dev sw1p1 broadcast 2.2.2.255
+  226  ip add add 0.0.0.1/24 dev sw1p23 broadcast 0.0.0.255
+  227  arp -i sw1p1 -s 2.2.2.2 a6:86:8b:74:54:72
+  228  arp -i sw1p23 -s 0.0.0.0 7e:97:e9:46:62:35
+  229  function tcpdump_cpu_traps_rate(){                  local IFACE="any";                  if [ $# -ge 1 ]; then IFACE=$1; fi;                  timeout 1.06 tcpdump -i $IFACE &&#62 xx; cat xx | grep -Eo "[0-9]+ packets received by filter" | cut -d ' ' -f 1; rm xx;             }
+  230              
+  231  cat /etc/os-release | grep -Eo '^ID=\w+' | tr -d 'ID='
+  232  echo $?
+  233  function tcpdump_cpu_traps_rate_avg(){                 local start_index=0;                 local end=25;                 local counter=0;                 for((num=start_index; num&#60=end; num++)); do                    local temp=$(tcpdump_cpu_traps_rate $1);                    sleep 1;                    counter=$((counter+temp));                 done;                 echo $((counter/6));             }
+  234              
+  235  echo $?
+  236  function get_drops_rate_code(){                 R1=`cat /sys/kernel/debug/prestera/hw_counters/drops/cpu_code_$1_stats | tr -d '\0'`;                 sleep 1;                 R2=`cat /sys/kernel/debug/prestera/hw_counters/drops/cpu_code_$1_stats | tr -d '\0'`;                 RXPPS=`expr $R2 - $R1`;                 echo $RXPPS;             }
+  237              
+  238  echo $?
+  239  function get_drops_rate_code_avg(){                 local start_index=0;                 local end=9;                 local counter=0;                 for((num=start_index; num&#60=end; num++)); do                    local temp=$(get_drops_rate_code $1);                    sleep 1;                    counter=$((counter+temp));                 done;                 echo $((counter/10));             }
+  240              
+  241  echo $?
+  242  function get_all_counters(){                 R1=`cat /sys/kernel/debug/prestera/hw_counters/drops/cpu_code_stats | tr -d '\0'`
+  243                  while IFS= read -r line ; do echo $line| cut -d':' -f 1; done &#60&#60&#60 "$R1";             }
+  244              
+  245  echo $?
+  246  get_drops_rate_code_avg 138
+  247  echo $?
+  248  get_drops_rate_code_avg 137
+  249  echo $?
+  250  get_drops_rate_code_avg 137
+  251  echo $?
+  252</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:22,534</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   get_drops_rate_code_avg 136
+  253  echo $?
+  254  get_drops_rate_code_avg 136
+  255  echo $?
+  256  get_drops_rate_code_avg 136
+  257  echo $?
+  258  get_drops_rate_code_avg 145
+  259  echo $?
+  260  arp -d 0.0.0.0 dev sw1p23
+  261  arp -d 2.2.2.2 dev sw1p1
+  262  ip add del 0.0.0.1/24 dev sw1p23
+  263  ip add del 2.2.2.1/24 dev sw1p1
+  264  ip link set dev sw1p48 down
+  265  ip link set dev sw1p35 down
+  266  ip link set dev sw1p23 down
+  267  ip link set dev sw1p1 down
+  268    history
+  269    cat /var/log/messages
+  270  cat /sys/class/net/sw1p1/address
+  271  cat /sys/class/net/sw1p23/address
+  272  cat /sys/class/net/sw1p35/address
+  273  ip link set dev sw1p1 up
+  274  ip link set dev sw1p23 up
+  275  ip link set dev sw1p35 up
+  276  ip link set dev sw1p48 up
+  277  ip add add 2.2.2.1/24 dev sw1p1
+  278  ip add add 4.4.4.1/24 dev sw1p23
+  279  ip add add 3.3.3.1/24 dev sw1p35
+  280  ip add add 0.0.0.1/24 dev sw1p48
+  281  arp -i sw1p1 -s 2.2.2.2 f8:61:8d:c9:6a:60
+  282  arp -i sw1p23 -s 4.4.4.2 fc:34:0b:36:c0:77
+  283  arp -i sw1p35 -s 3.3.3.2 54:da:53:4f:45:9a
+  284  function tcpdump_cpu_traps_rate(){                  local IFACE="any";                  if [ $# -ge 1 ]; then IFACE=$1; fi;                  timeout 1.06 tcpdump -i $IFACE &&#62 xx; cat xx | grep -Eo "[0-9]+ packets received by filter" | cut -d ' ' -f 1; rm xx;             }
+  285              
+  286  cat /etc/os-release | grep -Eo '^ID=\w+' | tr -d 'ID='
+  287  echo $?
+  288  function tcpdump_cpu_traps_rate_avg(){                 local start_index=0;                 local end=25;                 local counter=0;                 for((num=start_index; num&#60=end; num++)); do                    local temp=$(tcpdump_cpu_traps_rate $1);                    sleep 1;                    counter=$((counter+temp));                 done;                 echo $((counter/6));             }
+  289              
+  290  echo $?
+  291  function get_drops_rate_code(){                 R1=`cat /sys/kernel/debug/prestera/hw_counters/drops/cpu_code_$1_stats | tr -d '\0'`;                 sleep 1;                 R2=`cat /sys/kernel/debug/prestera/hw_counters/drops/cpu_code_$1_stats | tr -d '\0'`;                 RXPPS=`expr $R2 - $R1`;                 echo $RXPPS;             }
+  292              
+  293  echo $?
+  294  function get_drops_rate_code_avg(){                 local start_index=0;                 local end=9;                 local counter=0;                 for((num=start_index; num&#60=end; num++)); do                    local temp=$(get_drops_rate_code $1);                    sleep 1;                    counter=$((counter+temp));                 done;                 echo $((counter/10));             }
+  295              
+  296  echo $?
+  297  function get_all_counters(){                 R1=`cat /sys/kernel/debug/prestera/hw_counters/drops/cpu_code_stats | tr -d '\0'`
+  298                  while IFS= read -r line ; do echo $line| cut -d':' -f 1; done &#60&#60&#60 "$R1";             }
+  299              
+  300  echo $?
+  301  get_drops_rate_code_avg 138
+  302  echo $?
+  303  get_drops_rate_code_avg 137
+  304  echo $?
+  305  get_drops_rate_code_avg 137
+  306  echo $?
+  307  get_drops_rate_code_avg 136
+  308  echo $?
+  309  get_drops_rate_code_avg 136
+  310  echo $?
+  311  get_drops_rate_code_avg 136
+  312  echo $?
+  313  get_drops_rate_code_avg 145
+  314  echo $?
+  315  arp -d 3.3.3.2 dev sw1p35
+  316  arp -d 4.4.4.2 dev sw1p23
+  317  arp -d 2.2.2.2 dev sw1p1
+  318  ip add del 0.0.0.1/24 dev sw1p48
+  319  ip add del 3.3.3.1/24 dev sw1p35
+  320  ip add del 4.4.4.1/24 dev sw1p23
+  321  ip add del 2.2.2.1/24 dev sw1p1
+  322  ip link set dev sw1p48 down
+  323  ip link set dev sw1p35 down
+  324  ip link set dev sw1p23 down
+  325  ip link set dev sw1p1 down
+  326    history
+  327    cat /var/log/messages
+  328  cat /sys/class/net/sw1p1/address
+  329  cat /sys/class/net/sw1p23/address
+  330  ip link set dev sw1p1 down
+  331  ip link set dev sw1p23 down
+  332  ip link add bond1 type bond mode 802.3ad
+  33</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:22,537</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 3  ip link set dev bond1 up
+  334  ip link set dev sw1p1 master bond1
+  335  ip link set dev sw1p23 master bond1
+  336  ip link set dev sw1p1 up
+  337  ip link set dev sw1p23 up
+  338  ip link set dev sw1p35 up
+  339  ip link set dev sw1p48 up
+  340  ip add add 2.2.2.1/24 dev sw1p1 broadcast 2.2.2.255
+  341  ip add add 0.0.0.1/24 dev sw1p23 broadcast 0.0.0.255
+  342  arp -i sw1p1 -s 2.2.2.2 64:5f:b5:e4:e4:74
+  343  arp -i sw1p23 -s 0.0.0.0 7e:1d:6e:64:f5:0a
+  344  function tcpdump_cpu_traps_rate(){                  local IFACE="any";                  if [ $# -ge 1 ]; then IFACE=$1; fi;                  timeout 1.06 tcpdump -i $IFACE &&#62 xx; cat xx | grep -Eo "[0-9]+ packets received by filter" | cut -d ' ' -f 1; rm xx;             }
+  345              
+  346  cat /etc/os-release | grep -Eo '^ID=\w+' | tr -d 'ID='
+  347  echo $?
+  348  function tcpdump_cpu_traps_rate_avg(){                 local start_index=0;                 local end=25;                 local counter=0;                 for((num=start_index; num&#60=end; num++)); do                    local temp=$(tcpdump_cpu_traps_rate $1);                    sleep 1;                    counter=$((counter+temp));                 done;                 echo $((counter/6));             }
+  349              
+  350  echo $?
+  351  function get_drops_rate_code(){                 R1=`cat /sys/kernel/debug/prestera/hw_counters/drops/cpu_code_$1_stats | tr -d '\0'`;                 sleep 1;                 R2=`cat /sys/kernel/debug/prestera/hw_counters/drops/cpu_code_$1_stats | tr -d '\0'`;                 RXPPS=`expr $R2 - $R1`;                 echo $RXPPS;             }
+  352              
+  353  echo $?
+  354  function get_drops_rate_code_avg(){                 local start_index=0;                 local end=9;                 local counter=0;                 for((num=start_index; num&#60=end; num++)); do                    local temp=$(get_drops_rate_code $1);                    sleep 1;                    counter=$((counter+temp));                 done;                 echo $((counter/10));             }
+  355              
+  356  echo $?
+  357  function get_all_counters(){                 R1=`cat /sys/kernel/debug/prestera/hw_counters/drops/cpu_code_stats | tr -d '\0'`
+  358                  while IFS= read -r line ; do echo $line| cut -d':' -f 1; done &#60&#60&#60 "$R1";             }
+  359              
+  360  echo $?
+  361  get_drops_rate_code_avg 138
+  362  echo $?
+  363  get_drops_rate_code_avg 137
+  364  echo $?
+  365  get_drops_rate_code_avg 137
+  366  echo $?
+  367  get_drops_rate_code_avg 136
+  368  echo $?
+  369  get_drops_rate_code_avg 136
+  370  echo $?
+  371  get_drops_rate_code_avg 136
+  372  echo $?
+  373  get_drops_rate_code_avg 145
+  374  echo $?
+  375  arp -d 0.0.0.0 dev sw1p23
+  376  arp -d 2.2.2.2 dev sw1p1
+  377  ip add del 0.0.0.1/24 dev sw1p23
+  378  ip add del 2.2.2.1/24 dev sw1p1
+  379  ip link set dev sw1p48 down
+  380  ip link set dev sw1p35 down
+  381  ip link set dev sw1p23 down
+  382  ip link set dev sw1p1 down
+  383  ip link delete dev bond1
+  384    history
+  385    cat /var/log/messages
+  386  ip link set dev sw1p1 up
+  387  ip link set dev sw1p23 up
+  388  ip link set dev sw1p35 up
+  389  ip link set dev sw1p48 up
+  390  ip add add 3.3.3.1/24 dev sw1p1 broadcast 3.3.3.255
+  391  ip add add 0.0.0.1/24 dev sw1p23 broadcast 0.0.0.255
+  392  arp -i sw1p1 -s 3.3.3.3 3e:7f:94:2e:51:12
+  393  arp -i sw1p23 -s 0.0.0.0 12:32:d1:76:c2:aa
+  394  function tcpdump_cpu_traps_rate(){                  local IFACE="any";                  if [ $# -ge 1 ]; then IFACE=$1; fi;                  timeout 1.06 tcpdump -i $IFACE &&#62 xx; cat xx | grep -Eo "[0-9]+ packets received by filter" | cut -d ' ' -f 1; rm xx;             }
+  395              
+  396  cat /etc/os-release | grep -Eo '^ID=\w+' | tr -d 'ID='
+  397  echo $?
+  398  function tcpdump_cpu_traps_rate_avg(){                 local start_index=0;                 local end=25;                 local counter=0;                 for((num=start_index; num&#60=end; num+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:22,540</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: +)); do                    local temp=$(tcpdump_cpu_traps_rate $1);                    sleep 1;                    counter=$((counter+temp));                 done;                 echo $((counter/6));             }
+  399              
+  400  echo $?
+  401  function get_drops_rate_code(){                 R1=`cat /sys/kernel/debug/prestera/hw_counters/drops/cpu_code_$1_stats | tr -d '\0'`;                 sleep 1;                 R2=`cat /sys/kernel/debug/prestera/hw_counters/drops/cpu_code_$1_stats | tr -d '\0'`;                 RXPPS=`expr $R2 - $R1`;                 echo $RXPPS;             }
+  402              
+  403  echo $?
+  404  function get_drops_rate_code_avg(){                 local start_index=0;                 local end=9;                 local counter=0;                 for((num=start_index; num&#60=end; num++)); do                    local temp=$(get_drops_rate_code $1);                    sleep 1;                    counter=$((counter+temp));                 done;                 echo $((counter/10));             }
+  405              
+  406  echo $?
+  407  function get_all_counters(){                 R1=`cat /sys/kernel/debug/prestera/hw_counters/drops/cpu_code_stats | tr -d '\0'`
+  408                  while IFS= read -r line ; do echo $line| cut -d':' -f 1; done &#60&#60&#60 "$R1";             }
+  409              
+  410  echo $?
+  411  get_all_counters
+  412  echo $?
+  413  arp -d 0.0.0.0 dev sw1p23
+  414  arp -d 3.3.3.3 dev sw1p1
+  415  ip add del 0.0.0.1/24 dev sw1p23
+  416  ip add del 3.3.3.1/24 dev sw1p1
+  417  ip link set dev sw1p48 down
+  418  ip link set dev sw1p35 down
+  419  ip link set dev sw1p23 down
+  420  ip link set dev sw1p1 down
+  421    history
+  422    cat /var/log/messages
+  423  function tcpdump_cpu_traps_rate(){                  local IFACE="any";                  if [ $# -ge 1 ]; then IFACE=$1; fi;                  timeout 1.06 tcpdump -i $IFACE &&#62 xx; cat xx | grep -Eo "[0-9]+ packets received by filter" | cut -d ' ' -f 1; rm xx;             }
+  424              
+  425  cat /etc/os-release | grep -Eo '^ID=\w+' | tr -d 'ID='
+  426  echo $?
+  427  function tcpdump_cpu_traps_rate_avg(){                 local start_index=0;                 local end=25;                 local counter=0;                 for((num=start_index; num&#60=end; num++)); do                    local temp=$(tcpdump_cpu_traps_rate $1);                    sleep 1;                    counter=$((counter+temp));                 done;                 echo $((counter/6));             }
+  428              
+  429  echo $?
+  430  function get_cpu_traps_rate_code(){                 R1=`cat /sys/kernel/debug/prestera/$2_counters/traps/cpu_code_$1_stats | tr -d '\0'`;                 sleep 1;                 R2=`cat /sys/kernel/debug/prestera/$2_counters/traps/cpu_code_$1_stats | tr -d '\0'`;                 RXPPS=`expr $R2 - $R1`;                 echo $RXPPS;             }
+  431              
+  432  echo $?
+  433  function get_cpu_traps_rate_code_avg(){                 local start_index=0;                 local end=9;                 local counter=0;                 for((num=start_index; num&#60=end; num++)); do                    local temp=$(get_cpu_traps_rate_code $1 $2);                    sleep 1;                    counter=$((counter+temp));                 done;                 echo $((counter/10));             }
+  434              
+  435  echo $?
+  436  ifquery -a -c -i /etc/network/interfaces.d/cfg-file-1
+  437  echo $?
+  438  echo -e '# element-1
+  439  # Test: None
+  440              auto br0
+  441              iface br0 inet static
+  442                  % if "":
+  443                  bridge-ageing 
+  444                  % endif
+  445                  % if "sw1p1 sw1p48":
+  446                  bridge-ports sw1p1 sw1p48
+  447                  % endif
+  448                  % if "":
+  449                  bridge-vids 
+  450                  % endif
+  451                  % if "":
+  452                  bridge-vlan-aware 
+  453                  % endif
+  454                  </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:22,640</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: % if "":
+  455                  bridge-stp 
+  456                  % endif
+  457                  % if "":
+  458                  bridge-portprios 
+  459                  % endif
+  460                  % if "":
+  461                  up ip l set br0 type bridge vlan_default_pvid 
+  462                  % endif
+  463                  % if "":
+  464                  hwaddress 
+  465                  % endif
+  466          
+  467              auto sw1p1
+  468              iface sw1p1 inet static
+  469                  
+  470          post-up tc qdisc add dev sw1p1 ingress
+  471  down tc qdisc del dev sw1p1 ingress
+  472  post-up tc filter add dev sw1p1 ingress pref 4489 protocol 0x8100 flower  dst_mac 9e:bd:e6:e1:6a:fb src_mac 26:01:9f:ef:72:a9 vlan_id 2060 action pass    
+  473  post-up tc filter add dev sw1p1 ingress pref 13308 protocol 0x8100 flower  dst_mac 9e:bd:e6:e1:6a:fb src_mac 26:01:9f:ef:72:a9 vlan_id 2060 action drop    
+  474              auto sw1p48
+  475              iface sw1p48
+  476              
+  477              auto sw1p1
+  478              iface sw1p1 inet static
+  479                  
+  480          post-up tc qdisc add dev sw1p1 ingress
+  481  down tc qdisc del dev sw1p1 ingress
+  482  post-up tc filter add dev sw1p1 ingress pref 4489 protocol 0x8100 flower  dst_mac 9e:bd:e6:e1:6a:fb src_mac 26:01:9f:ef:72:a9 vlan_id 2060 action pass    
+  483  ' &#62 /etc/network/interfaces.d/cfg-file-1
+  484  ifreload -a -v
+  485  echo $?
+  486  ifquery -a -c -i /etc/network/interfaces.d/cfg-file-1
+  487  echo $?
+  488  sed -i -E "s/^(addon_syntax_check\s*=)(.*$)/\10/g; s/^(template_lookuppath\s*=)(.*$)/\10/g; s/^(default_interfaces_configfile\s*=)(.*$)/\1\/etc\/network\/interfaces/g" /etc/network/ifupdown2/ifupdown2.conf
+  489  rm -f /etc/network/interfaces.d/cfg-file-1
+  490  echo "${?}"
+  491  ifreload -a -v
+  492  echo $?
+  493  bash -c "if [ ! -z '$(tc qdisc show dev sw1p1 | grep ingress)' ]; then exit 1; fi"
+  494    history
+  495    cat /var/log/messages
+  496  ifreload -a -v
+  497  echo $?
+  498  ifquery -a -c -i /etc/network/interfaces.d/cfg-file-1
+  499  echo $?
+  500  bash -c "if [ -z '$(ip -4 addr show sw1p1)' ]; then exit 1; fi"
+  501  bash -c "if [ -z '$(ip -4 route show dev sw1p1 | grep offload )' ]; then exit 1; fi"
+  502  bash -c "if [ -z '$(ip -4 addr show sw1p23)' ]; then exit 1; fi"
+  503  bash -c "if [ -z '$(ip -4 route show dev sw1p23 | grep offload )' ]; then exit 1; fi"
+  504  bash -c "if [ '$(ip -4 route show 137.135.123.89/16 | grep -c offload )' -lt 2 ]; then exit 1; fi"
+  505  sed -i -E "s/^(addon_syntax_check\s*=)(.*$)/\10/g; s/^(template_lookuppath\s*=)(.*$)/\10/g; s/^(default_interfaces_configfile\s*=)(.*$)/\1\/etc\/network\/interfaces/g" /etc/network/ifupdown2/ifupdown2.conf
+  506  rm -f /etc/network/interfaces.d/cfg-file-1
+  507  echo "${?}"
+  508  ifreload -a -v
+  509  echo $?
+  510  bash -c "if [ -z '$(ip -4 addr show sw1p1)' ]; then exit 1; fi"
+  511  bash -c "if [ -z '$(ip -4 route show dev sw1p1 | grep offload )' ]; then exit 1; fi"
+  512  bash -c "if [ -z '$(ip -4 addr show sw1p23)' ]; then exit 1; fi"
+  513  bash -c "if [ -z '$(ip -4 route show dev sw1p23 | grep offload )' ]; then exit 1; fi"
+  514    history
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:22,641</td>
+<td>DEBUG</td>
+<td><pre>commands history:
+   15  echo $?
+   16  tc qdisc del dev sw1p48 ingress
+   17  ip add del 192.166.1.4/24 dev sw1p35
+   18  ip add del 192.167.1.4/24 dev sw1p23
+   19  ip add del 192.168.1.4/24 dev sw1p1
+   20  ip link set dev sw1p48 down
+   21  ip link set dev sw1p35 down
+   22  ip link set dev sw1p23 down
+   23  ip link set dev sw1p1 down
+   24    history
+   25    cat /var/log/messages
+   26  ls /sys/class/net/ | grep sw1p* | sort -t p -k 2 -g
+   27  ip link set dev sw1p1 up
+   28  ip link set dev sw1p23 up
+   29  ip link set dev sw1p35 up
+   30  ip link set dev sw1p48 up
+   31  sysctl -w net.ipv4.conf.default.ignore_routes_with_linkdown=1
+   32  ip addr add 1.1.1.1/24 dev sw1p1
+   33  ip addr add 11.0.0.1/8 dev sw1p23
+   34  ip addr add 12.0.0.1/16 dev sw1p35
+   35  ip addr add 13.0.0.1/20 dev sw1p48
+   36  ip neigh add 11.0.0.2 lladdr 00:AD:20:B2:A7:75 dev sw1p23
+   37  ip neigh add 12.0.0.2 lladdr 00:59:CD:1E:83:1B dev sw1p35
+   38  ip neigh add 13.0.0.2 lladdr 00:76:69:89:E0:7B dev sw1p48
+   39  ip route add 100.0.0.0/8 nexthop via 11.0.0.2 weight 1 nexthop via 12.0.0.2 weight 1 nexthop via 13.0.0.2 weight 1
+   40  ip link set dev sw1p23 down
+   41  ip link set dev sw1p23 up
+   42  ip neigh del 13.0.0.2 lladdr 00:76:69:89:E0:7B dev sw1p48
+   43  ip neigh del 12.0.0.2 lladdr 00:59:CD:1E:83:1B dev sw1p35
+   44  ip neigh del 11.0.0.2 lladdr 00:AD:20:B2:A7:75 dev sw1p23
+   45  ip addr del 13.0.0.1/20 dev sw1p48
+   46  ip addr del 12.0.0.1/16 dev sw1p35
+   47  ip addr del 11.0.0.1/8 dev sw1p23
+   48  ip addr del 1.1.1.1/24 dev sw1p1
+   49  sysctl -w net.ipv4.conf.default.ignore_routes_with_linkdown=0
+   50  echo 0 &#62 /proc/sys/net/ipv4/neigh/default/gc_thresh1
+   51  echo 128 &#62 /proc/sys/net/ipv4/neigh/default/gc_thresh1
+   52    history
+   53    cat /var/log/messages
+   54  ls /sys/class/net/ | grep sw1p* | sort -t p -k 2 -g
+   55  ip link set dev sw1p1 up
+   56  ip link set dev sw1p23 up
+   57  ip link set dev sw1p35 up
+   58  ip link set dev sw1p48 up
+   59  sysctl -w net.ipv4.conf.default.ignore_routes_with_linkdown=1
+   60  ip addr add 1.1.1.1/24 dev sw1p1
+   61  ip addr add 11.0.0.1/8 dev sw1p23
+   62  ip addr add 12.0.0.1/16 dev sw1p35
+   63  ip addr add 13.0.0.1/20 dev sw1p48
+   64  ip neigh add 11.0.0.2 lladdr 00:AD:20:B2:A7:75 dev sw1p23
+   65  ip neigh add 12.0.0.2 lladdr 00:59:CD:1E:83:1B dev sw1p35
+   66  ip neigh add 13.0.0.2 lladdr 00:76:69:89:E0:7B dev sw1p48
+   67  ip route add 100.0.0.0/8 nexthop via 11.0.0.2 weight 1 nexthop via 12.0.0.2 weight 1 nexthop via 13.0.0.2 weight 1
+   68  ip link set dev sw1p23 down
+   69  ip link set dev sw1p35 down
+   70  ip link set dev sw1p48 down
+   71  ip link set dev sw1p48 up
+   72  ip link set dev sw1p35 up
+   73  ip link set dev sw1p23 up
+   74  ip neigh del 13.0.0.2 lladdr 00:76:69:89:E0:7B dev sw1p48
+   75  ip neigh del 12.0.0.2 lladdr 00:59:CD:1E:83:1B dev sw1p35
+   76  ip neigh del 11.0.0.2 lladdr 00:AD:20:B2:A7:75 dev sw1p23
+   77  ip addr del 13.0.0.1/20 dev sw1p48
+   78  ip addr del 12.0.0.1/16 dev sw1p35
+   79  ip addr del 11.0.0.1/8 dev sw1p23
+   80  ip addr del 1.1.1.1/24 dev sw1p1
+   81  sysctl -w net.ipv4.conf.default.ignore_routes_with_linkdown=0
+   82  echo 0 &#62 /proc/sys/net/ipv4/neigh/default/gc_thresh1
+   83  echo 128 &#62 /proc/sys/net/ipv4/neigh/default/gc_thresh1
+   84    history
+   85    cat /var/log/messages
+   86  ls /sys/class/net/ | grep sw1p* | sort -t p -k 2 -g
+   87  ip link set dev sw1p1 up
+   88  ip link set dev sw1p23 up
+   89  ip link set dev sw1p35 up
+   90  ip link set dev sw1p48 up
+   91  sysctl -w net.ipv4.fib_multipath_hash_policy=1
+   92  ip addr add 1.1.1.1/24 dev sw1p1
+   93  ip addr add 11.0.0.1/8 dev sw1p23
+   94  ip addr add 12.0.0.1/16 dev sw1p35
+   95  ip addr add 13.0.0.1/20 dev sw1p48
+   96  ip neigh add 11.0.0.2 lladdr 00:AD:20:B2:A7:75 dev sw1p23
+   97  ip neigh add 12.0.0.2 lladdr 00:59:CD:1E:83:1B dev sw1p35
+   98  ip neigh add 13.0.0.2 lladdr 00:76:69:89:E0:7B dev sw1p48
+   99  ip route add 100.0.0.0/8 nexthop via 11.0.0.2 weight 1 nexthop via 12.0.0.2 weight 1 nexthop via 13.0.0.2 weight 1
+  100  ip neigh del 13.0.0.2 lladdr 00:76:69:89:E0:7B dev sw1p48
+  101  ip neigh del 12.0.0.2 lladdr 00:59:CD:1E:83:1B dev sw1p35
+  102  ip neigh del 11.0.0.2 lladdr 00:AD:20:B2:A7:75 dev sw1p23
+  103  ip addr del 13.0.0.1/20 dev sw1p48
+  104  ip addr del 12.0.0.1/16 dev sw1p35
+  105  ip addr del 11.0.0.1/8 dev sw1p23
+  106  ip addr del 1.1.1.1/24 dev sw1p1
+  107  sysctl -w net.ipv4.fib_multipath_hash_policy=0
+  108  echo 0 &#62 /proc/sys/net/ipv4/neigh/default/gc_thresh1
+  109  echo 128 &#62 /proc/sys/net/ipv4/neigh/default/gc_thresh1
+  110    history
+  111    cat /var/log/messages
+  112  ls /sys/class/net/ | grep sw1p* | sort -t p -k 2 -g
+  113  ip link set dev sw1p1 up
+  114  ip link set dev sw1p23 up
+  115  ip link set dev sw1p35 up
+  116  ip link set dev sw1p48 up
+  117  ip addr add 1.1.1.1/24 dev sw1p1
+  118  ip addr add 11.0.0.1/8 dev sw1p23
+  119  ip addr add 12.0.0.1/16 dev sw1p35
+  120  ip addr add 13.0.0.1/20 dev sw1p48
+  121  ip neigh add 11.0.0.2 lladdr 00:AD:20:B2:A7:75 dev sw1p23
+  122  ip neigh add 12.0.0.2 lladdr 00:59:CD:1E:83:1B dev sw1p35
+  123  ip neigh add 13.0.0.2 lladdr 00:76:69:89:E0:7B dev sw1p48
+  124  ip route add 100.0.0.0/8 nexthop via 11.0.0.2 weight 1 nexthop via 12.0.0.2 weight 1 nexthop via 13.0.0.2 weight 1
+  125  ip neigh del 13.0.0.2 lladdr 00:76:69:89:E0:7B dev sw1p48
+  126  ip neigh del 12.0.0.2 lladdr 00:59:CD:1E:83:1B dev sw1p35
+  127  ip neigh del 11.0.0.2 lladdr 00:AD:20:B2:A7:75 dev sw1p23
+  128  ip addr del 13.0.0.1/20 dev sw1p48
+  129  ip addr del 12.0.0.1/16 dev sw1p35
+  130  ip addr del 11.0.0.1/8 dev sw1p23
+  131  ip addr del 1.1.1.1/24 dev sw1p1
+  132  echo 0 &#62 /proc/sys/net/ipv4/neigh/default/gc_thresh1
+  133  echo 128 &#62 /proc/sys/net/ipv4/neigh/default/gc_thresh1
+  134    history
+  135    cat /var/log/messages
+  136  ls /sys/class/net/ | grep sw1p* | sort -t p -k 2 -g
+  137  ip link set dev sw1p1 up
+  138  ip link set dev sw1p23 up
+  139  ip link set dev sw1p35 up
+  140  ip link set dev sw1p48 up
+  141  ip addr add 1.1.1.1/24 dev sw1p1
+  142  ip addr add 11.0.0.1/8 dev sw1p23
+  143  ip addr add 12.0.0.1/16 dev sw1p35
+  144  ip addr add 13.0.0.1/20 dev sw1p48
+  145  ip route add 100.0.0.0/8 nexthop via 11.0.0.2 weight 1 nexthop via 12.0.0.2 weight 1 nexthop via 13.0.0.2 weight 1
+  146  ip addr del 13.0.0.1/20 dev sw1p48
+  147  ip addr del 12.0.0.1/16 dev sw1p35
+  148  ip addr del 11.0.0.1/8 dev sw1p23
+  149  ip addr del 1.1.1.1/24 dev sw1p1
+  150  echo 0 &#62 /proc/sys/net/ipv4/neigh/default/gc_thresh1
+  151  echo 128 &#62 /proc/sys/net/ipv4/neigh/default/gc_thresh1
+  152    history
+  153    cat /var/log/messages
+  154  ls /sys/class/net/ | grep sw1p* | sort -t p -k 2 -g
+  155  ip link add name bond1 type bond mode 802.3ad
+  156  ip link show type bond bond1
+  157  echo $?
+  158  ip link add name bond2 type bond mode 802.3ad
+  159  ip link show type bond bond2
+  160  echo $?
+  161  ip link set dev sw1p23 down
+  162  ip link set dev sw1p35 down
+  163  ip link set dev sw1p48 down
+  164  ip link set sw1p23 master bond1
+  165  ip link set sw1p35 master bond2
+  166  ip link set sw1p48 master bond2
+  167  ip link set dev sw1p1 up
+  168  ip link set dev bond1 up
+  169  ip link set dev bond2 up
+  170  ip addr add 1.1.1.1/24 dev sw1p1
+  171  ip addr add 11.0.0.1/8 dev bond1
+  172  ip addr add 12.0.0.1/16 dev bond2
+  173  ip neigh add 11.0.0.2 lladdr 00:AD:20:B2:A7:75 dev bond1
+  174  ip neigh add 12.0.0.2 lladdr 00:59:CD:1E:83:1B dev bond2
+  175  ip route add 100.0.0.0/8 nexthop via 11.0.0.2 weight 1 nexthop via 12.0.0.2 weight 1
+  176  ip neigh del 12.0.0.2 lladdr 00:59:CD:1E:83:1B dev bond2
+  177  ip neigh del 11.0.0.2 lladdr 00:AD:20:B2:A7:75 dev bond1
+  178  ip addr del 12.0.0.1/16 dev bond2
+  179  ip addr del 11.0.0.1/8 dev bond1
+  180  ip addr del 1.1.1.1/24 dev sw1p1
+  181  ip link set sw1p48 nomaster
+  182  ip link set sw1p35 nomaster
+  183  ip link set sw1p23 nomaster
+  184  ip link set dev sw1p48 up
+  185  ip link set dev sw1p35 up
+  186  ip link set dev sw1p23 up
+  187  ip link delete bond2
+  188  ip link delete bond1
+  189  echo 0 &#62 /proc/sys/net/ipv4/neigh/default/gc_thresh1
+  190  echo 128 &#62 /proc/sys/net/ipv4/neigh/default/gc_thresh1
+  191    history
+  192    cat /var/log/messages
+  193  ls /sys/class/net/ | grep sw1p* | sort -t p -k 2 -g
+  194  ip link set dev sw1p1 up
+  195  ip link set dev sw1p23 up
+  196  ip link set dev sw1p35 up
+  197  ip link set dev sw1p48 up
+  198  ip addr add 1.1.1.1/24 dev sw1p1
+  199  ip addr add 11.0.0.1/8 dev sw1p23
+  200  ip addr add 12.0.0.1/16 dev sw1p35
+  201  ip addr add 13.0.0.1/20 dev sw1p48
+  202  ip neigh add 11.0.0.2 lladdr 00:AD:20:B2:A7:75 dev sw1p23
+  203  ip neigh add 12.0.0.2 lladdr 00:59:CD:1E:83:1B dev sw1p35
+  204  ip neigh add 13.0.0.2 lladdr 00:76:69:89:E0:7B dev sw1p48
+  205  ip route add 100.0.0.0/8 nexthop via 11.0.0.2 weight 1 nexthop via 12.0.0.2 weight 1 nexthop via 13.0.0.2 weight 1
+  206  ip link set dev sw1p23 down
+  207  ip link set dev sw1p23 up
+  208  ip neigh del 13.0.0.2 lladdr 00:76:69:89:E0:7B dev sw1p48
+  209  ip neigh del 12.0.0.2 lladdr 00:59:CD:1E:83:1B dev sw1p35
+  210  ip neigh del 11.0.0.2 lladdr 00:AD:20:B2:A7:75 dev sw1p23
+  211  ip addr del 13.0.0.1/20 dev sw1p48
+  212  ip addr del 12.0.0.1/16 dev sw1p35
+  213  ip addr del 11.0.0.1/8 dev sw1p23
+  214  ip addr del 1.1.1.1/24 dev sw1p1
+  215  echo 0 &#62 /proc/sys/net/ipv4/neigh/default/gc_thresh1
+  216  echo 128 &#62 /proc/sys/net/ipv4/neigh/default/gc_thresh1
+  217    history
+  218    cat /var/log/messages
+  219  cat /sys/class/net/sw1p1/address
+  220  cat /sys/class/net/sw1p23/address
+  221  ip link set dev sw1p1 up
+  222  ip link set dev sw1p23 up
+  223  ip link set dev sw1p35 up
+  224  ip link set dev sw1p48 up
+  225  ip add add 2.2.2.1/24 dev sw1p1 broadcast 2.2.2.255
+  226  ip add add 0.0.0.1/24 dev sw1p23 broadcast 0.0.0.255
+  227  arp -i sw1p1 -s 2.2.2.2 a6:86:8b:74:54:72
+  228  arp -i sw1p23 -s 0.0.0.0 7e:97:e9:46:62:35
+  229  function tcpdump_cpu_traps_rate(){                  local IFACE="any";                  if [ $# -ge 1 ]; then IFACE=$1; fi;                  timeout 1.06 tcpdump -i $IFACE &&#62 xx; cat xx | grep -Eo "[0-9]+ packets received by filter" | cut -d ' ' -f 1; rm xx;             }
+  230              
+  231  cat /etc/os-release | grep -Eo '^ID=\w+' | tr -d 'ID='
+  232  echo $?
+  233  function tcpdump_cpu_traps_rate_avg(){                 local start_index=0;                 local end=25;                 local counter=0;                 for((num=start_index; num&#60=end; num++)); do                    local temp=$(tcpdump_cpu_traps_rate $1);                    sleep 1;                    counter=$((counter+temp));                 done;                 echo $((counter/6));             }
+  234              
+  235  echo $?
+  236  function get_drops_rate_code(){                 R1=`cat /sys/kernel/debug/prestera/hw_counters/drops/cpu_code_$1_stats | tr -d '\0'`;                 sleep 1;                 R2=`cat /sys/kernel/debug/prestera/hw_counters/drops/cpu_code_$1_stats | tr -d '\0'`;                 RXPPS=`expr $R2 - $R1`;                 echo $RXPPS;             }
+  237              
+  238  echo $?
+  239  function get_drops_rate_code_avg(){                 local start_index=0;                 local end=9;                 local counter=0;                 for((num=start_index; num&#60=end; num++)); do                    local temp=$(get_drops_rate_code $1);                    sleep 1;                    counter=$((counter+temp));                 done;                 echo $((counter/10));             }
+  240              
+  241  echo $?
+  242  function get_all_counters(){                 R1=`cat /sys/kernel/debug/prestera/hw_counters/drops/cpu_code_stats | tr -d '\0'`
+  243                  while IFS= read -r line ; do echo $line| cut -d':' -f 1; done &#60&#60&#60 "$R1";             }
+  244              
+  245  echo $?
+  246  get_drops_rate_code_avg 138
+  247  echo $?
+  248  get_drops_rate_code_avg 137
+  249  echo $?
+  250  get_drops_rate_code_avg 137
+  251  echo $?
+  252  get_drops_rate_code_avg 136
+  253  echo $?
+  254  get_drops_rate_code_avg 136
+  255  echo $?
+  256  get_drops_rate_code_avg 136
+  257  echo $?
+  258  get_drops_rate_code_avg 145
+  259  echo $?
+  260  arp -d 0.0.0.0 dev sw1p23
+  261  arp -d 2.2.2.2 dev sw1p1
+  262  ip add del 0.0.0.1/24 dev sw1p23
+  263  ip add del 2.2.2.1/24 dev sw1p1
+  264  ip link set dev sw1p48 down
+  265  ip link set dev sw1p35 down
+  266  ip link set dev sw1p23 down
+  267  ip link set dev sw1p1 down
+  268    history
+  269    cat /var/log/messages
+  270  cat /sys/class/net/sw1p1/address
+  271  cat /sys/class/net/sw1p23/address
+  272  cat /sys/class/net/sw1p35/address
+  273  ip link set dev sw1p1 up
+  274  ip link set dev sw1p23 up
+  275  ip link set dev sw1p35 up
+  276  ip link set dev sw1p48 up
+  277  ip add add 2.2.2.1/24 dev sw1p1
+  278  ip add add 4.4.4.1/24 dev sw1p23
+  279  ip add add 3.3.3.1/24 dev sw1p35
+  280  ip add add 0.0.0.1/24 dev sw1p48
+  281  arp -i sw1p1 -s 2.2.2.2 f8:61:8d:c9:6a:60
+  282  arp -i sw1p23 -s 4.4.4.2 fc:34:0b:36:c0:77
+  283  arp -i sw1p35 -s 3.3.3.2 54:da:53:4f:45:9a
+  284  function tcpdump_cpu_traps_rate(){                  local IFACE="any";                  if [ $# -ge 1 ]; then IFACE=$1; fi;                  timeout 1.06 tcpdump -i $IFACE &&#62 xx; cat xx | grep -Eo "[0-9]+ packets received by filter" | cut -d ' ' -f 1; rm xx;             }
+  285              
+  286  cat /etc/os-release | grep -Eo '^ID=\w+' | tr -d 'ID='
+  287  echo $?
+  288  function tcpdump_cpu_traps_rate_avg(){                 local start_index=0;                 local end=25;                 local counter=0;                 for((num=start_index; num&#60=end; num++)); do                    local temp=$(tcpdump_cpu_traps_rate $1);                    sleep 1;                    counter=$((counter+temp));                 done;                 echo $((counter/6));             }
+  289              
+  290  echo $?
+  291  function get_drops_rate_code(){                 R1=`cat /sys/kernel/debug/prestera/hw_counters/drops/cpu_code_$1_stats | tr -d '\0'`;                 sleep 1;                 R2=`cat /sys/kernel/debug/prestera/hw_counters/drops/cpu_code_$1_stats | tr -d '\0'`;                 RXPPS=`expr $R2 - $R1`;                 echo $RXPPS;             }
+  292              
+  293  echo $?
+  294  function get_drops_rate_code_avg(){                 local start_index=0;                 local end=9;                 local counter=0;                 for((num=start_index; num&#60=end; num++)); do                    local temp=$(get_drops_rate_code $1);                    sleep 1;                    counter=$((counter+temp));                 done;                 echo $((counter/10));             }
+  295              
+  296  echo $?
+  297  function get_all_counters(){                 R1=`cat /sys/kernel/debug/prestera/hw_counters/drops/cpu_code_stats | tr -d '\0'`
+  298                  while IFS= read -r line ; do echo $line| cut -d':' -f 1; done &#60&#60&#60 "$R1";             }
+  299              
+  300  echo $?
+  301  get_drops_rate_code_avg 138
+  302  echo $?
+  303  get_drops_rate_code_avg 137
+  304  echo $?
+  305  get_drops_rate_code_avg 137
+  306  echo $?
+  307  get_drops_rate_code_avg 136
+  308  echo $?
+  309  get_drops_rate_code_avg 136
+  310  echo $?
+  311  get_drops_rate_code_avg 136
+  312  echo $?
+  313  get_drops_rate_code_avg 145
+  314  echo $?
+  315  arp -d 3.3.3.2 dev sw1p35
+  316  arp -d 4.4.4.2 dev sw1p23
+  317  arp -d 2.2.2.2 dev sw1p1
+  318  ip add del 0.0.0.1/24 dev sw1p48
+  319  ip add del 3.3.3.1/24 dev sw1p35
+  320  ip add del 4.4.4.1/24 dev sw1p23
+  321  ip add del 2.2.2.1/24 dev sw1p1
+  322  ip link set dev sw1p48 down
+  323  ip link set dev sw1p35 down
+  324  ip link set dev sw1p23 down
+  325  ip link set dev sw1p1 down
+  326    history
+  327    cat /var/log/messages
+  328  cat /sys/class/net/sw1p1/address
+  329  cat /sys/class/net/sw1p23/address
+  330  ip link set dev sw1p1 down
+  331  ip link set dev sw1p23 down
+  332  ip link add bond1 type bond mode 802.3ad
+  333  ip link set dev bond1 up
+  334  ip link set dev sw1p1 master bond1
+  335  ip link set dev sw1p23 master bond1
+  336  ip link set dev sw1p1 up
+  337  ip link set dev sw1p23 up
+  338  ip link set dev sw1p35 up
+  339  ip link set dev sw1p48 up
+  340  ip add add 2.2.2.1/24 dev sw1p1 broadcast 2.2.2.255
+  341  ip add add 0.0.0.1/24 dev sw1p23 broadcast 0.0.0.255
+  342  arp -i sw1p1 -s 2.2.2.2 64:5f:b5:e4:e4:74
+  343  arp -i sw1p23 -s 0.0.0.0 7e:1d:6e:64:f5:0a
+  344  function tcpdump_cpu_traps_rate(){                  local IFACE="any";                  if [ $# -ge 1 ]; then IFACE=$1; fi;                  timeout 1.06 tcpdump -i $IFACE &&#62 xx; cat xx | grep -Eo "[0-9]+ packets received by filter" | cut -d ' ' -f 1; rm xx;             }
+  345              
+  346  cat /etc/os-release | grep -Eo '^ID=\w+' | tr -d 'ID='
+  347  echo $?
+  348  function tcpdump_cpu_traps_rate_avg(){                 local start_index=0;                 local end=25;                 local counter=0;                 for((num=start_index; num&#60=end; num++)); do                    local temp=$(tcpdump_cpu_traps_rate $1);                    sleep 1;                    counter=$((counter+temp));                 done;                 echo $((counter/6));             }
+  349              
+  350  echo $?
+  351  function get_drops_rate_code(){                 R1=`cat /sys/kernel/debug/prestera/hw_counters/drops/cpu_code_$1_stats | tr -d '\0'`;                 sleep 1;                 R2=`cat /sys/kernel/debug/prestera/hw_counters/drops/cpu_code_$1_stats | tr -d '\0'`;                 RXPPS=`expr $R2 - $R1`;                 echo $RXPPS;             }
+  352              
+  353  echo $?
+  354  function get_drops_rate_code_avg(){                 local start_index=0;                 local end=9;                 local counter=0;                 for((num=start_index; num&#60=end; num++)); do                    local temp=$(get_drops_rate_code $1);                    sleep 1;                    counter=$((counter+temp));                 done;                 echo $((counter/10));             }
+  355              
+  356  echo $?
+  357  function get_all_counters(){                 R1=`cat /sys/kernel/debug/prestera/hw_counters/drops/cpu_code_stats | tr -d '\0'`
+  358                  while IFS= read -r line ; do echo $line| cut -d':' -f 1; done &#60&#60&#60 "$R1";             }
+  359              
+  360  echo $?
+  361  get_drops_rate_code_avg 138
+  362  echo $?
+  363  get_drops_rate_code_avg 137
+  364  echo $?
+  365  get_drops_rate_code_avg 137
+  366  echo $?
+  367  get_drops_rate_code_avg 136
+  368  echo $?
+  369  get_drops_rate_code_avg 136
+  370  echo $?
+  371  get_drops_rate_code_avg 136
+  372  echo $?
+  373  get_drops_rate_code_avg 145
+  374  echo $?
+  375  arp -d 0.0.0.0 dev sw1p23
+  376  arp -d 2.2.2.2 dev sw1p1
+  377  ip add del 0.0.0.1/24 dev sw1p23
+  378  ip add del 2.2.2.1/24 dev sw1p1
+  379  ip link set dev sw1p48 down
+  380  ip link set dev sw1p35 down
+  381  ip link set dev sw1p23 down
+  382  ip link set dev sw1p1 down
+  383  ip link delete dev bond1
+  384    history
+  385    cat /var/log/messages
+  386  ip link set dev sw1p1 up
+  387  ip link set dev sw1p23 up
+  388  ip link set dev sw1p35 up
+  389  ip link set dev sw1p48 up
+  390  ip add add 3.3.3.1/24 dev sw1p1 broadcast 3.3.3.255
+  391  ip add add 0.0.0.1/24 dev sw1p23 broadcast 0.0.0.255
+  392  arp -i sw1p1 -s 3.3.3.3 3e:7f:94:2e:51:12
+  393  arp -i sw1p23 -s 0.0.0.0 12:32:d1:76:c2:aa
+  394  function tcpdump_cpu_traps_rate(){                  local IFACE="any";                  if [ $# -ge 1 ]; then IFACE=$1; fi;                  timeout 1.06 tcpdump -i $IFACE &&#62 xx; cat xx | grep -Eo "[0-9]+ packets received by filter" | cut -d ' ' -f 1; rm xx;             }
+  395              
+  396  cat /etc/os-release | grep -Eo '^ID=\w+' | tr -d 'ID='
+  397  echo $?
+  398  function tcpdump_cpu_traps_rate_avg(){                 local start_index=0;                 local end=25;                 local counter=0;                 for((num=start_index; num&#60=end; num++)); do                    local temp=$(tcpdump_cpu_traps_rate $1);                    sleep 1;                    counter=$((counter+temp));                 done;                 echo $((counter/6));             }
+  399              
+  400  echo $?
+  401  function get_drops_rate_code(){                 R1=`cat /sys/kernel/debug/prestera/hw_counters/drops/cpu_code_$1_stats | tr -d '\0'`;                 sleep 1;                 R2=`cat /sys/kernel/debug/prestera/hw_counters/drops/cpu_code_$1_stats | tr -d '\0'`;                 RXPPS=`expr $R2 - $R1`;                 echo $RXPPS;             }
+  402              
+  403  echo $?
+  404  function get_drops_rate_code_avg(){                 local start_index=0;                 local end=9;                 local counter=0;                 for((num=start_index; num&#60=end; num++)); do                    local temp=$(get_drops_rate_code $1);                    sleep 1;                    counter=$((counter+temp));                 done;                 echo $((counter/10));             }
+  405              
+  406  echo $?
+  407  function get_all_counters(){                 R1=`cat /sys/kernel/debug/prestera/hw_counters/drops/cpu_code_stats | tr -d '\0'`
+  408                  while IFS= read -r line ; do echo $line| cut -d':' -f 1; done &#60&#60&#60 "$R1";             }
+  409              
+  410  echo $?
+  411  get_all_counters
+  412  echo $?
+  413  arp -d 0.0.0.0 dev sw1p23
+  414  arp -d 3.3.3.3 dev sw1p1
+  415  ip add del 0.0.0.1/24 dev sw1p23
+  416  ip add del 3.3.3.1/24 dev sw1p1
+  417  ip link set dev sw1p48 down
+  418  ip link set dev sw1p35 down
+  419  ip link set dev sw1p23 down
+  420  ip link set dev sw1p1 down
+  421    history
+  422    cat /var/log/messages
+  423  function tcpdump_cpu_traps_rate(){                  local IFACE="any";                  if [ $# -ge 1 ]; then IFACE=$1; fi;                  timeout 1.06 tcpdump -i $IFACE &&#62 xx; cat xx | grep -Eo "[0-9]+ packets received by filter" | cut -d ' ' -f 1; rm xx;             }
+  424              
+  425  cat /etc/os-release | grep -Eo '^ID=\w+' | tr -d 'ID='
+  426  echo $?
+  427  function tcpdump_cpu_traps_rate_avg(){                 local start_index=0;                 local end=25;                 local counter=0;                 for((num=start_index; num&#60=end; num++)); do                    local temp=$(tcpdump_cpu_traps_rate $1);                    sleep 1;                    counter=$((counter+temp));                 done;                 echo $((counter/6));             }
+  428              
+  429  echo $?
+  430  function get_cpu_traps_rate_code(){                 R1=`cat /sys/kernel/debug/prestera/$2_counters/traps/cpu_code_$1_stats | tr -d '\0'`;                 sleep 1;                 R2=`cat /sys/kernel/debug/prestera/$2_counters/traps/cpu_code_$1_stats | tr -d '\0'`;                 RXPPS=`expr $R2 - $R1`;                 echo $RXPPS;             }
+  431              
+  432  echo $?
+  433  function get_cpu_traps_rate_code_avg(){                 local start_index=0;                 local end=9;                 local counter=0;                 for((num=start_index; num&#60=end; num++)); do                    local temp=$(get_cpu_traps_rate_code $1 $2);                    sleep 1;                    counter=$((counter+temp));                 done;                 echo $((counter/10));             }
+  434              
+  435  echo $?
+  436  ifquery -a -c -i /etc/network/interfaces.d/cfg-file-1
+  437  echo $?
+  438  echo -e '# element-1
+  439  # Test: None
+  440              auto br0
+  441              iface br0 inet static
+  442                  % if "":
+  443                  bridge-ageing 
+  444                  % endif
+  445                  % if "sw1p1 sw1p48":
+  446                  bridge-ports sw1p1 sw1p48
+  447                  % endif
+  448                  % if "":
+  449                  bridge-vids 
+  450                  % endif
+  451                  % if "":
+  452                  bridge-vlan-aware 
+  453                  % endif
+  454                  % if "":
+  455                  bridge-stp 
+  456                  % endif
+  457                  % if "":
+  458                  bridge-portprios 
+  459                  % endif
+  460                  % if "":
+  461                  up ip l set br0 type bridge vlan_default_pvid 
+  462                  % endif
+  463                  % if "":
+  464                  hwaddress 
+  465                  % endif
+  466          
+  467              auto sw1p1
+  468              iface sw1p1 inet static
+  469                  
+  470          post-up tc qdisc add dev sw1p1 ingress
+  471  down tc qdisc del dev sw1p1 ingress
+  472  post-up tc filter add dev sw1p1 ingress pref 4489 protocol 0x8100 flower  dst_mac 9e:bd:e6:e1:6a:fb src_mac 26:01:9f:ef:72:a9 vlan_id 2060 action pass    
+  473  post-up tc filter add dev sw1p1 ingress pref 13308 protocol 0x8100 flower  dst_mac 9e:bd:e6:e1:6a:fb src_mac 26:01:9f:ef:72:a9 vlan_id 2060 action drop    
+  474              auto sw1p48
+  475              iface sw1p48
+  476              
+  477              auto sw1p1
+  478              iface sw1p1 inet static
+  479                  
+  480          post-up tc qdisc add dev sw1p1 ingress
+  481  down tc qdisc del dev sw1p1 ingress
+  482  post-up tc filter add dev sw1p1 ingress pref 4489 protocol 0x8100 flower  dst_mac 9e:bd:e6:e1:6a:fb src_mac 26:01:9f:ef:72:a9 vlan_id 2060 action pass    
+  483  ' &#62 /etc/network/interfaces.d/cfg-file-1
+  484  ifreload -a -v
+  485  echo $?
+  486  ifquery -a -c -i /etc/network/interfaces.d/cfg-file-1
+  487  echo $?
+  488  sed -i -E "s/^(addon_syntax_check\s*=)(.*$)/\10/g; s/^(template_lookuppath\s*=)(.*$)/\10/g; s/^(default_interfaces_configfile\s*=)(.*$)/\1\/etc\/network\/interfaces/g" /etc/network/ifupdown2/ifupdown2.conf
+  489  rm -f /etc/network/interfaces.d/cfg-file-1
+  490  echo "${?}"
+  491  ifreload -a -v
+  492  echo $?
+  493  bash -c "if [ ! -z '$(tc qdisc show dev sw1p1 | grep ingress)' ]; then exit 1; fi"
+  494    history
+  495    cat /var/log/messages
+  496  ifreload -a -v
+  497  echo $?
+  498  ifquery -a -c -i /etc/network/interfaces.d/cfg-file-1
+  499  echo $?
+  500  bash -c "if [ -z '$(ip -4 addr show sw1p1)' ]; then exit 1; fi"
+  501  bash -c "if [ -z '$(ip -4 route show dev sw1p1 | grep offload )' ]; then exit 1; fi"
+  502  bash -c "if [ -z '$(ip -4 addr show sw1p23)' ]; then exit 1; fi"
+  503  bash -c "if [ -z '$(ip -4 route show dev sw1p23 | grep offload )' ]; then exit 1; fi"
+  504  bash -c "if [ '$(ip -4 route show 137.135.123.89/16 | grep -c offload )' -lt 2 ]; then exit 1; fi"
+  505  sed -i -E "s/^(addon_syntax_check\s*=)(.*$)/\10/g; s/^(template_lookuppath\s*=)(.*$)/\10/g; s/^(default_interfaces_configfile\s*=)(.*$)/\1\/etc\/network\/interfaces/g" /etc/network/ifupdown2/ifupdown2.conf
+  506  rm -f /etc/network/interfaces.d/cfg-file-1
+  507  echo "${?}"
+  508  ifreload -a -v
+  509  echo $?
+  510  bash -c "if [ -z '$(ip -4 addr show sw1p1)' ]; then exit 1; fi"
+  511  bash -c "if [ -z '$(ip -4 route show dev sw1p1 | grep offload )' ]; then exit 1; fi"
+  512  bash -c "if [ -z '$(ip -4 addr show sw1p23)' ]; then exit 1; fi"
+  513  bash -c "if [ -z '$(ip -4 route show dev sw1p23 | grep offload )' ]; then exit 1; fi"
+  514    history</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:22,642</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_parse_dmesg: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:22,751</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  cat /var/log/messages
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:22,756</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   cat /var/log/messages
+
+Sep  3 22:52:00 localhost kernel: [  164.655460] IPv6: ADDRCONF(NETDEV_CHANGE): sw1p23: link becomes ready
+Sep  3 22:56:17 localhost kernel: [    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd081]
+Sep  3 22:56:17 localhost kernel: [    0.000000] Linux version 5.10.4 (jenkins@pcci) (aarch64-linux-gnu-gcc (Debian 6.3.0-18) 6.3.0 20170516, GNU ld (GNU Binutils for Debian) 2.28) #1 SMP PREEMPT Tue Aug 31 15:40:33 UTC 2021
+Sep  3 22:56:17 localhost kernel: [    0.000000] Machine model: Accton Marvell Armada 7040 board setup
+Sep  3 22:56:17 localhost kernel: [    0.000000] earlycon: uart8250 at MMIO32 0x00000000f0512000 (options '')
+Sep  3 22:56:17 localhost kernel: [    0.000000] printk: bootconsole [uart8250] enabled
+Sep  3 22:56:17 localhost kernel: [    0.000000] efi: UEFI not found.
+Sep  3 22:56:17 localhost kernel: [    0.000000] [Firmware Bug]: Kernel image misaligned at boot, please fix your bootloader!
+Sep  3 22:56:17 localhost kernel: [    0.000000] cma: Reserved 32 MiB at 0x00000000be000000
+Sep  3 22:56:17 localhost kernel: [    0.000000] NUMA: No NUMA configuration found
+Sep  3 22:56:17 localhost kernel: [    0.000000] NUMA: Faking a node at [mem 0x0000000000000000-0x000000023fffffff]
+Sep  3 22:56:17 localhost kernel: [    0.000000] NUMA: NODE_DATA [mem 0x23efd8100-0x23efd9fff]
+Sep  3 22:56:17 localhost kernel: [    0.000000] Zone ranges:
+Sep  3 22:56:17 localhost kernel: [    0.000000]   DMA      [mem 0x0000000000000000-0x000000003fffffff]
+Sep  3 22:56:17 localhost kernel: [    0.000000]   DMA32    [mem 0x0000000040000000-0x00000000ffffffff]
+Sep  3 22:56:17 localhost kernel: [    0.000000]   Normal   [mem 0x0000000100000000-0x000000023fffffff]
+Sep  3 22:56:17 localhost kernel: [    0.000000] Movable zone start for each node
+Sep  3 22:56:17 localhost kernel: [    0.000000] Early memory node ranges
+Sep  3 22:56:17 localhost kernel: [    0.000000]   node   0: [mem 0x0000000000000000-0x0000000003ffffff]
+Sep  3 22:56:17 localhost kernel: [    0.000000]   node   0: [mem 0x0000000004200000-0x00000000bfffffff]
+Sep  3 22:56:17 localhost kernel: [    0.000000]   node   0: [mem 0x0000000100000000-0x000000023fffffff]
+Sep  3 22:56:17 localhost kernel: [    0.000000] Initmem setup node 0 [mem 0x0000000000000000-0x000000023fffffff]
+Sep  3 22:56:17 localhost kernel: [    0.000000] psci: probing for conduit method from DT.
+Sep  3 22:56:17 localhost kernel: [    0.000000] psci: PSCIv1.1 detected in firmware.
+Sep  3 22:56:17 localhost kernel: [    0.000000] psci: Using standard PSCI v0.2 function IDs
+Sep  3 22:56:17 localhost kernel: [    0.000000] psci: Trusted OS resident on physical CPU 0x0
+Sep  3 22:56:17 localhost kernel: [    0.000000] psci: SMC Calling Convention v1.1
+Sep  3 22:56:17 localhost kernel: [    0.000000] percpu: Embedded 32 pages/cpu s94104 r8192 d28776 u131072
+Sep  3 22:56:17 localhost kernel: [    0.000000] Detected PIPT I-cache on CPU0
+Sep  3 22:56:17 localhost kernel: [    0.000000] CPU features: detected: EL2 vector hardening
+Sep  3 22:56:17 localhost kernel: [    0.000000] CPU features: kernel page table isolation forced ON by KASLR
+Sep  3 22:56:17 localhost kernel: [    0.000000] CPU features: detected: Kernel page table isolation (KPTI)
+Sep  3 22:56:17 localhost kernel: [    0.000000] CPU features: detected: Spectre-v2
+Sep  3 22:56:17 localhost kernel: [    0.000000] CPU features: detected: Spectre-v4
+Sep  3 22:56:17 localhost kernel: [    0.000000] CPU features: detected: ARM errata 1165522, 1319367, or 1530923
+Sep  3 22:56:17 localhost kernel: [    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 2063872
+Sep  3 22:56:17 localhost kernel: [    0.000000] Policy zone: Normal
+Sep  3 22:56:17 localhost kernel: [    0.000000] Kernel command line: console=ttyS0,115200 earlycon=uart8250,mmio32,0xf0512000 ip=10.5.236.85:10.5.116.4:10.5.236.1:255.255.255.128:marvell:eth0:none onl_platform=arm64-accton-as4224-52t-r0 arm-smmu.disable_bypass=n maxcpus=4 pci=pcie_bus_safe cpuidle.off=1
+Sep  3 22:56:17 localhost kernel: [   </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:22,759</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  0.000000] Dentry cache hash table entries: 1048576 (order: 11, 8388608 bytes, linear)
+Sep  3 22:56:17 localhost kernel: [    0.000000] Inode-cache hash table entries: 524288 (order: 10, 4194304 bytes, linear)
+Sep  3 22:56:17 localhost kernel: [    0.000000] mem auto-init: stack:off, heap alloc:off, heap free:off
+Sep  3 22:56:17 localhost kernel: [    0.000000] software IO TLB: mapped [mem 0x000000003bfff000-0x000000003ffff000] (64MB)
+Sep  3 22:56:17 localhost kernel: [    0.000000] Memory: 8071348K/8386560K available (18112K kernel code, 4006K rwdata, 9468K rodata, 9536K init, 539K bss, 282444K reserved, 32768K cma-reserved)
+Sep  3 22:56:17 localhost kernel: [    0.000000] ftrace: allocating 60620 entries in 237 pages
+Sep  3 22:56:17 localhost kernel: [    0.000000] ftrace: allocated 237 pages with 6 groups
+Sep  3 22:56:17 localhost kernel: [    0.000000] rcu: Preemptible hierarchical RCU implementation.
+Sep  3 22:56:17 localhost kernel: [    0.000000] rcu: 	RCU restricting CPUs from NR_CPUS=256 to nr_cpu_ids=4.
+Sep  3 22:56:17 localhost kernel: [    0.000000] 	Trampoline variant of Tasks RCU enabled.
+Sep  3 22:56:17 localhost kernel: [    0.000000] 	Rude variant of Tasks RCU enabled.
+Sep  3 22:56:17 localhost kernel: [    0.000000] 	Tracing variant of Tasks RCU enabled.
+Sep  3 22:56:17 localhost kernel: [    0.000000] rcu: RCU calculated value of scheduler-enlistment delay is 25 jiffies.
+Sep  3 22:56:17 localhost kernel: [    0.000000] rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=4
+Sep  3 22:56:17 localhost kernel: [    0.000000] NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
+Sep  3 22:56:17 localhost kernel: [    0.000000] GIC: Adjusting CPU interface base to 0x00000000f022f000
+Sep  3 22:56:17 localhost kernel: [    0.000000] GIC: Using split EOI/Deactivate mode
+Sep  3 22:56:17 localhost kernel: [    0.000000] GICv2m: DT overriding V2M MSI_TYPER (base:160, num:32)
+Sep  3 22:56:17 localhost kernel: [    0.000000] GICv2m: range[mem 0xf0280000-0xf0280fff], SPI[160:191]
+Sep  3 22:56:17 localhost kernel: [    0.000000] GICv2m: DT overriding V2M MSI_TYPER (base:192, num:32)
+Sep  3 22:56:17 localhost kernel: [    0.000000] GICv2m: range[mem 0xf0290000-0xf0290fff], SPI[192:223]
+Sep  3 22:56:17 localhost kernel: [    0.000000] GICv2m: DT overriding V2M MSI_TYPER (base:224, num:32)
+Sep  3 22:56:17 localhost kernel: [    0.000000] GICv2m: range[mem 0xf02a0000-0xf02a0fff], SPI[224:255]
+Sep  3 22:56:17 localhost kernel: [    0.000000] GICv2m: DT overriding V2M MSI_TYPER (base:256, num:32)
+Sep  3 22:56:17 localhost kernel: [    0.000000] GICv2m: range[mem 0xf02b0000-0xf02b0fff], SPI[256:287]
+Sep  3 22:56:17 localhost kernel: [    0.000000] random: get_random_bytes called from start_kernel+0x39c/0x528 with crng_init=0
+Sep  3 22:56:17 localhost kernel: [    0.000000] arch_timer: cp15 timer(s) running at 25.00MHz (phys).
+Sep  3 22:56:17 localhost kernel: [    0.000000] clocksource: arch_sys_counter: mask: 0xffffffffffffff max_cycles: 0x5c40939b5, max_idle_ns: 440795202646 ns
+Sep  3 22:56:17 localhost kernel: [    0.000002] sched_clock: 56 bits at 25MHz, resolution 40ns, wraps every 4398046511100ns
+Sep  3 22:56:17 localhost kernel: [    0.009018] Console: colour dummy device 80x25
+Sep  3 22:56:17 localhost kernel: [    0.013753] Calibrating delay loop (skipped), value calculated using timer frequency.. 50.00 BogoMIPS (lpj=100000)
+Sep  3 22:56:17 localhost kernel: [    0.024703] pid_max: default: 32768 minimum: 301
+Sep  3 22:56:17 localhost kernel: [    0.029671] LSM: Security Framework initializing
+Sep  3 22:56:17 localhost kernel: [    0.034654] Mount-cache hash table entries: 16384 (order: 5, 131072 bytes, linear)
+Sep  3 22:56:17 localhost kernel: [    0.042727] Mountpoint-cache hash table entries: 16384 (order: 5, 131072 bytes, linear)
+Sep  3 22:56:17 localhost kernel: [    0.052086] rcu: Hierarchical SRCU implementation.
+Sep  3 22:56:17 localhost kernel: [    0.058709] EFI services will not be available.
+Sep  3 22:56:17 localhost kernel: [    0.063671] smp: Bringing up secondary CP</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:22,760</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: Us ...
+Sep  3 22:56:17 localhost kernel: [    0.068976] Detected PIPT I-cache on CPU1
+Sep  3 22:56:17 localhost kernel: [    0.069021] CPU1: Booted secondary processor 0x0000000001 [0x410fd081]
+Sep  3 22:56:17 localhost kernel: [    0.069541] Detected PIPT I-cache on CPU2
+Sep  3 22:56:17 localhost kernel: [    0.069573] CPU2: Booted secondary processor 0x0000000100 [0x410fd081]
+Sep  3 22:56:17 localhost kernel: [    0.070080] Detected PIPT I-cache on CPU3
+Sep  3 22:56:17 localhost kernel: [    0.070105] CPU3: Booted secondary processor 0x0000000101 [0x410fd081]
+Sep  3 22:56:17 localhost kernel: [    0.070163] smp: Brought up 1 node, 4 CPUs
+Sep  3 22:56:17 localhost kernel: [    0.107847] SMP: Total of 4 processors activated.
+Sep  3 22:56:17 localhost kernel: [    0.112812] CPU features: detected: 32-bit EL0 Support
+Sep  3 22:56:17 localhost kernel: [    0.118274] CPU features: detected: CRC32 instructions
+Sep  3 22:56:17 localhost kernel: [    0.123709] CPU features: detected: 32-bit EL1 Support
+Sep  3 22:56:17 localhost kernel: [    0.142341] CPU: All CPU(s) started at EL2
+Sep  3 22:56:17 localhost kernel: [    0.146680] alternatives: patching kernel code
+Sep  3 22:56:17 localhost kernel: [    0.153129] devtmpfs: initialized
+Sep  3 22:56:17 localhost kernel: [    0.159436] KASLR disabled due to lack of seed
+Sep  3 22:56:17 localhost kernel: [    0.164410] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645041785100000 ns
+Sep  3 22:56:17 localhost kernel: [    0.174730] futex hash table entries: 1024 (order: 4, 65536 bytes, linear)
+Sep  3 22:56:17 localhost kernel: [    0.182547] pinctrl core: initialized pinctrl subsystem
+Sep  3 22:56:17 localhost kernel: [    0.188720] DMI not present or invalid.
+Sep  3 22:56:17 localhost kernel: [    0.193129] NET: Registered protocol family 16
+Sep  3 22:56:17 localhost kernel: [    0.198703] DMA: preallocated 1024 KiB GFP_KERNEL pool for atomic allocations
+Sep  3 22:56:17 localhost kernel: [    0.206445] DMA: preallocated 1024 KiB GFP_KERNEL|GFP_DMA pool for atomic allocations
+Sep  3 22:56:17 localhost kernel: [    0.214928] DMA: preallocated 1024 KiB GFP_KERNEL|GFP_DMA32 pool for atomic allocations
+Sep  3 22:56:17 localhost kernel: [    0.223428] audit: initializing netlink subsys (disabled)
+Sep  3 22:56:17 localhost kernel: [    0.229190] audit: type=2000 audit(0.148:1): state=initialized audit_enabled=0 res=1
+Sep  3 22:56:17 localhost kernel: [    0.229717] thermal_sys: Registered thermal governor 'step_wise'
+Sep  3 22:56:17 localhost kernel: [    0.237882] hw-breakpoint: found 6 breakpoint and 4 watchpoint registers.
+Sep  3 22:56:17 localhost kernel: [    0.251474] ASID allocator initialised with 32768 entries
+Sep  3 22:56:17 localhost kernel: [    0.257809] Serial: AMBA PL011 UART driver
+Sep  3 22:56:17 localhost kernel: [    0.282091] HugeTLB registered 1.00 GiB page size, pre-allocated 0 pages
+Sep  3 22:56:17 localhost kernel: [    0.289178] HugeTLB registered 32.0 MiB page size, pre-allocated 0 pages
+Sep  3 22:56:17 localhost kernel: [    0.296260] HugeTLB registered 2.00 MiB page size, pre-allocated 0 pages
+Sep  3 22:56:17 localhost kernel: [    0.303331] HugeTLB registered 64.0 KiB page size, pre-allocated 0 pages
+Sep  3 22:56:17 localhost kernel: [    0.931407] cryptd: max_cpu_qlen set to 1000
+Sep  3 22:56:17 localhost kernel: [    0.955336] ACPI: Interpreter disabled.
+Sep  3 22:56:17 localhost kernel: [    0.960119] iommu: Default domain type: Translated 
+Sep  3 22:56:17 localhost kernel: [    0.965421] vgaarb: loaded
+Sep  3 22:56:17 localhost kernel: [    0.968456] SCSI subsystem initialized
+Sep  3 22:56:17 localhost kernel: [    0.972662] usbcore: registered new interface driver usbfs
+Sep  3 22:56:17 localhost kernel: [    0.978502] usbcore: registered new interface driver hub
+Sep  3 22:56:17 localhost kernel: [    0.984156] usbcore: registered new device driver usb
+Sep  3 22:56:17 localhost kernel: [    0.989908] pps_core: LinuxPPS API ver. 1 registered
+Sep  3 22:56:17 localhost kernel: [    0.9951</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:22,762</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 38] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti &#60giometti@linux.it&#62
+Sep  3 22:56:17 localhost kernel: [    1.004764] PTP clock support registered
+Sep  3 22:56:17 localhost kernel: [    1.008975] EDAC MC: Ver: 3.0.0
+Sep  3 22:56:17 localhost kernel: [    1.012951] FPGA manager framework
+Sep  3 22:56:17 localhost kernel: [    1.016583] Advanced Linux Sound Architecture Driver Initialized.
+Sep  3 22:56:17 localhost kernel: [    1.023549] clocksource: Switched to clocksource arch_sys_counter
+Sep  3 22:56:17 localhost kernel: [    1.385768] VFS: Disk quotas dquot_6.6.0
+Sep  3 22:56:17 localhost kernel: [    1.389980] VFS: Dquot-cache hash table entries: 512 (order 0, 4096 bytes)
+Sep  3 22:56:17 localhost kernel: [    1.397386] pnp: PnP ACPI: disabled
+Sep  3 22:56:17 localhost kernel: [    1.404751] NET: Registered protocol family 2
+Sep  3 22:56:17 localhost kernel: [    1.409729] tcp_listen_portaddr_hash hash table entries: 4096 (order: 4, 65536 bytes, linear)
+Sep  3 22:56:17 localhost kernel: [    1.418765] TCP established hash table entries: 65536 (order: 7, 524288 bytes, linear)
+Sep  3 22:56:17 localhost kernel: [    1.427341] TCP bind hash table entries: 65536 (order: 8, 1048576 bytes, linear)
+Sep  3 22:56:17 localhost kernel: [    1.435651] TCP: Hash tables configured (established 65536 bind 65536)
+Sep  3 22:56:17 localhost kernel: [    1.442624] UDP hash table entries: 4096 (order: 5, 131072 bytes, linear)
+Sep  3 22:56:17 localhost kernel: [    1.449857] UDP-Lite hash table entries: 4096 (order: 5, 131072 bytes, linear)
+Sep  3 22:56:17 localhost kernel: [    1.457665] NET: Registered protocol family 1
+Sep  3 22:56:17 localhost kernel: [    1.462548] RPC: Registered named UNIX socket transport module.
+Sep  3 22:56:17 localhost kernel: [    1.468823] RPC: Registered udp transport module.
+Sep  3 22:56:17 localhost kernel: [    1.473778] RPC: Registered tcp transport module.
+Sep  3 22:56:17 localhost kernel: [    1.478766] RPC: Registered tcp NFSv4.1 backchannel transport module.
+Sep  3 22:56:17 localhost kernel: [    1.485554] PCI: CLS 0 bytes, default 64
+Sep  3 22:56:17 localhost kernel: [    1.489813] Trying to unpack rootfs image as initramfs...
+Sep  3 22:56:17 localhost kernel: [    1.974162] Freeing initrd memory: 14208K
+Sep  3 22:56:17 localhost kernel: [    1.984004] hw perfevents: /ap806/config-space@f0000000/pmu: failed to register PMU devices!
+Sep  3 22:56:17 localhost kernel: [    1.993163] kvm [1]: IPA Size Limit: 44 bits
+Sep  3 22:56:17 localhost kernel: [    1.998524] kvm [1]: vgic interrupt IRQ9
+Sep  3 22:56:17 localhost kernel: [    2.002776] kvm [1]: Hyp mode initialized successfully
+Sep  3 22:56:17 localhost kernel: [    2.033777] Initialise system trusted keyrings
+Sep  3 22:56:17 localhost kernel: [    2.038571] workingset: timestamp_bits=44 max_order=21 bucket_order=0
+Sep  3 22:56:17 localhost kernel: [    2.045767] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+Sep  3 22:56:17 localhost kernel: [    2.052146] NFS: Registering the id_resolver key type
+Sep  3 22:56:17 localhost kernel: [    2.057536] Key type id_resolver registered
+Sep  3 22:56:17 localhost kernel: [    2.061968] Key type id_legacy registered
+Sep  3 22:56:17 localhost kernel: [    2.066236] nfs4filelayout_init: NFSv4 File Layout Driver Registering...
+Sep  3 22:56:17 localhost kernel: [    2.073335] jffs2: version 2.2. (NAND) © 2001-2006 Red Hat, Inc.
+Sep  3 22:56:17 localhost kernel: [    2.079909] 9p: Installing v9fs 9p2000 file system support
+Sep  3 22:56:17 localhost kernel: [    2.113455] Key type asymmetric registered
+Sep  3 22:56:17 localhost kernel: [    2.117795] Asymmetric key parser 'x509' registered
+Sep  3 22:56:17 localhost kernel: [    2.122960] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 245)
+Sep  3 22:56:17 localhost kernel: [    2.130810] io scheduler mq-deadline registered
+Sep  3 22:56:17 localhost kernel: [    2.135606] io scheduler kyber registered
+Sep  3 22:56:17 localhost kernel: [    2.174839] armada-ap806-pinctrl f06f4000.sy</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:22,764</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: stem-controller:pinctrl: registered pinctrl driver
+Sep  3 22:56:17 localhost kernel: [    2.184383] armada-cp110-pinctrl f2440000.system-controller:pinctrl: registered pinctrl driver
+Sep  3 22:56:17 localhost kernel: [    2.197609] EINJ: ACPI disabled.
+Sep  3 22:56:17 localhost kernel: [    2.205372] mv_xor_v2 f0400000.xor: Marvell Version 2 XOR driver
+Sep  3 22:56:17 localhost kernel: [    2.212139] mv_xor_v2 f0420000.xor: Marvell Version 2 XOR driver
+Sep  3 22:56:17 localhost kernel: [    2.218885] mv_xor_v2 f0440000.xor: Marvell Version 2 XOR driver
+Sep  3 22:56:17 localhost kernel: [    2.225662] mv_xor_v2 f0460000.xor: Marvell Version 2 XOR driver
+Sep  3 22:56:17 localhost kernel: [    2.232553] mv_xor_v2 f26a0000.xor: Marvell Version 2 XOR driver
+Sep  3 22:56:17 localhost kernel: [    2.239352] mv_xor_v2 f26c0000.xor: Marvell Version 2 XOR driver
+Sep  3 22:56:17 localhost kernel: [    2.250948] Serial: 8250/16550 driver, 4 ports, IRQ sharing enabled
+Sep  3 22:56:17 localhost kernel: [    2.258843] printk: console [ttyS0] disabled
+Sep  3 22:56:17 localhost kernel: [    2.263444] f0512000.serial: ttyS0 at MMIO 0xf0512000 (irq = 18, base_baud = 12500000) is a 16550A
+Sep  3 22:56:17 localhost kernel: [    2.272965] printk: console [ttyS0] enabled
+Sep  3 22:56:17 localhost kernel: [    2.281574] printk: bootconsole [uart8250] disabled
+Sep  3 22:56:17 localhost kernel: [    2.292434] SuperH (H)SCI(F) driver initialized
+Sep  3 22:56:17 localhost kernel: [    2.297348] msm_serial: driver initialized
+Sep  3 22:56:17 localhost kernel: [    2.302320] omap_rng f2760000.trng: Random Number Generator ver. 203b34c
+Sep  3 22:56:17 localhost kernel: [    2.302604] random: fast init done
+Sep  3 22:56:17 localhost kernel: [    2.312618] random: crng init done
+Sep  3 22:56:17 localhost kernel: [    2.316687] brd: module loaded
+Sep  3 22:56:17 localhost kernel: [    2.324191] loop: module loaded
+Sep  3 22:56:17 localhost kernel: [    2.328459] ahci f2540000.sata: supply ahci not found, using dummy regulator
+Sep  3 22:56:17 localhost kernel: [    2.335649] ahci f2540000.sata: supply phy not found, using dummy regulator
+Sep  3 22:56:17 localhost kernel: [    2.343206] platform f2540000.sata:sata-port@0: supply target not found, using dummy regulator
+Sep  3 22:56:17 localhost kernel: [    2.352375] platform f2540000.sata:sata-port@1: supply target not found, using dummy regulator
+Sep  3 22:56:17 localhost kernel: [    2.363716] spi-nor spi1.0: mx25l12805d (16384 Kbytes)
+Sep  3 22:56:17 localhost kernel: [    2.368908] 3 fixed-partitions partitions found on MTD device spi1.0
+Sep  3 22:56:17 localhost kernel: [    2.369030] tpm_tis_spi spi0.0: 2.0 TPM (device-id 0x1B, rev-id 22)
+Sep  3 22:56:17 localhost kernel: [    2.375295] Creating 3 MTD partitions on "spi1.0":
+Sep  3 22:56:17 localhost kernel: [    2.375301] 0x000000000000-0x000000200000 : "uboot"
+Sep  3 22:56:17 localhost kernel: [    2.386411] tpm tpm0: starting up the TPM manually
+Sep  3 22:56:17 localhost kernel: [    2.405194] 0x000000200000-0x000000210000 : "uboot-env"
+Sep  3 22:56:17 localhost kernel: [    2.412008] 0x000000210000-0x000001000000 : "onie"
+Sep  3 22:56:17 localhost kernel: [    2.420510] wireguard: WireGuard 1.0.0 loaded. See www.wireguard.com for information.
+Sep  3 22:56:17 localhost kernel: [    2.428417] wireguard: Copyright (C) 2015-2019 Jason A. Donenfeld &#60Jason@zx2c4.com&#62. All Rights Reserved.
+Sep  3 22:56:17 localhost kernel: [    2.438794] libphy: Fixed MDIO Bus: probed
+Sep  3 22:56:17 localhost kernel: [    2.443691] tun: Universal TUN/TAP device driver, 1.6
+Sep  3 22:56:17 localhost kernel: [    2.449321] thunder_xcv, ver 1.0
+Sep  3 22:56:17 localhost kernel: [    2.452596] thunder_bgx, ver 1.0
+Sep  3 22:56:17 localhost kernel: [    2.455860] nicpf, ver 1.0
+Sep  3 22:56:17 localhost kernel: [    2.459371] hclge is initializing
+Sep  3 22:56:17 localhost kernel: [    2.462740] hns3: Hisilicon Ethernet Network Driver for Hip08 Family - version
+Sep  3 22:56:17 localhost kernel: [    2.470003] hns3: Copyright (c) 201</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:22,766</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 7 Huawei Corporation.
+Sep  3 22:56:17 localhost liblogging-stdlog:  [origin software="rsyslogd" swVersion="8.24.0" x-pid="642" x-info="http://www.rsyslog.com"] start
+Sep  3 22:56:17 localhost kernel: [    2.475380] e1000: Intel(R) PRO/1000 Network Driver
+Sep  3 22:56:17 localhost kernel: [    2.480284] e1000: Copyright (c) 1999-2006 Intel Corporation.
+Sep  3 22:56:17 localhost kernel: [    2.486082] e1000e: Intel(R) PRO/1000 Network Driver
+Sep  3 22:56:17 localhost kernel: [    2.491072] e1000e: Copyright(c) 1999 - 2015 Intel Corporation.
+Sep  3 22:56:17 localhost kernel: [    2.497040] igb: Intel(R) Gigabit Ethernet Network Driver
+Sep  3 22:56:17 localhost kernel: [    2.502466] igb: Copyright (c) 2007-2014 Intel Corporation.
+Sep  3 22:56:17 localhost kernel: [    2.508086] igbvf: Intel(R) Gigabit Virtual Function Network Driver
+Sep  3 22:56:17 localhost kernel: [    2.514384] igbvf: Copyright (c) 2009 - 2012 Intel Corporation.
+Sep  3 22:56:17 localhost kernel: [    2.520696] libphy: orion_mdio_bus: probed
+Sep  3 22:56:17 localhost kernel: [    2.527641] mvpp2 f2000000.ethernet: using 8 per-cpu buffers
+Sep  3 22:56:17 localhost kernel: [    2.542552] sky2: driver version 1.30
+Sep  3 22:56:17 localhost kernel: [    2.546716] hdlc: HDLC support module revision 1.22
+Sep  3 22:56:17 localhost kernel: [    2.551677] usbcore: registered new interface driver asix
+Sep  3 22:56:17 localhost kernel: [    2.557136] usbcore: registered new interface driver ax88179_178a
+Sep  3 22:56:17 localhost kernel: [    2.563278] usbcore: registered new interface driver cdc_ether
+Sep  3 22:56:17 localhost kernel: [    2.569172] usbcore: registered new interface driver net1080
+Sep  3 22:56:17 localhost kernel: [    2.574881] usbcore: registered new interface driver cdc_subset
+Sep  3 22:56:17 localhost kernel: [    2.580847] usbcore: registered new interface driver zaurus
+Sep  3 22:56:17 localhost kernel: [    2.586473] usbcore: registered new interface driver cdc_ncm
+Sep  3 22:56:17 localhost kernel: [    2.592286] VFIO - User Level meta-driver version: 0.3
+Sep  3 22:56:17 localhost kernel: [    2.598570] ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+Sep  3 22:56:17 localhost kernel: [    2.605170] ehci-pci: EHCI PCI platform driver
+Sep  3 22:56:17 localhost kernel: [    2.609669] ehci-platform: EHCI generic platform driver
+Sep  3 22:56:17 localhost kernel: [    2.615025] ehci-orion: EHCI orion driver
+Sep  3 22:56:17 localhost kernel: [    2.619144] ehci-exynos: EHCI Exynos driver
+Sep  3 22:56:17 localhost kernel: [    2.623419] ohci_hcd: USB 1.1 'Open' Host Controller (OHCI) Driver
+Sep  3 22:56:17 localhost kernel: [    2.629639] ohci-pci: OHCI PCI platform driver
+Sep  3 22:56:17 localhost kernel: [    2.634130] ohci-platform: OHCI generic platform driver
+Sep  3 22:56:17 localhost kernel: [    2.639473] ohci-exynos: OHCI Exynos driver
+Sep  3 22:56:17 localhost kernel: [    2.644056] xhci-hcd f2500000.usb3: xHCI Host Controller
+Sep  3 22:56:17 localhost kernel: [    2.649412] xhci-hcd f2500000.usb3: new USB bus registered, assigned bus number 1
+Sep  3 22:56:17 localhost kernel: [    2.657010] xhci-hcd f2500000.usb3: hcc params 0x0a000990 hci version 0x100 quirks 0x0000000000010010
+Sep  3 22:56:17 localhost kernel: [    2.666314] xhci-hcd f2500000.usb3: irq 36, io mem 0xf2500000
+Sep  3 22:56:17 localhost kernel: [    2.672526] hub 1-0:1.0: USB hub found
+Sep  3 22:56:17 localhost kernel: [    2.676318] hub 1-0:1.0: 1 port detected
+Sep  3 22:56:17 localhost kernel: [    2.680427] xhci-hcd f2500000.usb3: xHCI Host Controller
+Sep  3 22:56:17 localhost kernel: [    2.685775] xhci-hcd f2500000.usb3: new USB bus registered, assigned bus number 2
+Sep  3 22:56:17 localhost kernel: [    2.693301] xhci-hcd f2500000.usb3: Host supports USB 3.0 SuperSpeed
+Sep  3 22:56:17 localhost kernel: [    2.699720] usb usb2: We don't know the algorithms for LPM for this host, disabling LPM.
+Sep  3 22:56:17 localhost kernel: [    2.708106] hub 2-0:1.0: USB hub found
+Sep  3 22:56:17 localhost kernel: [    2.711896] hub</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:22,767</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  2-0:1.0: 1 port detected
+Sep  3 22:56:17 localhost kernel: [    2.716175] xhci-hcd f2510000.usb3: xHCI Host Controller
+Sep  3 22:56:17 localhost kernel: [    2.721530] xhci-hcd f2510000.usb3: new USB bus registered, assigned bus number 3
+Sep  3 22:56:17 localhost kernel: [    2.729125] xhci-hcd f2510000.usb3: hcc params 0x0a000990 hci version 0x100 quirks 0x0000000000010010
+Sep  3 22:56:17 localhost kernel: [    2.738421] xhci-hcd f2510000.usb3: irq 37, io mem 0xf2510000
+Sep  3 22:56:17 localhost kernel: [    2.744583] hub 3-0:1.0: USB hub found
+Sep  3 22:56:17 localhost kernel: [    2.748374] hub 3-0:1.0: 1 port detected
+Sep  3 22:56:17 localhost kernel: [    2.752469] xhci-hcd f2510000.usb3: xHCI Host Controller
+Sep  3 22:56:17 localhost kernel: [    2.757817] xhci-hcd f2510000.usb3: new USB bus registered, assigned bus number 4
+Sep  3 22:56:17 localhost kernel: [    2.765340] xhci-hcd f2510000.usb3: Host supports USB 3.0 SuperSpeed
+Sep  3 22:56:17 localhost kernel: [    2.771758] usb usb4: We don't know the algorithms for LPM for this host, disabling LPM.
+Sep  3 22:56:17 localhost kernel: [    2.780144] hub 4-0:1.0: USB hub found
+Sep  3 22:56:17 localhost kernel: [    2.783937] hub 4-0:1.0: 1 port detected
+Sep  3 22:56:17 localhost kernel: [    2.788367] usbcore: registered new interface driver usb-storage
+Sep  3 22:56:17 localhost kernel: [    2.794468] usbcore: registered new interface driver usbserial_generic
+Sep  3 22:56:17 localhost kernel: [    2.801058] usbserial: USB Serial support registered for generic
+Sep  3 22:56:17 localhost kernel: [    2.807119] usbcore: registered new interface driver ftdi_sio
+Sep  3 22:56:17 localhost kernel: [    2.812914] usbserial: USB Serial support registered for FTDI USB Serial Device
+Sep  3 22:56:17 localhost kernel: [    2.820337] usbcore: registered new interface driver mos7720
+Sep  3 22:56:17 localhost kernel: [    2.826036] usbserial: USB Serial support registered for Moschip 2 port adapter
+Sep  3 22:56:17 localhost kernel: [    2.833401] usbcore: registered new interface driver mos7840
+Sep  3 22:56:17 localhost kernel: [    2.839097] usbserial: USB Serial support registered for Moschip 7840/7820 USB Serial Driver
+Sep  3 22:56:17 localhost kernel: [    2.847606] usbcore: registered new interface driver mxuport
+Sep  3 22:56:17 localhost kernel: [    2.853305] usbserial: USB Serial support registered for MOXA UPort
+Sep  3 22:56:17 localhost kernel: [    2.859633] usbcore: registered new interface driver pl2303
+Sep  3 22:56:17 localhost kernel: [    2.865244] usbserial: USB Serial support registered for pl2303
+Sep  3 22:56:17 localhost kernel: [    2.871221] usbcore: registered new interface driver usb_serial_simple
+Sep  3 22:56:17 localhost kernel: [    2.877789] usbserial: USB Serial support registered for carelink
+Sep  3 22:56:17 localhost kernel: [    2.883923] usbserial: USB Serial support registered for zio
+Sep  3 22:56:17 localhost kernel: [    2.889618] usbserial: USB Serial support registered for funsoft
+Sep  3 22:56:17 localhost kernel: [    2.895669] usbserial: USB Serial support registered for flashloader
+Sep  3 22:56:17 localhost kernel: [    2.902063] usbserial: USB Serial support registered for google
+Sep  3 22:56:17 localhost kernel: [    2.908057] usbserial: USB Serial support registered for libtransistor
+Sep  3 22:56:17 localhost kernel: [    2.914631] usbserial: USB Serial support registered for vivopay
+Sep  3 22:56:17 localhost kernel: [    2.920676] usbserial: USB Serial support registered for moto_modem
+Sep  3 22:56:17 localhost kernel: [    2.926985] usbserial: USB Serial support registered for motorola_tetra
+Sep  3 22:56:17 localhost kernel: [    2.933640] usbserial: USB Serial support registered for novatel_gps
+Sep  3 22:56:17 localhost kernel: [    2.940033] usbserial: USB Serial support registered for hp4x
+Sep  3 22:56:17 localhost kernel: [    2.945816] usbserial: USB Serial support registered for suunto
+Sep  3 22:56:17 localhost kernel: [    2.951774] usbserial: USB Serial support registered for siemens_mpi
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:22,770</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: Sep  3 22:56:17 localhost kernel: [    2.959913] armada38x-rtc f2284000.rtc: registered as rtc0
+Sep  3 22:56:17 localhost kernel: [    2.965450] armada38x-rtc f2284000.rtc: setting system clock to 2021-09-03T22:55:26 UTC (1630709726)
+Sep  3 22:56:17 localhost kernel: [    2.975443] i2c /dev entries driver
+Sep  3 22:56:17 localhost kernel: [    2.979996] pca953x 1-0021: supply vcc not found, using dummy regulator
+Sep  3 22:56:17 localhost kernel: [    2.986728] pca953x 1-0021: using no AI
+Sep  3 22:56:17 localhost kernel: [    2.995740] pca953x: probe of 1-0021 failed with error -5
+Sep  3 22:56:17 localhost kernel: [    3.001324] at24 1-0056: supply vcc not found, using dummy regulator
+Sep  3 22:56:17 localhost kernel: [    3.008421] at24 1-0056: 8192 byte 24c64 EEPROM, writable, 1 bytes/write
+Sep  3 22:56:17 localhost kernel: [    3.015293] at24 1-0050: supply vcc not found, using dummy regulator
+Sep  3 22:56:17 localhost kernel: [    3.055680] at24 1-0057: supply vcc not found, using dummy regulator
+Sep  3 22:56:17 localhost kernel: [    3.097335] i2c i2c-2: Added multiplexed i2c bus 3
+Sep  3 22:56:17 localhost kernel: [    3.102301] i2c i2c-2: Added multiplexed i2c bus 4
+Sep  3 22:56:17 localhost kernel: [    3.107237] i2c i2c-2: Added multiplexed i2c bus 5
+Sep  3 22:56:17 localhost kernel: [    3.112207] i2c i2c-2: Added multiplexed i2c bus 6
+Sep  3 22:56:17 localhost kernel: [    3.117136] i2c i2c-2: Added multiplexed i2c bus 7
+Sep  3 22:56:17 localhost kernel: [    3.122057] i2c i2c-2: Added multiplexed i2c bus 8
+Sep  3 22:56:17 localhost kernel: [    3.126980] i2c i2c-2: Added multiplexed i2c bus 9
+Sep  3 22:56:17 localhost kernel: [    3.131905] i2c i2c-2: Added multiplexed i2c bus 10
+Sep  3 22:56:17 localhost kernel: [    3.136815] pca954x 2-0070: registered 8 multiplexed busses for I2C switch pca9548
+Sep  3 22:56:17 localhost kernel: [    3.160823] sdhci: Secure Digital Host Controller Interface driver
+Sep  3 22:56:17 localhost kernel: [    3.167066] sdhci: Copyright(c) Pierre Ossman
+Sep  3 22:56:17 localhost kernel: [    3.171799] Synopsys Designware Multimedia Card Interface Driver
+Sep  3 22:56:17 localhost kernel: [    3.178500] sdhci-pltfm: SDHCI platform and OF driver helper
+Sep  3 22:56:17 localhost kernel: [    3.185405] ledtrig-cpu: registered to indicate activity on CPUs
+Sep  3 22:56:17 localhost kernel: [    3.192674] usbcore: registered new interface driver usbhid
+Sep  3 22:56:17 localhost kernel: [    3.198283] usbhid: USB HID core driver
+Sep  3 22:56:17 localhost kernel: [    3.210746] mmc0: SDHCI controller on f06e0000.sdhci [f06e0000.sdhci] using ADMA 64-bit
+Sep  3 22:56:17 localhost kernel: [    3.234268] netem: version 1.3
+Sep  3 22:56:17 localhost kernel: [    3.241301] Initializing XFRM netlink socket
+Sep  3 22:56:17 localhost kernel: [    3.245695] NET: Registered protocol family 10
+Sep  3 22:56:17 localhost kernel: [    3.250666] Segment Routing with IPv6
+Sep  3 22:56:17 localhost kernel: [    3.254394] sit: IPv6, IPv4 and MPLS over IPv4 tunneling driver
+Sep  3 22:56:17 localhost kernel: [    3.260651] NET: Registered protocol family 17
+Sep  3 22:56:17 localhost kernel: [    3.265137] NET: Registered protocol family 15
+Sep  3 22:56:17 localhost kernel: [    3.269634] Bridge firewalling registered
+Sep  3 22:56:17 localhost kernel: [    3.273709] 8021q: 802.1Q VLAN Support v1.8
+Sep  3 22:56:17 localhost kernel: [    3.277959] 9pnet: Installing 9P2000 support
+Sep  3 22:56:17 localhost kernel: [    3.282293] Key type dns_resolver registered
+Sep  3 22:56:17 localhost kernel: [    3.286848] registered taskstats version 1
+Sep  3 22:56:17 localhost kernel: [    3.290982] Loading compiled-in X.509 certificates
+Sep  3 22:56:17 localhost kernel: [    3.298899] hw perfevents: enabled with armv8_cortex_a72 PMU driver, 7 counters available
+Sep  3 22:56:17 localhost kernel: [    3.308247] armada8k-pcie f2600000.pcie: host bridge /cp0/pcie@f2600000 ranges:
+Sep  3 22:56:17 localhost kernel: [    3.315635] armada8k-pcie f2600000.pcie:       IO 0x00fb000000..0x00fb0eff</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:22,771</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ff -&#62 0x00fb000000
+Sep  3 22:56:17 localhost kernel: [    3.324131] armada8k-pcie f2600000.pcie:      MEM 0x00f6000000..0x00f7ffffff -&#62 0x00f6000000
+Sep  3 22:56:17 localhost kernel: [    3.332619] armada8k-pcie f2600000.pcie:      MEM 0x00f9000000..0x00f90fffff -&#62 0x00f9000000
+Sep  3 22:56:17 localhost kernel: [    3.341188] armada8k-pcie f2600000.pcie: Link up
+Sep  3 22:56:17 localhost kernel: [    3.345894] armada8k-pcie f2600000.pcie: PCI host bridge to bus 0000:00
+Sep  3 22:56:17 localhost kernel: [    3.352546] pci_bus 0000:00: root bus resource [bus 00-ff]
+Sep  3 22:56:17 localhost kernel: [    3.358062] pci_bus 0000:00: root bus resource [io  0x0000-0xeffff] (bus address [0xfb000000-0xfb0effff])
+Sep  3 22:56:17 localhost kernel: [    3.367677] pci_bus 0000:00: root bus resource [mem 0xf6000000-0xf7ffffff]
+Sep  3 22:56:17 localhost kernel: [    3.374585] pci_bus 0000:00: root bus resource [mem 0xf9000000-0xf90fffff]
+Sep  3 22:56:17 localhost kernel: [    3.381518] pci 0000:00:00.0: [11ab:0110] type 01 class 0x060400
+Sep  3 22:56:17 localhost kernel: [    3.387566] pci 0000:00:00.0: reg 0x10: [mem 0x00000000-0x000fffff]
+Sep  3 22:56:17 localhost kernel: [    3.393930] pci 0000:00:00.0: supports D1 D2
+Sep  3 22:56:17 localhost kernel: [    3.398224] pci 0000:00:00.0: PME# supported from D0 D1 D3hot
+Sep  3 22:56:17 localhost kernel: [    3.405230] pci 0000:01:00.0: [11ab:c80c] type 00 class 0x028000
+Sep  3 22:56:17 localhost kernel: [    3.411448] pci 0000:01:00.0: reg 0x10: [mem 0xf6000000-0xf60fffff 64bit pref]
+Sep  3 22:56:17 localhost kernel: [    3.418823] pci 0000:01:00.0: reg 0x18: [mem 0xffffffffff800000-0xffffffffffffffff 64bit pref]
+Sep  3 22:56:17 localhost kernel: [    3.427609] pci 0000:01:00.0: reg 0x20: [mem 0xf6400000-0xf67fffff 64bit pref]
+Sep  3 22:56:17 localhost kernel: [    3.435368] pci 0000:01:00.0: supports D1 D2
+Sep  3 22:56:17 localhost kernel: [    3.452408] pci 0000:00:00.0: BAR 15: assigned [mem 0xf6000000-0xf6dfffff pref]
+Sep  3 22:56:17 localhost kernel: [    3.459766] pci 0000:00:00.0: BAR 0: assigned [mem 0xf6e00000-0xf6efffff]
+Sep  3 22:56:17 localhost kernel: [    3.466596] pci 0000:01:00.0: BAR 2: assigned [mem 0xf6000000-0xf67fffff 64bit pref]
+Sep  3 22:56:17 localhost kernel: [    3.474452] pci 0000:01:00.0: BAR 4: assigned [mem 0xf6800000-0xf6bfffff 64bit pref]
+Sep  3 22:56:17 localhost kernel: [    3.482309] pci 0000:01:00.0: BAR 0: assigned [mem 0xf6c00000-0xf6cfffff 64bit pref]
+Sep  3 22:56:17 localhost kernel: [    3.490164] pci 0000:00:00.0: PCI bridge to [bus 01-ff]
+Sep  3 22:56:17 localhost kernel: [    3.495420] pci 0000:00:00.0:   bridge window [mem 0xf6000000-0xf6dfffff pref]
+Sep  3 22:56:17 localhost kernel: [    3.502685] pci 0000:00:00.0: Max Payload Size set to  128/ 512 (was  128), Max Read Rq  512
+Sep  3 22:56:17 localhost kernel: [    3.511216] pci 0000:01:00.0: Max Payload Size set to  128/ 128 (was  128), Max Read Rq  512
+Sep  3 22:56:17 localhost kernel: [    3.519893] pcieport 0000:00:00.0: PME: Signaling with IRQ 43
+Sep  3 22:56:17 localhost kernel: [    3.525829] pcieport 0000:00:00.0: AER: enabled with IRQ 43
+Sep  3 22:56:17 localhost kernel: [    3.532203] ahci f2540000.sata: supply ahci not found, using dummy regulator
+Sep  3 22:56:17 localhost kernel: [    3.539391] ahci f2540000.sata: supply phy not found, using dummy regulator
+Sep  3 22:56:17 localhost kernel: [    3.546468] platform f2540000.sata:sata-port@0: supply target not found, using dummy regulator
+Sep  3 22:56:17 localhost kernel: [    3.555196] platform f2540000.sata:sata-port@1: supply target not found, using dummy regulator
+Sep  3 22:56:17 localhost kernel: [    3.565056] ahci f2540000.sata: masking port_map 0x3 -&#62 0x3
+Sep  3 22:56:17 localhost kernel: [    3.570706] ahci f2540000.sata: AHCI 0001.0000 32 slots 2 ports 6 Gbps 0x3 impl platform mode
+Sep  3 22:56:17 localhost kernel: [    3.579282] ahci f2540000.sata: flags: 64bit ncq sntf led only pmp fbs pio slum part sxs 
+Sep  3 22:56:17 localhost kernel: [    3.588250] scsi host0: ahci
+Sep  3 22:56:17</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:22,772</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  localhost kernel: [    3.591413] scsi host1: ahci
+Sep  3 22:56:17 localhost kernel: [    3.594423] ata1: SATA max UDMA/133 mmio [mem 0xf2540000-0xf256ffff] port 0x100 irq 44
+Sep  3 22:56:17 localhost kernel: [    3.602386] ata2: SATA max UDMA/133 mmio [mem 0xf2540000-0xf256ffff] port 0x180 irq 44
+Sep  3 22:56:17 localhost kernel: [    3.611152] libphy: SFP I2C Bus: probed
+Sep  3 22:56:17 localhost kernel: [    3.616067] libphy: SFP I2C Bus: probed
+Sep  3 22:56:17 localhost kernel: [    3.620862] libphy: SFP I2C Bus: probed
+Sep  3 22:56:17 localhost kernel: [    3.625646] libphy: SFP I2C Bus: probed
+Sep  3 22:56:17 localhost kernel: [    3.630920] mvpp2 f2000000.ethernet: using 8 per-cpu buffers
+Sep  3 22:56:17 localhost kernel: [    3.653335] mvpp2 f2000000.ethernet eth0: Using firmware node mac address 34:ef:b6:85:42:02
+Sep  3 22:56:17 localhost kernel: [    3.676366] libphy: SFP I2C Bus: probed
+Sep  3 22:56:17 localhost kernel: [    3.681218] libphy: SFP I2C Bus: probed
+Sep  3 22:56:17 localhost kernel: [    3.686032] libphy: SFP I2C Bus: probed
+Sep  3 22:56:17 localhost kernel: [    3.690828] libphy: SFP I2C Bus: probed
+Sep  3 22:56:17 localhost kernel: [    3.695653] libphy: SFP I2C Bus: probed
+Sep  3 22:56:17 localhost kernel: [    3.700439] libphy: SFP I2C Bus: probed
+Sep  3 22:56:17 localhost kernel: [    3.705213] libphy: SFP I2C Bus: probed
+Sep  3 22:56:17 localhost kernel: [    3.709996] libphy: SFP I2C Bus: probed
+Sep  3 22:56:17 localhost kernel: [    3.921784] ata2: SATA link down (SStatus 0 SControl 300)
+Sep  3 22:56:17 localhost kernel: [    4.087565] ata1: SATA link up 6.0 Gbps (SStatus 133 SControl 300)
+Sep  3 22:56:17 localhost kernel: [    4.093889] ata1.00: ATA-10: KINGSTON RBUSNS4180S332GJ, SBFK61U1, max UDMA/133
+Sep  3 22:56:17 localhost kernel: [    4.101153] ata1.00: 62533296 sectors, multi 1: LBA48 NCQ (depth 32)
+Sep  3 22:56:17 localhost kernel: [    4.107725] ata1.00: configured for UDMA/133
+Sep  3 22:56:17 localhost kernel: [    4.112239] scsi 0:0:0:0: Direct-Access     ATA      KINGSTON RBUSNS4 61U1 PQ: 0 ANSI: 5
+Sep  3 22:56:17 localhost kernel: [    4.120898] sd 0:0:0:0: [sda] 62533296 512-byte logical blocks: (32.0 GB/29.8 GiB)
+Sep  3 22:56:17 localhost kernel: [    4.128535] sd 0:0:0:0: [sda] Write Protect is off
+Sep  3 22:56:17 localhost kernel: [    4.133395] sd 0:0:0:0: [sda] Write cache: enabled, read cache: enabled, doesn't support DPO or FUA
+Sep  3 22:56:17 localhost kernel: [    4.143090]  sda: sda1 sda2 sda3 sda4
+Sep  3 22:56:17 localhost kernel: [    4.147663] sd 0:0:0:0: [sda] Attached SCSI removable disk
+Sep  3 22:56:17 localhost kernel: [    4.153959] libphy: SFP I2C Bus: probed
+Sep  3 22:56:17 localhost kernel: [    4.159500] libphy: SFP I2C Bus: probed
+Sep  3 22:56:17 localhost kernel: [    4.164468] mvpp2 f2000000.ethernet eth0: PHY [f212a200.mdio-mii:00] driver [Marvell 88E1510] (irq=POLL)
+Sep  3 22:56:17 localhost kernel: [    4.174018] libphy: SFP I2C Bus: probed
+Sep  3 22:56:17 localhost kernel: [    4.178827] libphy: SFP I2C Bus: probed
+Sep  3 22:56:17 localhost kernel: [    4.179032] mvpp2 f2000000.ethernet eth0: configuring for phy/sgmii link mode
+Sep  3 22:56:17 localhost kernel: [    9.307970] mvpp2 f2000000.ethernet eth0: Link is Up - 1Gbps/Full - flow control off
+Sep  3 22:56:17 localhost kernel: [    9.315792] IPv6: ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
+Sep  3 22:56:17 localhost kernel: [    9.339555] IP-Config: Complete:
+Sep  3 22:56:17 localhost kernel: [    9.342801]      device=eth0, hwaddr=34:ef:b6:85:42:02, ipaddr=10.5.236.85, mask=255.255.255.128, gw=10.5.236.1
+Sep  3 22:56:17 localhost kernel: [    9.352941]      host=marvell, domain=, nis-domain=(none)
+Sep  3 22:56:17 localhost kernel: [    9.358368]      bootserver=10.5.116.4, rootserver=10.5.116.4, rootpath=
+Sep  3 22:56:17 localhost kernel: [    9.358574] ALSA device list:
+Sep  3 22:56:17 localhost kernel: [    9.368304]   No soundcards found.
+Sep  3 22:56:17 localhost kernel: [    9.378982] Freeing unused kernel memory: 9536K
+Sep  3 22:56:17 lo</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:22,774</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: calhost kernel: [    9.383704] Run /init as init process
+Sep  3 22:56:17 localhost kernel: [   14.831747] EXT4-fs (sda3): mounted filesystem with ordered data mode. Opts: (null)
+Sep  3 22:56:17 localhost kernel: [   14.849073] EXT4-fs (sda4): mounted filesystem with ordered data mode. Opts: (null)
+Sep  3 22:56:17 localhost kernel: [   14.864367] EXT4-fs (sda1): mounted filesystem without journal. Opts: (null)
+Sep  3 22:56:17 localhost kernel: [   14.871488] ext4 filesystem being mounted at /mnt/onl/boot supports timestamps until 2038 (0x7fffffff)
+Sep  3 22:56:17 localhost kernel: [   14.888171] EXT4-fs (sda2): mounted filesystem with ordered data mode. Opts: (null)
+Sep  3 22:56:17 localhost kernel: [   22.006228] EXT4-fs (sda4): re-mounted. Opts: (null)
+Sep  3 22:56:17 localhost kernel: [   27.854487] EXT4-fs (sda3): mounted filesystem with ordered data mode. Opts: (null)
+Sep  3 22:56:17 localhost kernel: [   27.895943] EXT4-fs (sda2): mounted filesystem with ordered data mode. Opts: (null)
+Sep  3 22:56:17 localhost kernel: [   28.433696] optoe: loading out-of-tree module taints kernel.
+Sep  3 22:56:17 localhost kernel: [   28.462363] libphy: SFP I2C Bus: probed
+Sep  3 22:56:17 localhost kernel: [   28.465399] i2c i2c-0: new_device: Instantiated device as4224_cpld1 at 0x40
+Sep  3 22:56:17 localhost kernel: [   28.473383] sfp sfp-49: Host maximum power 2.0W
+Sep  3 22:56:17 localhost kernel: [   28.473509] lm75 1-0048: supply vs not found, using dummy regulator
+Sep  3 22:56:17 localhost kernel: [   28.484277] libphy: SFP I2C Bus: probed
+Sep  3 22:56:17 localhost kernel: [   28.484835] lm75 1-0048: hwmon1: sensor 'lm75'
+Sep  3 22:56:17 localhost kernel: [   28.492640] i2c i2c-1: new_device: Instantiated device lm75 at 0x48
+Sep  3 22:56:17 localhost kernel: [   28.499066] sfp sfp-50: Host maximum power 2.0W
+Sep  3 22:56:17 localhost kernel: [   28.499287] lm75 1-0049: supply vs not found, using dummy regulator
+Sep  3 22:56:17 localhost kernel: [   28.509943] libphy: SFP I2C Bus: probed
+Sep  3 22:56:17 localhost kernel: [   28.510500] lm75 1-0049: hwmon2: sensor 'lm75'
+Sep  3 22:56:17 localhost kernel: [   28.518313] i2c i2c-1: new_device: Instantiated device lm75 at 0x49
+Sep  3 22:56:17 localhost kernel: [   28.518623] lm75 1-004b: supply vs not found, using dummy regulator
+Sep  3 22:56:17 localhost kernel: [   28.531022] sfp sfp-51: Host maximum power 2.0W
+Sep  3 22:56:17 localhost kernel: [   28.531470] lm75 1-004b: hwmon3: sensor 'lm75'
+Sep  3 22:56:17 localhost kernel: [   28.540069] i2c i2c-1: new_device: Instantiated device lm75 at 0x4b
+Sep  3 22:56:17 localhost kernel: [   28.546591] lm75 1-004c: supply vs not found, using dummy regulator
+Sep  3 22:56:17 localhost kernel: [   28.553452] lm75 1-004c: hwmon4: sensor 'lm75'
+Sep  3 22:56:17 localhost kernel: [   28.557943] i2c i2c-1: new_device: Instantiated device lm75 at 0x4c
+Sep  3 22:56:17 localhost kernel: [   28.564581] optoe 3-0050: 33152 byte optoe2 EEPROM, read/write
+Sep  3 22:56:17 localhost kernel: [   28.570467] i2c i2c-3: new_device: Instantiated device optoe2 at 0x50
+Sep  3 22:56:17 localhost kernel: [   28.583727] optoe 4-0050: 33152 byte optoe2 EEPROM, read/write
+Sep  3 22:56:17 localhost kernel: [   28.589627] i2c i2c-4: new_device: Instantiated device optoe2 at 0x50
+Sep  3 22:56:17 localhost kernel: [   28.598140] libphy: SFP I2C Bus: probed
+Sep  3 22:56:17 localhost kernel: [   28.602187] sfp sfp-52: Host maximum power 2.0W
+Sep  3 22:56:17 localhost kernel: [   28.602895] optoe 5-0050: 33152 byte optoe2 EEPROM, read/write
+Sep  3 22:56:17 localhost kernel: [   28.612644] i2c i2c-5: new_device: Instantiated device optoe2 at 0x50
+Sep  3 22:56:17 localhost kernel: [   28.625861] optoe 6-0050: 33152 byte optoe2 EEPROM, read/write
+Sep  3 22:56:17 localhost kernel: [   28.631775] i2c i2c-6: new_device: Instantiated device optoe2 at 0x50
+Sep  3 22:56:17 localhost kernel: [   28.666938] as4224_fan as4224_fan: device created
+Sep  3 22:56:17 localhost kernel: [   28.726081] as4224_psu as4224_psu: device created
+Sep  3 22:56</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:22,775</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: :17 localhost kernel: [   28.769234] Loading Marvell Prestera Switch Driver
+Sep  3 22:56:17 localhost kernel: [   28.815349] AC3x B2B 98DX3265 0000:01:00.0: FW version '3.0.0'
+Sep  3 22:56:17 localhost kernel: [   28.821237] AC3x B2B 98DX3265 0000:01:00.0: Driver version '3.0.0'
+Sep  3 22:56:17 localhost kernel: [   28.827453] AC3x B2B 98DX3265 0000:01:00.0: Loading prestera FW image ...
+Sep  3 22:56:17 localhost kernel: [   28.937633] sfp sfp-51: module FINISAR CORP.    FTLX8574D3BCL    rev A    sn A06C0LX          dc 180812  
+Sep  3 22:56:17 localhost kernel: [   29.069618] sfp sfp-52: module CISCO-SUMITOMO   SPP5200LR-C6     rev B    sn SPC17030FWB      dc 1301192Q
+Sep  3 22:56:17 localhost kernel: [   32.311256] AC3x B2B 98DX3265 0000:01:00.0: Prestera Switch FW is ready
+Sep  3 22:56:17 localhost kernel: [   39.795143] AC3x B2B 98DX3265 0000:01:00.0: Initialized Switch device
+Sep  3 22:56:17 localhost kernel: [   43.661628] AC3x B2B 98DX3265 0000:01:00.0 eth51: switched to inband/10gbase-r link mode
+Sep  3 22:56:17 localhost kernel: [   43.669791] AC3x B2B 98DX3265 0000:01:00.0 eth52: switched to inband/10gbase-r link mode
+Sep  3 22:56:17 localhost kernel: [   43.703516] prestera_pci: Registered Marvell Prestera PCI driver
+Sep  3 22:56:17 localhost kernel: [   53.445848] u32 classifier
+Sep  3 22:56:17 localhost kernel: [   53.449868]     Performance counters on
+Sep  3 22:56:17 localhost kernel: [   53.455128]     input device check on
+Sep  3 22:56:17 localhost kernel: [   53.460197]     Actions configured
+Sep  3 22:56:17 localhost kernel: [   53.470016] GACT probability on
+Sep  3 22:56:17 localhost kernel: [   54.313626] AC3x B2B 98DX3265 0000:01:00.0 sw1p14: renamed from eth14
+Sep  3 22:56:17 localhost kernel: [   54.356463] AC3x B2B 98DX3265 0000:01:00.0 sw1p11: renamed from eth11
+Sep  3 22:56:17 localhost kernel: [   54.394521] AC3x B2B 98DX3265 0000:01:00.0 sw1p15: renamed from eth15
+Sep  3 22:56:17 localhost kernel: [   54.420930] AC3x B2B 98DX3265 0000:01:00.0 sw1p21: renamed from eth21
+Sep  3 22:56:17 localhost kernel: [   54.448417] AC3x B2B 98DX3265 0000:01:00.0 sw1p22: renamed from eth22
+Sep  3 22:56:18 localhost kernel: [   54.472862] AC3x B2B 98DX3265 0000:01:00.0 sw1p17: renamed from eth17
+Sep  3 22:56:18 localhost kernel: [   54.516910] AC3x B2B 98DX3265 0000:01:00.0 sw1p19: renamed from eth19
+Sep  3 22:56:18 localhost kernel: [   54.552966] AC3x B2B 98DX3265 0000:01:00.0 sw1p20: renamed from eth20
+Sep  3 22:56:18 localhost kernel: [   54.584570] AC3x B2B 98DX3265 0000:01:00.0 sw1p12: renamed from eth12
+Sep  3 22:56:18 localhost kernel: [   54.608580] AC3x B2B 98DX3265 0000:01:00.0 sw1p10: renamed from eth10
+Sep  3 22:56:18 localhost kernel: [   54.648010] AC3x B2B 98DX3265 0000:01:00.0 sw1p13: renamed from eth13
+Sep  3 22:56:18 localhost kernel: [   54.680522] AC3x B2B 98DX3265 0000:01:00.0 sw1p1: renamed from eth1
+Sep  3 22:56:18 localhost kernel: [   54.712298] AC3x B2B 98DX3265 0000:01:00.0 sw1p16: renamed from eth16
+Sep  3 22:56:18 localhost kernel: [   54.740282] AC3x B2B 98DX3265 0000:01:00.0 sw1p26: renamed from eth26
+Sep  3 22:56:18 localhost kernel: [   54.776206] AC3x B2B 98DX3265 0000:01:00.0 sw1p18: renamed from eth18
+Sep  3 22:56:18 localhost kernel: [   54.825943] AC3x B2B 98DX3265 0000:01:00.0 sw1p29: renamed from eth29
+Sep  3 22:56:18 localhost kernel: [   54.869000] AC3x B2B 98DX3265 0000:01:00.0 sw1p2: renamed from eth2
+Sep  3 22:56:18 localhost kernel: [   54.909018] AC3x B2B 98DX3265 0000:01:00.0 sw1p24: renamed from eth24
+Sep  3 22:56:18 localhost kernel: [   54.933848] AC3x B2B 98DX3265 0000:01:00.0 sw1p25: renamed from eth25
+Sep  3 22:56:18 localhost kernel: [   54.964847] AC3x B2B 98DX3265 0000:01:00.0 sw1p32: renamed from eth32
+Sep  3 22:56:18 localhost kernel: [   54.987863] AC3x B2B 98DX3265 0000:01:00.0 sw1p23: renamed from eth23
+Sep  3 22:56:18 localhost kernel: [   55.016144] AC3x B2B 98DX3265 0000:01:00.0 sw1p35: renamed from eth35
+Sep  3 22:56:18 localhost kernel: [   55.051901] AC3x B2B 98DX3265 0000:01:00.0 sw1p3: renamed from eth3</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:22,875</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 
+Sep  3 22:56:18 localhost kernel: [   55.088533] AC3x B2B 98DX3265 0000:01:00.0 sw1p28: renamed from eth28
+Sep  3 22:56:18 localhost kernel: [   55.131805] AC3x B2B 98DX3265 0000:01:00.0 sw1p27: renamed from eth27
+Sep  3 22:56:18 localhost kernel: [   55.164139] AC3x B2B 98DX3265 0000:01:00.0 sw1p33: renamed from eth33
+Sep  3 22:56:18 localhost kernel: [   55.187829] AC3x B2B 98DX3265 0000:01:00.0 sw1p30: renamed from eth30
+Sep  3 22:56:18 localhost kernel: [   55.208137] AC3x B2B 98DX3265 0000:01:00.0 sw1p36: renamed from eth36
+Sep  3 22:56:18 localhost kernel: [   55.240130] AC3x B2B 98DX3265 0000:01:00.0 sw1p37: renamed from eth37
+Sep  3 22:56:18 localhost kernel: [   55.268265] AC3x B2B 98DX3265 0000:01:00.0 sw1p43: renamed from eth43
+Sep  3 22:56:18 localhost kernel: [   55.300200] AC3x B2B 98DX3265 0000:01:00.0 sw1p42: renamed from eth42
+Sep  3 22:56:18 localhost kernel: [   55.328261] AC3x B2B 98DX3265 0000:01:00.0 sw1p44: renamed from eth44
+Sep  3 22:56:18 localhost kernel: [   55.355858] AC3x B2B 98DX3265 0000:01:00.0 sw1p39: renamed from eth39
+Sep  3 22:56:18 localhost kernel: [   55.379843] AC3x B2B 98DX3265 0000:01:00.0 sw1p4: renamed from eth4
+Sep  3 22:56:18 localhost kernel: [   55.415861] AC3x B2B 98DX3265 0000:01:00.0 sw1p40: renamed from eth40
+Sep  3 22:56:18 localhost kernel: [   55.448126] AC3x B2B 98DX3265 0000:01:00.0 sw1p31: renamed from eth31
+Sep  3 22:56:19 localhost kernel: [   55.476136] AC3x B2B 98DX3265 0000:01:00.0 sw1p38: renamed from eth38
+Sep  3 22:56:19 localhost kernel: [   55.503861] AC3x B2B 98DX3265 0000:01:00.0 sw1p41: renamed from eth41
+Sep  3 22:56:19 localhost kernel: [   55.528234] AC3x B2B 98DX3265 0000:01:00.0 sw1p48: renamed from eth48
+Sep  3 22:56:19 localhost kernel: [   55.567879] AC3x B2B 98DX3265 0000:01:00.0 sw1p45: renamed from eth45
+Sep  3 22:56:19 localhost kernel: [   55.600236] AC3x B2B 98DX3265 0000:01:00.0 sw1p50: renamed from eth50
+Sep  3 22:56:19 localhost kernel: [   55.632857] AC3x B2B 98DX3265 0000:01:00.0 sw1p46: renamed from eth46
+Sep  3 22:56:19 localhost kernel: [   55.660294] AC3x B2B 98DX3265 0000:01:00.0 sw1p7: renamed from eth7
+Sep  3 22:56:19 localhost kernel: [   55.705428] AC3x B2B 98DX3265 0000:01:00.0 sw1p6: renamed from eth6
+Sep  3 22:56:19 localhost kernel: [   55.752578] AC3x B2B 98DX3265 0000:01:00.0 sw1p34: renamed from eth34
+Sep  3 22:56:19 localhost kernel: [   55.792285] AC3x B2B 98DX3265 0000:01:00.0 sw1p8: renamed from eth8
+Sep  3 22:56:19 localhost kernel: [   55.824488] AC3x B2B 98DX3265 0000:01:00.0 sw1p5: renamed from eth5
+Sep  3 22:56:19 localhost kernel: [   55.863844] AC3x B2B 98DX3265 0000:01:00.0 sw1p47: renamed from eth47
+Sep  3 22:56:19 localhost kernel: [   55.899882] AC3x B2B 98DX3265 0000:01:00.0 sw1p51: renamed from eth51
+Sep  3 22:56:19 localhost kernel: [   55.924482] AC3x B2B 98DX3265 0000:01:00.0 sw1p52: renamed from eth52
+Sep  3 22:56:19 localhost kernel: [   55.959991] AC3x B2B 98DX3265 0000:01:00.0 sw1p9: renamed from eth9
+Sep  3 22:56:19 localhost kernel: [   55.983882] AC3x B2B 98DX3265 0000:01:00.0 sw1p49: renamed from eth49
+Sep  3 22:56:20 localhost kernel: [   57.170073] process '/sbin/netplugd' started with executable stack
+Sep  3 22:56:24 localhost kernel: [   60.516897] IPv6: ADDRCONF(NETDEV_CHANGE): sw1p1: link becomes ready
+Sep  3 22:56:24 localhost kernel: [   61.183410] IPv6: ADDRCONF(NETDEV_CHANGE): sw1p23: link becomes ready
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:22,882</td>
+<td>DEBUG</td>
+<td><pre>dmesg lines that matched regex for issues:</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:22,882</td>
+<td>DEBUG</td>
+<td><pre>{
+    "call trace:": {
+        found: false,
+        regex: "Call trace:",
+    },
+    "cut here": {
+        found: false,
+        regex: "\\[ cut here \\]",
+    },
+    "hw routing offloading disabled:": {
+        found: false,
+        regex: "Abort. HW routing offloading disabled",
+    },
+}</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:24,370</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Cleanup:  clearing ports ownership...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:24,793</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Cleanup:  Disconnecting from chassis...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:59:24,815</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Cleanup:  TG disconnect time is 0.02</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 22:59:24,816</td>
+<td>INFO</td>
+<td><pre>Test Passed</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 22:59:24,822</td>
+<td>INFO</td>
+<td><pre>
+CI_META:
+{"Software_Version": "2.0.0-v3.0.0-rc4", "Linux_Version": ""}
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                                  Dut Information                                                                   |
++--------+-------------+------+------------------+--------------------------------+---------------+---------------+---------------------+------------+
+| ODM    | Board_Model | ASIC | Software_Version | UBOOT_Version                  | Linux_Version | CPU_CoreClock | Host_kernel_version | PCBVersion |
++--------+-------------+------+------------------+--------------------------------+---------------+---------------+---------------------+------------+
+| Accton | AS4224-52T  | AC3X | 2.0.0-v3.0.0-rc4 | U-Boot 2019.10-10.0.0-g9518192 |               |               | 5.10.4              | R0A        |
++--------+-------------+------+------------------+--------------------------------+---------------+---------------+---------------------+------------+
+
+None
+
++---------------------------------------+
+|              PDU Settings             |
++----------------+-------------+--------+
+| Connect_To_PDU | ip_address  | outlet |
++----------------+-------------+--------+
+| True           | 10.5.236.19 | 11     |
++----------------+-------------+--------+
+
+None
++--------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                             Test Steps Summary                                                             |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| Step | Description                                                                                          | Result | Run Time            |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 1    | Prepare ifupdown2 environment config (/etc/network/ifupdown2/ifupdown2.conf)                         | Passed | 0.0                 |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 2    | Create IPv4 addresses on 2 Ixia ports and set an ECMP route for some random network to exit via the  | Passed | 0.20415973663330078 |
+|      | RIFs' neighbors                                                                                      |        |                     |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 3    | Verify (ifquery) no errors in configuration file                                                     | Passed | 0.7074525356292725  |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 4    | Apply (ifreload) ifupdown configuration                                                              | Passed | 2.0207929611206055  |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 5    | Check (ifquery --check) running vs actual configuration                                              | Passed | 0.8087189197540283  |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 6    | Verify ip addr exists for each RIF and route is offloaded                                            | Passed | 0.8085336685180664  |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 7    | Verify ECMP route exist and offloaded                                                                | Passed | 0.20270013809204102 |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 8    | Send bi-directional routed traffic                                                                   | Passed | 110.46949934959412  |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 9    | Verify all traffic is forwarded to each host without packet loss                                     | Passed | 1.3081767559051514  |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 10   | Transmit traffic matching the EMCP route with INC DIP                                                | Passed | 60.83921504020691   |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 11   | Verify traffic is sent to the 2 Ixia hosts and the sum of the received rate is as the sent rate      | Passed | 5.879032373428345   |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 12   | Reboot DUT                                                                                           | Passed | 113.79596018791199  |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 13   | Check (ifquery --check) running vs actual configuration                                              | Passed | 0.8057565689086914  |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 14   | Verify ip addr exists for each RIF and route is offloaded                                            | Passed | 0.8106799125671387  |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 15   | Verify ECMP route exist and offloaded                                                                | Passed | 0.20267915725708008 |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 16   | Transmit traffic matching the EMCP route with INC DIP                                                | Passed | 6.8709423542022705  |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 17   | Verify traffic is sent to the 2 Ixia hosts and the sum of the received rate is as the sent rate      | Passed | 6.257192373275757   |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 18   | Send bi-directional routed traffic                                                                   | Passed | 120.74486875534058  |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 19   | Verify all traffic is forwarded to each host without packet loss                                     | Passed | 1.332883596420288   |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 20   | Roll back ifupdown configuration to default                                                          | Passed | 0.6062698364257812  |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 21   | Apply (ifreload) ifupdown configuration                                                              | Passed | 0.8067440986633301  |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 22   | Verify RIFs were deleted                                                                             | Passed | 0.8057136535644531  |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
++--------------------------------------------------------------------------------------------------------------------------+
+|                                                     Test Information                                                     |
++------------+-----------------------------------------------+--------+-----------------+-----------------+----------------+
+| Suite_Name | Test_Name                                     | Result | start_time      | end_time        | run_time       |
++------------+-----------------------------------------------+--------+-----------------+-----------------+----------------+
+| ifupdown2  | Ifupdown2_Ipv4_Ecmp_BiDirectionalTrafficBasic | Passed | 22:51:47.595553 | 22:59:24.815997 | 0:07:37.220444 |
++------------+-----------------------------------------------+--------+-----------------+-----------------+----------------+</pre></td>
+</tr>
+
+</tbody></table></div>
+</body>
+<script>
+    $.fn.dataTable.ext.search.push(
+        function( settings, data, dataIndex ) {
+            let minIndex = severities.indexOf($('#min-severity').find(':selected').text());
+            let maxIndex = severities.indexOf($('#max-severity').find(':selected').text());
+            var severity = data[1] || 'NOT SET';// use data for the Log Level column
+            var severityIndex = severities.indexOf(severity);
+            if ( ( maxIndex == -1 && minIndex == -1 ) ||
+                 ( minIndex <= severityIndex && severityIndex <= maxIndex ) )
+            {
+                return true;
+            }
+            return false;
+        }
+    );
+    
+    function fill_select(id, items){
+        for(t of items){
+            $('#'+id).append(new Option(t, t));
+        }
+    }
+    
+    function selectionChanged(selectChanged, selectAffected, selectedOption, startFrom, end){
+        let selected = $('#'+selectAffected).find(':selected').text(); //keep affected value
+        $('#'+selectAffected).empty(); //empty the affected one
+
+        fill_select(selectAffected, severities.slice(startFrom, end));
+        selected = $('#'+selectAffected).find("option:contains('" + selected  + "')").length > 0 ? selected : $("#"+selectAffected+" option:first").val();
+        $('#'+selectAffected).val(selected);
+    }
+    
+    var severities = ['NOT SET','TRACE','DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL']
+    $(document).ready(function() {
+        for(severity of severities){
+            $('#min-severity, #max-severity').append(new Option(severity, severity));
+        }
+        
+        $('#max-severity option:last').attr('selected', 'selected');
+        
+        var table = $('#data_table').DataTable({
+            "lengthMenu": [[-1, 10, 25, 50], ["All", 10, 25, 50]]
+        });
+        
+        $('#min-severity, #max-severity').change( function(e) {
+            if(e.target.id == 'min-severity'){
+                selectionChanged(e.target.id, 'max-severity', e.target.selectedOptions[0].text, severities.indexOf(e.target.selectedOptions[0].text), severities.length+1);
+            }
+            else if(e.target.id == 'max-severity'){
+                selectionChanged(e.target.id, 'min-severity',e.target.selectedOptions[0].text, 0 ,severities.indexOf(e.target.selectedOptions[0].text) + 1);
+            }
+            table.draw();
+        } );
+    } );
+    
+    
+</script>
+</html>
