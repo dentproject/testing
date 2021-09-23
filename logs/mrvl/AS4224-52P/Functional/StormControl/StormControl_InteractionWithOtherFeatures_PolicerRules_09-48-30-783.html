@@ -1,0 +1,1900 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>StormControl_InteractionWithOtherFeatures_PolicerRules_09-48-30-783658 Log</title>
+<!-- Latest compiled and minified CSS -->
+<!--
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs-3.3.7/jq-3.2.1/jq-3.2.1/dt-1.10.16/datatables.min.css"/>
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.7/jq-3.2.1/jq-3.2.1/dt-1.10.16/datatables.min.js"></script>
+-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+  
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+<style>
+pre {
+margin : 0;
+white-space: pre-wrap;
+background-color: inherit;
+border: none;
+border-radius: inherit;
+}
+</style>
+</head>
+
+<body>
+<div class="col-md-12 col-xs-12 col-lg-12">
+<br>
+<h1 style="text-align:center">StormControl_InteractionWithOtherFeatures_PolicerRules_09-48-30-783658 Log</h1>
+<br>
+<div class="input-group">
+    <select class="form-control" id="min-severity" placeholder="Min Severity">
+    </select>
+    <span class="input-group-addon">-</span>
+    <select class="form-control" id="max-severity" placeholder="Max Severity">
+    </select>
+</div>
+&nbsp
+<table id="data_table" class="table table-striped table-bordered" cellspacing="0">
+<thead>
+    <tr>
+        <th style="width: 180px;">Time</th>
+        <th style="width: 90px;">Log Level</th>
+        <th>Message</th>
+    </tr>
+</thead>
+<tbody>
+
+<tr class="success">
+<td>2021-10-08 09:48:30,784</td>
+<td>TRACE</td>
+<td><pre>BaseTest_SD::_BasicTestInit: this test has been launched with the following input arguments:
+Namespace(conn_table=None, dummy_test=False, excel_path='/swdev/fileril103/testing/Projects/Automation/Python/Setups/AGO/CI/Setup_23.xlsx', excel_setups_db_path=None, seed=None, setup_info=None, setup_name=None, stress=None, test_args=None)</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:30,784</td>
+<td>TRACE</td>
+<td><pre>BaseTest_SD::_BasicTestInit: this test is running from the following Setup Excel file /swdev/fileril103/testing/Projects/Automation/Python/Setups/AGO/CI/Setup_23.xlsx</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:30,786</td>
+<td>TRACE</td>
+<td><pre>
++-------------------------------------------------------+
+|                    TG Mapping Table                   |
++----+------------+------------+------+------+----------+
+| ID | IP Address |  TG Type   | Card | Port | Dut Port |
++----+------------+------------+------+------+----------+
+| 1  | 10.5.236.4 | ixia_linux |  11  |  5   |  sw1p1   |
+| 2  | 10.5.236.4 | ixia_linux |  11  |  6   |  sw1p23  |
+| 3  | 10.5.236.4 | ixia_linux |  11  |  7   |  sw1p35  |
+| 4  | 10.5.236.4 | ixia_linux |  11  |  8   |  sw1p48  |
++----+------------+------------+------+------+----------+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:30,786</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: connecting to IxiaSSH on IP 10.5.236.4 using TCL/API Server IP 10.5.236.4</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:39,664</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect:  Connection Successful</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:40,045</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:42,302</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:44,309</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:46,376</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:48:49,468</td>
+<td>INFO</td>
+<td><pre>Used cached DutInfo: dutmainchannel__/swdev/fileril103/testing/Projects/Automation/Python/Setups/AGO/CI/Setup_23.xlsx__1632647710.5673652</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:49,470</td>
+<td>TRACE</td>
+<td><pre>SwitchDevDutManager::login: Connecting to 10.5.236.85:root:22 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:49,584</td>
+<td>TRACE</td>
+<td><pre>SwitchDevDutManager::login: Connection Successful</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:49,584</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "
+
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:49,686</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: Linux localhost 5.10.4 #1 SMP PREEMPT Fri Sep 10 16:54:31 UTC 2021 aarch64
+Last login: Fri Oct  8 09:46:44 2021 from 10.5.116.193
+
+
+root@localhost:~# 
+root@localhost:~# 
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:50,687</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "
+
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:50,787</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 
+root@localhost:~# 
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:50,815</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_clear_dmesg: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:50,915</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  echo "" &#62 /var/log/messages
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:51,016</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   echo "" &#62 /var/log/messages
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:51,016</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_clear_cmd_history: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:51,117</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  history -c
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:51,217</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   history -c
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:51,218</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::stressCpus: </pre></td>
+</tr>
+
+
+<tr>
+<td width="100"></td>
+<td width="100"></td>
+<td class="info"><pre>+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                                                      Test Description                                                                                      |
++--------------+--------------------------------------------------------+------------------------------------------------------------------------+-----------------+-------------------------+
+| Suite Name   | Test Name                                              | Purpose                                                                | Author          | Test Document Reference |
++--------------+--------------------------------------------------------+------------------------------------------------------------------------+-----------------+-------------------------+
+| StormControl | StormControl_InteractionWithOtherFeatures_PolicerRules | This test comes to verify:                                             | Nitzan Horovitz |                         |
+|              |                                                        |             * Policer rules (dynamic + data path) takes place over     |                 |                         |
+|              |                                                        | Storm Control rules.                                                   |                 |                         |
+|              |                                                        |                                                                        |                 |                         |
++--------------+--------------------------------------------------------+------------------------------------------------------------------------+-----------------+-------------------------+
+
++-------------------------------------------------------------------------------+
+|                                 Test Procedure                                |
++------+------------------------------------------------------------------------+
+| Step | Step Description                                                       |
++------+------------------------------------------------------------------------+
+| 1    | Init test                                                              |
++------+------------------------------------------------------------------------+
+| 2    | Set link up on interfaces                                              |
++------+------------------------------------------------------------------------+
+| 3    | Set storm control rate limit for all types of traffic on all ports     |
++------+------------------------------------------------------------------------+
+| 4    | Create an ingress qdisc on each tx port and define dynamic policer     |
+|      | trap rule for each qdisc                                               |
++------+------------------------------------------------------------------------+
+| 5    | Set up streams                                                         |
++------+------------------------------------------------------------------------+
+| 6    | Transmit continues traffic from all ports simultaneously               |
++------+------------------------------------------------------------------------+
+| 7    | Verify CPU trapped packet rate is according to policer trap rules      |
+|      | (Storm Control has no effect)                                          |
++------+------------------------------------------------------------------------+
+| 8    | Delete the rule from all ports' qdisc                                  |
++------+------------------------------------------------------------------------+
+| 9    | Create a bridge entity and set link up on it. Enslave all participant  |
+|      | ports to the bridge                                                    |
++------+------------------------------------------------------------------------+
+| 10   | Define police pass rule for each qdisc, matches the selectors          |
++------+------------------------------------------------------------------------+
+| 11   | Transmit continues traffic from all ports simultaneously               |
++------+------------------------------------------------------------------------+
+| 12   | Verify RX rate on ports is according to policer dp limit rules (Storm  |
+|      | Control has no effect)                                                 |
++------+------------------------------------------------------------------------+</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:48:51,224</td>
+<td>INFO</td>
+<td><pre>Randomize::__init__: Random seed value is 0.6324117607111368</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:48:51,224</td>
+<td>INFO</td>
+<td><pre>Randomize::__init__: Random seed value is 0.8132198852202607</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:48:51,224</td>
+<td>INFO</td>
+<td><pre>Randomize::__init__: Random seed value is 0.7713728272541944</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:48:51,225</td>
+<td>INFO</td>
+<td><pre>Executing step 1: Init test</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:51,226</td>
+<td>DEBUG</td>
+<td><pre>StormControlAPI::initTestParams: Initiate all relevant test parameters</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:48:58,032</td>
+<td>INFO</td>
+<td><pre>Executing step 2: Set link up on interfaces</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:58,032</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::setLinkStateOnInterfaces: set link up on ports</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:58,133</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p1 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:58,234</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p1 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:58,336</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p23 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:58,437</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p23 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:58,538</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p35 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:58,639</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p35 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:58,740</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p48 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:58,842</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p48 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:48:58,842</td>
+<td>INFO</td>
+<td><pre>Executing step 3: Set storm control rate limit for all types of traffic on all ports</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:58,843</td>
+<td>DEBUG</td>
+<td><pre>configureStormControlRateLimit Configure Storm Control rate limit 109467 kbps for unicast traffic type</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:58,944</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param set pci/0000:01:00.0/1 name unk_uc_kbyte_per_sec_rate value 109467 cmode runtime
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:59,045</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param set pci/0000:01:00.0/1 name unk_uc_kbyte_per_sec_rate value 109467 cmode runtime
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:59,046</td>
+<td>DEBUG</td>
+<td><pre>StormControlAPI::verifyRateOnPort: Verify Storm Control rate configured is 109467 kbps</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:59,146</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param show pci/0000:01:00.0/1 name unk_uc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:59,247</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param show pci/0000:01:00.0/1 name unk_uc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+109467
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:59,248</td>
+<td>DEBUG</td>
+<td><pre>configureStormControlRateLimit Configure Storm Control rate limit 103317 kbps for multicast traffic type</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:59,348</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param set pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate value 103317 cmode runtime
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:59,449</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param set pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate value 103317 cmode runtime
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:59,449</td>
+<td>DEBUG</td>
+<td><pre>StormControlAPI::verifyRateOnPort: Verify Storm Control rate configured is 103317 kbps</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:59,549</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param show pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:59,650</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param show pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+103317
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:59,651</td>
+<td>DEBUG</td>
+<td><pre>configureStormControlRateLimit Configure Storm Control rate limit 71338 kbps for broadcast traffic type</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:59,751</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param set pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate value 71338 cmode runtime
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:59,852</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param set pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate value 71338 cmode runtime
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:59,852</td>
+<td>DEBUG</td>
+<td><pre>StormControlAPI::verifyRateOnPort: Verify Storm Control rate configured is 71338 kbps</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:59,953</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param show pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:00,054</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param show pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+71338
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:49:00,054</td>
+<td>INFO</td>
+<td><pre>Executing step 4: Create an ingress qdisc on each tx port and define dynamic policer trap rule for each qdisc</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:00,054</td>
+<td>DEBUG</td>
+<td><pre>PolicerAPI::configureQdisc: configure ingress qdisc</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:00,155</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc qdisc add dev sw1p1 ingress
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:00,256</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc qdisc add dev sw1p1 ingress
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:00,357</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc filter add dev sw1p1 ingress protocol 0x8100 flower skip_sw vlan_id 3064 src_mac 1a:6d:39:be:c7:e4 dst_mac 9e:5e:a3:a8:0c:f4 action trap action police rate 6450kbit burst 7450 conform-exceed drop
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:00,457</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc filter add dev sw1p1 ingress protocol 0x8100 flower skip_sw vlan_id 3064 src_mac 1a:6d:39:be:c7:e4 dst_mac 9e:5e:a3:a8:0c:f4 action trap action police rate 6450kbit burst 7450 conform-exceed drop
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:00,458</td>
+<td>DEBUG</td>
+<td><pre>PolicerAPI::configureQdisc: configure ingress qdisc</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:00,558</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc qdisc add dev sw1p23 ingress
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:00,659</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc qdisc add dev sw1p23 ingress
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:00,760</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc filter add dev sw1p23 ingress protocol 0x8100 flower skip_sw vlan_id 1879 src_mac 80:84:7a:d3:b9:92 dst_mac 01:00:5E:42:21:b9 action trap action police rate 6450kbit burst 7450 conform-exceed drop
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:00,862</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc filter add dev sw1p23 ingress protocol 0x8100 flower skip_sw vlan_id 1879 src_mac 80:84:7a:d3:b9:92 dst_mac 01:00:5E:42:21:b9 action trap action police rate 6450kbit burst 7450 conform-exceed drop
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:00,862</td>
+<td>DEBUG</td>
+<td><pre>PolicerAPI::configureQdisc: configure ingress qdisc</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:00,963</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc qdisc add dev sw1p35 ingress
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:01,064</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc qdisc add dev sw1p35 ingress
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:01,165</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc filter add dev sw1p35 ingress protocol 0x8100 flower skip_sw vlan_id 1341 src_mac 8e:45:f9:66:1b:c8 dst_mac ff:ff:ff:ff:ff:ff action trap action police rate 6450kbit burst 7450 conform-exceed drop
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:01,266</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc filter add dev sw1p35 ingress protocol 0x8100 flower skip_sw vlan_id 1341 src_mac 8e:45:f9:66:1b:c8 dst_mac ff:ff:ff:ff:ff:ff action trap action police rate 6450kbit burst 7450 conform-exceed drop
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:49:01,267</td>
+<td>INFO</td>
+<td><pre>Executing step 5: Set up streams</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:01,379</td>
+<td>DEBUG</td>
+<td><pre>Stream name: test#0
+Stream uri: 1 11 5 1
+Stream port name: 1
+Stream packet: L2: MAC: DA[9e:5e:a3:a8:0c:f4, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[1a:6d:39:be:c7:e4, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+VLAN: VID#3064EtherType: [0x8100]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[1228], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.CONTINUOUS_PACKET], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.STREAM_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:04,471</td>
+<td>DEBUG</td>
+<td><pre>Stream name: test#1
+Stream uri: 1 11 6 1
+Stream port name: 2
+Stream packet: L2: MAC: DA[01:00:5E:42:21:b9, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[80:84:7a:d3:b9:92, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+VLAN: VID#1879EtherType: [0x8100]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[1228], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.CONTINUOUS_PACKET], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.STREAM_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:06,703</td>
+<td>DEBUG</td>
+<td><pre>Stream name: test#2
+Stream uri: 1 11 7 1
+Stream port name: 3
+Stream packet: L2: MAC: DA[ff:ff:ff:ff:ff:ff, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[8e:45:f9:66:1b:c8, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+VLAN: VID#1341EtherType: [0x8100]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[1228], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.CONTINUOUS_PACKET], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.STREAM_BASED
+</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:49:08,802</td>
+<td>INFO</td>
+<td><pre>Executing step 6: Transmit continues traffic from all ports simultaneously</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:11,791</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::transmitTraffic: Transmitting traffic:
+Port name: 1, Port uri: 10.5.236.4/11/5 ----------&#62 sw1p1
+Port name: 2, Port uri: 10.5.236.4/11/6 ----------&#62 sw1p23
+Port name: 3, Port uri: 10.5.236.4/11/7 ----------&#62 sw1p35
+</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:49:20,572</td>
+<td>INFO</td>
+<td><pre>Executing step 7: Verify CPU trapped packet rate is according to policer trap rules (Storm Control has no effect)</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:20,674</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "function tcpdump_cpu_traps_rate(){
+                 local IFACE="any"
+                 if [ $# -ge 1 ]; then IFACE=$1; fi
+                 timeout 1.06 tcpdump -i $IFACE &&#62 xx; cat xx | grep -Eo "[0-9]+ packets received by filter" | cut -d ' ' -f 1; rm xx
+            }
+            
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:20,776</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: function tcpdump_cpu_traps_rate(){
+&#62                  local IFACE="any"
+&#62                  if [ $# -ge 1 ]; then IFACE=$1; fi
+&#62                  timeout 1.06 tcpdump -i $IFACE &&#62 xx; cat xx | grep -Eo "[0-9]+ packets received by filter" | cut -d ' ' -f 1; rm xx
+&#62             }
+root@localhost:~#             
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:20,876</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "cat /etc/os-release | grep -Eo '^ID=\w+' | tr -d 'ID='
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:20,977</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: cat /etc/os-release | grep -Eo '^ID=\w+' | tr -d 'ID='
+debian
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:21,078</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:21,179</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:21,280</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "function tcpdump_cpu_traps_rate_avg(){	
+                local start_index=0
+                local end=25
+                local counter=0
+                for((num=start_index; num&#60=end; num++)); do
+                   local temp=$(tcpdump_cpu_traps_rate $1)
+                   sleep 1
+                   counter=$((counter+temp))
+                done
+                echo $((counter/6))
+            }
+            
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:21,380</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: function tcpdump_cpu_traps_rate_avg(){
+&#62                 local start_index=0
+&#62                 local end=25
+&#62                 local counter=0
+&#62                 for((num=start_index; num&#60=end; num++)); do
+&#62                    local temp=$(tcpdump_cpu_traps_rate $1)
+&#62                    sleep 1
+&#62                    counter=$((counter+temp))
+&#62                 done
+&#62                 echo $((counter/6))
+&#62             }
+root@localhost:~#             
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:21,481</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:21,582</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:21,683</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "function get_cpu_traps_rate_code(){
+                R1=`cat /sys/kernel/debug/prestera/$2_counters/traps/cpu_code_$1_stats | tr -d '\0'`
+                sleep 1
+                R2=`cat /sys/kernel/debug/prestera/$2_counters/traps/cpu_code_$1_stats | tr -d '\0'`
+                RXPPS=`expr $R2 - $R1`
+                echo $RXPPS
+            }
+            
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:21,784</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: function get_cpu_traps_rate_code(){
+&#62                 R1=`cat /sys/kernel/debug/prestera/$2_counters/traps/cpu_code_$1_stats | tr -d '\0'`
+&#62                 sleep 1
+&#62                 R2=`cat /sys/kernel/debug/prestera/$2_counters/traps/cpu_code_$1_stats | tr -d '\0'`
+&#62                 RXPPS=`expr $R2 - $R1`
+&#62                 echo $RXPPS
+&#62             }
+root@localhost:~#             
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:21,884</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:21,986</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:22,086</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "function get_cpu_traps_rate_code_avg(){	
+                local start_index=0
+                local end=9
+                local counter=0
+                for((num=start_index; num&#60=end; num++)); do
+                   local temp=$(get_cpu_traps_rate_code $1 $2)
+                   sleep 1
+                   counter=$((counter+temp))
+                done
+                echo $((counter/10))
+            }
+            
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:22,187</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: function get_cpu_traps_rate_code_avg(){
+&#62                 local start_index=0
+&#62                 local end=9
+&#62                 local counter=0
+&#62                 for((num=start_index; num&#60=end; num++)); do
+&#62                    local temp=$(get_cpu_traps_rate_code $1 $2)
+&#62                    sleep 1
+&#62                    counter=$((counter+temp))
+&#62                 done
+&#62                 echo $((counter/10))
+&#62             }
+root@localhost:~#             
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:22,287</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:22,388</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:22,489</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "get_cpu_traps_rate_code_avg 195 sw
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:22,590</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: get_cpu_traps_rate_code_avg 195 sw
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:42,739</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 1983
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:42,840</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:42,941</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:49:43,280</td>
+<td>INFO</td>
+<td><pre>Executing step 8: Delete the rule from all ports' qdisc</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:43,381</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc filter delete dev sw1p1 ingress pref 49152 
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:43,482</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc filter delete dev sw1p1 ingress pref 49152 
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:43,583</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc filter delete dev sw1p23 ingress pref 49152 
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:43,684</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc filter delete dev sw1p23 ingress pref 49152 
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:43,784</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc filter delete dev sw1p35 ingress pref 49152 
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:43,886</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc filter delete dev sw1p35 ingress pref 49152 
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:49:43,886</td>
+<td>INFO</td>
+<td><pre>Executing step 9: Create a bridge entity and set link up on it. Enslave all participant ports to the bridge</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:43,887</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::createAndSetSoftEntityUp: set link up on bridge entity</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:43,988</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link add br0 type bridge vlan_filtering 0
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:44,088</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link add br0 type bridge vlan_filtering 0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:44,190</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev br0 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:44,290</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev br0 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:44,291</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::enslavePortsToSoftLink: set enslaved interfaces</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:44,391</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p1 master br0
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:44,492</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p1 master br0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:44,593</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p23 master br0
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:44,694</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p23 master br0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:44,794</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p35 master br0
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:44,895</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p35 master br0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:44,996</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p48 master br0
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:45,097</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p48 master br0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:49:45,097</td>
+<td>INFO</td>
+<td><pre>Executing step 10: Define police pass rule for each qdisc, matches the selectors</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:45,198</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc filter add dev sw1p1 ingress protocol 0x8100 flower skip_sw vlan_id 3064 src_mac 1a:6d:39:be:c7:e4 dst_mac 9e:5e:a3:a8:0c:f4 action pass action police rate 37378528bps burst 37379528 conform-exceed drop
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:45,299</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc filter add dev sw1p1 ingress protocol 0x8100 flower skip_sw vlan_id 3064 src_mac 1a:6d:39:be:c7:e4 dst_mac 9e:5e:a3:a8:0c:f4 action pass action police rate 37378528bps burst 37379528 conform-exceed drop
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:45,399</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc filter add dev sw1p23 ingress protocol 0x8100 flower skip_sw vlan_id 1879 src_mac 80:84:7a:d3:b9:92 dst_mac 01:00:5E:42:21:b9 action pass action police rate 37378528bps burst 37379528 conform-exceed drop
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:45,500</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc filter add dev sw1p23 ingress protocol 0x8100 flower skip_sw vlan_id 1879 src_mac 80:84:7a:d3:b9:92 dst_mac 01:00:5E:42:21:b9 action pass action police rate 37378528bps burst 37379528 conform-exceed drop
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:45,601</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc filter add dev sw1p35 ingress protocol 0x8100 flower skip_sw vlan_id 1341 src_mac 8e:45:f9:66:1b:c8 dst_mac ff:ff:ff:ff:ff:ff action pass action police rate 37378528bps burst 37379528 conform-exceed drop
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:45,702</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc filter add dev sw1p35 ingress protocol 0x8100 flower skip_sw vlan_id 1341 src_mac 8e:45:f9:66:1b:c8 dst_mac ff:ff:ff:ff:ff:ff action pass action police rate 37378528bps burst 37379528 conform-exceed drop
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:49:45,702</td>
+<td>INFO</td>
+<td><pre>Executing step 11: Transmit continues traffic from all ports simultaneously</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:49:49,836</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::transmitTraffic: Transmitting traffic:
+Port name: 1, Port uri: 10.5.236.4/11/5 ----------&#62 Port name: 4, Port uri: 10.5.236.4/11/8
+Port name: 2, Port uri: 10.5.236.4/11/6 ----------&#62 Port name: 4, Port uri: 10.5.236.4/11/8
+Port name: 3, Port uri: 10.5.236.4/11/7 ----------&#62 Port name: 4, Port uri: 10.5.236.4/11/8
+</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:49:58,901</td>
+<td>INFO</td>
+<td><pre>Executing step 12: Verify RX rate on ports is according to policer dp limit rules (Storm Control has no effect)</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:50:05,678</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::verifyRateIsAsExpected: Verify rate matches the configuration</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:50:10,684</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::verifyRateIsAsExpected: wait 5 seconds to collect all traffic</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:50:39,044</td>
+<td>DEBUG</td>
+<td><pre>PASS: No packet loss on port/s Port name: 4, Port uri: 10.5.236.4/11/8: expected: 91315, actual 88556</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:50:39,044</td>
+<td>TRACE</td>
+<td><pre>BaseTest::_OnPostTest:  starting to run registered post test functions</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:50:39,044</td>
+<td>TRACE</td>
+<td><pre>BaseTest::TestTearDown:  starting to call to cleanup functions of test</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:50:39,145</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link delete dev br0
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:50:39,246</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link delete dev br0
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:50:39,447</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:50:39,547</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc qdisc del dev sw1p35 ingress
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:50:39,648</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc qdisc del dev sw1p35 ingress
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:50:39,749</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc qdisc del dev sw1p23 ingress
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:50:39,850</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc qdisc del dev sw1p23 ingress
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:50:39,951</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc qdisc del dev sw1p1 ingress
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:50:40,051</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc qdisc del dev sw1p1 ingress
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:50:40,152</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param set pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate value 0 cmode runtime
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:50:40,252</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param set pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate value 0 cmode runtime
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:50:40,353</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param set pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate value 0 cmode runtime
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:50:40,454</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param set pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate value 0 cmode runtime
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:50:40,554</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param set pci/0000:01:00.0/1 name unk_uc_kbyte_per_sec_rate value 0 cmode runtime
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:50:40,655</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param set pci/0000:01:00.0/1 name unk_uc_kbyte_per_sec_rate value 0 cmode runtime
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:50:40,756</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p48 down
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:50:40,856</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p48 down
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:50:40,957</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p35 down
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:50:41,058</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p35 down
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:50:41,158</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p23 down
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:50:41,259</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p23 down
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:50:41,360</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p1 down
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:50:41,461</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p1 down
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:50:41,462</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_parse_dmesg: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:50:41,563</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  history
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:50:41,569</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   history
+    3  ip link set dev sw1p1 up
+    4  ip link set dev sw1p23 up
+    5  ip link set dev sw1p35 up
+    6  ip link set dev sw1p48 up
+    7  devlink port param set pci/0000:01:00.0/1 name unk_uc_kbyte_per_sec_rate value 109467 cmode runtime
+    8  devlink port param show pci/0000:01:00.0/1 name unk_uc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+    9  devlink port param set pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate value 103317 cmode runtime
+   10  devlink port param show pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+   11  devlink port param set pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate value 71338 cmode runtime
+   12  devlink port param show pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+   13  tc qdisc add dev sw1p1 ingress
+   14  tc filter add dev sw1p1 ingress protocol 0x8100 flower skip_sw vlan_id 3064 src_mac 1a:6d:39:be:c7:e4 dst_mac 9e:5e:a3:a8:0c:f4 action trap action police rate 6450kbit burst 7450 conform-exceed drop
+   15  tc qdisc add dev sw1p23 ingress
+   16  tc filter add dev sw1p23 ingress protocol 0x8100 flower skip_sw vlan_id 1879 src_mac 80:84:7a:d3:b9:92 dst_mac 01:00:5E:42:21:b9 action trap action police rate 6450kbit burst 7450 conform-exceed drop
+   17  tc qdisc add dev sw1p35 ingress
+   18  tc filter add dev sw1p35 ingress protocol 0x8100 flower skip_sw vlan_id 1341 src_mac 8e:45:f9:66:1b:c8 dst_mac ff:ff:ff:ff:ff:ff action trap action police rate 6450kbit burst 7450 conform-exceed drop
+   19  function tcpdump_cpu_traps_rate(){                  local IFACE="any";                  if [ $# -ge 1 ]; then IFACE=$1; fi;                  timeout 1.06 tcpdump -i $IFACE &&#62 xx; cat xx | grep -Eo "[0-9]+ packets received by filter" | cut -d ' ' -f 1; rm xx;             }
+   20              
+   21  cat /etc/os-release | grep -Eo '^ID=\w+' | tr -d 'ID='
+   22  echo $?
+   23  function tcpdump_cpu_traps_rate_avg(){                 local start_index=0;                 local end=25;                 local counter=0;                 for((num=start_index; num&#60=end; num++)); do                    local temp=$(tcpdump_cpu_traps_rate $1);                    sleep 1;                    counter=$((counter+temp));                 done;                 echo $((counter/6));             }
+   24              
+   25  echo $?
+   26  function get_cpu_traps_rate_code(){                 R1=`cat /sys/kernel/debug/prestera/$2_counters/traps/cpu_code_$1_stats | tr -d '\0'`;                 sleep 1;                 R2=`cat /sys/kernel/debug/prestera/$2_counters/traps/cpu_code_$1_stats | tr -d '\0'`;                 RXPPS=`expr $R2 - $R1`;                 echo $RXPPS;             }
+   27              
+   28  echo $?
+   29  function get_cpu_traps_rate_code_avg(){                 local start_index=0;                 local end=9;                 local counter=0;                 for((num=start_index; num&#60=end; num++)); do                    local temp=$(get_cpu_traps_rate_code $1 $2);                    sleep 1;                    counter=$((counter+temp));                 done;                 echo $((counter/10));             }
+   30              
+   31  echo $?
+   32  get_cpu_traps_rate_code_avg 195 sw
+   33  echo $?
+   34  tc filter delete dev sw1p1 ingress pref 49152 
+   35  tc filter delete dev sw1p23 ingress pref 49152 
+   36  tc filter delete dev sw1p35 ingress pref 49152 
+   37  ip link add br0 type bridge vlan_filtering 0
+   38  ip link set dev br0 up
+   39  ip link set dev sw1p1 master br0
+   40  ip link set dev sw1p23 master br0
+   41  ip link set dev sw1p35 master br0
+   42  ip link set dev sw1p48 master br0
+   43  tc filter add dev sw1p1 ingress protocol 0x8100 flower skip_sw vlan_id 3064 src_mac 1a:6d:39:be:c7:e4 dst_mac 9e:5e:a3:a8:0c:f4 action pass action police rate 37378528bps burst 37379528 conform-exceed drop
+   44  tc filter add dev sw1p23 ingress protocol 0x8100 flower skip_sw vlan_id 1879 src_mac 80:84:7a:d3:b9:92 dst_mac 01:00:5E:42:21:b9 action pass ac</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:50:41,670</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tion police rate 37378528bps burst 37379528 conform-exceed drop
+   45  tc filter add dev sw1p35 ingress protocol 0x8100 flower skip_sw vlan_id 1341 src_mac 8e:45:f9:66:1b:c8 dst_mac ff:ff:ff:ff:ff:ff action pass action police rate 37378528bps burst 37379528 conform-exceed drop
+   46  ip link delete dev br0
+   47  tc qdisc del dev sw1p35 ingress
+   48  tc qdisc del dev sw1p23 ingress
+   49  tc qdisc del dev sw1p1 ingress
+   50  devlink port param set pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate value 0 cmode runtime
+   51  devlink port param set pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate value 0 cmode runtime
+   52  devlink port param set pci/0000:01:00.0/1 name unk_uc_kbyte_per_sec_rate value 0 cmode runtime
+   53  ip link set dev sw1p48 down
+   54  ip link set dev sw1p35 down
+   55  ip link set dev sw1p23 down
+   56  ip link set dev sw1p1 down
+   57    history
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:50:41,670</td>
+<td>DEBUG</td>
+<td><pre>commands history:
+    3  ip link set dev sw1p1 up
+    4  ip link set dev sw1p23 up
+    5  ip link set dev sw1p35 up
+    6  ip link set dev sw1p48 up
+    7  devlink port param set pci/0000:01:00.0/1 name unk_uc_kbyte_per_sec_rate value 109467 cmode runtime
+    8  devlink port param show pci/0000:01:00.0/1 name unk_uc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+    9  devlink port param set pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate value 103317 cmode runtime
+   10  devlink port param show pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+   11  devlink port param set pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate value 71338 cmode runtime
+   12  devlink port param show pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+   13  tc qdisc add dev sw1p1 ingress
+   14  tc filter add dev sw1p1 ingress protocol 0x8100 flower skip_sw vlan_id 3064 src_mac 1a:6d:39:be:c7:e4 dst_mac 9e:5e:a3:a8:0c:f4 action trap action police rate 6450kbit burst 7450 conform-exceed drop
+   15  tc qdisc add dev sw1p23 ingress
+   16  tc filter add dev sw1p23 ingress protocol 0x8100 flower skip_sw vlan_id 1879 src_mac 80:84:7a:d3:b9:92 dst_mac 01:00:5E:42:21:b9 action trap action police rate 6450kbit burst 7450 conform-exceed drop
+   17  tc qdisc add dev sw1p35 ingress
+   18  tc filter add dev sw1p35 ingress protocol 0x8100 flower skip_sw vlan_id 1341 src_mac 8e:45:f9:66:1b:c8 dst_mac ff:ff:ff:ff:ff:ff action trap action police rate 6450kbit burst 7450 conform-exceed drop
+   19  function tcpdump_cpu_traps_rate(){                  local IFACE="any";                  if [ $# -ge 1 ]; then IFACE=$1; fi;                  timeout 1.06 tcpdump -i $IFACE &&#62 xx; cat xx | grep -Eo "[0-9]+ packets received by filter" | cut -d ' ' -f 1; rm xx;             }
+   20              
+   21  cat /etc/os-release | grep -Eo '^ID=\w+' | tr -d 'ID='
+   22  echo $?
+   23  function tcpdump_cpu_traps_rate_avg(){                 local start_index=0;                 local end=25;                 local counter=0;                 for((num=start_index; num&#60=end; num++)); do                    local temp=$(tcpdump_cpu_traps_rate $1);                    sleep 1;                    counter=$((counter+temp));                 done;                 echo $((counter/6));             }
+   24              
+   25  echo $?
+   26  function get_cpu_traps_rate_code(){                 R1=`cat /sys/kernel/debug/prestera/$2_counters/traps/cpu_code_$1_stats | tr -d '\0'`;                 sleep 1;                 R2=`cat /sys/kernel/debug/prestera/$2_counters/traps/cpu_code_$1_stats | tr -d '\0'`;                 RXPPS=`expr $R2 - $R1`;                 echo $RXPPS;             }
+   27              
+   28  echo $?
+   29  function get_cpu_traps_rate_code_avg(){                 local start_index=0;                 local end=9;                 local counter=0;                 for((num=start_index; num&#60=end; num++)); do                    local temp=$(get_cpu_traps_rate_code $1 $2);                    sleep 1;                    counter=$((counter+temp));                 done;                 echo $((counter/10));             }
+   30              
+   31  echo $?
+   32  get_cpu_traps_rate_code_avg 195 sw
+   33  echo $?
+   34  tc filter delete dev sw1p1 ingress pref 49152 
+   35  tc filter delete dev sw1p23 ingress pref 49152 
+   36  tc filter delete dev sw1p35 ingress pref 49152 
+   37  ip link add br0 type bridge vlan_filtering 0
+   38  ip link set dev br0 up
+   39  ip link set dev sw1p1 master br0
+   40  ip link set dev sw1p23 master br0
+   41  ip link set dev sw1p35 master br0
+   42  ip link set dev sw1p48 master br0
+   43  tc filter add dev sw1p1 ingress protocol 0x8100 flower skip_sw vlan_id 3064 src_mac 1a:6d:39:be:c7:e4 dst_mac 9e:5e:a3:a8:0c:f4 action pass action police rate 37378528bps burst 37379528 conform-exceed drop
+   44  tc filter add dev sw1p23 ingress protocol 0x8100 flower skip_sw vlan_id 1879 src_mac 80:84:7a:d3:b9:92 dst_mac 01:00:5E:42:21:b9 action pass action police rate 37378528bps burst 37379528 conform-exceed drop
+   45  tc filter add dev sw1p35 ingress protocol 0x8100 flower skip_sw vlan_id 1341 src_mac 8e:45:f9:66:1b:c8 dst_mac ff:ff:ff:ff:ff:ff action pass action police rate 37378528bps burst 37379528 conform-exceed drop
+   46  ip link delete dev br0
+   47  tc qdisc del dev sw1p35 ingress
+   48  tc qdisc del dev sw1p23 ingress
+   49  tc qdisc del dev sw1p1 ingress
+   50  devlink port param set pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate value 0 cmode runtime
+   51  devlink port param set pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate value 0 cmode runtime
+   52  devlink port param set pci/0000:01:00.0/1 name unk_uc_kbyte_per_sec_rate value 0 cmode runtime
+   53  ip link set dev sw1p48 down
+   54  ip link set dev sw1p35 down
+   55  ip link set dev sw1p23 down
+   56  ip link set dev sw1p1 down
+   57    history</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:50:41,671</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_parse_dmesg: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:50:41,783</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  cat /var/log/messages
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:50:41,884</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   cat /var/log/messages
+
+Oct  8 09:48:34 localhost kernel: [ 1284.210881] IPv6: ADDRCONF(NETDEV_CHANGE): sw1p1: link becomes ready
+Oct  8 09:48:34 localhost kernel: [ 1284.295105] IPv6: ADDRCONF(NETDEV_CHANGE): sw1p23: link becomes ready
+Oct  8 09:49:17 localhost kernel: [ 1326.828688] br0: port 1(sw1p1) entered blocking state
+Oct  8 09:49:17 localhost kernel: [ 1326.833794] br0: port 1(sw1p1) entered disabled state
+Oct  8 09:49:17 localhost kernel: [ 1326.853839] device sw1p1 entered promiscuous mode
+Oct  8 09:49:17 localhost kernel: [ 1326.858760] br0: port 1(sw1p1) entered blocking state
+Oct  8 09:49:17 localhost kernel: [ 1326.863864] br0: port 1(sw1p1) entered forwarding state
+Oct  8 09:49:17 localhost kernel: [ 1327.032404] br0: port 2(sw1p23) entered blocking state
+Oct  8 09:49:17 localhost kernel: [ 1327.037614] br0: port 2(sw1p23) entered disabled state
+Oct  8 09:49:17 localhost kernel: [ 1327.056853] device sw1p23 entered promiscuous mode
+Oct  8 09:49:17 localhost kernel: [ 1327.061940] br0: port 2(sw1p23) entered blocking state
+Oct  8 09:49:17 localhost kernel: [ 1327.067133] br0: port 2(sw1p23) entered forwarding state
+Oct  8 09:49:17 localhost kernel: [ 1327.233204] br0: port 3(sw1p35) entered blocking state
+Oct  8 09:49:17 localhost kernel: [ 1327.238390] br0: port 3(sw1p35) entered disabled state
+Oct  8 09:49:17 localhost kernel: [ 1327.255498] device sw1p35 entered promiscuous mode
+Oct  8 09:49:17 localhost kernel: [ 1327.260437] br0: port 3(sw1p35) entered blocking state
+Oct  8 09:49:17 localhost kernel: [ 1327.265626] br0: port 3(sw1p35) entered forwarding state
+Oct  8 09:49:17 localhost kernel: [ 1327.434524] br0: port 4(sw1p48) entered blocking state
+Oct  8 09:49:17 localhost kernel: [ 1327.439726] br0: port 4(sw1p48) entered disabled state
+Oct  8 09:49:18 localhost kernel: [ 1327.457964] device sw1p48 entered promiscuous mode
+Oct  8 09:49:18 localhost kernel: [ 1327.462926] br0: port 4(sw1p48) entered blocking state
+Oct  8 09:49:18 localhost kernel: [ 1327.468111] br0: port 4(sw1p48) entered forwarding state
+Oct  8 09:50:12 localhost kernel: [ 1381.580771] device sw1p48 left promiscuous mode
+Oct  8 09:50:12 localhost kernel: [ 1381.585421] br0: port 4(sw1p48) entered disabled state
+Oct  8 09:50:12 localhost kernel: [ 1381.622971] device sw1p35 left promiscuous mode
+Oct  8 09:50:12 localhost kernel: [ 1381.627786] br0: port 3(sw1p35) entered disabled state
+Oct  8 09:50:12 localhost kernel: [ 1381.696109] device sw1p23 left promiscuous mode
+Oct  8 09:50:12 localhost kernel: [ 1381.700725] br0: port 2(sw1p23) entered disabled state
+Oct  8 09:50:12 localhost kernel: [ 1381.744043] device sw1p1 left promiscuous mode
+Oct  8 09:50:12 localhost kernel: [ 1381.748570] br0: port 1(sw1p1) entered disabled state
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:50:41,886</td>
+<td>DEBUG</td>
+<td><pre>dmesg lines that matched regex for issues:</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:50:41,887</td>
+<td>DEBUG</td>
+<td><pre>{
+    "call trace:": {
+        found: false,
+        regex: "Call trace:",
+    },
+    "cut here": {
+        found: false,
+        regex: "\\[ cut here \\]",
+    },
+    "hw routing offloading disabled:": {
+        found: false,
+        regex: "Abort. HW routing offloading disabled",
+    },
+}</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:50:43,476</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Cleanup:  clearing ports ownership...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:50:43,914</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Cleanup:  Disconnecting from chassis...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:50:43,942</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Cleanup:  TG disconnect time is 0.03</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:50:43,943</td>
+<td>INFO</td>
+<td><pre>Test Passed</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:50:43,947</td>
+<td>INFO</td>
+<td><pre>
+CI_META:
+{"Software_Version": "2.0.0-v3.0.1", "Linux_Version": ""}
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                                  Dut Information                                                                   |
++--------+-------------+------+------------------+--------------------------------+---------------+---------------+---------------------+------------+
+| ODM    | Board_Model | ASIC | Software_Version | UBOOT_Version                  | Linux_Version | CPU_CoreClock | Host_kernel_version | PCBVersion |
++--------+-------------+------+------------------+--------------------------------+---------------+---------------+---------------------+------------+
+| Accton | AS4224-52T  | AC3X | 2.0.0-v3.0.1     | U-Boot 2019.10-10.0.0-g7c9e534 |               |               | 5.10.4              | R0A        |
++--------+-------------+------+------------------+--------------------------------+---------------+---------------+---------------------+------------+
+
+None
+
++--------------------------------------+
+|             PDU Settings             |
++----------------+------------+--------+
+| Connect_To_PDU | ip_address | outlet |
++----------------+------------+--------+
+| True           | 10.5.236.5 | 11     |
++----------------+------------+--------+
+
+None
++--------------------------------------------------------------------------------------------------------------------------------------+
+|                                                          Test Steps Summary                                                          |
++------+-------------------------------------------------------------------------------------------------+--------+--------------------+
+| Step | Description                                                                                     | Result | Run Time           |
++------+-------------------------------------------------------------------------------------------------+--------+--------------------+
+| 1    | Init test                                                                                       | Passed | 0.0                |
++------+-------------------------------------------------------------------------------------------------+--------+--------------------+
+| 2    | Set link up on interfaces                                                                       | Passed | 0.8107814788818359 |
++------+-------------------------------------------------------------------------------------------------+--------+--------------------+
+| 3    | Set storm control rate limit for all types of traffic on all ports                              | Passed | 1.2117302417755127 |
++------+-------------------------------------------------------------------------------------------------+--------+--------------------+
+| 4    | Create an ingress qdisc on each tx port and define dynamic policer trap rule for each qdisc     | Passed | 1.2126798629760742 |
++------+-------------------------------------------------------------------------------------------------+--------+--------------------+
+| 5    | Set up streams                                                                                  | Passed | 7.535330295562744  |
++------+-------------------------------------------------------------------------------------------------+--------+--------------------+
+| 6    | Transmit continues traffic from all ports simultaneously                                        | Passed | 11.770410299301147 |
++------+-------------------------------------------------------------------------------------------------+--------+--------------------+
+| 7    | Verify CPU trapped packet rate is according to policer trap rules (Storm Control has no effect) | Passed | 22.708053827285767 |
++------+-------------------------------------------------------------------------------------------------+--------+--------------------+
+| 8    | Delete the rule from all ports' qdisc                                                           | Passed | 0.6057703495025635 |
++------+-------------------------------------------------------------------------------------------------+--------+--------------------+
+| 9    | Create a bridge entity and set link up on it. Enslave all participant ports to the bridge       | Passed | 1.211134672164917  |
++------+-------------------------------------------------------------------------------------------------+--------+--------------------+
+| 10   | Define police pass rule for each qdisc, matches the selectors                                   | Passed | 0.6049079895019531 |
++------+-------------------------------------------------------------------------------------------------+--------+--------------------+
+| 11   | Transmit continues traffic from all ports simultaneously                                        | Passed | 13.199161052703857 |
++------+-------------------------------------------------------------------------------------------------+--------+--------------------+
+| 12   | Verify RX rate on ports is according to policer dp limit rules (Storm Control has no effect)    | Passed | 40.14339756965637  |
++------+-------------------------------------------------------------------------------------------------+--------+--------------------+
++-------------------------------------------------------------------------------------------------------------------------------------+
+|                                                           Test Information                                                          |
++--------------+--------------------------------------------------------+--------+-----------------+-----------------+----------------+
+| Suite_Name   | Test_Name                                              | Result | start_time      | end_time        | run_time       |
++--------------+--------------------------------------------------------+--------+-----------------+-----------------+----------------+
+| StormControl | StormControl_InteractionWithOtherFeatures_PolicerRules | Passed | 09:48:30.783500 | 09:50:43.942854 | 0:02:13.159354 |
++--------------+--------------------------------------------------------+--------+-----------------+-----------------+----------------+</pre></td>
+</tr>
+
+</tbody></table></div>
+</body>
+<script>
+    $.fn.dataTable.ext.search.push(
+        function( settings, data, dataIndex ) {
+            let minIndex = severities.indexOf($('#min-severity').find(':selected').text());
+            let maxIndex = severities.indexOf($('#max-severity').find(':selected').text());
+            var severity = data[1] || 'NOT SET';// use data for the Log Level column
+            var severityIndex = severities.indexOf(severity);
+            if ( ( maxIndex == -1 && minIndex == -1 ) ||
+                 ( minIndex <= severityIndex && severityIndex <= maxIndex ) )
+            {
+                return true;
+            }
+            return false;
+        }
+    );
+    
+    function fill_select(id, items){
+        for(t of items){
+            $('#'+id).append(new Option(t, t));
+        }
+    }
+    
+    function selectionChanged(selectChanged, selectAffected, selectedOption, startFrom, end){
+        let selected = $('#'+selectAffected).find(':selected').text(); //keep affected value
+        $('#'+selectAffected).empty(); //empty the affected one
+
+        fill_select(selectAffected, severities.slice(startFrom, end));
+        selected = $('#'+selectAffected).find("option:contains('" + selected  + "')").length > 0 ? selected : $("#"+selectAffected+" option:first").val();
+        $('#'+selectAffected).val(selected);
+    }
+    
+    var severities = ['NOT SET','TRACE','DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL']
+    $(document).ready(function() {
+        for(severity of severities){
+            $('#min-severity, #max-severity').append(new Option(severity, severity));
+        }
+        
+        $('#max-severity option:last').attr('selected', 'selected');
+        
+        var table = $('#data_table').DataTable({
+            "lengthMenu": [[-1, 10, 25, 50], ["All", 10, 25, 50]]
+        });
+        
+        $('#min-severity, #max-severity').change( function(e) {
+            if(e.target.id == 'min-severity'){
+                selectionChanged(e.target.id, 'max-severity', e.target.selectedOptions[0].text, severities.indexOf(e.target.selectedOptions[0].text), severities.length+1);
+            }
+            else if(e.target.id == 'max-severity'){
+                selectionChanged(e.target.id, 'min-severity',e.target.selectedOptions[0].text, 0 ,severities.indexOf(e.target.selectedOptions[0].text) + 1);
+            }
+            table.draw();
+        } );
+    } );
+    
+    
+</script>
+</html>

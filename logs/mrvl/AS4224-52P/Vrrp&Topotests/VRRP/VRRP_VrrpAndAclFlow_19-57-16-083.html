@@ -1,0 +1,1741 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>VRRP_VrrpAndAclFlow_19-57-16-083065 Log</title>
+<!-- Latest compiled and minified CSS -->
+<!--
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs-3.3.7/jq-3.2.1/jq-3.2.1/dt-1.10.16/datatables.min.css"/>
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.7/jq-3.2.1/jq-3.2.1/dt-1.10.16/datatables.min.js"></script>
+-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+  
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+<style>
+pre {
+margin : 0;
+white-space: pre-wrap;
+background-color: inherit;
+border: none;
+border-radius: inherit;
+}
+</style>
+</head>
+
+<body>
+<div class="col-md-12 col-xs-12 col-lg-12">
+<br>
+<h1 style="text-align:center">VRRP_VrrpAndAclFlow_19-57-16-083065 Log</h1>
+<br>
+<div class="input-group">
+    <select class="form-control" id="min-severity" placeholder="Min Severity">
+    </select>
+    <span class="input-group-addon">-</span>
+    <select class="form-control" id="max-severity" placeholder="Max Severity">
+    </select>
+</div>
+&nbsp
+<table id="data_table" class="table table-striped table-bordered" cellspacing="0">
+<thead>
+    <tr>
+        <th style="width: 180px;">Time</th>
+        <th style="width: 90px;">Log Level</th>
+        <th>Message</th>
+    </tr>
+</thead>
+<tbody>
+
+<tr class="success">
+<td>2021-09-04 19:57:16,083</td>
+<td>TRACE</td>
+<td><pre>BaseTest_SD::_BasicTestInit: this test has been launched with the following input arguments:
+Namespace(conn_table=None, dummy_test=False, excel_path='/swdev/fileril103/testing/Projects/Automation/Python/Setups/AGO/CI/Setup_4.xlsx', excel_setups_db_path=None, seed=None, setup_info=None, setup_name=None, stress=None, test_args=None)</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:16,084</td>
+<td>TRACE</td>
+<td><pre>BaseTest_SD::_BasicTestInit: this test is running from the following Setup Excel file /swdev/fileril103/testing/Projects/Automation/Python/Setups/AGO/CI/Setup_4.xlsx</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:16,084</td>
+<td>TRACE</td>
+<td><pre>
++-------------------------------------------------------+
+|                    TG Mapping Table                   |
++----+------------+------------+------+------+----------+
+| ID | IP Address |  TG Type   | Card | Port | Dut Port |
++----+------------+------------+------+------+----------+
+| 1  | 10.5.236.4 | ixia_linux |  12  |  11  |  sw1p1   |
+| 2  | 10.5.236.4 | ixia_linux |  12  |  12  |  cisco   |
++----+------------+------------+------+------+----------+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:16,086</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: connecting to IxiaSSH on IP 10.5.236.4 using TCL/API Server IP 10.5.236.4</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:20,692</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect:  Connection Successful</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:20,926</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:23,116</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-04 19:57:27,315</td>
+<td>INFO</td>
+<td><pre>Used cached DutInfo: dutmainchannel__/swdev/fileril103/testing/Projects/Automation/Python/Setups/AGO/CI/Setup_4.xlsx__1628681681.9405458</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-04 19:57:27,688</td>
+<td>INFO</td>
+<td><pre>Used cached DutInfo: otherdutchannel__/swdev/fileril103/testing/Projects/Automation/Python/Setups/AGO/CI/Setup_4.xlsx__1628681681.9405458</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:27,688</td>
+<td>TRACE</td>
+<td><pre>SwitchDevDutManager::login: Connecting to 10.5.236.41:root:22 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:27,799</td>
+<td>TRACE</td>
+<td><pre>SwitchDevDutManager::login: Connection Successful</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:27,800</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "
+
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:27,900</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: Linux localhost 5.10.4 #1 SMP PREEMPT Tue Aug 31 15:40:33 UTC 2021 aarch64
+Last login: Sat Sep  4 19:55:42 2021 from 10.5.116.193
+
+
+root@localhost:~# 
+root@localhost:~# 
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:28,901</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "
+
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:29,002</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 
+root@localhost:~# 
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:29,002</td>
+<td>TRACE</td>
+<td><pre>SwitchDevDutManager::login: Connecting to 10.5.236.39:root:22 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:29,116</td>
+<td>TRACE</td>
+<td><pre>SwitchDevDutManager::login: Connection Successful</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:29,116</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "
+
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:29,218</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: Linux localhost 5.10.4 #1 SMP PREEMPT Tue Aug 31 15:40:33 UTC 2021 aarch64
+Last login: Sat Sep  4 19:55:43 2021 from 10.5.116.193
+
+
+root@localhost:~# 
+root@localhost:~# 
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:30,220</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "
+
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:30,321</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 
+root@localhost:~# 
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:30,343</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_clear_dmesg: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:30,443</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  echo "" &#62 /var/log/messages
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:30,544</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   echo "" &#62 /var/log/messages
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:30,544</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_clear_cmd_history: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:30,645</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  history -c
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:30,745</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   history -c
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:30,746</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::stressCpus: </pre></td>
+</tr>
+
+
+<tr>
+<td width="100"></td>
+<td width="100"></td>
+<td class="info"><pre>+---------------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                                  Test Description                                                                 |
++------------+---------------------+------------------------------------------------------------------------+-------------+-------------------------+
+| Suite Name | Test Name           | Purpose                                                                | Author      | Test Document Reference |
++------------+---------------------+------------------------------------------------------------------------+-------------+-------------------------+
+| VRRP       | VRRP_VrrpAndAclFlow |                                                                        | Maya Peretz |                         |
+|            |                     |             Verify VRRP control packets are blocked by a matching drop |             |                         |
+|            |                     | ACL rule.                                                              |             |                         |
+|            |                     |                                                                        |             |                         |
++------------+---------------------+------------------------------------------------------------------------+-------------+-------------------------+
+
++-------------------------------------------------------------------------------+
+|                                 Test Procedure                                |
++------+------------------------------------------------------------------------+
+| Step | Step Description                                                       |
++------+------------------------------------------------------------------------+
+| 1    | Create a bridge entity on each DUT and set link up on them             |
++------+------------------------------------------------------------------------+
+| 2    | Enslave ports according to the test's setup topology                   |
++------+------------------------------------------------------------------------+
+| 3    | Set link up on all participant ports                                   |
++------+------------------------------------------------------------------------+
+| 4    | Setup: [R2]---Int2-------------Int2--[R1]--- Int3 |___________         |
+|      | ___________| | ___ | | |_1_| | Int1 Int1 |Ixia| | | | | [ Switch ]     |
+|      | --------------2-|____| Configure: Router1: - Interface 1: ip address   |
+|      | 192.168.1.2/24. vrrp 44 ip 192.168.1.2 Router2: - Interface 1: ip      |
+|      | address 192.168.1.3/24. vrrp 44 ip 192.168.1.2 Ixia port 2 - VRRPv3 WS |
+|      | advertisement                                                          |
++------+------------------------------------------------------------------------+
+| 5    | Verify the WS advertisements are trapped in each DUT                   |
++------+------------------------------------------------------------------------+
+| 6    | Configure ACL to drop VRRP advertisements on "Interface 1" on each DUT |
++------+------------------------------------------------------------------------+
+| 7    | Verify the advertisements are dropped in each DUT                      |
++------+------------------------------------------------------------------------+</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-04 19:57:30,754</td>
+<td>INFO</td>
+<td><pre>Executing step 1: Create a bridge entity on each DUT and set link up on them</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:30,754</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::createAndSetSoftEntityUp: set link up on bridge entity</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:30,855</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link add br0 type bridge vlan_filtering 1
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:30,955</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link add br0 type bridge vlan_filtering 1
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:31,056</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev br0 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:31,157</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev br0 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:31,157</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::createAndSetSoftEntityUp: set link up on bridge entity</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:31,258</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link add br0 type bridge vlan_filtering 1
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:31,358</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link add br0 type bridge vlan_filtering 1
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:31,458</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev br0 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:31,559</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev br0 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-04 19:57:31,559</td>
+<td>INFO</td>
+<td><pre>Executing step 2: Enslave ports according to the test's setup topology</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:31,560</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::enslavePortsToSoftLink: set enslaved interfaces</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:31,660</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p17 master br0
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:31,761</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p17 master br0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:31,762</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::enslavePortsToSoftLink: set enslaved interfaces</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:31,862</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p45 master br0
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:31,962</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p45 master br0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-04 19:57:31,963</td>
+<td>INFO</td>
+<td><pre>Executing step 3: Set link up on all participant ports</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:31,963</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::setLinkStateOnInterfaces: set link up on ports</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:32,063</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p17 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:32,164</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p17 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:32,264</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p25 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:32,365</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p25 up
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:32,466</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:32,566</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p1 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:32,666</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p1 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:32,667</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::setLinkStateOnInterfaces: set link up on ports</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:32,767</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p45 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:32,868</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p45 up
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:32,968</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:33,070</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p42 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:33,170</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p42 up
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:33,271</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-04 19:57:33,271</td>
+<td>INFO</td>
+<td><pre>Executing step 4: Setup: [R2]---Int2-------------Int2--[R1]--- Int3 |___________ ___________| | ___ | | |_1_| | Int1 Int1 |Ixia| | | | | [ Switch ] --------------2-|____| Configure: Router1: - Interface 1: ip address 192.168.1.2/24. vrrp 44 ip 192.168.1.2 Router2: - Interface 1: ip address 192.168.1.3/24. vrrp 44 ip 192.168.1.2 Ixia port 2 - VRRPv3 WS advertisement</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:33,406</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip add add 192.168.1.4/24 dev br0
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:33,507</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip add add 192.168.1.4/24 dev br0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:33,607</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip add add 192.168.1.3/24 dev br0
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:33,708</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip add add 192.168.1.3/24 dev br0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:33,809</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "cat /etc/os-release | grep -Eo '^ID=\w+' | tr -d 'ID='
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:33,910</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: cat /etc/os-release | grep -Eo '^ID=\w+' | tr -d 'ID='
+debian
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:34,011</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:34,111</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:34,212</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "if [ ! -z "$(pidof keepalived)" ]; then systemctl restart keepalived; else systemctl start keepalived; fi
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:34,312</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: if [ ! -z "$(pidof keepalived)" ]; then systemctl restart keepalived; else systemctl start keepalived; fi
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:34,414</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "cat /etc/os-release | grep -Eo '^ID=\w+' | tr -d 'ID='
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:34,514</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: cat /etc/os-release | grep -Eo '^ID=\w+' | tr -d 'ID='
+debian
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:34,615</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:34,715</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:34,816</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "if [ ! -z "$(pidof keepalived)" ]; then systemctl restart keepalived; else systemctl start keepalived; fi
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:34,916</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: if [ ! -z "$(pidof keepalived)" ]; then systemctl restart keepalived; else systemctl start keepalived; fi
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:34,918</td>
+<td>DEBUG</td>
+<td><pre>VRRPv3 packet:
+###[ IP ]### 
+  version   = 4
+  ihl       = None
+  tos       = 0x0
+  len       = None
+  id        = 1
+  flags     = 
+  frag      = 0
+  ttl       = 255
+  proto     = vrrp
+  chksum    = None
+  src       = 192.168.1.5
+  dst       = 224.0.0.18
+  \options   \
+###[ VRRPv3 ]### 
+     version   = 3
+     type      = 1
+     vrid      = 44
+     priority  = 100
+     ipcount   = None
+     res       = 0
+     adv       = 100
+     chksum    = None
+     addrlist  = [192.168.1.2]
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:35,056</td>
+<td>DEBUG</td>
+<td><pre>Setting up more settings on stream: Port name: 2
+Port uri: 10.5.236.4/12/12
+Port stream names: [test#0, ]
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:35,057</td>
+<td>DEBUG</td>
+<td><pre>Stream name: test#0
+Stream uri: 1 12 12 1
+Stream port name: 2
+Stream packet: L2: MAC: DA[01:00:5e:00:00:12, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[00:00:5e:00:01:2c, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[64], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.CONTINUOUS_PACKET], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.STREAM_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:35,559</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "arp -s 192.168.1.5 AA:00:00:00:00:01
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:35,660</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: arp -s 192.168.1.5 AA:00:00:00:00:01
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:35,760</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "arp -s 192.168.1.5 AA:00:00:00:00:01
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:35,861</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: arp -s 192.168.1.5 AA:00:00:00:00:01
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:57:35,862</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::transmitTraffic: Transmitting traffic:
+Port name: 2, Port uri: 10.5.236.4/12/12 ----------&#62 cisco
+</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-04 19:58:37,513</td>
+<td>INFO</td>
+<td><pre>Executing step 5: Verify the WS advertisements are trapped in each DUT</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:58:37,615</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tcpdump -n -i sw1p17 -c 5 src host 192.168.1.5 and vrrp
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:58:37,715</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tcpdump -n -i sw1p17 -c 5 src host 192.168.1.5 and vrrp
+tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+listening on sw1p17, link-type EN10MB (Ethernet), capture size 262144 bytes
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:58:37,816</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 19:58:25.405852 IP 192.168.1.5 &#62 224.0.0.18: VRRPv3, Advertisement, vrid 44, prio 100, intvl 100cs, length 12
+19:58:25.405878 IP 192.168.1.5 &#62 224.0.0.18: VRRPv3, Advertisement, vrid 44, prio 100, intvl 100cs, length 12
+19:58:25.405882 IP 192.168.1.5 &#62 224.0.0.18: VRRPv3, Advertisement, vrid 44, prio 100, intvl 100cs, length 12
+19:58:25.405886 IP 192.168.1.5 &#62 224.0.0.18: VRRPv3, Advertisement, vrid 44, prio 100, intvl 100cs, length 12
+19:58:25.405889 IP 192.168.1.5 &#62 224.0.0.18: VRRPv3, Advertisement, vrid 44, prio 100, intvl 100cs, length 12
+5 packets captured
+20 packets received by filter
+13 packets dropped by kernel
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:58:37,917</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tcpdump -n -i sw1p45 -c 5 src host 192.168.1.5 and vrrp
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:58:38,017</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tcpdump -n -i sw1p45 -c 5 src host 192.168.1.5 and vrrp
+tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+listening on sw1p45, link-type EN10MB (Ethernet), capture size 262144 bytes
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:58:38,118</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 19:58:25.785505 IP 192.168.1.5 &#62 224.0.0.18: VRRPv3, Advertisement, vrid 44, prio 100, intvl 100cs, length 12
+19:58:25.785525 IP 192.168.1.5 &#62 224.0.0.18: VRRPv3, Advertisement, vrid 44, prio 100, intvl 100cs, length 12
+19:58:25.785530 IP 192.168.1.5 &#62 224.0.0.18: VRRPv3, Advertisement, vrid 44, prio 100, intvl 100cs, length 12
+19:58:25.785534 IP 192.168.1.5 &#62 224.0.0.18: VRRPv3, Advertisement, vrid 44, prio 100, intvl 100cs, length 12
+19:58:25.785538 IP 192.168.1.5 &#62 224.0.0.18: VRRPv3, Advertisement, vrid 44, prio 100, intvl 100cs, length 12
+5 packets captured
+40 packets received by filter
+13 packets dropped by kernel
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-04 19:58:38,118</td>
+<td>INFO</td>
+<td><pre>Executing step 6: Configure ACL to drop VRRP advertisements on "Interface 1" on each DUT</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:58:38,219</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc qdisc add dev sw1p17 ingress
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:58:38,320</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc qdisc add dev sw1p17 ingress
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:58:38,421</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc filter add dev sw1p17 ingress protocol ip flower  ip_proto 0x70 action drop
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:58:38,521</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc filter add dev sw1p17 ingress protocol ip flower  ip_proto 0x70 action drop
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:58:38,622</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc qdisc add dev sw1p45 ingress
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:58:38,723</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc qdisc add dev sw1p45 ingress
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:58:38,823</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc filter add dev sw1p45 ingress protocol ip flower  ip_proto 0x70 action drop
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:58:38,924</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc filter add dev sw1p45 ingress protocol ip flower  ip_proto 0x70 action drop
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:58:38,925</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::transmitTraffic: Transmitting traffic:
+Port name: 2, Port uri: 10.5.236.4/12/12 ----------&#62 cisco
+</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-04 19:59:40,533</td>
+<td>INFO</td>
+<td><pre>Executing step 7: Verify the advertisements are dropped in each DUT</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:59:40,633</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tcpdump -n -i sw1p17 -c 5 src host 192.168.1.5 and vrrp
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:59:40,734</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tcpdump -n -i sw1p17 -c 5 src host 192.168.1.5 and vrrp
+tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+listening on sw1p17, link-type EN10MB (Ethernet), capture size 262144 bytes
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:59:50,663</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: timeout expired
+sending newline char and trying 1 last time</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:59:50,663</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::GetBufferTillPattern:  ==&#62CMD: "
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:59:50,764</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:59:50,864</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:59:50,965</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ^C
+
+0 packets captured
+0 packets received by filter
+0 packets dropped by kernel
+root@localhost:~# 
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:59:51,067</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tcpdump -n -i sw1p45 -c 5 src host 192.168.1.5 and vrrp
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 19:59:51,168</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tcpdump -n -i sw1p45 -c 5 src host 192.168.1.5 and vrrp
+tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+listening on sw1p45, link-type EN10MB (Ethernet), capture size 262144 bytes
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:01,096</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: timeout expired
+sending newline char and trying 1 last time</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:01,096</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::GetBufferTillPattern:  ==&#62CMD: "
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:01,199</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:01,299</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:01,400</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ^C
+
+0 packets captured
+0 packets received by filter
+0 packets dropped by kernel
+root@localhost:~# 
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:01,400</td>
+<td>TRACE</td>
+<td><pre>BaseTest::_OnPostTest:  starting to run registered post test functions</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:01,400</td>
+<td>TRACE</td>
+<td><pre>BaseTest::TestTearDown:  starting to call to cleanup functions of test</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:01,501</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc qdisc del dev sw1p45 ingress
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:01,601</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc qdisc del dev sw1p45 ingress
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:01,702</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc qdisc del dev sw1p17 ingress
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:01,803</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc qdisc del dev sw1p17 ingress
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:01,903</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "if [ ! -z "$(pidof keepalived)" ]; then killall keepalived; fi
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:02,004</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: if [ ! -z "$(pidof keepalived)" ]; then killall keepalived; fi
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:02,104</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo "" &#62 /etc/keepalived/keepalived.conf
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:02,206</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo "" &#62 /etc/keepalived/keepalived.conf
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:02,307</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "if [ ! -z "$(pidof keepalived)" ]; then killall keepalived; fi
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:02,408</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: if [ ! -z "$(pidof keepalived)" ]; then killall keepalived; fi
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:02,508</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo "" &#62 /etc/keepalived/keepalived.conf
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:02,609</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo "" &#62 /etc/keepalived/keepalived.conf
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:02,709</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip add del 192.168.1.3/24 dev br0
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:02,810</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip add del 192.168.1.3/24 dev br0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:02,911</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip add del 192.168.1.4/24 dev br0
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:03,011</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip add del 192.168.1.4/24 dev br0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:03,112</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p42 down
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:03,213</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p42 down
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:03,313</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:03,414</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p45 down
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:03,514</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p45 down
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:03,615</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:03,715</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p1 down
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:03,816</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p1 down
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:03,916</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:04,019</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p25 down
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:04,119</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p25 down
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:04,220</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:04,320</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p17 down
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:04,422</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p17 down
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:04,522</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:04,623</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link delete dev br0
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:04,723</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link delete dev br0
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:04,824</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:04,924</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link delete dev br0
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:05,026</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link delete dev br0
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:05,127</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:05,127</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_parse_dmesg: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:05,227</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  history
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:05,328</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   history
+    3  ip link add br0 type bridge vlan_filtering 1
+    4  ip link set dev br0 up
+    5  ip link set dev sw1p17 master br0
+    6  ip link set dev sw1p17 up
+    7  ip link set dev sw1p25 up
+    8  ip link set dev sw1p1 up
+    9  ip add add 192.168.1.4/24 dev br0
+   10  cat /etc/os-release | grep -Eo '^ID=\w+' | tr -d 'ID='
+   11  echo $?
+   12  if [ ! -z "$(pidof keepalived)" ]; then systemctl restart keepalived; else systemctl start keepalived; fi
+   13  cat /etc/os-release | grep -Eo '^ID=\w+' | tr -d 'ID='
+   14  echo $?
+   15  arp -s 192.168.1.5 AA:00:00:00:00:01
+   16  tcpdump -n -i sw1p17 -c 5 src host 192.168.1.5 and vrrp
+   17  tc qdisc add dev sw1p17 ingress
+   18  tc filter add dev sw1p17 ingress protocol ip flower  ip_proto 0x70 action drop
+   19  tcpdump -n -i sw1p17 -c 5 src host 192.168.1.5 and vrrp
+   20  tc qdisc del dev sw1p17 ingress
+   21  if [ ! -z "$(pidof keepalived)" ]; then killall keepalived; fi
+   22  echo "" &#62 /etc/keepalived/keepalived.conf
+   23  ip add del 192.168.1.4/24 dev br0
+   24  ip link set dev sw1p1 down
+   25  ip link set dev sw1p25 down
+   26  ip link set dev sw1p17 down
+   27  ip link delete dev br0
+   28    history
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:05,328</td>
+<td>DEBUG</td>
+<td><pre>commands history:
+    3  ip link add br0 type bridge vlan_filtering 1
+    4  ip link set dev br0 up
+    5  ip link set dev sw1p17 master br0
+    6  ip link set dev sw1p17 up
+    7  ip link set dev sw1p25 up
+    8  ip link set dev sw1p1 up
+    9  ip add add 192.168.1.4/24 dev br0
+   10  cat /etc/os-release | grep -Eo '^ID=\w+' | tr -d 'ID='
+   11  echo $?
+   12  if [ ! -z "$(pidof keepalived)" ]; then systemctl restart keepalived; else systemctl start keepalived; fi
+   13  cat /etc/os-release | grep -Eo '^ID=\w+' | tr -d 'ID='
+   14  echo $?
+   15  arp -s 192.168.1.5 AA:00:00:00:00:01
+   16  tcpdump -n -i sw1p17 -c 5 src host 192.168.1.5 and vrrp
+   17  tc qdisc add dev sw1p17 ingress
+   18  tc filter add dev sw1p17 ingress protocol ip flower  ip_proto 0x70 action drop
+   19  tcpdump -n -i sw1p17 -c 5 src host 192.168.1.5 and vrrp
+   20  tc qdisc del dev sw1p17 ingress
+   21  if [ ! -z "$(pidof keepalived)" ]; then killall keepalived; fi
+   22  echo "" &#62 /etc/keepalived/keepalived.conf
+   23  ip add del 192.168.1.4/24 dev br0
+   24  ip link set dev sw1p1 down
+   25  ip link set dev sw1p25 down
+   26  ip link set dev sw1p17 down
+   27  ip link delete dev br0
+   28    history</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:05,328</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_parse_dmesg: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:05,453</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  cat /var/log/messages
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:05,554</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   cat /var/log/messages
+
+Sep  4 19:57:19 localhost kernel: [ 2848.785266] br0: port 1(sw1p17) entered blocking state
+Sep  4 19:57:19 localhost kernel: [ 2848.790462] br0: port 1(sw1p17) entered disabled state
+Sep  4 19:57:19 localhost kernel: [ 2849.191564] device sw1p17 entered promiscuous mode
+Sep  4 19:57:19 localhost kernel: [ 2849.388805] AC3X 98DX3500 0000:01:00.0 sw1p25: configuring for inband/10gbase-r link mode
+Sep  4 19:57:21 localhost kernel: [ 2850.822311] AC3X 98DX3500 0000:01:00.0 sw1p25: Link is Up - 10Gbps/Full - flow control off
+Sep  4 19:57:21 localhost kernel: [ 2850.830654] IPv6: ADDRCONF(NETDEV_CHANGE): sw1p25: link becomes ready
+Sep  4 19:57:21 localhost Keepalived_vrrp[5224]: Registering Kernel netlink reflector
+Sep  4 19:57:21 localhost Keepalived_vrrp[5224]: Registering Kernel netlink command channel
+Sep  4 19:57:21 localhost Keepalived_vrrp[5224]: Opening file '/etc/keepalived/keepalived.conf'.
+Sep  4 19:57:21 localhost Keepalived_vrrp[5224]: (vrrp_test): Success creating VMAC interface vrrp.44
+Sep  4 19:57:21 localhost Keepalived_vrrp[5224]: (vrrp_test) entering FAULT state
+Sep  4 19:57:21 localhost Keepalived_vrrp[5224]: Registering gratuitous ARP shared channel
+Sep  4 19:57:21 localhost kernel: [ 2851.375608] device br0 entered promiscuous mode
+Sep  4 19:57:24 localhost kernel: [ 2853.656814] IPv6: ADDRCONF(NETDEV_CHANGE): sw1p1: link becomes ready
+Sep  4 19:57:25 localhost kernel: [ 2854.792837] IPv6: ADDRCONF(NETDEV_CHANGE): sw1p17: link becomes ready
+Sep  4 19:57:25 localhost kernel: [ 2854.801814] br0: port 1(sw1p17) entered blocking state
+Sep  4 19:57:25 localhost kernel: [ 2854.807005] br0: port 1(sw1p17) entered forwarding state
+Sep  4 19:57:25 localhost Keepalived_vrrp[5224]: Netlink reports br0 up
+Sep  4 19:57:25 localhost Keepalived_vrrp[5224]: Netlink reports vrrp.44 up
+Sep  4 19:57:25 localhost Keepalived_vrrp[5224]: (vrrp_test) Entering BACKUP STATE
+Sep  4 19:57:25 localhost Keepalived_vrrp[5224]: (vrrp_test) Entering MASTER STATE
+Sep  4 19:57:25 localhost Keepalived_vrrp[5224]: (vrrp_test) using locally configured advertisement interval (100 milli-sec)
+Sep  4 19:59:49 localhost Keepalived_vrrp[5224]: (vrrp_test) sent 0 priority
+Sep  4 19:59:50 localhost kernel: [ 3000.052277] br0: Router interface is deleted. Upper macvlans will not work
+Sep  4 19:59:50 localhost kernel: [ 3000.333261] AC3X 98DX3500 0000:01:00.0 sw1p25: Link is Down
+Sep  4 19:59:50 localhost kernel: [ 3000.453532] device br0 left promiscuous mode
+Sep  4 19:59:51 localhost Keepalived_vrrp[5224]: vmac: Success removing VMAC interface vrrp.44 for vrrp_instance vrrp_test
+Sep  4 19:59:51 localhost Keepalived_vrrp[5224]: Stopped
+Sep  4 19:59:52 localhost kernel: [ 3001.565608] br0: port 1(sw1p17) entered disabled state
+Sep  4 19:59:52 localhost kernel: [ 3002.053064] device sw1p17 left promiscuous mode
+Sep  4 19:59:52 localhost kernel: [ 3002.057713] br0: port 1(sw1p17) entered disabled state
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:05,554</td>
+<td>DEBUG</td>
+<td><pre>dmesg lines that matched regex for issues:</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:05,555</td>
+<td>DEBUG</td>
+<td><pre>{
+    "call trace:": {
+        found: false,
+        regex: "Call trace:",
+    },
+    "cut here": {
+        found: false,
+        regex: "\\[ cut here \\]",
+    },
+    "hw routing offloading disabled:": {
+        found: false,
+        regex: "Abort. HW routing offloading disabled",
+    },
+}</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:06,424</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Cleanup:  clearing ports ownership...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:06,635</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Cleanup:  Disconnecting from chassis...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 20:00:06,656</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Cleanup:  TG disconnect time is 0.02</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-04 20:00:06,656</td>
+<td>INFO</td>
+<td><pre>Test Passed</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-04 20:00:06,664</td>
+<td>INFO</td>
+<td><pre>
+CI_META:
+{"Software_Version": "2.0.0-v3.0.0-rc4", "Linux_Version": ""}
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                                  Dut Information                                                                   |
++--------+-------------+------+------------------+--------------------------------+---------------+---------------+---------------------+------------+
+| ODM    | Board_Model | ASIC | Software_Version | UBOOT_Version                  | Linux_Version | CPU_CoreClock | Host_kernel_version | PCBVersion |
++--------+-------------+------+------------------+--------------------------------+---------------+---------------+---------------------+------------+
+| Accton | AS4224-52P  | AC3X | 2.0.0-v3.0.0-rc4 | U-Boot 2019.10-10.0.0-gd93ffd8 |               |               | 5.10.4              | R0A        |
++--------+-------------+------+------------------+--------------------------------+---------------+---------------+---------------------+------------+
+
+None
+
+None
+
++--------------------------------------------+
+|                PDU Settings                |
++----+----------------+-------------+--------+
+| id | Connect_To_PDU | ip_address  | outlet |
++----+----------------+-------------+--------+
+| 1  | True           | 10.5.236.19 | 4      |
++----+----------------+-------------+--------+
+| 3  | True           | 10.5.236.19 | 5      |
++----+----------------+-------------+--------+
+
+None
++-------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                             Test Steps Summary                                                            |
++------+------------------------------------------------------------------------------------------------------+--------+--------------------+
+| Step | Description                                                                                          | Result | Run Time           |
++------+------------------------------------------------------------------------------------------------------+--------+--------------------+
+| 1    | Create a bridge entity on each DUT and set link up on them                                           | Passed | 0.0                |
++------+------------------------------------------------------------------------------------------------------+--------+--------------------+
+| 2    | Enslave ports according to the test's setup topology                                                 | Passed | 0.4033942222595215 |
++------+------------------------------------------------------------------------------------------------------+--------+--------------------+
+| 3    | Set link up on all participant ports                                                                 | Passed | 1.3085236549377441 |
++------+------------------------------------------------------------------------------------------------------+--------+--------------------+
+| 4    | Setup: [R2]---Int2-------------Int2--[R1]--- Int3 |___________ ___________| | ___ | | |_1_| | Int1   | Passed | 64.24187755584717  |
+|      | Int1 |Ixia| | | | | [ Switch ] --------------2-|____| Configure: Router1: - Interface 1: ip address  |        |                    |
+|      | 192.168.1.2/24. vrrp 44 ip 192.168.1.2 Router2: - Interface 1: ip address 192.168.1.3/24. vrrp 44 ip |        |                    |
+|      | 192.168.1.2 Ixia port 2 - VRRPv3 WS advertisement                                                    |        |                    |
++------+------------------------------------------------------------------------------------------------------+--------+--------------------+
+| 5    | Verify the WS advertisements are trapped in each DUT                                                 | Passed | 0.6053869724273682 |
++------+------------------------------------------------------------------------------------------------------+--------+--------------------+
+| 6    | Configure ACL to drop VRRP advertisements on "Interface 1" on each DUT                               | Passed | 62.41434955596924  |
++------+------------------------------------------------------------------------------------------------------+--------+--------------------+
+| 7    | Verify the advertisements are dropped in each DUT                                                    | Passed | 20.86767315864563  |
++------+------------------------------------------------------------------------------------------------------+--------+--------------------+
++------------------------------------------------------------------------------------------------+
+|                                        Test Information                                        |
++------------+---------------------+--------+-----------------+-----------------+----------------+
+| Suite_Name | Test_Name           | Result | start_time      | end_time        | run_time       |
++------------+---------------------+--------+-----------------+-----------------+----------------+
+| VRRP       | VRRP_VrrpAndAclFlow | Passed | 19:57:16.082924 | 20:00:06.656660 | 0:02:50.573736 |
++------------+---------------------+--------+-----------------+-----------------+----------------+</pre></td>
+</tr>
+
+</tbody></table></div>
+</body>
+<script>
+    $.fn.dataTable.ext.search.push(
+        function( settings, data, dataIndex ) {
+            let minIndex = severities.indexOf($('#min-severity').find(':selected').text());
+            let maxIndex = severities.indexOf($('#max-severity').find(':selected').text());
+            var severity = data[1] || 'NOT SET';// use data for the Log Level column
+            var severityIndex = severities.indexOf(severity);
+            if ( ( maxIndex == -1 && minIndex == -1 ) ||
+                 ( minIndex <= severityIndex && severityIndex <= maxIndex ) )
+            {
+                return true;
+            }
+            return false;
+        }
+    );
+    
+    function fill_select(id, items){
+        for(t of items){
+            $('#'+id).append(new Option(t, t));
+        }
+    }
+    
+    function selectionChanged(selectChanged, selectAffected, selectedOption, startFrom, end){
+        let selected = $('#'+selectAffected).find(':selected').text(); //keep affected value
+        $('#'+selectAffected).empty(); //empty the affected one
+
+        fill_select(selectAffected, severities.slice(startFrom, end));
+        selected = $('#'+selectAffected).find("option:contains('" + selected  + "')").length > 0 ? selected : $("#"+selectAffected+" option:first").val();
+        $('#'+selectAffected).val(selected);
+    }
+    
+    var severities = ['NOT SET','TRACE','DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL']
+    $(document).ready(function() {
+        for(severity of severities){
+            $('#min-severity, #max-severity').append(new Option(severity, severity));
+        }
+        
+        $('#max-severity option:last').attr('selected', 'selected');
+        
+        var table = $('#data_table').DataTable({
+            "lengthMenu": [[-1, 10, 25, 50], ["All", 10, 25, 50]]
+        });
+        
+        $('#min-severity, #max-severity').change( function(e) {
+            if(e.target.id == 'min-severity'){
+                selectionChanged(e.target.id, 'max-severity', e.target.selectedOptions[0].text, severities.indexOf(e.target.selectedOptions[0].text), severities.length+1);
+            }
+            else if(e.target.id == 'max-severity'){
+                selectionChanged(e.target.id, 'min-severity',e.target.selectedOptions[0].text, 0 ,severities.indexOf(e.target.selectedOptions[0].text) + 1);
+            }
+            table.draw();
+        } );
+    } );
+    
+    
+</script>
+</html>
