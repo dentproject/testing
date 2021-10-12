@@ -48,9 +48,9 @@ async def test_clean_config(testbed):
     - call the helper
     """
 
-    package = "/home/neteng/staging/staging.tar.gz"
-    if not os.path.exists(package):
-        assert 0, f"{package} could not be found!"
+    # package = "/home/neteng/staging/staging.tar.gz"
+    # if not os.path.exists(package):
+    #     assert 0, f"{package} could not be found!"
 
     devices = await tb_get_all_devices(testbed)
     cos = []
@@ -58,10 +58,10 @@ async def test_clean_config(testbed):
         cos.append(disable_ztp(device))
     results = await asyncio.gather(*cos, return_exceptions=True)
     check_asyncio_results(results, "disable_ztp")
-    cos = []
-    for device in devices:
-        cos.append(setup_dent_tools(device, package))
-    results = await asyncio.gather(*cos, return_exceptions=True)
-    check_asyncio_results(results, "setup_dent_tools")
+    # cos = []
+    # for device in devices:
+    #     cos.append(setup_dent_tools(device, package))
+    # results = await asyncio.gather(*cos, return_exceptions=True)
+    # check_asyncio_results(results, "setup_dent_tools")
 
     await tb_clean_config(testbed)

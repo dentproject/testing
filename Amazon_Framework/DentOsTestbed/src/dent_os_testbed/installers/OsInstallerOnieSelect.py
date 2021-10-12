@@ -1,4 +1,4 @@
-"""Module for installing OS through onie-select
+"""Module for installing OS through dent_boot_select
 """
 import os
 import time
@@ -6,7 +6,7 @@ import time
 
 class OsInstallerOnieSelect:
     """
-    Implements APIs for installing OS through onie-select
+    Implements APIs for installing OS through dent_boot_select
     """
 
     DEVICE_UP_WAIT_TIME_SECS = 60 * 3
@@ -42,7 +42,7 @@ class OsInstallerOnieSelect:
         Args:
             device (Device): Device on which the OS needs to be installed
             os_image_download_url (str): HTTP URL to download the OS image from
-            staging_device (Device): Device to stage the OS image,from which onie-select picks it up
+            staging_device (Device): Device to stage the OS image,from which dent_boot_select picks it up
             staging_path(str): Path on the staging device to which the OS image is copied to.
 
         Raises:
@@ -66,7 +66,7 @@ class OsInstallerOnieSelect:
         Args:
             device (Device): Device on which the OS needs to be installed
             os_image_download_url (str): HTTP URL to download the OS image from
-            staging_device (Device): Device to stage the OS image,from which onie-select picks it up
+            staging_device (Device): Device to stage the OS image,from which dent_boot_select picks it up
             staging_path(str): Path on the staging device to which the OS image is copied to.
 
         Raises:
@@ -86,7 +86,7 @@ class OsInstallerOnieSelect:
 
     async def _run_onie_select(self, device):
         try:
-            await device.run_cmd("onie-select install", sudo=True)
+            await device.run_cmd("dent_boot_select install", sudo=True)
         except Exception as e:
             self.applog.exception(
                 f"{OsInstallerOnieSelect._run_onie_select.__qualname__}", exc_info=e
