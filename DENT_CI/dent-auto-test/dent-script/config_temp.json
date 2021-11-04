@@ -1,0 +1,25 @@
+{
+  "devices": [
+      {
+          "friendlyName":"as4224-1",
+          "os":"dentos",
+          "type" : "INFRA_SWITCH",
+          "hostName": "infra_sw1",
+          "ip": "0.0.0.0",
+          "netmask": "255.255.0.0",
+          "login":{
+              "userName":"root",
+              "password":"onl"
+          },
+          "serialDev":"/dev/ttyUSB7",
+          "baudrate": 115200,
+          "consoleServer":{
+            "ip":"0.0.0.0",
+            "port":0
+          }
+      }
+  ],
+  "operator" : "dent",
+  "topology" : "gordion-knot",
+  "force_discovery" : false
+}

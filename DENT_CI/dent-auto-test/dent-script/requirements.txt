@@ -1,0 +1,3 @@
+virtualenv==20.8.1
+pexpect==4.8.0
+requests==2.18.4

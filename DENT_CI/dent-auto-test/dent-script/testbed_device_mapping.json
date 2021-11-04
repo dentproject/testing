@@ -1,0 +1,9 @@
+{
+  "Dent": {
+    "testbed": "master",
+    "device": [
+      "/tainan/as4xxx/as4224-1",
+      "/tainan/as5xxx/as5114-1"
+    ]
+  }
+}
