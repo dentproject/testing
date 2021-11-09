@@ -16,7 +16,24 @@ pytestmark = pytest.mark.suite_bonding
 
 @pytest.mark.asyncio
 async def test_alpha_lab_bonding_min_links(testbed):
-    # get the infra devices that are inter connected to each other.
+    """
+    Test Name: test_alpha_lab_bonding_min_links
+    Test Suite: suite_bonding
+    Test Overview: test bond min links
+    Test Procedure:
+    1. get the infra devices that are inter connected to each other.
+    2. test minimum links function
+      - ip link add bond0 type bond
+      - ip link set bond0 type bond mode active-backup min_links 2
+      - ip link set swp47 down
+      - ip link set swp47 master bond0
+      - ip link set swp48 down
+      - ip link set swp48 master bond0
+      - ip link set bond0 up
+    3. Set 2 minimum links,
+    4. kill a link
+    5. the port channel interface should drop
+    """
     infra_devices = await bonding_get_interconnected_infra_devices(testbed, testbed.devices)
     if not infra_devices:
         print("The testbed does not have enough infra devices with interconnected links")
@@ -24,17 +41,6 @@ async def test_alpha_lab_bonding_min_links(testbed):
 
     await bonding_setup(infra_devices)
 
-    # test minimum links function
-    # ip link add bond0 type bond
-    # ip link set bond0 type bond mode active-backup min_links 2
-    # ip link set swp47 down
-    # ip link set swp47 master bond0
-    # ip link set swp48 down
-    # ip link set swp48 master bond0
-    # ip link set bond0 up
-    # Set 2 minimum links,
-    # kill a link
-    # the port channel interface should drop
     for dd in infra_devices:
         for cmd in [
             "ip link del bond0 type bond || true",

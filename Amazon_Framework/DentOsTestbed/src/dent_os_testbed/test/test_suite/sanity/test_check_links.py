@@ -94,5 +94,14 @@ async def check_and_validate_switch_links(testbed):
 
 @pytest.mark.asyncio
 async def test_check_and_validate_switch_links(testbed):
+    """
+    Test Name: test_check_and_validate_switch_links
+    Test Suite: suite_system_health
+    Test Overview: Check the links between infra, agg, oob, dist devices if they are UP
+    Test Procedure:
+      1. get all the reachable devices
+      2. check the operstate of the link enumerated in device.links
+      3. fail the test if any of the link operstate is DOWN
+    """
     # check the links
     await check_and_validate_switch_links(testbed)

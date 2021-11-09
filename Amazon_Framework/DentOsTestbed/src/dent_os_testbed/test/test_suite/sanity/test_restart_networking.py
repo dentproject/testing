@@ -29,7 +29,7 @@ async def do_trigger(testbed, trigger_obj):
     elif trigger == TRIGGER_RESTART_SERVICES:
         services = [
             # "frr.service",
-            "IhmDentTcFlower.service",
+            "IhmDentTcFlower",
             # "networking",
         ]
         for s in services:
@@ -66,11 +66,14 @@ async def do_trigger(testbed, trigger_obj):
 @pytest.mark.asyncio
 async def test_system_wide_restart_and_service_reloads(testbed):
     """
-    - on each device
-    -  do the following trigger
-      - reboot
-      - restaert networking
-      -
+    Test Name: test_system_wide_restart_and_service_reloads
+    Test Suite: suite_system_wide_testing
+    Test Overview: To test restarting services (DentTcFlower) and ifreload
+    Test Procedure:
+     1. Get all the the reachable devices
+     2. get health of each of the devices
+     3. In each iteration restart the services and ifreload on a single dvice
+     4. check the health and it should match before the restart
     """
     devices = []
     prev_dut_state = {}
@@ -94,7 +97,7 @@ async def test_system_wide_restart_and_service_reloads(testbed):
             t[1].append(dev)
         triggers.append(t)
 
-    count = 25
+    count = 10
     while count:
         """
         - For each triggers test the traffic is working or not.

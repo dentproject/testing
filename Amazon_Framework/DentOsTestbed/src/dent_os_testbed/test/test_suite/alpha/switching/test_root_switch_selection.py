@@ -14,10 +14,16 @@ pytestmark = pytest.mark.suite_switching
 
 @pytest.mark.asyncio
 async def test_alpha_lab_switching_root_switch_selection(testbed):
-    # Validate root switch selection
-    # Configure different values for switch priority
-    # Validate root changes occur gracefully.
-    # mstpctl settreeportprio bridge 100
+    """
+    Test Name: test_alpha_lab_switching_root_switch_selection
+    Test Suite: suite_switching
+    Test Overview: test switch root switch selection
+    Test Procedure:
+    1. Validate root switch selection
+    2. Configure different values for switch priority
+    3. Validate root changes occur gracefully.
+    4. mstpctl settreeportprio bridge 100
+    """
     for dd in await tb_get_all_devices(testbed):
         if dd.type != DeviceType.INFRA_SWITCH:
             continue

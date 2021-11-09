@@ -37,6 +37,8 @@ class LinuxIpLinkImpl(LinuxIpLink):
             cmd += "numrxqueues {} ".format((params["numrxqueues"]))
         if "type" in params:
             cmd += "type {} ".format((params["type"]))
+        if "vlan_filtering" in params:
+            cmd += "vlan_filtering {} ".format((params["vlan_filtering"]))
         return cmd
 
     def format_delete(self, command, *argv, **kwarg):

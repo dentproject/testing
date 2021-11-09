@@ -86,7 +86,7 @@ class TestBed:
             self.applog.debug("TestBed::_install_image++")
             await self.device_group.install_os(self.args.os_image_download_url)
             self.applog.debug("TestBed::_install_image--")
-            time.sleep(5 * 60)
+            time.sleep(7 * 60)
             # self.applog.debug("TestBed::_verify_image++")
             # await self.device_group.verify_os(self.args.os_image_download_url)
             # self.applog.debug("TestBed::_install_image--")
@@ -111,4 +111,19 @@ class TestBed:
             self.discovery_report = await discovery.run()
         except Exception as e:
             self.applog.exception("Error running discovery", exc_info=e)
+            raise
+
+    async def update_links(self):
+        """
+        Update links information on devices in the testbed using discovery results
+
+        Raises:
+            Exception: For generic failures.
+        """
+        try:
+            self.applog.debug("TestBed::update_links++")
+            await self.device_group.update_links(self.discovery_report)
+            self.applog.debug("TestBed::update_links--")
+        except Exception as e:
+            self.applog.exception("Error running update_links", exc_info=e)
             raise

@@ -25,10 +25,14 @@ pytestmark = pytest.mark.suite_traffic
 @pytest.mark.asyncio
 async def test_tgen_link_speed_change(testbed):
     """
-    # setup the traffic with link across the infra switches
-    # bring down all the links between the infra that are 10G links
-    # set the speec on the inter infra links to reduced speed
-    # send traffic at line rate and check the rate at recieving end.
+    Test Name: test_tgen_link_speed_change
+    Test Suite: suite_traffic
+    Test Overview: Test the link speed with traffic on a tgen port
+    Test Procedure:
+    1. setup the traffic with link across the infra switches
+    2. bring down all the links between the infra that are 10G links
+    3. set the speec on the inter infra links to reduced speed
+    4. send traffic at line rate and check the rate at recieving end.
     """
     tgen_dev, infra_devices = await tgen_utils_get_dent_devices_with_tgen(
         testbed, [DeviceType.INFRA_SWITCH], 1
@@ -54,14 +58,14 @@ async def test_tgen_link_speed_change(testbed):
         return
 
     await tb_reload_nw_and_flush_firewall(infra_devices)
-    for dd in infra_devices:
-        # bring down the links that are 10g links
-        for swp in range(49, 53):
-            link = f"swp{swp}"
-            out = await IpLink.set(
-                input_data=[{dd.host_name: [{"device": link, "operstate": "down"}]}],
-            )
-            assert out[0][dd.host_name]["rc"] == 0, f"Failed to down the link {link} {out}"
+    # for dd in infra_devices:
+    #    # bring down the links that are 10g links
+    #    for swp in range(49, 53):
+    #        link = f"swp{swp}"
+    #        out = await IpLink.set(
+    #            input_data=[{dd.host_name: [{"device": link, "operstate": "down"}]}],
+    #        )
+    #        assert out[0][dd.host_name]["rc"] == 0, f"Failed to down the link {link} {out}"
 
     devices_info = {}
     for dd in infra_devices:
@@ -112,7 +116,7 @@ async def test_tgen_link_speed_change(testbed):
     for speed, rate in zip(speeds, rx_rates):
         # set the speed on the inter infra link
         for swp in infra1.links_dict[infra2.host_name][0]:
-            out = Ethtool.set(
+            out = await Ethtool.set(
                 input_data=[
                     {infra1.host_name: [{"devname": swp, "speed": speed, "autoneg": "on"}]}
                 ],
@@ -136,12 +140,12 @@ async def test_tgen_link_speed_change(testbed):
                 assert 0, f"Rate does not match {rx_rate} {rate}"
 
     await tgen_utils_stop_protocols(tgen_dev)
-    # bring back up the links
-    for dd in infra_devices:
-        # bring down the links that are 10g links
-        for swp in range(49, 53):
-            link = f"swp{swp}"
-            out = await IpLink.set(
-                input_data=[{dd.host_name: [{"device": link, "operstate": "up"}]}],
-            )
-            assert out[0][dd.host_name]["rc"] == 0, f"Failed to up the link {link} {out}"
+    ## bring back up the links
+    # for dd in infra_devices:
+    #    # bring down the links that are 10g links
+    #    for swp in range(49, 53):
+    #        link = f"swp{swp}"
+    #        out = await IpLink.set(
+    #            input_data=[{dd.host_name: [{"device": link, "operstate": "up"}]}],
+    #        )
+    #        assert out[0][dd.host_name]["rc"] == 0, f"Failed to up the link {link} {out}"

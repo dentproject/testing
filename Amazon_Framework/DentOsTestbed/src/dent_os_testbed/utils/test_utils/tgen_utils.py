@@ -6,6 +6,7 @@ from collections import defaultdict
 
 from dent_os_testbed.Device import DeviceType
 from dent_os_testbed.lib.bridge.bridge_vlan import BridgeVlan
+from dent_os_testbed.lib.frr.bgp import Bgp
 from dent_os_testbed.lib.ip.ip_address import IpAddress
 from dent_os_testbed.lib.traffic.traffic_gen import TrafficGen
 from dent_os_testbed.utils.test_utils.tb_utils import tb_get_all_devices
@@ -116,12 +117,14 @@ async def tgen_utils_connect_to_tgen(device, dent_dev):
                 "plen": dev_plen,
             }
         ]
+    ixia_port = device.port if device.port is not None else 443
     out = await TrafficGen.connect(
         input_data=[
             {
                 device.host_name: [
                     {
                         "client_addr": device.ip,
+                        "client_port": ixia_port,
                         "tgen_ports": tgen_ports,
                         "swp_ports": swp_ports,
                         "dev_groups": dev_groups,
@@ -189,12 +192,14 @@ async def tgen_utils_create_devices_and_connect(
                 if need_vlan and vid is not None:
                     dev_groups[ixp][-1]["vlan"] = vid
                 dev_ip[vname] += 10
+    ixia_port = tgen_dev.port if tgen_dev.port is not None else 443
     out = await TrafficGen.connect(
         input_data=[
             {
                 tgen_dev.host_name: [
                     {
                         "client_addr": tgen_dev.ip,
+                        "client_port": ixia_port,
                         "tgen_ports": tgen_ports,
                         "swp_ports": swp_ports,
                         "dev_groups": dev_groups,
@@ -216,11 +221,10 @@ async def tgen_utils_create_bgp_devices_and_connect(tgen_dev, dent_devices, bgp_
     swp_ports = []
     dev_groups = {}
     tgen_ips = {
-        "dis": "21.{}.{}.{}",  # 21.<dis#>.swp.1/24
-        "agg": "22.{}.{}.{}",
-        "inf": "23.{}.{}.{}",
-        "oob": "24.{}.{}.{}",
-        "rsw": "25.{}.{}.{}",
+        DeviceType.DISTRIBUTION_ROUTER: "21.{}.{}.{}",  # 21.<dis#>.swp.1/24
+        DeviceType.AGGREGATION_ROUTER: "22.{}.{}.{}",
+        DeviceType.INFRA_SWITCH: "23.{}.{}.{}",
+        DeviceType.OUT_OF_BOUND_SWITCH: "24.{}.{}.{}",
     }
     for dd in dent_devices:
         tgen_ports += tgen_dev.links_dict[dd.host_name][0]
@@ -242,8 +246,8 @@ async def tgen_utils_create_bgp_devices_and_connect(tgen_dev, dent_devices, bgp_
                 ]
             )
             dd.applog.info(f"{out}")
-            dev_ip = tgen_ips[dd.host_name[:3]].format(dd.host_name[-1], swp[3:], "2")
-            dev_gw = tgen_ips[dd.host_name[:3]].format(dd.host_name[-1], swp[3:], "1")
+            dev_ip = tgen_ips[dd.type].format(dd.host_name[-1], swp[3:], "2")
+            dev_gw = tgen_ips[dd.type].format(dd.host_name[-1], swp[3:], "1")
             dev_plen = 24
             dev_vlan = None
             vlans = json.loads(out[0][dd.host_name]["result"])
@@ -275,19 +279,80 @@ async def tgen_utils_create_bgp_devices_and_connect(tgen_dev, dent_devices, bgp_
                         input_data=[{dd.host_name: [{"dev": swp, "prefix": dev_gw + "/24"}]}],
                     )
 
-            cmd = f"vtysh -c 'show bgp summary json'"
-            rc, out = await dd.run_cmd(cmd, sudo=True)
-            bgp_summary = json.loads(out)
+            out = await Bgp.show(input_data=[{dd.host_name: [{"options": "json"}]}])
+            bgp_summary = json.loads(out[0][dd.host_name]["result"])
             d1_as = bgp_summary["ipv4Unicast"]["as"]
             for cmd in [
-                f"vtysh -c 'conf terminal' -c 'router bgp {d1_as}' -c 'neighbor IXIA peer-group'",
-                f"vtysh -c 'conf terminal' -c 'router bgp {d1_as}' -c 'neighbor IXIA remote-as 200'",
-                f"vtysh -c 'conf terminal' -c 'router bgp {d1_as}' -c 'neighbor IXIA timers 3 10'",
-                f"vtysh -c 'conf terminal' -c 'router bgp {d1_as}' -c 'neighbor {dev_ip} peer-group IXIA'",
-                f"vtysh -c 'conf terminal' -c 'router bgp {d1_as}' -c 'address-family ipv4 unicast' -c 'neighbor IXIA soft-reconfiguration inbound'",
+                (
+                    Bgp.configure,
+                    [
+                        {
+                            dd.host_name: [
+                                {
+                                    "asn": d1_as,
+                                    "neighbor": {"options": {"peer-group": ""}},
+                                    "group": "IXIA",
+                                }
+                            ]
+                        }
+                    ],
+                ),
+                (
+                    Bgp.configure,
+                    [
+                        {
+                            dd.host_name: [
+                                {
+                                    "asn": d1_as,
+                                    "neighbor": {"options": {"remote-as": 200}},
+                                    "group": "IXIA",
+                                }
+                            ]
+                        }
+                    ],
+                ),
+                (
+                    Bgp.configure,
+                    [
+                        {
+                            dd.host_name: [
+                                {
+                                    "asn": d1_as,
+                                    "neighbor": {"options": {"timers": "3 10"}},
+                                    "group": "IXIA",
+                                }
+                            ]
+                        }
+                    ],
+                ),
+                (
+                    Bgp.configure,
+                    [
+                        {
+                            dd.host_name: [
+                                {"asn": d1_as, "ip": dev_ip, "neighbor": {}, "group": "IXIA"}
+                            ]
+                        }
+                    ],
+                ),
+                (
+                    Bgp.configure,
+                    [
+                        {
+                            dd.host_name: [
+                                {
+                                    "asn": d1_as,
+                                    "address-family": "ipv4 unicast",
+                                    "neighbor": {"options": {"soft-reconfiguration": "inbound"}},
+                                    "group": "IXIA",
+                                }
+                            ]
+                        }
+                    ],
+                ),
             ]:
-                rc, out = await dd.run_cmd(cmd, sudo=True)
-                dd.applog.info(f"added the IXIA peer {cmd} rc {rc} out {out}")
+                out = await cmd[0](input_data=cmd[1])
+                dd.applog.info(f"added the IXIA peer {cmd[0]} out {out}")
             dev_groups[ixp] = [
                 {
                     "name": f"{dd.host_name}_{swp}",
@@ -299,13 +364,14 @@ async def tgen_utils_create_bgp_devices_and_connect(tgen_dev, dent_devices, bgp_
                     "vlan": dev_vlan,
                 },
             ]
-
+    ixia_port = tgen_dev.port if tgen_dev.port is not None else 443
     out = await TrafficGen.connect(
         input_data=[
             {
                 tgen_dev.host_name: [
                     {
                         "client_addr": tgen_dev.ip,
+                        "client_port": ixia_port,
                         "tgen_ports": tgen_ports,
                         "swp_ports": swp_ports,
                         "dev_groups": dev_groups,
@@ -385,13 +451,24 @@ async def tgen_utils_get_traffic_stats(device, stats_type="Port Statistics"):
             )
         elif stats_type == "Flow Statistics":
             device.applog.info(
-                "Tx {} Rx {} TI {} SIP-DIP {} Tx {} Rx {}".format(
+                "Tx {} Rx {} TI {} SIP-DIP {} Tx {} Rx {} Loss {}".format(
                     row["Tx Port"],
                     row["Rx Port"],
                     row["Traffic Item"],
                     row["Source/Dest Value Pair"],
                     row["Tx Frames"],
                     row["Rx Frames"],
+                    row["Loss %"],
+                )
+            )
+        elif stats_type == "Traffic Item Statistics":
+            device.applog.info(
+                "Traffic Item {} Tx {} Rx {} Frames Delta {} Loss {}".format(
+                    row["Traffic Item"],
+                    row["Tx Frames"],
+                    row["Rx Frames"],
+                    row["Frames Delta"],
+                    row["Loss %"],
                 )
             )
 
@@ -500,3 +577,10 @@ def tgen_util_convert_aws_logs_to_streams():
     with open("streams.json", "w") as outfile:
         json.dump(streams, outfile, indent=4)
     print("Created %d Streams" % len(streams.keys()))
+
+
+def tgen_utils_get_loss(row):
+    loss = row["Loss %"]
+    if loss == "":
+        return 0.0
+    return float(loss)

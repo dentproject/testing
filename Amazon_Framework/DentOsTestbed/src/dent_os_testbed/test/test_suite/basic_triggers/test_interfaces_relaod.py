@@ -16,10 +16,20 @@ pytestmark = pytest.mark.suite_basic_trigger
 @pytest.mark.asyncio
 async def test_reload_interface(testbed):
     """
-    1. Create list of dummy inteface file list
-    2. upload it to the switch
-    3. do a reload
+    Test Name: test_reload_interface
+    Test Suite: suite_basic_trigger
+    Test Overview: upload a new interfaces file with all the links marked down to test reload interfaces
+    Test Procedure:
+    1. for all the discovered devices get the old interfaces file
+    2. construct a new interfaces file with all the interfaces marked as down
+    3. copy the new file to the switch
+    4. reload the interfaces
+    5. copy back the original interfaces and reload the interfaces
     """
+    if testbed.args.is_provisioned:
+        testbed.applog.info(f"Skipping test since on provisioned setup")
+        return
+
     if not testbed.discovery_report:
         testbed.applog.info("Discovery report not available, skipping test_switch_reload")
         return
@@ -44,9 +54,9 @@ async def test_reload_interface(testbed):
 
         # copy the original file
         device.applog.info("Getting the original interface file")
-        await device.scp(old_fname, "/etc/network/interfaces", remote_to_local=True)
+        await device.scp(old_fname, "/etc/network/interfaces", remote_to_local=True, sudo=True)
         device.applog.info("Uploading the interface config")
-        await device.scp(fname, "/etc/network/interfaces")
+        await device.scp(fname, "/etc/network/interfaces", sudo=True)
 
         # do a reload
         device.applog.info("Performing the reload")
@@ -58,7 +68,7 @@ async def test_reload_interface(testbed):
         time.sleep(4)
         # copy back the original file.
         device.applog.info("Reverting to the original file")
-        await device.scp(old_fname, "/etc/network/interfaces")
+        await device.scp(old_fname, "/etc/network/interfaces", sudo=True)
         # do a reload with old interfce file
         device.applog.info("Reloading interface")
         out = await Interface.reload(input_data=[{dev.device_id: [{"options": "-a"}]}])

@@ -61,6 +61,10 @@ class LinuxIpTablesImpl(LinuxIpTables):
             cmd += "--dport {} ".format(params["dport"])
         if "sport" in params:
             cmd += "--sport {} ".format(params["sport"])
+        if "icmp-type" in params:
+            cmd += "--icmp-type {} ".format(params["icmp-type"])
+        if "icmp-code" in params:
+            cmd += "--icmp-code {} ".format(params["icmp-code"])
         if "mac-source" in params:
             cmd += "-m mac --mac-source {} ".format(params["mac-source"])
         if "target" in params:
