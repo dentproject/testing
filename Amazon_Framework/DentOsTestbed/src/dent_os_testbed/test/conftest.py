@@ -114,3 +114,13 @@ def pytest_collection_modifyitems(session, config, items):
 @pytest.fixture(scope="session")
 def testbed():
     return pytest.testbed
+
+
+@pytest.hookimpl(hookwrapper=True)
+def pytest_runtest_makereport(item, call):
+    outcome = yield
+    report = outcome.get_result()
+    test_fn = item.obj
+    docstring = getattr(test_fn, "__doc__")
+    if docstring:
+        print (docstring)

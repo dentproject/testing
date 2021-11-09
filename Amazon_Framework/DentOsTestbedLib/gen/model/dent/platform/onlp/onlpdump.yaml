@@ -1,5 +1,5 @@
-- module: onlpdump
-  description: onlp_dump - Open Network Linux Platform dump information
+- module: onlp
+  description: onlp - Open Network Linux Platform
   classes:
    - name: onlp_system_info
      singleton: True

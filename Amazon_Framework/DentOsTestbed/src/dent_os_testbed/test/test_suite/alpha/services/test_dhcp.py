@@ -13,7 +13,14 @@ pytestmark = pytest.mark.suite_services
 
 @pytest.mark.asyncio
 async def test_alpha_lab_services_dhcp(testbed):
-    if not testbed.args.use_pssh:
+    """
+    Test Name: test_alpha_lab_services_dhcp
+    Test Suite: suite_services
+    Test Overview: test for DHCP service
+    Test Procedure:
+    1. check for dhcp services on OOB and infra devices
+    """
+    if not testbed.args.is_provisioned:
         testbed.applog.info(f"Skipping test since not on provisioned setup")
         return
     # Several devices need to be DHCP servers (OOBs and RSWs), validate service

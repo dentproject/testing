@@ -63,6 +63,10 @@ PYTEST_SUITES = {
     "suite_filtering": "filtering related tests",
     "suite_alpha_poe": "Alpha Poe Related tests",
     "suite_services": "Services related tests",
+    "suite_vlan_port_isolation": "VLAN Port Isolation related tests",
+    "suite_acl_scale": "ACL Scale related tests",
+    "suite_acl_performance": "ACL Performance related tests",
+    "suite_poe_cli": "POE related tests with the cli tool",
     "suite_cleanup": "Test marker for test cleanup",
 }
 
@@ -80,13 +84,19 @@ PYTEST_SUITE_GROUPS = {
     "suite_group_store_bringup": ["suite_system_bootstrap", "suite_system_verify"],
     "suite_group_alpha_lab_testing": [
         "suite_routing",
-        "suite_bonding",
+        # "suite_bonding",
         "suite_switching",
         "suite_provisioning",
         "suite_bgp_routing",
         "suite_filtering",
         "suite_alpha_poe",
         "suite_services",
+    ],
+    "suite_group_dentv2_testing": [
+        "suite_vlan_port_isolation",
+        "suite_acl_scale",
+        "suite_acl_performance",
+        "suite_poe_cli",
     ],
     "suite_group_connection": ["suite_connection"],
     "suite_group_platform": ["suite_poe", "suite_onlpdump", "suite_lldp"],
