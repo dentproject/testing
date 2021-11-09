@@ -47,18 +47,22 @@ async def check_ping_to_tgen_link(testbed, dev_groups, dent_dev):
 @pytest.mark.asyncio
 async def test_arp_flush_w_traffic(testbed):
     """
-    - setup dent switch
-      - get a dent switch
-      - configure the switch for h/w forwarding
-    - setup tgen
-      - get a tgen device
-      - connect to the ports
-      - setup traffic stream with a know SIP and DIP
-    - start the traffic
-    - ping the tgen from a switch thats is connected to tgen port dent switch
-    - clear arp in dent switch
-    - ping again to the tgen the ping should work
-    - stop the traffic
+    Test Name: test_arp_flush_w_traffic
+    Test Suite: suite_arp
+    Test Overview: test ARP get learnt via VRRP.
+    Test Procedure:
+    1. setup dent switch with atleast two ixia ports on it
+      1.1 get a dent switch
+      1.2 configure the switch for h/w forwarding
+    2. setup tgen
+      2.1 get a tgen device
+      2.2 connect to the ports
+      2.3 setup traffic stream with a know SIP and DIP
+    3. start the traffic
+    4. ping the tgen from a switch thats is connected to tgen port dent switch
+    5. clear arp in dent switch
+    6. ping again to the tgen the ping should work
+    7. stop the traffic
     """
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 2)
     if not tgen_dev or not dent_devices:
@@ -76,7 +80,7 @@ async def test_arp_flush_w_traffic(testbed):
         "bgp": {
             "protocol": "ip",
             "ipproto": "tcp",
-            "dstPort": 179,
+            "dstPort": "179",
         },
     }
     await tgen_utils_setup_streams(

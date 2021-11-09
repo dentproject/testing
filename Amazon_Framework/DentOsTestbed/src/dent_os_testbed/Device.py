@@ -2,6 +2,7 @@
 """
 
 import os
+import tempfile
 import time
 from enum import Enum, unique
 
@@ -25,6 +26,7 @@ class DeviceType(Enum):
     TRAFFIC_HELPER = 8
     TRAFFIC_GENERATOR = 9
     CONSOLE_SERVER = 10
+    POE_TESTER = 11
 
 
 class Device(object):
@@ -64,6 +66,7 @@ class Device(object):
             self.os = params["os"]
             self.host_name = params["hostName"]
             self.ip = params["ip"]
+            self.port = params.get("port", None)
             self.force_update = params.get("forceUpdate", True)
             self.login = params["login"]
             self.serial_dev = params["serialDev"]
@@ -156,7 +159,7 @@ class Device(object):
         except Exception as e:
             self._handle_exception(e, "Error in ping")
 
-    async def scp(self, local_path, remote_path, remote_to_local=False):
+    async def scp(self, local_path, remote_path, remote_to_local=False, sudo=False):
         """
         Secure copy from/to the device
 
@@ -164,21 +167,41 @@ class Device(object):
             local_path(string): Local path of the file
             remote_path(string): Remote path of the file
             remote_to_local(boolean): Flag to enable remote to local copy.
+            sudo(boolean): Flag to perform sudo scp
             (Default: local to remote)
         Raises:
             Exception: For generic failures
         """
         try:
+            if sudo:
+                # if sudo then copy it to /tmp then use sudo command to mv the file
+                tpl = next(iter(tempfile._RandomNameSequence()))
+                tmp = f"/tmp/tmp_{tpl}"
+
             self.applog.debug(f"Copying from {local_path} to {remote_path}")
             if not remote_to_local:
-                await self.conn_mgr.get_ssh_connection().copy_local_to_remote(
-                    local_path, remote_path
-                )
+                if sudo:
+                    await self.conn_mgr.get_ssh_connection().copy_local_to_remote(local_path, tmp)
+                    await self.run_cmd(f"mv {tmp} {remote_path}", sudo=sudo)
+                    await self.run_cmd(
+                        f"chown root {remote_path}; chgrp root {remote_path}", sudo=sudo
+                    )
+                else:
+                    await self.conn_mgr.get_ssh_connection().copy_local_to_remote(
+                        local_path, remote_path
+                    )
                 self.applog.debug(f"Successfully copied from {local_path} to {remote_path}")
             else:
-                await self.conn_mgr.get_ssh_connection().copy_remote_to_local(
-                    remote_path, local_path
-                )
+                if sudo:
+                    # if sudo then copy it to /tmp then use sudo command to mv the file
+                    await self.run_cmd(f"cp {remote_path} {tmp}", sudo=sudo)
+                    await self.run_cmd(f"chmod 755 {tmp}", sudo=sudo)
+                    await self.conn_mgr.get_ssh_connection().copy_remote_to_local(tmp, local_path)
+                    await self.run_cmd(f"rm -f {tmp}", sudo=sudo)
+                else:
+                    await self.conn_mgr.get_ssh_connection().copy_remote_to_local(
+                        remote_path, local_path
+                    )
                 self.applog.debug(f"Successfully copied from {remote_path} to {local_path}")
         except Exception as e:
             self._handle_exception(e, "Error in scp")
@@ -248,10 +271,10 @@ class Device(object):
         Raises:
             Exception: For generic failures
         """
-        result = False
         if self.ssh_conn_params.pssh:
             # disconnect before trying to check if its connected on pssh channel
             await self.conn_mgr.get_ssh_connection().disconnect()
+        result = False
         try:
             exit_status, _ = await self.conn_mgr.get_ssh_connection().run_cmd("date")
             if exit_status == 0:

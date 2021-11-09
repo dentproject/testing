@@ -17,7 +17,16 @@ pytestmark = pytest.mark.suite_provisioning
 
 @pytest.mark.asyncio
 async def test_alpha_lab_provisioning_config_install_over_nw(testbed):
-    if not testbed.args.use_pssh:
+    """
+    Test Name: test_alpha_lab_provisioning_config_install_over_nw
+    Test Suite: suite_provisioning
+    Test Overview: test provisioning over network install
+    Test Procedure:
+    1. get an infra switch
+    2. do a onie-select install on this device
+    3. check for config files
+    """
+    if not testbed.args.is_provisioned:
         testbed.applog.info(f"Skipping test since not on provisioned setup")
         return
     # pick a infra switch then run onie-select this should trigger the network based boot

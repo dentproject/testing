@@ -25,9 +25,15 @@ pytestmark = pytest.mark.suite_bonding
 
 @pytest.mark.asyncio
 async def test_alpha_lab_bonding_static_trunk(testbed):
-    # Passive bonded link
-    # Build a bonded link between infra routers
-    # No issues in traffic passing through it
+    """
+    Test Name: test_alpha_lab_bonding_static_trunk
+    Test Suite: suite_bonding
+    Test Overview: test bond with static trunk
+    Test Procedure:
+    1. Passive bonded link
+    2. Build a bonded link between infra routers
+    3. No issues in traffic passing through it
+    """
     tgen_dev, infra_devices = await tgen_utils_get_dent_devices_with_tgen(
         testbed, [DeviceType.INFRA_SWITCH], 1
     )

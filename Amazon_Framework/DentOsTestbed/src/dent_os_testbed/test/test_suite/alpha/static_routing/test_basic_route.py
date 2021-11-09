@@ -6,6 +6,7 @@ import time
 import pytest
 
 from dent_os_testbed.Device import DeviceType
+from dent_os_testbed.lib.frr.frr_ip_route import FrrIpRoute
 from dent_os_testbed.lib.ip.ip_link import IpLink
 from dent_os_testbed.utils.test_utils.tb_utils import tb_reload_nw_and_flush_firewall
 from dent_os_testbed.utils.test_utils.tgen_utils import (
@@ -25,10 +26,16 @@ pytestmark = pytest.mark.suite_routing
 
 @pytest.mark.asyncio
 async def test_alpha_lab_static_routing_basic_static_route(testbed):
-    # static routes should work
-    # load a static route on network device that is on a different path
-    # than the default route, and from a connected ECU trace out
-    # Traffic should follow the static route and not the default route
+    """
+    Test Name: test_alpha_lab_static_routing_basic_static_route
+    Test Suite: suite_routing
+    Test Overview: test basic static route
+    Test Procedure:
+    1. static routes should work
+    2. load a static route on network device that is on a different path
+    3. than the default route, and from a connected ECU trace out
+    4. Traffic should follow the static route and not the default route
+    """
 
     # 1. install a static route to tgen port
     # 2. then send the packet it should show up in tgen port.
@@ -57,7 +64,7 @@ async def test_alpha_lab_static_routing_basic_static_route(testbed):
             "dstIp": "100.0.0.10",
             "protocol": "ip",
             "ipproto": "tcp",
-            "dstPort": 179,
+            "dstPort": "179",
         },
     }
     await tgen_utils_setup_streams(
@@ -67,9 +74,10 @@ async def test_alpha_lab_static_routing_basic_static_route(testbed):
     )
 
     # start from a clean state
-    cmd = f"vtysh -c 'config t' -c 'ip route 100.0.0.0/24 {sip}' -c 'end'"
-    rc, out = await dent_dev.run_cmd(cmd, sudo=True)
-    dent_dev.applog.info(f"Ran command {cmd} rc {rc} out {out}")
+    out = await FrrIpRoute.add(
+        input_data=[{dent_dev.host_name: [{"network": "100.0.0.0/24", "gateway": sip}]}]
+    )
+    dent_dev.applog.info(f"Ran command FrrIpRoute.add out {out}")
 
     await tgen_utils_start_traffic(tgen_dev)
     time.sleep(10)

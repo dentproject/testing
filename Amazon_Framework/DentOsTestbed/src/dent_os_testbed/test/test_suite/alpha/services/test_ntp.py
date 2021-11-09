@@ -13,7 +13,13 @@ pytestmark = pytest.mark.suite_services
 
 @pytest.mark.asyncio
 async def test_alpha_lab_services_ntp(testbed):
-    if not testbed.args.use_pssh:
+    """
+    Test Name: test_alpha_lab_services_ntp
+    Test Suite: suite_services
+    Test Overview: test for ntp servcices on OOB and Dist devices
+    Test Procedure:
+    """
+    if not testbed.args.is_provisioned:
         testbed.applog.info(f"Skipping test since not on provisioned setup")
         return
     # Several devices need to be NTP servers (OOBs and DIS), validate service can be run on the devices and

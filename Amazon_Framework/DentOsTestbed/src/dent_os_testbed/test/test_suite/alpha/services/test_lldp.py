@@ -14,7 +14,14 @@ pytestmark = pytest.mark.suite_services
 
 @pytest.mark.asyncio
 async def test_alpha_lab_services_lldp(testbed):
-    if not testbed.args.use_pssh:
+    """
+    Test Name: test_alpha_lab_services_lldp
+    Test Suite: suite_services
+    Test Overview: check for lldp services
+    Test Procedure:
+    1. check for lldp on infra devices
+    """
+    if not testbed.args.is_provisioned:
         testbed.applog.info(f"Skipping test since not on provisioned setup")
         return
     # Device should see LLDP advertisements, and display data in a properly formatted output

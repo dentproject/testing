@@ -7,6 +7,8 @@ import time
 import pytest
 
 from dent_os_testbed.Device import DeviceType
+from dent_os_testbed.lib.frr.bgp import Bgp
+from dent_os_testbed.lib.frr.route_map import RouteMap
 from dent_os_testbed.utils.test_utils.bgp_routing_utils import (
     bgp_routing_get_local_as,
     bgp_routing_get_prefix_list,
@@ -17,6 +19,7 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_create_bgp_devices_and_connect,
     tgen_utils_create_devices_and_connect,
     tgen_utils_get_dent_devices_with_tgen,
+    tgen_utils_get_loss,
     tgen_utils_get_traffic_stats,
     tgen_utils_setup_streams,
     tgen_utils_start_traffic,
@@ -29,12 +32,18 @@ pytestmark = pytest.mark.suite_bgp_routing
 
 @pytest.mark.asyncio
 async def test_alpha_lab_bgp_routing_local_pref(testbed):
-    # validate local pref support
-    # 2 more routes (not the same as adjusted with MED)
-    #  Assign a Local pref on prefix learned on bf_r2 using route-map and prefix-list
-    #  do not do so on bf_r1
-    # Validate that that prefix is learned on DIS rs with the same the different local pref (as opposed to the same from a different source)
-    #  Check those routes on the RSWs validate the local pref is not present (crosses ASN)
+    """
+    Test Name: test_alpha_lab_bgp_routing_local_pref
+    Test Suite: suite_bgp_routing
+    Test Overview: test BGP static routing
+    Test Procedure:
+    1. validate local pref support
+    2. 2 more routes (not the same as adjusted with MED)
+    3.  Assign a Local pref on prefix learned on bf_r2 using route-map and prefix-list
+    4.  do not do so on bf_r1
+    5. Validate that that prefix is learned on DIS rs with the same the different local pref (as opposed to the same from a different source)
+    6.  Check those routes on the RSWs validate the local pref is not present (crosses ASN)
+    """
 
     tgen_dev, devices = await tgen_utils_get_dent_devices_with_tgen(
         testbed,
@@ -101,22 +110,53 @@ async def test_alpha_lab_bgp_routing_local_pref(testbed):
     time.sleep(60)
     await tgen_utils_stop_traffic(tgen_dev)
     stats = await tgen_utils_get_traffic_stats(tgen_dev, "Flow Statistics")
-    stats = await tgen_utils_get_traffic_stats(tgen_dev, "Port Statistics")
+    for row in stats.Rows:
+        assert tgen_utils_get_loss(row) != 100.000, f'Failed>Loss percent: {row["Loss %"]}'
 
     # install a route filter on the first device and block all ips on it
     d1 = devices[0]
     d1_as = await bgp_routing_get_local_as(d1)
     test_local_pref = 1000
-    cmds = bgp_routing_get_prefix_list(num_routes)
-    cmds.extend(
+    inputs = bgp_routing_get_prefix_list(num_routes, d1.host_name)
+    inputs.extend(
         [
-            f"vtysh -c 'conf terminal' -c 'route-map FROM-IXIA permit 10' -c 'match ip address prefix-list IXIA-ROUTES' -c 'set local-preference {test_local_pref}'",
-            f"vtysh -c 'conf terminal' -c 'router bgp {d1_as}' -c 'address-family ipv4 unicast' -c 'neighbor IXIA route-map FROM-IXIA in'",
+            (
+                RouteMap.configure,
+                [
+                    {
+                        d1.host_name: [
+                            {
+                                "mapname": "FROM-IXIA",
+                                "options": {"permit": 10},
+                                "match": {"ip-prefix": "IXIA-ROUTES"},
+                                "set": {"local-preference": test_local_pref},
+                            }
+                        ]
+                    }
+                ],
+            ),
+            (
+                Bgp.configure,
+                [
+                    {
+                        d1.host_name: [
+                            {
+                                "asn": d1_as,
+                                "address-family": "ipv4 unicast",
+                                "neighbor": {
+                                    "route-map": {"mapname": "FROM-IXIA", "options": {"in": ""}}
+                                },
+                                "group": "IXIA",
+                            }
+                        ]
+                    }
+                ],
+            ),
         ]
     )
-    for cmd in cmds:
-        rc, out = await d1.run_cmd(cmd, sudo=True)
-        d1.applog.info(f"Ran command {cmd} rc {rc} out {out}")
+    for input in inputs:
+        out = await input[0](input_data=input[1])
+        d1.applog.info(f"Ran command {input[0]} out {out}")
 
     # allow some time to take effect
     time.sleep(30)
@@ -124,17 +164,24 @@ async def test_alpha_lab_bgp_routing_local_pref(testbed):
     # check community on all the devices it should be set to above.
     for dd in devices[:1]:
         for i in range(num_routes):
-            cmd = f"vtysh -c 'show bgp ipv4 30.0.{i}.0/24 json'"
-            rc, out = await dd.run_cmd(cmd, sudo=True)
-            dd.applog.info(f"Ran command {cmd} rc {rc} out {out}")
-            route_info = json.loads(out)
+            out = await Bgp.show(
+                input_data=[
+                    {
+                        dd.host_name: [
+                            {"type": "ipv4", "ip-address": f"30.0.{i}.0/24", "options": "json"}
+                        ]
+                    }
+                ]
+            )
+            dd.applog.info(f"Ran command Bgp.show out {out}")
+            route_info = json.loads(out[0][dd.host_name]["result"])
             if not route_info:
                 assert 0, f"30.0.{i}.0/24 Route not seen on {dd.host_name}"
             for path in route_info["paths"]:
-                if "localpref" not in path or path["localpref"] != test_local_pref:
+                if "locPrf" not in path or path["locPrf"] != test_local_pref:
                     assert (
                         0
-                    ), f"30.0.{i}.0/24 does not have a localpref set {dd.host_name} to {test_local_pref}"
+                    ), f"30.0.{i}.0/24 does not have a locPrf set {dd.host_name} to {test_local_pref}"
 
     await tgen_utils_start_traffic(tgen_dev)
     # - check the traffic stats
@@ -142,6 +189,7 @@ async def test_alpha_lab_bgp_routing_local_pref(testbed):
     await tgen_utils_stop_traffic(tgen_dev)
     await tgen_utils_stop_traffic(tgen_dev)
     stats = await tgen_utils_get_traffic_stats(tgen_dev, "Flow Statistics")
-    stats = await tgen_utils_get_traffic_stats(tgen_dev, "Port Statistics")
+    for row in stats.Rows:
+        assert tgen_utils_get_loss(row) != 100.000, f'Failed>Loss percent: {row["Loss %"]}'
 
     await tgen_utils_stop_protocols(tgen_dev)

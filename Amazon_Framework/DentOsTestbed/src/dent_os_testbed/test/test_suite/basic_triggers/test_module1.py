@@ -22,6 +22,15 @@ pytestmark = pytest.mark.suite_iproute2
 
 @pytest.mark.asyncio
 async def test_route_add_del(testbed):
+    """
+    Test Name: test_route_add_del
+    Test Suite: suite_iproute2
+    Test Overview: test ip route add
+    Test Procedure:
+    1. add a 10.20.30.40 route to the default gateway
+    2. display the route
+    3. delete the route
+    """
 
     for dev in testbed.discovery_report.duts:
         dev = await tb_get_device_object_from_dut(testbed, dev)
@@ -70,6 +79,21 @@ async def test_route_add_del(testbed):
 # )
 @pytest.mark.asyncio
 async def test_link_up_down(testbed):
+    """
+    Test Name: test_link_up_down
+    Test Suite: suite_iproute2
+    Test Overview: test link up and down
+    Test Procedure:
+    1. get the list of discovered devices
+    2. get the link status of all the links
+    3. get a link that is UP
+    4. bring down the link and check to see if the link went down
+    5. bring back the link UP and check if the link came back up again.
+    """
+
+    if testbed.args.is_provisioned:
+        testbed.applog.info(f"Skipping test since on provisioned setup")
+        return
 
     for dev in testbed.discovery_report.duts:
         dev = await tb_get_device_object_from_dut(testbed, dev)
