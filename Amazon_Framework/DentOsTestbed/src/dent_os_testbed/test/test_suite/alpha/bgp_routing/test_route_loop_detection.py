@@ -7,16 +7,22 @@ import time
 import pytest
 
 from dent_os_testbed.Device import DeviceType
+from dent_os_testbed.lib.frr.bgp import Bgp
+from dent_os_testbed.lib.frr.route_map import RouteMap
 from dent_os_testbed.utils.test_utils.bgp_routing_utils import (
     bgp_routing_get_local_as,
     bgp_routing_get_prefix_list,
 )
-from dent_os_testbed.utils.test_utils.tb_utils import tb_reload_nw_and_flush_firewall, tb_reset_ssh_connections
+from dent_os_testbed.utils.test_utils.tb_utils import (
+    tb_reload_nw_and_flush_firewall,
+    tb_reset_ssh_connections,
+)
 from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_util_flap_bgp_peer,
     tgen_utils_create_bgp_devices_and_connect,
     tgen_utils_create_devices_and_connect,
     tgen_utils_get_dent_devices_with_tgen,
+    tgen_utils_get_loss,
     tgen_utils_get_traffic_stats,
     tgen_utils_setup_streams,
     tgen_utils_start_traffic,
@@ -29,10 +35,16 @@ pytestmark = pytest.mark.suite_bgp_routing
 
 @pytest.mark.asyncio
 async def test_alpha_lab_bgp_routing_loop_detection(testbed):
-    # Test that AS route is filtered if learned from own ASN
-    # Validate 1 RSW does not see any prefixes from another RSW in the same
-    #  ASN (DIS router between the two)
-    # RSW should not have a prefix learned from its own ASN
+    """
+    Test Name: test_alpha_lab_bgp_routing_loop_detection
+    Test Suite: suite_bgp_routing
+    Test Overview: test BGP route loop detection
+    Test Procedure:
+    1. Test that AS route is filtered if learned from own ASN
+    2. Validate 1 RSW does not see any prefixes from another RSW in the same
+    3.  ASN (DIS router between the two)
+    4. RSW should not have a prefix learned from its own ASN
+    """
     tgen_dev, devices = await tgen_utils_get_dent_devices_with_tgen(
         testbed,
         [
@@ -99,7 +111,8 @@ async def test_alpha_lab_bgp_routing_loop_detection(testbed):
     time.sleep(60)
     await tgen_utils_stop_traffic(tgen_dev)
     stats = await tgen_utils_get_traffic_stats(tgen_dev, "Flow Statistics")
-    stats = await tgen_utils_get_traffic_stats(tgen_dev, "Port Statistics")
+    for row in stats.Rows:
+        assert tgen_utils_get_loss(row) != 100.000, f'Failed>Loss percent: {row["Loss %"]}'
 
     # Reset the connections to make it work in pssh environment.
     await tb_reset_ssh_connections(devices)
@@ -115,17 +128,59 @@ async def test_alpha_lab_bgp_routing_loop_detection(testbed):
         if d1_as != d2_as:
             # found another device that has a different DS
             break
-    cmds = bgp_routing_get_prefix_list(num_routes)
-    cmds.extend(
+    inputs = bgp_routing_get_prefix_list(num_routes, d1.host_name)
+    inputs.extend(
         [
-            f"vtysh -c 'conf terminal' -c 'route-map FROM-IXIA permit 10' -c 'match ip address prefix-list IXIA-ROUTES'",
-            f"vtysh -c 'conf terminal' -c 'route-map FROM-IXIA permit 10' -c 'set as-path prepend {tgen_as} {d2_as} {tgen_as} '",
-            f"vtysh -c 'conf terminal' -c 'router bgp {d1_as}' -c 'address-family ipv4 unicast' -c 'neighbor IXIA route-map FROM-IXIA in'",
+            (
+                RouteMap.configure,
+                [
+                    {
+                        d1.host_name: [
+                            {
+                                "mapname": "FROM-IXIA",
+                                "options": {"permit": 10},
+                                "match": {"ip-prefix": "IXIA-ROUTES"},
+                            }
+                        ]
+                    }
+                ],
+            ),
+            (
+                RouteMap.configure,
+                [
+                    {
+                        d1.host_name: [
+                            {
+                                "mapname": "FROM-IXIA",
+                                "options": {"permit": 10},
+                                "set": {"as-path": {"prepend": [tgen_as, d2_as, tgen_as]}},
+                            }
+                        ]
+                    }
+                ],
+            ),
+            (
+                Bgp.configure,
+                [
+                    {
+                        d1.host_name: [
+                            {
+                                "asn": d1_as,
+                                "address-family": "ipv4 unicast",
+                                "neighbor": {
+                                    "route-map": {"mapname": "FROM-IXIA", "options": {"in": ""}}
+                                },
+                                "group": "IXIA",
+                            }
+                        ]
+                    }
+                ],
+            ),
         ]
     )
-    for cmd in cmds:
-        rc, out = await d1.run_cmd(cmd, sudo=True)
-        d1.applog.info(f"Ran command {cmd} rc {rc} out {out}")
+    for input in inputs:
+        out = await input[0](input_data=input[1])
+        d1.applog.info(f"Ran command {input[0]} out {out}")
 
     # allow some time to take effect
     time.sleep(30)
@@ -138,10 +193,17 @@ async def test_alpha_lab_bgp_routing_loop_detection(testbed):
         if d1_as == d2_as:
             continue
         for i in range(num_routes):
-            cmd = f"vtysh -c 'show bgp ipv4 30.0.{i}.0/24 json'"
-            rc, out = await dd.run_cmd(cmd, sudo=True)
-            dd.applog.info(f"Ran command {cmd} rc {rc} out {out}")
-            route_info = json.loads(out)
+            out = await Bgp.show(
+                input_data=[
+                    {
+                        dd.host_name: [
+                            {"type": "ipv4", "ip-address": f"30.0.{i}.0/24", "options": "json"}
+                        ]
+                    }
+                ]
+            )
+            dd.applog.info(f"Ran command Bgp.show out {out}")
+            route_info = json.loads(out[0][dd.host_name]["result"])
             if route_info:
                 assert 0, f"30.0.{i}.0/24 Route still seen on {dd.host_name}"
 
@@ -151,6 +213,10 @@ async def test_alpha_lab_bgp_routing_loop_detection(testbed):
     await tgen_utils_stop_traffic(tgen_dev)
     await tgen_utils_stop_traffic(tgen_dev)
     stats = await tgen_utils_get_traffic_stats(tgen_dev, "Flow Statistics")
-    stats = await tgen_utils_get_traffic_stats(tgen_dev, "Port Statistics")
+    for row in stats.Rows:
+        # if stream with dst 30.0.0.1 should have no traffic on it
+        if "-30.0.0.1" not in row["Source/Dest Value Pair"]:
+            continue
+        assert tgen_utils_get_loss(row) == 100.000, f'Failed>Loss percent: {row["Loss %"]}'
 
     await tgen_utils_stop_protocols(tgen_dev)

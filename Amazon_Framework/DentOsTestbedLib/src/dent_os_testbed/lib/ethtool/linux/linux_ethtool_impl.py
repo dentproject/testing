@@ -152,9 +152,9 @@ class LinuxEthtoolImpl(LinuxEthtool):
         if "devname" in params:
             cmd += "{} ".format(params["devname"])
         if "speed" in params:
-            cmd += "speed {}".format(params["speed"])
+            cmd += "speed {} ".format(params["speed"])
         if "autoneg" in params:
-            cmd += "autoneg {}".format(params["autoneg"])
+            cmd += "autoneg {} ".format(params["autoneg"])
         return cmd
 
     def parse_set(self, command, output, *argv, **kwarg):

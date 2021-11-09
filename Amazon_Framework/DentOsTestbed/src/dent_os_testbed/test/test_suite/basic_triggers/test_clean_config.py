@@ -45,7 +45,13 @@ async def setup_dent_tools(device, package):
 @pytest.mark.asyncio
 async def test_clean_config(testbed):
     """
-    - call the helper
+    Test Name: test_clean_config
+    Test Suite: suite_clean_config
+    Test Overview: Clean Configure the reachable devices. Note: this should used only with non provisioned devices
+    Test Procedure:
+    1. get all the reachable devices
+    2. disable ZTP
+    3. setup tc, poe, stress packages
     """
 
     package = "/home/neteng/staging/staging.tar.gz"

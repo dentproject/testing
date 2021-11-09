@@ -4,6 +4,7 @@ import json
 import time
 
 from dent_os_testbed.Device import DeviceType
+from dent_os_testbed.lib.frr.bgp import Bgp
 from dent_os_testbed.lib.ip.ip_address import IpAddress
 from dent_os_testbed.lib.ip.ip_link import IpLink
 from dent_os_testbed.lib.ip.ip_route import IpRoute
@@ -17,7 +18,7 @@ from dent_os_testbed.utils.test_utils.tb_utils import (
 
 async def check_certificates(dev, devices_dict):
     # certificates - should be refreshed every 10mins at /var/shared_resources/credentials/*.sts
-    cmd = "find /var/shared_resources/credentials/ -name '*.sts' -mmin -10 -type f -exec ls  {} \\;"
+    cmd = "find /var/shared_resources/credentials/ -name '*.sts' -mmin -10 -exec ls  {} \\;"
     rc, out = await dev.run_cmd(cmd, sudo=True)
     dev.applog.info(f"Ran {cmd} rc {rc} out {out}")
     # there should be atleast two files
@@ -53,7 +54,7 @@ async def check_routes(dev, devices_dict):
             continue
         if port.startswith("vlan") and port.endswith("-v0"):
             continue
-        if dst in ["10.1.253.0/24", "10.2.0.222"]:
+        if dst in ["10.1.253.0/24", "10.2.0.222", "10.1.255.0/24", "10.2.96.44/30"]:
             continue
         dev.applog.info(f"route {route} not offloaded")
         return False
@@ -184,12 +185,11 @@ async def check_wan_to_lte_failver(dev, devices_dict):
 async def check_bgp_sessions(dev, devices_dict):
     # BGP sessions - exceptions due to missing aggs/dists/oobs.
     # Otherwise all should be UP. Check for "state":"Established" - show ip bgp summary json
-
-    cmd = "vtysh -c 'show ip bgp summary json'"
-    rc, out = await dev.run_cmd(cmd, sudo=True)
-    dev.applog.info(f"Ran {cmd} rc {rc} out {out}")
+    out = await Bgp.show(input_data=[{dev.host_name: [{"ip": "", "options": "json"}]}])
+    dev.applog.info(f"Ran Bgp.show out {out}")
+    rc = out[0][dev.host_name]["rc"]
     assert rc == 0, f"Failed get bgp summary {rc} {out}"
-    bgp_summary = json.loads(out)
+    bgp_summary = json.loads(out[0][dev.host_name]["result"])
     for prefix, peer in bgp_summary["ipv4Unicast"]["peers"].items():
         if peer["state"] == "Established":
             dev.applog.info(f"{prefix} peer is in Established state")
@@ -203,6 +203,7 @@ async def check_bgp_sessions(dev, devices_dict):
             "10.2.96.173",
             "10.2.96.41",
             "10.2.96.45",
+            "10.2.96.117",
         ]:
             continue
         dev.applog.info(f"BGP peer {prefix} is supposed to be established {peer}")

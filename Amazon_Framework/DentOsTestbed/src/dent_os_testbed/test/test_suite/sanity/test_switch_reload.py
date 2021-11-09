@@ -18,7 +18,17 @@ pytestmark = pytest.mark.suite_system_wide_testing
 
 @pytest.mark.asyncio
 async def test_switch_reload_all(testbed):
-    """Reload the switch"""
+    """
+    Test Name: test_switch_reload_all
+    Test Suite: suite_system_wide_testing
+    Test Overview: reload all the devices and expect the links to come back UP
+    Test Procedure:
+    1. get all the reachable devices
+    2. get the link status of the links for each device
+    3. reload all the devices
+    4. check if all the links that were UP before reboot came back UP
+    5. repeat this atleast 5 times.
+    """
     dut_state = {}
     devices = await tb_get_all_devices(testbed)
     for dev in devices:
@@ -38,7 +48,7 @@ async def test_switch_reload_all(testbed):
         host = dev.host_name
         dut_state[host] = links
         # check to see if the ports are up
-        for i in range(1, 49):
+        for i in range(1, 24):
             if f"swp{i}" not in links:
                 assert 0, f"Link swp{i} not seen on {host}"
 
@@ -80,7 +90,17 @@ async def test_switch_reload_all(testbed):
 
 @pytest.mark.asyncio
 async def test_switch_reload_one_switch(testbed):
-    """Reload the switch"""
+    """
+    Test Name: test_switch_reload_one_switch
+    Test Suite: suite_system_wide_testing
+    Test Overview: reload one switch at a time and check the link status
+    Test Procedure:
+    1. get all the reachable devices
+    2. get the link status of the links for each device
+    3. reload one of the devices
+    4. check if all the links that were UP before reboot came back UP
+    5. repeat this atleast 5 times on different switches.
+    """
     dut_state = {}
     devices = await tb_get_all_devices(testbed)
     for dev in devices:
@@ -100,7 +120,7 @@ async def test_switch_reload_one_switch(testbed):
         host = dev.host_name
         dut_state[host] = links
         # check to see if the ports are up
-        for i in range(1, 49):
+        for i in range(1, 24):
             if f"swp{i}" not in links:
                 assert 0, f"Link swp{i} not seen on {host}"
 

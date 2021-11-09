@@ -14,6 +14,7 @@ from dent_os_testbed.lib.os.disk_free import DiskFree
 from dent_os_testbed.lib.os.memory_usage import MemoryUsage
 from dent_os_testbed.lib.os.service import Service
 from dent_os_testbed.lib.os.system import System
+from dent_os_testbed.lib.tc.tc_qdisc import TcQdisc
 from dent_os_testbed.utils.Utils import check_asyncio_results
 
 
@@ -278,7 +279,10 @@ async def tb_reset_ssh_connections(devices):
 
 
 async def tb_get_all_devices(
-    testbed, exclude_devices=[DeviceType.TRAFFIC_GENERATOR], skip_disconnected=True
+    testbed,
+    exclude_devices=[DeviceType.TRAFFIC_GENERATOR, DeviceType.BLACKFOOT_ROUTER],
+    include_devices=None,
+    skip_disconnected=True,
 ):
     tb_devices = testbed.devices
     devices = []
@@ -289,10 +293,16 @@ async def tb_get_all_devices(
             )
             if not dev or dev.type in exclude_devices:
                 continue
+            # only look for requested devices
+            if include_devices is not None and dev.type not in include_devices:
+                continue
             devices.append(dev)
     else:
         for dev in tb_devices:
             if dev.type in exclude_devices:
+                continue
+            # only look for requested devices
+            if include_devices is not None and dev.type not in include_devices:
                 continue
             if skip_disconnected and not await dev.is_connected():
                 continue
@@ -307,6 +317,8 @@ async def tb_reload_nw_and_flush_firewall(devices):
             "systemctl restart frr.service",
             "iptables -F",
             "tc filter delete block 1 ingress",
+            "tc chain delete chain 0 block 1",
+            "tc chain delete chain 1 block 1",
         ]:
             await device.run_cmd(cmd, sudo=True)
 
@@ -362,7 +374,30 @@ async def tb_ping_device(device, target, pkt_loss_treshold=50, dump=False):
     return 0 if pkt_loss_percent <= pkt_loss_treshold else 1
 
 
-
 async def tb_device_onie_install(dev):
     await Onie.select(input_data=[{dev.host_name: [{"options": "install"}]}])
     await System.shutdown(input_data=[{dev.host_name: [{"options": "-r +1"}]}])
+
+
+async def tb_reset_qdisc(dev, port, direction):
+    await TcQdisc.delete(input_data=[{dev.host_name: [{"dev": port, "direction": direction}]}])
+    out = await TcQdisc.add(input_data=[{dev.host_name: [{"dev": port, "direction": direction}]}])
+    assert out[0][dev.host_name]["rc"] == 0, f"Tc qdisc add failed: {out}"
+
+
+async def tb_restore_qdisc(dev, port, direction):
+    await TcQdisc.delete(input_data=[{dev.host_name: [{"dev": port, "direction": direction}]}])
+    await TcQdisc.add(
+        input_data=[
+            {
+                dev.host_name: [
+                    {
+                        "dev": port,
+                        "handle": "ffff",
+                        "ingress_block": 1,
+                        "direction": direction,
+                    }
+                ]
+            }
+        ]
+    )

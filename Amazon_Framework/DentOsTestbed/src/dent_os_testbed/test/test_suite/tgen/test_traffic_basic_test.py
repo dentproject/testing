@@ -7,6 +7,7 @@ from dent_os_testbed.utils.test_utils.tb_utils import tb_reload_nw_and_flush_fir
 from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_connect_to_tgen,
     tgen_utils_get_dent_devices_with_tgen,
+    tgen_utils_get_loss,
     tgen_utils_get_traffic_stats,
     tgen_utils_setup_streams,
     tgen_utils_start_traffic,
@@ -20,17 +21,21 @@ pytestmark = pytest.mark.suite_traffic
 @pytest.mark.asyncio
 async def test_basic_tgen_w_traffic(testbed):
     """
-    - setup dent switch
+    Test Name: test_basic_tgen_w_traffic
+    Test Suite: suite_traffic
+    Test Overview: Test traffic on a single device with two tgen ports
+    Test Procedure:
+    1. setup dent switch
       - get a dent switch
       - configure the switch for h/w forwarding
-    - setup tgen
+    2. setup tgen
       - get a tgen device
       - connect to the ports
       - setup traffic stream with a know SIP and DIP
-    - start the traffic
-    - check the traffic stats
+    3. start the traffic
+    4. check the traffic stats
       - there shouldnt be any loss
-    - stop the traffic
+    5. stop the traffic
     """
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 2)
     if not tgen_dev or not dent_devices:
@@ -48,7 +53,7 @@ async def test_basic_tgen_w_traffic(testbed):
         "bgp": {
             "protocol": "ip",
             "ipproto": "tcp",
-            "dstPort": 179,
+            "dstPort": "179",
         },
     }
     await tgen_utils_setup_streams(
@@ -61,6 +66,9 @@ async def test_basic_tgen_w_traffic(testbed):
     time.sleep(20)
     await tgen_utils_stop_traffic(tgen_dev)
     stats = await tgen_utils_get_traffic_stats(tgen_dev, "Flow Statistics")
+    # Traffic Verification
+    for row in stats.Rows:
+        assert tgen_utils_get_loss(row) != 100.000, f'Failed>Loss percent: {row["Loss %"]}'
 
     # end of Test
     await tgen_utils_stop_protocols(tgen_dev)

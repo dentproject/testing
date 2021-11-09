@@ -66,7 +66,8 @@ class LinuxServiceImpl(LinuxService):
 
         """
         params = kwarg["params"]
-        cmd = "systemctl  {} ".format(command)
+        flags = params.get("flags", "")
+        cmd = "systemctl {} {} ".format(flags, command)
         ############# Implement me ################
         if "name" in params:
             cmd += params["name"]

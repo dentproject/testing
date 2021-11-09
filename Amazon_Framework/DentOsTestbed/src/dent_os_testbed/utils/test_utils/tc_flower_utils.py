@@ -7,7 +7,7 @@ from dent_os_testbed.lib.tc.tc_filter import TcFilter
 from dent_os_testbed.utils.test_utils.tgen_utils import tgen_utils_get_swp_info
 
 
-async def tcutil_iptable_to_tc(dent_dev, swp_tgen_ports, iptable_rules):
+async def tcutil_iptable_to_tc(dent_dev, swp_tgen_ports, iptable_rules, extra_args=""):
     # - run the tc persistency  tools
     #  - iptables-save -t filter  > /tmp/iptables.rules
     #  - iptables-unroll /tmp/iptables.rules /tmp/iptables-unrolled.rules FORWARD
@@ -19,7 +19,7 @@ async def tcutil_iptable_to_tc(dent_dev, swp_tgen_ports, iptable_rules):
         f"iptables-save -t filter  > /tmp/iptables.rules",
         f"{ENVROOT}/bin/execute_in_env  {ENVROOT}/bin/iptables-unroll --multi-interface --extended /tmp/iptables.rules /tmp/iptables-unrolled.rules FORWARD",
         f"{ENVROOT}/bin/execute_in_env  {ENVROOT}/bin/iptables-scoreboard /tmp/iptables-unrolled.rules /tmp/iptables-scoreboarded.rules FORWARD swp+",
-        f"{ENVROOT}/bin/execute_in_env  {ENVROOT}/bin/tc-flower-load --offload --port-unroll 5 --scoreboard  --shared-block  --hack-vlan-arp --log-ignore --continue-suppress /tmp/iptables-scoreboarded.rules FORWARD swp+",
+        f"{ENVROOT}/bin/execute_in_env  {ENVROOT}/bin/tc-flower-load -v {extra_args} --offload --port-unroll 5 --scoreboard  --shared-block  --hack-vlan-arp --log-ignore --continue-suppress /tmp/iptables-scoreboarded.rules FORWARD swp+",
     ]
     dent_dev.files_to_collect.append("/tmp/iptables.rules")
     dent_dev.files_to_collect.append("/tmp/iptables-unrolled.rules")
@@ -53,6 +53,7 @@ async def tcutil_iptable_to_tc(dent_dev, swp_tgen_ports, iptable_rules):
 
 async def tcutil_get_tc_rule_stats(dent_dev, swp_tgen_ports, swp_tc_rules):
     dent = dent_dev.host_name
+    chain = "0"
     for swp in swp_tgen_ports:
         try:
             out = await TcFilter.show(
@@ -77,8 +78,10 @@ async def tcutil_get_tc_rule_stats(dent_dev, swp_tgen_ports, swp_tc_rules):
             for rule in tc_rules:
                 if "options" not in rule:
                     continue
-                line = "{}. {} Pref {} protocol {} Key [ ".format(
-                    count, swp, rule["pref"], rule["protocol"]
+                if "chain" in rule:
+                    chain = rule["chain"]
+                line = "{}. {} Pref {} Chain {} protocol {} Key [ ".format(
+                    count, swp, rule["pref"], chain, rule["protocol"]
                 )
                 line += "indev {} ".format(rule["options"].get("indev", "swp+"))
                 for k, v in rule["options"]["keys"].items():

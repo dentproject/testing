@@ -17,17 +17,19 @@ pytestmark = pytest.mark.suite_stress
 @pytest.mark.asyncio
 async def test_stress_cpu_usage(testbed):
     """
-    - Abstract
-      - to exhause the CPU and check if the critical process are still up and running.
-    - create
+    Test Name: test_stress_cpu_usage
+    Test Suite: suite_stress
+    Test Overview: to exhause the CPU and check if the critical process are still up and running.
+    Test Procedure:
+    1. create
       - exhaust cpu
       - wait for some soak time so that processes react the system change
-    - check for critical process if  they are up and running
+    2. check for critical process if  they are up and running
       - sshd, poectl, frr services, dhcpd,
-    - perform some basic operation like link up down
-    - dns lookup etc.
-    - cleanup
-     - cleanup the files created.
+    3. perform some basic operation like link up down
+    4. dns lookup etc.
+    5. cleanup
+    6. cleanup the files created.
     """
     if not testbed.discovery_report:
         testbed.applog.info(

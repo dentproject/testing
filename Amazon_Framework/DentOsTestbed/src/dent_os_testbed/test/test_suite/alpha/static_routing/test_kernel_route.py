@@ -25,11 +25,17 @@ pytestmark = pytest.mark.suite_routing
 
 @pytest.mark.asyncio
 async def test_alpha_lab_static_routing_kernel_route_on_table(testbed):
-    # Kernel route impact on table
-    # test interaction of a kernel route on network
-    # on eth0 set up dhcp server to send ip and default route and monitor
-    # 1. install a static route to tgen port
-    # 2. then send the packet it should show up in tgen port.
+    """
+    Test Name: test_alpha_lab_static_routing_kernel_route_on_table
+    Test Suite: suite_routing
+    Test Overview: test kernel route
+    Test Procedure:
+    1. Kernel route impact on table
+    2. test interaction of a kernel route on network
+    3. on eth0 set up dhcp server to send ip and default route and monitor
+    4.  install a static route to tgen port
+    5.. then send the packet it should show up in tgen port.
+    """
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 2)
     if not tgen_dev or not dent_devices:
         print("The testbed does not have enough dent with tgen connections")
@@ -65,7 +71,7 @@ async def test_alpha_lab_static_routing_kernel_route_on_table(testbed):
             "dstIp": "100.0.0.10",
             "protocol": "ip",
             "ipproto": "tcp",
-            "dstPort": 179,
+            "dstPort": "179",
         },
     }
     await tgen_utils_setup_streams(

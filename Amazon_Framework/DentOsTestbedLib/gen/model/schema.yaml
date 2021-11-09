@@ -16,7 +16,7 @@ schema;classes_schema:
           type: seq
           sequence:
             - type: str
-              enum: [ 'dentos', 'cumulus', 'juniper', 'cisco' , 'ixnetwork', 'trex-tgn']
+              enum: [ 'dentos', 'cumulus', 'juniper', 'cisco' , 'ixnetwork', 'dni', 'trex-tgn']
         members:
           type: seq
           sequence:

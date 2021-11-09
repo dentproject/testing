@@ -1,0 +1,27 @@
+- module: frr
+  description: vtysh is an integrated shell for Quagga routing engine
+  classes:
+   - name: frr_ip
+     apis: ["set"]
+     desc: |
+      - ip [ ip-OPTIONS ] { prefix-list | access-list [N] } { deny | permit }
+      - ip { configure } SELECTOR
+      - Ex. ip as-path access-list IXIA-AS deny ^200$
+     members:
+      - name: prefix-list
+        type: string
+        desc: prefix list
+      - name: access-list
+        type: string
+        desc: access list
+      - name: sequence
+        type: string
+        desc: |
+          sequence
+      - name: as-path
+        type: bool
+        desc: is a path
+      - name: options
+        type: string
+        desc: |
+         OPTIONS := { permit, allow }

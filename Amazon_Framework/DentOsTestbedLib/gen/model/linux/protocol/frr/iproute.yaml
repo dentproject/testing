@@ -1,0 +1,15 @@
+- module: frr
+  description: frr_ip_route
+  classes:
+   - name: linux_frr_ip_route
+     desc: |
+      vtysh
+     implements: "dent:frr:frr_ip_route"
+     platforms: ['dentos', 'cumulus']
+     commands:
+      - name: show
+        apis: ['show']
+        cmd: ['vtysh']
+      - name: add
+        apis: ['add']
+        cmd: ['vtysh']

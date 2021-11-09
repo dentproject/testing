@@ -11,6 +11,15 @@ pytestmark = pytest.mark.suite_poe
 
 @pytest.mark.asyncio
 async def test_poe_link_enable_disable_one_port(testbed):
+    """
+    Test Name: test_poe_link_enable_disable_one_port
+    Test Suite: suite_poe
+    Test Overview: test enable and disable one poe port
+    Test Procedure:
+    1. for all the discovered devices and one poe ports
+    2. if the port is poe disabled then enabled it
+    3. disable the poe port and check if it got disabled
+    """
     for dev in testbed.discovery_report.duts:
         dev = await tb_get_device_object_from_dut(testbed, dev)
         if not dev:
@@ -57,6 +66,15 @@ async def test_poe_link_enable_disable_one_port(testbed):
 
 @pytest.mark.asyncio
 async def test_poe_link_enable_disable_all_ports(testbed):
+    """
+    Test Name: test_poe_link_enable_disable_all_ports
+    Test Suite: suite_poe
+    Test Overview: enable and disable all poe ports
+    Test Procedure:
+    1. for all the discovered devices and for all the poe ports
+    2. if the port is poe disabled then enabled it
+    3. disable the poe port and check if it got disabled
+    """
     for dev in testbed.discovery_report.duts:
         dev = await tb_get_device_object_from_dut(testbed, dev)
         if not dev:
@@ -100,12 +118,14 @@ async def test_poe_link_enable_disable_all_ports(testbed):
 
 @pytest.mark.asyncio
 async def test_poe_link_enable_disable_connected_ports(testbed):
-
     """
-    - look for switch that have ports connected
-    - disable the port and the port should go down
-    - the endpoint on the other end should go down
-    -
+    Test Name: test_poe_link_enable_disable_connected_ports
+    Test Suite: suite_poe
+    Test Overview: Enable and disable the connected poe ports
+    Test Procedure:
+    1. look for switch that have ports connected
+    2. disable the port and the port should go down
+    3. the endpoint on the other end should go down
     """
 
     for dev in testbed.discovery_report.duts:
