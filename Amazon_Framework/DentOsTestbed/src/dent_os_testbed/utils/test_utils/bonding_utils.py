@@ -11,6 +11,7 @@ async def bonding_get_interconnected_infra_devices(testbed, infra_devices):
         for dd2, links in dd1.links_dict.items():
             if (
                 dd2 not in testbed.devices_dict
+                or testbed.devices_dict[dd2].type != DeviceType.INFRA_SWITCH
                 or not await testbed.devices_dict[dd2].is_connected()
             ):
                 continue

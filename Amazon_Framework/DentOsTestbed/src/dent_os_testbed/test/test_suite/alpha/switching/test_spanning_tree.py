@@ -14,9 +14,15 @@ pytestmark = pytest.mark.suite_switching
 
 @pytest.mark.asyncio
 async def test_alpha_lab_switching_spanning_tree(testbed):
-    # configure spanning tree
-    # Turn up spanning tree between switches
-    # Spanning tree should turn up and function
+    """
+    Test Name: test_alpha_lab_switching_spanning_tree
+    Test Suite: suite_switching
+    Test Overview: test switching spanning tree
+    Test Procedure:
+    1. configure spanning tree
+    2. Turn up spanning tree between switches
+    3. Spanning tree should turn up and function
+    """
 
     # brctl addbr dev
     # brctl addif dev swp*

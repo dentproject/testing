@@ -7,6 +7,7 @@ import time
 import pytest
 
 from dent_os_testbed.Device import DeviceType
+from dent_os_testbed.lib.frr.bgp import Bgp
 from dent_os_testbed.utils.test_utils.bgp_routing_utils import (
     bgp_routing_get_local_as,
     bgp_routing_get_prefix_list,
@@ -17,6 +18,7 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_create_bgp_devices_and_connect,
     tgen_utils_create_devices_and_connect,
     tgen_utils_get_dent_devices_with_tgen,
+    tgen_utils_get_loss,
     tgen_utils_get_traffic_stats,
     tgen_utils_setup_streams,
     tgen_utils_start_traffic,
@@ -29,9 +31,15 @@ pytestmark = pytest.mark.suite_bgp_routing
 
 @pytest.mark.asyncio
 async def test_alpha_lab_bgp_routing_timers(testbed):
-    # test BGP timers
-    # Adjust bgp timers to minimum allowable
-    # Validate session and route stability
+    """
+    Test Name: test_alpha_lab_bgp_routing_timers
+    Test Suite: suite_bgp_routing
+    Test Overview: test BGP routing timer
+    Test Procedure:
+    1. test BGP timers
+    2. Adjust bgp timers to minimum allowable
+    3. Validate session and route stability
+    """
     tgen_dev, devices = await tgen_utils_get_dent_devices_with_tgen(
         testbed,
         [
@@ -97,19 +105,30 @@ async def test_alpha_lab_bgp_routing_timers(testbed):
     time.sleep(60)
     await tgen_utils_stop_traffic(tgen_dev)
     stats = await tgen_utils_get_traffic_stats(tgen_dev, "Flow Statistics")
-    stats = await tgen_utils_get_traffic_stats(tgen_dev, "Port Statistics")
+    for row in stats.Rows:
+        assert tgen_utils_get_loss(row) != 100.000, f'Failed>Loss percent: {row["Loss %"]}'
 
     # install a route filter on the first device and block all ips on it
     d1 = devices[0]
     d1_as = await bgp_routing_get_local_as(d1)
     test_keep_alive = 2
     test_hold = 6
-    cmds = [
-        f"vtysh -c 'conf terminal' -c 'router bgp {d1_as}' -c 'neighbor IXIA timers {test_keep_alive} {test_hold}'",
+    inputs = [
+        [
+            {
+                d1.host_name: [
+                    {
+                        "asn": d1_as,
+                        "neighbor": {"options": {"timers": f"{test_keep_alive} {test_hold}"}},
+                        "group": "IXIA",
+                    }
+                ]
+            }
+        ],
     ]
-    for cmd in cmds:
-        rc, out = await d1.run_cmd(cmd, sudo=True)
-        d1.applog.info(f"Ran command {cmd} rc {rc} out {out}")
+    for input in inputs:
+        out = await Bgp.configure(input_data=input)
+        d1.applog.info(f"Ran Bgp.configure out {out}")
 
     # allow some time to take effect
     time.sleep(30)
@@ -117,10 +136,11 @@ async def test_alpha_lab_bgp_routing_timers(testbed):
     # check community on all the devices it should be set to above.
     for dd in devices[:1]:
         for i in range(num_routes):
-            cmd = f"vtysh -c 'show bgp neighbors json'"
-            rc, out = await dd.run_cmd(cmd, sudo=True)
-            dd.applog.info(f"Ran command {cmd} rc {rc} out {out}")
-            neighbors = json.loads(out)
+            out = await Bgp.show(
+                input_data=[{dd.host_name: [{"neighbors": {}, "options": "json"}]}]
+            )
+            dd.applog.info(f"Ran Bgp.show neighbors out {out}")
+            neighbors = json.loads(out[0][dd.host_name]["result"])
             if not neighbors:
                 assert 0, f"No Neighbors on  {dd.host_name}"
             for neighbor in neighbors.values():
@@ -142,6 +162,7 @@ async def test_alpha_lab_bgp_routing_timers(testbed):
     await tgen_utils_stop_traffic(tgen_dev)
     await tgen_utils_stop_traffic(tgen_dev)
     stats = await tgen_utils_get_traffic_stats(tgen_dev, "Flow Statistics")
-    stats = await tgen_utils_get_traffic_stats(tgen_dev, "Port Statistics")
+    for row in stats.Rows:
+        assert tgen_utils_get_loss(row) != 100.000, f'Failed>Loss percent: {row["Loss %"]}'
 
     await tgen_utils_stop_protocols(tgen_dev)

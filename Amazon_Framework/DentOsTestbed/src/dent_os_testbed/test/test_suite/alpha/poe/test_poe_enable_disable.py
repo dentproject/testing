@@ -11,6 +11,14 @@ pytestmark = pytest.mark.suite_alpha_poe
 
 @pytest.mark.asyncio
 async def test_alpha_lab_poe_enable_disable_ports(testbed):
+    """
+    Test Name: test_alpha_lab_poe_enable_disable_ports
+    Test Suite: suite_alpha_poe
+    Test Overview: test poe ports enable/disable
+    Test Procedure:
+    1. get all the reachable devices
+    2. for all the poe ports check disabled ports then enable them.
+    """
     for dev in await tb_get_all_devices(testbed):
         out = await Poectl.show(
             input_data=[{dev.host_name: [{"cmd_options": "-j -a"}]}],
@@ -54,6 +62,14 @@ async def test_alpha_lab_poe_enable_disable_ports(testbed):
 
 @pytest.mark.asyncio
 async def test_alpha_lab_poe_enable_disable_all_ports(testbed):
+    """
+    Test Name: test_alpha_lab_poe_enable_disable_all_ports
+    Test Suite: suite_alpha_poe
+    Test Overview: test disable all ports
+    Test Procedure:
+    1. get all the connected devices
+    2. disable/enable all the poe ports
+    """
 
     for dev in await tb_get_all_devices(testbed):
         out = await Poectl.show(
@@ -96,6 +112,12 @@ async def test_alpha_lab_poe_enable_disable_all_ports(testbed):
 
 @pytest.mark.asyncio
 async def test_alpha_lab_poe_enable_disable_connected_ports(testbed):
+    """
+    Test Name: test_alpha_lab_poe_enable_disable_connected_ports
+    Test Suite: suite_alpha_poe
+    Test Overview: enable/disable connected ports.
+    Test Procedure:
+    """
 
     """
     - look for switch that have ports connected

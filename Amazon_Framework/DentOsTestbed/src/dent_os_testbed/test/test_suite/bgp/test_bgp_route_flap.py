@@ -69,6 +69,10 @@ async def do_trigger(tgen_dev, src, devices, trigger):
 @pytest.mark.asyncio
 async def test_bgp_route_and_interface_flap(testbed):
     """
+    Test Name: test_bgp_route_and_interface_flap
+    Test Suite: suite_bgp_routes
+    Test Overview: Simulate BGP sessions and test interface flaps
+    Test Procedure:
     - remove bond interface on all devices TODO once fixed update the configs
     - start with clean slate.
     - Create a bgp peer on all the devices that has a tgen connection
@@ -95,10 +99,8 @@ async def test_bgp_route_and_interface_flap(testbed):
       - route ranges
        - for each route ranges on each interface
          - create routes - 30*<dut>.0.0.1/24 100 routes
+    - perform ifreload and check if the traffic is lost
     """
-    # clean the DUT
-    await tb_clean_config(testbed)
-
     tgen_dev, devices = await tgen_utils_get_dent_devices_with_tgen(
         testbed,
         [
@@ -130,7 +132,7 @@ async def test_bgp_route_and_interface_flap(testbed):
                     },
                 ],
             }
-        br_ip += 10
+            br_ip += 10
     await tgen_utils_create_bgp_devices_and_connect(tgen_dev, devices, bgp_neighbors)
 
     src = []
@@ -161,7 +163,7 @@ async def test_bgp_route_and_interface_flap(testbed):
     # after traffic is stopped
     # triggers = [TRIGGER_FLAP_LINK, TRIGGER_FLAP_BGP_ROUTE, TRIGGER_RESTART_NETWORKING, TRIGGER_IFRELOAD]
     triggers = [
-        TRIGGER_FLAP_LINK,
+        # TRIGGER_FLAP_LINK,
         TRIGGER_FLAP_BGP_ROUTE,
     ]
     # triggers when traffic is running

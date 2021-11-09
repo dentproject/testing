@@ -14,7 +14,21 @@ class LinuxTcChainImpl(LinuxTcChain):
         """
         params = kwarg["params"]
         cmd = "tc chain {} ".format(command)
-        ############# Implement me ################
+        if "dev" in params:
+            cmd += "dev {} ".format(params["dev"])
+        if "block" in params:
+            cmd += "block {} ".format(params["block"])
+        if "direction" in params:
+            cmd += "{} ".format(params["direction"])
+        if "proto" in params:
+            cmd += "proto {} ".format(params["proto"])
+        if "chain" in params:
+            cmd += "chain {} ".format(params["chain"])
+        if "filtertype" in params:
+            if type(params["filtertype"]) is dict:
+                cmd += "flower "
+                for field, value in params["filtertype"].items():
+                    cmd += "{} {} ".format(field, value)
 
         return cmd
 

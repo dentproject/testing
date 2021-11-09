@@ -16,9 +16,15 @@ pytestmark = pytest.mark.suite_bonding
 
 @pytest.mark.asyncio
 async def test_alpha_lab_bonding_primary_port(testbed):
-    # validate primary port configuration
-    # set primary port
-    # validate setting
+    """
+    Test Name: test_alpha_lab_bonding_primary_port
+    Test Suite: suite_bonding
+    Test Overview: test bond primary port
+    Test Procedure:
+    1. validate primary port configuration
+    2. set primary port
+    3. validate setting
+    """
 
     # get the infra devices that are inter connected to each other.
     infra_devices = await bonding_get_interconnected_infra_devices(testbed, testbed.devices)

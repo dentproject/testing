@@ -10,6 +10,7 @@ from dent_os_testbed.utils.test_utils.tb_utils import tb_reload_nw_and_flush_fir
 from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_create_devices_and_connect,
     tgen_utils_get_dent_devices_with_tgen,
+    tgen_utils_get_loss,
     tgen_utils_get_traffic_stats,
     tgen_utils_setup_streams,
     tgen_utils_start_traffic,
@@ -22,8 +23,14 @@ pytestmark = pytest.mark.suite_switching
 
 @pytest.mark.asyncio
 async def test_alpha_lab_switching_vlan_access_port(testbed):
-    # Validate non-trunked access ports
-    # Connect a host on an access pointvalidate connectivity for that host
+    """
+    Test Name: test_alpha_lab_switching_vlan_access_port
+    Test Suite: suite_switching
+    Test Overview: test vlan switching on a access port
+    Test Procedure:
+    1. Validate non-trunked access ports
+    2. Connect a host on an access pointvalidate connectivity for that host
+    """
 
     tgen_dev, infra_devices = await tgen_utils_get_dent_devices_with_tgen(
         testbed, [DeviceType.INFRA_SWITCH], 1
@@ -73,9 +80,8 @@ async def test_alpha_lab_switching_vlan_access_port(testbed):
     sleep_time = 60 * 2
     tgen_dev.applog.info(f"zzZZZZZ({sleep_time})s")
     time.sleep(sleep_time)
-    # await tgen_utils_stop_traffic(tgen_dev)
+    await tgen_utils_stop_traffic(tgen_dev)
     stats = await tgen_utils_get_traffic_stats(tgen_dev, "Flow Statistics")
-
-    # TODO add verification here
-
+    for row in stats.Rows:
+        assert tgen_utils_get_loss(row) != 100.000, f'Failed>Loss percent: {row["Loss %"]}'
     await tgen_utils_stop_protocols(tgen_dev)

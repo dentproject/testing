@@ -18,7 +18,16 @@ pytestmark = pytest.mark.suite_provisioning
 
 @pytest.mark.asyncio
 async def test_alpha_lab_provisioning_services_ntp(testbed):
-    if not testbed.args.use_pssh:
+    """
+    Test Name: test_alpha_lab_provisioning_services_ntp
+    Test Suite: suite_provisioning
+    Test Overview: test check for ntp services
+    Test Procedure:
+    1. get an infra switch
+    2. perform onie-select install
+    3. check for ntp sync
+    """
+    if not testbed.args.is_provisioned:
         testbed.applog.info(f"Skipping test since not on provisioned setup")
         return
     # pick a infra switch then run onie-select this should trigger the network based boot
@@ -37,11 +46,21 @@ async def test_alpha_lab_provisioning_services_ntp(testbed):
         # check ntp sync has happened
         rc = await check_ntp_sync(dev, None)
         assert rc, f"NTP Sync has failed."
+        return
 
 
 @pytest.mark.asyncio
 async def test_alpha_lab_provisioning_services_dhcp(testbed):
-    if not testbed.args.use_pssh:
+    """
+    Test Name: test_alpha_lab_provisioning_services_dhcp
+    Test Suite: suite_provisioning
+    Test Overview: test to check for DHCP service
+    Test Procedure:
+    1. get an infra device
+    2. perform reprovisioning
+    3. check for services to come up
+    """
+    if not testbed.args.is_provisioned:
         testbed.applog.info(f"Skipping test since not on provisioned setup")
         return
     # pick a infra switch then run onie-select this should trigger the network based boot
@@ -59,4 +78,5 @@ async def test_alpha_lab_provisioning_services_dhcp(testbed):
             assert 0, f"Device {dev.host_name} didnt boot up with new image from USB"
         # check if the dhcp service is up and running
         rc = await check_services(dev, None)
-        assert rc, f"NTP Sync has failed."
+        assert rc, f"Services check failed."
+        return

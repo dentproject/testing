@@ -1,0 +1,14 @@
+- module: onlp
+  description: onlp - ONLP information
+  classes:
+   - name: linux_onie
+     desc: To run onie-select
+     implements: "dent:onlp:onie"
+     platforms: ['dentos', 'cumulus']
+     commands:
+      - name: select
+        apis: ['select']
+        cmd: [ 'onie-select ' ]
+        params: [ "options" ]
+        desc: |
+          Onie select
