@@ -405,7 +405,6 @@ async def tb_restore_qdisc(dev, port, direction):
         ]
     )
 
-
 async def tb_check_all_devices_are_connected(devices):
     # check if all the devices can be reached??
     for dev in devices:
