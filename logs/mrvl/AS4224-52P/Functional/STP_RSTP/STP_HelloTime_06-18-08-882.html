@@ -1,0 +1,1183 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>STP_HelloTime_06-18-08-882187 Log</title>
+<!-- Latest compiled and minified CSS -->
+<!--
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs-3.3.7/jq-3.2.1/jq-3.2.1/dt-1.10.16/datatables.min.css"/>
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.7/jq-3.2.1/jq-3.2.1/dt-1.10.16/datatables.min.js"></script>
+-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+  
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+<style>
+pre {
+margin : 0;
+white-space: pre-wrap;
+background-color: inherit;
+border: none;
+border-radius: inherit;
+}
+</style>
+</head>
+
+<body>
+<div class="col-md-12 col-xs-12 col-lg-12">
+<br>
+<h1 style="text-align:center">STP_HelloTime_06-18-08-882187 Log</h1>
+<br>
+<div class="input-group">
+    <select class="form-control" id="min-severity" placeholder="Min Severity">
+    </select>
+    <span class="input-group-addon">-</span>
+    <select class="form-control" id="max-severity" placeholder="Max Severity">
+    </select>
+</div>
+&nbsp
+<table id="data_table" class="table table-striped table-bordered" cellspacing="0">
+<thead>
+    <tr>
+        <th style="width: 180px;">Time</th>
+        <th style="width: 90px;">Log Level</th>
+        <th>Message</th>
+    </tr>
+</thead>
+<tbody>
+
+<tr class="success">
+<td>2021-09-03 06:18:08,883</td>
+<td>TRACE</td>
+<td><pre>BaseTest_SD::_BasicTestInit: this test has been launched with the following input arguments:
+Namespace(conn_table=None, dummy_test=False, excel_path='/swdev/fileril103/testing/Projects/Automation/Python/Setups/AGO/CI/Setup_23.xlsx', excel_setups_db_path=None, seed=None, setup_info=None, setup_name=None, stress=None, test_args=None)</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:08,883</td>
+<td>TRACE</td>
+<td><pre>BaseTest_SD::_BasicTestInit: this test is running from the following Setup Excel file /swdev/fileril103/testing/Projects/Automation/Python/Setups/AGO/CI/Setup_23.xlsx</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:08,884</td>
+<td>TRACE</td>
+<td><pre>
++-------------------------------------------------------+
+|                    TG Mapping Table                   |
++----+------------+------------+------+------+----------+
+| ID | IP Address |  TG Type   | Card | Port | Dut Port |
++----+------------+------------+------+------+----------+
+| 1  | 10.5.236.4 | ixia_linux |  11  |  5   |  sw1p1   |
+| 2  | 10.5.236.4 | ixia_linux |  11  |  6   |  sw1p23  |
+| 3  | 10.5.236.4 | ixia_linux |  11  |  7   |  sw1p35  |
+| 4  | 10.5.236.4 | ixia_linux |  11  |  8   |  sw1p48  |
++----+------------+------------+------+------+----------+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:08,884</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: connecting to IxiaSSH on IP 10.5.236.4 using TCL/API Server IP 10.5.236.4</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:16,699</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect:  Connection Successful</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:17,107</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:19,275</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:21,266</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:23,278</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 06:18:26,227</td>
+<td>INFO</td>
+<td><pre>Used cached DutInfo: dutmainchannel__/swdev/fileril103/testing/Projects/Automation/Python/Setups/AGO/CI/Setup_23.xlsx__1620569885.7663186</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:26,227</td>
+<td>TRACE</td>
+<td><pre>SwitchDevDutManager::login: Connecting to 10.5.236.85:root:22 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:26,340</td>
+<td>TRACE</td>
+<td><pre>SwitchDevDutManager::login: Connection Successful</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:26,340</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "
+
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:26,442</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: Linux localhost 5.10.4 #1 SMP PREEMPT Tue Aug 31 15:40:33 UTC 2021 aarch64
+Last login: Fri Sep  3 06:14:45 2021 from 10.5.116.193
+
+
+root@localhost:~# 
+root@localhost:~# 
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:27,443</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "
+
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:27,544</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 
+root@localhost:~# 
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:27,546</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_clear_dmesg: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:27,647</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  echo "" &#62 /var/log/messages
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:27,748</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   echo "" &#62 /var/log/messages
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:27,748</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_clear_cmd_history: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:27,849</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  history -c
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:27,950</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   history -c
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:27,950</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::stressCpus: </pre></td>
+</tr>
+
+
+<tr>
+<td width="100"></td>
+<td width="100"></td>
+<td class="info"><pre>+---------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                               Test Description                                                              |
++------------+---------------+------------------------------------------------------------------------+-------------+-------------------------+
+| Suite Name | Test Name     | Purpose                                                                | Author      | Test Document Reference |
++------------+---------------+------------------------------------------------------------------------+-------------+-------------------------+
+| STP_RSTP   | STP_HelloTime |                                                                        | Maya Peretz |                         |
+|            |               |             Verify the root bridge sends hello messages within the     |             |                         |
+|            |               | interval set.                                                          |             |                         |
+|            |               |                                                                        |             |                         |
++------------+---------------+------------------------------------------------------------------------+-------------+-------------------------+
+
++-----------------------------------------------------------+
+|                       Test Procedure                      |
++------+----------------------------------------------------+
+| Step | Step Description                                   |
++------+----------------------------------------------------+
+| 1    | Create bridge entity br0 and set link up on it     |
++------+----------------------------------------------------+
+| 2    | Enslave one of the Ixia ports to the bridge.       |
++------+----------------------------------------------------+
+| 3    | Set link up on all participant ports               |
++------+----------------------------------------------------+
+| 4    | Enable capture on IXIA ports for 40 seconds        |
++------+----------------------------------------------------+
+| 5    | Verify Ixia ports should received 19-21 RSTP BPDUs |
++------+----------------------------------------------------+
+| 6    | Change the hello time to 10                        |
++------+----------------------------------------------------+
+| 7    | Enable capture on IXIA ports for 40 seconds        |
++------+----------------------------------------------------+
+| 8    | Verify Ixia ports should received 3-5 RSTP BPDUs   |
++------+----------------------------------------------------+</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 06:18:27,957</td>
+<td>INFO</td>
+<td><pre>Executing step 1: Create bridge entity br0 and set link up on it</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:27,957</td>
+<td>DEBUG</td>
+<td><pre>SpanningTreeAPI::createAndSetSoftEntityUp: set link up on bridge entity</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:28,058</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "killall mstpd && sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='n'" /etc/bridge-stp.conf
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:28,159</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: killall mstpd && sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='n'" /etc/bridge-stp.conf
+mstpd: no process found
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:28,259</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link add br0 type bridge vlan_filtering 0 stp_state 1
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:28,360</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link add br0 type bridge vlan_filtering 0 stp_state 1
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:28,462</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev br0 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:28,563</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev br0 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:28,563</td>
+<td>DEBUG</td>
+<td><pre>verifyStpInRightSpace  verify STP runs in the right space (kernel/user space)</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:28,664</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "cat /sys/class/net/br0/bridge/stp_state
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:28,765</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: cat /sys/class/net/br0/bridge/stp_state
+1
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 06:18:28,766</td>
+<td>INFO</td>
+<td><pre>Executing step 2: Enslave one of the Ixia ports to the bridge.</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:28,766</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::enslavePortsToSoftLink: set enslaved interfaces</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:28,866</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p1 master br0
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:28,967</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p1 master br0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 06:18:28,967</td>
+<td>INFO</td>
+<td><pre>Executing step 3: Set link up on all participant ports</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:28,968</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::setLinkStateOnInterfaces: set link up on ports</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:29,068</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p1 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:29,170</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p1 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:29,170</td>
+<td>DEBUG</td>
+<td><pre>pollTillLinkUp poll till port sw1p1 is up</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:29,271</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "bash -c 'for i in {1..60}; do x=$(ip -o link show sw1p1 | grep -Eo "state\s\w+" | tr -d "state "); if [ $x == "UP" ]; then break; elif [ $i -eq 60 ]; then exit 1; fi; sleep 1; done'
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:29,372</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: bash -c 'for i in {1..60}; do x=$(ip -o link show sw1p1 | grep -Eo "state\s\w+" | tr -d "state "); if [ $x == "UP" ]; then break; elif [ $i -eq 60 ]; then exit 1; fi; sleep 1; done'
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:29,472</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:29,574</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:29,696</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "chmod 755 config240530666203120257478676509734718144246.sh && ./config240530666203120257478676509734718144246.sh 
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:29,797</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: chmod 755 config240530666203120257478676509734718144246.sh && ./config240530666203120257478676509734718144246.sh 
+Current time: 06:18:21
+disabled
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:30,800</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: disabled
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:31,803</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: disabled
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:32,807</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: disabled
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:33,810</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:34,814</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:35,818</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:36,820</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:37,824</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:38,827</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:39,931</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:40,934</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:41,938</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:42,942</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:43,945</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:44,948</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:45,951</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:46,956</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:47,960</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:48,964</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:49,967</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:50,971</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:52,075</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:53,080</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:54,083</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:55,087</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:56,090</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:57,094</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:58,098</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:18:59,101</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:19:00,104</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:19:01,107</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:19:02,110</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: Timeout of 31 seconds exceeded
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:19:02,211</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo "${?}"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:19:02,312</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo "${?}"
+1
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:19:02,413</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "rm -f config240530666203120257478676509734718144246.sh
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:19:02,514</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: rm -f config240530666203120257478676509734718144246.sh
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 06:19:02,515</td>
+<td>INFO</td>
+<td><pre>Executing step 4: Enable capture on IXIA ports for 40 seconds</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 06:19:45,128</td>
+<td>INFO</td>
+<td><pre>Executing step 5: Verify Ixia ports should received 19-21 RSTP BPDUs</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:19:52,215</td>
+<td>DEBUG</td>
+<td><pre>PASS: DUT sent 21 BDPU messages</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 06:19:52,215</td>
+<td>INFO</td>
+<td><pre>Executing step 6: Change the hello time to 10</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:19:52,316</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "brctl sethello br0 10
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:19:52,417</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: brctl sethello br0 10
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 06:19:52,417</td>
+<td>INFO</td>
+<td><pre>Executing step 7: Enable capture on IXIA ports for 40 seconds</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 06:20:34,249</td>
+<td>INFO</td>
+<td><pre>Executing step 8: Verify Ixia ports should received 3-5 RSTP BPDUs</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:20:41,471</td>
+<td>DEBUG</td>
+<td><pre>PASS: DUT sent 5 BDPU messages</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:20:41,471</td>
+<td>TRACE</td>
+<td><pre>BaseTest::_OnPostTest:  starting to run registered post test functions</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:20:41,471</td>
+<td>TRACE</td>
+<td><pre>BaseTest::TestTearDown:  starting to call to cleanup functions of test</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:20:41,572</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p1 down
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:20:41,672</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p1 down
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:20:41,773</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link delete dev br0
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:20:41,874</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link delete dev br0
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:20:41,974</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:20:42,075</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='n'" /etc/bridge-stp.conf && killall mstpd
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:20:42,175</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='n'" /etc/bridge-stp.conf && killall mstpd
+mstpd: no process found
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:20:42,176</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_parse_dmesg: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:20:42,277</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  history
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:20:42,378</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   history
+    3  killall mstpd && sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='n'" /etc/bridge-stp.conf
+    4  ip link add br0 type bridge vlan_filtering 0 stp_state 1
+    5  ip link set dev br0 up
+    6  cat /sys/class/net/br0/bridge/stp_state
+    7  ip link set dev sw1p1 master br0
+    8  ip link set dev sw1p1 up
+    9  bash -c 'for i in {1..60}; do x=$(ip -o link show sw1p1 | grep -Eo "state\s\w+" | tr -d "state "); if [ $x == "UP" ]; then break; elif [ $i -eq 60 ]; then exit 1; fi; sleep 1; done'
+   10  echo $?
+   11  chmod 755 config240530666203120257478676509734718144246.sh && ./config240530666203120257478676509734718144246.sh 
+   12  echo "${?}"
+   13  rm -f config240530666203120257478676509734718144246.sh
+   14  brctl sethello br0 10
+   15  ip link set dev sw1p1 down
+   16  ip link delete dev br0
+   17  sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='n'" /etc/bridge-stp.conf && killall mstpd
+   18    history
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:20:42,379</td>
+<td>DEBUG</td>
+<td><pre>commands history:
+    3  killall mstpd && sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='n'" /etc/bridge-stp.conf
+    4  ip link add br0 type bridge vlan_filtering 0 stp_state 1
+    5  ip link set dev br0 up
+    6  cat /sys/class/net/br0/bridge/stp_state
+    7  ip link set dev sw1p1 master br0
+    8  ip link set dev sw1p1 up
+    9  bash -c 'for i in {1..60}; do x=$(ip -o link show sw1p1 | grep -Eo "state\s\w+" | tr -d "state "); if [ $x == "UP" ]; then break; elif [ $i -eq 60 ]; then exit 1; fi; sleep 1; done'
+   10  echo $?
+   11  chmod 755 config240530666203120257478676509734718144246.sh && ./config240530666203120257478676509734718144246.sh 
+   12  echo "${?}"
+   13  rm -f config240530666203120257478676509734718144246.sh
+   14  brctl sethello br0 10
+   15  ip link set dev sw1p1 down
+   16  ip link delete dev br0
+   17  sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='n'" /etc/bridge-stp.conf && killall mstpd
+   18    history</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:20:42,379</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_parse_dmesg: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:20:42,492</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  cat /var/log/messages
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:20:42,593</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   cat /var/log/messages
+
+Sep  3 06:18:20 localhost kernel: [ 1051.362223] br0: port 1(sw1p1) entered blocking state
+Sep  3 06:18:20 localhost kernel: [ 1051.367333] br0: port 1(sw1p1) entered disabled state
+Sep  3 06:18:20 localhost kernel: [ 1051.388383] device sw1p1 entered promiscuous mode
+Sep  3 06:18:21 localhost kernel: [ 1051.565186] br0: port 1(sw1p1) entered blocking state
+Sep  3 06:18:21 localhost kernel: [ 1051.570283] br0: port 1(sw1p1) entered listening state
+Sep  3 06:18:21 localhost kernel: [ 1051.775647] br0: port 1(sw1p1) entered disabled state
+Sep  3 06:18:24 localhost kernel: [ 1055.431913] br0: port 1(sw1p1) entered blocking state
+Sep  3 06:18:24 localhost kernel: [ 1055.437002] br0: port 1(sw1p1) entered listening state
+Sep  3 06:18:40 localhost kernel: [ 1070.651545] br0: port 1(sw1p1) entered learning state
+Sep  3 06:18:55 localhost kernel: [ 1085.755545] br0: port 1(sw1p1) entered forwarding state
+Sep  3 06:18:55 localhost kernel: [ 1085.760816] br0: topology change detected, propagating
+Sep  3 06:18:55 localhost kernel: [ 1085.771738] IPv6: ADDRCONF(NETDEV_CHANGE): br0: link becomes ready
+Sep  3 06:20:33 localhost kernel: [ 1184.072568] br0: port 1(sw1p1) entered disabled state
+Sep  3 06:20:33 localhost kernel: [ 1184.265884] device sw1p1 left promiscuous mode
+Sep  3 06:20:33 localhost kernel: [ 1184.270449] br0: port 1(sw1p1) entered disabled state
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:20:42,594</td>
+<td>DEBUG</td>
+<td><pre>dmesg lines that matched regex for issues:</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:20:42,595</td>
+<td>DEBUG</td>
+<td><pre>{
+    "call trace:": {
+        found: false,
+        regex: "Call trace:",
+    },
+    "cut here": {
+        found: false,
+        regex: "\\[ cut here \\]",
+    },
+    "hw routing offloading disabled:": {
+        found: false,
+        regex: "Abort. HW routing offloading disabled",
+    },
+}</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:20:44,126</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Cleanup:  clearing ports ownership...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:20:44,570</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Cleanup:  Disconnecting from chassis...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:20:44,600</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Cleanup:  TG disconnect time is 0.03</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 06:20:44,600</td>
+<td>INFO</td>
+<td><pre>Test Passed</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 06:20:44,605</td>
+<td>INFO</td>
+<td><pre>
+CI_META:
+{"Software_Version": "2.0.0-v3.0.0-rc4", "Linux_Version": ""}
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                                  Dut Information                                                                   |
++--------+-------------+------+------------------+--------------------------------+---------------+---------------+---------------------+------------+
+| ODM    | Board_Model | ASIC | Software_Version | UBOOT_Version                  | Linux_Version | CPU_CoreClock | Host_kernel_version | PCBVersion |
++--------+-------------+------+------------------+--------------------------------+---------------+---------------+---------------------+------------+
+| Accton | AS4224-52T  | AC3X | 2.0.0-v3.0.0-rc4 | U-Boot 2019.10-10.0.0-g9518192 |               |               | 5.10.4              | R0A        |
++--------+-------------+------+------------------+--------------------------------+---------------+---------------+---------------------+------------+
+
+None
+
++---------------------------------------+
+|              PDU Settings             |
++----------------+-------------+--------+
+| Connect_To_PDU | ip_address  | outlet |
++----------------+-------------+--------+
+| True           | 10.5.236.19 | 11     |
++----------------+-------------+--------+
+
+None
++------------------------------------------------------------------------------------------+
+|                                    Test Steps Summary                                    |
++------+----------------------------------------------------+--------+---------------------+
+| Step | Description                                        | Result | Run Time            |
++------+----------------------------------------------------+--------+---------------------+
+| 1    | Create bridge entity br0 and set link up on it     | Passed | 0.0                 |
++------+----------------------------------------------------+--------+---------------------+
+| 2    | Enslave one of the Ixia ports to the bridge.       | Passed | 0.20177531242370605 |
++------+----------------------------------------------------+--------+---------------------+
+| 3    | Set link up on all participant ports               | Passed | 33.54742074012756   |
++------+----------------------------------------------------+--------+---------------------+
+| 4    | Enable capture on IXIA ports for 40 seconds        | Passed | 42.61300182342529   |
++------+----------------------------------------------------+--------+---------------------+
+| 5    | Verify Ixia ports should received 19-21 RSTP BPDUs | Passed | 7.087467432022095   |
++------+----------------------------------------------------+--------+---------------------+
+| 6    | Change the hello time to 10                        | Passed | 0.2020726203918457  |
++------+----------------------------------------------------+--------+---------------------+
+| 7    | Enable capture on IXIA ports for 40 seconds        | Passed | 41.831631660461426  |
++------+----------------------------------------------------+--------+---------------------+
+| 8    | Verify Ixia ports should received 3-5 RSTP BPDUs   | Passed | 7.222590684890747   |
++------+----------------------------------------------------+--------+---------------------+
++------------------------------------------------------------------------------------------+
+|                                     Test Information                                     |
++------------+---------------+--------+-----------------+-----------------+----------------+
+| Suite_Name | Test_Name     | Result | start_time      | end_time        | run_time       |
++------------+---------------+--------+-----------------+-----------------+----------------+
+| STP_RSTP   | STP_HelloTime | Passed | 06:18:08.882036 | 06:20:44.600424 | 0:02:35.718388 |
++------------+---------------+--------+-----------------+-----------------+----------------+</pre></td>
+</tr>
+
+</tbody></table></div>
+</body>
+<script>
+    $.fn.dataTable.ext.search.push(
+        function( settings, data, dataIndex ) {
+            let minIndex = severities.indexOf($('#min-severity').find(':selected').text());
+            let maxIndex = severities.indexOf($('#max-severity').find(':selected').text());
+            var severity = data[1] || 'NOT SET';// use data for the Log Level column
+            var severityIndex = severities.indexOf(severity);
+            if ( ( maxIndex == -1 && minIndex == -1 ) ||
+                 ( minIndex <= severityIndex && severityIndex <= maxIndex ) )
+            {
+                return true;
+            }
+            return false;
+        }
+    );
+    
+    function fill_select(id, items){
+        for(t of items){
+            $('#'+id).append(new Option(t, t));
+        }
+    }
+    
+    function selectionChanged(selectChanged, selectAffected, selectedOption, startFrom, end){
+        let selected = $('#'+selectAffected).find(':selected').text(); //keep affected value
+        $('#'+selectAffected).empty(); //empty the affected one
+
+        fill_select(selectAffected, severities.slice(startFrom, end));
+        selected = $('#'+selectAffected).find("option:contains('" + selected  + "')").length > 0 ? selected : $("#"+selectAffected+" option:first").val();
+        $('#'+selectAffected).val(selected);
+    }
+    
+    var severities = ['NOT SET','TRACE','DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL']
+    $(document).ready(function() {
+        for(severity of severities){
+            $('#min-severity, #max-severity').append(new Option(severity, severity));
+        }
+        
+        $('#max-severity option:last').attr('selected', 'selected');
+        
+        var table = $('#data_table').DataTable({
+            "lengthMenu": [[-1, 10, 25, 50], ["All", 10, 25, 50]]
+        });
+        
+        $('#min-severity, #max-severity').change( function(e) {
+            if(e.target.id == 'min-severity'){
+                selectionChanged(e.target.id, 'max-severity', e.target.selectedOptions[0].text, severities.indexOf(e.target.selectedOptions[0].text), severities.length+1);
+            }
+            else if(e.target.id == 'max-severity'){
+                selectionChanged(e.target.id, 'min-severity',e.target.selectedOptions[0].text, 0 ,severities.indexOf(e.target.selectedOptions[0].text) + 1);
+            }
+            table.draw();
+        } );
+    } );
+    
+    
+</script>
+</html>

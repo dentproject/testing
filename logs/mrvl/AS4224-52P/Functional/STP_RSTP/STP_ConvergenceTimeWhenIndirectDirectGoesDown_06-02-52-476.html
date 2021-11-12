@@ -1,0 +1,2892 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>STP_ConvergenceTimeWhenIndirectDirectGoesDown_06-02-52-476167 Log</title>
+<!-- Latest compiled and minified CSS -->
+<!--
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs-3.3.7/jq-3.2.1/jq-3.2.1/dt-1.10.16/datatables.min.css"/>
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.7/jq-3.2.1/jq-3.2.1/dt-1.10.16/datatables.min.js"></script>
+-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+  
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+<style>
+pre {
+margin : 0;
+white-space: pre-wrap;
+background-color: inherit;
+border: none;
+border-radius: inherit;
+}
+</style>
+</head>
+
+<body>
+<div class="col-md-12 col-xs-12 col-lg-12">
+<br>
+<h1 style="text-align:center">STP_ConvergenceTimeWhenIndirectDirectGoesDown_06-02-52-476167 Log</h1>
+<br>
+<div class="input-group">
+    <select class="form-control" id="min-severity" placeholder="Min Severity">
+    </select>
+    <span class="input-group-addon">-</span>
+    <select class="form-control" id="max-severity" placeholder="Max Severity">
+    </select>
+</div>
+&nbsp
+<table id="data_table" class="table table-striped table-bordered" cellspacing="0">
+<thead>
+    <tr>
+        <th style="width: 180px;">Time</th>
+        <th style="width: 90px;">Log Level</th>
+        <th>Message</th>
+    </tr>
+</thead>
+<tbody>
+
+<tr class="success">
+<td>2021-09-03 06:02:52,477</td>
+<td>TRACE</td>
+<td><pre>BaseTest_SD::_BasicTestInit: this test has been launched with the following input arguments:
+Namespace(conn_table=None, dummy_test=False, excel_path='/swdev/fileril103/testing/Projects/Automation/Python/Setups/AGO/CI/Setup_23.xlsx', excel_setups_db_path=None, seed=None, setup_info=None, setup_name=None, stress=None, test_args=None)</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:02:52,477</td>
+<td>TRACE</td>
+<td><pre>BaseTest_SD::_BasicTestInit: this test is running from the following Setup Excel file /swdev/fileril103/testing/Projects/Automation/Python/Setups/AGO/CI/Setup_23.xlsx</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:02:52,478</td>
+<td>TRACE</td>
+<td><pre>
++-------------------------------------------------------+
+|                    TG Mapping Table                   |
++----+------------+------------+------+------+----------+
+| ID | IP Address |  TG Type   | Card | Port | Dut Port |
++----+------------+------------+------+------+----------+
+| 1  | 10.5.236.4 | ixia_linux |  11  |  5   |  sw1p1   |
+| 2  | 10.5.236.4 | ixia_linux |  11  |  6   |  sw1p23  |
+| 3  | 10.5.236.4 | ixia_linux |  11  |  7   |  sw1p35  |
+| 4  | 10.5.236.4 | ixia_linux |  11  |  8   |  sw1p48  |
++----+------------+------------+------+------+----------+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:02:52,478</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: connecting to IxiaSSH on IP 10.5.236.4 using TCL/API Server IP 10.5.236.4</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:00,133</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect:  Connection Successful</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:00,465</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:02,450</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:04,440</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:06,460</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 06:03:09,601</td>
+<td>INFO</td>
+<td><pre>Used cached DutInfo: dutmainchannel__/swdev/fileril103/testing/Projects/Automation/Python/Setups/AGO/CI/Setup_23.xlsx__1620569885.7663186</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:09,602</td>
+<td>TRACE</td>
+<td><pre>SwitchDevDutManager::login: Connecting to 10.5.236.85:root:22 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:09,717</td>
+<td>TRACE</td>
+<td><pre>SwitchDevDutManager::login: Connection Successful</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:09,718</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "
+
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:09,819</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: Linux localhost 5.10.4 #1 SMP PREEMPT Tue Aug 31 15:40:33 UTC 2021 aarch64
+Last login: Fri Sep  3 06:02:38 2021 from 10.5.116.193
+
+
+root@localhost:~# 
+root@localhost:~# 
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:10,820</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "
+
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:10,922</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 
+root@localhost:~# 
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:10,932</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_clear_dmesg: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:11,034</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  echo "" &#62 /var/log/messages
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:11,134</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   echo "" &#62 /var/log/messages
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:11,135</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_clear_cmd_history: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:11,235</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  history -c
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:11,336</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   history -c
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:11,337</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::stressCpus: </pre></td>
+</tr>
+
+
+<tr>
+<td width="100"></td>
+<td width="100"></td>
+<td class="info"><pre>+-------------------------------------------------------------------------------------------------------------------+
+|                                                  Test Description                                                 |
++------------+-----------------------------------------------+--------------+-------------+-------------------------+
+| Suite Name | Test Name                                     | Purpose      | Author      | Test Document Reference |
++------------+-----------------------------------------------+--------------+-------------+-------------------------+
+| STP_RSTP   | STP_ConvergenceTimeWhenIndirectDirectGoesDown |              | Maya Peretz |                         |
+|            |                                               |             •	The convergence time after direct/indirect links (each one at the time) goes down according to STP/RSTP.              |             |                         |
+|            |                                               |             •	Verify portfast, UplinkFast and BackboneFast mechanisms in case RSTP is used.              |             |                         |
+|            |                                               |              |             |                         |
++------------+-----------------------------------------------+--------------+-------------+-------------------------+
+
++-------------------------------------------------------------------------------+
+|                                 Test Procedure                                |
++------+------------------------------------------------------------------------+
+| Step | Step Description                                                       |
++------+------------------------------------------------------------------------+
+| 1    | Create 3 bridge entities: br0, br1, br2 and set link up on them        |
++------+------------------------------------------------------------------------+
+| 2    | Enslave ports according to the test's setup topology                   |
++------+------------------------------------------------------------------------+
+| 3    | Set link up on all participant ports                                   |
++------+------------------------------------------------------------------------+
+| 4    | Wait until topology converges                                          |
++------+------------------------------------------------------------------------+
+| 5    | Bring down the indirect link; verify the blocking port comes to        |
+|      | forwarding after ~51 seconds                                           |
++------+------------------------------------------------------------------------+
+| 6    | Bring back the indirect link and wait for the topology to re-converge. |
++------+------------------------------------------------------------------------+
+| 7    | Bring down the direct link; Verify the blocking port comes to          |
+|      | forwarding after ~31 seconds                                           |
++------+------------------------------------------------------------------------+
+| 8    | Add one Ixia port to some bridge                                       |
++------+------------------------------------------------------------------------+
+| 9    | Verify the port connected to Ixia port transitions into forwarding     |
+|      | state after ~31 seconds                                                |
++------+------------------------------------------------------------------------+</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 06:03:11,346</td>
+<td>INFO</td>
+<td><pre>Executing step 1: Create 3 bridge entities: br0, br1, br2 and set link up on them</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:11,346</td>
+<td>DEBUG</td>
+<td><pre>SpanningTreeAPI::createAndSetSoftEntityUp: set link up on bridge entity</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:11,447</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "killall mstpd && sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='n'" /etc/bridge-stp.conf
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:11,547</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: killall mstpd && sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='n'" /etc/bridge-stp.conf
+mstpd: no process found
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:11,648</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link add br0 type bridge vlan_filtering 0 stp_state 1
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:11,749</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link add br0 type bridge vlan_filtering 0 stp_state 1
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:11,850</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev br0 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:11,951</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev br0 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:11,952</td>
+<td>DEBUG</td>
+<td><pre>SpanningTreeAPI::createAndSetSoftEntityUp: set link up on bridge entity</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:12,052</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "killall mstpd && sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='n'" /etc/bridge-stp.conf
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:12,154</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: killall mstpd && sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='n'" /etc/bridge-stp.conf
+mstpd: no process found
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:12,255</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link add br1 type bridge vlan_filtering 0 stp_state 1
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:12,356</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link add br1 type bridge vlan_filtering 0 stp_state 1
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:12,456</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev br1 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:12,558</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev br1 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:12,559</td>
+<td>DEBUG</td>
+<td><pre>SpanningTreeAPI::createAndSetSoftEntityUp: set link up on bridge entity</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:12,659</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "killall mstpd && sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='n'" /etc/bridge-stp.conf
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:12,760</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: killall mstpd && sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='n'" /etc/bridge-stp.conf
+mstpd: no process found
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:12,860</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link add br2 type bridge vlan_filtering 0 stp_state 1
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:12,961</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link add br2 type bridge vlan_filtering 0 stp_state 1
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:13,062</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev br2 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:13,163</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev br2 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:13,163</td>
+<td>DEBUG</td>
+<td><pre>verifyStpInRightSpace  verify STP runs in the right space (kernel/user space)</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:13,263</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "cat /sys/class/net/br0/bridge/stp_state
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:13,364</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: cat /sys/class/net/br0/bridge/stp_state
+1
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:13,364</td>
+<td>DEBUG</td>
+<td><pre>verifyStpInRightSpace  verify STP runs in the right space (kernel/user space)</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:13,465</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "cat /sys/class/net/br1/bridge/stp_state
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:13,566</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: cat /sys/class/net/br1/bridge/stp_state
+1
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:13,566</td>
+<td>DEBUG</td>
+<td><pre>verifyStpInRightSpace  verify STP runs in the right space (kernel/user space)</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:13,666</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "cat /sys/class/net/br2/bridge/stp_state
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:13,767</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: cat /sys/class/net/br2/bridge/stp_state
+1
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 06:03:13,767</td>
+<td>INFO</td>
+<td><pre>Executing step 2: Enslave ports according to the test's setup topology</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:13,767</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::enslavePortsToSoftLink: set enslaved interfaces</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:13,868</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p4 master br0
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:13,969</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p4 master br0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:14,070</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p6 master br0
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:14,171</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p6 master br0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:14,171</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::enslavePortsToSoftLink: set enslaved interfaces</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:14,271</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p3 master br1
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:14,372</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p3 master br1
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:14,473</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p8 master br1
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:14,573</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p8 master br1
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:14,574</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::enslavePortsToSoftLink: set enslaved interfaces</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:14,674</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p5 master br2
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:14,774</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p5 master br2
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:14,875</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p7 master br2
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:14,975</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p7 master br2
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 06:03:14,976</td>
+<td>INFO</td>
+<td><pre>Executing step 3: Set link up on all participant ports</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:14,976</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::setLinkStateOnInterfaces: set link up on ports</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:15,076</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p4 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:15,182</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p4 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:15,284</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p6 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:15,385</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p6 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:15,486</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p3 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:15,587</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p3 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:15,687</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p8 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:15,788</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p8 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:15,888</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p5 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:15,989</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p5 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:16,089</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p7 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:16,190</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p7 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:16,191</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::setLinkStateOnInterfaces: set link up on ports</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:16,292</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p1 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:16,393</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p1 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 06:03:16,393</td>
+<td>INFO</td>
+<td><pre>Executing step 4: Wait until topology converges</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 06:03:56,433</td>
+<td>INFO</td>
+<td><pre>Executing step 5: Bring down the indirect link; verify the blocking port comes to forwarding after ~51 seconds</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:56,534</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip -d -j link show
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:56,554</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip -d -j link show
+[{"ifindex":1,"ifname":"lo","flags":["LOOPBACK","UP","LOWER_UP"],"mtu":65536,"qdisc":"noqueue","operstate":"UNKNOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"loopback","address":"00:00:00:00:00:00","broadcast":"00:00:00:00:00:00","promiscuity":0,"min_mtu":0,"max_mtu":0,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535},{"ifindex":2,"ifname":"bond0","flags":["BROADCAST","MULTICAST","MASTER"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"12:be:6c:c1:a4:45","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":68,"max_mtu":65535,"linkinfo":{"info_kind":"bond","info_data":{"mode":"balance-rr","miimon":0,"updelay":0,"downdelay":0,"peer_notify_delay":0,"use_carrier":1,"arp_interval":0,"arp_validate":null,"arp_all_targets":"any","primary_reselect":"always","fail_over_mac":"none","xmit_hash_policy":"layer2","resend_igmp":1,"num_peer_notif":1,"all_slaves_active":0,"min_links":0,"lp_interval":1,"packets_per_slave":1,"ad_lacp_rate":"slow","ad_select":"stable","tlb_dynamic_lb":1}},"inet6_addr_gen_mode":"eui64","num_tx_queues":16,"num_rx_queues":16,"gso_max_size":65536,"gso_max_segs":65535},{"ifindex":3,"ifname":"dummy0","flags":["BROADCAST","NOARP"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"0e:07:46:70:77:58","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":0,"max_mtu":0,"linkinfo":{"info_kind":"dummy"},"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535},{"ifindex":4,"link":null,"ifname":"sit0","flags":["NOARP"],"mtu":1480,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"sit","address":"0.0.0.0","broadcast":"0.0.0.0","promiscuity":0,"min_mtu":1280,"max_mtu":65555,"linkinfo":{"info_kind":"sit","info_data":{"proto":"ip6ip","remote":"any","local":"any","ttl":64,"pmtudisc":false}},"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535},{"ifindex":5,"ifname":"eth0","flags":["BROADCAST","MULTICAST","UP","LOWER_UP"],"mtu":1500,"qdisc":"mq","operstate":"UP","linkmode":"DEFAULT","group":"default","txqlen":2048,"link_type":"ether","address":"34:ef:b6:85:42:02","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":68,"max_mtu":9888,"inet6_addr_gen_mode":"eui64","num_tx_queues":8,"num_rx_queues":4,"gso_max_size":65536,"gso_max_segs":300},{"ifindex":6,"ifname":"sw1p1","flags":["BROADCAST","MULTICAST","UP","LOWER_UP"],"mtu":1500,"qdisc":"pfifo_fast","operstate":"UP","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:05","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p1","phys_switch_id":"01"},{"ifindex":7,"ifname":"sw1p2","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:06","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p2","phys_switch_id":"01"},{"ifindex":8,"ifname":"sw1p3","flags":["BROADCAST","MULTICAST","UP","LOWER_UP"],"mtu":1500,"qdisc":"pfifo_fast","master":"br1","operstate":"UP","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:07","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":1,"min_mtu":64,"max_mtu":1500,"linkinfo":{"info_slave_kind":"bridge","info_slave_data":{"state":"forwarding","priority":32,"cost":4,"hairpin":false,"guard":false,"root_block":false,"fastleave":false,"learning":true,"flood":true,"id":"0x8001","no":"0x1","designated_port":32769,"designated_cost":0,"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:56,557</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: bridge_id":"8000.34:ef:b6:85:42:7","root_id":"8000.34:ef:b6:85:42:7","hold_timer":0.84,"message_age_timer":0.00,"forward_delay_timer":0.00,"topology_change_ack":0,"config_pending":0,"proxy_arp":false,"proxy_arp_wifi":false,"multicast_router":1,"mcast_flood":true,"mcast_to_unicast":false,"neigh_suppress":false,"group_fwd_mask":"0","group_fwd_mask_str":"0x0","vlan_tunnel":false,"isolated":false}},"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p3","phys_switch_id":"01"},{"ifindex":9,"ifname":"sw1p4","flags":["BROADCAST","MULTICAST","UP","LOWER_UP"],"mtu":1500,"qdisc":"pfifo_fast","master":"br0","operstate":"UP","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:08","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":1,"min_mtu":64,"max_mtu":1500,"linkinfo":{"info_slave_kind":"bridge","info_slave_data":{"state":"forwarding","priority":32,"cost":4,"hairpin":false,"guard":false,"root_block":false,"fastleave":false,"learning":true,"flood":true,"id":"0x8001","no":"0x1","designated_port":32769,"designated_cost":0,"bridge_id":"8000.34:ef:b6:85:42:7","root_id":"8000.34:ef:b6:85:42:7","hold_timer":0.00,"message_age_timer":19.86,"forward_delay_timer":0.00,"topology_change_ack":0,"config_pending":0,"proxy_arp":false,"proxy_arp_wifi":false,"multicast_router":1,"mcast_flood":true,"mcast_to_unicast":false,"neigh_suppress":false,"group_fwd_mask":"0","group_fwd_mask_str":"0x0","vlan_tunnel":false,"isolated":false}},"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p4","phys_switch_id":"01"},{"ifindex":10,"ifname":"sw1p5","flags":["BROADCAST","MULTICAST","UP","LOWER_UP"],"mtu":1500,"qdisc":"pfifo_fast","master":"br2","operstate":"UP","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:09","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":1,"min_mtu":64,"max_mtu":1500,"linkinfo":{"info_slave_kind":"bridge","info_slave_data":{"state":"blocking","priority":32,"cost":4,"hairpin":false,"guard":false,"root_block":false,"fastleave":false,"learning":true,"flood":true,"id":"0x8001","no":"0x1","designated_port":32770,"designated_cost":4,"bridge_id":"8000.34:ef:b6:85:42:8","root_id":"8000.34:ef:b6:85:42:7","hold_timer":0.00,"message_age_timer":19.86,"forward_delay_timer":0.00,"topology_change_ack":0,"config_pending":0,"proxy_arp":false,"proxy_arp_wifi":false,"multicast_router":1,"mcast_flood":true,"mcast_to_unicast":false,"neigh_suppress":false,"group_fwd_mask":"0","group_fwd_mask_str":"0x0","vlan_tunnel":false,"isolated":false}},"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p5","phys_switch_id":"01"},{"ifindex":11,"ifname":"sw1p6","flags":["BROADCAST","MULTICAST","UP","LOWER_UP"],"mtu":1500,"qdisc":"pfifo_fast","master":"br0","operstate":"UP","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:0a","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":1,"min_mtu":64,"max_mtu":1500,"linkinfo":{"info_slave_kind":"bridge","info_slave_data":{"state":"forwarding","priority":32,"cost":4,"hairpin":false,"guard":false,"root_block":false,"fastleave":false,"learning":true,"flood":true,"id":"0x8002","no":"0x2","designated_port":32770,"designated_cost":4,"bridge_id":"8000.34:ef:b6:85:42:8","root_id":"8000.34:ef:b6:85:42:7","hold_timer":0.86,"message_age_timer":0.00,"forward_delay_timer":0.00,"topology_change_ack":0,"config_pending":0,"proxy_arp":false,"proxy_arp_wifi":false,"multicast_router":1,"mcast_flood":true,"mcast_to_unicast":false,"neigh_suppress":false,"group_fwd_mask":"0","group_fwd_mask_str":"0x0","vlan_tunnel":false,"isolated":false}},"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p6","phys_switch_id":"01"},{"ifindex":12,"ifname":"sw1p7","flags":["BROADCAST","MULTICAST","UP","LOWER_UP"],"mtu":1500,"qdisc":"pfifo_fast","mas</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:56,560</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ter":"br2","operstate":"UP","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:0b","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":1,"min_mtu":64,"max_mtu":1500,"linkinfo":{"info_slave_kind":"bridge","info_slave_data":{"state":"forwarding","priority":32,"cost":4,"hairpin":false,"guard":false,"root_block":false,"fastleave":false,"learning":true,"flood":true,"id":"0x8002","no":"0x2","designated_port":32770,"designated_cost":0,"bridge_id":"8000.34:ef:b6:85:42:7","root_id":"8000.34:ef:b6:85:42:7","hold_timer":0.00,"message_age_timer":19.86,"forward_delay_timer":0.00,"topology_change_ack":0,"config_pending":0,"proxy_arp":false,"proxy_arp_wifi":false,"multicast_router":1,"mcast_flood":true,"mcast_to_unicast":false,"neigh_suppress":false,"group_fwd_mask":"0","group_fwd_mask_str":"0x0","vlan_tunnel":false,"isolated":false}},"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p7","phys_switch_id":"01"},{"ifindex":13,"ifname":"sw1p8","flags":["BROADCAST","MULTICAST","UP","LOWER_UP"],"mtu":1500,"qdisc":"pfifo_fast","master":"br1","operstate":"UP","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:0c","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":1,"min_mtu":64,"max_mtu":1500,"linkinfo":{"info_slave_kind":"bridge","info_slave_data":{"state":"forwarding","priority":32,"cost":4,"hairpin":false,"guard":false,"root_block":false,"fastleave":false,"learning":true,"flood":true,"id":"0x8002","no":"0x2","designated_port":32770,"designated_cost":0,"bridge_id":"8000.34:ef:b6:85:42:7","root_id":"8000.34:ef:b6:85:42:7","hold_timer":0.84,"message_age_timer":0.00,"forward_delay_timer":0.00,"topology_change_ack":0,"config_pending":0,"proxy_arp":false,"proxy_arp_wifi":false,"multicast_router":1,"mcast_flood":true,"mcast_to_unicast":false,"neigh_suppress":false,"group_fwd_mask":"0","group_fwd_mask_str":"0x0","vlan_tunnel":false,"isolated":false}},"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p8","phys_switch_id":"01"},{"ifindex":14,"ifname":"sw1p9","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:0d","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p9","phys_switch_id":"01"},{"ifindex":15,"ifname":"sw1p10","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:0e","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p10","phys_switch_id":"01"},{"ifindex":16,"ifname":"sw1p11","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:0f","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p11","phys_switch_id":"01"},{"ifindex":17,"ifname":"sw1p12","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:10","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p12","phys_switch_id":"01"},{"ifindex":18,"ifname":"sw1p13","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","t</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:56,564</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: xqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:11","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p13","phys_switch_id":"01"},{"ifindex":19,"ifname":"sw1p14","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:12","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p14","phys_switch_id":"01"},{"ifindex":20,"ifname":"sw1p15","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:13","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p15","phys_switch_id":"01"},{"ifindex":21,"ifname":"sw1p16","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:14","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p16","phys_switch_id":"01"},{"ifindex":22,"ifname":"sw1p17","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:15","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p17","phys_switch_id":"01"},{"ifindex":23,"ifname":"sw1p18","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:16","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p18","phys_switch_id":"01"},{"ifindex":24,"ifname":"sw1p19","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:17","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p19","phys_switch_id":"01"},{"ifindex":25,"ifname":"sw1p20","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:18","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p20","phys_switch_id":"01"},{"ifindex":26,"ifname":"sw1p21","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:19","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p21","phys_switch_id":"01"},{"ifindex":27,"ifname":"sw1p22","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:1a","broadcast":"ff:ff:ff:ff:ff:ff","promi</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:56,568</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: scuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p22","phys_switch_id":"01"},{"ifindex":28,"ifname":"sw1p23","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:1b","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p23","phys_switch_id":"01"},{"ifindex":29,"ifname":"sw1p24","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:1c","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p24","phys_switch_id":"01"},{"ifindex":30,"ifname":"sw1p25","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:1d","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p25","phys_switch_id":"01"},{"ifindex":31,"ifname":"sw1p26","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:1e","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p26","phys_switch_id":"01"},{"ifindex":32,"ifname":"sw1p27","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:1f","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p27","phys_switch_id":"01"},{"ifindex":33,"ifname":"sw1p28","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:20","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p28","phys_switch_id":"01"},{"ifindex":34,"ifname":"sw1p29","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:21","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p29","phys_switch_id":"01"},{"ifindex":35,"ifname":"sw1p30","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:22","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p30","phys_switch_id":"01"},{"ifindex":36,"ifname":"sw1p31","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:23","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:56,571</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p31","phys_switch_id":"01"},{"ifindex":37,"ifname":"sw1p32","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:24","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p32","phys_switch_id":"01"},{"ifindex":38,"ifname":"sw1p33","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:25","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p33","phys_switch_id":"01"},{"ifindex":39,"ifname":"sw1p34","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:26","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p34","phys_switch_id":"01"},{"ifindex":40,"ifname":"sw1p35","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:27","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p35","phys_switch_id":"01"},{"ifindex":41,"ifname":"sw1p36","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:28","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p36","phys_switch_id":"01"},{"ifindex":42,"ifname":"sw1p37","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:29","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p37","phys_switch_id":"01"},{"ifindex":43,"ifname":"sw1p38","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:2a","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p38","phys_switch_id":"01"},{"ifindex":44,"ifname":"sw1p39","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:2b","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p39","phys_switch_id":"01"},{"ifindex":45,"ifname":"sw1p40","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:2c","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p40","phys_switch_id":"01"},{"ifinde</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:56,573</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: x":46,"ifname":"sw1p41","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:2d","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p41","phys_switch_id":"01"},{"ifindex":47,"ifname":"sw1p42","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:2e","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p42","phys_switch_id":"01"},{"ifindex":48,"ifname":"sw1p43","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:2f","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p43","phys_switch_id":"01"},{"ifindex":49,"ifname":"sw1p44","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:30","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p44","phys_switch_id":"01"},{"ifindex":50,"ifname":"sw1p45","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:31","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p45","phys_switch_id":"01"},{"ifindex":51,"ifname":"sw1p46","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:32","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p46","phys_switch_id":"01"},{"ifindex":52,"ifname":"sw1p47","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:33","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p47","phys_switch_id":"01"},{"ifindex":53,"ifname":"sw1p48","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:34","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p48","phys_switch_id":"01"},{"ifindex":54,"ifname":"sw1p49","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:35","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p49","phys_switch_id":"01"},{"ifindex":55,"ifname":"sw1p50","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOW</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:56,575</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: N","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:36","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p50","phys_switch_id":"01"},{"ifindex":56,"ifname":"sw1p51","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:37","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p51","phys_switch_id":"01"},{"ifindex":57,"ifname":"sw1p52","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:38","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":64,"max_mtu":1500,"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p52","phys_switch_id":"01"},{"ifindex":59,"ifname":"br0","flags":["BROADCAST","MULTICAST","UP","LOWER_UP"],"mtu":1500,"qdisc":"noqueue","operstate":"UP","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:08","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":68,"max_mtu":65535,"linkinfo":{"info_kind":"bridge","info_data":{"forward_delay":1500,"hello_time":200,"max_age":2000,"ageing_time":3000,"stp_state":1,"priority":32768,"vlan_filtering":0,"vlan_protocol":"802.1Q","bridge_id":"8000.34:ef:b6:85:42:8","root_id":"8000.34:ef:b6:85:42:8","root_port":1,"root_path_cost":4,"topology_change":1,"topology_change_detected":0,"hello_timer":0.00,"tcn_timer":0.00,"topology_change_timer":0.00,"gc_timer":255.42,"vlan_default_pvid":1,"vlan_stats_enabled":0,"vlan_stats_per_port":0,"group_fwd_mask":"0","group_addr":"01:80:c2:00:00:00","mcast_snooping":1,"mcast_router":1,"mcast_query_use_ifaddr":0,"mcast_querier":0,"mcast_hash_elasticity":16,"mcast_hash_max":4096,"mcast_last_member_cnt":2,"mcast_startup_query_cnt":2,"mcast_last_member_intvl":100,"mcast_membership_intvl":26000,"mcast_querier_intvl":25500,"mcast_query_intvl":12500,"mcast_query_response_intvl":1000,"mcast_startup_query_intvl":3124,"mcast_stats_enabled":0,"mcast_igmp_version":2,"mcast_mld_version":1,"nf_call_iptables":0,"nf_call_ip6tables":0,"nf_call_arptables":0}},"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535},{"ifindex":60,"ifname":"br1","flags":["BROADCAST","MULTICAST","UP","LOWER_UP"],"mtu":1500,"qdisc":"noqueue","operstate":"UP","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:07","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":68,"max_mtu":65535,"linkinfo":{"info_kind":"bridge","info_data":{"forward_delay":1500,"hello_time":200,"max_age":2000,"ageing_time":3000,"stp_state":1,"priority":32768,"vlan_filtering":0,"vlan_protocol":"802.1Q","bridge_id":"8000.34:ef:b6:85:42:7","root_id":"8000.34:ef:b6:85:42:7","root_port":0,"root_path_cost":0,"topology_change":1,"topology_change_detected":1,"hello_timer":1.84,"tcn_timer":0.00,"topology_change_timer":29.33,"gc_timer":256.02,"vlan_default_pvid":1,"vlan_stats_enabled":0,"vlan_stats_per_port":0,"group_fwd_mask":"0","group_addr":"01:80:c2:00:00:00","mcast_snooping":1,"mcast_router":1,"mcast_query_use_ifaddr":0,"mcast_querier":0,"mcast_hash_elasticity":16,"mcast_hash_max":4096,"mcast_last_member_cnt":2,"mcast_startup_query_cnt":2,"mcast_last_member_intvl":100,"mcast_membership_intvl":26000,"mcast_querier_intvl":25500,"mcast_query_intvl":12500,"mcast_query_response_intvl":1000,"mcast_startup_query_intvl":3124,"mcast_stats_enabled":0,"mcast_igmp_version":2,"mcast_mld_version":1,"nf_call_iptables":0,"nf_call_ip6tables":0,"nf_call_arptables":0}},"inet6_addr_gen_mode":"eui64","num_tx_queues":</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:56,675</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535},{"ifindex":61,"ifname":"br2","flags":["BROADCAST","MULTICAST","UP","LOWER_UP"],"mtu":1500,"qdisc":"noqueue","operstate":"UP","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:09","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":0,"min_mtu":68,"max_mtu":65535,"linkinfo":{"info_kind":"bridge","info_data":{"forward_delay":1500,"hello_time":200,"max_age":2000,"ageing_time":3000,"stp_state":1,"priority":32768,"vlan_filtering":0,"vlan_protocol":"802.1Q","bridge_id":"8000.34:ef:b6:85:42:9","root_id":"8000.34:ef:b6:85:42:9","root_port":2,"root_path_cost":4,"topology_change":1,"topology_change_detected":0,"hello_timer":0.00,"tcn_timer":0.00,"topology_change_timer":0.00,"gc_timer":256.63,"vlan_default_pvid":1,"vlan_stats_enabled":0,"vlan_stats_per_port":0,"group_fwd_mask":"0","group_addr":"01:80:c2:00:00:00","mcast_snooping":1,"mcast_router":1,"mcast_query_use_ifaddr":0,"mcast_querier":0,"mcast_hash_elasticity":16,"mcast_hash_max":4096,"mcast_last_member_cnt":2,"mcast_startup_query_cnt":2,"mcast_last_member_intvl":100,"mcast_membership_intvl":26000,"mcast_querier_intvl":25500,"mcast_query_intvl":12500,"mcast_query_response_intvl":1000,"mcast_startup_query_intvl":3124,"mcast_stats_enabled":0,"mcast_igmp_version":2,"mcast_mld_version":1,"nf_call_iptables":0,"nf_call_ip6tables":0,"nf_call_arptables":0}},"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535}]
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:58,024</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:58,126</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:58,126</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::setLinkStateOnInterfaces: set link up on ports</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:58,227</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p4 down
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:58,327</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p4 down
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:58,448</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "chmod 755 config141305028723899119615768302502566690017.sh && ./config141305028723899119615768302502566690017.sh 
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:58,548</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: chmod 755 config141305028723899119615768302502566690017.sh && ./config141305028723899119615768302502566690017.sh 
+Current time: 06:03:50
+blocking
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:03:59,551</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: blocking
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:00,553</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: blocking
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:01,555</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: blocking
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:02,557</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: blocking
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:03,559</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: blocking
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:04,562</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: blocking
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:05,564</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: blocking
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:06,568</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: blocking
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:07,671</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: blocking
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:08,675</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: blocking
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:09,678</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: blocking
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:10,682</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: blocking
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:11,684</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: blocking
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:12,688</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: blocking
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:13,691</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: blocking
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:14,694</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: blocking
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:15,698</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: blocking
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:16,701</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: blocking
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:17,704</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:18,707</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:19,811</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:20,815</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:21,818</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:22,822</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:23,826</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:24,829</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:25,832</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:26,836</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:27,839</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:28,843</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:29,846</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:30,950</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:31,954</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:32,956</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:33,959</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:34,963</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:35,966</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:36,968</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:37,971</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:38,973</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:39,975</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:40,978</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:42,080</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:43,083</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:44,086</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:45,090</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:46,093</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:47,096</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:48,099</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: forwarding
+got forwarding state in 50 seconds
+sw1p5 (1)
+ port id		8001			state		     forwarding
+ designated root	8000.34efb6854207	path cost		   4
+ designated bridge	8000.34efb6854209	message age timer	   0.00
+ designated port	8001			forward delay timer	   0.00
+ designated cost	   4			hold timer		   0.34
+ flags			
+Current time: 06:04:40
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:48,200</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo "${?}"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:48,301</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo "${?}"
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:48,401</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "rm -f config141305028723899119615768302502566690017.sh
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:48,502</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: rm -f config141305028723899119615768302502566690017.sh
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:48,503</td>
+<td>DEBUG</td>
+<td><pre>PASS: blocking port moved to forwarding state after 51 seconds</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 06:04:48,503</td>
+<td>INFO</td>
+<td><pre>Executing step 6: Bring back the indirect link and wait for the topology to re-converge.</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:48,503</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::setLinkStateOnInterfaces: set link up on ports</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:48,603</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p4 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:04:48,705</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p4 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 06:05:28,729</td>
+<td>INFO</td>
+<td><pre>Executing step 7: Bring down the direct link; Verify the blocking port comes to forwarding after ~31 seconds</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:05:28,729</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::setLinkStateOnInterfaces: set link up on ports</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:05:28,830</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p7 down
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:05:28,931</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p7 down
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:05:29,053</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "chmod 755 config302012142012987788770014705297616212655.sh && ./config302012142012987788770014705297616212655.sh 
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:05:29,154</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: chmod 755 config302012142012987788770014705297616212655.sh && ./config302012142012987788770014705297616212655.sh 
+Current time: 06:05:21
+listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:05:30,157</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:05:31,160</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:05:32,163</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:05:33,167</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:05:34,171</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:05:35,174</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:05:36,178</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:05:37,182</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:05:38,184</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:05:39,288</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:05:40,291</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:05:41,294</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:05:42,296</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:05:43,299</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:05:44,302</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:05:45,304</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:05:46,307</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:05:47,309</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:05:48,312</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:05:49,316</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:05:50,421</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:05:51,424</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:05:52,429</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:05:53,432</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:05:54,436</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:05:55,439</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:05:56,442</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:05:57,446</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:05:58,449</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:05:59,452</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: forwarding
+got forwarding state in 30 seconds
+sw1p5 (1)
+ port id		8001			state		     forwarding
+ designated root	8000.34efb6854207	path cost		   4
+ designated bridge	8000.34efb6854208	message age timer	  18.94
+ designated port	8002			forward delay timer	   0.00
+ designated cost	   4			hold timer		   0.00
+ flags			
+Current time: 06:05:51
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:05:59,553</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo "${?}"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:05:59,654</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo "${?}"
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:05:59,755</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "rm -f config302012142012987788770014705297616212655.sh
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:05:59,856</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: rm -f config302012142012987788770014705297616212655.sh
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:05:59,856</td>
+<td>DEBUG</td>
+<td><pre>PASS: blocking port moved to forwarding state after 31 seconds</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 06:05:59,857</td>
+<td>INFO</td>
+<td><pre>Executing step 8: Add one Ixia port to some bridge</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:05:59,857</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::setLinkStateOnInterfaces: set link up on ports</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:05:59,958</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p7 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:00,059</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p7 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:00,060</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::enslavePortsToSoftLink: set enslaved interfaces</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:00,160</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p1 master br1
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:00,262</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p1 master br1
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 06:06:00,263</td>
+<td>INFO</td>
+<td><pre>Executing step 9: Verify the port connected to Ixia port transitions into forwarding state after ~31 seconds</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:00,385</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "chmod 755 config194984439698478938735453642921831121489.sh && ./config194984439698478938735453642921831121489.sh 
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:00,486</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: chmod 755 config194984439698478938735453642921831121489.sh && ./config194984439698478938735453642921831121489.sh 
+Current time: 06:05:52
+listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:01,489</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:02,492</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:03,496</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:04,499</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:05,502</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:06,505</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:07,507</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:08,509</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:09,611</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:10,614</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:11,616</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:12,619</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:13,622</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:14,624</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: listening
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:15,627</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:16,631</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:17,635</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:18,638</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:19,641</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:20,644</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:21,748</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:22,752</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:23,756</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:24,760</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:25,763</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:26,767</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:27,770</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:28,774</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:29,776</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: learning
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:30,780</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: forwarding
+got forwarding state in 30 seconds
+sw1p1 (3)
+ port id		8003			state		     forwarding
+ designated root	8000.34efb6854205	path cost		   4
+ designated bridge	8000.34efb6854205	message age timer	   0.00
+ designated port	8003			forward delay timer	   0.00
+ designated cost	   0			hold timer		   0.61
+ flags			
+Current time: 06:06:22
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:30,881</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo "${?}"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:30,982</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo "${?}"
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:31,083</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "rm -f config194984439698478938735453642921831121489.sh
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:31,183</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: rm -f config194984439698478938735453642921831121489.sh
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:31,184</td>
+<td>DEBUG</td>
+<td><pre>PASS: blocking port moved to forwarding state after 31 seconds</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:31,185</td>
+<td>TRACE</td>
+<td><pre>BaseTest::_OnPostTest:  starting to run registered post test functions</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:31,186</td>
+<td>TRACE</td>
+<td><pre>BaseTest::TestTearDown:  starting to call to cleanup functions of test</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:31,286</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p7 down
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:31,387</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p7 down
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:31,488</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p4 down
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:31,588</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p4 down
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:31,690</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p1 down
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:31,791</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p1 down
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:31,892</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p7 down
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:31,993</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p7 down
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:32,093</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p5 down
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:32,194</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p5 down
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:32,295</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p8 down
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:32,396</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p8 down
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:32,496</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p3 down
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:32,597</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p3 down
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:32,698</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p6 down
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:32,799</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p6 down
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:32,900</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p4 down
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:33,001</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p4 down
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:33,102</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link delete dev br2
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:33,203</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link delete dev br2
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:33,303</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:33,404</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='n'" /etc/bridge-stp.conf && killall mstpd
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:33,505</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='n'" /etc/bridge-stp.conf && killall mstpd
+mstpd: no process found
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:33,606</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link delete dev br1
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:33,707</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link delete dev br1
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:33,807</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:33,908</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='n'" /etc/bridge-stp.conf && killall mstpd
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:34,009</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='n'" /etc/bridge-stp.conf && killall mstpd
+mstpd: no process found
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:34,110</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link delete dev br0
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:34,211</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link delete dev br0
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:34,311</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:34,412</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='n'" /etc/bridge-stp.conf && killall mstpd
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:34,512</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='n'" /etc/bridge-stp.conf && killall mstpd
+mstpd: no process found
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:34,513</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_parse_dmesg: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:34,614</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  history
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:34,714</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   history
+    3  killall mstpd && sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='n'" /etc/bridge-stp.conf
+    4  ip link add br0 type bridge vlan_filtering 0 stp_state 1
+    5  ip link set dev br0 up
+    6  killall mstpd && sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='n'" /etc/bridge-stp.conf
+    7  ip link add br1 type bridge vlan_filtering 0 stp_state 1
+    8  ip link set dev br1 up
+    9  killall mstpd && sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='n'" /etc/bridge-stp.conf
+   10  ip link add br2 type bridge vlan_filtering 0 stp_state 1
+   11  ip link set dev br2 up
+   12  cat /sys/class/net/br0/bridge/stp_state
+   13  cat /sys/class/net/br1/bridge/stp_state
+   14  cat /sys/class/net/br2/bridge/stp_state
+   15  ip link set dev sw1p4 master br0
+   16  ip link set dev sw1p6 master br0
+   17  ip link set dev sw1p3 master br1
+   18  ip link set dev sw1p8 master br1
+   19  ip link set dev sw1p5 master br2
+   20  ip link set dev sw1p7 master br2
+   21  ip link set dev sw1p4 up
+   22  ip link set dev sw1p6 up
+   23  ip link set dev sw1p3 up
+   24  ip link set dev sw1p8 up
+   25  ip link set dev sw1p5 up
+   26  ip link set dev sw1p7 up
+   27  ip link set dev sw1p1 up
+   28  ip -d -j link show
+   29  echo $?
+   30  ip link set dev sw1p4 down
+   31  chmod 755 config141305028723899119615768302502566690017.sh && ./config141305028723899119615768302502566690017.sh 
+   32  echo "${?}"
+   33  rm -f config141305028723899119615768302502566690017.sh
+   34  ip link set dev sw1p4 up
+   35  ip link set dev sw1p7 down
+   36  chmod 755 config302012142012987788770014705297616212655.sh && ./config302012142012987788770014705297616212655.sh 
+   37  echo "${?}"
+   38  rm -f config302012142012987788770014705297616212655.sh
+   39  ip link set dev sw1p7 up
+   40  ip link set dev sw1p1 master br1
+   41  chmod 755 config194984439698478938735453642921831121489.sh && ./config194984439698478938735453642921831121489.sh 
+   42  echo "${?}"
+   43  rm -f config194984439698478938735453642921831121489.sh
+   44  ip link set dev sw1p7 down
+   45  ip link set dev sw1p4 down
+   46  ip link set dev sw1p1 down
+   47  ip link set dev sw1p7 down
+   48  ip link set dev sw1p5 down
+   49  ip link set dev sw1p8 down
+   50  ip link set dev sw1p3 down
+   51  ip link set dev sw1p6 down
+   52  ip link set dev sw1p4 down
+   53  ip link delete dev br2
+   54  sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='n'" /etc/bridge-stp.conf && killall mstpd
+   55  ip link delete dev br1
+   56  sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='n'" /etc/bridge-stp.conf && killall mstpd
+   57  ip link delete dev br0
+   58  sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='n'" /etc/bridge-stp.conf && killall mstpd
+   59    history
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:34,715</td>
+<td>DEBUG</td>
+<td><pre>commands history:
+    3  killall mstpd && sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='n'" /etc/bridge-stp.conf
+    4  ip link add br0 type bridge vlan_filtering 0 stp_state 1
+    5  ip link set dev br0 up
+    6  killall mstpd && sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='n'" /etc/bridge-stp.conf
+    7  ip link add br1 type bridge vlan_filtering 0 stp_state 1
+    8  ip link set dev br1 up
+    9  killall mstpd && sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='n'" /etc/bridge-stp.conf
+   10  ip link add br2 type bridge vlan_filtering 0 stp_state 1
+   11  ip link set dev br2 up
+   12  cat /sys/class/net/br0/bridge/stp_state
+   13  cat /sys/class/net/br1/bridge/stp_state
+   14  cat /sys/class/net/br2/bridge/stp_state
+   15  ip link set dev sw1p4 master br0
+   16  ip link set dev sw1p6 master br0
+   17  ip link set dev sw1p3 master br1
+   18  ip link set dev sw1p8 master br1
+   19  ip link set dev sw1p5 master br2
+   20  ip link set dev sw1p7 master br2
+   21  ip link set dev sw1p4 up
+   22  ip link set dev sw1p6 up
+   23  ip link set dev sw1p3 up
+   24  ip link set dev sw1p8 up
+   25  ip link set dev sw1p5 up
+   26  ip link set dev sw1p7 up
+   27  ip link set dev sw1p1 up
+   28  ip -d -j link show
+   29  echo $?
+   30  ip link set dev sw1p4 down
+   31  chmod 755 config141305028723899119615768302502566690017.sh && ./config141305028723899119615768302502566690017.sh 
+   32  echo "${?}"
+   33  rm -f config141305028723899119615768302502566690017.sh
+   34  ip link set dev sw1p4 up
+   35  ip link set dev sw1p7 down
+   36  chmod 755 config302012142012987788770014705297616212655.sh && ./config302012142012987788770014705297616212655.sh 
+   37  echo "${?}"
+   38  rm -f config302012142012987788770014705297616212655.sh
+   39  ip link set dev sw1p7 up
+   40  ip link set dev sw1p1 master br1
+   41  chmod 755 config194984439698478938735453642921831121489.sh && ./config194984439698478938735453642921831121489.sh 
+   42  echo "${?}"
+   43  rm -f config194984439698478938735453642921831121489.sh
+   44  ip link set dev sw1p7 down
+   45  ip link set dev sw1p4 down
+   46  ip link set dev sw1p1 down
+   47  ip link set dev sw1p7 down
+   48  ip link set dev sw1p5 down
+   49  ip link set dev sw1p8 down
+   50  ip link set dev sw1p3 down
+   51  ip link set dev sw1p6 down
+   52  ip link set dev sw1p4 down
+   53  ip link delete dev br2
+   54  sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='n'" /etc/bridge-stp.conf && killall mstpd
+   55  ip link delete dev br1
+   56  sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='n'" /etc/bridge-stp.conf && killall mstpd
+   57  ip link delete dev br0
+   58  sed -i "/^[#]*MANAGE_MSTPD=/ cMANAGE_MSTPD='n'" /etc/bridge-stp.conf && killall mstpd
+   59    history</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:34,715</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_parse_dmesg: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:34,834</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  cat /var/log/messages
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:34,839</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   cat /var/log/messages
+
+Sep  3 06:03:05 localhost kernel: [  136.380547] br0: port 1(sw1p4) entered blocking state
+Sep  3 06:03:05 localhost kernel: [  136.385653] br0: port 1(sw1p4) entered disabled state
+Sep  3 06:03:05 localhost kernel: [  136.407686] device sw1p4 entered promiscuous mode
+Sep  3 06:03:06 localhost kernel: [  136.582535] br0: port 2(sw1p6) entered blocking state
+Sep  3 06:03:06 localhost kernel: [  136.587650] br0: port 2(sw1p6) entered disabled state
+Sep  3 06:03:06 localhost kernel: [  136.606950] device sw1p6 entered promiscuous mode
+Sep  3 06:03:06 localhost kernel: [  136.783893] br1: port 1(sw1p3) entered blocking state
+Sep  3 06:03:06 localhost kernel: [  136.789001] br1: port 1(sw1p3) entered disabled state
+Sep  3 06:03:06 localhost kernel: [  136.809188] device sw1p3 entered promiscuous mode
+Sep  3 06:03:06 localhost kernel: [  136.985047] br1: port 2(sw1p8) entered blocking state
+Sep  3 06:03:06 localhost kernel: [  136.990154] br1: port 2(sw1p8) entered disabled state
+Sep  3 06:03:06 localhost kernel: [  137.008549] device sw1p8 entered promiscuous mode
+Sep  3 06:03:06 localhost kernel: [  137.186161] br2: port 1(sw1p5) entered blocking state
+Sep  3 06:03:06 localhost kernel: [  137.191270] br2: port 1(sw1p5) entered disabled state
+Sep  3 06:03:06 localhost kernel: [  137.213071] device sw1p5 entered promiscuous mode
+Sep  3 06:03:06 localhost kernel: [  137.386921] br2: port 2(sw1p7) entered blocking state
+Sep  3 06:03:06 localhost kernel: [  137.392031] br2: port 2(sw1p7) entered disabled state
+Sep  3 06:03:06 localhost kernel: [  137.410095] device sw1p7 entered promiscuous mode
+Sep  3 06:03:12 localhost kernel: [  142.510306] IPv6: ADDRCONF(NETDEV_CHANGE): sw1p1: link becomes ready
+Sep  3 06:03:12 localhost kernel: [  142.663923] IPv6: ADDRCONF(NETDEV_CHANGE): sw1p4: link becomes ready
+Sep  3 06:03:12 localhost kernel: [  142.671956] br0: port 1(sw1p4) entered blocking state
+Sep  3 06:03:12 localhost kernel: [  142.677039] br0: port 1(sw1p4) entered listening state
+Sep  3 06:03:12 localhost kernel: [  142.693316] IPv6: ADDRCONF(NETDEV_CHANGE): sw1p3: link becomes ready
+Sep  3 06:03:12 localhost kernel: [  142.702945] br1: port 1(sw1p3) entered blocking state
+Sep  3 06:03:12 localhost kernel: [  142.708041] br1: port 1(sw1p3) entered listening state
+Sep  3 06:03:12 localhost kernel: [  142.804185] IPv6: ADDRCONF(NETDEV_CHANGE): sw1p6: link becomes ready
+Sep  3 06:03:12 localhost kernel: [  142.811546] br0: port 2(sw1p6) entered blocking state
+Sep  3 06:03:12 localhost kernel: [  142.816638] br0: port 2(sw1p6) entered listening state
+Sep  3 06:03:12 localhost kernel: [  142.830335] IPv6: ADDRCONF(NETDEV_CHANGE): sw1p5: link becomes ready
+Sep  3 06:03:12 localhost kernel: [  142.838038] br2: port 1(sw1p5) entered blocking state
+Sep  3 06:03:12 localhost kernel: [  142.843133] br2: port 1(sw1p5) entered listening state
+Sep  3 06:03:12 localhost kernel: [  143.054525] IPv6: ADDRCONF(NETDEV_CHANGE): sw1p8: link becomes ready
+Sep  3 06:03:12 localhost kernel: [  143.063570] br1: port 2(sw1p8) entered blocking state
+Sep  3 06:03:12 localhost kernel: [  143.068658] br1: port 2(sw1p8) entered listening state
+Sep  3 06:03:12 localhost kernel: [  143.084717] IPv6: ADDRCONF(NETDEV_CHANGE): sw1p7: link becomes ready
+Sep  3 06:03:12 localhost kernel: [  143.092394] br2: port 2(sw1p7) entered blocking state
+Sep  3 06:03:12 localhost kernel: [  143.097479] br2: port 2(sw1p7) entered listening state
+Sep  3 06:03:14 localhost kernel: [  144.891627] br2: port 1(sw1p5) entered blocking state
+Sep  3 06:03:27 localhost kernel: [  157.755542] br1: port 1(sw1p3) entered learning state
+Sep  3 06:03:27 localhost kernel: [  157.760690] br0: port 1(sw1p4) entered learning state
+Sep  3 06:03:27 localhost kernel: [  158.011539] br0: port 2(sw1p6) entered learning state
+Sep  3 06:03:27 localhost kernel: [  158.267537] br2: port 2(sw1p7) entered learning state
+Sep  3 06:03:27 localhost kernel: [  158.272659] br1: port 2(sw1p8) entered learning state
+Sep  3 06:03:42 localhost </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:34,840</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: kernel: [  172.859542] br0: port 1(sw1p4) entered forwarding state
+Sep  3 06:03:42 localhost kernel: [  172.864813] br0: topology change detected, sending tcn bpdu
+Sep  3 06:03:42 localhost kernel: [  172.870496] br1: port 1(sw1p3) entered forwarding state
+Sep  3 06:03:42 localhost kernel: [  172.875757] br1: topology change detected, propagating
+Sep  3 06:03:42 localhost kernel: [  172.881060] br1: port 1(sw1p3) received tcn bpdu
+Sep  3 06:03:42 localhost kernel: [  172.885709] br1: topology change detected, propagating
+Sep  3 06:03:42 localhost kernel: [  172.909648] IPv6: ADDRCONF(NETDEV_CHANGE): br0: link becomes ready
+Sep  3 06:03:42 localhost kernel: [  172.916404] IPv6: ADDRCONF(NETDEV_CHANGE): br1: link becomes ready
+Sep  3 06:03:42 localhost kernel: [  173.115572] br0: port 2(sw1p6) entered forwarding state
+Sep  3 06:03:42 localhost kernel: [  173.120837] br0: topology change detected, sending tcn bpdu
+Sep  3 06:03:42 localhost kernel: [  173.126565] br1: port 1(sw1p3) received tcn bpdu
+Sep  3 06:03:42 localhost kernel: [  173.131220] br1: topology change detected, propagating
+Sep  3 06:03:42 localhost kernel: [  173.371538] br1: port 2(sw1p8) entered forwarding state
+Sep  3 06:03:42 localhost kernel: [  173.376797] br1: topology change detected, propagating
+Sep  3 06:03:42 localhost kernel: [  173.381999] br2: port 2(sw1p7) entered forwarding state
+Sep  3 06:03:42 localhost kernel: [  173.389581] IPv6: ADDRCONF(NETDEV_CHANGE): br2: link becomes ready
+Sep  3 06:03:50 localhost kernel: [  180.747747] br0: port 1(sw1p4) entered disabled state
+Sep  3 06:03:50 localhost kernel: [  180.752897] br0: topology change detected, propagating
+Sep  3 06:03:51 localhost kernel: [  181.787629] br1: port 1(sw1p3) entered disabled state
+Sep  3 06:04:09 localhost kernel: [  199.739540] br2: port 1(sw1p5) neighbor 8000.34:ef:b6:85:42:08 lost
+Sep  3 06:04:09 localhost kernel: [  199.745872] br2: port 1(sw1p5) entered listening state
+Sep  3 06:04:10 localhost kernel: [  200.891765] br2: port 1(sw1p5) received tcn bpdu
+Sep  3 06:04:10 localhost kernel: [  200.896421] br2: topology change detected, sending tcn bpdu
+Sep  3 06:04:10 localhost kernel: [  200.902102] br1: port 2(sw1p8) received tcn bpdu
+Sep  3 06:04:10 localhost kernel: [  200.906757] br1: topology change detected, propagating
+Sep  3 06:04:24 localhost kernel: [  214.843544] br2: port 1(sw1p5) entered learning state
+Sep  3 06:04:39 localhost kernel: [  229.947547] br2: port 1(sw1p5) entered forwarding state
+Sep  3 06:04:39 localhost kernel: [  229.952813] br2: topology change detected, sending tcn bpdu
+Sep  3 06:04:39 localhost kernel: [  229.958597] br1: port 2(sw1p8) received tcn bpdu
+Sep  3 06:04:39 localhost kernel: [  229.963268] br1: topology change detected, propagating
+Sep  3 06:04:40 localhost kernel: [  231.117347] br0: port 1(sw1p4) entered blocking state
+Sep  3 06:04:40 localhost kernel: [  231.122444] br0: port 1(sw1p4) entered listening state
+Sep  3 06:04:40 localhost kernel: [  231.127866] br0: port 1(sw1p4) entered disabled state
+Sep  3 06:04:43 localhost kernel: [  233.854431] br1: port 1(sw1p3) entered blocking state
+Sep  3 06:04:43 localhost kernel: [  233.859546] br1: port 1(sw1p3) entered listening state
+Sep  3 06:04:43 localhost kernel: [  233.875038] br0: port 1(sw1p4) entered blocking state
+Sep  3 06:04:43 localhost kernel: [  233.880131] br0: port 1(sw1p4) entered listening state
+Sep  3 06:04:44 localhost kernel: [  234.907724] br2: topology change detected, sending tcn bpdu
+Sep  3 06:04:44 localhost kernel: [  234.913362] br2: port 1(sw1p5) entered blocking state
+Sep  3 06:04:44 localhost kernel: [  234.919730] br1: port 2(sw1p8) received tcn bpdu
+Sep  3 06:04:44 localhost kernel: [  234.924381] br1: topology change detected, propagating
+Sep  3 06:04:58 localhost kernel: [  248.891543] br0: port 1(sw1p4) entered learning state
+Sep  3 06:04:58 localhost kernel: [  248.896717] br1: port 1(sw1p3) entered learning state
+Sep  3 06:05:13 localhost kernel: [  263.995542] br1: port 1(sw1p3) entered forwarding st</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:34,843</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ate
+Sep  3 06:05:13 localhost kernel: [  264.000814] br1: topology change detected, propagating
+Sep  3 06:05:13 localhost kernel: [  264.006043] br0: port 1(sw1p4) entered forwarding state
+Sep  3 06:05:13 localhost kernel: [  264.011301] br0: topology change detected, sending tcn bpdu
+Sep  3 06:05:13 localhost kernel: [  264.017030] br1: port 1(sw1p3) received tcn bpdu
+Sep  3 06:05:13 localhost kernel: [  264.021683] br1: topology change detected, propagating
+Sep  3 06:05:20 localhost kernel: [  271.350884] br2: port 2(sw1p7) entered disabled state
+Sep  3 06:05:20 localhost kernel: [  271.356043] br2: port 1(sw1p5) entered listening state
+Sep  3 06:05:21 localhost kernel: [  272.383152] br1: port 2(sw1p8) entered disabled state
+Sep  3 06:05:36 localhost kernel: [  286.523548] br2: port 1(sw1p5) entered learning state
+Sep  3 06:05:51 localhost kernel: [  301.627547] br2: port 1(sw1p5) entered forwarding state
+Sep  3 06:05:52 localhost kernel: [  302.672042] br1: port 3(sw1p1) entered blocking state
+Sep  3 06:05:52 localhost kernel: [  302.677143] br1: port 3(sw1p1) entered disabled state
+Sep  3 06:05:52 localhost kernel: [  302.695510] device sw1p1 entered promiscuous mode
+Sep  3 06:05:52 localhost kernel: [  302.700375] br1: port 3(sw1p1) entered blocking state
+Sep  3 06:05:52 localhost kernel: [  302.705473] br1: port 3(sw1p1) entered listening state
+Sep  3 06:06:00 localhost kernel: [  311.255408] IPv6: ADDRCONF(NETDEV_CHANGE): sw1p7: link becomes ready
+Sep  3 06:06:00 localhost kernel: [  311.266099] br2: port 2(sw1p7) entered blocking state
+Sep  3 06:06:00 localhost kernel: [  311.271192] br2: port 2(sw1p7) entered listening state
+Sep  3 06:06:00 localhost kernel: [  311.292643] br1: port 2(sw1p8) entered blocking state
+Sep  3 06:06:00 localhost kernel: [  311.297732] br1: port 2(sw1p8) entered listening state
+Sep  3 06:06:02 localhost kernel: [  312.891622] br2: topology change detected, sending tcn bpdu
+Sep  3 06:06:02 localhost kernel: [  312.897262] br2: port 1(sw1p5) entered blocking state
+Sep  3 06:06:02 localhost kernel: [  312.902471] br1: port 2(sw1p8) received tcn bpdu
+Sep  3 06:06:02 localhost kernel: [  312.907129] br1: topology change detected, propagating
+Sep  3 06:06:07 localhost kernel: [  317.755551] br1: port 3(sw1p1) entered learning state
+Sep  3 06:06:16 localhost kernel: [  326.459544] br1: port 2(sw1p8) entered learning state
+Sep  3 06:06:16 localhost kernel: [  326.464677] br2: port 2(sw1p7) entered learning state
+Sep  3 06:06:22 localhost kernel: [  332.859542] br1: port 3(sw1p1) entered forwarding state
+Sep  3 06:06:22 localhost kernel: [  332.864815] br1: topology change detected, propagating
+Sep  3 06:06:23 localhost kernel: [  333.806733] br2: port 2(sw1p7) entered disabled state
+Sep  3 06:06:23 localhost kernel: [  333.811883] br2: port 1(sw1p5) entered listening state
+Sep  3 06:06:23 localhost kernel: [  334.005097] br0: port 1(sw1p4) entered disabled state
+Sep  3 06:06:23 localhost kernel: [  334.010247] br0: topology change detected, propagating
+Sep  3 06:06:23 localhost kernel: [  334.207335] br1: port 3(sw1p1) entered disabled state
+Sep  3 06:06:24 localhost kernel: [  334.611062] br2: port 1(sw1p5) entered disabled state
+Sep  3 06:06:24 localhost kernel: [  334.616217] br2: topology change detected, propagating
+Sep  3 06:06:24 localhost kernel: [  334.808819] br1: port 2(sw1p8) entered disabled state
+Sep  3 06:06:24 localhost kernel: [  334.847633] br1: port 1(sw1p3) entered disabled state
+Sep  3 06:06:24 localhost kernel: [  335.008758] br1: port 1(sw1p3) entered disabled state
+Sep  3 06:06:24 localhost kernel: [  335.210907] br0: port 2(sw1p6) entered disabled state
+Sep  3 06:06:25 localhost kernel: [  335.610678] device sw1p7 left promiscuous mode
+Sep  3 06:06:25 localhost kernel: [  335.615239] br2: port 2(sw1p7) entered disabled state
+Sep  3 06:06:25 localhost kernel: [  335.656002] device sw1p5 left promiscuous mode
+Sep  3 06:06:25 localhost kernel: [  335.660540] br2: port 1(sw1p5) entered disabled state
+Sep  3 06:06:25 localhost k</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:34,944</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ernel: [  336.114487] device sw1p1 left promiscuous mode
+Sep  3 06:06:25 localhost kernel: [  336.119048] br1: port 3(sw1p1) entered disabled state
+Sep  3 06:06:25 localhost kernel: [  336.159011] device sw1p8 left promiscuous mode
+Sep  3 06:06:25 localhost kernel: [  336.163741] br1: port 2(sw1p8) entered disabled state
+Sep  3 06:06:25 localhost kernel: [  336.203979] device sw1p3 left promiscuous mode
+Sep  3 06:06:25 localhost kernel: [  336.208508] br1: port 1(sw1p3) entered disabled state
+Sep  3 06:06:26 localhost kernel: [  336.618494] device sw1p6 left promiscuous mode
+Sep  3 06:06:26 localhost kernel: [  336.623070] br0: port 2(sw1p6) entered disabled state
+Sep  3 06:06:26 localhost kernel: [  336.663632] device sw1p4 left promiscuous mode
+Sep  3 06:06:26 localhost kernel: [  336.668172] br0: port 1(sw1p4) entered disabled state
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:34,948</td>
+<td>DEBUG</td>
+<td><pre>dmesg lines that matched regex for issues:</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:34,948</td>
+<td>DEBUG</td>
+<td><pre>{
+    "call trace:": {
+        found: false,
+        regex: "Call trace:",
+    },
+    "cut here": {
+        found: false,
+        regex: "\\[ cut here \\]",
+    },
+    "hw routing offloading disabled:": {
+        found: false,
+        regex: "Abort. HW routing offloading disabled",
+    },
+}</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:37,360</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Cleanup:  clearing ports ownership...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:38,494</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Cleanup:  Disconnecting from chassis...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 06:06:38,521</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Cleanup:  TG disconnect time is 0.03</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 06:06:38,521</td>
+<td>INFO</td>
+<td><pre>Test Passed</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 06:06:38,526</td>
+<td>INFO</td>
+<td><pre>
+CI_META:
+{"Software_Version": "2.0.0-v3.0.0-rc4", "Linux_Version": ""}
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                                  Dut Information                                                                   |
++--------+-------------+------+------------------+--------------------------------+---------------+---------------+---------------------+------------+
+| ODM    | Board_Model | ASIC | Software_Version | UBOOT_Version                  | Linux_Version | CPU_CoreClock | Host_kernel_version | PCBVersion |
++--------+-------------+------+------------------+--------------------------------+---------------+---------------+---------------------+------------+
+| Accton | AS4224-52T  | AC3X | 2.0.0-v3.0.0-rc4 | U-Boot 2019.10-10.0.0-g9518192 |               |               | 5.10.4              | R0A        |
++--------+-------------+------+------------------+--------------------------------+---------------+---------------+---------------------+------------+
+
+None
+
++---------------------------------------+
+|              PDU Settings             |
++----------------+-------------+--------+
+| Connect_To_PDU | ip_address  | outlet |
++----------------+-------------+--------+
+| True           | 10.5.236.19 | 11     |
++----------------+-------------+--------+
+
+None
++------------------------------------------------------------------------------------------------------------------------------------+
+|                                                         Test Steps Summary                                                         |
++------+----------------------------------------------------------------------------------------------+--------+---------------------+
+| Step | Description                                                                                  | Result | Run Time            |
++------+----------------------------------------------------------------------------------------------+--------+---------------------+
+| 1    | Create 3 bridge entities: br0, br1, br2 and set link up on them                              | Passed | 0.0                 |
++------+----------------------------------------------------------------------------------------------+--------+---------------------+
+| 2    | Enslave ports according to the test's setup topology                                         | Passed | 1.2085676193237305  |
++------+----------------------------------------------------------------------------------------------+--------+---------------------+
+| 3    | Set link up on all participant ports                                                         | Passed | 1.4174962043762207  |
++------+----------------------------------------------------------------------------------------------+--------+---------------------+
+| 4    | Wait until topology converges                                                                | Passed | 40.03984880447388   |
++------+----------------------------------------------------------------------------------------------+--------+---------------------+
+| 5    | Bring down the indirect link; verify the blocking port comes to forwarding after ~51 seconds | Passed | 52.070109605789185  |
++------+----------------------------------------------------------------------------------------------+--------+---------------------+
+| 6    | Bring back the indirect link and wait for the topology to re-converge.                       | Passed | 40.22602152824402   |
++------+----------------------------------------------------------------------------------------------+--------+---------------------+
+| 7    | Bring down the direct link; Verify the blocking port comes to forwarding after ~31 seconds   | Passed | 31.128128051757812  |
++------+----------------------------------------------------------------------------------------------+--------+---------------------+
+| 8    | Add one Ixia port to some bridge                                                             | Passed | 0.40579819679260254 |
++------+----------------------------------------------------------------------------------------------+--------+---------------------+
+| 9    | Verify the port connected to Ixia port transitions into forwarding state after ~31 seconds   | Passed | 30.9229793548584    |
++------+----------------------------------------------------------------------------------------------+--------+---------------------+
++--------------------------------------------------------------------------------------------------------------------------+
+|                                                     Test Information                                                     |
++------------+-----------------------------------------------+--------+-----------------+-----------------+----------------+
+| Suite_Name | Test_Name                                     | Result | start_time      | end_time        | run_time       |
++------------+-----------------------------------------------+--------+-----------------+-----------------+----------------+
+| STP_RSTP   | STP_ConvergenceTimeWhenIndirectDirectGoesDown | Passed | 06:02:52.476020 | 06:06:38.521674 | 0:03:46.045654 |
++------------+-----------------------------------------------+--------+-----------------+-----------------+----------------+</pre></td>
+</tr>
+
+</tbody></table></div>
+</body>
+<script>
+    $.fn.dataTable.ext.search.push(
+        function( settings, data, dataIndex ) {
+            let minIndex = severities.indexOf($('#min-severity').find(':selected').text());
+            let maxIndex = severities.indexOf($('#max-severity').find(':selected').text());
+            var severity = data[1] || 'NOT SET';// use data for the Log Level column
+            var severityIndex = severities.indexOf(severity);
+            if ( ( maxIndex == -1 && minIndex == -1 ) ||
+                 ( minIndex <= severityIndex && severityIndex <= maxIndex ) )
+            {
+                return true;
+            }
+            return false;
+        }
+    );
+    
+    function fill_select(id, items){
+        for(t of items){
+            $('#'+id).append(new Option(t, t));
+        }
+    }
+    
+    function selectionChanged(selectChanged, selectAffected, selectedOption, startFrom, end){
+        let selected = $('#'+selectAffected).find(':selected').text(); //keep affected value
+        $('#'+selectAffected).empty(); //empty the affected one
+
+        fill_select(selectAffected, severities.slice(startFrom, end));
+        selected = $('#'+selectAffected).find("option:contains('" + selected  + "')").length > 0 ? selected : $("#"+selectAffected+" option:first").val();
+        $('#'+selectAffected).val(selected);
+    }
+    
+    var severities = ['NOT SET','TRACE','DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL']
+    $(document).ready(function() {
+        for(severity of severities){
+            $('#min-severity, #max-severity').append(new Option(severity, severity));
+        }
+        
+        $('#max-severity option:last').attr('selected', 'selected');
+        
+        var table = $('#data_table').DataTable({
+            "lengthMenu": [[-1, 10, 25, 50], ["All", 10, 25, 50]]
+        });
+        
+        $('#min-severity, #max-severity').change( function(e) {
+            if(e.target.id == 'min-severity'){
+                selectionChanged(e.target.id, 'max-severity', e.target.selectedOptions[0].text, severities.indexOf(e.target.selectedOptions[0].text), severities.length+1);
+            }
+            else if(e.target.id == 'max-severity'){
+                selectionChanged(e.target.id, 'min-severity',e.target.selectedOptions[0].text, 0 ,severities.indexOf(e.target.selectedOptions[0].text) + 1);
+            }
+            table.draw();
+        } );
+    } );
+    
+    
+</script>
+</html>

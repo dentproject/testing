@@ -1,0 +1,1179 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ECMP_unicast_traffic_distribution_remaining_paths_22-31-21-571234 Log</title>
+<!-- Latest compiled and minified CSS -->
+<!--
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs-3.3.7/jq-3.2.1/jq-3.2.1/dt-1.10.16/datatables.min.css"/>
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.7/jq-3.2.1/jq-3.2.1/dt-1.10.16/datatables.min.js"></script>
+-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+  
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+<style>
+pre {
+margin : 0;
+white-space: pre-wrap;
+background-color: inherit;
+border: none;
+border-radius: inherit;
+}
+</style>
+</head>
+
+<body>
+<div class="col-md-12 col-xs-12 col-lg-12">
+<br>
+<h1 style="text-align:center">ECMP_unicast_traffic_distribution_remaining_paths_22-31-21-571234 Log</h1>
+<br>
+<div class="input-group">
+    <select class="form-control" id="min-severity" placeholder="Min Severity">
+    </select>
+    <span class="input-group-addon">-</span>
+    <select class="form-control" id="max-severity" placeholder="Max Severity">
+    </select>
+</div>
+&nbsp
+<table id="data_table" class="table table-striped table-bordered" cellspacing="0">
+<thead>
+    <tr>
+        <th style="width: 180px;">Time</th>
+        <th style="width: 90px;">Log Level</th>
+        <th>Message</th>
+    </tr>
+</thead>
+<tbody>
+
+<tr class="success">
+<td>2021-09-03 22:31:21,572</td>
+<td>TRACE</td>
+<td><pre>BaseTest_SD::_BasicTestInit: this test has been launched with the following input arguments:
+Namespace(conn_table=None, dummy_test=False, excel_path='/swdev/fileril103/testing/Projects/Automation/Python/Setups/AGO/CI/Setup_23.xlsx', excel_setups_db_path=None, seed=None, setup_info=None, setup_name=None, stress=None, test_args=None)</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:21,572</td>
+<td>TRACE</td>
+<td><pre>BaseTest_SD::_BasicTestInit: this test is running from the following Setup Excel file /swdev/fileril103/testing/Projects/Automation/Python/Setups/AGO/CI/Setup_23.xlsx</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:21,573</td>
+<td>TRACE</td>
+<td><pre>
++-------------------------------------------------------+
+|                    TG Mapping Table                   |
++----+------------+------------+------+------+----------+
+| ID | IP Address |  TG Type   | Card | Port | Dut Port |
++----+------------+------------+------+------+----------+
+| 1  | 10.5.236.4 | ixia_linux |  11  |  5   |  sw1p1   |
+| 2  | 10.5.236.4 | ixia_linux |  11  |  6   |  sw1p23  |
+| 3  | 10.5.236.4 | ixia_linux |  11  |  7   |  sw1p35  |
+| 4  | 10.5.236.4 | ixia_linux |  11  |  8   |  sw1p48  |
++----+------------+------------+------+------+----------+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:21,573</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: connecting to IxiaSSH on IP 10.5.236.4 using TCL/API Server IP 10.5.236.4</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:28,158</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect:  Connection Successful</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:28,484</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:30,338</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:32,254</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:34,045</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 22:31:36,957</td>
+<td>INFO</td>
+<td><pre>Used cached DutInfo: dutmainchannel__/swdev/fileril103/testing/Projects/Automation/Python/Setups/AGO/CI/Setup_23.xlsx__1620569885.7663186</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:36,957</td>
+<td>TRACE</td>
+<td><pre>SwitchDevDutManager::login: Connecting to 10.5.236.85:root:22 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:37,067</td>
+<td>TRACE</td>
+<td><pre>SwitchDevDutManager::login: Connection Successful</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:37,068</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "
+
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:37,168</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: Linux localhost 5.10.4 #1 SMP PREEMPT Tue Aug 31 15:40:33 UTC 2021 aarch64
+Last login: Fri Sep  3 22:29:03 2021 from 10.5.116.193
+
+
+root@localhost:~# 
+root@localhost:~# 
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:38,169</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "
+
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:38,270</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 
+root@localhost:~# 
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:38,304</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_clear_dmesg: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:38,405</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  echo "" &#62 /var/log/messages
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:38,506</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   echo "" &#62 /var/log/messages
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:38,506</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_clear_cmd_history: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:38,607</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  history -c
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:38,707</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   history -c
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:38,708</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::stressCpus: </pre></td>
+</tr>
+
+
+<tr>
+<td width="100"></td>
+<td width="100"></td>
+<td class="info"><pre>+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                                              Test Description                                                                             |
++------------+---------------------------------------------------+--------------------------------------------------------------------+-----------+-------------------------+
+| Suite Name | Test Name                                         | Purpose                                                            | Author    | Test Document Reference |
++------------+---------------------------------------------------+--------------------------------------------------------------------+-----------+-------------------------+
+| ECMP       | ECMP_unicast_traffic_distribution_remaining_paths | This test comes to verify:                                         | David Meu |                         |
+|            |                                                   |             * Unicast traffic distribution between remaining paths |           |                         |
+|            |                                                   |                                                                    |           |                         |
++------------+---------------------------------------------------+--------------------------------------------------------------------+-----------+-------------------------+
+
++-------------------------------------------------------------------------------+
+|                                 Test Procedure                                |
++------+------------------------------------------------------------------------+
+| Step | Step Description                                                       |
++------+------------------------------------------------------------------------+
+| 1    | Init interfaces sw1p1 sw1p13 sw1p25 sw1p37                             |
++------+------------------------------------------------------------------------+
+| 2    | Configure sw1p1 sw1p13 sw1p25 sw1p37 ports up                          |
++------+------------------------------------------------------------------------+
+| 3    | Configure IP addrs 1.1.1.1/24 on sw1p1 11.0.0.1/8 on sw1p13            |
+|      | 12.0.0.1/16 on sw1p25 13.0.0.1/20 on sw1p37                            |
++------+------------------------------------------------------------------------+
+| 4    | Configure permanent arp entries 11.0.0.2 lladdr 00:AD:20:B2:A7:75 dev  |
+|      | sw1p2 12.0.0.2 lladdr 00:59:CD:1E:83:1B dev sw1p3 13.0.0.2 lladdr      |
+|      | 00:76:69:89:E0:7B dev sw1p4                                            |
++------+------------------------------------------------------------------------+
+| 5    | Configure next hops 11.0.0.2 12.0.0.2 13.0.0.2 with dest network       |
+|      | 100.0.0.0/8                                                            |
++------+------------------------------------------------------------------------+
+| 6    | Adding dynamic arp entry 1.1.1.2 aa:bb:cc:dd:ee:11 for sw1p1           |
++------+------------------------------------------------------------------------+
+| 7    | Setup streams for sw1p13 sw1p25 sw1p37 routes                          |
++------+------------------------------------------------------------------------+
+| 8    | Setup filter for sw1p13 sw1p25 sw1p37                                  |
++------+------------------------------------------------------------------------+
+| 9    | Configure port sw1p13 down to simulate nexthop down                    |
++------+------------------------------------------------------------------------+
+| 10   | Transmitting sw1p13 sw1p25 sw1p37 streams                              |
++------+------------------------------------------------------------------------+
+| 11   | Verifying traffic excepted for all remaining available hops            |
++------+------------------------------------------------------------------------+</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 22:31:38,713</td>
+<td>INFO</td>
+<td><pre>Executing step 1: Init interfaces sw1p1 sw1p13 sw1p25 sw1p37</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:38,814</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ls /sys/class/net/ | grep sw1p* | sort -t p -k 2 -g
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:38,915</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ls /sys/class/net/ | grep sw1p* | sort -t p -k 2 -g
+sw1p1
+sw1p2
+sw1p3
+sw1p4
+sw1p5
+sw1p6
+sw1p7
+sw1p8
+sw1p9
+sw1p10
+sw1p11
+sw1p12
+sw1p13
+sw1p14
+sw1p15
+sw1p16
+sw1p17
+sw1p18
+sw1p19
+sw1p20
+sw1p21
+sw1p22
+sw1p23
+sw1p24
+sw1p25
+sw1p26
+sw1p27
+sw1p28
+sw1p29
+sw1p30
+sw1p31
+sw1p32
+sw1p33
+sw1p34
+sw1p35
+sw1p36
+sw1p37
+sw1p38
+sw1p39
+sw1p40
+sw1p41
+sw1p42
+sw1p43
+sw1p44
+sw1p45
+sw1p46
+sw1p47
+sw1p48
+sw1p49
+sw1p50
+sw1p51
+sw1p52
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 22:31:38,915</td>
+<td>INFO</td>
+<td><pre>Executing step 2: Configure sw1p1 sw1p13 sw1p25 sw1p37 ports up</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:39,016</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p1 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:39,116</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p1 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:39,217</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p23 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:39,318</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p23 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:39,418</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p35 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:39,518</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p35 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:39,619</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p48 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:39,719</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p48 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 22:31:39,720</td>
+<td>INFO</td>
+<td><pre>Executing step 3: Configure IP addrs 1.1.1.1/24 on sw1p1 11.0.0.1/8 on sw1p13 12.0.0.1/16 on sw1p25 13.0.0.1/20 on sw1p37</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:39,820</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip addr add 1.1.1.1/24 dev sw1p1
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:39,922</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip addr add 1.1.1.1/24 dev sw1p1
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:40,023</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip addr add 11.0.0.1/8 dev sw1p23
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:40,123</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip addr add 11.0.0.1/8 dev sw1p23
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:40,224</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip addr add 12.0.0.1/16 dev sw1p35
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:40,324</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip addr add 12.0.0.1/16 dev sw1p35
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:40,426</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip addr add 13.0.0.1/20 dev sw1p48
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:40,527</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip addr add 13.0.0.1/20 dev sw1p48
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 22:31:40,527</td>
+<td>INFO</td>
+<td><pre>Executing step 4: Configure permanent arp entries 11.0.0.2 lladdr 00:AD:20:B2:A7:75 dev sw1p2 12.0.0.2 lladdr 00:59:CD:1E:83:1B dev sw1p3 13.0.0.2 lladdr 00:76:69:89:E0:7B dev sw1p4</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:40,627</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip neigh add 11.0.0.2 lladdr 00:AD:20:B2:A7:75 dev sw1p23
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:40,728</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip neigh add 11.0.0.2 lladdr 00:AD:20:B2:A7:75 dev sw1p23
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:40,830</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip neigh add 12.0.0.2 lladdr 00:59:CD:1E:83:1B dev sw1p35
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:40,930</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip neigh add 12.0.0.2 lladdr 00:59:CD:1E:83:1B dev sw1p35
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:41,031</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip neigh add 13.0.0.2 lladdr 00:76:69:89:E0:7B dev sw1p48
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:41,131</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip neigh add 13.0.0.2 lladdr 00:76:69:89:E0:7B dev sw1p48
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 22:31:41,132</td>
+<td>INFO</td>
+<td><pre>Executing step 5: Configure next hops 11.0.0.2 12.0.0.2 13.0.0.2 with dest network 100.0.0.0/8</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:41,132</td>
+<td>DEBUG</td>
+<td><pre>ECMP_api::configureNextHops: Adding ECMP route</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:41,232</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip route add 100.0.0.0/8 nexthop via 11.0.0.2 weight 1 nexthop via 12.0.0.2 weight 1 nexthop via 13.0.0.2 weight 1
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:41,334</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip route add 100.0.0.0/8 nexthop via 11.0.0.2 weight 1 nexthop via 12.0.0.2 weight 1 nexthop via 13.0.0.2 weight 1
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 22:31:41,334</td>
+<td>INFO</td>
+<td><pre>Executing step 6: Adding dynamic arp entry 1.1.1.2 aa:bb:cc:dd:ee:11 for sw1p1</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:41,334</td>
+<td>DEBUG</td>
+<td><pre>ECMP_api::setupDynamicArpEntry: Adding dynamic arp entry for sw1p1</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 22:31:42,731</td>
+<td>INFO</td>
+<td><pre>Executing step 7: Setup streams for sw1p13 sw1p25 sw1p37 routes</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:31:42,731</td>
+<td>DEBUG</td>
+<td><pre>ECMP_api::setupStream: Setup stream</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 22:32:14,048</td>
+<td>INFO</td>
+<td><pre>Executing step 8: Setup filter for sw1p13 sw1p25 sw1p37</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 22:32:15,302</td>
+<td>INFO</td>
+<td><pre>Executing step 9: Configure port sw1p13 down to simulate nexthop down</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:32:15,403</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p23 down
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:32:15,503</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p23 down
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 22:32:15,504</td>
+<td>INFO</td>
+<td><pre>Executing step 10: Transmitting sw1p13 sw1p25 sw1p37 streams</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:32:15,505</td>
+<td>DEBUG</td>
+<td><pre>ECMP_api::clearAllTGPortsCounters: Clearing all TG ports counters</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:32:20,437</td>
+<td>DEBUG</td>
+<td><pre>ECMP_api::transmitTraffic: Transmitting traffic</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 22:32:22,848</td>
+<td>INFO</td>
+<td><pre>Executing step 11: Verifying traffic excepted for all remaining available hops</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:32:22,849</td>
+<td>DEBUG</td>
+<td><pre>ECMP_api::verifyReceivedTrafficIsAsExpected: Verify received traffic on port is as expected</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:32:47,132</td>
+<td>DEBUG</td>
+<td><pre>ECMP_api::verifyReceivedTrafficIsAsExpected: Passed! packet not went through Ecmp nexthop sw1p23</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:32:47,133</td>
+<td>DEBUG</td>
+<td><pre>ECMP_api::verifyReceivedTrafficIsAsExpected: Verify received traffic on port is as expected</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:33:14,943</td>
+<td>DEBUG</td>
+<td><pre>ECMP_api::verifyReceivedTrafficIsAsExpected: Passed! packet been received for Ecmp nexthop sw1p35</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:33:14,943</td>
+<td>DEBUG</td>
+<td><pre>ECMP_api::verifyReceivedTrafficIsAsExpected: Verify received traffic on port is as expected</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:33:39,416</td>
+<td>DEBUG</td>
+<td><pre>ECMP_api::verifyReceivedTrafficIsAsExpected: Passed! packet been received for Ecmp nexthop sw1p48</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:33:39,416</td>
+<td>TRACE</td>
+<td><pre>BaseTest::_OnPostTest:  starting to run registered post test functions</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:33:39,416</td>
+<td>TRACE</td>
+<td><pre>BaseTest::TestTearDown:  starting to call to cleanup functions of test</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:33:39,517</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p23 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:33:39,617</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p23 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:33:39,718</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip neigh del 13.0.0.2 lladdr 00:76:69:89:E0:7B dev sw1p48
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:33:39,818</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip neigh del 13.0.0.2 lladdr 00:76:69:89:E0:7B dev sw1p48
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:33:39,919</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip neigh del 12.0.0.2 lladdr 00:59:CD:1E:83:1B dev sw1p35
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:33:40,019</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip neigh del 12.0.0.2 lladdr 00:59:CD:1E:83:1B dev sw1p35
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:33:40,120</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip neigh del 11.0.0.2 lladdr 00:AD:20:B2:A7:75 dev sw1p23
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:33:40,221</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip neigh del 11.0.0.2 lladdr 00:AD:20:B2:A7:75 dev sw1p23
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:33:40,322</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip addr del 13.0.0.1/20 dev sw1p48
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:33:40,422</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip addr del 13.0.0.1/20 dev sw1p48
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:33:40,523</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip addr del 12.0.0.1/16 dev sw1p35
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:33:40,623</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip addr del 12.0.0.1/16 dev sw1p35
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:33:40,724</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip addr del 11.0.0.1/8 dev sw1p23
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:33:40,824</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip addr del 11.0.0.1/8 dev sw1p23
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:33:40,925</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip addr del 1.1.1.1/24 dev sw1p1
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:33:41,026</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip addr del 1.1.1.1/24 dev sw1p1
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:33:41,126</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo 0 &#62 /proc/sys/net/ipv4/neigh/default/gc_thresh1
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:33:41,227</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo 0 &#62 /proc/sys/net/ipv4/neigh/default/gc_thresh1
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:34:01,341</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo 128 &#62 /proc/sys/net/ipv4/neigh/default/gc_thresh1
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:34:01,442</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo 128 &#62 /proc/sys/net/ipv4/neigh/default/gc_thresh1
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:34:01,443</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_parse_dmesg: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:34:01,543</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  history
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:34:01,644</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   history
+    3  ls /sys/class/net/ | grep sw1p* | sort -t p -k 2 -g
+    4  ip link set dev sw1p1 up
+    5  ip link set dev sw1p23 up
+    6  ip link set dev sw1p35 up
+    7  ip link set dev sw1p48 up
+    8  ip addr add 1.1.1.1/24 dev sw1p1
+    9  ip addr add 11.0.0.1/8 dev sw1p23
+   10  ip addr add 12.0.0.1/16 dev sw1p35
+   11  ip addr add 13.0.0.1/20 dev sw1p48
+   12  ip neigh add 11.0.0.2 lladdr 00:AD:20:B2:A7:75 dev sw1p23
+   13  ip neigh add 12.0.0.2 lladdr 00:59:CD:1E:83:1B dev sw1p35
+   14  ip neigh add 13.0.0.2 lladdr 00:76:69:89:E0:7B dev sw1p48
+   15  ip route add 100.0.0.0/8 nexthop via 11.0.0.2 weight 1 nexthop via 12.0.0.2 weight 1 nexthop via 13.0.0.2 weight 1
+   16  ip link set dev sw1p23 down
+   17  ip link set dev sw1p23 up
+   18  ip neigh del 13.0.0.2 lladdr 00:76:69:89:E0:7B dev sw1p48
+   19  ip neigh del 12.0.0.2 lladdr 00:59:CD:1E:83:1B dev sw1p35
+   20  ip neigh del 11.0.0.2 lladdr 00:AD:20:B2:A7:75 dev sw1p23
+   21  ip addr del 13.0.0.1/20 dev sw1p48
+   22  ip addr del 12.0.0.1/16 dev sw1p35
+   23  ip addr del 11.0.0.1/8 dev sw1p23
+   24  ip addr del 1.1.1.1/24 dev sw1p1
+   25  echo 0 &#62 /proc/sys/net/ipv4/neigh/default/gc_thresh1
+   26  echo 128 &#62 /proc/sys/net/ipv4/neigh/default/gc_thresh1
+   27    history
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:34:01,644</td>
+<td>DEBUG</td>
+<td><pre>commands history:
+    3  ls /sys/class/net/ | grep sw1p* | sort -t p -k 2 -g
+    4  ip link set dev sw1p1 up
+    5  ip link set dev sw1p23 up
+    6  ip link set dev sw1p35 up
+    7  ip link set dev sw1p48 up
+    8  ip addr add 1.1.1.1/24 dev sw1p1
+    9  ip addr add 11.0.0.1/8 dev sw1p23
+   10  ip addr add 12.0.0.1/16 dev sw1p35
+   11  ip addr add 13.0.0.1/20 dev sw1p48
+   12  ip neigh add 11.0.0.2 lladdr 00:AD:20:B2:A7:75 dev sw1p23
+   13  ip neigh add 12.0.0.2 lladdr 00:59:CD:1E:83:1B dev sw1p35
+   14  ip neigh add 13.0.0.2 lladdr 00:76:69:89:E0:7B dev sw1p48
+   15  ip route add 100.0.0.0/8 nexthop via 11.0.0.2 weight 1 nexthop via 12.0.0.2 weight 1 nexthop via 13.0.0.2 weight 1
+   16  ip link set dev sw1p23 down
+   17  ip link set dev sw1p23 up
+   18  ip neigh del 13.0.0.2 lladdr 00:76:69:89:E0:7B dev sw1p48
+   19  ip neigh del 12.0.0.2 lladdr 00:59:CD:1E:83:1B dev sw1p35
+   20  ip neigh del 11.0.0.2 lladdr 00:AD:20:B2:A7:75 dev sw1p23
+   21  ip addr del 13.0.0.1/20 dev sw1p48
+   22  ip addr del 12.0.0.1/16 dev sw1p35
+   23  ip addr del 11.0.0.1/8 dev sw1p23
+   24  ip addr del 1.1.1.1/24 dev sw1p1
+   25  echo 0 &#62 /proc/sys/net/ipv4/neigh/default/gc_thresh1
+   26  echo 128 &#62 /proc/sys/net/ipv4/neigh/default/gc_thresh1
+   27    history</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:34:01,645</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_parse_dmesg: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:34:01,754</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  cat /var/log/messages
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:34:01,854</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   cat /var/log/messages
+
+Sep  3 22:33:32 localhost kernel: [ 5045.933726] IPv6: ADDRCONF(NETDEV_CHANGE): sw1p23: link becomes ready
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:34:01,855</td>
+<td>DEBUG</td>
+<td><pre>dmesg lines that matched regex for issues:</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:34:01,855</td>
+<td>DEBUG</td>
+<td><pre>{
+    "call trace:": {
+        found: false,
+        regex: "Call trace:",
+    },
+    "cut here": {
+        found: false,
+        regex: "\\[ cut here \\]",
+    },
+    "hw routing offloading disabled:": {
+        found: false,
+        regex: "Abort. HW routing offloading disabled",
+    },
+}</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:34:03,344</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Cleanup:  clearing ports ownership...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:34:03,772</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Cleanup:  Disconnecting from chassis...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 22:34:03,795</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Cleanup:  TG disconnect time is 0.02</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 22:34:03,795</td>
+<td>INFO</td>
+<td><pre>Test Passed</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 22:34:03,804</td>
+<td>INFO</td>
+<td><pre>
+CI_META:
+{"Software_Version": "2.0.0-v3.0.0-rc4", "Linux_Version": ""}
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                                  Dut Information                                                                   |
++--------+-------------+------+------------------+--------------------------------+---------------+---------------+---------------------+------------+
+| ODM    | Board_Model | ASIC | Software_Version | UBOOT_Version                  | Linux_Version | CPU_CoreClock | Host_kernel_version | PCBVersion |
++--------+-------------+------+------------------+--------------------------------+---------------+---------------+---------------------+------------+
+| Accton | AS4224-52T  | AC3X | 2.0.0-v3.0.0-rc4 | U-Boot 2019.10-10.0.0-g9518192 |               |               | 5.10.4              | R0A        |
++--------+-------------+------+------------------+--------------------------------+---------------+---------------+---------------------+------------+
+
+None
+
++---------------------------------------+
+|              PDU Settings             |
++----------------+-------------+--------+
+| Connect_To_PDU | ip_address  | outlet |
++----------------+-------------+--------+
+| True           | 10.5.236.19 | 11     |
++----------------+-------------+--------+
+
+None
++--------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                             Test Steps Summary                                                             |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| Step | Description                                                                                          | Result | Run Time            |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 1    | Init interfaces sw1p1 sw1p13 sw1p25 sw1p37                                                           | Passed | 0.0                 |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 2    | Configure sw1p1 sw1p13 sw1p25 sw1p37 ports up                                                        | Passed | 0.8042919635772705  |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 3    | Configure IP addrs 1.1.1.1/24 on sw1p1 11.0.0.1/8 on sw1p13 12.0.0.1/16 on sw1p25 13.0.0.1/20 on     | Passed | 0.8073406219482422  |
+|      | sw1p37                                                                                               |        |                     |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 4    | Configure permanent arp entries 11.0.0.2 lladdr 00:AD:20:B2:A7:75 dev sw1p2 12.0.0.2 lladdr          | Passed | 0.6047642230987549  |
+|      | 00:59:CD:1E:83:1B dev sw1p3 13.0.0.2 lladdr 00:76:69:89:E0:7B dev sw1p4                              |        |                     |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 5    | Configure next hops 11.0.0.2 12.0.0.2 13.0.0.2 with dest network 100.0.0.0/8                         | Passed | 0.20213603973388672 |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 6    | Adding dynamic arp entry 1.1.1.2 aa:bb:cc:dd:ee:11 for sw1p1                                         | Passed | 1.3967413902282715  |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 7    | Setup streams for sw1p13 sw1p25 sw1p37 routes                                                        | Passed | 31.31703281402588   |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 8    | Setup filter for sw1p13 sw1p25 sw1p37                                                                | Passed | 1.2545115947723389  |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 9    | Configure port sw1p13 down to simulate nexthop down                                                  | Passed | 0.20218896865844727 |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 10   | Transmitting sw1p13 sw1p25 sw1p37 streams                                                            | Passed | 7.344236135482788   |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 11   | Verifying traffic excepted for all remaining available hops                                          | Passed | 76.5678870677948    |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
++------------------------------------------------------------------------------------------------------------------------------+
+|                                                       Test Information                                                       |
++------------+---------------------------------------------------+--------+-----------------+-----------------+----------------+
+| Suite_Name | Test_Name                                         | Result | start_time      | end_time        | run_time       |
++------------+---------------------------------------------------+--------+-----------------+-----------------+----------------+
+| ECMP       | ECMP_unicast_traffic_distribution_remaining_paths | Passed | 22:31:21.571075 | 22:34:03.795803 | 0:02:42.224728 |
++------------+---------------------------------------------------+--------+-----------------+-----------------+----------------+</pre></td>
+</tr>
+
+</tbody></table></div>
+</body>
+<script>
+    $.fn.dataTable.ext.search.push(
+        function( settings, data, dataIndex ) {
+            let minIndex = severities.indexOf($('#min-severity').find(':selected').text());
+            let maxIndex = severities.indexOf($('#max-severity').find(':selected').text());
+            var severity = data[1] || 'NOT SET';// use data for the Log Level column
+            var severityIndex = severities.indexOf(severity);
+            if ( ( maxIndex == -1 && minIndex == -1 ) ||
+                 ( minIndex <= severityIndex && severityIndex <= maxIndex ) )
+            {
+                return true;
+            }
+            return false;
+        }
+    );
+    
+    function fill_select(id, items){
+        for(t of items){
+            $('#'+id).append(new Option(t, t));
+        }
+    }
+    
+    function selectionChanged(selectChanged, selectAffected, selectedOption, startFrom, end){
+        let selected = $('#'+selectAffected).find(':selected').text(); //keep affected value
+        $('#'+selectAffected).empty(); //empty the affected one
+
+        fill_select(selectAffected, severities.slice(startFrom, end));
+        selected = $('#'+selectAffected).find("option:contains('" + selected  + "')").length > 0 ? selected : $("#"+selectAffected+" option:first").val();
+        $('#'+selectAffected).val(selected);
+    }
+    
+    var severities = ['NOT SET','TRACE','DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL']
+    $(document).ready(function() {
+        for(severity of severities){
+            $('#min-severity, #max-severity').append(new Option(severity, severity));
+        }
+        
+        $('#max-severity option:last').attr('selected', 'selected');
+        
+        var table = $('#data_table').DataTable({
+            "lengthMenu": [[-1, 10, 25, 50], ["All", 10, 25, 50]]
+        });
+        
+        $('#min-severity, #max-severity').change( function(e) {
+            if(e.target.id == 'min-severity'){
+                selectionChanged(e.target.id, 'max-severity', e.target.selectedOptions[0].text, severities.indexOf(e.target.selectedOptions[0].text), severities.length+1);
+            }
+            else if(e.target.id == 'max-severity'){
+                selectionChanged(e.target.id, 'min-severity',e.target.selectedOptions[0].text, 0 ,severities.indexOf(e.target.selectedOptions[0].text) + 1);
+            }
+            table.draw();
+        } );
+    } );
+    
+    
+</script>
+</html>

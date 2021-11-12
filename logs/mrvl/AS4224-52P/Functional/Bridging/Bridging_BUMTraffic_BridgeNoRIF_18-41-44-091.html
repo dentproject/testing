@@ -1,0 +1,3318 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Bridging_BUMTraffic_BridgeNoRIF_18-41-44-091932 Log</title>
+<!-- Latest compiled and minified CSS -->
+<!--
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs-3.3.7/jq-3.2.1/jq-3.2.1/dt-1.10.16/datatables.min.css"/>
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.7/jq-3.2.1/jq-3.2.1/dt-1.10.16/datatables.min.js"></script>
+-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+  
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+<style>
+pre {
+margin : 0;
+white-space: pre-wrap;
+background-color: inherit;
+border: none;
+border-radius: inherit;
+}
+</style>
+</head>
+
+<body>
+<div class="col-md-12 col-xs-12 col-lg-12">
+<br>
+<h1 style="text-align:center">Bridging_BUMTraffic_BridgeNoRIF_18-41-44-091932 Log</h1>
+<br>
+<div class="input-group">
+    <select class="form-control" id="min-severity" placeholder="Min Severity">
+    </select>
+    <span class="input-group-addon">-</span>
+    <select class="form-control" id="max-severity" placeholder="Max Severity">
+    </select>
+</div>
+&nbsp
+<table id="data_table" class="table table-striped table-bordered" cellspacing="0">
+<thead>
+    <tr>
+        <th style="width: 180px;">Time</th>
+        <th style="width: 90px;">Log Level</th>
+        <th>Message</th>
+    </tr>
+</thead>
+<tbody>
+
+<tr class="success">
+<td>2021-09-03 18:41:44,092</td>
+<td>TRACE</td>
+<td><pre>BaseTest_SD::_BasicTestInit: this test has been launched with the following input arguments:
+Namespace(conn_table=None, dummy_test=False, excel_path='/swdev/fileril103/testing/Projects/Automation/Python/Setups/AGO/CI/Setup_23.xlsx', excel_setups_db_path=None, seed=None, setup_info=None, setup_name=None, stress=None, test_args=None)</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:41:44,092</td>
+<td>TRACE</td>
+<td><pre>BaseTest_SD::_BasicTestInit: this test is running from the following Setup Excel file /swdev/fileril103/testing/Projects/Automation/Python/Setups/AGO/CI/Setup_23.xlsx</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:41:44,095</td>
+<td>TRACE</td>
+<td><pre>
++-------------------------------------------------------+
+|                    TG Mapping Table                   |
++----+------------+------------+------+------+----------+
+| ID | IP Address |  TG Type   | Card | Port | Dut Port |
++----+------------+------------+------+------+----------+
+| 1  | 10.5.236.4 | ixia_linux |  11  |  5   |  sw1p1   |
+| 2  | 10.5.236.4 | ixia_linux |  11  |  6   |  sw1p23  |
+| 3  | 10.5.236.4 | ixia_linux |  11  |  7   |  sw1p35  |
+| 4  | 10.5.236.4 | ixia_linux |  11  |  8   |  sw1p48  |
++----+------------+------------+------+------+----------+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:41:44,095</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: connecting to IxiaSSH on IP 10.5.236.4 using TCL/API Server IP 10.5.236.4</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:41:50,635</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect:  Connection Successful</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:41:50,986</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:41:52,747</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:41:54,599</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:41:57,182</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 18:42:01,090</td>
+<td>INFO</td>
+<td><pre>Used cached DutInfo: dutmainchannel__/swdev/fileril103/testing/Projects/Automation/Python/Setups/AGO/CI/Setup_23.xlsx__1620569885.7663186</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:01,091</td>
+<td>TRACE</td>
+<td><pre>SwitchDevDutManager::login: Connecting to 10.5.236.85:root:22 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:01,204</td>
+<td>TRACE</td>
+<td><pre>SwitchDevDutManager::login: Connection Successful</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:01,204</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "
+
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:01,306</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: Linux localhost 5.10.4 #1 SMP PREEMPT Tue Aug 31 15:40:33 UTC 2021 aarch64
+Last login: Fri Sep  3 18:40:49 2021 from 10.5.116.193
+
+
+root@localhost:~# 
+root@localhost:~# 
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:02,308</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "
+
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:02,409</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 
+root@localhost:~# 
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:02,450</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_clear_dmesg: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:02,550</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  echo "" &#62 /var/log/messages
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:02,651</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   echo "" &#62 /var/log/messages
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:02,651</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_clear_cmd_history: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:02,752</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  history -c
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:02,853</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   history -c
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:02,854</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::stressCpus: </pre></td>
+</tr>
+
+
+<tr>
+<td width="100"></td>
+<td width="100"></td>
+<td class="info"><pre>+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                                      Test Description                                                                     |
++------------+---------------------------------+------------------------------------------------------------------------+---------+-------------------------+
+| Suite Name | Test Name                       | Purpose                                                                | Author  | Test Document Reference |
++------------+---------------------------------+------------------------------------------------------------------------+---------+-------------------------+
+| Bridging   | Bridging_BUMTraffic_BridgeNoRIF | Test purpose is to verify forwarding/drop/trap of different BUM        | Stas S. |                         |
+|            |                                 | L2,IPv4/6 packet types within the same bridge domain.                  |         |                         |
++------------+---------------------------------+------------------------------------------------------------------------+---------+-------------------------+
+
++-------------------------------------------------------------------------------+
+|                                 Test Procedure                                |
++------+------------------------------------------------------------------------+
+| Step | Step Description                                                       |
++------+------------------------------------------------------------------------+
+| 1    | Init bridge entity br0                                                 |
++------+------------------------------------------------------------------------+
+| 2    | Enslave ports to br0                                                   |
++------+------------------------------------------------------------------------+
+| 3    | Set link up on all entities (ports and br0)                            |
++------+------------------------------------------------------------------------+
+| 4    | Get self MAC address on ingress port#sw1p1                             |
++------+------------------------------------------------------------------------+
+| 5    | Start tcpdump capture on DUT ingress port                              |
++------+------------------------------------------------------------------------+
+| 6    | Clear TG counters                                                      |
++------+------------------------------------------------------------------------+
+| 7    | Send different types of packets (IPv6 MC, IPv4 BC + MC) from TG#1      |
++------+------------------------------------------------------------------------+
+| 8    | Analyze counters: a) TX vs RX counters according to expected values b) |
+|      | Trapped and mirrored packets to CPU                                    |
++------+------------------------------------------------------------------------+</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 18:42:02,862</td>
+<td>INFO</td>
+<td><pre>Executing step 1: Init bridge entity br0</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:02,963</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link add br0 type bridge
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:03,064</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link add br0 type bridge
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 18:42:03,064</td>
+<td>INFO</td>
+<td><pre>Executing step 2: Enslave ports to br0</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:03,165</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p1 master br0
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:03,265</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p1 master br0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:03,366</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p23 master br0
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:03,467</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p23 master br0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 18:42:03,467</td>
+<td>INFO</td>
+<td><pre>Executing step 3: Set link up on all entities (ports and br0)</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:03,568</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p1 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:03,670</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p1 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:03,771</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p23 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:03,871</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p23 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:03,972</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev br0 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:04,074</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev br0 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 18:42:04,074</td>
+<td>INFO</td>
+<td><pre>Executing step 4: Get self MAC address on ingress port#sw1p1</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:04,175</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip -j -d link show dev sw1p1
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:04,276</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip -j -d link show dev sw1p1
+[{"ifindex":6,"ifname":"sw1p1","flags":["BROADCAST","MULTICAST","UP","LOWER_UP"],"mtu":1500,"qdisc":"pfifo_fast","master":"br0","operstate":"UP","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"34:ef:b6:85:42:05","broadcast":"ff:ff:ff:ff:ff:ff","promiscuity":1,"min_mtu":64,"max_mtu":1500,"linkinfo":{"info_slave_kind":"bridge","info_slave_data":{"state":"forwarding","priority":32,"cost":4,"hairpin":false,"guard":false,"root_block":false,"fastleave":false,"learning":true,"flood":true,"id":"0x8001","no":"0x1","designated_port":32769,"designated_cost":0,"bridge_id":"8000.34:ef:b6:85:42:5","root_id":"8000.34:ef:b6:85:42:5","hold_timer":0.00,"message_age_timer":0.00,"forward_delay_timer":14.82,"topology_change_ack":0,"config_pending":0,"proxy_arp":false,"proxy_arp_wifi":false,"multicast_router":1,"mcast_flood":true,"mcast_to_unicast":false,"neigh_suppress":false,"group_fwd_mask":"0","group_fwd_mask_str":"0x0","vlan_tunnel":false,"isolated":false}},"inet6_addr_gen_mode":"eui64","num_tx_queues":1,"num_rx_queues":1,"gso_max_size":65536,"gso_max_segs":65535,"phys_port_name":"p1","phys_switch_id":"01"}]
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 18:42:04,324</td>
+<td>INFO</td>
+<td><pre>Executing step 5: Start tcpdump capture on DUT ingress port</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:04,424</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tcpdump -i sw1p1 -w temp.pcap -U &
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:04,525</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tcpdump -i sw1p1 -w temp.pcap -U &
+[1] 20268
+root@localhost:~# tcpdump: listening on sw1p1, link-type EN10MB (Ethernet), capture size 262144 bytes
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:14,452</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: timeout expired
+sending newline char and trying 1 last time</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:14,454</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::GetBufferTillPattern:  ==&#62CMD: "
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:14,555</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 18:42:14,556</td>
+<td>INFO</td>
+<td><pre>Executing step 6: Clear TG counters</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:14,557</td>
+<td>DEBUG</td>
+<td><pre>Bridging_api::clearAllTGPortsCounters: Clearing all TG ports counters</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 18:42:18,065</td>
+<td>INFO</td>
+<td><pre>Executing step 7: Send different types of packets (IPv6 MC, IPv4 BC + MC) from TG#1</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:20,478</td>
+<td>DEBUG</td>
+<td><pre>Setting up more settings on stream: Port name: 1
+Port uri: 10.5.236.4/11/5
+Port stream names: [Bridged_UnknownL2UC, ]
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:20,478</td>
+<td>DEBUG</td>
+<td><pre>Stream name: Bridged_UnknownL2UC
+Stream uri: 1 11 5 1
+Stream port name: 1
+Stream packet: L2: MAC: DA[00:00:BB:11:22:33, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[00:00:AA:00:00:01, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x6666]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[96], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.STOP_AFTER_THIS_STREAM], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.PORT_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:20,545</td>
+<td>DEBUG</td>
+<td><pre>Setting up more settings on stream: Port name: 1
+Port uri: 10.5.236.4/11/5
+Port stream names: [Bridged_UnknownL2UC, STP_BPDU, ]
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:20,545</td>
+<td>DEBUG</td>
+<td><pre>Stream name: STP_BPDU
+Stream uri: 1 11 5 2
+Stream port name: 1
+Stream packet: L2: MAC: DA[01:80:C2:00:00:00, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[00:00:AA:00:00:01, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[96], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.STOP_AFTER_THIS_STREAM], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.PACKETS_PER_SECOND], UTILIZATION_VALUE[6.72e-07], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.PORT_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:20,619</td>
+<td>DEBUG</td>
+<td><pre>Setting up more settings on stream: Port name: 1
+Port uri: 10.5.236.4/11/5
+Port stream names: [Bridged_UnknownL2UC, STP_BPDU, BridgedLLDP, ]
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:20,619</td>
+<td>DEBUG</td>
+<td><pre>Stream name: BridgedLLDP
+Stream uri: 1 11 5 3
+Stream port name: 1
+Stream packet: L2: MAC: DA[01:80:c2:00:00:0e, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[00:00:AA:00:00:01, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x88cc]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[96], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.STOP_AFTER_THIS_STREAM], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.PORT_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:20,690</td>
+<td>DEBUG</td>
+<td><pre>Setting up more settings on stream: Port name: 1
+Port uri: 10.5.236.4/11/5
+Port stream names: [Bridged_UnknownL2UC, STP_BPDU, BridgedLLDP, LACPDU, ]
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:20,691</td>
+<td>DEBUG</td>
+<td><pre>Stream name: LACPDU
+Stream uri: 1 11 5 4
+Stream port name: 1
+Stream packet: L2: MAC: DA[01:80:c2:00:00:02, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[00:00:AA:00:00:01, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x8809]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[130], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.STOP_AFTER_THIS_STREAM], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[6.72e-07], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.PORT_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:20,759</td>
+<td>DEBUG</td>
+<td><pre>Setting up more settings on stream: Port name: 1
+Port uri: 10.5.236.4/11/5
+Port stream names: [Bridged_UnknownL2UC, STP_BPDU, BridgedLLDP, LACPDU, IPv4ToMe, ]
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:20,760</td>
+<td>DEBUG</td>
+<td><pre>Stream name: IPv4ToMe
+Stream uri: 1 11 5 5
+Stream port name: 1
+Stream packet: L2: MAC: DA[34:ef:b6:85:42:05, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[00:00:AA:00:00:01, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+IPV4_HEADER: IPV4: SIP[100.1.1.1, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], DIP[100.1.1.253, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.255.255.0], TTL[64], PROTOCOL[255], IDENTIFIER[0], OPTIONS[], CUSTOM CHECKSUM[], FRAGMENT ENABLED[True], FRAGMENT OFFSET[0], FRAGMENT LAST[True]DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[96], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.STOP_AFTER_THIS_STREAM], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.PORT_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:20,834</td>
+<td>DEBUG</td>
+<td><pre>Setting up more settings on stream: Port name: 1
+Port uri: 10.5.236.4/11/5
+Port stream names: [Bridged_UnknownL2UC, STP_BPDU, BridgedLLDP, LACPDU, IPv4ToMe, ARPRequestBC, ]
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:20,835</td>
+<td>DEBUG</td>
+<td><pre>Stream name: ARPRequestBC
+Stream uri: 1 11 5 6
+Stream port name: 1
+Stream packet: L2: MAC: DA[FF:FF:FF:FF:FF:FF, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[00:00:AA:00:00:01, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+ARP_HEADER: OPERATION[ARP_OPERATION.ARP_REQUEST], SENDER_HW[00:00:AA:00:00:01, mode=MODIFIER_ARP_MODE.FIXED, count=1, step=None], SENDER_IP[100.1.1.1, mode=MODIFIER_ARP_MODE.FIXED, count=1, step=None], TARGET_HW[FF:FF:FF:FF:FF:FF, mode=MODIFIER_ARP_MODE.FIXED, count=1, step=None], TARGET_IP[100.1.1.253, mode=MODIFIER_ARP_MODE.FIXED, count=1, step=None]DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[96], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.STOP_AFTER_THIS_STREAM], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[5], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.PORT_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:20,911</td>
+<td>DEBUG</td>
+<td><pre>Setting up more settings on stream: Port name: 1
+Port uri: 10.5.236.4/11/5
+Port stream names: [Bridged_UnknownL2UC, STP_BPDU, BridgedLLDP, LACPDU, IPv4ToMe, ARPRequestBC, ARPReply, ]
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:20,911</td>
+<td>DEBUG</td>
+<td><pre>Stream name: ARPReply
+Stream uri: 1 11 5 7
+Stream port name: 1
+Stream packet: L2: MAC: DA[34:ef:b6:85:42:05, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[00:00:AA:00:00:01, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0000]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+ARP_HEADER: OPERATION[ARP_OPERATION.ARP_REPLY], SENDER_HW[00:00:AA:00:00:01, mode=MODIFIER_ARP_MODE.FIXED, count=1, step=None], SENDER_IP[100.1.1.1, mode=MODIFIER_ARP_MODE.FIXED, count=1, step=None], TARGET_HW[34:ef:b6:85:42:05, mode=MODIFIER_ARP_MODE.FIXED, count=1, step=None], TARGET_IP[100.1.1.253, mode=MODIFIER_ARP_MODE.FIXED, count=1, step=None]DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[96], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.STOP_AFTER_THIS_STREAM], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[5], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.PORT_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:20,992</td>
+<td>DEBUG</td>
+<td><pre>Setting up more settings on stream: Port name: 1
+Port uri: 10.5.236.4/11/5
+Port stream names: [Bridged_UnknownL2UC, STP_BPDU, BridgedLLDP, LACPDU, IPv4ToMe, ARPRequestBC, ARPReply, IPv4_Broadcast, ]
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:20,992</td>
+<td>DEBUG</td>
+<td><pre>Stream name: IPv4_Broadcast
+Stream uri: 1 11 5 8
+Stream port name: 1
+Stream packet: L2: MAC: DA[FF:FF:FF:FF:FF:FF, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[00:00:AA:00:00:01, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+IPV4_HEADER: IPV4: SIP[100.1.1.1, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], DIP[100.1.1.255, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.255.255.0], TTL[64], PROTOCOL[255], IDENTIFIER[0], OPTIONS[], CUSTOM CHECKSUM[], FRAGMENT ENABLED[True], FRAGMENT OFFSET[0], FRAGMENT LAST[True]DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[96], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.STOP_AFTER_THIS_STREAM], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.PORT_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:21,067</td>
+<td>DEBUG</td>
+<td><pre>Setting up more settings on stream: Port name: 1
+Port uri: 10.5.236.4/11/5
+Port stream names: [Bridged_UnknownL2UC, STP_BPDU, BridgedLLDP, LACPDU, IPv4ToMe, ARPRequestBC, ARPReply, IPv4_Broadcast, IPV4_SSH, ]
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:21,067</td>
+<td>DEBUG</td>
+<td><pre>Stream name: IPV4_SSH
+Stream uri: 1 11 5 9
+Stream port name: 1
+Stream packet: L2: MAC: DA[34:ef:b6:85:42:05, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[00:00:AA:00:00:01, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+IPV4_HEADER: IPV4: SIP[100.1.1.1, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], DIP[100.1.1.253, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.255.255.0], TTL[64], PROTOCOL[255], IDENTIFIER[0], OPTIONS[], CUSTOM CHECKSUM[], FRAGMENT ENABLED[True], FRAGMENT OFFSET[0], FRAGMENT LAST[True]TCP_HEADER: TCP: SPORT[47969, mode=MODIFIER_L4_PORT_MODE.FIXED, count=1, step=1], DPORT[22, mode=MODIFIER_L4_PORT_MODE.FIXED, count=1, step=1], SEQ[0], ACK[0], LEN[5], WINDOW[0], VALID_CHEKSUM[CHECKSUM_MODE.VALID], CUSTOM_CHECKSUM[0, URG[0], FLAG_URG[False], FLAG_ACK[False], FLAG_PUSH[False], FLAG_RESET[False], FLAG_SYN[False], FLAG_NO_MORE_DATA[False]]
+DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[96], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.STOP_AFTER_THIS_STREAM], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.PORT_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:21,139</td>
+<td>DEBUG</td>
+<td><pre>Setting up more settings on stream: Port name: 1
+Port uri: 10.5.236.4/11/5
+Port stream names: [Bridged_UnknownL2UC, STP_BPDU, BridgedLLDP, LACPDU, IPv4ToMe, ARPRequestBC, ARPReply, IPv4_Broadcast, IPV4_SSH, IPV4_Telnet, ]
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:21,139</td>
+<td>DEBUG</td>
+<td><pre>Stream name: IPV4_Telnet
+Stream uri: 1 11 5 10
+Stream port name: 1
+Stream packet: L2: MAC: DA[34:ef:b6:85:42:05, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[00:00:AA:00:00:01, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+IPV4_HEADER: IPV4: SIP[100.1.1.1, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], DIP[100.1.1.253, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.255.255.0], TTL[64], PROTOCOL[255], IDENTIFIER[0], OPTIONS[], CUSTOM CHECKSUM[], FRAGMENT ENABLED[True], FRAGMENT OFFSET[0], FRAGMENT LAST[True]TCP_HEADER: TCP: SPORT[20391, mode=MODIFIER_L4_PORT_MODE.FIXED, count=1, step=1], DPORT[23, mode=MODIFIER_L4_PORT_MODE.FIXED, count=1, step=1], SEQ[0], ACK[0], LEN[5], WINDOW[0], VALID_CHEKSUM[CHECKSUM_MODE.VALID], CUSTOM_CHECKSUM[0, URG[0], FLAG_URG[False], FLAG_ACK[False], FLAG_PUSH[False], FLAG_RESET[False], FLAG_SYN[False], FLAG_NO_MORE_DATA[False]]
+DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[96], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.STOP_AFTER_THIS_STREAM], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.PORT_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:21,211</td>
+<td>DEBUG</td>
+<td><pre>Setting up more settings on stream: Port name: 1
+Port uri: 10.5.236.4/11/5
+Port stream names: [Bridged_UnknownL2UC, STP_BPDU, BridgedLLDP, LACPDU, IPv4ToMe, ARPRequestBC, ARPReply, IPv4_Broadcast, IPV4_SSH, IPV4_Telnet, Default_IPv4, ]
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:21,211</td>
+<td>DEBUG</td>
+<td><pre>Stream name: Default_IPv4
+Stream uri: 1 11 5 11
+Stream port name: 1
+Stream packet: L2: MAC: DA[34:ef:b6:85:42:05, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[00:00:AA:00:00:01, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+IPV4_HEADER: IPV4: SIP[192.168.1.1, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], DIP[192.168.1.253, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.255.255.0], TTL[64], PROTOCOL[255], IDENTIFIER[0], OPTIONS[], CUSTOM CHECKSUM[], FRAGMENT ENABLED[True], FRAGMENT OFFSET[0], FRAGMENT LAST[True]TCP_HEADER: TCP: SPORT[51193, mode=MODIFIER_L4_PORT_MODE.FIXED, count=1, step=1], DPORT[23, mode=MODIFIER_L4_PORT_MODE.FIXED, count=1, step=1], SEQ[0], ACK[0], LEN[5], WINDOW[0], VALID_CHEKSUM[CHECKSUM_MODE.VALID], CUSTOM_CHECKSUM[0, URG[0], FLAG_URG[False], FLAG_ACK[False], FLAG_PUSH[False], FLAG_RESET[False], FLAG_SYN[False], FLAG_NO_MORE_DATA[False]]
+DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[96], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.STOP_AFTER_THIS_STREAM], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.PORT_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:21,286</td>
+<td>DEBUG</td>
+<td><pre>Setting up more settings on stream: Port name: 1
+Port uri: 10.5.236.4/11/5
+Port stream names: [Bridged_UnknownL2UC, STP_BPDU, BridgedLLDP, LACPDU, IPv4ToMe, ARPRequestBC, ARPReply, IPv4_Broadcast, IPV4_SSH, IPV4_Telnet, Default_IPv4, IPv4_ICMPRequest, ]
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:21,287</td>
+<td>DEBUG</td>
+<td><pre>Stream name: IPv4_ICMPRequest
+Stream uri: 1 11 5 12
+Stream port name: 1
+Stream packet: L2: MAC: DA[34:ef:b6:85:42:05, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[00:00:AA:00:00:01, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+IPV4_HEADER: IPV4: SIP[100.1.1.1, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], DIP[100.1.1.253, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.255.255.0], TTL[64], PROTOCOL[255], IDENTIFIER[0], OPTIONS[], CUSTOM CHECKSUM[], FRAGMENT ENABLED[True], FRAGMENT OFFSET[0], FRAGMENT LAST[True]DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[96], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.STOP_AFTER_THIS_STREAM], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.PORT_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:21,359</td>
+<td>DEBUG</td>
+<td><pre>Setting up more settings on stream: Port name: 1
+Port uri: 10.5.236.4/11/5
+Port stream names: [Bridged_UnknownL2UC, STP_BPDU, BridgedLLDP, LACPDU, IPv4ToMe, ARPRequestBC, ARPReply, IPv4_Broadcast, IPV4_SSH, IPV4_Telnet, Default_IPv4, IPv4_ICMPRequest, IPv4_DCHP_BC, ]
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:21,360</td>
+<td>DEBUG</td>
+<td><pre>Stream name: IPv4_DCHP_BC
+Stream uri: 1 11 5 13
+Stream port name: 1
+Stream packet: L2: MAC: DA[FF:FF:FF:FF:FF:FF, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[00:00:AA:00:00:01, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+IPV4_HEADER: IPV4: SIP[0.0.0.0, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], DIP[255.255.255.255, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.255.255.0], TTL[64], PROTOCOL[255], IDENTIFIER[0], OPTIONS[], CUSTOM CHECKSUM[], FRAGMENT ENABLED[True], FRAGMENT OFFSET[0], FRAGMENT LAST[True]UDP_HEADER: UDP: SPORT[67, mode=MODIFIER_L4_PORT_MODE.FIXED, count=1, step=1], DPORT[68, mode=MODIFIER_L4_PORT_MODE.FIXED, count=1, step=1], VALID_CHEKSUM[CHECKSUM_MODE.VALID], CUSTOM_CHECKSUM[0, LEN_OVERRIDE[False], CUSTOM_LEN[0]
+DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[346], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.STOP_AFTER_THIS_STREAM], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.PORT_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:21,431</td>
+<td>DEBUG</td>
+<td><pre>Setting up more settings on stream: Port name: 1
+Port uri: 10.5.236.4/11/5
+Port stream names: [Bridged_UnknownL2UC, STP_BPDU, BridgedLLDP, LACPDU, IPv4ToMe, ARPRequestBC, ARPReply, IPv4_Broadcast, IPV4_SSH, IPV4_Telnet, Default_IPv4, IPv4_ICMPRequest, IPv4_DCHP_BC, IPv4_ReservedMC, ]
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:21,432</td>
+<td>DEBUG</td>
+<td><pre>Stream name: IPv4_ReservedMC
+Stream uri: 1 11 5 14
+Stream port name: 1
+Stream packet: L2: MAC: DA[01:00:5E:00:00:45, mode=MODIFIER_MAC_MODE.INCREMENT, step=1, count=32], SA[00:00:AA:00:00:01, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+IPV4_HEADER: IPV4: SIP[100.1.1.1, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], DIP[224.0.0.69, mode=MODIFIER_IPV4_ADDRESS_MODE.INCREMENT_HOST, count=32, mask=255.0.0.0], TTL[64], PROTOCOL[255], IDENTIFIER[0], OPTIONS[], CUSTOM CHECKSUM[], FRAGMENT ENABLED[True], FRAGMENT OFFSET[0], FRAGMENT LAST[True]DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[96], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.STOP_AFTER_THIS_STREAM], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.PORT_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:21,510</td>
+<td>DEBUG</td>
+<td><pre>Setting up more settings on stream: Port name: 1
+Port uri: 10.5.236.4/11/5
+Port stream names: [Bridged_UnknownL2UC, STP_BPDU, BridgedLLDP, LACPDU, IPv4ToMe, ARPRequestBC, ARPReply, IPv4_Broadcast, IPV4_SSH, IPV4_Telnet, Default_IPv4, IPv4_ICMPRequest, IPv4_DCHP_BC, IPv4_ReservedMC, IPv4_AllSysInSubnet, ]
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:21,510</td>
+<td>DEBUG</td>
+<td><pre>Stream name: IPv4_AllSysInSubnet
+Stream uri: 1 11 5 15
+Stream port name: 1
+Stream packet: L2: MAC: DA[01:00:5E:00:00:01, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[00:00:AA:00:00:01, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+IPV4_HEADER: IPV4: SIP[100.1.1.1, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], DIP[224.0.0.1, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], TTL[64], PROTOCOL[255], IDENTIFIER[0], OPTIONS[], CUSTOM CHECKSUM[], FRAGMENT ENABLED[True], FRAGMENT OFFSET[0], FRAGMENT LAST[True]DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[96], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.STOP_AFTER_THIS_STREAM], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.PORT_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:21,583</td>
+<td>DEBUG</td>
+<td><pre>Setting up more settings on stream: Port name: 1
+Port uri: 10.5.236.4/11/5
+Port stream names: [Bridged_UnknownL2UC, STP_BPDU, BridgedLLDP, LACPDU, IPv4ToMe, ARPRequestBC, ARPReply, IPv4_Broadcast, IPV4_SSH, IPV4_Telnet, Default_IPv4, IPv4_ICMPRequest, IPv4_DCHP_BC, IPv4_ReservedMC, IPv4_AllSysInSubnet, IPv4_AllRoutersInSubnet, ]
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:21,583</td>
+<td>DEBUG</td>
+<td><pre>Stream name: IPv4_AllRoutersInSubnet
+Stream uri: 1 11 5 16
+Stream port name: 1
+Stream packet: L2: MAC: DA[01:00:5E:00:00:02, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[00:00:AA:00:00:01, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+IPV4_HEADER: IPV4: SIP[100.1.1.1, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], DIP[224.0.0.2, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], TTL[64], PROTOCOL[255], IDENTIFIER[0], OPTIONS[], CUSTOM CHECKSUM[], FRAGMENT ENABLED[True], FRAGMENT OFFSET[0], FRAGMENT LAST[True]DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[96], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.STOP_AFTER_THIS_STREAM], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.PORT_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:21,654</td>
+<td>DEBUG</td>
+<td><pre>Setting up more settings on stream: Port name: 1
+Port uri: 10.5.236.4/11/5
+Port stream names: [Bridged_UnknownL2UC, STP_BPDU, BridgedLLDP, LACPDU, IPv4ToMe, ARPRequestBC, ARPReply, IPv4_Broadcast, IPV4_SSH, IPV4_Telnet, Default_IPv4, IPv4_ICMPRequest, IPv4_DCHP_BC, IPv4_ReservedMC, IPv4_AllSysInSubnet, IPv4_AllRoutersInSubnet, IPv4_OSPFIGP, ]
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:21,654</td>
+<td>DEBUG</td>
+<td><pre>Stream name: IPv4_OSPFIGP
+Stream uri: 1 11 5 17
+Stream port name: 1
+Stream packet: L2: MAC: DA[01:00:5E:00:00:05, mode=MODIFIER_MAC_MODE.INCREMENT, step=1, count=2], SA[00:00:AA:00:00:01, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+IPV4_HEADER: IPV4: SIP[100.1.1.1, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], DIP[224.0.0.5, mode=MODIFIER_IPV4_ADDRESS_MODE.INCREMENT_HOST, count=2, mask=255.0.0.0], TTL[64], PROTOCOL[255], IDENTIFIER[0], OPTIONS[], CUSTOM CHECKSUM[], FRAGMENT ENABLED[True], FRAGMENT OFFSET[0], FRAGMENT LAST[True]DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[96], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.STOP_AFTER_THIS_STREAM], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.PORT_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:21,722</td>
+<td>DEBUG</td>
+<td><pre>Setting up more settings on stream: Port name: 1
+Port uri: 10.5.236.4/11/5
+Port stream names: [Bridged_UnknownL2UC, STP_BPDU, BridgedLLDP, LACPDU, IPv4ToMe, ARPRequestBC, ARPReply, IPv4_Broadcast, IPV4_SSH, IPV4_Telnet, Default_IPv4, IPv4_ICMPRequest, IPv4_DCHP_BC, IPv4_ReservedMC, IPv4_AllSysInSubnet, IPv4_AllRoutersInSubnet, IPv4_OSPFIGP, IPv4_RIP2, ]
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:21,723</td>
+<td>DEBUG</td>
+<td><pre>Stream name: IPv4_RIP2
+Stream uri: 1 11 5 18
+Stream port name: 1
+Stream packet: L2: MAC: DA[01:00:5E:00:00:09, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[00:00:AA:00:00:01, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+IPV4_HEADER: IPV4: SIP[100.1.1.1, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], DIP[224.0.0.9, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], TTL[64], PROTOCOL[255], IDENTIFIER[0], OPTIONS[], CUSTOM CHECKSUM[], FRAGMENT ENABLED[True], FRAGMENT OFFSET[0], FRAGMENT LAST[True]DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[96], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.STOP_AFTER_THIS_STREAM], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.PORT_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:21,799</td>
+<td>DEBUG</td>
+<td><pre>Setting up more settings on stream: Port name: 1
+Port uri: 10.5.236.4/11/5
+Port stream names: [Bridged_UnknownL2UC, STP_BPDU, BridgedLLDP, LACPDU, IPv4ToMe, ARPRequestBC, ARPReply, IPv4_Broadcast, IPV4_SSH, IPV4_Telnet, Default_IPv4, IPv4_ICMPRequest, IPv4_DCHP_BC, IPv4_ReservedMC, IPv4_AllSysInSubnet, IPv4_AllRoutersInSubnet, IPv4_OSPFIGP, IPv4_RIP2, IPv4_EIGRP, ]
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:21,799</td>
+<td>DEBUG</td>
+<td><pre>Stream name: IPv4_EIGRP
+Stream uri: 1 11 5 19
+Stream port name: 1
+Stream packet: L2: MAC: DA[01:00:5E:00:00:0A, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[00:00:AA:00:00:01, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+IPV4_HEADER: IPV4: SIP[100.1.1.1, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], DIP[224.0.0.10, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], TTL[64], PROTOCOL[255], IDENTIFIER[0], OPTIONS[], CUSTOM CHECKSUM[], FRAGMENT ENABLED[True], FRAGMENT OFFSET[0], FRAGMENT LAST[True]DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[96], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.STOP_AFTER_THIS_STREAM], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.PORT_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:21,868</td>
+<td>DEBUG</td>
+<td><pre>Setting up more settings on stream: Port name: 1
+Port uri: 10.5.236.4/11/5
+Port stream names: [Bridged_UnknownL2UC, STP_BPDU, BridgedLLDP, LACPDU, IPv4ToMe, ARPRequestBC, ARPReply, IPv4_Broadcast, IPV4_SSH, IPV4_Telnet, Default_IPv4, IPv4_ICMPRequest, IPv4_DCHP_BC, IPv4_ReservedMC, IPv4_AllSysInSubnet, IPv4_AllRoutersInSubnet, IPv4_OSPFIGP, IPv4_RIP2, IPv4_EIGRP, IPv4_DHCPServerRelay, ]
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:21,868</td>
+<td>DEBUG</td>
+<td><pre>Stream name: IPv4_DHCPServerRelay
+Stream uri: 1 11 5 20
+Stream port name: 1
+Stream packet: L2: MAC: DA[01:00:5E:00:00:0C, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[00:00:AA:00:00:01, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+IPV4_HEADER: IPV4: SIP[100.1.1.1, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], DIP[224.0.0.12, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], TTL[64], PROTOCOL[255], IDENTIFIER[0], OPTIONS[], CUSTOM CHECKSUM[], FRAGMENT ENABLED[True], FRAGMENT OFFSET[0], FRAGMENT LAST[True]UDP_HEADER: UDP: SPORT[68, mode=MODIFIER_L4_PORT_MODE.FIXED, count=1, step=1], DPORT[67, mode=MODIFIER_L4_PORT_MODE.FIXED, count=1, step=1], VALID_CHEKSUM[CHECKSUM_MODE.VALID], CUSTOM_CHECKSUM[0, LEN_OVERRIDE[False], CUSTOM_LEN[0]
+DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[96], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.STOP_AFTER_THIS_STREAM], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.PORT_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:21,948</td>
+<td>DEBUG</td>
+<td><pre>Setting up more settings on stream: Port name: 1
+Port uri: 10.5.236.4/11/5
+Port stream names: [Bridged_UnknownL2UC, STP_BPDU, BridgedLLDP, LACPDU, IPv4ToMe, ARPRequestBC, ARPReply, IPv4_Broadcast, IPV4_SSH, IPV4_Telnet, Default_IPv4, IPv4_ICMPRequest, IPv4_DCHP_BC, IPv4_ReservedMC, IPv4_AllSysInSubnet, IPv4_AllRoutersInSubnet, IPv4_OSPFIGP, IPv4_RIP2, IPv4_EIGRP, IPv4_DHCPServerRelay, IPv4_VRRP, ]
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:21,949</td>
+<td>DEBUG</td>
+<td><pre>Stream name: IPv4_VRRP
+Stream uri: 1 11 5 21
+Stream port name: 1
+Stream packet: L2: MAC: DA[01:00:5E:00:00:12, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[00:00:AA:00:00:01, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+IPV4_HEADER: IPV4: SIP[100.1.1.1, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], DIP[224.0.0.18, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], TTL[64], PROTOCOL[112], IDENTIFIER[0], OPTIONS[], CUSTOM CHECKSUM[], FRAGMENT ENABLED[True], FRAGMENT OFFSET[0], FRAGMENT LAST[True]DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[96], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.STOP_AFTER_THIS_STREAM], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.PORT_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,031</td>
+<td>DEBUG</td>
+<td><pre>Setting up more settings on stream: Port name: 1
+Port uri: 10.5.236.4/11/5
+Port stream names: [Bridged_UnknownL2UC, STP_BPDU, BridgedLLDP, LACPDU, IPv4ToMe, ARPRequestBC, ARPReply, IPv4_Broadcast, IPV4_SSH, IPV4_Telnet, Default_IPv4, IPv4_ICMPRequest, IPv4_DCHP_BC, IPv4_ReservedMC, IPv4_AllSysInSubnet, IPv4_AllRoutersInSubnet, IPv4_OSPFIGP, IPv4_RIP2, IPv4_EIGRP, IPv4_DHCPServerRelay, IPv4_VRRP, IPv4_IGMP, ]
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,031</td>
+<td>DEBUG</td>
+<td><pre>Stream name: IPv4_IGMP
+Stream uri: 1 11 5 22
+Stream port name: 1
+Stream packet: L2: MAC: DA[01:00:5E:00:00:16, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[00:00:AA:00:00:01, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+IPV4_HEADER: IPV4: SIP[100.1.1.1, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], DIP[224.0.0.22, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], TTL[64], PROTOCOL[255], IDENTIFIER[0], OPTIONS[], CUSTOM CHECKSUM[], FRAGMENT ENABLED[True], FRAGMENT OFFSET[0], FRAGMENT LAST[True]DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[96], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.STOP_AFTER_THIS_STREAM], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.PORT_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,104</td>
+<td>DEBUG</td>
+<td><pre>Setting up more settings on stream: Port name: 1
+Port uri: 10.5.236.4/11/5
+Port stream names: [Bridged_UnknownL2UC, STP_BPDU, BridgedLLDP, LACPDU, IPv4ToMe, ARPRequestBC, ARPReply, IPv4_Broadcast, IPV4_SSH, IPV4_Telnet, Default_IPv4, IPv4_ICMPRequest, IPv4_DCHP_BC, IPv4_ReservedMC, IPv4_AllSysInSubnet, IPv4_AllRoutersInSubnet, IPv4_OSPFIGP, IPv4_RIP2, IPv4_EIGRP, IPv4_DHCPServerRelay, IPv4_VRRP, IPv4_IGMP, IPV4_BGP, ]
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,104</td>
+<td>DEBUG</td>
+<td><pre>Stream name: IPV4_BGP
+Stream uri: 1 11 5 23
+Stream port name: 1
+Stream packet: L2: MAC: DA[34:ef:b6:85:42:05, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[00:00:AA:00:00:01, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+IPV4_HEADER: IPV4: SIP[100.1.1.1, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], DIP[100.1.1.253, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.255.255.0], TTL[64], PROTOCOL[255], IDENTIFIER[0], OPTIONS[], CUSTOM CHECKSUM[], FRAGMENT ENABLED[True], FRAGMENT OFFSET[0], FRAGMENT LAST[True]TCP_HEADER: TCP: SPORT[179, mode=MODIFIER_L4_PORT_MODE.FIXED, count=1, step=1], DPORT[179, mode=MODIFIER_L4_PORT_MODE.FIXED, count=1, step=1], SEQ[0], ACK[0], LEN[5], WINDOW[0], VALID_CHEKSUM[CHECKSUM_MODE.VALID], CUSTOM_CHECKSUM[0, URG[0], FLAG_URG[False], FLAG_ACK[False], FLAG_PUSH[False], FLAG_RESET[False], FLAG_SYN[False], FLAG_NO_MORE_DATA[False]]
+DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[96], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.STOP_AFTER_THIS_STREAM], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.PORT_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,180</td>
+<td>DEBUG</td>
+<td><pre>Setting up more settings on stream: Port name: 1
+Port uri: 10.5.236.4/11/5
+Port stream names: [Bridged_UnknownL2UC, STP_BPDU, BridgedLLDP, LACPDU, IPv4ToMe, ARPRequestBC, ARPReply, IPv4_Broadcast, IPV4_SSH, IPV4_Telnet, Default_IPv4, IPv4_ICMPRequest, IPv4_DCHP_BC, IPv4_ReservedMC, IPv4_AllSysInSubnet, IPv4_AllRoutersInSubnet, IPv4_OSPFIGP, IPv4_RIP2, IPv4_EIGRP, IPv4_DHCPServerRelay, IPv4_VRRP, IPv4_IGMP, IPV4_BGP, IPv6_LL_Reserved, ]
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,180</td>
+<td>DEBUG</td>
+<td><pre>Stream name: IPv6_LL_Reserved
+Stream uri: 1 11 5 24
+Stream port name: 1
+Stream packet: L2: MAC: DA[33:33:00:00:00:00, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[00:00:AA:00:00:01, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+IPV6_HEADER: IPV6: SIP[FE80:0:0:0:200:FF:FE00:11, mode=MODIFIER_IPV6_ADDRESS_MODE.FIXED, count=0, step=1, mask=96], DIP[FF02:0:0:0:0:0:0:0, mode=MODIFIER_IPV6_ADDRESS_MODE.FIXED, count=0, step=1, mask=96], HOP_LIMIT[255], NEXT_HEADER[59], FLOW_LABEL[0], TRAFFIC_CLASS[0]UDP_HEADER: UDP: SPORT[58694, mode=MODIFIER_L4_PORT_MODE.FIXED, count=1, step=1], DPORT[139, mode=MODIFIER_L4_PORT_MODE.FIXED, count=1, step=1], VALID_CHEKSUM[CHECKSUM_MODE.VALID], CUSTOM_CHECKSUM[0, LEN_OVERRIDE[False], CUSTOM_LEN[0]
+DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[96], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.STOP_AFTER_THIS_STREAM], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[100], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.PORT_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,260</td>
+<td>DEBUG</td>
+<td><pre>Setting up more settings on stream: Port name: 1
+Port uri: 10.5.236.4/11/5
+Port stream names: [Bridged_UnknownL2UC, STP_BPDU, BridgedLLDP, LACPDU, IPv4ToMe, ARPRequestBC, ARPReply, IPv4_Broadcast, IPV4_SSH, IPV4_Telnet, Default_IPv4, IPv4_ICMPRequest, IPv4_DCHP_BC, IPv4_ReservedMC, IPv4_AllSysInSubnet, IPv4_AllRoutersInSubnet, IPv4_OSPFIGP, IPv4_RIP2, IPv4_EIGRP, IPv4_DHCPServerRelay, IPv4_VRRP, IPv4_IGMP, IPV4_BGP, IPv6_LL_Reserved, IPv6_LL_AllNodes, ]
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,261</td>
+<td>DEBUG</td>
+<td><pre>Stream name: IPv6_LL_AllNodes
+Stream uri: 1 11 5 25
+Stream port name: 1
+Stream packet: L2: MAC: DA[33:33:00:00:00:01, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[00:00:AA:00:00:01, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+IPV6_HEADER: IPV6: SIP[FE80:0:0:0:0:FF:FE00:11, mode=MODIFIER_IPV6_ADDRESS_MODE.FIXED, count=0, step=1, mask=96], DIP[FF02:0:0:0:0:0:0:1, mode=MODIFIER_IPV6_ADDRESS_MODE.FIXED, count=0, step=1, mask=96], HOP_LIMIT[255], NEXT_HEADER[59], FLOW_LABEL[0], TRAFFIC_CLASS[0]TCP_HEADER: TCP: SPORT[54557, mode=MODIFIER_L4_PORT_MODE.FIXED, count=1, step=1], DPORT[143, mode=MODIFIER_L4_PORT_MODE.FIXED, count=1, step=1], SEQ[0], ACK[0], LEN[5], WINDOW[0], VALID_CHEKSUM[CHECKSUM_MODE.VALID], CUSTOM_CHECKSUM[0, URG[0], FLAG_URG[False], FLAG_ACK[False], FLAG_PUSH[False], FLAG_RESET[False], FLAG_SYN[False], FLAG_NO_MORE_DATA[False]]
+DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[96], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.STOP_AFTER_THIS_STREAM], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[100], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.PORT_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,339</td>
+<td>DEBUG</td>
+<td><pre>Setting up more settings on stream: Port name: 1
+Port uri: 10.5.236.4/11/5
+Port stream names: [Bridged_UnknownL2UC, STP_BPDU, BridgedLLDP, LACPDU, IPv4ToMe, ARPRequestBC, ARPReply, IPv4_Broadcast, IPV4_SSH, IPV4_Telnet, Default_IPv4, IPv4_ICMPRequest, IPv4_DCHP_BC, IPv4_ReservedMC, IPv4_AllSysInSubnet, IPv4_AllRoutersInSubnet, IPv4_OSPFIGP, IPv4_RIP2, IPv4_EIGRP, IPv4_DHCPServerRelay, IPv4_VRRP, IPv4_IGMP, IPV4_BGP, IPv6_LL_Reserved, IPv6_LL_AllNodes, IPv6_LL_AllRouters, ]
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,339</td>
+<td>DEBUG</td>
+<td><pre>Stream name: IPv6_LL_AllRouters
+Stream uri: 1 11 5 26
+Stream port name: 1
+Stream packet: L2: MAC: DA[33:33:00:00:00:02, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[00:00:AA:00:00:01, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+IPV6_HEADER: IPV6: SIP[FE80:0:0:0:0:FF:FE00:11, mode=MODIFIER_IPV6_ADDRESS_MODE.FIXED, count=0, step=1, mask=96], DIP[FF02:0:0:0:0:0:0:2, mode=MODIFIER_IPV6_ADDRESS_MODE.FIXED, count=0, step=1, mask=96], HOP_LIMIT[255], NEXT_HEADER[59], FLOW_LABEL[0], TRAFFIC_CLASS[0]UDP_HEADER: UDP: SPORT[24993, mode=MODIFIER_L4_PORT_MODE.FIXED, count=1, step=1], DPORT[110, mode=MODIFIER_L4_PORT_MODE.FIXED, count=1, step=1], VALID_CHEKSUM[CHECKSUM_MODE.VALID], CUSTOM_CHECKSUM[0, LEN_OVERRIDE[False], CUSTOM_LEN[0]
+DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[96], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.STOP_AFTER_THIS_STREAM], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[100], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.PORT_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,419</td>
+<td>DEBUG</td>
+<td><pre>Setting up more settings on stream: Port name: 1
+Port uri: 10.5.236.4/11/5
+Port stream names: [Bridged_UnknownL2UC, STP_BPDU, BridgedLLDP, LACPDU, IPv4ToMe, ARPRequestBC, ARPReply, IPv4_Broadcast, IPV4_SSH, IPV4_Telnet, Default_IPv4, IPv4_ICMPRequest, IPv4_DCHP_BC, IPv4_ReservedMC, IPv4_AllSysInSubnet, IPv4_AllRoutersInSubnet, IPv4_OSPFIGP, IPv4_RIP2, IPv4_EIGRP, IPv4_DHCPServerRelay, IPv4_VRRP, IPv4_IGMP, IPV4_BGP, IPv6_LL_Reserved, IPv6_LL_AllNodes, IPv6_LL_AllRouters, IPv6_LL_OSPFIGP, ]
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,419</td>
+<td>DEBUG</td>
+<td><pre>Stream name: IPv6_LL_OSPFIGP
+Stream uri: 1 11 5 27
+Stream port name: 1
+Stream packet: L2: MAC: DA[33:33:00:00:00:05, mode=MODIFIER_MAC_MODE.INCREMENT, step=1, count=2], SA[00:00:AA:00:00:01, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+IPV6_HEADER: IPV6: SIP[FE80:0:0:0:0:FF:FE00:11, mode=MODIFIER_IPV6_ADDRESS_MODE.INCREMENT_INTERFACE_ID, count=2, step=1, mask=96], DIP[FF02:0:0:0:0:0:0:5, mode=MODIFIER_IPV6_ADDRESS_MODE.INCREMENT_MC_GROUP_ID, count=2, step=1, mask=96], HOP_LIMIT[255], NEXT_HEADER[59], FLOW_LABEL[0], TRAFFIC_CLASS[0]DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[96], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.STOP_AFTER_THIS_STREAM], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[100], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.PORT_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,501</td>
+<td>DEBUG</td>
+<td><pre>Setting up more settings on stream: Port name: 1
+Port uri: 10.5.236.4/11/5
+Port stream names: [Bridged_UnknownL2UC, STP_BPDU, BridgedLLDP, LACPDU, IPv4ToMe, ARPRequestBC, ARPReply, IPv4_Broadcast, IPV4_SSH, IPV4_Telnet, Default_IPv4, IPv4_ICMPRequest, IPv4_DCHP_BC, IPv4_ReservedMC, IPv4_AllSysInSubnet, IPv4_AllRoutersInSubnet, IPv4_OSPFIGP, IPv4_RIP2, IPv4_EIGRP, IPv4_DHCPServerRelay, IPv4_VRRP, IPv4_IGMP, IPV4_BGP, IPv6_LL_Reserved, IPv6_LL_AllNodes, IPv6_LL_AllRouters, IPv6_LL_OSPFIGP, IPv6_LL_RIPRouters, ]
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,501</td>
+<td>DEBUG</td>
+<td><pre>Stream name: IPv6_LL_RIPRouters
+Stream uri: 1 11 5 28
+Stream port name: 1
+Stream packet: L2: MAC: DA[33:33:00:00:00:09, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[00:00:AA:00:00:01, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+IPV6_HEADER: IPV6: SIP[FE80:0:0:0:0:FF:FE00:11, mode=MODIFIER_IPV6_ADDRESS_MODE.FIXED, count=0, step=1, mask=96], DIP[FF02:0:0:0:0:0:0:9, mode=MODIFIER_IPV6_ADDRESS_MODE.FIXED, count=0, step=1, mask=96], HOP_LIMIT[255], NEXT_HEADER[59], FLOW_LABEL[0], TRAFFIC_CLASS[0]UDP_HEADER: UDP: SPORT[21007, mode=MODIFIER_L4_PORT_MODE.FIXED, count=1, step=1], DPORT[521, mode=MODIFIER_L4_PORT_MODE.FIXED, count=1, step=1], VALID_CHEKSUM[CHECKSUM_MODE.VALID], CUSTOM_CHECKSUM[0, LEN_OVERRIDE[False], CUSTOM_LEN[0]
+DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[96], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.STOP_AFTER_THIS_STREAM], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[100], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.PORT_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,584</td>
+<td>DEBUG</td>
+<td><pre>Setting up more settings on stream: Port name: 1
+Port uri: 10.5.236.4/11/5
+Port stream names: [Bridged_UnknownL2UC, STP_BPDU, BridgedLLDP, LACPDU, IPv4ToMe, ARPRequestBC, ARPReply, IPv4_Broadcast, IPV4_SSH, IPV4_Telnet, Default_IPv4, IPv4_ICMPRequest, IPv4_DCHP_BC, IPv4_ReservedMC, IPv4_AllSysInSubnet, IPv4_AllRoutersInSubnet, IPv4_OSPFIGP, IPv4_RIP2, IPv4_EIGRP, IPv4_DHCPServerRelay, IPv4_VRRP, IPv4_IGMP, IPV4_BGP, IPv6_LL_Reserved, IPv6_LL_AllNodes, IPv6_LL_AllRouters, IPv6_LL_OSPFIGP, IPv6_LL_RIPRouters, IPV6_LL_EIGRPRouters, ]
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,584</td>
+<td>DEBUG</td>
+<td><pre>Stream name: IPV6_LL_EIGRPRouters
+Stream uri: 1 11 5 29
+Stream port name: 1
+Stream packet: L2: MAC: DA[33:33:00:00:00:0A, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[00:00:AA:00:00:01, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+IPV6_HEADER: IPV6: SIP[FE80:0:0:0:0:FF:FE00:11, mode=MODIFIER_IPV6_ADDRESS_MODE.FIXED, count=0, step=1, mask=96], DIP[FF02:0:0:0:0:0:0:A, mode=MODIFIER_IPV6_ADDRESS_MODE.FIXED, count=0, step=1, mask=96], HOP_LIMIT[255], NEXT_HEADER[59], FLOW_LABEL[0], TRAFFIC_CLASS[0]DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[96], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.STOP_AFTER_THIS_STREAM], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[100], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.PORT_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,657</td>
+<td>DEBUG</td>
+<td><pre>Setting up more settings on stream: Port name: 1
+Port uri: 10.5.236.4/11/5
+Port stream names: [Bridged_UnknownL2UC, STP_BPDU, BridgedLLDP, LACPDU, IPv4ToMe, ARPRequestBC, ARPReply, IPv4_Broadcast, IPV4_SSH, IPV4_Telnet, Default_IPv4, IPv4_ICMPRequest, IPv4_DCHP_BC, IPv4_ReservedMC, IPv4_AllSysInSubnet, IPv4_AllRoutersInSubnet, IPv4_OSPFIGP, IPv4_RIP2, IPv4_EIGRP, IPv4_DHCPServerRelay, IPv4_VRRP, IPv4_IGMP, IPV4_BGP, IPv6_LL_Reserved, IPv6_LL_AllNodes, IPv6_LL_AllRouters, IPv6_LL_OSPFIGP, IPv6_LL_RIPRouters, IPV6_LL_EIGRPRouters, IPV6_LL_AllPIMRouters, ]
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,657</td>
+<td>DEBUG</td>
+<td><pre>Stream name: IPV6_LL_AllPIMRouters
+Stream uri: 1 11 5 30
+Stream port name: 1
+Stream packet: L2: MAC: DA[33:33:00:00:00:0D, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[00:00:AA:00:00:01, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+IPV6_HEADER: IPV6: SIP[FE80:0:0:0:0:FF:FE00:11, mode=MODIFIER_IPV6_ADDRESS_MODE.FIXED, count=0, step=1, mask=96], DIP[FF02:0:0:0:0:0:0:D, mode=MODIFIER_IPV6_ADDRESS_MODE.FIXED, count=0, step=1, mask=96], HOP_LIMIT[255], NEXT_HEADER[59], FLOW_LABEL[0], TRAFFIC_CLASS[0]DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[96], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.STOP_AFTER_THIS_STREAM], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[100], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.PORT_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,728</td>
+<td>DEBUG</td>
+<td><pre>Setting up more settings on stream: Port name: 1
+Port uri: 10.5.236.4/11/5
+Port stream names: [Bridged_UnknownL2UC, STP_BPDU, BridgedLLDP, LACPDU, IPv4ToMe, ARPRequestBC, ARPReply, IPv4_Broadcast, IPV4_SSH, IPV4_Telnet, Default_IPv4, IPv4_ICMPRequest, IPv4_DCHP_BC, IPv4_ReservedMC, IPv4_AllSysInSubnet, IPv4_AllRoutersInSubnet, IPv4_OSPFIGP, IPv4_RIP2, IPv4_EIGRP, IPv4_DHCPServerRelay, IPv4_VRRP, IPv4_IGMP, IPV4_BGP, IPv6_LL_Reserved, IPv6_LL_AllNodes, IPv6_LL_AllRouters, IPv6_LL_OSPFIGP, IPv6_LL_RIPRouters, IPV6_LL_EIGRPRouters, IPV6_LL_AllPIMRouters, IPV6_LL_VRRP, ]
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,728</td>
+<td>DEBUG</td>
+<td><pre>Stream name: IPV6_LL_VRRP
+Stream uri: 1 11 5 31
+Stream port name: 1
+Stream packet: L2: MAC: DA[33:33:00:00:00:12, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[00:00:AA:00:00:01, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+IPV6_HEADER: IPV6: SIP[FE80:0:0:0:0:FF:FE00:11, mode=MODIFIER_IPV6_ADDRESS_MODE.FIXED, count=0, step=1, mask=96], DIP[FF02:0:0:0:0:0:0:12, mode=MODIFIER_IPV6_ADDRESS_MODE.FIXED, count=0, step=1, mask=96], HOP_LIMIT[255], NEXT_HEADER[59], FLOW_LABEL[0], TRAFFIC_CLASS[0]DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[96], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.STOP_AFTER_THIS_STREAM], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[100], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.PORT_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,800</td>
+<td>DEBUG</td>
+<td><pre>Setting up more settings on stream: Port name: 1
+Port uri: 10.5.236.4/11/5
+Port stream names: [Bridged_UnknownL2UC, STP_BPDU, BridgedLLDP, LACPDU, IPv4ToMe, ARPRequestBC, ARPReply, IPv4_Broadcast, IPV4_SSH, IPV4_Telnet, Default_IPv4, IPv4_ICMPRequest, IPv4_DCHP_BC, IPv4_ReservedMC, IPv4_AllSysInSubnet, IPv4_AllRoutersInSubnet, IPv4_OSPFIGP, IPv4_RIP2, IPv4_EIGRP, IPv4_DHCPServerRelay, IPv4_VRRP, IPv4_IGMP, IPV4_BGP, IPv6_LL_Reserved, IPv6_LL_AllNodes, IPv6_LL_AllRouters, IPv6_LL_OSPFIGP, IPv6_LL_RIPRouters, IPV6_LL_EIGRPRouters, IPV6_LL_AllPIMRouters, IPV6_LL_VRRP, IPV6_LL_DHCPAgents, ]
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,801</td>
+<td>DEBUG</td>
+<td><pre>Stream name: IPV6_LL_DHCPAgents
+Stream uri: 1 11 5 32
+Stream port name: 1
+Stream packet: L2: MAC: DA[33:33:00:01:00:02, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[00:00:AA:00:00:01, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+IPV6_HEADER: IPV6: SIP[FE80:0:0:0:0:FF:FE00:11, mode=MODIFIER_IPV6_ADDRESS_MODE.FIXED, count=0, step=1, mask=96], DIP[FF02:0:0:0:0:0:1:2, mode=MODIFIER_IPV6_ADDRESS_MODE.FIXED, count=0, step=1, mask=96], HOP_LIMIT[255], NEXT_HEADER[59], FLOW_LABEL[0], TRAFFIC_CLASS[0]DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[96], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.STOP_AFTER_THIS_STREAM], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[100], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.PORT_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,876</td>
+<td>DEBUG</td>
+<td><pre>Setting up more settings on stream: Port name: 1
+Port uri: 10.5.236.4/11/5
+Port stream names: [Bridged_UnknownL2UC, STP_BPDU, BridgedLLDP, LACPDU, IPv4ToMe, ARPRequestBC, ARPReply, IPv4_Broadcast, IPV4_SSH, IPV4_Telnet, Default_IPv4, IPv4_ICMPRequest, IPv4_DCHP_BC, IPv4_ReservedMC, IPv4_AllSysInSubnet, IPv4_AllRoutersInSubnet, IPv4_OSPFIGP, IPv4_RIP2, IPv4_EIGRP, IPv4_DHCPServerRelay, IPv4_VRRP, IPv4_IGMP, IPV4_BGP, IPv6_LL_Reserved, IPv6_LL_AllNodes, IPv6_LL_AllRouters, IPv6_LL_OSPFIGP, IPv6_LL_RIPRouters, IPV6_LL_EIGRPRouters, IPV6_LL_AllPIMRouters, IPV6_LL_VRRP, IPV6_LL_DHCPAgents, IPV6_LL_SolNodeAddr, ]
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,878</td>
+<td>DEBUG</td>
+<td><pre>Stream name: IPV6_LL_SolNodeAddr
+Stream uri: 1 11 5 33
+Stream port name: 1
+Stream packet: L2: MAC: DA[33:33:FF:00:00:00, mode=MODIFIER_MAC_MODE.INCREMENT, step=1, count=16777216], SA[00:00:AA:00:00:01, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+IPV6_HEADER: IPV6: SIP[FE80:0:0:0:0:FF:FE00:11, mode=MODIFIER_IPV6_ADDRESS_MODE.FIXED, count=0, step=1, mask=96], DIP[FF02:0:0:0:0:1:FF00:00, mode=MODIFIER_IPV6_ADDRESS_MODE.INCREMENT_MC_GROUP_ID, count=16777216, step=1, mask=96], HOP_LIMIT[255], NEXT_HEADER[59], FLOW_LABEL[0], TRAFFIC_CLASS[0]DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[96], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.STOP_AFTER_THIS_STREAM], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[100], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.PORT_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,879</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AdaptTGPortStreamsUtil:  TG#1(10.5.236.4/11/5) stream 'Bridged_UnknownL2UC' utilization set to 2.93%</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,880</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AdaptTGPortStreamsUtil:  TG#1(10.5.236.4/11/5) stream 'STP_BPDU' utilization set to 2.93%</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,880</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AdaptTGPortStreamsUtil:  TG#1(10.5.236.4/11/5) stream 'BridgedLLDP' utilization set to 2.93%</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,880</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AdaptTGPortStreamsUtil:  TG#1(10.5.236.4/11/5) stream 'LACPDU' utilization set to 2.93%</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,880</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AdaptTGPortStreamsUtil:  TG#1(10.5.236.4/11/5) stream 'IPv4ToMe' utilization set to 2.93%</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,881</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AdaptTGPortStreamsUtil:  TG#1(10.5.236.4/11/5) stream 'ARPRequestBC' utilization set to 2.93%</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,881</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AdaptTGPortStreamsUtil:  TG#1(10.5.236.4/11/5) stream 'ARPReply' utilization set to 2.93%</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,881</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AdaptTGPortStreamsUtil:  TG#1(10.5.236.4/11/5) stream 'IPv4_Broadcast' utilization set to 2.93%</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,882</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AdaptTGPortStreamsUtil:  TG#1(10.5.236.4/11/5) stream 'IPV4_SSH' utilization set to 2.93%</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,882</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AdaptTGPortStreamsUtil:  TG#1(10.5.236.4/11/5) stream 'IPV4_Telnet' utilization set to 2.93%</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,882</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AdaptTGPortStreamsUtil:  TG#1(10.5.236.4/11/5) stream 'Default_IPv4' utilization set to 2.93%</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,882</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AdaptTGPortStreamsUtil:  TG#1(10.5.236.4/11/5) stream 'IPv4_ICMPRequest' utilization set to 2.93%</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,882</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AdaptTGPortStreamsUtil:  TG#1(10.5.236.4/11/5) stream 'IPv4_DCHP_BC' utilization set to 2.93%</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,883</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AdaptTGPortStreamsUtil:  TG#1(10.5.236.4/11/5) stream 'IPv4_ReservedMC' utilization set to 2.93%</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,883</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AdaptTGPortStreamsUtil:  TG#1(10.5.236.4/11/5) stream 'IPv4_AllSysInSubnet' utilization set to 2.93%</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,883</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AdaptTGPortStreamsUtil:  TG#1(10.5.236.4/11/5) stream 'IPv4_AllRoutersInSubnet' utilization set to 2.93%</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,883</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AdaptTGPortStreamsUtil:  TG#1(10.5.236.4/11/5) stream 'IPv4_OSPFIGP' utilization set to 2.93%</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,883</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AdaptTGPortStreamsUtil:  TG#1(10.5.236.4/11/5) stream 'IPv4_RIP2' utilization set to 2.93%</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,883</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AdaptTGPortStreamsUtil:  TG#1(10.5.236.4/11/5) stream 'IPv4_EIGRP' utilization set to 2.93%</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,884</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AdaptTGPortStreamsUtil:  TG#1(10.5.236.4/11/5) stream 'IPv4_DHCPServerRelay' utilization set to 2.93%</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,884</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AdaptTGPortStreamsUtil:  TG#1(10.5.236.4/11/5) stream 'IPv4_VRRP' utilization set to 2.93%</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,884</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AdaptTGPortStreamsUtil:  TG#1(10.5.236.4/11/5) stream 'IPv4_IGMP' utilization set to 2.93%</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,884</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AdaptTGPortStreamsUtil:  TG#1(10.5.236.4/11/5) stream 'IPV4_BGP' utilization set to 2.93%</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,885</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AdaptTGPortStreamsUtil:  TG#1(10.5.236.4/11/5) stream 'IPv6_LL_Reserved' utilization set to 2.93%</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,885</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AdaptTGPortStreamsUtil:  TG#1(10.5.236.4/11/5) stream 'IPv6_LL_AllNodes' utilization set to 2.93%</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,885</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AdaptTGPortStreamsUtil:  TG#1(10.5.236.4/11/5) stream 'IPv6_LL_AllRouters' utilization set to 2.93%</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,885</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AdaptTGPortStreamsUtil:  TG#1(10.5.236.4/11/5) stream 'IPv6_LL_OSPFIGP' utilization set to 2.93%</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,885</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AdaptTGPortStreamsUtil:  TG#1(10.5.236.4/11/5) stream 'IPv6_LL_RIPRouters' utilization set to 2.93%</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,886</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AdaptTGPortStreamsUtil:  TG#1(10.5.236.4/11/5) stream 'IPV6_LL_EIGRPRouters' utilization set to 2.93%</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,886</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AdaptTGPortStreamsUtil:  TG#1(10.5.236.4/11/5) stream 'IPV6_LL_AllPIMRouters' utilization set to 2.93%</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,886</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AdaptTGPortStreamsUtil:  TG#1(10.5.236.4/11/5) stream 'IPV6_LL_VRRP' utilization set to 2.93%</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,886</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AdaptTGPortStreamsUtil:  TG#1(10.5.236.4/11/5) stream 'IPV6_LL_DHCPAgents' utilization set to 2.93%</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,886</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AdaptTGPortStreamsUtil:  TG#1(10.5.236.4/11/5) stream 'IPV6_LL_SolNodeAddr' utilization set to 2.93%</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:42:22,887</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::EnableAdvancedStats: Enable advanced stats on streams (TX) and receive mode(RX) IXIA</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:02,493</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::EnableAdvancedStats: Start collecting PGIDs on IXIA</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 18:43:03,262</td>
+<td>INFO</td>
+<td><pre>Transmitting traffic from TGs 1</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 18:43:07,531</td>
+<td>INFO</td>
+<td><pre>Traffic transmission from TGs Port name: 1
+Port uri: 10.5.236.4/11/5
+Port stream names: [Bridged_UnknownL2UC, STP_BPDU, BridgedLLDP, LACPDU, IPv4ToMe, ARPRequestBC, ARPReply, IPv4_Broadcast, IPV4_SSH, IPV4_Telnet, Default_IPv4, IPv4_ICMPRequest, IPv4_DCHP_BC, IPv4_ReservedMC, IPv4_AllSysInSubnet, IPv4_AllRoutersInSubnet, IPv4_OSPFIGP, IPv4_RIP2, IPv4_EIGRP, IPv4_DHCPServerRelay, IPv4_VRRP, IPv4_IGMP, IPV4_BGP, IPv6_LL_Reserved, IPv6_LL_AllNodes, IPv6_LL_AllRouters, IPv6_LL_OSPFIGP, IPv6_LL_RIPRouters, IPV6_LL_EIGRPRouters, IPV6_LL_AllPIMRouters, IPV6_LL_VRRP, IPV6_LL_DHCPAgents, IPV6_LL_SolNodeAddr, ]
+ Finished.</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 18:43:07,531</td>
+<td>INFO</td>
+<td><pre>Executing step 8: Analyze counters: a) TX vs RX counters according to expected values b) Trapped and mirrored packets to CPU</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:07,531</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AnalyzeCounters_Advanced: Sleeping 5 seconds ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:12,537</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AnalyzeCounters_Advanced: Killing tcpdump processes ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:12,638</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "if [ ! -z "$(pidof tcpdump)" ]; then killall -9 tcpdump; fi
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:12,739</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: if [ ! -z "$(pidof tcpdump)" ]; then killall -9 tcpdump; fi
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 18:43:12,739</td>
+<td>INFO</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AnalyzeCounters_Advanced: Getting Stream Statistics ...</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 18:43:42,904</td>
+<td>INFO</td>
+<td><pre>Advanced stats read time: 0:00:30.164755</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 18:43:42,904</td>
+<td>INFO</td>
+<td><pre>Analyzing DUT and TG counters ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:42,906</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AnalyzeCounters_Advanced: Reading tcdump data related to PGID#0 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:43,006</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0000"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:43,107</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0000"
+reading from file temp.pcap, link-type EN10MB (Ethernet)
+0
+[1]+  Killed                  tcpdump -i sw1p1 -w temp.pcap -U
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:43,111</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AnalyzeCounters_Advanced: Reading tcdump data related to PGID#1 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:43,212</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0001"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:43,314</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0001"
+reading from file temp.pcap, link-type EN10MB (Ethernet)
+20
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:43,317</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AnalyzeCounters_Advanced: Reading tcdump data related to PGID#2 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:43,417</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0002"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:43,519</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0002"
+reading from file temp.pcap, link-type EN10MB (Ethernet)
+20
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:43,520</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AnalyzeCounters_Advanced: Reading tcdump data related to PGID#3 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:43,621</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0003"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:43,722</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0003"
+reading from file temp.pcap, link-type EN10MB (Ethernet)
+20
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:43,723</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AnalyzeCounters_Advanced: Reading tcdump data related to PGID#4 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:43,824</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0004"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:43,926</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0004"
+reading from file temp.pcap, link-type EN10MB (Ethernet)
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:43,928</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AnalyzeCounters_Advanced: Reading tcdump data related to PGID#5 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:44,028</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0005"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:44,129</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0005"
+reading from file temp.pcap, link-type EN10MB (Ethernet)
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:44,131</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AnalyzeCounters_Advanced: Reading tcdump data related to PGID#6 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:44,231</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0006"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:44,332</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0006"
+reading from file temp.pcap, link-type EN10MB (Ethernet)
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:44,335</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AnalyzeCounters_Advanced: Reading tcdump data related to PGID#7 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:44,435</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0007"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:44,536</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0007"
+reading from file temp.pcap, link-type EN10MB (Ethernet)
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:44,539</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AnalyzeCounters_Advanced: Reading tcdump data related to PGID#8 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:44,640</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0008"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:44,740</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0008"
+reading from file temp.pcap, link-type EN10MB (Ethernet)
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:44,744</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AnalyzeCounters_Advanced: Reading tcdump data related to PGID#9 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:44,845</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0009"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:44,946</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0009"
+reading from file temp.pcap, link-type EN10MB (Ethernet)
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:44,948</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AnalyzeCounters_Advanced: Reading tcdump data related to PGID#10 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:45,048</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 000a"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:45,149</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 000a"
+reading from file temp.pcap, link-type EN10MB (Ethernet)
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:45,151</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AnalyzeCounters_Advanced: Reading tcdump data related to PGID#11 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:45,251</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 000b"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:45,352</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 000b"
+reading from file temp.pcap, link-type EN10MB (Ethernet)
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:45,355</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AnalyzeCounters_Advanced: Reading tcdump data related to PGID#12 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:45,456</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 000c"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:45,558</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 000c"
+reading from file temp.pcap, link-type EN10MB (Ethernet)
+10
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:45,559</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AnalyzeCounters_Advanced: Reading tcdump data related to PGID#13 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:45,660</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 000d"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:45,761</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 000d"
+reading from file temp.pcap, link-type EN10MB (Ethernet)
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:45,762</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AnalyzeCounters_Advanced: Reading tcdump data related to PGID#14 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:45,863</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 000e"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:45,964</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 000e"
+reading from file temp.pcap, link-type EN10MB (Ethernet)
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:45,966</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AnalyzeCounters_Advanced: Reading tcdump data related to PGID#15 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:46,067</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 000f"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:46,167</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 000f"
+reading from file temp.pcap, link-type EN10MB (Ethernet)
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:46,170</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AnalyzeCounters_Advanced: Reading tcdump data related to PGID#16 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:46,270</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0010"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:46,371</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0010"
+reading from file temp.pcap, link-type EN10MB (Ethernet)
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:46,372</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AnalyzeCounters_Advanced: Reading tcdump data related to PGID#17 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:46,472</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0011"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:46,574</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0011"
+reading from file temp.pcap, link-type EN10MB (Ethernet)
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:46,576</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AnalyzeCounters_Advanced: Reading tcdump data related to PGID#18 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:46,676</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0012"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:46,777</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0012"
+reading from file temp.pcap, link-type EN10MB (Ethernet)
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:46,779</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AnalyzeCounters_Advanced: Reading tcdump data related to PGID#19 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:46,880</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0013"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:46,981</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0013"
+reading from file temp.pcap, link-type EN10MB (Ethernet)
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:46,983</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AnalyzeCounters_Advanced: Reading tcdump data related to PGID#20 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:47,084</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0014"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:47,185</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0014"
+reading from file temp.pcap, link-type EN10MB (Ethernet)
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:47,187</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AnalyzeCounters_Advanced: Reading tcdump data related to PGID#21 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:47,288</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0015"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:47,389</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0015"
+reading from file temp.pcap, link-type EN10MB (Ethernet)
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:47,391</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AnalyzeCounters_Advanced: Reading tcdump data related to PGID#22 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:47,492</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0016"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:47,593</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0016"
+reading from file temp.pcap, link-type EN10MB (Ethernet)
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:47,595</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AnalyzeCounters_Advanced: Reading tcdump data related to PGID#23 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:47,695</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0017"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:47,796</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0017"
+reading from file temp.pcap, link-type EN10MB (Ethernet)
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:47,798</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AnalyzeCounters_Advanced: Reading tcdump data related to PGID#24 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:47,898</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0018"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:47,999</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0018"
+reading from file temp.pcap, link-type EN10MB (Ethernet)
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:48,001</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AnalyzeCounters_Advanced: Reading tcdump data related to PGID#25 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:48,102</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0019"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:48,203</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0019"
+reading from file temp.pcap, link-type EN10MB (Ethernet)
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:48,204</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AnalyzeCounters_Advanced: Reading tcdump data related to PGID#26 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:48,306</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 001a"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:48,406</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 001a"
+reading from file temp.pcap, link-type EN10MB (Ethernet)
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:48,408</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AnalyzeCounters_Advanced: Reading tcdump data related to PGID#27 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:48,509</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 001b"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:48,610</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 001b"
+reading from file temp.pcap, link-type EN10MB (Ethernet)
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:48,612</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AnalyzeCounters_Advanced: Reading tcdump data related to PGID#28 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:48,712</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 001c"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:48,814</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 001c"
+reading from file temp.pcap, link-type EN10MB (Ethernet)
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:48,816</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AnalyzeCounters_Advanced: Reading tcdump data related to PGID#29 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:48,916</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 001d"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:49,018</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 001d"
+reading from file temp.pcap, link-type EN10MB (Ethernet)
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:49,020</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AnalyzeCounters_Advanced: Reading tcdump data related to PGID#30 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:49,120</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 001e"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:49,222</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 001e"
+reading from file temp.pcap, link-type EN10MB (Ethernet)
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:49,223</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AnalyzeCounters_Advanced: Reading tcdump data related to PGID#31 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:49,324</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 001f"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:49,424</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 001f"
+reading from file temp.pcap, link-type EN10MB (Ethernet)
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:49,426</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AnalyzeCounters_Advanced: Reading tcdump data related to PGID#32 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:49,526</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0020"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:49,626</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0020"
+reading from file temp.pcap, link-type EN10MB (Ethernet)
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:49,643</td>
+<td>DEBUG</td>
+<td><pre>UnregisteredTrafficAPIHelpers::AnalyzeCounters_Advanced: TX/RX counters: 
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                                     TG/DUT Counters                                                                     |
++-------------------------+--------+--------+-----+-----+---------+---------------+-------------+---------+-------------+--------+----------+-------------+
+|          Stream         | TG-Src | TG-Dst |  TX |  RX | Exp. RX |      Loss     | Loss Status | Trapped | Exp. Action | TG-Err | Criteria | Fail Reason |
++-------------------------+--------+--------+-----+-----+---------+---------------+-------------+---------+-------------+--------+----------+-------------+
+|   Bridged_UnknownL2UC   |   1    |   2    | 100 | 100 |   100   |   0 (0.00%)   |     GOOD    |    0    |    flood    |        |   PASS   |             |
+|         STP_BPDU        |   1    |   2    | 100 |  20 |    na   |  80 (80.00%)  |      na     |    20   |     trap    |        |   PASS   |             |
+|       BridgedLLDP       |   1    |   2    | 100 |  0  |    na   | 100 (100.00%) |      na     |    20   |     trap    |        |   PASS   |             |
+|          LACPDU         |   1    |   2    | 100 |  0  |    na   | 100 (100.00%) |      na     |    20   |     trap    |        |   PASS   |             |
+|         IPv4ToMe        |   1    |   2    | 100 | 100 |    na   |   0 (0.00%)   |      na     |    0    |      na     |        |   PASS   |             |
+|       ARPRequestBC      |   1    |   2    | 100 | 100 |    na   |   0 (0.00%)   |      na     |    0    |      na     |        |   PASS   |             |
+|         ARPReply        |   1    |   2    | 100 | 100 |    na   |   0 (0.00%)   |      na     |    0    |      na     |        |   PASS   |             |
+|      IPv4_Broadcast     |   1    |   2    | 100 | 100 |   100   |   0 (0.00%)   |     GOOD    |    0    |    flood    |        |   PASS   |             |
+|         IPV4_SSH        |   1    |   2    | 100 | 100 |    na   |   0 (0.00%)   |      na     |    0    |      na     |        |   PASS   |             |
+|       IPV4_Telnet       |   1    |   2    | 100 | 100 |    na   |   0 (0.00%)   |      na     |    0    |      na     |        |   PASS   |             |
+|       Default_IPv4      |   1    |   2    | 100 | 100 |    na   |   0 (0.00%)   |      na     |    0    |      na     |        |   PASS   |             |
+|     IPv4_ICMPRequest    |   1    |   2    | 100 | 100 |    na   |   0 (0.00%)   |      na     |    0    |      na     |        |   PASS   |             |
+|       IPv4_DCHP_BC      |   1    |   2    | 100 | 100 |   100   |   0 (0.00%)   |     GOOD    |    10   |    mirror   |        |   PASS   |             |
+|     IPv4_ReservedMC     |   1    |   2    | 100 | 100 |   100   |   0 (0.00%)   |     GOOD    |    0    |    flood    |        |   PASS   |             |
+|   IPv4_AllSysInSubnet   |   1    |   2    | 100 | 100 |   100   |   0 (0.00%)   |     GOOD    |    0    |    flood    |        |   PASS   |             |
+| IPv4_AllRoutersInSubnet |   1    |   2    | 100 | 100 |   100   |   0 (0.00%)   |     GOOD    |    0    |    flood    |        |   PASS   |             |
+|       IPv4_OSPFIGP      |   1    |   2    | 100 | 100 |   100   |   0 (0.00%)   |     GOOD    |    0    |    flood    |        |   PASS   |             |
+|        IPv4_RIP2        |   1    |   2    | 100 | 100 |   100   |   0 (0.00%)   |     GOOD    |    0    |    flood    |        |   PASS   |             |
+|        IPv4_EIGRP       |   1    |   2    | 100 | 100 |   100   |   0 (0.00%)   |     GOOD    |    0    |    flood    |        |   PASS   |             |
+|   IPv4_DHCPServerRelay  |   1    |   2    | 100 | 100 |   100   |   0 (0.00%)   |     GOOD    |    0    |    flood    |        |   PASS   |             |
+|        IPv4_VRRP        |   1    |   2    | 100 | 100 |   100   |   0 (0.00%)   |     GOOD    |    0    |    flood    |        |   PASS   |             |
+|        IPv4_IGMP        |   1    |   2    | 100 | 100 |   100   |   0 (0.00%)   |     GOOD    |    0    |    flood    |        |   PASS   |             |
+|         IPV4_BGP        |   1    |   2    | 100 | 100 |   100   |   0 (0.00%)   |     GOOD    |    0    |    flood    |        |   PASS   |             |
+|     IPv6_LL_Reserved    |   1    |   2    | 100 | 100 |   100   |   0 (0.00%)   |     GOOD    |    0    |    flood    |        |   PASS   |             |
+|     IPv6_LL_AllNodes    |   1    |   2    | 100 | 100 |   100   |   0 (0.00%)   |     GOOD    |    0    |    flood    |        |   PASS   |             |
+|    IPv6_LL_AllRouters   |   1    |   2    | 100 | 100 |   100   |   0 (0.00%)   |     GOOD    |    0    |    flood    |        |   PASS   |             |
+|     IPv6_LL_OSPFIGP     |   1    |   2    | 100 | 100 |   100   |   0 (0.00%)   |     GOOD    |    0    |    flood    |        |   PASS   |             |
+|    IPv6_LL_RIPRouters   |   1    |   2    | 100 | 100 |   100   |   0 (0.00%)   |     GOOD    |    0    |    flood    |        |   PASS   |             |
+|   IPV6_LL_EIGRPRouters  |   1    |   2    | 100 | 100 |   100   |   0 (0.00%)   |     GOOD    |    0    |    flood    |        |   PASS   |             |
+|  IPV6_LL_AllPIMRouters  |   1    |   2    | 100 | 100 |   100   |   0 (0.00%)   |     GOOD    |    0    |    flood    |        |   PASS   |             |
+|       IPV6_LL_VRRP      |   1    |   2    | 100 | 100 |   100   |   0 (0.00%)   |     GOOD    |    0    |    flood    |        |   PASS   |             |
+|    IPV6_LL_DHCPAgents   |   1    |   2    | 100 | 100 |   100   |   0 (0.00%)   |     GOOD    |    0    |    flood    |        |   PASS   |             |
+|   IPV6_LL_SolNodeAddr   |   1    |   2    | 100 | 100 |   100   |   0 (0.00%)   |     GOOD    |    0    |    flood    |        |   PASS   |             |
++-------------------------+--------+--------+-----+-----+---------+---------------+-------------+---------+-------------+--------+----------+-------------+.
+Status:GOOD</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:49,643</td>
+<td>TRACE</td>
+<td><pre>BaseTest::_OnPostTest:  starting to run registered post test functions</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:49,643</td>
+<td>TRACE</td>
+<td><pre>BaseTest::TestTearDown:  starting to call to cleanup functions of test</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:49,744</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "if [ -f "temp.pcap" ]; then rm -f temp.pcap; fi
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:49,844</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: if [ -f "temp.pcap" ]; then rm -f temp.pcap; fi
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:49,946</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "if [ ! -z "$(pidof tcpdump)" ]; then killall -9 tcpdump; fi
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:50,046</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: if [ ! -z "$(pidof tcpdump)" ]; then killall -9 tcpdump; fi
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:50,147</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link delete dev br0
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:50,248</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link delete dev br0
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:50,349</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:50,349</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_parse_dmesg: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:50,450</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  history
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:50,551</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   history
+    3  ip link add br0 type bridge
+    4  ip link set dev sw1p1 master br0
+    5  ip link set dev sw1p23 master br0
+    6  ip link set dev sw1p1 up
+    7  ip link set dev sw1p23 up
+    8  ip link set dev br0 up
+    9  ip -j -d link show dev sw1p1
+   10  tcpdump -i sw1p1 -w temp.pcap -U &
+   11  if [ ! -z "$(pidof tcpdump)" ]; then killall -9 tcpdump; fi
+   12  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0000"
+   13  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0001"
+   14  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0002"
+   15  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0003"
+   16  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0004"
+   17  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0005"
+   18  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0006"
+   19  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0007"
+   20  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0008"
+   21  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0009"
+   22  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 000a"
+   23  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 000b"
+   24  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 000c"
+   25  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 000d"
+   26  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 000e"
+   27  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 000f"
+   28  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0010"
+   29  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0011"
+   30  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0012"
+   31  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0013"
+   32  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0014"
+   33  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0015"
+   34  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0016"
+   35  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0017"
+   36  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0018"
+   37  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0019"
+   38  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 001a"
+   39  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 001b"
+   40  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 001c"
+   41  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 001d"
+   42  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 001e"
+   43  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 001f"
+   44  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0020"
+   45  if [ -f "temp.pcap" ]; then rm -f temp.pcap; fi
+   46  if [ ! -z "$(pidof tcpdump)" ]; then killall -9 tcpdump; fi
+   47  ip link delete dev br0
+   48    history
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:50,551</td>
+<td>DEBUG</td>
+<td><pre>commands history:
+    3  ip link add br0 type bridge
+    4  ip link set dev sw1p1 master br0
+    5  ip link set dev sw1p23 master br0
+    6  ip link set dev sw1p1 up
+    7  ip link set dev sw1p23 up
+    8  ip link set dev br0 up
+    9  ip -j -d link show dev sw1p1
+   10  tcpdump -i sw1p1 -w temp.pcap -U &
+   11  if [ ! -z "$(pidof tcpdump)" ]; then killall -9 tcpdump; fi
+   12  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0000"
+   13  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0001"
+   14  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0002"
+   15  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0003"
+   16  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0004"
+   17  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0005"
+   18  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0006"
+   19  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0007"
+   20  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0008"
+   21  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0009"
+   22  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 000a"
+   23  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 000b"
+   24  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 000c"
+   25  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 000d"
+   26  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 000e"
+   27  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 000f"
+   28  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0010"
+   29  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0011"
+   30  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0012"
+   31  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0013"
+   32  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0014"
+   33  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0015"
+   34  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0016"
+   35  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0017"
+   36  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0018"
+   37  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0019"
+   38  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 001a"
+   39  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 001b"
+   40  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 001c"
+   41  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 001d"
+   42  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 001e"
+   43  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 001f"
+   44  tcpdump -XX -r temp.pcap | grep -c "0x0050:\s*0871 1805 0020"
+   45  if [ -f "temp.pcap" ]; then rm -f temp.pcap; fi
+   46  if [ ! -z "$(pidof tcpdump)" ]; then killall -9 tcpdump; fi
+   47  ip link delete dev br0
+   48    history</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:50,551</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_parse_dmesg: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:50,662</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  cat /var/log/messages
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:50,763</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   cat /var/log/messages
+
+Sep  3 18:41:53 localhost kernel: [ 5806.258410] br0: port 1(sw1p1) entered blocking state
+Sep  3 18:41:53 localhost kernel: [ 5806.263520] br0: port 1(sw1p1) entered disabled state
+Sep  3 18:41:53 localhost kernel: [ 5806.283340] device sw1p1 entered promiscuous mode
+Sep  3 18:41:54 localhost kernel: [ 5806.459419] br0: port 2(sw1p23) entered blocking state
+Sep  3 18:41:54 localhost kernel: [ 5806.464630] br0: port 2(sw1p23) entered disabled state
+Sep  3 18:41:54 localhost kernel: [ 5806.484292] device sw1p23 entered promiscuous mode
+Sep  3 18:41:54 localhost kernel: [ 5807.063479] br0: port 2(sw1p23) entered blocking state
+Sep  3 18:41:54 localhost kernel: [ 5807.068670] br0: port 2(sw1p23) entered forwarding state
+Sep  3 18:41:54 localhost kernel: [ 5807.074103] br0: port 1(sw1p1) entered blocking state
+Sep  3 18:41:54 localhost kernel: [ 5807.079203] br0: port 1(sw1p1) entered forwarding state
+Sep  3 18:41:55 localhost kernel: [ 5807.611986] IPv6: ADDRCONF(NETDEV_CHANGE): br0: link becomes ready
+Sep  3 18:43:40 localhost kernel: [ 5913.236884] device sw1p23 left promiscuous mode
+Sep  3 18:43:40 localhost kernel: [ 5913.241532] br0: port 2(sw1p23) entered disabled state
+Sep  3 18:43:40 localhost kernel: [ 5913.282838] device sw1p1 left promiscuous mode
+Sep  3 18:43:40 localhost kernel: [ 5913.287380] br0: port 1(sw1p1) entered disabled state
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:50,764</td>
+<td>DEBUG</td>
+<td><pre>dmesg lines that matched regex for issues:</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:50,766</td>
+<td>DEBUG</td>
+<td><pre>{
+    "call trace:": {
+        found: false,
+        regex: "Call trace:",
+    },
+    "cut here": {
+        found: false,
+        regex: "\\[ cut here \\]",
+    },
+    "hw routing offloading disabled:": {
+        found: false,
+        regex: "Abort. HW routing offloading disabled",
+    },
+}</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:52,806</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Cleanup:  clearing ports ownership...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:53,225</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Cleanup:  Disconnecting from chassis...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 18:43:53,245</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Cleanup:  TG disconnect time is 0.02</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 18:43:53,246</td>
+<td>INFO</td>
+<td><pre>Test Passed</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 18:43:53,253</td>
+<td>INFO</td>
+<td><pre>
+CI_META:
+{"Software_Version": "2.0.0-v3.0.0-rc4", "Linux_Version": ""}
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                                  Dut Information                                                                   |
++--------+-------------+------+------------------+--------------------------------+---------------+---------------+---------------------+------------+
+| ODM    | Board_Model | ASIC | Software_Version | UBOOT_Version                  | Linux_Version | CPU_CoreClock | Host_kernel_version | PCBVersion |
++--------+-------------+------+------------------+--------------------------------+---------------+---------------+---------------------+------------+
+| Accton | AS4224-52T  | AC3X | 2.0.0-v3.0.0-rc4 | U-Boot 2019.10-10.0.0-g9518192 |               |               | 5.10.4              | R0A        |
++--------+-------------+------+------------------+--------------------------------+---------------+---------------+---------------------+------------+
+
+None
+
++---------------------------------------+
+|              PDU Settings             |
++----------------+-------------+--------+
+| Connect_To_PDU | ip_address  | outlet |
++----------------+-------------+--------+
+| True           | 10.5.236.19 | 11     |
++----------------+-------------+--------+
+
+None
++--------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                             Test Steps Summary                                                             |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| Step | Description                                                                                          | Result | Run Time            |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 1    | Init bridge entity br0                                                                               | Passed | 0.0                 |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 2    | Enslave ports to br0                                                                                 | Passed | 0.40323352813720703 |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 3    | Set link up on all entities (ports and br0)                                                          | Passed | 0.6069819927215576  |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 4    | Get self MAC address on ingress port#sw1p1                                                           | Passed | 0.2493746280670166  |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 5    | Start tcpdump capture on DUT ingress port                                                            | Passed | 10.232665300369263  |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 6    | Clear TG counters                                                                                    | Passed | 3.509161949157715   |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 7    | Send different types of packets (IPv6 MC, IPv4 BC + MC) from TG#1                                    | Passed | 49.46570944786072   |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 8    | Analyze counters: a) TX vs RX counters according to expected values b) Trapped and mirrored packets  | Passed | 42.112401247024536  |
+|      | to CPU                                                                                               |        |                     |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
++------------------------------------------------------------------------------------------------------------+
+|                                              Test Information                                              |
++------------+---------------------------------+--------+-----------------+-----------------+----------------+
+| Suite_Name | Test_Name                       | Result | start_time      | end_time        | run_time       |
++------------+---------------------------------+--------+-----------------+-----------------+----------------+
+| Bridging   | Bridging_BUMTraffic_BridgeNoRIF | Passed | 18:41:44.091797 | 18:43:53.246021 | 0:02:09.154224 |
++------------+---------------------------------+--------+-----------------+-----------------+----------------+</pre></td>
+</tr>
+
+</tbody></table></div>
+</body>
+<script>
+    $.fn.dataTable.ext.search.push(
+        function( settings, data, dataIndex ) {
+            let minIndex = severities.indexOf($('#min-severity').find(':selected').text());
+            let maxIndex = severities.indexOf($('#max-severity').find(':selected').text());
+            var severity = data[1] || 'NOT SET';// use data for the Log Level column
+            var severityIndex = severities.indexOf(severity);
+            if ( ( maxIndex == -1 && minIndex == -1 ) ||
+                 ( minIndex <= severityIndex && severityIndex <= maxIndex ) )
+            {
+                return true;
+            }
+            return false;
+        }
+    );
+    
+    function fill_select(id, items){
+        for(t of items){
+            $('#'+id).append(new Option(t, t));
+        }
+    }
+    
+    function selectionChanged(selectChanged, selectAffected, selectedOption, startFrom, end){
+        let selected = $('#'+selectAffected).find(':selected').text(); //keep affected value
+        $('#'+selectAffected).empty(); //empty the affected one
+
+        fill_select(selectAffected, severities.slice(startFrom, end));
+        selected = $('#'+selectAffected).find("option:contains('" + selected  + "')").length > 0 ? selected : $("#"+selectAffected+" option:first").val();
+        $('#'+selectAffected).val(selected);
+    }
+    
+    var severities = ['NOT SET','TRACE','DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL']
+    $(document).ready(function() {
+        for(severity of severities){
+            $('#min-severity, #max-severity').append(new Option(severity, severity));
+        }
+        
+        $('#max-severity option:last').attr('selected', 'selected');
+        
+        var table = $('#data_table').DataTable({
+            "lengthMenu": [[-1, 10, 25, 50], ["All", 10, 25, 50]]
+        });
+        
+        $('#min-severity, #max-severity').change( function(e) {
+            if(e.target.id == 'min-severity'){
+                selectionChanged(e.target.id, 'max-severity', e.target.selectedOptions[0].text, severities.indexOf(e.target.selectedOptions[0].text), severities.length+1);
+            }
+            else if(e.target.id == 'max-severity'){
+                selectionChanged(e.target.id, 'min-severity',e.target.selectedOptions[0].text, 0 ,severities.indexOf(e.target.selectedOptions[0].text) + 1);
+            }
+            table.draw();
+        } );
+    } );
+    
+    
+</script>
+</html>
