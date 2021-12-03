@@ -1,0 +1,3401 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>StormControl_Functional_ControlPackets_09-30-14-243034 Log</title>
+<!-- Latest compiled and minified CSS -->
+<!--
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs-3.3.7/jq-3.2.1/jq-3.2.1/dt-1.10.16/datatables.min.css"/>
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.7/jq-3.2.1/jq-3.2.1/dt-1.10.16/datatables.min.js"></script>
+-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+  
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+<style>
+pre {
+margin : 0;
+white-space: pre-wrap;
+background-color: inherit;
+border: none;
+border-radius: inherit;
+}
+</style>
+</head>
+
+<body>
+<div class="col-md-12 col-xs-12 col-lg-12">
+<br>
+<h1 style="text-align:center">StormControl_Functional_ControlPackets_09-30-14-243034 Log</h1>
+<br>
+<div class="input-group">
+    <select class="form-control" id="min-severity" placeholder="Min Severity">
+    </select>
+    <span class="input-group-addon">-</span>
+    <select class="form-control" id="max-severity" placeholder="Max Severity">
+    </select>
+</div>
+&nbsp
+<table id="data_table" class="table table-striped table-bordered" cellspacing="0">
+<thead>
+    <tr>
+        <th style="width: 180px;">Time</th>
+        <th style="width: 90px;">Log Level</th>
+        <th>Message</th>
+    </tr>
+</thead>
+<tbody>
+
+<tr class="success">
+<td>2021-10-08 09:30:14,243</td>
+<td>TRACE</td>
+<td><pre>BaseTest_SD::_BasicTestInit: this test has been launched with the following input arguments:
+Namespace(conn_table=None, dummy_test=False, excel_path='/swdev/fileril103/testing/Projects/Automation/Python/Setups/AGO/CI/Setup_23.xlsx', excel_setups_db_path=None, seed=None, setup_info=None, setup_name=None, stress=None, test_args=None)</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:14,244</td>
+<td>TRACE</td>
+<td><pre>BaseTest_SD::_BasicTestInit: this test is running from the following Setup Excel file /swdev/fileril103/testing/Projects/Automation/Python/Setups/AGO/CI/Setup_23.xlsx</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:14,245</td>
+<td>TRACE</td>
+<td><pre>
++-------------------------------------------------------+
+|                    TG Mapping Table                   |
++----+------------+------------+------+------+----------+
+| ID | IP Address |  TG Type   | Card | Port | Dut Port |
++----+------------+------------+------+------+----------+
+| 1  | 10.5.236.4 | ixia_linux |  11  |  5   |  sw1p1   |
+| 2  | 10.5.236.4 | ixia_linux |  11  |  6   |  sw1p23  |
+| 3  | 10.5.236.4 | ixia_linux |  11  |  7   |  sw1p35  |
+| 4  | 10.5.236.4 | ixia_linux |  11  |  8   |  sw1p48  |
++----+------------+------------+------+------+----------+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:14,245</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: connecting to IxiaSSH on IP 10.5.236.4 using TCL/API Server IP 10.5.236.4</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:21,863</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect:  Connection Successful</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:22,264</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:24,391</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:26,312</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:28,299</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:30:31,436</td>
+<td>INFO</td>
+<td><pre>Used cached DutInfo: dutmainchannel__/swdev/fileril103/testing/Projects/Automation/Python/Setups/AGO/CI/Setup_23.xlsx__1632647710.5673652</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:31,437</td>
+<td>TRACE</td>
+<td><pre>SwitchDevDutManager::login: Connecting to 10.5.236.85:root:22 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:31,548</td>
+<td>TRACE</td>
+<td><pre>SwitchDevDutManager::login: Connection Successful</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:31,549</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "
+
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:31,650</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: Linux localhost 5.10.4 #1 SMP PREEMPT Fri Sep 10 16:54:31 UTC 2021 aarch64
+Last login: Fri Oct  8 09:28:58 2021 from 10.5.116.193
+
+
+root@localhost:~# 
+root@localhost:~# 
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:32,652</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "
+
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:32,754</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 
+root@localhost:~# 
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:32,787</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_clear_dmesg: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:32,888</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  echo "" &#62 /var/log/messages
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:32,988</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   echo "" &#62 /var/log/messages
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:32,989</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_clear_cmd_history: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:33,089</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  history -c
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:33,190</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   history -c
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:33,191</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::stressCpus: </pre></td>
+</tr>
+
+
+<tr>
+<td width="100"></td>
+<td width="100"></td>
+<td class="info"><pre>+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                                              Test Description                                                                              |
++--------------+----------------------------------------+------------------------------------------------------------------------+-----------------+-------------------------+
+| Suite Name   | Test Name                              | Purpose                                                                | Author          | Test Document Reference |
++--------------+----------------------------------------+------------------------------------------------------------------------+-----------------+-------------------------+
+| StormControl | StormControl_Functional_ControlPackets | This test comes to verify:                                             | Nitzan Horovitz |                         |
+|              |                                        |             * Verify the precedence of Storm Control over Static       |                 |                         |
+|              |                                        | Policer Traps.                                                         |                 |                         |
+|              |                                        |             * Verify the configuration of unregistered multicast rate  |                 |                         |
+|              |                                        | limit also applies rate limit for registered multicast.                |                 |                         |
+|              |                                        |                                                                        |                 |                         |
++--------------+----------------------------------------+------------------------------------------------------------------------+-----------------+-------------------------+
+
++-------------------------------------------------------------------------------+
+|                                 Test Procedure                                |
++------+------------------------------------------------------------------------+
+| Step | Step Description                                                       |
++------+------------------------------------------------------------------------+
+| 1    | Init test                                                              |
++------+------------------------------------------------------------------------+
+| 2    | Set link up on interfaces                                              |
++------+------------------------------------------------------------------------+
+| 3    | Configure qdisc on tx ports                                            |
++------+------------------------------------------------------------------------+
+| 4    | Configure ip address on tx ports                                       |
++------+------------------------------------------------------------------------+
+| 5    | Set up streams matching SCT supported traps on tx ports                |
++------+------------------------------------------------------------------------+
+| 6    | Set Storm Control rate limit lower than the default values of SCT      |
+|      | profiles, on tx ports                                                  |
++------+------------------------------------------------------------------------+
+| 7    | Transmit continues traffic and verify for each stream the rate is      |
+|      | according to the Storm Control's rate configured, and not according to |
+|      | hardware spec                                                          |
++------+------------------------------------------------------------------------+
+| 8    | Configure dynamic trap rule for each stream. Transmit continues        |
+|      | traffic and verify the rate each stream being trapped is according to  |
+|      | the Storm Control's rate configured                                    |
++------+------------------------------------------------------------------------+
+| 9    | Set Storm Control rate limit higher than the default values of SCT     |
+|      | profiles, on tx ports                                                  |
++------+------------------------------------------------------------------------+
+| 10   | Transmit continues traffic and verify for each stream the rate is      |
+|      | according to hardware spec, and not according the Storm Control's rate |
+|      | configured                                                             |
++------+------------------------------------------------------------------------+</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:30:33,204</td>
+<td>INFO</td>
+<td><pre>Randomize::__init__: Random seed value is 0.9065675892240569</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:30:33,204</td>
+<td>INFO</td>
+<td><pre>Executing step 1: Init test</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:33,204</td>
+<td>DEBUG</td>
+<td><pre>StormControlAPI::initTestParams: Initiate all relevant test parameters</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:30:40,677</td>
+<td>INFO</td>
+<td><pre>Executing step 2: Set link up on interfaces</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:40,678</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::setLinkStateOnInterfaces: set link up on ports</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:40,778</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p1 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:40,879</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p1 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:40,980</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p23 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:41,080</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p23 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:41,181</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p35 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:41,282</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p35 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:30:41,283</td>
+<td>INFO</td>
+<td><pre>Executing step 3: Configure qdisc on tx ports</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:41,283</td>
+<td>DEBUG</td>
+<td><pre>PolicerAPI::configureQdisc: configure ingress qdisc</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:41,384</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc qdisc add dev sw1p1 ingress
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:41,485</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc qdisc add dev sw1p1 ingress
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:41,486</td>
+<td>DEBUG</td>
+<td><pre>PolicerAPI::configureQdisc: configure ingress qdisc</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:41,587</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc qdisc add dev sw1p23 ingress
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:41,688</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc qdisc add dev sw1p23 ingress
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:41,689</td>
+<td>DEBUG</td>
+<td><pre>PolicerAPI::configureQdisc: configure ingress qdisc</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:41,790</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc qdisc add dev sw1p35 ingress
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:41,891</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc qdisc add dev sw1p35 ingress
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:30:41,892</td>
+<td>INFO</td>
+<td><pre>Executing step 4: Configure ip address on tx ports</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:41,992</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip add add 192.168.1.4/24 dev sw1p1 broadcast 192.168.1.255
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:42,094</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip add add 192.168.1.4/24 dev sw1p1 broadcast 192.168.1.255
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:42,195</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip add add 192.168.1.6/24 dev sw1p23 broadcast 192.168.1.255
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:42,296</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip add add 192.168.1.6/24 dev sw1p23 broadcast 192.168.1.255
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:42,397</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip add add 192.168.1.8/24 dev sw1p35 broadcast 192.168.1.255
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:42,498</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip add add 192.168.1.8/24 dev sw1p35 broadcast 192.168.1.255
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:30:42,499</td>
+<td>INFO</td>
+<td><pre>Executing step 5: Set up streams matching SCT supported traps on tx ports</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:42,499</td>
+<td>DEBUG</td>
+<td><pre>CommonStreams::addIPv4ProtocolInterface: Setting up IPv4 protocol interface on port Port name: 2, Port uri: 10.5.236.4/11/6</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:42,622</td>
+<td>DEBUG</td>
+<td><pre>Setting up more settings on stream: Port name: 1
+Port uri: 10.5.236.4/11/5
+Port stream names: [test#0, ]
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:42,622</td>
+<td>DEBUG</td>
+<td><pre>Stream name: test#0
+Stream uri: 1 11 5 1
+Stream port name: 1
+Stream packet: L2: MAC: DA[01:80:C2:00:00:00, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[42:de:93:be:89:da, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[402], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.CONTINUOUS_PACKET], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.STREAM_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:42,723</td>
+<td>DEBUG</td>
+<td><pre>Setting up more settings on stream: Port name: 1
+Port uri: 10.5.236.4/11/5
+Port stream names: [test#0, test#1, ]
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:42,723</td>
+<td>DEBUG</td>
+<td><pre>Stream name: test#1
+Stream uri: 1 11 5 2
+Stream port name: 1
+Stream packet: L2: MAC: DA[01:80:c2:00:00:0e, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[d4:f0:d5:07:d3:06, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x88cc]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[402], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.CONTINUOUS_PACKET], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.STREAM_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:42,832</td>
+<td>DEBUG</td>
+<td><pre>Setting up more settings on stream: Port name: 1
+Port uri: 10.5.236.4/11/5
+Port stream names: [test#0, test#1, test#2, ]
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:42,832</td>
+<td>DEBUG</td>
+<td><pre>Stream name: test#2
+Stream uri: 1 11 5 3
+Stream port name: 1
+Stream packet: L2: MAC: DA[01:80:c2:00:00:02, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[8c:bd:6d:e2:99:5b, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x8809]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[402], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.CONTINUOUS_PACKET], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.STREAM_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:42,836</td>
+<td>DEBUG</td>
+<td><pre>VRRPv3 packet:
+###[ IP ]### 
+  version   = 4
+  ihl       = None
+  tos       = 0x0
+  len       = None
+  id        = 1
+  flags     = 
+  frag      = 0
+  ttl       = 255
+  proto     = vrrp
+  chksum    = None
+  src       = 192.168.1.5
+  dst       = 224.0.0.18
+  \options   \
+###[ VRRPv3 ]### 
+     version   = 3
+     type      = 1
+     vrid      = 44
+     priority  = 100
+     ipcount   = None
+     res       = 0
+     adv       = 100
+     chksum    = None
+     addrlist  = [192.168.1.2]
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:42,945</td>
+<td>DEBUG</td>
+<td><pre>Setting up more settings on stream: Port name: 1
+Port uri: 10.5.236.4/11/5
+Port stream names: [test#0, test#1, test#2, test#3, ]
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:42,946</td>
+<td>DEBUG</td>
+<td><pre>Stream name: test#3
+Stream uri: 1 11 5 4
+Stream port name: 1
+Stream packet: L2: MAC: DA[01:00:5e:00:00:12, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[00:00:5e:00:01:2c, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[402], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.CONTINUOUS_PACKET], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.STREAM_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:43,084</td>
+<td>DEBUG</td>
+<td><pre>Stream name: test#4
+Stream uri: 1 11 6 1
+Stream port name: 2
+Stream packet: L2: MAC: DA[01:00:5e:00:00;02, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[00:00:00:00:00:01, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+IPV4_HEADER: IPV4: SIP[0.0.0.0, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], DIP[224.0.0.2, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], TTL[64], PROTOCOL[255], IDENTIFIER[0], OPTIONS[], CUSTOM CHECKSUM[], FRAGMENT ENABLED[True], FRAGMENT OFFSET[0], FRAGMENT LAST[True]DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[402], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.CONTINUOUS_PACKET], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.STREAM_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:43,220</td>
+<td>DEBUG</td>
+<td><pre>Stream name: test#5
+Stream uri: 1 11 7 1
+Stream port name: 3
+Stream packet: L2: MAC: DA[FF:FF:FF:FF:FF:FF, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[00:D2:3C:09:D5:AA, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+IPV4_HEADER: IPV4: SIP[0.0.0.0, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], DIP[255.255.255.255, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], TTL[64], PROTOCOL[255], IDENTIFIER[0], OPTIONS[], CUSTOM CHECKSUM[], FRAGMENT ENABLED[True], FRAGMENT OFFSET[0], FRAGMENT LAST[True]UDP_HEADER: UDP: SPORT[67, mode=MODIFIER_L4_PORT_MODE.FIXED, count=1, step=1], DPORT[68, mode=MODIFIER_L4_PORT_MODE.FIXED, count=1, step=1], VALID_CHEKSUM[CHECKSUM_MODE.VALID], CUSTOM_CHECKSUM[0, LEN_OVERRIDE[False], CUSTOM_LEN[0]
+DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[402], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.CONTINUOUS_PACKET], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.STREAM_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:43,348</td>
+<td>DEBUG</td>
+<td><pre>Stream name: test#6
+Stream uri: 1 11 7 2
+Stream port name: 3
+Stream packet: L2: MAC: DA[FF:FF:FF:FF:FF:FF, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[AA:00:00:00:00:01, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+IPV4_HEADER: IPV4: SIP[192.168.1.9, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], DIP[192.168.1.255, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], TTL[64], PROTOCOL[255], IDENTIFIER[0], OPTIONS[], CUSTOM CHECKSUM[], FRAGMENT ENABLED[True], FRAGMENT OFFSET[0], FRAGMENT LAST[True]DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[402], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.CONTINUOUS_PACKET], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.STREAM_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:43,455</td>
+<td>DEBUG</td>
+<td><pre>Setting up more settings on stream: Port name: 3
+Port uri: 10.5.236.4/11/7
+Port stream names: [test#5, test#6, test#7, ]
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:30:43,455</td>
+<td>DEBUG</td>
+<td><pre>Stream name: test#7
+Stream uri: 1 11 7 3
+Stream port name: 3
+Stream packet: L2: MAC: DA[FF:FF:FF:FF:FF:FF, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[CC:44:15:EC:3E:32, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+ARP_HEADER: OPERATION[ARP_OPERATION.ARP_REQUEST], SENDER_HW[CC:44:15:EC:3E:32, mode=MODIFIER_ARP_MODE.FIXED, count=1, step=None], SENDER_IP[192.168.1.9, mode=MODIFIER_ARP_MODE.FIXED, count=1, step=None], TARGET_HW[FF:FF:FF:FF:FF:FF, mode=MODIFIER_ARP_MODE.FIXED, count=1, step=None], TARGET_IP[192.168.1.8, mode=MODIFIER_ARP_MODE.FIXED, count=1, step=None]DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[402], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.CONTINUOUS_PACKET], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.STREAM_BASED
+</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:31:36,558</td>
+<td>INFO</td>
+<td><pre>Executing step 6: Set Storm Control rate limit lower than the default values of SCT profiles, on tx ports</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:31:36,559</td>
+<td>DEBUG</td>
+<td><pre>configureStormControlRateLimit Configure Storm Control rate limit 40 kbps for multicast traffic type</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:31:36,660</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param set pci/0000:01:00.0/1 name unreg_mc_kbyte_per_sec_rate value 40 cmode runtime
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:31:36,762</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param set pci/0000:01:00.0/1 name unreg_mc_kbyte_per_sec_rate value 40 cmode runtime
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:31:36,762</td>
+<td>DEBUG</td>
+<td><pre>StormControlAPI::verifyRateOnPort: Verify Storm Control rate configured is 40 kbps</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:31:36,863</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param show pci/0000:01:00.0/1 name unreg_mc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:31:36,964</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param show pci/0000:01:00.0/1 name unreg_mc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+40
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:31:36,966</td>
+<td>DEBUG</td>
+<td><pre>configureStormControlRateLimit Configure Storm Control rate limit 5 kbps for multicast traffic type</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:31:37,067</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param set pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate value 5 cmode runtime
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:31:37,168</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param set pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate value 5 cmode runtime
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:31:37,169</td>
+<td>DEBUG</td>
+<td><pre>StormControlAPI::verifyRateOnPort: Verify Storm Control rate configured is 5 kbps</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:31:37,270</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param show pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:31:37,371</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param show pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+5
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:31:37,372</td>
+<td>DEBUG</td>
+<td><pre>configureStormControlRateLimit Configure Storm Control rate limit 25 kbps for broadcast traffic type</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:31:37,472</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param set pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate value 25 cmode runtime
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:31:37,574</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param set pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate value 25 cmode runtime
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:31:37,576</td>
+<td>DEBUG</td>
+<td><pre>StormControlAPI::verifyRateOnPort: Verify Storm Control rate configured is 25 kbps</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:31:37,676</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param show pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:31:37,778</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param show pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+25
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:31:37,779</td>
+<td>INFO</td>
+<td><pre>Executing step 7: Transmit continues traffic and verify for each stream the rate is according to the Storm Control's rate configured, and not according to hardware spec</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:31:38,885</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::transmitTraffic: Transmitting traffic:
+Port name: 1, Port uri: 10.5.236.4/11/5 ----------&#62 sw1p1
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:31:45,518</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "function tcpdump_cpu_traps_rate(){
+                 local IFACE="any"
+                 if [ $# -ge 1 ]; then IFACE=$1; fi
+                 timeout 1.06 tcpdump -i $IFACE &&#62 xx; cat xx | grep -Eo "[0-9]+ packets received by filter" | cut -d ' ' -f 1; rm xx
+            }
+            
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:31:45,619</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: function tcpdump_cpu_traps_rate(){
+&#62                  local IFACE="any"
+&#62                  if [ $# -ge 1 ]; then IFACE=$1; fi
+&#62                  timeout 1.06 tcpdump -i $IFACE &&#62 xx; cat xx | grep -Eo "[0-9]+ packets received by filter" | cut -d ' ' -f 1; rm xx
+&#62             }
+root@localhost:~#             
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:31:45,719</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "cat /etc/os-release | grep -Eo '^ID=\w+' | tr -d 'ID='
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:31:45,820</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: cat /etc/os-release | grep -Eo '^ID=\w+' | tr -d 'ID='
+debian
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:31:45,922</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:31:46,023</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:31:46,123</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "function tcpdump_cpu_traps_rate_avg(){	
+                local start_index=0
+                local end=25
+                local counter=0
+                for((num=start_index; num&#60=end; num++)); do
+                   local temp=$(tcpdump_cpu_traps_rate $1)
+                   sleep 1
+                   counter=$((counter+temp))
+                done
+                echo $((counter/6))
+            }
+            
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:31:46,224</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: function tcpdump_cpu_traps_rate_avg(){
+&#62                 local start_index=0
+&#62                 local end=25
+&#62                 local counter=0
+&#62                 for((num=start_index; num&#60=end; num++)); do
+&#62                    local temp=$(tcpdump_cpu_traps_rate $1)
+&#62                    sleep 1
+&#62                    counter=$((counter+temp))
+&#62                 done
+&#62                 echo $((counter/6))
+&#62             }
+root@localhost:~#             
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:31:46,326</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:31:46,426</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:31:46,527</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "function get_cpu_traps_rate_code(){
+                R1=`cat /sys/kernel/debug/prestera/$2_counters/traps/cpu_code_$1_stats | tr -d '\0'`
+                sleep 1
+                R2=`cat /sys/kernel/debug/prestera/$2_counters/traps/cpu_code_$1_stats | tr -d '\0'`
+                RXPPS=`expr $R2 - $R1`
+                echo $RXPPS
+            }
+            
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:31:46,629</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: function get_cpu_traps_rate_code(){
+&#62                 R1=`cat /sys/kernel/debug/prestera/$2_counters/traps/cpu_code_$1_stats | tr -d '\0'`
+&#62                 sleep 1
+&#62                 R2=`cat /sys/kernel/debug/prestera/$2_counters/traps/cpu_code_$1_stats | tr -d '\0'`
+&#62                 RXPPS=`expr $R2 - $R1`
+&#62                 echo $RXPPS
+&#62             }
+root@localhost:~#             
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:31:46,729</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:31:46,830</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:31:46,931</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "function get_cpu_traps_rate_code_avg(){	
+                local start_index=0
+                local end=9
+                local counter=0
+                for((num=start_index; num&#60=end; num++)); do
+                   local temp=$(get_cpu_traps_rate_code $1 $2)
+                   sleep 1
+                   counter=$((counter+temp))
+                done
+                echo $((counter/10))
+            }
+            
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:31:47,032</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: function get_cpu_traps_rate_code_avg(){
+&#62                 local start_index=0
+&#62                 local end=9
+&#62                 local counter=0
+&#62                 for((num=start_index; num&#60=end; num++)); do
+&#62                    local temp=$(get_cpu_traps_rate_code $1 $2)
+&#62                    sleep 1
+&#62                    counter=$((counter+temp))
+&#62                 done
+&#62                 echo $((counter/10))
+&#62             }
+root@localhost:~#             
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:31:47,132</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:31:47,233</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:31:47,334</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "get_cpu_traps_rate_code_avg 30 sw
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:31:47,435</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: get_cpu_traps_rate_code_avg 30 sw
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:32:07,586</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 100
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:32:07,687</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:32:07,787</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:32:08,874</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "get_cpu_traps_rate_code_avg 26 sw
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:32:08,975</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: get_cpu_traps_rate_code_avg 26 sw
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:32:29,128</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 100
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:32:29,229</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:32:29,330</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:32:30,371</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "get_cpu_traps_rate_code_avg 28 sw
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:32:30,472</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: get_cpu_traps_rate_code_avg 28 sw
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:32:50,628</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 100
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:32:50,729</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:32:50,831</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:32:51,890</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "get_cpu_traps_rate_code_avg 27 sw
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:32:51,990</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: get_cpu_traps_rate_code_avg 27 sw
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:33:12,143</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 100
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:33:12,244</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:33:12,345</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:33:13,598</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::transmitTraffic: Transmitting traffic:
+Port name: 2, Port uri: 10.5.236.4/11/6 ----------&#62 sw1p23
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:33:18,235</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "get_cpu_traps_rate_code_avg 29 sw
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:33:18,335</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: get_cpu_traps_rate_code_avg 29 sw
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:33:38,486</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 12
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:33:38,587</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:33:38,688</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:33:39,899</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::transmitTraffic: Transmitting traffic:
+Port name: 3, Port uri: 10.5.236.4/11/7 ----------&#62 sw1p35
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:33:44,530</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "get_cpu_traps_rate_code_avg 33 sw
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:33:44,631</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: get_cpu_traps_rate_code_avg 33 sw
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:34:04,784</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 62
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:34:04,886</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:34:04,986</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:34:05,989</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "get_cpu_traps_rate_code_avg 19 sw
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:34:06,090</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: get_cpu_traps_rate_code_avg 19 sw
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:34:26,242</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 62
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:34:26,343</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:34:26,444</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:34:27,486</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "get_cpu_traps_rate_code_avg 5 sw
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:34:27,587</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: get_cpu_traps_rate_code_avg 5 sw
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:34:47,739</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 62
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:34:47,840</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:34:47,941</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:34:49,064</td>
+<td>INFO</td>
+<td><pre>Executing step 8: Configure dynamic trap rule for each stream. Transmit continues traffic and verify the rate each stream being trapped is according to the Storm Control's rate configured</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:34:49,930</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::transmitTraffic: Transmitting traffic:
+Port name: 1, Port uri: 10.5.236.4/11/5 ----------&#62 sw1p1
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:34:56,543</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc filter add dev sw1p1 ingress protocol ip flower  src_mac 00:00:5e:00:01:2c dst_mac 01:00:5e:00:00:12 dst_ip 224.0.0.18 ip_proto 0x70 action trap
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:34:56,644</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc filter add dev sw1p1 ingress protocol ip flower  src_mac 00:00:5e:00:01:2c dst_mac 01:00:5e:00:00:12 dst_ip 224.0.0.18 ip_proto 0x70 action trap
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:34:56,744</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "get_cpu_traps_rate_code_avg 195 sw
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:34:56,846</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: get_cpu_traps_rate_code_avg 195 sw
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:35:16,998</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 100
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:35:17,099</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:35:17,200</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:35:17,301</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc filter delete dev sw1p1 ingress pref 49152 
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:35:17,401</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc filter delete dev sw1p1 ingress pref 49152 
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:35:18,347</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc filter add dev sw1p1 ingress flower  dst_mac 01:80:C2:00:00:00 action trap
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:35:18,447</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc filter add dev sw1p1 ingress flower  dst_mac 01:80:C2:00:00:00 action trap
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:35:18,548</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "get_cpu_traps_rate_code_avg 195 sw
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:35:18,648</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: get_cpu_traps_rate_code_avg 195 sw
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:35:38,800</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 100
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:35:38,901</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:35:39,002</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:35:39,103</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc filter delete dev sw1p1 ingress pref 49152 
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:35:39,204</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc filter delete dev sw1p1 ingress pref 49152 
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:35:40,303</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc filter add dev sw1p1 ingress protocol 0x88cc flower  dst_mac 01:80:c2:00:00:0e action trap
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:35:40,404</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc filter add dev sw1p1 ingress protocol 0x88cc flower  dst_mac 01:80:c2:00:00:0e action trap
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:35:40,505</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "get_cpu_traps_rate_code_avg 195 sw
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:35:40,606</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: get_cpu_traps_rate_code_avg 195 sw
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:36:00,762</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 100
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:36:00,863</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:36:00,964</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:36:01,066</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc filter delete dev sw1p1 ingress pref 49152 
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:36:01,167</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc filter delete dev sw1p1 ingress pref 49152 
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:36:02,267</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc filter add dev sw1p1 ingress protocol 0x8809 flower  dst_mac 01:80:c2:00:00:02 action trap
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:36:02,368</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc filter add dev sw1p1 ingress protocol 0x8809 flower  dst_mac 01:80:c2:00:00:02 action trap
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:36:02,469</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "get_cpu_traps_rate_code_avg 195 sw
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:36:02,570</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: get_cpu_traps_rate_code_avg 195 sw
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:36:22,723</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 100
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:36:22,824</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:36:22,925</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:36:23,026</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc filter delete dev sw1p1 ingress pref 49152 
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:36:23,127</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc filter delete dev sw1p1 ingress pref 49152 
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:36:24,421</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::transmitTraffic: Transmitting traffic:
+Port name: 2, Port uri: 10.5.236.4/11/6 ----------&#62 sw1p23
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:36:29,054</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc filter add dev sw1p23 ingress protocol ip flower  dst_ip 224.0.0.2 action trap
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:36:29,155</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc filter add dev sw1p23 ingress protocol ip flower  dst_ip 224.0.0.2 action trap
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:36:29,256</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "get_cpu_traps_rate_code_avg 195 sw
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:36:29,357</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: get_cpu_traps_rate_code_avg 195 sw
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:36:49,507</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 12
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:36:49,607</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:36:49,709</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:36:49,810</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc filter delete dev sw1p23 ingress pref 49152 
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:36:49,911</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc filter delete dev sw1p23 ingress pref 49152 
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:36:50,972</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::transmitTraffic: Transmitting traffic:
+Port name: 3, Port uri: 10.5.236.4/11/7 ----------&#62 sw1p35
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:36:55,599</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc filter add dev sw1p35 ingress protocol ip flower  ip_proto udp src_port 67 dst_port 68 action trap
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:36:55,700</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc filter add dev sw1p35 ingress protocol ip flower  ip_proto udp src_port 67 dst_port 68 action trap
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:36:55,800</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "get_cpu_traps_rate_code_avg 195 sw
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:36:55,901</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: get_cpu_traps_rate_code_avg 195 sw
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:37:16,065</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 62
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:37:16,166</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:37:16,267</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:37:16,368</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc filter delete dev sw1p35 ingress pref 49152 
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:37:16,470</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc filter delete dev sw1p35 ingress pref 49152 
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:37:17,475</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc filter add dev sw1p35 ingress protocol ip flower  dst_mac FF:FF:FF:FF:FF:FF dst_ip 192.168.1.255 action trap
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:37:17,575</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc filter add dev sw1p35 ingress protocol ip flower  dst_mac FF:FF:FF:FF:FF:FF dst_ip 192.168.1.255 action trap
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:37:17,676</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "get_cpu_traps_rate_code_avg 195 sw
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:37:17,778</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: get_cpu_traps_rate_code_avg 195 sw
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:37:37,935</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 62
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:37:38,036</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:37:38,137</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:37:38,238</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc filter delete dev sw1p35 ingress pref 49152 
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:37:38,339</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc filter delete dev sw1p35 ingress pref 49152 
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:37:39,268</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc filter add dev sw1p35 ingress protocol 0x0806 flower  action trap
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:37:39,369</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc filter add dev sw1p35 ingress protocol 0x0806 flower  action trap
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:37:39,470</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "get_cpu_traps_rate_code_avg 195 sw
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:37:39,571</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: get_cpu_traps_rate_code_avg 195 sw
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:37:59,717</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 62
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:37:59,818</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:37:59,919</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:38:00,020</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc filter delete dev sw1p35 ingress pref 49152 
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:38:00,122</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc filter delete dev sw1p35 ingress pref 49152 
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:38:01,345</td>
+<td>INFO</td>
+<td><pre>Executing step 9: Set Storm Control rate limit higher than the default values of SCT profiles, on tx ports</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:38:01,346</td>
+<td>DEBUG</td>
+<td><pre>configureStormControlRateLimit Configure Storm Control rate limit 90288 kbps for multicast traffic type</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:38:01,446</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param set pci/0000:01:00.0/1 name unreg_mc_kbyte_per_sec_rate value 90288 cmode runtime
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:38:01,547</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param set pci/0000:01:00.0/1 name unreg_mc_kbyte_per_sec_rate value 90288 cmode runtime
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:38:01,548</td>
+<td>DEBUG</td>
+<td><pre>StormControlAPI::verifyRateOnPort: Verify Storm Control rate configured is 90288 kbps</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:38:01,648</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param show pci/0000:01:00.0/1 name unreg_mc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:38:01,750</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param show pci/0000:01:00.0/1 name unreg_mc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+90288
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:38:01,751</td>
+<td>DEBUG</td>
+<td><pre>configureStormControlRateLimit Configure Storm Control rate limit 18395 kbps for multicast traffic type</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:38:01,851</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param set pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate value 18395 cmode runtime
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:38:01,953</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param set pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate value 18395 cmode runtime
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:38:01,953</td>
+<td>DEBUG</td>
+<td><pre>StormControlAPI::verifyRateOnPort: Verify Storm Control rate configured is 18395 kbps</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:38:02,054</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param show pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:38:02,155</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param show pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+18395
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:38:02,155</td>
+<td>DEBUG</td>
+<td><pre>configureStormControlRateLimit Configure Storm Control rate limit 59645 kbps for broadcast traffic type</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:38:02,256</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param set pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate value 59645 cmode runtime
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:38:02,357</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param set pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate value 59645 cmode runtime
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:38:02,358</td>
+<td>DEBUG</td>
+<td><pre>StormControlAPI::verifyRateOnPort: Verify Storm Control rate configured is 59645 kbps</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:38:02,459</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param show pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:38:02,559</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param show pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+59645
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:38:02,560</td>
+<td>INFO</td>
+<td><pre>Executing step 10: Transmit continues traffic and verify for each stream the rate is according to hardware spec, and not according the Storm Control's rate configured</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:38:03,451</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::transmitTraffic: Transmitting traffic:
+Port name: 1, Port uri: 10.5.236.4/11/5 ----------&#62 sw1p1
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:38:08,178</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "get_cpu_traps_rate_code_avg 26 sw
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:38:08,279</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: get_cpu_traps_rate_code_avg 26 sw
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:38:28,431</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 200
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:38:28,532</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:38:28,632</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:38:30,456</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "get_cpu_traps_rate_code_avg 28 sw
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:38:30,557</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: get_cpu_traps_rate_code_avg 28 sw
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:38:50,707</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 199
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:38:50,808</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:38:50,908</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:38:51,939</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "get_cpu_traps_rate_code_avg 27 sw
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:38:52,040</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: get_cpu_traps_rate_code_avg 27 sw
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:39:12,192</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 202
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:39:12,294</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:39:12,394</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:39:13,422</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "get_cpu_traps_rate_code_avg 30 sw
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:39:13,522</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: get_cpu_traps_rate_code_avg 30 sw
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:39:33,670</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 200
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:39:33,771</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:39:33,871</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:39:35,111</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::transmitTraffic: Transmitting traffic:
+Port name: 2, Port uri: 10.5.236.4/11/6 ----------&#62 sw1p23
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:39:39,746</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "get_cpu_traps_rate_code_avg 29 sw
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:39:39,846</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: get_cpu_traps_rate_code_avg 29 sw
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:40:00,000</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 100
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:40:00,102</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:40:00,202</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:40:01,258</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::transmitTraffic: Transmitting traffic:
+Port name: 3, Port uri: 10.5.236.4/11/7 ----------&#62 sw1p35
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:40:05,877</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "get_cpu_traps_rate_code_avg 33 sw
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:40:05,978</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: get_cpu_traps_rate_code_avg 33 sw
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:40:26,132</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 101
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:40:26,232</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:40:26,333</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:40:27,171</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "get_cpu_traps_rate_code_avg 19 sw
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:40:27,272</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: get_cpu_traps_rate_code_avg 19 sw
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:40:47,418</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 102
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:40:47,519</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:40:47,620</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:40:49,321</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "get_cpu_traps_rate_code_avg 5 sw
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:40:49,422</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: get_cpu_traps_rate_code_avg 5 sw
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:09,572</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 100
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:09,673</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "echo $?
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:09,773</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: echo $?
+0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:09,774</td>
+<td>TRACE</td>
+<td><pre>BaseTest::_OnPostTest:  starting to run registered post test functions</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:09,775</td>
+<td>TRACE</td>
+<td><pre>BaseTest::TestTearDown:  starting to call to cleanup functions of test</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:09,875</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param set pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate value 0 cmode runtime
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:09,976</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param set pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate value 0 cmode runtime
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:10,079</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param set pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate value 0 cmode runtime
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:10,180</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param set pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate value 0 cmode runtime
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:10,280</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param set pci/0000:01:00.0/1 name unreg_mc_kbyte_per_sec_rate value 0 cmode runtime
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:10,381</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param set pci/0000:01:00.0/1 name unreg_mc_kbyte_per_sec_rate value 0 cmode runtime
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:10,482</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param set pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate value 0 cmode runtime
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:10,583</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param set pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate value 0 cmode runtime
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:10,683</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param set pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate value 0 cmode runtime
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:10,784</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param set pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate value 0 cmode runtime
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:10,885</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param set pci/0000:01:00.0/1 name unreg_mc_kbyte_per_sec_rate value 0 cmode runtime
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:10,986</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param set pci/0000:01:00.0/1 name unreg_mc_kbyte_per_sec_rate value 0 cmode runtime
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:11,087</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip add del 192.168.1.8/24 dev sw1p35
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:11,188</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip add del 192.168.1.8/24 dev sw1p35
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:11,290</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip add del 192.168.1.6/24 dev sw1p23
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:11,391</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip add del 192.168.1.6/24 dev sw1p23
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:11,492</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip add del 192.168.1.4/24 dev sw1p1
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:11,592</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip add del 192.168.1.4/24 dev sw1p1
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:11,694</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc qdisc del dev sw1p35 ingress
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:11,795</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc qdisc del dev sw1p35 ingress
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:11,895</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc qdisc del dev sw1p23 ingress
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:11,997</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc qdisc del dev sw1p23 ingress
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:12,098</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc qdisc del dev sw1p1 ingress
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:12,198</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc qdisc del dev sw1p1 ingress
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:12,300</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p35 down
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:12,400</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p35 down
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:12,501</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p23 down
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:12,602</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p23 down
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:12,703</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p1 down
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:12,803</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p1 down
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:12,804</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_parse_dmesg: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:12,904</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  history
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:12,913</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   history
+    3  ip link set dev sw1p1 up
+    4  ip link set dev sw1p23 up
+    5  ip link set dev sw1p35 up
+    6  tc qdisc add dev sw1p1 ingress
+    7  tc qdisc add dev sw1p23 ingress
+    8  tc qdisc add dev sw1p35 ingress
+    9  ip add add 192.168.1.4/24 dev sw1p1 broadcast 192.168.1.255
+   10  ip add add 192.168.1.6/24 dev sw1p23 broadcast 192.168.1.255
+   11  ip add add 192.168.1.8/24 dev sw1p35 broadcast 192.168.1.255
+   12  devlink port param set pci/0000:01:00.0/1 name unreg_mc_kbyte_per_sec_rate value 40 cmode runtime
+   13  devlink port param show pci/0000:01:00.0/1 name unreg_mc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+   14  devlink port param set pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate value 5 cmode runtime
+   15  devlink port param show pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+   16  devlink port param set pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate value 25 cmode runtime
+   17  devlink port param show pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+   18  function tcpdump_cpu_traps_rate(){                  local IFACE="any";                  if [ $# -ge 1 ]; then IFACE=$1; fi;                  timeout 1.06 tcpdump -i $IFACE &&#62 xx; cat xx | grep -Eo "[0-9]+ packets received by filter" | cut -d ' ' -f 1; rm xx;             }
+   19              
+   20  cat /etc/os-release | grep -Eo '^ID=\w+' | tr -d 'ID='
+   21  echo $?
+   22  function tcpdump_cpu_traps_rate_avg(){                 local start_index=0;                 local end=25;                 local counter=0;                 for((num=start_index; num&#60=end; num++)); do                    local temp=$(tcpdump_cpu_traps_rate $1);                    sleep 1;                    counter=$((counter+temp));                 done;                 echo $((counter/6));             }
+   23              
+   24  echo $?
+   25  function get_cpu_traps_rate_code(){                 R1=`cat /sys/kernel/debug/prestera/$2_counters/traps/cpu_code_$1_stats | tr -d '\0'`;                 sleep 1;                 R2=`cat /sys/kernel/debug/prestera/$2_counters/traps/cpu_code_$1_stats | tr -d '\0'`;                 RXPPS=`expr $R2 - $R1`;                 echo $RXPPS;             }
+   26              
+   27  echo $?
+   28  function get_cpu_traps_rate_code_avg(){                 local start_index=0;                 local end=9;                 local counter=0;                 for((num=start_index; num&#60=end; num++)); do                    local temp=$(get_cpu_traps_rate_code $1 $2);                    sleep 1;                    counter=$((counter+temp));                 done;                 echo $((counter/10));             }
+   29              
+   30  echo $?
+   31  get_cpu_traps_rate_code_avg 30 sw
+   32  echo $?
+   33  get_cpu_traps_rate_code_avg 26 sw
+   34  echo $?
+   35  get_cpu_traps_rate_code_avg 28 sw
+   36  echo $?
+   37  get_cpu_traps_rate_code_avg 27 sw
+   38  echo $?
+   39  get_cpu_traps_rate_code_avg 29 sw
+   40  echo $?
+   41  get_cpu_traps_rate_code_avg 33 sw
+   42  echo $?
+   43  get_cpu_traps_rate_code_avg 19 sw
+   44  echo $?
+   45  get_cpu_traps_rate_code_avg 5 sw
+   46  echo $?
+   47  tc filter add dev sw1p1 ingress protocol ip flower  src_mac 00:00:5e:00:01:2c dst_mac 01:00:5e:00:00:12 dst_ip 224.0.0.18 ip_proto 0x70 action trap
+   48  get_cpu_traps_rate_code_avg 195 sw
+   49  echo $?
+   50  tc filter delete dev sw1p1 ingress pref 49152 
+   51  tc filter add dev sw1p1 ingress flower  dst_mac 01:80:C2:00:00:00 action trap
+   52  get_cpu_traps_rate_code_avg 195 sw
+   53  echo $?
+   54  tc filter delete dev sw1p1 ingress pref 49152 
+   55  tc filter add dev sw1p1 ingress protocol 0x88cc flower  dst_mac 01:80:c2:00:00:0e action trap
+   56  get_cpu_traps_rate_code_avg 195 sw
+   57  echo $?
+   58  tc filter delete dev sw1p1 ingress pref 49152 
+   59  tc filter add dev sw1p1 ingress protocol 0x8809 flower  dst_mac 01:80:c2:00:00:02 action trap
+   60  get_cpu_traps_rate_code_avg 195 sw
+   61 </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:13,014</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  echo $?
+   62  tc filter delete dev sw1p1 ingress pref 49152 
+   63  tc filter add dev sw1p23 ingress protocol ip flower  dst_ip 224.0.0.2 action trap
+   64  get_cpu_traps_rate_code_avg 195 sw
+   65  echo $?
+   66  tc filter delete dev sw1p23 ingress pref 49152 
+   67  tc filter add dev sw1p35 ingress protocol ip flower  ip_proto udp src_port 67 dst_port 68 action trap
+   68  get_cpu_traps_rate_code_avg 195 sw
+   69  echo $?
+   70  tc filter delete dev sw1p35 ingress pref 49152 
+   71  tc filter add dev sw1p35 ingress protocol ip flower  dst_mac FF:FF:FF:FF:FF:FF dst_ip 192.168.1.255 action trap
+   72  get_cpu_traps_rate_code_avg 195 sw
+   73  echo $?
+   74  tc filter delete dev sw1p35 ingress pref 49152 
+   75  tc filter add dev sw1p35 ingress protocol 0x0806 flower  action trap
+   76  get_cpu_traps_rate_code_avg 195 sw
+   77  echo $?
+   78  tc filter delete dev sw1p35 ingress pref 49152 
+   79  devlink port param set pci/0000:01:00.0/1 name unreg_mc_kbyte_per_sec_rate value 90288 cmode runtime
+   80  devlink port param show pci/0000:01:00.0/1 name unreg_mc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+   81  devlink port param set pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate value 18395 cmode runtime
+   82  devlink port param show pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+   83  devlink port param set pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate value 59645 cmode runtime
+   84  devlink port param show pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+   85  get_cpu_traps_rate_code_avg 26 sw
+   86  echo $?
+   87  get_cpu_traps_rate_code_avg 28 sw
+   88  echo $?
+   89  get_cpu_traps_rate_code_avg 27 sw
+   90  echo $?
+   91  get_cpu_traps_rate_code_avg 30 sw
+   92  echo $?
+   93  get_cpu_traps_rate_code_avg 29 sw
+   94  echo $?
+   95  get_cpu_traps_rate_code_avg 33 sw
+   96  echo $?
+   97  get_cpu_traps_rate_code_avg 19 sw
+   98  echo $?
+   99  get_cpu_traps_rate_code_avg 5 sw
+  100  echo $?
+  101  devlink port param set pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate value 0 cmode runtime
+  102  devlink port param set pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate value 0 cmode runtime
+  103  devlink port param set pci/0000:01:00.0/1 name unreg_mc_kbyte_per_sec_rate value 0 cmode runtime
+  104  devlink port param set pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate value 0 cmode runtime
+  105  devlink port param set pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate value 0 cmode runtime
+  106  devlink port param set pci/0000:01:00.0/1 name unreg_mc_kbyte_per_sec_rate value 0 cmode runtime
+  107  ip add del 192.168.1.8/24 dev sw1p35
+  108  ip add del 192.168.1.6/24 dev sw1p23
+  109  ip add del 192.168.1.4/24 dev sw1p1
+  110  tc qdisc del dev sw1p35 ingress
+  111  tc qdisc del dev sw1p23 ingress
+  112  tc qdisc del dev sw1p1 ingress
+  113  ip link set dev sw1p35 down
+  114  ip link set dev sw1p23 down
+  115  ip link set dev sw1p1 down
+  116    history
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:13,015</td>
+<td>DEBUG</td>
+<td><pre>commands history:
+    3  ip link set dev sw1p1 up
+    4  ip link set dev sw1p23 up
+    5  ip link set dev sw1p35 up
+    6  tc qdisc add dev sw1p1 ingress
+    7  tc qdisc add dev sw1p23 ingress
+    8  tc qdisc add dev sw1p35 ingress
+    9  ip add add 192.168.1.4/24 dev sw1p1 broadcast 192.168.1.255
+   10  ip add add 192.168.1.6/24 dev sw1p23 broadcast 192.168.1.255
+   11  ip add add 192.168.1.8/24 dev sw1p35 broadcast 192.168.1.255
+   12  devlink port param set pci/0000:01:00.0/1 name unreg_mc_kbyte_per_sec_rate value 40 cmode runtime
+   13  devlink port param show pci/0000:01:00.0/1 name unreg_mc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+   14  devlink port param set pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate value 5 cmode runtime
+   15  devlink port param show pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+   16  devlink port param set pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate value 25 cmode runtime
+   17  devlink port param show pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+   18  function tcpdump_cpu_traps_rate(){                  local IFACE="any";                  if [ $# -ge 1 ]; then IFACE=$1; fi;                  timeout 1.06 tcpdump -i $IFACE &&#62 xx; cat xx | grep -Eo "[0-9]+ packets received by filter" | cut -d ' ' -f 1; rm xx;             }
+   19              
+   20  cat /etc/os-release | grep -Eo '^ID=\w+' | tr -d 'ID='
+   21  echo $?
+   22  function tcpdump_cpu_traps_rate_avg(){                 local start_index=0;                 local end=25;                 local counter=0;                 for((num=start_index; num&#60=end; num++)); do                    local temp=$(tcpdump_cpu_traps_rate $1);                    sleep 1;                    counter=$((counter+temp));                 done;                 echo $((counter/6));             }
+   23              
+   24  echo $?
+   25  function get_cpu_traps_rate_code(){                 R1=`cat /sys/kernel/debug/prestera/$2_counters/traps/cpu_code_$1_stats | tr -d '\0'`;                 sleep 1;                 R2=`cat /sys/kernel/debug/prestera/$2_counters/traps/cpu_code_$1_stats | tr -d '\0'`;                 RXPPS=`expr $R2 - $R1`;                 echo $RXPPS;             }
+   26              
+   27  echo $?
+   28  function get_cpu_traps_rate_code_avg(){                 local start_index=0;                 local end=9;                 local counter=0;                 for((num=start_index; num&#60=end; num++)); do                    local temp=$(get_cpu_traps_rate_code $1 $2);                    sleep 1;                    counter=$((counter+temp));                 done;                 echo $((counter/10));             }
+   29              
+   30  echo $?
+   31  get_cpu_traps_rate_code_avg 30 sw
+   32  echo $?
+   33  get_cpu_traps_rate_code_avg 26 sw
+   34  echo $?
+   35  get_cpu_traps_rate_code_avg 28 sw
+   36  echo $?
+   37  get_cpu_traps_rate_code_avg 27 sw
+   38  echo $?
+   39  get_cpu_traps_rate_code_avg 29 sw
+   40  echo $?
+   41  get_cpu_traps_rate_code_avg 33 sw
+   42  echo $?
+   43  get_cpu_traps_rate_code_avg 19 sw
+   44  echo $?
+   45  get_cpu_traps_rate_code_avg 5 sw
+   46  echo $?
+   47  tc filter add dev sw1p1 ingress protocol ip flower  src_mac 00:00:5e:00:01:2c dst_mac 01:00:5e:00:00:12 dst_ip 224.0.0.18 ip_proto 0x70 action trap
+   48  get_cpu_traps_rate_code_avg 195 sw
+   49  echo $?
+   50  tc filter delete dev sw1p1 ingress pref 49152 
+   51  tc filter add dev sw1p1 ingress flower  dst_mac 01:80:C2:00:00:00 action trap
+   52  get_cpu_traps_rate_code_avg 195 sw
+   53  echo $?
+   54  tc filter delete dev sw1p1 ingress pref 49152 
+   55  tc filter add dev sw1p1 ingress protocol 0x88cc flower  dst_mac 01:80:c2:00:00:0e action trap
+   56  get_cpu_traps_rate_code_avg 195 sw
+   57  echo $?
+   58  tc filter delete dev sw1p1 ingress pref 49152 
+   59  tc filter add dev sw1p1 ingress protocol 0x8809 flower  dst_mac 01:80:c2:00:00:02 action trap
+   60  get_cpu_traps_rate_code_avg 195 sw
+   61  echo $?
+   62  tc filter delete dev sw1p1 ingress pref 49152 
+   63  tc filter add dev sw1p23 ingress protocol ip flower  dst_ip 224.0.0.2 action trap
+   64  get_cpu_traps_rate_code_avg 195 sw
+   65  echo $?
+   66  tc filter delete dev sw1p23 ingress pref 49152 
+   67  tc filter add dev sw1p35 ingress protocol ip flower  ip_proto udp src_port 67 dst_port 68 action trap
+   68  get_cpu_traps_rate_code_avg 195 sw
+   69  echo $?
+   70  tc filter delete dev sw1p35 ingress pref 49152 
+   71  tc filter add dev sw1p35 ingress protocol ip flower  dst_mac FF:FF:FF:FF:FF:FF dst_ip 192.168.1.255 action trap
+   72  get_cpu_traps_rate_code_avg 195 sw
+   73  echo $?
+   74  tc filter delete dev sw1p35 ingress pref 49152 
+   75  tc filter add dev sw1p35 ingress protocol 0x0806 flower  action trap
+   76  get_cpu_traps_rate_code_avg 195 sw
+   77  echo $?
+   78  tc filter delete dev sw1p35 ingress pref 49152 
+   79  devlink port param set pci/0000:01:00.0/1 name unreg_mc_kbyte_per_sec_rate value 90288 cmode runtime
+   80  devlink port param show pci/0000:01:00.0/1 name unreg_mc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+   81  devlink port param set pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate value 18395 cmode runtime
+   82  devlink port param show pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+   83  devlink port param set pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate value 59645 cmode runtime
+   84  devlink port param show pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+   85  get_cpu_traps_rate_code_avg 26 sw
+   86  echo $?
+   87  get_cpu_traps_rate_code_avg 28 sw
+   88  echo $?
+   89  get_cpu_traps_rate_code_avg 27 sw
+   90  echo $?
+   91  get_cpu_traps_rate_code_avg 30 sw
+   92  echo $?
+   93  get_cpu_traps_rate_code_avg 29 sw
+   94  echo $?
+   95  get_cpu_traps_rate_code_avg 33 sw
+   96  echo $?
+   97  get_cpu_traps_rate_code_avg 19 sw
+   98  echo $?
+   99  get_cpu_traps_rate_code_avg 5 sw
+  100  echo $?
+  101  devlink port param set pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate value 0 cmode runtime
+  102  devlink port param set pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate value 0 cmode runtime
+  103  devlink port param set pci/0000:01:00.0/1 name unreg_mc_kbyte_per_sec_rate value 0 cmode runtime
+  104  devlink port param set pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate value 0 cmode runtime
+  105  devlink port param set pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate value 0 cmode runtime
+  106  devlink port param set pci/0000:01:00.0/1 name unreg_mc_kbyte_per_sec_rate value 0 cmode runtime
+  107  ip add del 192.168.1.8/24 dev sw1p35
+  108  ip add del 192.168.1.6/24 dev sw1p23
+  109  ip add del 192.168.1.4/24 dev sw1p1
+  110  tc qdisc del dev sw1p35 ingress
+  111  tc qdisc del dev sw1p23 ingress
+  112  tc qdisc del dev sw1p1 ingress
+  113  ip link set dev sw1p35 down
+  114  ip link set dev sw1p23 down
+  115  ip link set dev sw1p1 down
+  116    history</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:13,015</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_parse_dmesg: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:13,127</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  cat /var/log/messages
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:13,228</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   cat /var/log/messages
+
+Oct  8 09:30:17 localhost kernel: [  186.585022] IPv6: ADDRCONF(NETDEV_CHANGE): sw1p23: link becomes ready
+Oct  8 09:30:17 localhost kernel: [  187.413870] IPv6: ADDRCONF(NETDEV_CHANGE): sw1p35: link becomes ready
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:13,228</td>
+<td>DEBUG</td>
+<td><pre>dmesg lines that matched regex for issues:</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:13,230</td>
+<td>DEBUG</td>
+<td><pre>{
+    "call trace:": {
+        found: false,
+        regex: "Call trace:",
+    },
+    "cut here": {
+        found: false,
+        regex: "\\[ cut here \\]",
+    },
+    "hw routing offloading disabled:": {
+        found: false,
+        regex: "Abort. HW routing offloading disabled",
+    },
+}</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:14,801</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Cleanup:  clearing ports ownership...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:15,293</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Cleanup:  Disconnecting from chassis...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:41:15,316</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Cleanup:  TG disconnect time is 0.02</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:41:15,316</td>
+<td>INFO</td>
+<td><pre>Test Passed</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:41:15,324</td>
+<td>INFO</td>
+<td><pre>
+CI_META:
+{"Software_Version": "2.0.0-v3.0.1", "Linux_Version": ""}
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                                  Dut Information                                                                   |
++--------+-------------+------+------------------+--------------------------------+---------------+---------------+---------------------+------------+
+| ODM    | Board_Model | ASIC | Software_Version | UBOOT_Version                  | Linux_Version | CPU_CoreClock | Host_kernel_version | PCBVersion |
++--------+-------------+------+------------------+--------------------------------+---------------+---------------+---------------------+------------+
+| Accton | AS4224-52T  | AC3X | 2.0.0-v3.0.1     | U-Boot 2019.10-10.0.0-g7c9e534 |               |               | 5.10.4              | R0A        |
++--------+-------------+------+------------------+--------------------------------+---------------+---------------+---------------------+------------+
+
+None
+
++--------------------------------------+
+|             PDU Settings             |
++----------------+------------+--------+
+| Connect_To_PDU | ip_address | outlet |
++----------------+------------+--------+
+| True           | 10.5.236.5 | 11     |
++----------------+------------+--------+
+
+None
++-------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                             Test Steps Summary                                                            |
++------+------------------------------------------------------------------------------------------------------+--------+--------------------+
+| Step | Description                                                                                          | Result | Run Time           |
++------+------------------------------------------------------------------------------------------------------+--------+--------------------+
+| 1    | Init test                                                                                            | Passed | 0.0                |
++------+------------------------------------------------------------------------------------------------------+--------+--------------------+
+| 2    | Set link up on interfaces                                                                            | Passed | 0.6056056022644043 |
++------+------------------------------------------------------------------------------------------------------+--------+--------------------+
+| 3    | Configure qdisc on tx ports                                                                          | Passed | 0.6088087558746338 |
++------+------------------------------------------------------------------------------------------------------+--------+--------------------+
+| 4    | Configure ip address on tx ports                                                                     | Passed | 0.6072111129760742 |
++------+------------------------------------------------------------------------------------------------------+--------+--------------------+
+| 5    | Set up streams matching SCT supported traps on tx ports                                              | Passed | 54.05955505371094  |
++------+------------------------------------------------------------------------------------------------------+--------+--------------------+
+| 6    | Set Storm Control rate limit lower than the default values of SCT profiles, on tx ports              | Passed | 1.2204504013061523 |
++------+------------------------------------------------------------------------------------------------------+--------+--------------------+
+| 7    | Transmit continues traffic and verify for each stream the rate is according to the Storm Control's   | Passed | 191.2855987548828  |
+|      | rate configured, and not according to hardware spec                                                  |        |                    |
++------+------------------------------------------------------------------------------------------------------+--------+--------------------+
+| 8    | Configure dynamic trap rule for each stream. Transmit continues traffic and verify the rate each     | Passed | 192.28097701072693 |
+|      | stream being trapped is according to the Storm Control's rate configured                             |        |                    |
++------+------------------------------------------------------------------------------------------------------+--------+--------------------+
+| 9    | Set Storm Control rate limit higher than the default values of SCT profiles, on tx ports             | Passed | 1.2147953510284424 |
++------+------------------------------------------------------------------------------------------------------+--------+--------------------+
+| 10   | Transmit continues traffic and verify for each stream the rate is according to hardware spec, and    | Passed | 187.2145390510559  |
+|      | not according the Storm Control's rate configured                                                    |        |                    |
++------+------------------------------------------------------------------------------------------------------+--------+--------------------+
++---------------------------------------------------------------------------------------------------------------------+
+|                                                   Test Information                                                  |
++--------------+----------------------------------------+--------+-----------------+-----------------+----------------+
+| Suite_Name   | Test_Name                              | Result | start_time      | end_time        | run_time       |
++--------------+----------------------------------------+--------+-----------------+-----------------+----------------+
+| StormControl | StormControl_Functional_ControlPackets | Passed | 09:30:14.242892 | 09:41:15.316179 | 0:11:01.073287 |
++--------------+----------------------------------------+--------+-----------------+-----------------+----------------+</pre></td>
+</tr>
+
+</tbody></table></div>
+</body>
+<script>
+    $.fn.dataTable.ext.search.push(
+        function( settings, data, dataIndex ) {
+            let minIndex = severities.indexOf($('#min-severity').find(':selected').text());
+            let maxIndex = severities.indexOf($('#max-severity').find(':selected').text());
+            var severity = data[1] || 'NOT SET';// use data for the Log Level column
+            var severityIndex = severities.indexOf(severity);
+            if ( ( maxIndex == -1 && minIndex == -1 ) ||
+                 ( minIndex <= severityIndex && severityIndex <= maxIndex ) )
+            {
+                return true;
+            }
+            return false;
+        }
+    );
+    
+    function fill_select(id, items){
+        for(t of items){
+            $('#'+id).append(new Option(t, t));
+        }
+    }
+    
+    function selectionChanged(selectChanged, selectAffected, selectedOption, startFrom, end){
+        let selected = $('#'+selectAffected).find(':selected').text(); //keep affected value
+        $('#'+selectAffected).empty(); //empty the affected one
+
+        fill_select(selectAffected, severities.slice(startFrom, end));
+        selected = $('#'+selectAffected).find("option:contains('" + selected  + "')").length > 0 ? selected : $("#"+selectAffected+" option:first").val();
+        $('#'+selectAffected).val(selected);
+    }
+    
+    var severities = ['NOT SET','TRACE','DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL']
+    $(document).ready(function() {
+        for(severity of severities){
+            $('#min-severity, #max-severity').append(new Option(severity, severity));
+        }
+        
+        $('#max-severity option:last').attr('selected', 'selected');
+        
+        var table = $('#data_table').DataTable({
+            "lengthMenu": [[-1, 10, 25, 50], ["All", 10, 25, 50]]
+        });
+        
+        $('#min-severity, #max-severity').change( function(e) {
+            if(e.target.id == 'min-severity'){
+                selectionChanged(e.target.id, 'max-severity', e.target.selectedOptions[0].text, severities.indexOf(e.target.selectedOptions[0].text), severities.length+1);
+            }
+            else if(e.target.id == 'max-severity'){
+                selectionChanged(e.target.id, 'min-severity',e.target.selectedOptions[0].text, 0 ,severities.indexOf(e.target.selectedOptions[0].text) + 1);
+            }
+            table.draw();
+        } );
+    } );
+    
+    
+</script>
+</html>

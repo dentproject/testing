@@ -1,0 +1,2764 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Acl_Stress_Ipv4_RawUntagged_SharedBlocks_QdiscOverflow_PassDrop_18-35-08-995276 Log</title>
+<!-- Latest compiled and minified CSS -->
+<!--
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs-3.3.7/jq-3.2.1/jq-3.2.1/dt-1.10.16/datatables.min.css"/>
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.7/jq-3.2.1/jq-3.2.1/dt-1.10.16/datatables.min.js"></script>
+-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+  
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+<style>
+pre {
+margin : 0;
+white-space: pre-wrap;
+background-color: inherit;
+border: none;
+border-radius: inherit;
+}
+</style>
+</head>
+
+<body>
+<div class="col-md-12 col-xs-12 col-lg-12">
+<br>
+<h1 style="text-align:center">Acl_Stress_Ipv4_RawUntagged_SharedBlocks_QdiscOverflow_PassDrop_18-35-08-995276 Log</h1>
+<br>
+<div class="input-group">
+    <select class="form-control" id="min-severity" placeholder="Min Severity">
+    </select>
+    <span class="input-group-addon">-</span>
+    <select class="form-control" id="max-severity" placeholder="Max Severity">
+    </select>
+</div>
+&nbsp
+<table id="data_table" class="table table-striped table-bordered" cellspacing="0">
+<thead>
+    <tr>
+        <th style="width: 180px;">Time</th>
+        <th style="width: 90px;">Log Level</th>
+        <th>Message</th>
+    </tr>
+</thead>
+<tbody>
+
+<tr class="success">
+<td>2021-09-04 18:35:08,996</td>
+<td>TRACE</td>
+<td><pre>BaseTest_SD::_BasicTestInit: this test has been launched with the following input arguments:
+Namespace(conn_table=None, dummy_test=False, excel_path='/swdev/fileril103/testing/Projects/Automation/Python/Setups/AGO/CI/Setup_23.xlsx', excel_setups_db_path=None, seed=None, setup_info=None, setup_name=None, stress=None, test_args=None)</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:35:08,996</td>
+<td>TRACE</td>
+<td><pre>BaseTest_SD::_BasicTestInit: this test is running from the following Setup Excel file /swdev/fileril103/testing/Projects/Automation/Python/Setups/AGO/CI/Setup_23.xlsx</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:35:08,997</td>
+<td>TRACE</td>
+<td><pre>
++-------------------------------------------------------+
+|                    TG Mapping Table                   |
++----+------------+------------+------+------+----------+
+| ID | IP Address |  TG Type   | Card | Port | Dut Port |
++----+------------+------------+------+------+----------+
+| 1  | 10.5.236.4 | ixia_linux |  11  |  5   |  sw1p1   |
+| 2  | 10.5.236.4 | ixia_linux |  11  |  6   |  sw1p23  |
+| 3  | 10.5.236.4 | ixia_linux |  11  |  7   |  sw1p35  |
+| 4  | 10.5.236.4 | ixia_linux |  11  |  8   |  sw1p48  |
++----+------------+------------+------+------+----------+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:35:08,997</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: connecting to IxiaSSH on IP 10.5.236.4 using TCL/API Server IP 10.5.236.4</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:35:18,464</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect:  Connection Successful</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:35:19,796</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:35:21,815</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:35:23,857</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:35:26,364</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-04 18:35:30,532</td>
+<td>INFO</td>
+<td><pre>Used cached DutInfo: dutmainchannel__/swdev/fileril103/testing/Projects/Automation/Python/Setups/AGO/CI/Setup_23.xlsx__1620569885.7663186</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:35:30,535</td>
+<td>TRACE</td>
+<td><pre>SwitchDevDutManager::login: Connecting to 10.5.236.85:root:22 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:35:30,652</td>
+<td>TRACE</td>
+<td><pre>SwitchDevDutManager::login: Connection Successful</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:35:30,654</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "
+
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:35:30,755</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: Linux localhost 5.10.4 #1 SMP PREEMPT Tue Aug 31 15:40:33 UTC 2021 aarch64
+Last login: Sat Sep  4 18:34:17 2021 from 10.5.116.193
+
+
+root@localhost:~# 
+root@localhost:~# 
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:35:31,756</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "
+
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:35:31,858</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 
+root@localhost:~# 
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:35:31,858</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_clear_dmesg: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:35:31,959</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  echo "" &#62 /var/log/messages
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:35:32,059</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   echo "" &#62 /var/log/messages
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:35:32,059</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_clear_cmd_history: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:35:32,160</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  history -c
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:35:32,262</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   history -c
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:35:32,263</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::stressCpus: </pre></td>
+</tr>
+
+
+<tr>
+<td width="100"></td>
+<td width="100"></td>
+<td class="info"><pre>+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                                             Test Description                                                                            |
++------------+-----------------------------------------------------------------+--------------------------------------------------+-------------+-------------------------+
+| Suite Name | Test Name                                                       | Purpose                                          | Author      | Test Document Reference |
++------------+-----------------------------------------------------------------+--------------------------------------------------+-------------+-------------------------+
+| ACL        | Acl_Stress_Ipv4_RawUntagged_SharedBlocks_QdiscOverflow_PassDrop | This test comes to verify:                       | Maya Peretz | 1.2.13                  |
+|            |                                                                 |             * IPv4 ACLs setting and verification |             |                         |
+|            |                                                                 |                                                  |             |                         |
++------------+-----------------------------------------------------------------+--------------------------------------------------+-------------+-------------------------+
+
++-------------------------------------------------------------------------------+
+|                                 Test Procedure                                |
++------+------------------------------------------------------------------------+
+| Step | Step Description                                                       |
++------+------------------------------------------------------------------------+
+| 1    | Initiate test params                                                   |
++------+------------------------------------------------------------------------+
+| 2    | Set link up on interfaces                                              |
++------+------------------------------------------------------------------------+
+| 3    | Set IP forwarding = 1                                                  |
++------+------------------------------------------------------------------------+
+| 4    | Configure ip 1.1.1.1 on first TGDutLink DUT port, 2.2.2.2 on second    |
+|      | TGDutLink DUT port, 3.3.3.3 on third TGDutLink DUT port                |
++------+------------------------------------------------------------------------+
+| 5    | Configure hosts on Ixia ports and create stream for each TX TG port    |
+|      | with increment ip addresses with count 10000                           |
++------+------------------------------------------------------------------------+
+| 6    | Set ingress qdisc                                                      |
++------+------------------------------------------------------------------------+
+| 7    | Randomly select pass/drop action and overflow table with IPv4 rules    |
+|      | with incremented DIP                                                   |
++------+------------------------------------------------------------------------+
+| 8    | Send Traffic                                                           |
++------+------------------------------------------------------------------------+
+| 9    | Verify the number of packets received is according to the rules'       |
+|      | action                                                                 |
++------+------------------------------------------------------------------------+</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-04 18:35:32,271</td>
+<td>INFO</td>
+<td><pre>Randomize::__init__: Random seed value is 0.05624796889135397</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-04 18:35:32,271</td>
+<td>INFO</td>
+<td><pre>Executing step 1: Initiate test params</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:35:32,272</td>
+<td>DEBUG</td>
+<td><pre>AclAPI::initTestParams: Initiate all relevant test parameters</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-04 18:35:32,272</td>
+<td>INFO</td>
+<td><pre>Executing step 2: Set link up on interfaces</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:35:32,272</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::setLinkStateOnInterfaces: set link up on ports</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:35:32,374</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p1 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:35:32,475</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p1 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:35:32,575</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p23 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:35:32,676</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p23 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:35:32,778</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p35 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:35:32,879</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p35 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-04 18:35:32,879</td>
+<td>INFO</td>
+<td><pre>Executing step 3: Set IP forwarding = 1</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:35:32,979</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "sysctl -w net.ipv4.ip_forward=1
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:35:33,080</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: sysctl -w net.ipv4.ip_forward=1
+net.ipv4.ip_forward = 1
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-04 18:35:33,081</td>
+<td>INFO</td>
+<td><pre>Executing step 4: Configure ip 1.1.1.1 on first TGDutLink DUT port, 2.2.2.2 on second TGDutLink DUT port, 3.3.3.3 on third TGDutLink DUT port</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:35:33,181</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip add add 1.1.1.1/16 dev sw1p1
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:35:33,282</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip add add 1.1.1.1/16 dev sw1p1
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:35:33,383</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip add add 2.2.2.2/16 dev sw1p23
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:35:33,483</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip add add 2.2.2.2/16 dev sw1p23
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:35:33,584</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip add add 3.3.3.3/16 dev sw1p35
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:35:33,685</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip add add 3.3.3.3/16 dev sw1p35
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-04 18:35:33,685</td>
+<td>INFO</td>
+<td><pre>Executing step 5: Configure hosts on Ixia ports and create stream for each TX TG port with increment ip addresses with count 10000</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:35:33,685</td>
+<td>DEBUG</td>
+<td><pre>CommonStreams::addIPv4ProtocolInterface: Setting up IPv4 protocol interface on port Port name: 1, Port uri: 10.5.236.4/11/5</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:35:33,686</td>
+<td>DEBUG</td>
+<td><pre>CommonStreams::addIPv4ProtocolInterface: Setting up IPv4 protocol interface on port Port name: 2, Port uri: 10.5.236.4/11/6</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:35:33,835</td>
+<td>DEBUG</td>
+<td><pre>Setting up more settings on stream: Port name: 1
+Port uri: 10.5.236.4/11/5
+Port stream names: [MatchedStream, ]
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:35:33,836</td>
+<td>DEBUG</td>
+<td><pre>Stream name: MatchedStream
+Stream uri: 1 11 5 1
+Stream port name: 1
+Stream packet: L2: MAC: DA[00:00:00:00:00:02, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[00:00:00:00:00:01, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+IPV4_HEADER: IPV4: SIP[0.0.0.0, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], DIP[3.3.4.0, mode=MODIFIER_IPV4_ADDRESS_MODE.INCREMENT_HOST, count=2000, mask=255.0.0.0], TTL[64], PROTOCOL[255], IDENTIFIER[0], OPTIONS[], CUSTOM CHECKSUM[], FRAGMENT ENABLED[True], FRAGMENT OFFSET[0], FRAGMENT LAST[True]DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[64], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.CONTINUOUS_PACKET], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.STREAM_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:35:34,000</td>
+<td>DEBUG</td>
+<td><pre>Setting up more settings on stream: Port name: 2
+Port uri: 10.5.236.4/11/6
+Port stream names: [MatchedStream, ]
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:35:34,000</td>
+<td>DEBUG</td>
+<td><pre>Stream name: MatchedStream
+Stream uri: 1 11 6 1
+Stream port name: 2
+Stream packet: L2: MAC: DA[00:00:00:00:00:02, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[00:00:00:00:00:01, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+IPV4_HEADER: IPV4: SIP[0.0.0.0, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], DIP[3.3.4.0, mode=MODIFIER_IPV4_ADDRESS_MODE.INCREMENT_HOST, count=2000, mask=255.0.0.0], TTL[64], PROTOCOL[255], IDENTIFIER[0], OPTIONS[], CUSTOM CHECKSUM[], FRAGMENT ENABLED[True], FRAGMENT OFFSET[0], FRAGMENT LAST[True]DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[64], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.CONTINUOUS_PACKET], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.STREAM_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:35:34,000</td>
+<td>DEBUG</td>
+<td><pre>AclAPI::setUpFixedStreamSettings:  Setting up fixed settings on all streams of port: Port name: 1, Port uri: 10.5.236.4/11/5</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:35:34,002</td>
+<td>DEBUG</td>
+<td><pre>AclAPI::setUpFixedStreamSettings:  Setting up fixed settings on all streams of port: Port name: 2, Port uri: 10.5.236.4/11/6</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:37:08,140</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "for i in {4..15}; do for j in {0..255}; do arp -s 3.3.$i.$j 16:10:84:24:7b:27; done; done
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:37:08,242</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: for i in {4..15}; do for j in {0..255}; do arp -s 3.3.$i.$j 16:10:84:24:7b:27; done; done
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:37:39,539</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-04 18:37:39,540</td>
+<td>INFO</td>
+<td><pre>Executing step 6: Set ingress qdisc</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:37:39,540</td>
+<td>DEBUG</td>
+<td><pre>AclAPI::configureQdisc: configure ingress qdisc</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:37:39,642</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc qdisc add dev sw1p1 ingress_block 22 ingress
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:37:39,743</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc qdisc add dev sw1p1 ingress_block 22 ingress
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:37:39,844</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc qdisc add dev sw1p23 ingress_block 22 ingress
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:37:39,946</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc qdisc add dev sw1p23 ingress_block 22 ingress
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-04 18:37:39,946</td>
+<td>INFO</td>
+<td><pre>Executing step 7: Randomly select pass/drop action and overflow table with IPv4 rules with incremented DIP</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:37:40,047</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc filter add block 22 flower  action drop
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:37:40,148</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc filter add block 22 flower  action drop
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:37:40,165</td>
+<td>DEBUG</td>
+<td><pre>tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.0 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.1 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.2 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.3 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.4 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.5 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.6 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.7 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.8 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.9 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.10 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.11 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.12 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.13 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.14 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.15 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.16 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.17 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.18 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.19 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.20 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.21 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.22 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.23 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.24 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.25 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.26 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.27 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.28 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.29 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.30 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.31 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.32 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.33 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.34 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.35 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.36 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.37 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.38 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.39 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.40 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.41 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.42 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.43 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.44 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.45 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.46 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.47 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.48 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.49 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.50 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.51 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.52 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.53 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.54 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.55 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.56 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.57 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.58 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.59 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.60 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.61 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.62 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.63 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.64 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.65 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.66 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.67 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.68 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.69 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.70 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.71 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.72 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.73 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.74 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.75 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.76 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.77 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.78 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.79 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.80 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.81 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.82 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.83 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.84 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.85 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.86 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.87 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.88 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.89 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.90 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.91 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.92 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.93 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.94 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.95 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.96 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.97 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.98 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.99 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.100 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.101 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.102 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.103 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.104 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.105 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.106 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.107 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.108 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.109 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.110 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.111 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.112 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.113 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.114 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.115 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.116 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.117 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.118 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.119 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.120 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.121 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.122 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.123 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.124 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.125 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.126 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.127 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.128 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.129 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.130 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.131 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.132 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.133 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.134 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.135 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.136 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.137 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.138 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.139 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.140 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.141 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.142 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.143 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.144 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.145 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.146 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.147 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.148 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.149 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.150 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.151 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.152 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.153 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.154 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.155 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.156 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.157 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.158 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.159 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.160 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.161 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.162 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.163 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.164 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.165 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.166 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.167 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.168 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.169 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.170 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.171 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.172 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.173 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.174 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.175 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.176 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.177 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.178 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.179 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.180 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.181 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.182 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.183 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.184 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.185 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.186 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.187 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.188 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.189 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.190 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.191 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.192 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.193 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.194 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.195 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.196 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.197 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.198 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.199 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.200 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.201 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.202 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.203 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.204 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.205 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.206 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.207 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.208 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.209 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.210 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.211 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.212 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.213 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.214 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.215 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.216 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.217 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.218 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.219 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.220 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.221 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.222 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.223 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.224 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.225 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.226 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.227 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.228 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.229 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.230 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.231 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.232 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.233 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.234 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.235 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.236 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.237 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.238 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.239 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.240 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.241 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.242 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.243 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.244 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.245 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.246 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.247 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.248 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.249 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.250 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.251 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.252 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.253 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.254 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.4.255 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.0 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.1 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.2 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.3 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.4 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.5 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.6 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.7 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.8 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.9 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.10 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.11 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.12 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.13 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.14 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.15 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.16 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.17 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.18 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.19 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.20 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.21 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.22 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.23 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.24 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.25 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.26 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.27 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.28 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.29 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.30 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.31 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.32 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.33 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.34 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.35 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.36 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.37 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.38 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.39 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.40 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.41 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.42 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.43 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.44 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.45 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.46 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.47 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.48 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.49 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.50 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.51 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.52 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.53 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.54 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.55 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.56 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.57 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.58 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.59 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.60 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.61 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.62 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.63 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.64 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.65 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.66 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.67 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.68 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.69 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.70 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.71 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.72 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.73 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.74 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.75 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.76 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.77 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.78 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.79 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.80 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.81 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.82 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.83 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.84 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.85 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.86 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.87 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.88 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.89 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.90 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.91 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.92 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.93 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.94 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.95 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.96 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.97 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.98 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.99 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.100 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.101 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.102 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.103 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.104 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.105 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.106 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.107 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.108 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.109 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.110 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.111 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.112 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.113 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.114 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.115 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.116 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.117 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.118 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.119 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.120 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.121 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.122 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.123 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.124 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.125 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.126 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.127 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.128 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.129 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.130 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.131 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.132 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.133 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.134 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.135 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.136 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.137 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.138 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.139 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.140 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.141 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.142 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.143 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.144 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.145 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.146 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.147 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.148 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.149 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.150 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.151 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.152 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.153 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.154 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.155 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.156 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.157 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.158 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.159 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.160 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.161 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.162 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.163 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.164 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.165 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.166 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.167 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.168 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.169 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.170 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.171 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.172 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.173 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.174 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.175 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.176 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.177 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.178 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.179 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.180 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.181 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.182 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.183 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.184 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.185 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.186 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.187 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.188 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.189 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.190 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.191 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.192 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.193 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.194 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.195 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.196 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.197 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.198 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.199 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.200 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.201 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.202 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.203 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.204 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.205 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.206 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.207 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.208 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.209 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.210 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.211 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.212 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.213 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.214 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.215 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.216 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.217 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.218 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.219 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.220 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.221 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.222 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.223 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.224 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.225 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.226 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.227 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.228 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.229 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.230 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.231 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.232 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.233 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.234 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.235 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.236 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.237 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.238 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.239 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.240 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.241 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.242 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.243 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.244 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.245 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.246 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.247 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.248 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.249 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.250 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.251 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.252 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.253 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.254 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.5.255 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.0 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.1 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.2 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.3 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.4 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.5 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.6 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.7 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.8 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.9 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.10 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.11 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.12 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.13 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.14 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.15 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.16 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.17 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.18 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.19 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.20 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.21 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.22 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.23 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.24 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.25 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.26 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.27 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.28 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.29 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.30 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.31 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.32 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.33 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.34 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.35 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.36 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.37 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.38 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.39 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.40 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.41 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.42 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.43 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.44 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.45 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.46 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.47 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.48 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.49 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.50 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.51 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.52 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.53 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.54 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.55 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.56 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.57 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.58 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.59 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.60 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.61 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.62 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.63 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.64 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.65 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.66 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.67 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.68 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.69 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.70 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.71 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.72 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.73 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.74 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.75 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.76 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.77 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.78 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.79 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.80 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.81 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.82 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.83 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.84 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.85 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.86 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.87 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.88 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.89 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.90 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.91 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.92 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.93 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.94 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.95 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.96 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.97 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.98 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.99 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.100 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.101 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.102 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.103 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.104 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.105 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.106 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.107 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.108 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.109 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.110 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.111 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.112 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.113 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.114 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.115 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.116 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.117 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.118 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.119 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.120 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.121 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.122 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.123 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.124 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.125 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.126 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.127 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.128 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.129 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.130 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.131 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.132 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.133 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.134 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.135 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.136 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.137 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.138 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.139 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.140 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.141 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.142 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.143 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.144 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.145 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.146 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.147 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.148 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.149 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.150 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.151 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.152 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.153 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.154 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.155 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.156 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.157 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.158 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.159 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.160 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.161 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.162 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.163 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.164 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.165 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.166 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.167 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.168 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.169 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.170 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.171 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.172 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.173 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.174 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.175 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.176 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.177 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.178 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.179 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.180 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.181 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.182 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.183 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.184 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.185 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.186 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.187 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.188 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.189 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.190 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.191 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.192 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.193 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.194 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.195 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.196 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.197 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.198 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.199 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.200 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.201 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.202 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.203 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.204 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.205 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.206 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.207 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.208 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.209 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.210 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.211 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.212 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.213 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.214 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.215 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.216 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.217 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.218 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.219 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.220 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.221 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.222 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.223 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.224 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.225 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.226 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.227 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.228 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.229 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.230 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.231 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.232 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.233 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.234 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.235 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.236 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.237 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.238 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.239 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.240 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.241 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.242 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.243 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.244 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.245 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.246 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.247 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.248 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.249 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.250 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.251 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.252 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.253 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.254 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.6.255 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.0 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.1 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.2 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.3 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.4 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.5 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.6 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.7 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.8 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.9 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.10 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.11 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.12 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.13 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.14 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.15 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.16 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.17 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.18 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.19 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.20 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.21 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.22 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.23 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.24 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.25 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.26 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.27 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.28 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.29 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.30 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.31 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.32 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.33 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.34 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.35 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.36 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.37 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.38 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.39 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.40 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.41 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.42 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.43 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.44 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.45 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.46 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.47 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.48 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.49 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.50 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.51 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.52 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.53 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.54 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.55 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.56 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.57 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.58 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.59 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.60 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.61 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.62 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.63 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.64 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.65 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.66 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.67 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.68 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.69 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.70 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.71 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.72 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.73 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.74 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.75 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.76 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.77 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.78 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.79 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.80 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.81 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.82 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.83 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.84 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.85 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.86 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.87 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.88 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.89 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.90 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.91 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.92 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.93 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.94 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.95 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.96 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.97 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.98 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.99 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.100 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.101 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.102 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.103 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.104 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.105 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.106 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.107 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.108 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.109 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.110 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.111 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.112 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.113 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.114 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.115 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.116 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.117 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.118 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.119 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.120 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.121 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.122 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.123 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.124 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.125 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.126 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.127 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.128 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.129 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.130 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.131 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.132 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.133 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.134 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.135 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.136 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.137 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.138 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.139 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.140 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.141 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.142 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.143 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.144 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.145 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.146 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.147 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.148 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.149 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.150 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.151 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.152 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.153 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.154 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.155 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.156 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.157 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.158 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.159 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.160 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.161 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.162 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.163 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.164 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.165 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.166 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.167 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.168 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.169 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.170 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.171 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.172 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.173 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.174 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.175 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.176 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.177 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.178 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.179 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.180 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.181 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.182 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.183 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.184 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.185 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.186 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.187 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.188 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.189 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.190 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.191 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.192 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.193 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.194 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.195 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.196 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.197 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.198 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.199 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.200 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.201 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.202 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.203 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.204 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.205 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.206 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.207 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.208 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.209 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.210 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.211 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.212 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.213 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.214 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.215 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.216 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.217 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.218 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.219 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.220 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.221 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.222 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.223 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.224 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.225 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.226 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.227 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.228 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.229 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.230 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.231 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.232 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.233 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.234 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.235 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.236 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.237 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.238 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.239 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.240 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.241 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.242 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.243 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.244 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.245 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.246 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.247 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.248 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.249 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.250 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.251 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.252 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.253 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.254 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.7.255 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.0 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.1 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.2 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.3 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.4 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.5 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.6 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.7 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.8 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.9 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.10 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.11 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.12 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.13 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.14 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.15 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.16 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.17 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.18 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.19 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.20 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.21 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.22 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.23 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.24 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.25 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.26 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.27 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.28 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.29 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.30 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.31 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.32 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.33 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.34 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.35 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.36 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.37 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.38 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.39 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.40 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.41 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.42 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.43 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.44 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.45 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.46 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.47 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.48 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.49 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.50 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.51 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.52 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.53 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.54 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.55 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.56 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.57 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.58 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.59 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.60 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.61 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.62 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.63 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.64 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.65 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.66 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.67 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.68 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.69 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.70 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.71 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.72 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.73 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.74 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.75 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.76 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.77 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.78 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.79 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.80 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.81 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.82 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.83 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.84 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.85 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.86 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.87 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.88 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.89 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.90 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.91 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.92 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.93 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.94 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.95 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.96 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.97 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.98 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.99 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.100 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.101 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.102 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.103 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.104 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.105 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.106 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.107 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.108 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.109 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.110 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.111 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.112 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.113 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.114 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.115 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.116 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.117 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.118 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.119 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.120 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.121 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.122 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.123 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.124 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.125 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.126 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.127 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.128 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.129 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.130 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.131 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.132 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.133 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.134 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.135 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.136 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.137 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.138 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.139 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.140 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.141 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.142 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.143 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.144 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.145 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.146 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.147 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.148 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.149 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.150 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.151 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.152 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.153 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.154 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.155 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.156 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.157 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.158 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.159 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.160 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.161 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.162 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.163 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.164 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.165 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.166 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.167 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.168 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.169 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.170 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.171 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.172 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.173 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.174 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.175 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.176 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.177 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.178 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.179 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.180 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.181 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.182 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.183 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.184 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.185 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.186 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.187 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.188 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.189 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.190 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.191 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.192 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.193 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.194 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.195 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.196 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.197 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.198 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.199 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.200 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.201 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.202 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.203 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.204 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.205 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.206 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.207 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.208 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.209 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.210 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.211 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.212 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.213 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.214 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.215 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.216 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.217 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.218 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.219 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.220 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.221 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.222 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.223 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.224 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.225 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.226 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.227 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.228 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.229 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.230 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.231 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.232 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.233 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.234 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.235 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.236 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.237 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.238 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.239 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.240 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.241 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.242 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.243 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.244 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.245 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.246 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.247 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.248 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.249 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.250 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.251 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.252 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.253 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.254 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.8.255 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.0 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.1 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.2 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.3 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.4 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.5 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.6 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.7 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.8 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.9 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.10 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.11 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.12 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.13 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.14 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.15 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.16 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.17 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.18 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.19 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.20 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.21 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.22 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.23 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.24 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.25 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.26 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.27 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.28 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.29 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.30 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.31 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.32 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.33 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.34 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.35 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.36 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.37 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.38 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.39 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.40 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.41 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.42 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.43 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.44 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.45 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.46 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.47 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.48 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.49 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.50 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.51 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.52 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.53 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.54 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.55 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.56 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.57 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.58 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.59 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.60 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.61 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.62 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.63 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.64 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.65 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.66 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.67 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.68 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.69 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.70 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.71 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.72 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.73 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.74 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.75 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.76 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.77 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.78 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.79 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.80 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.81 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.82 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.83 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.84 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.85 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.86 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.87 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.88 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.89 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.90 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.91 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.92 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.93 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.94 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.95 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.96 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.97 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.98 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.99 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.100 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.101 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.102 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.103 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.104 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.105 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.106 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.107 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.108 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.109 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.110 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.111 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.112 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.113 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.114 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.115 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.116 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.117 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.118 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.119 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.120 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.121 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.122 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.123 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.124 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.125 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.126 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.127 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.128 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.129 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.130 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.131 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.132 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.133 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.134 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.135 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.136 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.137 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.138 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.139 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.140 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.141 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.142 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.143 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.144 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.145 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.146 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.147 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.148 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.149 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.150 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.151 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.152 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.153 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.154 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.155 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.156 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.157 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.158 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.159 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.160 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.161 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.162 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.163 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.164 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.165 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.166 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.167 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.168 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.169 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.170 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.171 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.172 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.173 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.174 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.175 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.176 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.177 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.178 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.179 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.180 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.181 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.182 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.183 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.184 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.185 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.186 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.187 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.188 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.189 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.190 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.191 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.192 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.193 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.194 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.195 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.196 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.197 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.198 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.199 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.200 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.201 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.202 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.203 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.204 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.205 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.206 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.207 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.208 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.209 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.210 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.211 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.212 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.213 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.214 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.215 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.216 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.217 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.218 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.219 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.220 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.221 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.222 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.223 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.224 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.225 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.226 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.227 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.228 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.229 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.230 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.231 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.232 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.233 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.234 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.235 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.236 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.237 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.238 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.239 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.240 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.241 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.242 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.243 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.244 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.245 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.246 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.247 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.248 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.249 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.250 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.251 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.252 action pass 
+tc filter add block 22 protocol ip flower skip_sw dst_ip 3.3.9.253 action pass </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:37:40,298</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "chmod 755 config260241791432590479006362671613869453999.sh && ./config260241791432590479006362671613869453999.sh 
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:37:40,399</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: chmod 755 config260241791432590479006362671613869453999.sh && ./config260241791432590479006362671613869453999.sh 
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:38:59,640</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:38:59,741</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "rm -f config260241791432590479006362671613869453999.sh
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:38:59,842</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: rm -f config260241791432590479006362671613869453999.sh
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-04 18:38:59,843</td>
+<td>INFO</td>
+<td><pre>Executing step 8: Send Traffic</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:39:04,907</td>
+<td>DEBUG</td>
+<td><pre>wait 15 seconds...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:39:19,921</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::transmitTraffic: Transmitting traffic:
+Port name: 1, Port uri: 10.5.236.4/11/5 ----------&#62 Port name: 3, Port uri: 10.5.236.4/11/7
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:39:24,591</td>
+<td>DEBUG</td>
+<td><pre>wait 15 seconds...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:39:39,605</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::transmitTraffic: Transmitting traffic:
+Port name: 2, Port uri: 10.5.236.4/11/6 ----------&#62 Port name: 3, Port uri: 10.5.236.4/11/7
+</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-04 18:39:42,908</td>
+<td>INFO</td>
+<td><pre>Executing step 9: Verify the number of packets received is according to the rules' action</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:39:44,176</td>
+<td>DEBUG</td>
+<td><pre>PASS: No packet loss for stream MatchedStream on port/s Port name: 3, Port uri: 10.5.236.4/11/7: expected: 1534, actual 1534</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:39:44,176</td>
+<td>DEBUG</td>
+<td><pre>PASS: No packet loss for stream MatchedStream on port/s Port name: 3, Port uri: 10.5.236.4/11/7: expected: 1534, actual 1534</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:39:44,178</td>
+<td>TRACE</td>
+<td><pre>BaseTest::_OnPostTest:  starting to run registered post test functions</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:39:44,178</td>
+<td>TRACE</td>
+<td><pre>BaseTest::TestTearDown:  starting to call to cleanup functions of test</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:39:44,279</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc qdisc del dev sw1p23 ingress
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:39:44,379</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc qdisc del dev sw1p23 ingress
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:39:44,480</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "tc qdisc del dev sw1p1 ingress
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:39:44,581</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: tc qdisc del dev sw1p1 ingress
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:39:48,392</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:39:48,492</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip add del 3.3.3.3/16 dev sw1p35
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:39:48,594</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip add del 3.3.3.3/16 dev sw1p35
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:39:58,517</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: timeout expired
+sending newline char and trying 1 last time</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:39:58,518</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::GetBufferTillPattern:  ==&#62CMD: "
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:39:58,619</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:39:58,719</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip add del 2.2.2.2/16 dev sw1p23
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:39:58,820</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip add del 2.2.2.2/16 dev sw1p23
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:40:04,135</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: root@localhost:~# 
+root@localhost:~# ip add del 2.2.2.2/16 dev sw1p23
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:40:04,235</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip add del 1.1.1.1/16 dev sw1p1
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:40:04,336</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip add del 1.1.1.1/16 dev sw1p1
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:40:04,436</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "sysctl -w net.ipv4.ip_forward=0
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:40:04,537</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: sysctl -w net.ipv4.ip_forward=0
+net.ipv4.ip_forward = 0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:40:04,638</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p35 down
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:40:04,738</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p35 down
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:40:04,839</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p23 down
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:40:04,940</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p23 down
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:40:05,040</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p1 down
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:40:05,142</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p1 down
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:40:05,142</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_parse_dmesg: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:40:05,243</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  history
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:40:05,343</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   history
+    3  ip link set dev sw1p1 up
+    4  ip link set dev sw1p23 up
+    5  ip link set dev sw1p35 up
+    6  sysctl -w net.ipv4.ip_forward=1
+    7  ip add add 1.1.1.1/16 dev sw1p1
+    8  ip add add 2.2.2.2/16 dev sw1p23
+    9  ip add add 3.3.3.3/16 dev sw1p35
+   10  for i in {4..15}; do for j in {0..255}; do arp -s 3.3.$i.$j 16:10:84:24:7b:27; done; done
+   11  tc qdisc add dev sw1p1 ingress_block 22 ingress
+   12  tc qdisc add dev sw1p23 ingress_block 22 ingress
+   13  tc filter add block 22 flower  action drop
+   14  chmod 755 config260241791432590479006362671613869453999.sh && ./config260241791432590479006362671613869453999.sh 
+   15  rm -f config260241791432590479006362671613869453999.sh
+   16  tc qdisc del dev sw1p23 ingress
+   17  tc qdisc del dev sw1p1 ingress
+   18  ip add del 3.3.3.3/16 dev sw1p35
+   19  ip add del 2.2.2.2/16 dev sw1p23
+   20  ip add del 1.1.1.1/16 dev sw1p1
+   21  sysctl -w net.ipv4.ip_forward=0
+   22  ip link set dev sw1p35 down
+   23  ip link set dev sw1p23 down
+   24  ip link set dev sw1p1 down
+   25    history
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:40:05,344</td>
+<td>DEBUG</td>
+<td><pre>commands history:
+    3  ip link set dev sw1p1 up
+    4  ip link set dev sw1p23 up
+    5  ip link set dev sw1p35 up
+    6  sysctl -w net.ipv4.ip_forward=1
+    7  ip add add 1.1.1.1/16 dev sw1p1
+    8  ip add add 2.2.2.2/16 dev sw1p23
+    9  ip add add 3.3.3.3/16 dev sw1p35
+   10  for i in {4..15}; do for j in {0..255}; do arp -s 3.3.$i.$j 16:10:84:24:7b:27; done; done
+   11  tc qdisc add dev sw1p1 ingress_block 22 ingress
+   12  tc qdisc add dev sw1p23 ingress_block 22 ingress
+   13  tc filter add block 22 flower  action drop
+   14  chmod 755 config260241791432590479006362671613869453999.sh && ./config260241791432590479006362671613869453999.sh 
+   15  rm -f config260241791432590479006362671613869453999.sh
+   16  tc qdisc del dev sw1p23 ingress
+   17  tc qdisc del dev sw1p1 ingress
+   18  ip add del 3.3.3.3/16 dev sw1p35
+   19  ip add del 2.2.2.2/16 dev sw1p23
+   20  ip add del 1.1.1.1/16 dev sw1p1
+   21  sysctl -w net.ipv4.ip_forward=0
+   22  ip link set dev sw1p35 down
+   23  ip link set dev sw1p23 down
+   24  ip link set dev sw1p1 down
+   25    history</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:40:05,344</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_parse_dmesg: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:40:05,472</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  cat /var/log/messages
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:40:05,574</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   cat /var/log/messages
+
+Sep  4 18:35:21 localhost kernel: [ 1784.371894] IPv6: ADDRCONF(NETDEV_CHANGE): sw1p23: link becomes ready
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:40:05,574</td>
+<td>DEBUG</td>
+<td><pre>dmesg lines that matched regex for issues:</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:40:05,575</td>
+<td>DEBUG</td>
+<td><pre>{
+    "call trace:": {
+        found: false,
+        regex: "Call trace:",
+    },
+    "cut here": {
+        found: false,
+        regex: "\\[ cut here \\]",
+    },
+    "hw routing offloading disabled:": {
+        found: false,
+        regex: "Abort. HW routing offloading disabled",
+    },
+}</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:40:09,214</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Cleanup:  clearing ports ownership...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:40:09,631</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Cleanup:  Disconnecting from chassis...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-04 18:40:09,648</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Cleanup:  TG disconnect time is 0.02</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-04 18:40:09,649</td>
+<td>INFO</td>
+<td><pre>Test Passed</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-04 18:40:09,652</td>
+<td>INFO</td>
+<td><pre>
+CI_META:
+{"Software_Version": "2.0.0-v3.0.0-rc4", "Linux_Version": ""}
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                                  Dut Information                                                                   |
++--------+-------------+------+------------------+--------------------------------+---------------+---------------+---------------------+------------+
+| ODM    | Board_Model | ASIC | Software_Version | UBOOT_Version                  | Linux_Version | CPU_CoreClock | Host_kernel_version | PCBVersion |
++--------+-------------+------+------------------+--------------------------------+---------------+---------------+---------------------+------------+
+| Accton | AS4224-52T  | AC3X | 2.0.0-v3.0.0-rc4 | U-Boot 2019.10-10.0.0-g9518192 |               |               | 5.10.4              | R0A        |
++--------+-------------+------+------------------+--------------------------------+---------------+---------------+---------------------+------------+
+
+None
+
++---------------------------------------+
+|              PDU Settings             |
++----------------+-------------+--------+
+| Connect_To_PDU | ip_address  | outlet |
++----------------+-------------+--------+
+| True           | 10.5.236.19 | 11     |
++----------------+-------------+--------+
+
+None
++-------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                             Test Steps Summary                                                            |
++------+------------------------------------------------------------------------------------------------------+--------+--------------------+
+| Step | Description                                                                                          | Result | Run Time           |
++------+------------------------------------------------------------------------------------------------------+--------+--------------------+
+| 1    | Initiate test params                                                                                 | Passed | 0.0                |
++------+------------------------------------------------------------------------------------------------------+--------+--------------------+
+| 2    | Set link up on interfaces                                                                            | Passed | 0.6070291996002197 |
++------+------------------------------------------------------------------------------------------------------+--------+--------------------+
+| 3    | Set IP forwarding = 1                                                                                | Passed | 0.2017512321472168 |
++------+------------------------------------------------------------------------------------------------------+--------+--------------------+
+| 4    | Configure ip 1.1.1.1 on first TGDutLink DUT port, 2.2.2.2 on second TGDutLink DUT port, 3.3.3.3 on   | Passed | 0.6045138835906982 |
+|      | third TGDutLink DUT port                                                                             |        |                    |
++------+------------------------------------------------------------------------------------------------------+--------+--------------------+
+| 5    | Configure hosts on Ixia ports and create stream for each TX TG port with increment ip addresses with | Passed | 125.85476112365723 |
+|      | count 10000                                                                                          |        |                    |
++------+------------------------------------------------------------------------------------------------------+--------+--------------------+
+| 6    | Set ingress qdisc                                                                                    | Passed | 0.406477689743042  |
++------+------------------------------------------------------------------------------------------------------+--------+--------------------+
+| 7    | Randomly select pass/drop action and overflow table with IPv4 rules with incremented DIP             | Passed | 79.89658522605896  |
++------+------------------------------------------------------------------------------------------------------+--------+--------------------+
+| 8    | Send Traffic                                                                                         | Passed | 43.064749240875244 |
++------+------------------------------------------------------------------------------------------------------+--------+--------------------+
+| 9    | Verify the number of packets received is according to the rules' action                              | Passed | 1.2705457210540771 |
++------+------------------------------------------------------------------------------------------------------+--------+--------------------+
++--------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                              Test Information                                                              |
++------------+-----------------------------------------------------------------+--------+-----------------+-----------------+----------------+
+| Suite_Name | Test_Name                                                       | Result | start_time      | end_time        | run_time       |
++------------+-----------------------------------------------------------------+--------+-----------------+-----------------+----------------+
+| ACL        | Acl_Stress_Ipv4_RawUntagged_SharedBlocks_QdiscOverflow_PassDrop | Passed | 18:35:08.995132 | 18:40:09.649116 | 0:05:00.653984 |
++------------+-----------------------------------------------------------------+--------+-----------------+-----------------+----------------+</pre></td>
+</tr>
+
+</tbody></table></div>
+</body>
+<script>
+    $.fn.dataTable.ext.search.push(
+        function( settings, data, dataIndex ) {
+            let minIndex = severities.indexOf($('#min-severity').find(':selected').text());
+            let maxIndex = severities.indexOf($('#max-severity').find(':selected').text());
+            var severity = data[1] || 'NOT SET';// use data for the Log Level column
+            var severityIndex = severities.indexOf(severity);
+            if ( ( maxIndex == -1 && minIndex == -1 ) ||
+                 ( minIndex <= severityIndex && severityIndex <= maxIndex ) )
+            {
+                return true;
+            }
+            return false;
+        }
+    );
+    
+    function fill_select(id, items){
+        for(t of items){
+            $('#'+id).append(new Option(t, t));
+        }
+    }
+    
+    function selectionChanged(selectChanged, selectAffected, selectedOption, startFrom, end){
+        let selected = $('#'+selectAffected).find(':selected').text(); //keep affected value
+        $('#'+selectAffected).empty(); //empty the affected one
+
+        fill_select(selectAffected, severities.slice(startFrom, end));
+        selected = $('#'+selectAffected).find("option:contains('" + selected  + "')").length > 0 ? selected : $("#"+selectAffected+" option:first").val();
+        $('#'+selectAffected).val(selected);
+    }
+    
+    var severities = ['NOT SET','TRACE','DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL']
+    $(document).ready(function() {
+        for(severity of severities){
+            $('#min-severity, #max-severity').append(new Option(severity, severity));
+        }
+        
+        $('#max-severity option:last').attr('selected', 'selected');
+        
+        var table = $('#data_table').DataTable({
+            "lengthMenu": [[-1, 10, 25, 50], ["All", 10, 25, 50]]
+        });
+        
+        $('#min-severity, #max-severity').change( function(e) {
+            if(e.target.id == 'min-severity'){
+                selectionChanged(e.target.id, 'max-severity', e.target.selectedOptions[0].text, severities.indexOf(e.target.selectedOptions[0].text), severities.length+1);
+            }
+            else if(e.target.id == 'max-severity'){
+                selectionChanged(e.target.id, 'min-severity',e.target.selectedOptions[0].text, 0 ,severities.indexOf(e.target.selectedOptions[0].text) + 1);
+            }
+            table.draw();
+        } );
+    } );
+    
+    
+</script>
+</html>

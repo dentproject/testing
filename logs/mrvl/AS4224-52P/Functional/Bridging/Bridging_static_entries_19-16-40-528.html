@@ -1,0 +1,1158 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Bridging_static_entries_19-16-40-528104 Log</title>
+<!-- Latest compiled and minified CSS -->
+<!--
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs-3.3.7/jq-3.2.1/jq-3.2.1/dt-1.10.16/datatables.min.css"/>
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.7/jq-3.2.1/jq-3.2.1/dt-1.10.16/datatables.min.js"></script>
+-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+  
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+<style>
+pre {
+margin : 0;
+white-space: pre-wrap;
+background-color: inherit;
+border: none;
+border-radius: inherit;
+}
+</style>
+</head>
+
+<body>
+<div class="col-md-12 col-xs-12 col-lg-12">
+<br>
+<h1 style="text-align:center">Bridging_static_entries_19-16-40-528104 Log</h1>
+<br>
+<div class="input-group">
+    <select class="form-control" id="min-severity" placeholder="Min Severity">
+    </select>
+    <span class="input-group-addon">-</span>
+    <select class="form-control" id="max-severity" placeholder="Max Severity">
+    </select>
+</div>
+&nbsp
+<table id="data_table" class="table table-striped table-bordered" cellspacing="0">
+<thead>
+    <tr>
+        <th style="width: 180px;">Time</th>
+        <th style="width: 90px;">Log Level</th>
+        <th>Message</th>
+    </tr>
+</thead>
+<tbody>
+
+<tr class="success">
+<td>2021-09-03 19:16:40,529</td>
+<td>TRACE</td>
+<td><pre>BaseTest_SD::_BasicTestInit: this test has been launched with the following input arguments:
+Namespace(conn_table=None, dummy_test=False, excel_path='/swdev/fileril103/testing/Projects/Automation/Python/Setups/AGO/CI/Setup_23.xlsx', excel_setups_db_path=None, seed=None, setup_info=None, setup_name=None, stress=None, test_args=None)</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:16:40,529</td>
+<td>TRACE</td>
+<td><pre>BaseTest_SD::_BasicTestInit: this test is running from the following Setup Excel file /swdev/fileril103/testing/Projects/Automation/Python/Setups/AGO/CI/Setup_23.xlsx</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:16:40,530</td>
+<td>TRACE</td>
+<td><pre>
++-------------------------------------------------------+
+|                    TG Mapping Table                   |
++----+------------+------------+------+------+----------+
+| ID | IP Address |  TG Type   | Card | Port | Dut Port |
++----+------------+------------+------+------+----------+
+| 1  | 10.5.236.4 | ixia_linux |  11  |  5   |  sw1p1   |
+| 2  | 10.5.236.4 | ixia_linux |  11  |  6   |  sw1p23  |
+| 3  | 10.5.236.4 | ixia_linux |  11  |  7   |  sw1p35  |
+| 4  | 10.5.236.4 | ixia_linux |  11  |  8   |  sw1p48  |
++----+------------+------------+------+------+----------+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:16:40,531</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: connecting to IxiaSSH on IP 10.5.236.4 using TCL/API Server IP 10.5.236.4</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:16:50,651</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect:  Connection Successful</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:16:52,195</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:16:54,951</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:16:57,025</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:16:58,788</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 19:17:01,724</td>
+<td>INFO</td>
+<td><pre>Used cached DutInfo: dutmainchannel__/swdev/fileril103/testing/Projects/Automation/Python/Setups/AGO/CI/Setup_23.xlsx__1620569885.7663186</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:01,726</td>
+<td>TRACE</td>
+<td><pre>SwitchDevDutManager::login: Connecting to 10.5.236.85:root:22 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:01,840</td>
+<td>TRACE</td>
+<td><pre>SwitchDevDutManager::login: Connection Successful</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:01,841</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "
+
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:01,942</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: Linux localhost 5.10.4 #1 SMP PREEMPT Tue Aug 31 15:40:33 UTC 2021 aarch64
+Last login: Fri Sep  3 19:15:36 2021 from 10.5.116.193
+
+
+root@localhost:~# 
+root@localhost:~# 
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:02,943</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "
+
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:03,044</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 
+root@localhost:~# 
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:03,088</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_clear_dmesg: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:03,188</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  echo "" &#62 /var/log/messages
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:03,290</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   echo "" &#62 /var/log/messages
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:03,290</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_clear_cmd_history: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:03,391</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  history -c
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:03,491</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   history -c
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:03,492</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::stressCpus: </pre></td>
+</tr>
+
+
+<tr>
+<td width="100"></td>
+<td width="100"></td>
+<td class="info"><pre>+------------------------------------------------------------------------------------------------------------------+
+|                                                 Test Description                                                 |
++------------+-------------------------+-------------------------------------+-----------+-------------------------+
+| Suite Name | Test Name               | Purpose                             | Author    | Test Document Reference |
++------------+-------------------------+-------------------------------------+-----------+-------------------------+
+| Bridging   | Bridging_static_entries | This test comes to verify:          | David Meu |                         |
+|            |                         |             * static bridge entries |           |                         |
+|            |                         |                                     |           |                         |
++------------+-------------------------+-------------------------------------+-----------+-------------------------+
+
++-------------------------------------------------------------------------------+
+|                                 Test Procedure                                |
++------+------------------------------------------------------------------------+
+| Step | Step Description                                                       |
++------+------------------------------------------------------------------------+
+| 1    | Init bridge entity br0                                                 |
++------+------------------------------------------------------------------------+
+| 2    | Set ports sw1p1 sw1p13 sw1p25 sw1p37 master br0                        |
++------+------------------------------------------------------------------------+
+| 3    | Set ports sw1p1 sw1p13 sw1p25 sw1p37 learning off                      |
++------+------------------------------------------------------------------------+
+| 4    | Set ports sw1p1 sw1p13 sw1p25 sw1p37 flood off                         |
++------+------------------------------------------------------------------------+
+| 5    | Set entities sw1p1 sw1p13 sw1p25 sw1p37 br0 up                         |
++------+------------------------------------------------------------------------+
+| 6    | Adding FDB entries tp sw1p1 sw1p13 sw1p25 sw1p37                       |
++------+------------------------------------------------------------------------+
+| 7    | Traffic sending with matching dst macs and verifying reception on      |
+|      | matching ports                                                         |
++------+------------------------------------------------------------------------+</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 19:17:03,498</td>
+<td>INFO</td>
+<td><pre>Executing step 1: Init bridge entity br0</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:03,599</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link add br0 type bridge
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:03,700</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link add br0 type bridge
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 19:17:03,702</td>
+<td>INFO</td>
+<td><pre>Executing step 2: Set ports sw1p1 sw1p13 sw1p25 sw1p37 master br0</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:03,802</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p1 master br0
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:03,903</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p1 master br0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:04,004</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p23 master br0
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:04,104</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p23 master br0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:04,205</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p35 master br0
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:04,306</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p35 master br0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:04,406</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p48 master br0
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:04,507</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p48 master br0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 19:17:04,507</td>
+<td>INFO</td>
+<td><pre>Executing step 3: Set ports sw1p1 sw1p13 sw1p25 sw1p37 learning off</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:04,608</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "bridge link set dev sw1p1 learning off
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:04,709</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: bridge link set dev sw1p1 learning off
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:04,810</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "bridge link set dev sw1p23 learning off
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:04,911</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: bridge link set dev sw1p23 learning off
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:05,011</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "bridge link set dev sw1p35 learning off
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:05,112</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: bridge link set dev sw1p35 learning off
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:05,213</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "bridge link set dev sw1p48 learning off
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:05,314</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: bridge link set dev sw1p48 learning off
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 19:17:05,315</td>
+<td>INFO</td>
+<td><pre>Executing step 4: Set ports sw1p1 sw1p13 sw1p25 sw1p37 flood off</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:05,415</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "bridge link set dev sw1p1 flood off
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:05,516</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: bridge link set dev sw1p1 flood off
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:05,617</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "bridge link set dev sw1p23 flood off
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:05,718</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: bridge link set dev sw1p23 flood off
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:05,818</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "bridge link set dev sw1p35 flood off
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:05,919</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: bridge link set dev sw1p35 flood off
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:06,020</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "bridge link set dev sw1p48 flood off
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:06,120</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: bridge link set dev sw1p48 flood off
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 19:17:06,121</td>
+<td>INFO</td>
+<td><pre>Executing step 5: Set entities sw1p1 sw1p13 sw1p25 sw1p37 br0 up</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:06,222</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p1 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:06,323</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p1 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:06,423</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p23 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:06,524</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p23 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:06,625</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p35 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:06,726</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p35 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:06,826</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p48 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:06,927</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p48 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:07,028</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev br0 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:07,129</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev br0 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 19:17:07,129</td>
+<td>INFO</td>
+<td><pre>Executing step 6: Adding FDB entries tp sw1p1 sw1p13 sw1p25 sw1p37</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:07,230</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "bridge fdb add aa:bb:cc:dd:ee:11 dev sw1p1 static master
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:07,331</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: bridge fdb add aa:bb:cc:dd:ee:11 dev sw1p1 static master
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:07,431</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "bridge fdb add aa:bb:cc:dd:ee:12 dev sw1p23 static master
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:07,532</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: bridge fdb add aa:bb:cc:dd:ee:12 dev sw1p23 static master
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:07,633</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "bridge fdb add aa:bb:cc:dd:ee:13 dev sw1p35 static master
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:07,734</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: bridge fdb add aa:bb:cc:dd:ee:13 dev sw1p35 static master
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:07,834</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "bridge fdb add aa:bb:cc:dd:ee:14 dev sw1p48 static master
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:07,935</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: bridge fdb add aa:bb:cc:dd:ee:14 dev sw1p48 static master
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 19:17:07,936</td>
+<td>INFO</td>
+<td><pre>Executing step 7: Traffic sending with matching dst macs and verifying reception on matching ports</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:07,936</td>
+<td>DEBUG</td>
+<td><pre>Bridging_api::setupStream: Setting up stream on tx port</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:09,033</td>
+<td>DEBUG</td>
+<td><pre>Bridging_api::clearAllTGPortsCounters: Clearing all TG ports counters</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:14,383</td>
+<td>DEBUG</td>
+<td><pre>Bridging_api::transmitTraffic: Transmitting traffic</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:16,680</td>
+<td>DEBUG</td>
+<td><pre>Bridging_api::verifyReceivedTrafficIsAsExpected: Verify received traffic on ports is as expected</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:42,904</td>
+<td>DEBUG</td>
+<td><pre>Bridging_api::verifyReceivedTrafficIsAsExpected: Passed! No packet loss has occured</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:42,906</td>
+<td>DEBUG</td>
+<td><pre>Bridging_api::setupStream: Setting up stream on tx port</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:43,900</td>
+<td>DEBUG</td>
+<td><pre>Bridging_api::clearAllTGPortsCounters: Clearing all TG ports counters</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:49,722</td>
+<td>DEBUG</td>
+<td><pre>Bridging_api::transmitTraffic: Transmitting traffic</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:17:52,042</td>
+<td>DEBUG</td>
+<td><pre>Bridging_api::verifyReceivedTrafficIsAsExpected: Verify received traffic on ports is as expected</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:18:21,452</td>
+<td>DEBUG</td>
+<td><pre>Bridging_api::verifyReceivedTrafficIsAsExpected: Passed! No packet loss has occured</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:18:21,452</td>
+<td>DEBUG</td>
+<td><pre>Bridging_api::setupStream: Setting up stream on tx port</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:18:22,833</td>
+<td>DEBUG</td>
+<td><pre>Bridging_api::clearAllTGPortsCounters: Clearing all TG ports counters</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:18:29,105</td>
+<td>DEBUG</td>
+<td><pre>Bridging_api::transmitTraffic: Transmitting traffic</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:18:31,361</td>
+<td>DEBUG</td>
+<td><pre>Bridging_api::verifyReceivedTrafficIsAsExpected: Verify received traffic on ports is as expected</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:18:54,829</td>
+<td>DEBUG</td>
+<td><pre>Bridging_api::verifyReceivedTrafficIsAsExpected: Passed! No packet loss has occured</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:18:54,829</td>
+<td>DEBUG</td>
+<td><pre>Bridging_api::setupStream: Setting up stream on tx port</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:18:57,126</td>
+<td>DEBUG</td>
+<td><pre>Bridging_api::clearAllTGPortsCounters: Clearing all TG ports counters</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:19:02,611</td>
+<td>DEBUG</td>
+<td><pre>Bridging_api::transmitTraffic: Transmitting traffic</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:19:05,714</td>
+<td>DEBUG</td>
+<td><pre>Bridging_api::verifyReceivedTrafficIsAsExpected: Verify received traffic on ports is as expected</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:19:31,929</td>
+<td>DEBUG</td>
+<td><pre>Bridging_api::verifyReceivedTrafficIsAsExpected: Passed! No packet loss has occured</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:19:31,929</td>
+<td>TRACE</td>
+<td><pre>BaseTest::_OnPostTest:  starting to run registered post test functions</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:19:31,929</td>
+<td>TRACE</td>
+<td><pre>BaseTest::TestTearDown:  starting to call to cleanup functions of test</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:19:32,030</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link delete dev br0
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:19:32,130</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link delete dev br0
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:19:32,331</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:19:32,332</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_parse_dmesg: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:19:32,432</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  history
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:19:32,534</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   history
+    3  ip link add br0 type bridge
+    4  ip link set dev sw1p1 master br0
+    5  ip link set dev sw1p23 master br0
+    6  ip link set dev sw1p35 master br0
+    7  ip link set dev sw1p48 master br0
+    8  bridge link set dev sw1p1 learning off
+    9  bridge link set dev sw1p23 learning off
+   10  bridge link set dev sw1p35 learning off
+   11  bridge link set dev sw1p48 learning off
+   12  bridge link set dev sw1p1 flood off
+   13  bridge link set dev sw1p23 flood off
+   14  bridge link set dev sw1p35 flood off
+   15  bridge link set dev sw1p48 flood off
+   16  ip link set dev sw1p1 up
+   17  ip link set dev sw1p23 up
+   18  ip link set dev sw1p35 up
+   19  ip link set dev sw1p48 up
+   20  ip link set dev br0 up
+   21  bridge fdb add aa:bb:cc:dd:ee:11 dev sw1p1 static master
+   22  bridge fdb add aa:bb:cc:dd:ee:12 dev sw1p23 static master
+   23  bridge fdb add aa:bb:cc:dd:ee:13 dev sw1p35 static master
+   24  bridge fdb add aa:bb:cc:dd:ee:14 dev sw1p48 static master
+   25  ip link delete dev br0
+   26    history
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:19:32,534</td>
+<td>DEBUG</td>
+<td><pre>commands history:
+    3  ip link add br0 type bridge
+    4  ip link set dev sw1p1 master br0
+    5  ip link set dev sw1p23 master br0
+    6  ip link set dev sw1p35 master br0
+    7  ip link set dev sw1p48 master br0
+    8  bridge link set dev sw1p1 learning off
+    9  bridge link set dev sw1p23 learning off
+   10  bridge link set dev sw1p35 learning off
+   11  bridge link set dev sw1p48 learning off
+   12  bridge link set dev sw1p1 flood off
+   13  bridge link set dev sw1p23 flood off
+   14  bridge link set dev sw1p35 flood off
+   15  bridge link set dev sw1p48 flood off
+   16  ip link set dev sw1p1 up
+   17  ip link set dev sw1p23 up
+   18  ip link set dev sw1p35 up
+   19  ip link set dev sw1p48 up
+   20  ip link set dev br0 up
+   21  bridge fdb add aa:bb:cc:dd:ee:11 dev sw1p1 static master
+   22  bridge fdb add aa:bb:cc:dd:ee:12 dev sw1p23 static master
+   23  bridge fdb add aa:bb:cc:dd:ee:13 dev sw1p35 static master
+   24  bridge fdb add aa:bb:cc:dd:ee:14 dev sw1p48 static master
+   25  ip link delete dev br0
+   26    history</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:19:32,534</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_parse_dmesg: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:19:32,643</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  cat /var/log/messages
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:19:32,744</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   cat /var/log/messages
+
+Sep  3 19:16:54 localhost kernel: [ 7906.856920] br0: port 1(sw1p1) entered blocking state
+Sep  3 19:16:54 localhost kernel: [ 7906.862031] br0: port 1(sw1p1) entered disabled state
+Sep  3 19:16:54 localhost kernel: [ 7906.883817] device sw1p1 entered promiscuous mode
+Sep  3 19:16:54 localhost kernel: [ 7907.060013] br0: port 2(sw1p23) entered blocking state
+Sep  3 19:16:54 localhost kernel: [ 7907.065205] br0: port 2(sw1p23) entered disabled state
+Sep  3 19:16:54 localhost kernel: [ 7907.083404] device sw1p23 entered promiscuous mode
+Sep  3 19:16:54 localhost kernel: [ 7907.261242] br0: port 3(sw1p35) entered blocking state
+Sep  3 19:16:54 localhost kernel: [ 7907.266439] br0: port 3(sw1p35) entered disabled state
+Sep  3 19:16:54 localhost kernel: [ 7907.284693] device sw1p35 entered promiscuous mode
+Sep  3 19:16:55 localhost kernel: [ 7907.462681] br0: port 4(sw1p48) entered blocking state
+Sep  3 19:16:55 localhost kernel: [ 7907.467876] br0: port 4(sw1p48) entered disabled state
+Sep  3 19:16:55 localhost kernel: [ 7907.486915] device sw1p48 entered promiscuous mode
+Sep  3 19:16:57 localhost kernel: [ 7910.092217] br0: port 4(sw1p48) entered blocking state
+Sep  3 19:16:57 localhost kernel: [ 7910.097397] br0: port 4(sw1p48) entered forwarding state
+Sep  3 19:16:57 localhost kernel: [ 7910.102822] br0: port 3(sw1p35) entered blocking state
+Sep  3 19:16:57 localhost kernel: [ 7910.108000] br0: port 3(sw1p35) entered forwarding state
+Sep  3 19:16:57 localhost kernel: [ 7910.113387] br0: port 2(sw1p23) entered blocking state
+Sep  3 19:16:57 localhost kernel: [ 7910.118569] br0: port 2(sw1p23) entered forwarding state
+Sep  3 19:16:57 localhost kernel: [ 7910.123954] br0: port 1(sw1p1) entered blocking state
+Sep  3 19:16:57 localhost kernel: [ 7910.129046] br0: port 1(sw1p1) entered forwarding state
+Sep  3 19:16:57 localhost kernel: [ 7910.162961] IPv6: ADDRCONF(NETDEV_CHANGE): br0: link becomes ready
+Sep  3 19:19:22 localhost kernel: [ 8055.081394] device sw1p48 left promiscuous mode
+Sep  3 19:19:22 localhost kernel: [ 8055.086048] br0: port 4(sw1p48) entered disabled state
+Sep  3 19:19:22 localhost kernel: [ 8055.132806] device sw1p35 left promiscuous mode
+Sep  3 19:19:22 localhost kernel: [ 8055.137436] br0: port 3(sw1p35) entered disabled state
+Sep  3 19:19:22 localhost kernel: [ 8055.184050] device sw1p23 left promiscuous mode
+Sep  3 19:19:22 localhost kernel: [ 8055.188676] br0: port 2(sw1p23) entered disabled state
+Sep  3 19:19:22 localhost kernel: [ 8055.244781] device sw1p1 left promiscuous mode
+Sep  3 19:19:22 localhost kernel: [ 8055.249311] br0: port 1(sw1p1) entered disabled state
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:19:32,747</td>
+<td>DEBUG</td>
+<td><pre>dmesg lines that matched regex for issues:</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:19:32,748</td>
+<td>DEBUG</td>
+<td><pre>{
+    "call trace:": {
+        found: false,
+        regex: "Call trace:",
+    },
+    "cut here": {
+        found: false,
+        regex: "\\[ cut here \\]",
+    },
+    "hw routing offloading disabled:": {
+        found: false,
+        regex: "Abort. HW routing offloading disabled",
+    },
+}</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:19:35,547</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Cleanup:  clearing ports ownership...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:19:35,973</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Cleanup:  Disconnecting from chassis...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-09-03 19:19:35,995</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Cleanup:  TG disconnect time is 0.02</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 19:19:35,995</td>
+<td>INFO</td>
+<td><pre>Test Passed</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-09-03 19:19:35,998</td>
+<td>INFO</td>
+<td><pre>
+CI_META:
+{"Software_Version": "2.0.0-v3.0.0-rc4", "Linux_Version": ""}
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                                  Dut Information                                                                   |
++--------+-------------+------+------------------+--------------------------------+---------------+---------------+---------------------+------------+
+| ODM    | Board_Model | ASIC | Software_Version | UBOOT_Version                  | Linux_Version | CPU_CoreClock | Host_kernel_version | PCBVersion |
++--------+-------------+------+------------------+--------------------------------+---------------+---------------+---------------------+------------+
+| Accton | AS4224-52T  | AC3X | 2.0.0-v3.0.0-rc4 | U-Boot 2019.10-10.0.0-g9518192 |               |               | 5.10.4              | R0A        |
++--------+-------------+------+------------------+--------------------------------+---------------+---------------+---------------------+------------+
+
+None
+
++---------------------------------------+
+|              PDU Settings             |
++----------------+-------------+--------+
+| Connect_To_PDU | ip_address  | outlet |
++----------------+-------------+--------+
+| True           | 10.5.236.19 | 11     |
++----------------+-------------+--------+
+
+None
++-----------------------------------------------------------------------------------------------------------------------+
+|                                                   Test Steps Summary                                                  |
++------+----------------------------------------------------------------------------------+--------+--------------------+
+| Step | Description                                                                      | Result | Run Time           |
++------+----------------------------------------------------------------------------------+--------+--------------------+
+| 1    | Init bridge entity br0                                                           | Passed | 0.0                |
++------+----------------------------------------------------------------------------------+--------+--------------------+
+| 2    | Set ports sw1p1 sw1p13 sw1p25 sw1p37 master br0                                  | Passed | 0.8055996894836426 |
++------+----------------------------------------------------------------------------------+--------+--------------------+
+| 3    | Set ports sw1p1 sw1p13 sw1p25 sw1p37 learning off                                | Passed | 0.8073668479919434 |
++------+----------------------------------------------------------------------------------+--------+--------------------+
+| 4    | Set ports sw1p1 sw1p13 sw1p25 sw1p37 flood off                                   | Passed | 0.8060305118560791 |
++------+----------------------------------------------------------------------------------+--------+--------------------+
+| 5    | Set entities sw1p1 sw1p13 sw1p25 sw1p37 br0 up                                   | Passed | 1.0085718631744385 |
++------+----------------------------------------------------------------------------------+--------+--------------------+
+| 6    | Adding FDB entries tp sw1p1 sw1p13 sw1p25 sw1p37                                 | Passed | 0.8063991069793701 |
++------+----------------------------------------------------------------------------------+--------+--------------------+
+| 7    | Traffic sending with matching dst macs and verifying reception on matching ports | Passed | 143.99358439445496 |
++------+----------------------------------------------------------------------------------+--------+--------------------+
++----------------------------------------------------------------------------------------------------+
+|                                          Test Information                                          |
++------------+-------------------------+--------+-----------------+-----------------+----------------+
+| Suite_Name | Test_Name               | Result | start_time      | end_time        | run_time       |
++------------+-------------------------+--------+-----------------+-----------------+----------------+
+| Bridging   | Bridging_static_entries | Passed | 19:16:40.527932 | 19:19:35.995663 | 0:02:55.467731 |
++------------+-------------------------+--------+-----------------+-----------------+----------------+</pre></td>
+</tr>
+
+</tbody></table></div>
+</body>
+<script>
+    $.fn.dataTable.ext.search.push(
+        function( settings, data, dataIndex ) {
+            let minIndex = severities.indexOf($('#min-severity').find(':selected').text());
+            let maxIndex = severities.indexOf($('#max-severity').find(':selected').text());
+            var severity = data[1] || 'NOT SET';// use data for the Log Level column
+            var severityIndex = severities.indexOf(severity);
+            if ( ( maxIndex == -1 && minIndex == -1 ) ||
+                 ( minIndex <= severityIndex && severityIndex <= maxIndex ) )
+            {
+                return true;
+            }
+            return false;
+        }
+    );
+    
+    function fill_select(id, items){
+        for(t of items){
+            $('#'+id).append(new Option(t, t));
+        }
+    }
+    
+    function selectionChanged(selectChanged, selectAffected, selectedOption, startFrom, end){
+        let selected = $('#'+selectAffected).find(':selected').text(); //keep affected value
+        $('#'+selectAffected).empty(); //empty the affected one
+
+        fill_select(selectAffected, severities.slice(startFrom, end));
+        selected = $('#'+selectAffected).find("option:contains('" + selected  + "')").length > 0 ? selected : $("#"+selectAffected+" option:first").val();
+        $('#'+selectAffected).val(selected);
+    }
+    
+    var severities = ['NOT SET','TRACE','DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL']
+    $(document).ready(function() {
+        for(severity of severities){
+            $('#min-severity, #max-severity').append(new Option(severity, severity));
+        }
+        
+        $('#max-severity option:last').attr('selected', 'selected');
+        
+        var table = $('#data_table').DataTable({
+            "lengthMenu": [[-1, 10, 25, 50], ["All", 10, 25, 50]]
+        });
+        
+        $('#min-severity, #max-severity').change( function(e) {
+            if(e.target.id == 'min-severity'){
+                selectionChanged(e.target.id, 'max-severity', e.target.selectedOptions[0].text, severities.indexOf(e.target.selectedOptions[0].text), severities.length+1);
+            }
+            else if(e.target.id == 'max-severity'){
+                selectionChanged(e.target.id, 'min-severity',e.target.selectedOptions[0].text, 0 ,severities.indexOf(e.target.selectedOptions[0].text) + 1);
+            }
+            table.draw();
+        } );
+    } );
+    
+    
+</script>
+</html>
