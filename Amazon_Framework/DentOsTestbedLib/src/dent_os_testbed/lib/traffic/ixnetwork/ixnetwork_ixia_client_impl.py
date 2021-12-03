@@ -96,6 +96,7 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
             device.applog.info("Assigning ports")
             IxnetworkIxiaClientImpl.ixnet.AssignPorts(pports, [], vport_hrefs, True)
             for port, vport in vports.items():
+                vport[0].L1Config.NovusTenGigLan.Media = "fiber"
                 device.applog.info("Adding Ipv4 on ixia port {} swp {}".format(port, vport[1]))
                 topo = IxnetworkIxiaClientImpl.ixnet.Topology.add(Vports=vport[0])
                 for dev in dev_groups[port]:
