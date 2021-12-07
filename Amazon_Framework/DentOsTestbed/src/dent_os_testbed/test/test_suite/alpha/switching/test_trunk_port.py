@@ -11,6 +11,7 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_create_devices_and_connect,
     tgen_utils_get_dent_devices_with_tgen,
     tgen_utils_get_traffic_stats,
+    tgen_utils_get_loss,
     tgen_utils_setup_streams,
     tgen_utils_start_traffic,
     tgen_utils_stop_protocols,
@@ -22,10 +23,16 @@ pytestmark = pytest.mark.suite_switching
 
 @pytest.mark.asyncio
 async def test_alpha_lab_switching_trunk_port(testbed):
-    # Validate trunk porting
-    # Configure 2 devices both with dot1q trunk enabled on multiple subinterfaces.
-    # send traffic down these interfaces
-    # traffic should be visible on appropriate vlan
+    """
+    Test Name: test_alpha_lab_switching_trunk_port
+    Test Suite: suite_switching
+    Test Overview: test switching on a trunk port
+    Test Procedure:
+    1. Validate trunk porting
+    2. Configure 2 devices both with dot1q trunk enabled on multiple subinterfaces.
+    3. send traffic down these interfaces
+    4. traffic should be visible on appropriate vlan
+    """
     tgen_dev, infra_devices = await tgen_utils_get_dent_devices_with_tgen(
         testbed, [DeviceType.INFRA_SWITCH], 1
     )
@@ -90,9 +97,8 @@ async def test_alpha_lab_switching_trunk_port(testbed):
     sleep_time = 60 * 2
     tgen_dev.applog.info(f"zzZZZZZ({sleep_time})s")
     time.sleep(sleep_time)
-    # await tgen_utils_stop_traffic(tgen_dev)
+    await tgen_utils_stop_traffic(tgen_dev)
     stats = await tgen_utils_get_traffic_stats(tgen_dev, "Flow Statistics")
-
-    # TODO add verification here
-
+    for row in stats.Rows:
+        assert tgen_utils_get_loss(row) != 100.000, f'Failed>Loss percent: {row["Loss %"]}'
     await tgen_utils_stop_protocols(tgen_dev)

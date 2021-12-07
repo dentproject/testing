@@ -149,6 +149,18 @@ def get_args():
         help="Update the DUT login banner about the test that is running",
         type=str,
     )
+    parser.add_argument(
+        "--discover-links",
+        help="Update links information in devices using discovery results",
+        action="store_true",
+        default=False,
+    )
+    parser.add_argument(
+        "--is-provisioned",
+        help="flag to indicate the setup is provisioned",
+        action="store_true",
+        default=False,
+    )
     args = parser.parse_args()
     return args
 
@@ -168,6 +180,11 @@ def validate_args(args):
             msg = (
                 "--discovery-reports-dir: Given path %s does not exist" % args.discovery_reports_dir
             )
+            raise argparse.ArgumentTypeError(msg)
+    if args.discover_links:
+        # TODO: Add an option to pass in discovery report and update links
+        if not args.discovery_force:
+            msg = "--discover-links: Discovery is not enabled"
             raise argparse.ArgumentTypeError(msg)
     if args.config_dir:
         if not os.path.isdir(args.config_dir):
@@ -245,6 +262,8 @@ async def setup(args, applog):
             await pytest.testbed.install_os()
         if args.discovery_force:
             await pytest.testbed.discover()
+            if args.discover_links:
+                await pytest.testbed.update_links()
     except Exception as e:
         applog.exception("Error in testbed setup", exc_info=e)
         raise

@@ -26,8 +26,13 @@ def console_log_analyzer(dev, file):
 @pytest.mark.asyncio
 async def test_collect_logs(testbed):
     """
-    1. iterate thru the devices and get the logs
-    2. collect the logs from the online device.
+    Test Name: test_collect_logs
+    Test Suite: suite_cleanup
+    Test Overview: Collect the logs from the devices
+    Test Procedure:
+    1. Iterate through the discovered devices
+    2. get all the vital log files and the files added by test cases.
+      2.1 interfaces, frr.conf, messages, syslog, autoprovision, frr.log, dmesg
     """
     if not testbed.discovery_report:
         testbed.applog.info(

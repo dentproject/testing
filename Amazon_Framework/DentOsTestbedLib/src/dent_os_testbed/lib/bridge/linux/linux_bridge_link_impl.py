@@ -26,6 +26,9 @@ class LinuxBridgeLinkImpl(LinuxBridgeLink):
         params = kwarg["params"]
         cmd = "bridge link {} ".format(command)
         ############# Implement me ################
+        cmd += "dev {} ".format(params.get("device", ""))
+        if "isolated" in params:
+            cmd += "isolated {} ".format("on" if params["isolated"] else "off")
 
         return cmd
 

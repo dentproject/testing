@@ -62,9 +62,10 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
         param = params[0]
         try:
             caddr = param["client_addr"]
+            cport = param.get("client_port", 443)
             if not caddr:
                 return 0, "No Address to connect!"
-            gw = TestPlatform(ip_address=caddr, rest_port=443)
+            gw = TestPlatform(ip_address=caddr, rest_port=cport)
             gw.Authenticate("admin", "admin")
             # session = gw.Sessions.find()[0]
             # device.applog.info(session)
@@ -189,7 +190,7 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
     def set_l4_traffic(self, config_element, ipv4_stack, pkt_data):
         if "ipproto" not in pkt_data:
             return
-        if pkt_data["ipproto"] not in ["tcp", "udp", "icmpv1"]:
+        if pkt_data["ipproto"] not in ["tcp", "udp", "icmpv1", "icmpv2"]:
             return
         ipproto_template = IxnetworkIxiaClientImpl.ixnet.Traffic.ProtocolTemplate.find(
             StackTypeId="^{}$".format(pkt_data["ipproto"])
@@ -200,13 +201,35 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                 FieldTypeId="{}.header.dstPort".format(pkt_data["ipproto"])
             )
             dst_port.Auto = False
-            dst_port.update(ValueType="singleValue", SingleValue="{}".format(pkt_data["dstPort"]))
+            if ":" in pkt_data["dstPort"]:
+                start, step, count = pkt_data["dstPort"].split(":")
+                dst_port.update(
+                    ValueType="increment", StartValue=start, StepValue=step, CountValue=count
+                )
+            else:
+                dst_port.update(
+                    ValueType="singleValue", SingleValue="{}".format(pkt_data["dstPort"])
+                )
         if "srcPort" in pkt_data:
             src_port = l4_stack.Field.find(
                 FieldTypeId="{}.header.srcPort".format(pkt_data["ipproto"])
             )
             src_port.Auto = False
             src_port.update(ValueType="singleValue", SingleValue="{}".format(pkt_data["srcPort"]))
+
+        if "icmpType" in pkt_data:
+            icmp_type = l4_stack.Field.find(
+                FieldTypeId="{}.message.messageType".format(pkt_data["ipproto"])
+            )
+            icmp_type.Auto = False
+            icmp_type.update(ValueType="singleValue", SingleValue="{}".format(pkt_data["icmpType"]))
+
+        if "icmpCode" in pkt_data:
+            icmp_code = l4_stack.Field.find(
+                FieldTypeId="{}.message.codeValue".format(pkt_data["ipproto"])
+            )
+            icmp_code.Auto = False
+            icmp_code.update(ValueType="singleValue", SingleValue="{}".format(pkt_data["icmpCode"]))
 
     def set_ethernet_traffic(self, device, name, pkt_data, traffic_type):
         # create an ipv4 traffic item

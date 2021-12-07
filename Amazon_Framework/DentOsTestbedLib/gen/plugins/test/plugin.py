@@ -85,6 +85,9 @@ class TestPyObject(object):
             elif "ixnetwork" in impl.platforms:
                 args['pd_impl_cc'] = '%sImpl' % camelcase(impl.name)
                 args['pd_impl'] = 'ixnetwork'
+            elif "dni" in impl.platforms:
+                args['pd_impl_cc'] = '%sImpl' % camelcase(impl.name)
+                args['pd_impl'] = 'dni'
             else:
                 continue
             self._imports.append(
@@ -368,6 +371,27 @@ class TestPlugin(SamplePlugin):
                 if os.path.exists(fname):
                     fname += '.gen'
                 o = TestCmdImplPyObject(c, fname, "ixnetwork")
+                o.generate_code()
+                o.write_file()
+                
+        for mname, m in dbs["poe_tester"].modules.items():
+            mdir = os.path.join(tdir, mname)
+            mdir = os.path.join(mdir, "dni")
+            if not os.path.exists(mdir):
+                os.mkdir(mdir)
+                fname = os.path.join(mdir, "__init__.py")
+                f = open(fname, "w")
+                f.close()
+            for c in m.classes:
+                fname = os.path.join(mdir, c.name + ".py")
+                o = TestCmdPyObject(c, fname)
+                o.generate_code()
+                o.write_file()
+                #gd.write(f"{mname}/ixnetwork/{c.name}.py\n")
+                fname = os.path.join(mdir, c.name + "_impl.py")
+                if os.path.exists(fname):
+                    fname += '.gen'
+                o = TestCmdImplPyObject(c, fname, "dni")
                 o.generate_code()
                 o.write_file()
         #gd.close()
