@@ -76,6 +76,10 @@ class Device(object):
             self.files_to_collect = []
             # dictionary of links with device name as key
             self.links_dict = {}
+            # meida mode can be: fiber, copper-fiber, or copper
+            # If copper-fiber then all even vports are
+            # assumed to be copper and odd as fiber
+            self.media_mode = params["mediaMode"]
             for link in self.links:
                 fr, to = link[0], link[1]
                 dut, port = to.split(":")
