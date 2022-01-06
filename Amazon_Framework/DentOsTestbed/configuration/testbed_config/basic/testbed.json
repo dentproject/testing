@@ -11,7 +11,8 @@
                 "password":"onl"
             },
             "serialDev":"/dev/ttyUSB7",
-            "baudrate": 115200
+            "baudrate": 115200,
+            "mediaMode": "fiber"
         },
         {
             "friendlyName":"Ixia Traffic Generator",
@@ -25,6 +26,7 @@
             },
             "serialDev":"/dev/ttyUSBXX",
             "baudrate": 115200,
+            "mediaMode": "fiber",
             "links" : [
                 ["192.168.122.5:1:1", "infra_sw1:swp47"],
                 ["192.168.122.5:1:2", "infra_sw1:swp48"]
