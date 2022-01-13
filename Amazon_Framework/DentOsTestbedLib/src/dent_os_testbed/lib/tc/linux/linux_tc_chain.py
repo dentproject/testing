@@ -8,7 +8,7 @@ from dent_os_testbed.lib.test_lib_object import TestLibObject
 
 
 class LinuxTcChain(TestLibObject):
-    """"""
+    """ """
 
     def format_modify(self, command, *argv, **kwarg):
         raise NotImplementedError

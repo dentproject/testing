@@ -10,8 +10,8 @@ from dent_os_testbed.utils.test_utils.tb_utils import tb_reload_nw_and_flush_fir
 from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_create_devices_and_connect,
     tgen_utils_get_dent_devices_with_tgen,
-    tgen_utils_get_traffic_stats,
     tgen_utils_get_loss,
+    tgen_utils_get_traffic_stats,
     tgen_utils_setup_streams,
     tgen_utils_start_traffic,
     tgen_utils_stop_protocols,
