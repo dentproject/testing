@@ -472,3 +472,4 @@ async def tb_collect_logs_from_devices(devices):
         cos.append(tb_collect_logs_from_device(device))
     results = await asyncio.gather(*cos, return_exceptions=True)
     check_asyncio_results(results, "tb_collect_logs_from_devices")
+
