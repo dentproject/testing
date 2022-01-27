@@ -18,7 +18,7 @@ pytestmark = pytest.mark.suite_basic_trigger
 
 
 class IpRouteDeleteAndAddMeta(DeleteAndAddMeta):
-    """"""
+    """ """
 
     def cls_name(obj=None):
         return "IpRoute"
@@ -40,13 +40,13 @@ class IpRouteDeleteAndAddMeta(DeleteAndAddMeta):
 
 
 class IpRouteDeleteAndAdd(DeleteAndAddBase):
-    """"""
+    """ """
 
     meta = IpRouteDeleteAndAddMeta
 
 
 class IpAddressDeleteAndAddMeta(DeleteAndAddMeta):
-    """"""
+    """ """
 
     def cls_name(obj=None):
         return "IpAddress"
@@ -68,13 +68,13 @@ class IpAddressDeleteAndAddMeta(DeleteAndAddMeta):
 
 
 class IpAddressDeleteAndAdd(DeleteAndAddBase):
-    """"""
+    """ """
 
     meta = IpAddressDeleteAndAddMeta
 
 
 class IpLinkDeleteAndAddMeta(DeleteAndAddMeta):
-    """"""
+    """ """
 
     def cls_name(obj=None):
         return "IpLink"
@@ -96,7 +96,7 @@ class IpLinkDeleteAndAddMeta(DeleteAndAddMeta):
 
 
 class IpLinkDeleteAndAdd(DeleteAndAddBase):
-    """"""
+    """ """
 
     meta = IpLinkDeleteAndAddMeta
 
