@@ -9,7 +9,7 @@ from dent_os_testbed.lib.os.memory_usage import MemoryUsage
 
 
 class MemoryUsageMod(Module):
-    """"""
+    """ """
 
     def set_memory_usage(self, src, dst):
 

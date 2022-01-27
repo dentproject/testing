@@ -8,7 +8,7 @@ from dent_os_testbed.lib.test_lib_object import TestLibObject
 
 
 class LinuxTcMonitor(TestLibObject):
-    """"""
+    """ """
 
     def format_show(self, command, *argv, **kwarg):
         raise NotImplementedError

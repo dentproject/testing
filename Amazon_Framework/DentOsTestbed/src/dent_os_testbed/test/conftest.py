@@ -123,4 +123,4 @@ def pytest_runtest_makereport(item, call):
     test_fn = item.obj
     docstring = getattr(test_fn, "__doc__")
     if docstring:
-        print (docstring)
+        print(docstring)

@@ -20,6 +20,7 @@ from dent_os_testbed.discovery.constants import REPORTS_DIR
 from dent_os_testbed.logger.Logger import AppLogger
 from dent_os_testbed.TestBed import TestBed
 from dent_os_testbed.utils.Utils import check_asyncio_results
+from dent_os_testbed.utils.test_utils.tb_utils import tb_collect_logs_from_devices
 
 
 def get_args():
@@ -161,6 +162,12 @@ def get_args():
         action="store_true",
         default=False,
     )
+    parser.add_argument(
+        "--collect-logs",
+        help="collect the logs at the end of the test",
+        action="store_true",
+        default=False,
+    )
     args = parser.parse_args()
     return args
 
@@ -235,6 +242,12 @@ def main():
         loop.run_until_complete(
             testbed_update_login_banner(pytest.testbed.devices, args, applog, add=False)
         )
+        if args.collect_logs:
+            loop = asyncio.get_event_loop()
+            loop.run_until_complete(
+                tb_collect_logs_from_devices(pytest.testbed.devices)
+            )
+
     except argparse.ArgumentTypeError as e:
         print("Invalid arguments. Err: %s" % str(e))
     except Exception as e:

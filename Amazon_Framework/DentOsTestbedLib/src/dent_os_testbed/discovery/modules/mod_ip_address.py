@@ -9,7 +9,7 @@ from dent_os_testbed.lib.ip.ip_address import IpAddress
 
 
 class IpAddressMod(Module):
-    """"""
+    """ """
 
     def set_ip_address_info(self, src, dst):
 
