@@ -9,7 +9,7 @@ from dent_os_testbed.lib.os.cpu_usage import CpuUsage
 
 
 class CpuUsageMod(Module):
-    """"""
+    """ """
 
     def set_cpu_usage(self, src, dst):
 

@@ -16,7 +16,7 @@ pytestmark = pytest.mark.suite_basic_trigger
 
 
 class IpLinkAttrSetAndUnsetMeta(AttrSetAndUnsetMeta):
-    """"""
+    """ """
 
     def cls_name(obj=None):
         return "ip_link"
@@ -44,7 +44,7 @@ class IpLinkAttrSetAndUnsetMeta(AttrSetAndUnsetMeta):
 
 
 class IpLinkAttrSetAndUnset(AttrSetAndUnsetBase):
-    """"""
+    """ """
 
     meta = IpLinkAttrSetAndUnsetMeta
 

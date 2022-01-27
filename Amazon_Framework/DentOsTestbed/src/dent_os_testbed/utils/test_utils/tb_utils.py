@@ -2,7 +2,7 @@ import asyncio
 import json
 import os
 import time
-
+import re
 import pytest
 
 from dent_os_testbed.Device import DeviceType
@@ -38,7 +38,10 @@ async def tb_clean_config_device(d):
         if not os.path.exists(file):
             d.applog.info(f"Cannot find {file}")
             continue
-        out = await d.scp(file, dst)
+        # copy only if there is a remote file.
+        rc, out = await d.run_cmd(f"ls {dst}", sudo=True)
+        if rc == 0:
+            out = await d.scp(file, dst)
     out = await Interface.reload(input_data=[{d.host_name: [{"options": "-a"}]}])
     d.applog.info(out)
     # restart the service
@@ -401,3 +404,72 @@ async def tb_restore_qdisc(dev, port, direction):
             }
         ]
     )
+
+async def tb_check_all_devices_are_connected(devices):
+    # check if all the devices can be reached??
+    for dev in devices:
+        if dev.type in [DeviceType.TRAFFIC_GENERATOR, DeviceType.BLACKFOOT_ROUTER]:
+            continue
+        if not await dev.is_connected():
+            return False
+    return True
+
+
+def console_log_analyzer(dev, file):
+    # check for back trace
+    pattern = re.compile("------------[ cut here ]------------")
+    for line in open(file):
+        for match in re.finditer(pattern, line):
+            print(line)
+            return -1
+    return 0
+
+async def tb_collect_logs_from_device(device):
+    files = [
+        "/etc/network/interfaces",
+        "/etc/frr/frr.conf",
+        "/var/log/messages",
+        "/var/log/syslog",
+        "/var/log/autoprovision",
+        "/var/log/frr/frr.log",
+        "/var/tmp/dmesg",
+        "/var/tmp/boot-0.log",
+    ]
+    file_analyzers = {
+        "/var/tmp/boot-0.log": console_log_analyzer,
+    }
+
+    await device.run_cmd("dmesg > /var/tmp/dmesg", sudo=True)
+    await device.run_cmd("journalctl -b 0 > /var/tmp/boot-0.log", sudo=True)
+    # copy to temp so that everyone can read
+    for f in files + device.files_to_collect:
+        fname = f.split("/")[-1]
+        await device.run_cmd(f"cp {f} /tmp/{fname}", sudo=True)
+        await device.run_cmd(f"chmod 755 /tmp/{fname}", sudo=True)
+
+    for f in files + device.files_to_collect:
+        l_f = f.split("/")[-1]
+        r_f = os.path.join("/tmp", l_f)
+        l_f = os.path.join(device.serial_logs_base_dir, l_f)
+        device.applog.info("Getting the remote file " + r_f)
+        device.applog.info(f"Copying file {r_f} to {l_f}")
+        try:
+            await device.scp(l_f, r_f, remote_to_local=True)
+            if f in file_analyzers:
+                ret = file_analyzers[f](device, l_f)
+                assert ret == 0, f"Found Errors in {f} on {device.host_name}"
+        except Exception as e:
+            device.applog.error(str(e))
+
+async def tb_collect_logs_from_devices(devices):
+    """
+    collect the logs from the given devices, skip if not connected.
+    """
+    cos = list()
+    for device in devices:
+        if not await device.is_connected():
+            continue
+        cos.append(tb_collect_logs_from_device(device))
+    results = await asyncio.gather(*cos, return_exceptions=True)
+    check_asyncio_results(results, "tb_collect_logs_from_devices")
+
