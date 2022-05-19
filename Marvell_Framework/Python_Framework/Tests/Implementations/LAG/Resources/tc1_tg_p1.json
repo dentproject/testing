@@ -1,0 +1,117 @@
+{
+  "name": "p1_lag_1",
+  "streams": [
+    {
+      "name": "1.1.1.1 -> 2.1.1.1",
+      "rate": {
+        "mode": "UTILIZATION",
+        "mode_comment": "INTER_PACKET_GAP|UTILIZATION|PACKETS_PER_SECOND|BITRATE_PER_SECOND",
+        "utilization_value": "79",
+        "bitrate_value": "10000",
+        "pps_value": "678",
+        "ipg_value": ""
+      },
+      "frame_size": {
+        "value": "64",
+        "min": "",
+        "max": "1518",
+        "step": "",
+        "mode": "FIXED",
+        "mode_comment": "FIXED|RANDOM|INCREMENT|AUTO|WEIGHT_PAIRS|IMIX|CISCO|TOLLY|RPRTRI|RPRQUAD|QUAD_GAUSSIAN",
+        "weight_pairs_list" : [],
+        "quad_gaussian_list": []
+      },
+      "control": {
+        "mode": "CONTINUOUS_PACKET",
+        "mode_comment": "CONTINUOUS_PACKET|CONTINUOUS_BURST|STOP_AFTER_THIS_STREAM|ADVANCE_TO_NEXT_STREAM|RETURN_TO_ID|RETURN_TO_ID_FOR_COUNT",
+        "return_to_id": "",
+        "loop_count": "",
+        "packets_per_burst": "",
+        "bursts_per_stream": ""
+      },
+      "packet": {
+        "mac": {
+          "da": {
+            "value": "00:BB:00:00:00:01",
+            "mode": "FIXED",
+            "mode_comment": "FIXED|INCREMENT|CONTINUOUS_INCREMENT|DECREMENT|CONTINUOUS_DECREMENT|RANDOM|ARP",
+            "count": "",
+            "step" : "",
+            "mask": ""
+          },
+          "sa": {
+            "value": "00:AA:00:00:00:01",
+            "mode": "FIXED",
+            "mode_comment": "FIXED|INCREMENT|CONTINUOUS_INCREMENT|DECREMENT|CONTINUOUS_DECREMENT|RANDOM|ARP",
+            "count": "",
+            "step" : "",
+            "mask": ""
+          },
+          "fcs": "",
+          "fcs_comment": "NO_ERROR|BAD_CRC|NO_CRC"
+        },
+        "l2_proto": "ETHERNETII",
+        "l2_proto_comment": "NONE|ETHERNETII|SNAP|RAW|IPX|PROTOCOL_OFFSET",
+        "l3_proto": "IPV4",
+        "l3_proto_comment": "NONE|ARP|IPV4|IPV6|IPV4_O_IPV6|IPV6_O_IPV4|IPX|PAUSE_CONTROL|CUSTOM",
+        "l4_proto": "UDP",
+        "l4_proto_comment": "NONE|TCP|UDP|ICMP|IGMP|OSPF|GRE|RIP|DHCP",
+
+        "ipv4": {
+          "dscp_decimal_value": "0",
+          "identifier": "0",
+          "ttl": "126",
+          "source_ip": {
+            "value": "1.1.1.1",
+            "mode": "FIXED",
+            "mode_comment": "FIXED|INCREMENT_HOST|DECREMENT_HOST|CONTINUOUS_INCREMENT_HOST|CONTINUOUS_DECREMENT_HOST|INCREMENT_NET|DECREMENT_NET|CONTINUOUS_INCREMENT_NET|CONTINUOUS_DECREMENT_NET|RANDOM",
+            "count": "10000",
+            "step" : "1",
+            "mask": "255.0.0.0"
+          },
+          "destination_ip": {
+            "value": "2.1.1.1",
+            "mode": "INCREMENT_HOST",
+            "mode_comment": "FIXED|INCREMENT_HOST|DECREMENT_HOST|CONTINUOUS_INCREMENT_HOST|CONTINUOUS_DECREMENT_HOST|INCREMENT_NET|DECREMENT_NET|CONTINUOUS_INCREMENT_NET|CONTINUOUS_DECREMENT_NET|RANDOM",
+            "count": "10000",
+            "step" : "1",
+            "mask": "255.0.0.0"
+          }
+        },
+        "tcp": {
+          "source_port": "1000",
+          "destination_port": "1000",
+          "checksum_mode": "VALID",
+          "checksum_mode_comment": "INVALID|VALID|OVERRIDE",
+          "checksum_override": "0x2626",
+          "sequence_number": "0xFFFFFFFF",
+          "acknowledgement_number": "0x1234",
+          "window": "0x4321",
+          "urgent_pointer": "0x1012",
+          "header_length": "1",
+          "flag_no_more_data_from_sender": "true",
+          "flag_acknowledge_valid": "true",
+          "flag_push_function": "true",
+          "flag_reset_connection": "true",
+          "flag_synchronize_sequence": "true",
+          "flag_urgent_pointer_valid": "true"
+        },
+        "udp": {
+          "source_port": "1000",
+          "destination_port": "1000",
+          "checksum_mode": "VALID",
+          "checksum_mode_comment": "INVALID|VALID|OVERRIDE",
+          "checksum_override": "0x3636",
+          "length_override": "false",
+          "custom_length": "6060"
+
+        },
+        "data_pattern": {
+          "type": "REPEATING",
+          "type_comment": "REPEATING|FIXED|INCREMENT_BYTE|INCREMENT_WORD|DECREMENT_BYTE|DECREMENT_WORD|RANDOM",
+          "value": "abcdef"
+        }
+      }
+    }
+  ]
+}
