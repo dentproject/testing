@@ -1,0 +1,63 @@
++--------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                             Test Steps Summary                                                             |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| Step | Description                                                                                          | Result | Run Time            |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 1    | Initiate test params                                                                                 | Passed | 0.0                 |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 2    | Verify bridge entity doesn't exist (by default)                                                      | Passed | 0.40293335914611816 |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 3    | Prepare ifupdown2 environment config (/etc/network/ifupdown2/ifupdown2.conf)                         | Passed | 0.2022876739501953  |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 4    | Make ifupdown configuration: a. Bridge entity: vlan aware, pvid=1 b. Bridge vids: {vids} c. Enslave  | Passed | 0.20273852348327637 |
+|      | ports {ports} to bridge d. Add FDB entries on port/vlan                                              |        |                     |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 5    | Verify (ifquery) no errors in configuration file                                                     | Passed | 0.7176699638366699  |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 6    | Apply (ifreload) ifupdown configuration                                                              | Passed | 2.516148805618286   |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 7    | Check (ifquery --check) running vs actual configuration ***Pay attention: ifquery --check is         | Passed | 0.8252682685852051  |
+|      | currently experimental ifquery --check cannot validate usercommands given under pre-up, post-up etc  |        |                     |
+|      | There is currently no support to check/validate ethtool iface attributes Link:                       |        |                     |
+|      | https://manpages.debian.org/testing/ifupdown2/ifquery.8.en.html                                      |        |                     |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 8    | Verify configuration: a. Bridge exists b. Ports {ports} enslaved to bridge c. Ports are members in   | Passed | 5.16497540473938    |
+|      | vids: {vids} d. Link status is up on ports and bridge e. FDB entries created properly                |        |                     |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 9    | Send the following streams: a. Untagged traffic to pvid b. Tagged traffic with inc. MAC according to | Passed | 46.173892974853516  |
+|      | FDB configuration                                                                                    |        |                     |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 10   | Analyze TG counters: a. To pvid traffic received on all ports b. Tagged received according to        | Passed | 10.914724588394165  |
+|      | configured FDB MAC addresses                                                                         |        |                     |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 11   | Reboot DUT                                                                                           | Passed | 134.3476538658142   |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 12   | Check (ifquery --check) running vs actual configuration ***Pay attention: ifquery --check is         | Passed | 0.8386290073394775  |
+|      | currently experimental ifquery --check cannot validate usercommands given under pre-up, post-up etc  |        |                     |
+|      | There is currently no support to check/validate ethtool iface attributes Link:                       |        |                     |
+|      | https://manpages.debian.org/testing/ifupdown2/ifquery.8.en.html                                      |        |                     |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 13   | Verify configuration: a. Bridge exists b. Ports {ports} enslaved to bridge c. Ports are members in   | Passed | 1.8792552947998047  |
+|      | vids: {vids} d. Link status is up on ports and bridge e. FDB entries created properly                |        |                     |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 14   | Send the following streams: a. Untagged traffic to pvid b. Tagged traffic with inc. MAC according to | Passed | 32.03791689872742   |
+|      | FDB configuration                                                                                    |        |                     |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 15   | Analyze TG counters: a. To pvid traffic received on all ports b. Tagged received according to        | Passed | 9.127089977264404   |
+|      | configured FDB MAC addresses                                                                         |        |                     |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 16   | Roll back ifupdown configuration to default                                                          | Passed | 0.6032614707946777  |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 17   | Apply (ifreload) ifupdown configuration                                                              | Passed | 1.3067107200622559  |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
+| 18   | Verify configuration was rolled back a. Bridge doesn't exists b. Ports are {ports} enslaved to       | Passed | 1.4615416526794434  |
+|      | bridge c. Ports are not members in vids: {vids} d. Link status is down on portse. FDB entries        |        |                     |
+|      | removed                                                                                              |        |                     |
++------+------------------------------------------------------------------------------------------------------+--------+---------------------+
++------------------------------------------------------------------------------------------------------+
+|                                           Test Information                                           |
++------------+---------------------------+--------+-----------------+-----------------+----------------+
+| Suite_Name | Test_Name                 | Result | start_time      | end_time        | run_time       |
++------------+---------------------------+--------+-----------------+-----------------+----------------+
+| ifupdown2  | Ifupdown2_Bridge_FDBBasic | Passed | 23:25:29.699010 | 23:29:58.990474 | 0:04:29.291464 |
++------------+---------------------------+--------+-----------------+-----------------+----------------+

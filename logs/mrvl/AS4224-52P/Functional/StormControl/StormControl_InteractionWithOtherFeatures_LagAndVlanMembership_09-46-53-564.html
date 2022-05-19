@@ -1,0 +1,2062 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>StormControl_InteractionWithOtherFeatures_LagAndVlanMembership_09-46-53-564711 Log</title>
+<!-- Latest compiled and minified CSS -->
+<!--
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs-3.3.7/jq-3.2.1/jq-3.2.1/dt-1.10.16/datatables.min.css"/>
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.7/jq-3.2.1/jq-3.2.1/dt-1.10.16/datatables.min.js"></script>
+-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+  
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+<style>
+pre {
+margin : 0;
+white-space: pre-wrap;
+background-color: inherit;
+border: none;
+border-radius: inherit;
+}
+</style>
+</head>
+
+<body>
+<div class="col-md-12 col-xs-12 col-lg-12">
+<br>
+<h1 style="text-align:center">StormControl_InteractionWithOtherFeatures_LagAndVlanMembership_09-46-53-564711 Log</h1>
+<br>
+<div class="input-group">
+    <select class="form-control" id="min-severity" placeholder="Min Severity">
+    </select>
+    <span class="input-group-addon">-</span>
+    <select class="form-control" id="max-severity" placeholder="Max Severity">
+    </select>
+</div>
+&nbsp
+<table id="data_table" class="table table-striped table-bordered" cellspacing="0">
+<thead>
+    <tr>
+        <th style="width: 180px;">Time</th>
+        <th style="width: 90px;">Log Level</th>
+        <th>Message</th>
+    </tr>
+</thead>
+<tbody>
+
+<tr class="success">
+<td>2021-10-08 09:46:53,565</td>
+<td>TRACE</td>
+<td><pre>BaseTest_SD::_BasicTestInit: this test has been launched with the following input arguments:
+Namespace(conn_table=None, dummy_test=False, excel_path='/swdev/fileril103/testing/Projects/Automation/Python/Setups/AGO/CI/Setup_23.xlsx', excel_setups_db_path=None, seed=None, setup_info=None, setup_name=None, stress=None, test_args=None)</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:46:53,566</td>
+<td>TRACE</td>
+<td><pre>BaseTest_SD::_BasicTestInit: this test is running from the following Setup Excel file /swdev/fileril103/testing/Projects/Automation/Python/Setups/AGO/CI/Setup_23.xlsx</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:46:53,567</td>
+<td>TRACE</td>
+<td><pre>
++-------------------------------------------------------+
+|                    TG Mapping Table                   |
++----+------------+------------+------+------+----------+
+| ID | IP Address |  TG Type   | Card | Port | Dut Port |
++----+------------+------------+------+------+----------+
+| 1  | 10.5.236.4 | ixia_linux |  11  |  5   |  sw1p1   |
+| 2  | 10.5.236.4 | ixia_linux |  11  |  6   |  sw1p23  |
+| 3  | 10.5.236.4 | ixia_linux |  11  |  7   |  sw1p35  |
+| 4  | 10.5.236.4 | ixia_linux |  11  |  8   |  sw1p48  |
++----+------------+------------+------+------+----------+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:46:53,567</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: connecting to IxiaSSH on IP 10.5.236.4 using TCL/API Server IP 10.5.236.4</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:01,154</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect:  Connection Successful</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:01,694</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:03,756</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:05,796</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:07,987</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Connect: Found Ixia Phy Mode settings. Configure ports to PORT_PROPERTIES_MEDIA_TYPE.COPPER</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:47:10,987</td>
+<td>INFO</td>
+<td><pre>Used cached DutInfo: dutmainchannel__/swdev/fileril103/testing/Projects/Automation/Python/Setups/AGO/CI/Setup_23.xlsx__1632647710.5673652</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:10,988</td>
+<td>TRACE</td>
+<td><pre>SwitchDevDutManager::login: Connecting to 10.5.236.85:root:22 ...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:11,100</td>
+<td>TRACE</td>
+<td><pre>SwitchDevDutManager::login: Connection Successful</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:11,101</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "
+
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:11,202</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: Linux localhost 5.10.4 #1 SMP PREEMPT Fri Sep 10 16:54:31 UTC 2021 aarch64
+Last login: Fri Oct  8 09:45:37 2021 from 10.5.116.193
+
+
+root@localhost:~# 
+root@localhost:~# 
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:12,203</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "
+
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:12,303</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: 
+root@localhost:~# 
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:12,304</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_clear_dmesg: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:12,406</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  echo "" &#62 /var/log/messages
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:12,507</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   echo "" &#62 /var/log/messages
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:12,507</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_clear_cmd_history: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:12,608</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  history -c
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:12,708</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   history -c
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:12,709</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::stressCpus: </pre></td>
+</tr>
+
+
+<tr>
+<td width="100"></td>
+<td width="100"></td>
+<td class="info"><pre>+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                                                          Test Description                                                                                          |
++--------------+----------------------------------------------------------------+------------------------------------------------------------------------+-----------------+-------------------------+
+| Suite Name   | Test Name                                                      | Purpose                                                                | Author          | Test Document Reference |
++--------------+----------------------------------------------------------------+------------------------------------------------------------------------+-----------------+-------------------------+
+| StormControl | StormControl_InteractionWithOtherFeatures_LagAndVlanMembership | This test comes to verify:                                             | Nitzan Horovitz |                         |
+|              |                                                                |             * Rate is limited according to the changes in Storm        |                 |                         |
+|              |                                                                | control Rules                                                          |                 |                         |
+|              |                                                                |                                                                        |                 |                         |
++--------------+----------------------------------------------------------------+------------------------------------------------------------------------+-----------------+-------------------------+
+
++-------------------------------------------------------------------------------+
+|                                 Test Procedure                                |
++------+------------------------------------------------------------------------+
+| Step | Step Description                                                       |
++------+------------------------------------------------------------------------+
+| 1    | Init test                                                              |
++------+------------------------------------------------------------------------+
+| 2    | Create a bond entity and set link up on it. Enslave the first port     |
+|      | connected to Ixia to it.                                               |
++------+------------------------------------------------------------------------+
+| 3    | Create another bond entity and set link up on it. Enslave the third    |
+|      | port connected to Ixia to it.                                          |
++------+------------------------------------------------------------------------+
+| 4    | Set link up on interfaces                                              |
++------+------------------------------------------------------------------------+
+| 5    | Create bridge entity and set link up on it. Enslave the two bonds,     |
+|      | Ixia port 2 and 4 to the bridge.                                       |
++------+------------------------------------------------------------------------+
+| 6    | Add Ixia port 3 and one of the bonds to VLAN1 and Ixia port 4 and the  |
+|      | other bond to VLAN2.                                                   |
++------+------------------------------------------------------------------------+
+| 7    | Set up the next streams: • Ixia port 1: unknown unicast stream, with   |
+|      | random generated size of packet. • Ixia port 2: broadcast and          |
+|      | multicast and unknown unicast streams, with random generated size of   |
+|      | packet. • Ixia port 3: broadcast and unknown unicast streams, with     |
+|      | random generated size of packet. • Ixia port 4: multicast stream, with |
+|      | random generated size of packet.                                       |
++------+------------------------------------------------------------------------+
+| 8    | Set storm control rate limit for all types of traffic on all ports     |
++------+------------------------------------------------------------------------+
+| 9    | Transmit continues traffic                                             |
++------+------------------------------------------------------------------------+
+| 10   | Verify rx rate on rx ports is as expected - rate is limited by Storm   |
+|      | Control.                                                               |
++------+------------------------------------------------------------------------+</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:47:12,717</td>
+<td>INFO</td>
+<td><pre>Randomize::__init__: Random seed value is 0.9676425571399837</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:47:12,718</td>
+<td>INFO</td>
+<td><pre>Randomize::__init__: Random seed value is 0.39946904341131806</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:47:12,722</td>
+<td>INFO</td>
+<td><pre>Executing step 1: Init test</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:12,722</td>
+<td>DEBUG</td>
+<td><pre>StormControlAPI::initTestParams: Initiate all relevant test parameters</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:47:19,698</td>
+<td>INFO</td>
+<td><pre>Executing step 2: Create a bond entity and set link up on it. Enslave the first port connected to Ixia to it.</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:19,698</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::createAndSetSoftEntityUp: set link up on bridge entity</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:19,799</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link add bond1 type bond mode 802.3ad
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:19,899</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link add bond1 type bond mode 802.3ad
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:20,000</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev bond1 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:20,100</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev bond1 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:20,100</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::setLinkStateOnInterfaces: set link up on ports</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:20,201</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p1 down
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:20,302</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p1 down
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:20,302</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::enslavePortsToSoftLink: set enslaved interfaces</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:20,403</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p1 master bond1
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:20,504</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p1 master bond1
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:47:23,508</td>
+<td>INFO</td>
+<td><pre>Executing step 3: Create another bond entity and set link up on it. Enslave the third port connected to Ixia to it.</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:23,508</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::createAndSetSoftEntityUp: set link up on bridge entity</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:23,608</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link add bond2 type bond mode 802.3ad
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:23,710</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link add bond2 type bond mode 802.3ad
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:23,811</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev bond2 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:23,912</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev bond2 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:23,912</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::setLinkStateOnInterfaces: set link up on ports</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:24,013</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p35 down
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:24,114</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p35 down
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:24,114</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::enslavePortsToSoftLink: set enslaved interfaces</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:24,215</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p35 master bond2
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:24,315</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p35 master bond2
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:47:27,319</td>
+<td>INFO</td>
+<td><pre>Executing step 4: Set link up on interfaces</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:27,319</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::setLinkStateOnInterfaces: set link up on ports</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:27,420</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p1 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:27,521</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p1 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:27,622</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p23 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:27,723</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p23 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:27,825</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p35 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:27,926</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p35 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:28,027</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p48 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:28,128</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p48 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:47:28,129</td>
+<td>INFO</td>
+<td><pre>Executing step 5: Create bridge entity and set link up on it. Enslave the two bonds, Ixia port 2 and 4 to the bridge.</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:28,129</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::createAndSetSoftEntityUp: set link up on bridge entity</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:28,230</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link add br0 type bridge vlan_filtering 1
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:28,331</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link add br0 type bridge vlan_filtering 1
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:28,432</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev br0 up
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:28,533</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev br0 up
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:28,534</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::enslavePortsToSoftLink: set enslaved interfaces</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:28,634</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p23 master br0
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:28,735</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p23 master br0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:28,835</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p48 master br0
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:28,936</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p48 master br0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:28,936</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::enslavePortsToSoftLink: set enslaved interfaces</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:29,039</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev bond1 master br0
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:29,139</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev bond1 master br0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:29,240</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev bond2 master br0
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:29,341</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev bond2 master br0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:47:29,341</td>
+<td>INFO</td>
+<td><pre>Executing step 6: Add Ixia port 3 and one of the bonds to VLAN1 and Ixia port 4 and the other bond to VLAN2.</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:29,442</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev br0 type bridge vlan_default_pvid 0
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:29,543</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev br0 type bridge vlan_default_pvid 0
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:29,643</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "bridge vlan add vid 1 dev sw1p23 pvid untagged
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:29,744</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: bridge vlan add vid 1 dev sw1p23 pvid untagged
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:29,845</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "bridge vlan add vid 1 dev bond1 pvid untagged
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:29,945</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: bridge vlan add vid 1 dev bond1 pvid untagged
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:30,047</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "bridge vlan add vid 2 dev sw1p48 pvid untagged
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:30,147</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: bridge vlan add vid 2 dev sw1p48 pvid untagged
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:30,248</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "bridge vlan add vid 2 dev bond2 pvid untagged
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:30,349</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: bridge vlan add vid 2 dev bond2 pvid untagged
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:47:30,350</td>
+<td>INFO</td>
+<td><pre>Executing step 7: Set up the next streams: • Ixia port 1: unknown unicast stream, with random generated size of packet. • Ixia port 2: broadcast and multicast and unknown unicast streams, with random generated size of packet. • Ixia port 3: broadcast and unknown unicast streams, with random generated size of packet. • Ixia port 4: multicast stream, with random generated size of packet.</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:30,487</td>
+<td>DEBUG</td>
+<td><pre>Stream name: stream1
+Stream uri: 1 11 5 1
+Stream port name: 1
+Stream packet: L2: MAC: DA[f4:02:01:76:61:bd, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[82:11:3c:92:4f:9a, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x9200]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[1200], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.CONTINUOUS_PACKET], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100.0], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.STREAM_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:33,622</td>
+<td>DEBUG</td>
+<td><pre>Stream name: stream2
+Stream uri: 1 11 6 1
+Stream port name: 2
+Stream packet: L2: MAC: DA[ff:ff:ff:ff:ff:ff, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[e6:97:09:4c:bd:ba, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+IPV4_HEADER: IPV4: SIP[170.94.249.133, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], DIP[255.255.255.255, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], TTL[64], PROTOCOL[255], IDENTIFIER[0], OPTIONS[], CUSTOM CHECKSUM[], FRAGMENT ENABLED[True], FRAGMENT OFFSET[0], FRAGMENT LAST[True]DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[1200], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.CONTINUOUS_PACKET], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[33.333333333333336], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.STREAM_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:33,723</td>
+<td>DEBUG</td>
+<td><pre>Stream name: stream3
+Stream uri: 1 11 6 2
+Stream port name: 2
+Stream packet: L2: MAC: DA[01:00:5E:0f:84:e2, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[8c:95:69:02:04:e1, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[1200], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.CONTINUOUS_PACKET], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[33.333333333333336], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.STREAM_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:33,826</td>
+<td>DEBUG</td>
+<td><pre>Stream name: stream4
+Stream uri: 1 11 6 3
+Stream port name: 2
+Stream packet: L2: MAC: DA[fa:b8:6b:60:7b:ad, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[c8:d8:c9:2c:be:dc, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x9200]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[1200], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.CONTINUOUS_PACKET], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[33.333333333333336], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.STREAM_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:39,260</td>
+<td>DEBUG</td>
+<td><pre>Stream name: stream5
+Stream uri: 1 11 7 1
+Stream port name: 3
+Stream packet: L2: MAC: DA[ff:ff:ff:ff:ff:ff, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[44:0b:e9:7e:3c:5c, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x88a8]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[1200], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.CONTINUOUS_PACKET], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[50.0], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.STREAM_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:39,358</td>
+<td>DEBUG</td>
+<td><pre>Stream name: stream6
+Stream uri: 1 11 7 2
+Stream port name: 3
+Stream packet: L2: MAC: DA[22:50:41:19:20:b8, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[cc:b1:56:71:82:4c, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+IPV4_HEADER: IPV4: SIP[0.0.0.0, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], DIP[0.0.0.0, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], TTL[64], PROTOCOL[255], IDENTIFIER[0], OPTIONS[], CUSTOM CHECKSUM[], FRAGMENT ENABLED[True], FRAGMENT OFFSET[0], FRAGMENT LAST[True]DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[1200], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.CONTINUOUS_PACKET], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[50.0], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.STREAM_BASED
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:44,111</td>
+<td>DEBUG</td>
+<td><pre>Stream name: stream7
+Stream uri: 1 11 8 1
+Stream port name: 4
+Stream packet: L2: MAC: DA[01:00:5E:7d:01:14, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1], SA[4a:e5:8b:ac:41:29, mode=MODIFIER_MAC_MODE.FIXED, step=1, count=1]
+FCS[FCS_ERRORS_MODE.NO_ERROR]
+EtherType: [0x0800]
+PROTOCOL_OFFSET: OFFSET[14], VALUE[]
+IPV4_HEADER: IPV4: SIP[169.236.178.209, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], DIP[231.125.1.20, mode=MODIFIER_IPV4_ADDRESS_MODE.FIXED, count=0, mask=255.0.0.0], TTL[64], PROTOCOL[255], IDENTIFIER[0], OPTIONS[], CUSTOM CHECKSUM[], FRAGMENT ENABLED[True], FRAGMENT OFFSET[0], FRAGMENT LAST[True]UDP_HEADER: UDP: SPORT[63010, mode=MODIFIER_L4_PORT_MODE.FIXED, count=1, step=1], DPORT[0, mode=MODIFIER_L4_PORT_MODE.FIXED, count=1, step=1], VALID_CHEKSUM[CHECKSUM_MODE.VALID], CUSTOM_CHECKSUM[0, LEN_OVERRIDE[False], CUSTOM_LEN[0]
+DATA_PATTERN: TYPE[DATA_PATTERN_TYPE.REPEATING], VALUE[0000], FILE_PATH[None]
+
+Packet size: SIZE[1200], MODE[MODIFIER_FRAME_SIZE_MODE.FIXED], MIN[64], MAX[64], STEP[1]
+	WEIGHT_PAIRS_LIST[['64,1']]
+	QUAD_GAUSSIAN_LIST[['200.00,100.00,1', '200.00,100.00,0', '200.00,100.00,0', '200.00,100.00,0']]
+Stream control: MODE[STREAM_TRANSMIT_MODE.CONTINUOUS_PACKET], RETURN_TO_ID[1], LOOP_CCOUNT[1], PACKETS_PER_BURST[100], BURSTS_PER_STREAM[1]
+	INTER_BURST_GAP[enable=False, value=9600, unit=STREAM_INTER_BURST_GAP_UNIT.BYTES]
+	INTER_STREAM_GAP[enable=False, value=9600, unit=STREAM_INTER_STREAM_GAP_UNIT.BYTES]
+START_TX_DELAY[0.0], START_TX_DELAY_UNIT[STREAM_START_TX_DELAY_UNIT.BYTES], PFC_QUEUE[0]
+Stream enabled: True
+Stream suspended: False
+Stream rate: MODE[STREAM_RATE_MODE.UTILIZATION], UTILIZATION_VALUE[100.0], BITRATE_VALUE[100], PPS_VALUE[0.5], IPG_VALUE[96.0], INTER_PACKET_GAP_VALUE[STREAM_RATE_INTER_PACKET_GAP_MODE.NANOSECONDS], INTER_PACKET_GAP_MODE[], INTER_PACKET_GAP_ENFORCE_MIN_VAL[]
+Stream port transmit mode: PORT_PROPERTIES_TRANSMIT_MODES.STREAM_BASED
+</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:47:47,919</td>
+<td>INFO</td>
+<td><pre>Executing step 8: Set storm control rate limit for all types of traffic on all ports</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:47,920</td>
+<td>DEBUG</td>
+<td><pre>configureStormControlRateLimit Configure Storm Control rate limit 62704 kbps for unicast traffic type</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:48,020</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param set pci/0000:01:00.0/1 name unk_uc_kbyte_per_sec_rate value 62704 cmode runtime
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:48,121</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param set pci/0000:01:00.0/1 name unk_uc_kbyte_per_sec_rate value 62704 cmode runtime
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:48,121</td>
+<td>DEBUG</td>
+<td><pre>StormControlAPI::verifyRateOnPort: Verify Storm Control rate configured is 62704 kbps</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:48,222</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param show pci/0000:01:00.0/1 name unk_uc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:48,323</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param show pci/0000:01:00.0/1 name unk_uc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+62704
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:48,324</td>
+<td>DEBUG</td>
+<td><pre>configureStormControlRateLimit Configure Storm Control rate limit 30737 kbps for broadcast traffic type</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:48,424</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param set pci/0000:01:00.0/23 name bc_kbyte_per_sec_rate value 30737 cmode runtime
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:48,526</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param set pci/0000:01:00.0/23 name bc_kbyte_per_sec_rate value 30737 cmode runtime
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:48,526</td>
+<td>DEBUG</td>
+<td><pre>StormControlAPI::verifyRateOnPort: Verify Storm Control rate configured is 30737 kbps</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:48,627</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param show pci/0000:01:00.0/23 name bc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:48,728</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param show pci/0000:01:00.0/23 name bc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+30737
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:48,728</td>
+<td>DEBUG</td>
+<td><pre>configureStormControlRateLimit Configure Storm Control rate limit 15983 kbps for multicast traffic type</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:48,829</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param set pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate value 15983 cmode runtime
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:48,930</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param set pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate value 15983 cmode runtime
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:48,930</td>
+<td>DEBUG</td>
+<td><pre>StormControlAPI::verifyRateOnPort: Verify Storm Control rate configured is 15983 kbps</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:49,031</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param show pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:49,132</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param show pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+15983
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:49,133</td>
+<td>DEBUG</td>
+<td><pre>configureStormControlRateLimit Configure Storm Control rate limit 2459 kbps for unicast traffic type</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:49,234</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param set pci/0000:01:00.0/23 name unk_uc_kbyte_per_sec_rate value 2459 cmode runtime
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:49,335</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param set pci/0000:01:00.0/23 name unk_uc_kbyte_per_sec_rate value 2459 cmode runtime
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:49,335</td>
+<td>DEBUG</td>
+<td><pre>StormControlAPI::verifyRateOnPort: Verify Storm Control rate configured is 2459 kbps</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:49,436</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param show pci/0000:01:00.0/23 name unk_uc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:49,537</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param show pci/0000:01:00.0/23 name unk_uc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+2459
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:49,538</td>
+<td>DEBUG</td>
+<td><pre>configureStormControlRateLimit Configure Storm Control rate limit 45491 kbps for broadcast traffic type</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:49,638</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param set pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate value 45491 cmode runtime
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:49,739</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param set pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate value 45491 cmode runtime
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:49,740</td>
+<td>DEBUG</td>
+<td><pre>StormControlAPI::verifyRateOnPort: Verify Storm Control rate configured is 45491 kbps</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:49,841</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param show pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:49,942</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param show pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+45491
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:49,943</td>
+<td>DEBUG</td>
+<td><pre>configureStormControlRateLimit Configure Storm Control rate limit 33196 kbps for unicast traffic type</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:50,044</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param set pci/0000:01:00.0/35 name unk_uc_kbyte_per_sec_rate value 33196 cmode runtime
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:50,144</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param set pci/0000:01:00.0/35 name unk_uc_kbyte_per_sec_rate value 33196 cmode runtime
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:50,145</td>
+<td>DEBUG</td>
+<td><pre>StormControlAPI::verifyRateOnPort: Verify Storm Control rate configured is 33196 kbps</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:50,245</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param show pci/0000:01:00.0/35 name unk_uc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:50,346</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param show pci/0000:01:00.0/35 name unk_uc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+33196
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:50,347</td>
+<td>DEBUG</td>
+<td><pre>configureStormControlRateLimit Configure Storm Control rate limit 1229 kbps for multicast traffic type</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:50,447</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param set pci/0000:01:00.0/48 name unreg_mc_kbyte_per_sec_rate value 1229 cmode runtime
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:50,548</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param set pci/0000:01:00.0/48 name unreg_mc_kbyte_per_sec_rate value 1229 cmode runtime
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:50,550</td>
+<td>DEBUG</td>
+<td><pre>StormControlAPI::verifyRateOnPort: Verify Storm Control rate configured is 1229 kbps</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:50,650</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param show pci/0000:01:00.0/48 name unreg_mc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:50,751</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param show pci/0000:01:00.0/48 name unreg_mc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+1229
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:47:50,752</td>
+<td>INFO</td>
+<td><pre>Executing step 9: Transmit continues traffic</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:47:58,231</td>
+<td>DEBUG</td>
+<td><pre>wait 15 seconds...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:13,245</td>
+<td>DEBUG</td>
+<td><pre>CommonTestAPI::transmitTraffic: Transmitting traffic:
+Port name: 1, Port uri: 10.5.236.4/11/5 ----------&#62 Port name: 2, Port uri: 10.5.236.4/11/6
+Port name: 1, Port uri: 10.5.236.4/11/5 ----------&#62 Port name: 3, Port uri: 10.5.236.4/11/7
+Port name: 1, Port uri: 10.5.236.4/11/5 ----------&#62 Port name: 4, Port uri: 10.5.236.4/11/8
+Port name: 2, Port uri: 10.5.236.4/11/6 ----------&#62 Port name: 1, Port uri: 10.5.236.4/11/5
+Port name: 2, Port uri: 10.5.236.4/11/6 ----------&#62 Port name: 3, Port uri: 10.5.236.4/11/7
+Port name: 2, Port uri: 10.5.236.4/11/6 ----------&#62 Port name: 4, Port uri: 10.5.236.4/11/8
+Port name: 3, Port uri: 10.5.236.4/11/7 ----------&#62 Port name: 1, Port uri: 10.5.236.4/11/5
+Port name: 3, Port uri: 10.5.236.4/11/7 ----------&#62 Port name: 2, Port uri: 10.5.236.4/11/6
+Port name: 3, Port uri: 10.5.236.4/11/7 ----------&#62 Port name: 4, Port uri: 10.5.236.4/11/8
+Port name: 4, Port uri: 10.5.236.4/11/8 ----------&#62 Port name: 1, Port uri: 10.5.236.4/11/5
+Port name: 4, Port uri: 10.5.236.4/11/8 ----------&#62 Port name: 2, Port uri: 10.5.236.4/11/6
+Port name: 4, Port uri: 10.5.236.4/11/8 ----------&#62 Port name: 3, Port uri: 10.5.236.4/11/7
+</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:48:18,900</td>
+<td>INFO</td>
+<td><pre>Executing step 10: Verify rx rate on rx ports is as expected - rate is limited by Storm Control.</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:23,658</td>
+<td>DEBUG</td>
+<td><pre>PASS: No packet loss for stream stream1 on port/s Port name: 2, Port uri: 10.5.236.4/11/6: expected: 62704000, actual 62753198</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:23,659</td>
+<td>DEBUG</td>
+<td><pre>PASS: No packet loss for stream stream2 on port/s Port name: 1, Port uri: 10.5.236.4/11/5: expected: 30737000, actual 30742828</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:23,659</td>
+<td>DEBUG</td>
+<td><pre>PASS: No packet loss for stream stream3 on port/s Port name: 1, Port uri: 10.5.236.4/11/5: expected: 15983000, actual 15979820</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:23,659</td>
+<td>DEBUG</td>
+<td><pre>PASS: No packet loss for stream stream4 on port/s Port name: 1, Port uri: 10.5.236.4/11/5: expected: 2459000, actual 2445895</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:23,659</td>
+<td>DEBUG</td>
+<td><pre>PASS: No packet loss for stream stream5 on port/s Port name: 4, Port uri: 10.5.236.4/11/8: expected: 45491000, actual 45491042</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:23,659</td>
+<td>DEBUG</td>
+<td><pre>PASS: No packet loss for stream stream6 on port/s Port name: 4, Port uri: 10.5.236.4/11/8: expected: 33196000, actual 33217555</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:23,659</td>
+<td>DEBUG</td>
+<td><pre>PASS: No packet loss for stream stream7 on port/s Port name: 3, Port uri: 10.5.236.4/11/7: expected: 1229000, actual 1239253</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:23,660</td>
+<td>TRACE</td>
+<td><pre>BaseTest::_OnPostTest:  starting to run registered post test functions</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:23,660</td>
+<td>TRACE</td>
+<td><pre>BaseTest::TestTearDown:  starting to call to cleanup functions of test</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:23,760</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param set pci/0000:01:00.0/48 name unreg_mc_kbyte_per_sec_rate value 0 cmode runtime
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:23,861</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param set pci/0000:01:00.0/48 name unreg_mc_kbyte_per_sec_rate value 0 cmode runtime
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:23,962</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param set pci/0000:01:00.0/35 name unk_uc_kbyte_per_sec_rate value 0 cmode runtime
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:24,063</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param set pci/0000:01:00.0/35 name unk_uc_kbyte_per_sec_rate value 0 cmode runtime
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:24,164</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param set pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate value 0 cmode runtime
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:24,265</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param set pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate value 0 cmode runtime
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:24,366</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param set pci/0000:01:00.0/23 name unk_uc_kbyte_per_sec_rate value 0 cmode runtime
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:24,466</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param set pci/0000:01:00.0/23 name unk_uc_kbyte_per_sec_rate value 0 cmode runtime
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:24,567</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param set pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate value 0 cmode runtime
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:24,668</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param set pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate value 0 cmode runtime
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:24,768</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param set pci/0000:01:00.0/23 name bc_kbyte_per_sec_rate value 0 cmode runtime
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:24,870</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param set pci/0000:01:00.0/23 name bc_kbyte_per_sec_rate value 0 cmode runtime
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:24,970</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "devlink port param set pci/0000:01:00.0/1 name unk_uc_kbyte_per_sec_rate value 0 cmode runtime
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:25,071</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: devlink port param set pci/0000:01:00.0/1 name unk_uc_kbyte_per_sec_rate value 0 cmode runtime
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:25,171</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link delete dev br0
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:25,272</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link delete dev br0
+</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:25,573</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:25,674</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p48 down
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:25,775</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p48 down
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:25,875</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p35 down
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:25,976</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p35 down
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:26,077</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p23 down
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:26,178</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p23 down
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:26,279</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link set dev sw1p1 down
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:26,380</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link set dev sw1p1 down
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:26,480</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link delete dev bond2
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:26,581</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link delete dev bond2
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:26,682</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "ip link delete dev bond1
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:26,782</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ip link delete dev bond1
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:26,782</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_parse_dmesg: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:26,883</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  history
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:26,984</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   history
+    3  ip link add bond1 type bond mode 802.3ad
+    4  ip link set dev bond1 up
+    5  ip link set dev sw1p1 down
+    6  ip link set dev sw1p1 master bond1
+    7  ip link add bond2 type bond mode 802.3ad
+    8  ip link set dev bond2 up
+    9  ip link set dev sw1p35 down
+   10  ip link set dev sw1p35 master bond2
+   11  ip link set dev sw1p1 up
+   12  ip link set dev sw1p23 up
+   13  ip link set dev sw1p35 up
+   14  ip link set dev sw1p48 up
+   15  ip link add br0 type bridge vlan_filtering 1
+   16  ip link set dev br0 up
+   17  ip link set dev sw1p23 master br0
+   18  ip link set dev sw1p48 master br0
+   19  ip link set dev bond1 master br0
+   20  ip link set dev bond2 master br0
+   21  ip link set dev br0 type bridge vlan_default_pvid 0
+   22  bridge vlan add vid 1 dev sw1p23 pvid untagged
+   23  bridge vlan add vid 1 dev bond1 pvid untagged
+   24  bridge vlan add vid 2 dev sw1p48 pvid untagged
+   25  bridge vlan add vid 2 dev bond2 pvid untagged
+   26  devlink port param set pci/0000:01:00.0/1 name unk_uc_kbyte_per_sec_rate value 62704 cmode runtime
+   27  devlink port param show pci/0000:01:00.0/1 name unk_uc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+   28  devlink port param set pci/0000:01:00.0/23 name bc_kbyte_per_sec_rate value 30737 cmode runtime
+   29  devlink port param show pci/0000:01:00.0/23 name bc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+   30  devlink port param set pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate value 15983 cmode runtime
+   31  devlink port param show pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+   32  devlink port param set pci/0000:01:00.0/23 name unk_uc_kbyte_per_sec_rate value 2459 cmode runtime
+   33  devlink port param show pci/0000:01:00.0/23 name unk_uc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+   34  devlink port param set pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate value 45491 cmode runtime
+   35  devlink port param show pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+   36  devlink port param set pci/0000:01:00.0/35 name unk_uc_kbyte_per_sec_rate value 33196 cmode runtime
+   37  devlink port param show pci/0000:01:00.0/35 name unk_uc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+   38  devlink port param set pci/0000:01:00.0/48 name unreg_mc_kbyte_per_sec_rate value 1229 cmode runtime
+   39  devlink port param show pci/0000:01:00.0/48 name unreg_mc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+   40  devlink port param set pci/0000:01:00.0/48 name unreg_mc_kbyte_per_sec_rate value 0 cmode runtime
+   41  devlink port param set pci/0000:01:00.0/35 name unk_uc_kbyte_per_sec_rate value 0 cmode runtime
+   42  devlink port param set pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate value 0 cmode runtime
+   43  devlink port param set pci/0000:01:00.0/23 name unk_uc_kbyte_per_sec_rate value 0 cmode runtime
+   44  devlink port param set pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate value 0 cmode runtime
+   45  devlink port param set pci/0000:01:00.0/23 name bc_kbyte_per_sec_rate value 0 cmode runtime
+   46  devlink port param set pci/0000:01:00.0/1 name unk_uc_kbyte_per_sec_rate value 0 cmode runtime
+   47  ip link delete dev br0
+   48  ip link set dev sw1p48 down
+   49  ip link set dev sw1p35 down
+   50  ip link set dev sw1p23 down
+   51  ip link set dev sw1p1 down
+   52  ip link delete dev bond2
+   53  ip link delete dev bond1
+   54    history
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:26,984</td>
+<td>DEBUG</td>
+<td><pre>commands history:
+    3  ip link add bond1 type bond mode 802.3ad
+    4  ip link set dev bond1 up
+    5  ip link set dev sw1p1 down
+    6  ip link set dev sw1p1 master bond1
+    7  ip link add bond2 type bond mode 802.3ad
+    8  ip link set dev bond2 up
+    9  ip link set dev sw1p35 down
+   10  ip link set dev sw1p35 master bond2
+   11  ip link set dev sw1p1 up
+   12  ip link set dev sw1p23 up
+   13  ip link set dev sw1p35 up
+   14  ip link set dev sw1p48 up
+   15  ip link add br0 type bridge vlan_filtering 1
+   16  ip link set dev br0 up
+   17  ip link set dev sw1p23 master br0
+   18  ip link set dev sw1p48 master br0
+   19  ip link set dev bond1 master br0
+   20  ip link set dev bond2 master br0
+   21  ip link set dev br0 type bridge vlan_default_pvid 0
+   22  bridge vlan add vid 1 dev sw1p23 pvid untagged
+   23  bridge vlan add vid 1 dev bond1 pvid untagged
+   24  bridge vlan add vid 2 dev sw1p48 pvid untagged
+   25  bridge vlan add vid 2 dev bond2 pvid untagged
+   26  devlink port param set pci/0000:01:00.0/1 name unk_uc_kbyte_per_sec_rate value 62704 cmode runtime
+   27  devlink port param show pci/0000:01:00.0/1 name unk_uc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+   28  devlink port param set pci/0000:01:00.0/23 name bc_kbyte_per_sec_rate value 30737 cmode runtime
+   29  devlink port param show pci/0000:01:00.0/23 name bc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+   30  devlink port param set pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate value 15983 cmode runtime
+   31  devlink port param show pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+   32  devlink port param set pci/0000:01:00.0/23 name unk_uc_kbyte_per_sec_rate value 2459 cmode runtime
+   33  devlink port param show pci/0000:01:00.0/23 name unk_uc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+   34  devlink port param set pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate value 45491 cmode runtime
+   35  devlink port param show pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+   36  devlink port param set pci/0000:01:00.0/35 name unk_uc_kbyte_per_sec_rate value 33196 cmode runtime
+   37  devlink port param show pci/0000:01:00.0/35 name unk_uc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+   38  devlink port param set pci/0000:01:00.0/48 name unreg_mc_kbyte_per_sec_rate value 1229 cmode runtime
+   39  devlink port param show pci/0000:01:00.0/48 name unreg_mc_kbyte_per_sec_rate | sed -n "s/.*cmode runtime value //p"
+   40  devlink port param set pci/0000:01:00.0/48 name unreg_mc_kbyte_per_sec_rate value 0 cmode runtime
+   41  devlink port param set pci/0000:01:00.0/35 name unk_uc_kbyte_per_sec_rate value 0 cmode runtime
+   42  devlink port param set pci/0000:01:00.0/35 name bc_kbyte_per_sec_rate value 0 cmode runtime
+   43  devlink port param set pci/0000:01:00.0/23 name unk_uc_kbyte_per_sec_rate value 0 cmode runtime
+   44  devlink port param set pci/0000:01:00.0/23 name unreg_mc_kbyte_per_sec_rate value 0 cmode runtime
+   45  devlink port param set pci/0000:01:00.0/23 name bc_kbyte_per_sec_rate value 0 cmode runtime
+   46  devlink port param set pci/0000:01:00.0/1 name unk_uc_kbyte_per_sec_rate value 0 cmode runtime
+   47  ip link delete dev br0
+   48  ip link set dev sw1p48 down
+   49  ip link set dev sw1p35 down
+   50  ip link set dev sw1p23 down
+   51  ip link set dev sw1p1 down
+   52  ip link delete dev bond2
+   53  ip link delete dev bond1
+   54    history</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:26,984</td>
+<td>DEBUG</td>
+<td><pre>BaseTest_SD::_parse_dmesg: </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:27,098</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:  ==&#62CMD: "  cat /var/log/messages
+"</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:27,104</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern:   cat /var/log/messages
+
+Oct  8 09:46:52 localhost kernel: [ 1182.438865] 8021q: adding VLAN 0 to HW filter on device bond1
+Oct  8 09:46:53 localhost kernel: [ 1182.850165] bond1: (slave sw1p1): Enslaving as a backup interface with a down link
+Oct  8 09:46:56 localhost kernel: [ 1186.250127] 8021q: adding VLAN 0 to HW filter on device bond2
+Oct  8 09:46:57 localhost kernel: [ 1186.502104] bond1: (slave sw1p1): link status definitely up, 1000 Mbps full duplex
+Oct  8 09:46:57 localhost kernel: [ 1186.509734] bond1: Warning: No 802.3ad response from the link partner for any adapters in the bond
+Oct  8 09:46:57 localhost kernel: [ 1186.518769] bond1: active interface up!
+Oct  8 09:46:57 localhost kernel: [ 1186.522662] IPv6: ADDRCONF(NETDEV_CHANGE): bond1: link becomes ready
+Oct  8 09:46:57 localhost kernel: [ 1186.662479] bond2: (slave sw1p35): Enslaving as a backup interface with a down link
+Oct  8 09:47:01 localhost kernel: [ 1190.735941] bond2: (slave sw1p35): link status definitely up, 1000 Mbps full duplex
+Oct  8 09:47:01 localhost kernel: [ 1190.743685] bond2: Warning: No 802.3ad response from the link partner for any adapters in the bond
+Oct  8 09:47:01 localhost kernel: [ 1190.752751] bond2: active interface up!
+Oct  8 09:47:01 localhost kernel: [ 1190.756645] IPv6: ADDRCONF(NETDEV_CHANGE): bond2: link becomes ready
+Oct  8 09:47:01 localhost kernel: [ 1191.073168] br0: port 1(sw1p23) entered blocking state
+Oct  8 09:47:01 localhost kernel: [ 1191.078364] br0: port 1(sw1p23) entered disabled state
+Oct  8 09:47:01 localhost kernel: [ 1191.084218] device sw1p23 entered promiscuous mode
+Oct  8 09:47:01 localhost kernel: [ 1191.274428] br0: port 2(sw1p48) entered blocking state
+Oct  8 09:47:01 localhost kernel: [ 1191.279640] br0: port 2(sw1p48) entered disabled state
+Oct  8 09:47:01 localhost kernel: [ 1191.285149] device sw1p48 entered promiscuous mode
+Oct  8 09:47:02 localhost kernel: [ 1191.477663] br0: port 3(bond1) entered blocking state
+Oct  8 09:47:02 localhost kernel: [ 1191.482773] br0: port 3(bond1) entered disabled state
+Oct  8 09:47:02 localhost kernel: [ 1191.488531] device bond1 entered promiscuous mode
+Oct  8 09:47:02 localhost kernel: [ 1191.493286] device sw1p1 entered promiscuous mode
+Oct  8 09:47:02 localhost kernel: [ 1191.517418] br0: port 3(bond1) entered blocking state
+Oct  8 09:47:02 localhost kernel: [ 1191.522502] br0: port 3(bond1) entered forwarding state
+Oct  8 09:47:02 localhost kernel: [ 1191.679219] br0: port 4(bond2) entered blocking state
+Oct  8 09:47:02 localhost kernel: [ 1191.684323] br0: port 4(bond2) entered disabled state
+Oct  8 09:47:02 localhost kernel: [ 1191.689824] device bond2 entered promiscuous mode
+Oct  8 09:47:02 localhost kernel: [ 1191.694586] device sw1p35 entered promiscuous mode
+Oct  8 09:47:02 localhost kernel: [ 1191.718868] br0: port 4(bond2) entered blocking state
+Oct  8 09:47:02 localhost kernel: [ 1191.723956] br0: port 4(bond2) entered forwarding state
+Oct  8 09:47:04 localhost kernel: [ 1194.052588] IPv6: ADDRCONF(NETDEV_CHANGE): sw1p23: link becomes ready
+Oct  8 09:47:04 localhost kernel: [ 1194.061184] br0: port 1(sw1p23) entered blocking state
+Oct  8 09:47:04 localhost kernel: [ 1194.066363] br0: port 1(sw1p23) entered forwarding state
+Oct  8 09:47:05 localhost kernel: [ 1194.571994] IPv6: ADDRCONF(NETDEV_CHANGE): sw1p48: link becomes ready
+Oct  8 09:47:05 localhost kernel: [ 1194.581814] br0: port 2(sw1p48) entered blocking state
+Oct  8 09:47:05 localhost kernel: [ 1194.586990] br0: port 2(sw1p48) entered forwarding state
+Oct  8 09:47:58 localhost kernel: [ 1247.608960] device bond2 left promiscuous mode
+Oct  8 09:47:58 localhost kernel: [ 1247.613452] device sw1p35 left promiscuous mode
+Oct  8 09:47:58 localhost kernel: [ 1247.618371] br0: port 4(bond2) entered disabled state
+Oct  8 09:47:58 localhost kernel: [ 1247.678756] device bond1 left promiscuous mode
+Oct  8 09:47:58 localhost kernel: [ 1247.683244] device sw1p1 left promiscuous mode
+Oct  8 09:47:58 localhost kernel: [ 1247.688106] br0: port 3(bond1) ent</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:27,206</td>
+<td>TRACE</td>
+<td><pre>PyComWrapper::SendCommandAndWaitForPattern: ered disabled state
+Oct  8 09:47:58 localhost kernel: [ 1247.746402] device sw1p48 left promiscuous mode
+Oct  8 09:47:58 localhost kernel: [ 1247.751010] br0: port 2(sw1p48) entered disabled state
+Oct  8 09:47:58 localhost kernel: [ 1247.799632] device sw1p23 left promiscuous mode
+Oct  8 09:47:58 localhost kernel: [ 1247.804251] br0: port 1(sw1p23) entered disabled state
+Oct  8 09:47:58 localhost kernel: [ 1248.424252] bond2: (slave sw1p35): link status definitely down, disabling slave
+Oct  8 09:47:58 localhost kernel: [ 1248.431644] bond2: now running without any active interface!
+Oct  8 09:47:59 localhost kernel: [ 1248.758763] bond1: (slave sw1p1): link status definitely down, disabling slave
+Oct  8 09:47:59 localhost kernel: [ 1248.766104] bond1: now running without any active interface!
+Oct  8 09:47:59 localhost kernel: [ 1248.927273] bond2 (unregistering): (slave sw1p35): Releasing backup interface
+Oct  8 09:47:59 localhost kernel: [ 1248.974079] bond2 (unregistering): Released all slaves
+Oct  8 09:47:59 localhost kernel: [ 1249.128463] bond1 (unregistering): (slave sw1p1): Releasing backup interface
+Oct  8 09:47:59 localhost kernel: [ 1249.154205] bond1 (unregistering): Released all slaves
+root@localhost:~# </pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:27,207</td>
+<td>DEBUG</td>
+<td><pre>dmesg lines that matched regex for issues:</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:27,208</td>
+<td>DEBUG</td>
+<td><pre>{
+    "call trace:": {
+        found: false,
+        regex: "Call trace:",
+    },
+    "cut here": {
+        found: false,
+        regex: "\\[ cut here \\]",
+    },
+    "hw routing offloading disabled:": {
+        found: false,
+        regex: "Abort. HW routing offloading disabled",
+    },
+}</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:28,718</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Cleanup:  clearing ports ownership...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:29,149</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Cleanup:  Disconnecting from chassis...</pre></td>
+</tr>
+
+
+<tr class="success">
+<td>2021-10-08 09:48:29,174</td>
+<td>TRACE</td>
+<td><pre>_TGManager::Cleanup:  TG disconnect time is 0.02</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:48:29,174</td>
+<td>INFO</td>
+<td><pre>Test Passed</pre></td>
+</tr>
+
+
+<tr class="info">
+<td>2021-10-08 09:48:29,180</td>
+<td>INFO</td>
+<td><pre>
+CI_META:
+{"Software_Version": "2.0.0-v3.0.1", "Linux_Version": ""}
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                                  Dut Information                                                                   |
++--------+-------------+------+------------------+--------------------------------+---------------+---------------+---------------------+------------+
+| ODM    | Board_Model | ASIC | Software_Version | UBOOT_Version                  | Linux_Version | CPU_CoreClock | Host_kernel_version | PCBVersion |
++--------+-------------+------+------------------+--------------------------------+---------------+---------------+---------------------+------------+
+| Accton | AS4224-52T  | AC3X | 2.0.0-v3.0.1     | U-Boot 2019.10-10.0.0-g7c9e534 |               |               | 5.10.4              | R0A        |
++--------+-------------+------+------------------+--------------------------------+---------------+---------------+---------------------+------------+
+
+None
+
++--------------------------------------+
+|             PDU Settings             |
++----------------+------------+--------+
+| Connect_To_PDU | ip_address | outlet |
++----------------+------------+--------+
+| True           | 10.5.236.5 | 11     |
++----------------+------------+--------+
+
+None
++-------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                             Test Steps Summary                                                            |
++------+------------------------------------------------------------------------------------------------------+--------+--------------------+
+| Step | Description                                                                                          | Result | Run Time           |
++------+------------------------------------------------------------------------------------------------------+--------+--------------------+
+| 1    | Init test                                                                                            | Passed | 0.0                |
++------+------------------------------------------------------------------------------------------------------+--------+--------------------+
+| 2    | Create a bond entity and set link up on it. Enslave the first port connected to Ixia to it.          | Passed | 3.8098981380462646 |
++------+------------------------------------------------------------------------------------------------------+--------+--------------------+
+| 3    | Create another bond entity and set link up on it. Enslave the third port connected to Ixia to it.    | Passed | 3.8113324642181396 |
++------+------------------------------------------------------------------------------------------------------+--------+--------------------+
+| 4    | Set link up on interfaces                                                                            | Passed | 0.8097505569458008 |
++------+------------------------------------------------------------------------------------------------------+--------+--------------------+
+| 5    | Create bridge entity and set link up on it. Enslave the two bonds, Ixia port 2 and 4 to the bridge.  | Passed | 1.2129182815551758 |
++------+------------------------------------------------------------------------------------------------------+--------+--------------------+
+| 6    | Add Ixia port 3 and one of the bonds to VLAN1 and Ixia port 4 and the other bond to VLAN2.           | Passed | 1.0084788799285889 |
++------+------------------------------------------------------------------------------------------------------+--------+--------------------+
+| 7    | Set up the next streams: • Ixia port 1: unknown unicast stream, with random generated size of        | Passed | 17.569581031799316 |
+|      | packet. • Ixia port 2: broadcast and multicast and unknown unicast streams, with random generated    |        |                    |
+|      | size of packet. • Ixia port 3: broadcast and unknown unicast streams, with random generated size of  |        |                    |
+|      | packet. • Ixia port 4: multicast stream, with random generated size of packet.                       |        |                    |
++------+------------------------------------------------------------------------------------------------------+--------+--------------------+
+| 8    | Set storm control rate limit for all types of traffic on all ports                                   | Passed | 2.8329036235809326 |
++------+------------------------------------------------------------------------------------------------------+--------+--------------------+
+| 9    | Transmit continues traffic                                                                           | Passed | 28.148146390914917 |
++------+------------------------------------------------------------------------------------------------------+--------+--------------------+
+| 10   | Verify rx rate on rx ports is as expected - rate is limited by Storm Control.                        | Passed | 4.759536266326904  |
++------+------------------------------------------------------------------------------------------------------+--------+--------------------+
++---------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                               Test Information                                                              |
++--------------+----------------------------------------------------------------+--------+-----------------+-----------------+----------------+
+| Suite_Name   | Test_Name                                                      | Result | start_time      | end_time        | run_time       |
++--------------+----------------------------------------------------------------+--------+-----------------+-----------------+----------------+
+| StormControl | StormControl_InteractionWithOtherFeatures_LagAndVlanMembership | Passed | 09:46:53.564554 | 09:48:29.174582 | 0:01:35.610028 |
++--------------+----------------------------------------------------------------+--------+-----------------+-----------------+----------------+</pre></td>
+</tr>
+
+</tbody></table></div>
+</body>
+<script>
+    $.fn.dataTable.ext.search.push(
+        function( settings, data, dataIndex ) {
+            let minIndex = severities.indexOf($('#min-severity').find(':selected').text());
+            let maxIndex = severities.indexOf($('#max-severity').find(':selected').text());
+            var severity = data[1] || 'NOT SET';// use data for the Log Level column
+            var severityIndex = severities.indexOf(severity);
+            if ( ( maxIndex == -1 && minIndex == -1 ) ||
+                 ( minIndex <= severityIndex && severityIndex <= maxIndex ) )
+            {
+                return true;
+            }
+            return false;
+        }
+    );
+    
+    function fill_select(id, items){
+        for(t of items){
+            $('#'+id).append(new Option(t, t));
+        }
+    }
+    
+    function selectionChanged(selectChanged, selectAffected, selectedOption, startFrom, end){
+        let selected = $('#'+selectAffected).find(':selected').text(); //keep affected value
+        $('#'+selectAffected).empty(); //empty the affected one
+
+        fill_select(selectAffected, severities.slice(startFrom, end));
+        selected = $('#'+selectAffected).find("option:contains('" + selected  + "')").length > 0 ? selected : $("#"+selectAffected+" option:first").val();
+        $('#'+selectAffected).val(selected);
+    }
+    
+    var severities = ['NOT SET','TRACE','DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL']
+    $(document).ready(function() {
+        for(severity of severities){
+            $('#min-severity, #max-severity').append(new Option(severity, severity));
+        }
+        
+        $('#max-severity option:last').attr('selected', 'selected');
+        
+        var table = $('#data_table').DataTable({
+            "lengthMenu": [[-1, 10, 25, 50], ["All", 10, 25, 50]]
+        });
+        
+        $('#min-severity, #max-severity').change( function(e) {
+            if(e.target.id == 'min-severity'){
+                selectionChanged(e.target.id, 'max-severity', e.target.selectedOptions[0].text, severities.indexOf(e.target.selectedOptions[0].text), severities.length+1);
+            }
+            else if(e.target.id == 'max-severity'){
+                selectionChanged(e.target.id, 'min-severity',e.target.selectedOptions[0].text, 0 ,severities.indexOf(e.target.selectedOptions[0].text) + 1);
+            }
+            table.draw();
+        } );
+    } );
+    
+    
+</script>
+</html>
