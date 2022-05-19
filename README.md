@@ -2,7 +2,7 @@
 Welcome to DENT testing repository. This is the public repository for test-cases contributed by different organizations for DENT OS features. 
 
 
-Test Cases are divided into two parts:
+Test Cases are divided into two parts at this point:
 
 
 Amazon Testcases:
