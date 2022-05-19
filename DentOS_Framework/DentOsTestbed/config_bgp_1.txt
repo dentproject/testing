@@ -1,0 +1,32 @@
+vtysh
+configure t
+interface enp1s0np1
+ip address 21.1.1.1/24
+no shut
+interface enp1s0np2
+ip address 22.1.1.1/24
+no shut
+interface enp1s0np3
+ip address 23.1.1.1/24
+no shut
+interface enp1s0np4
+ip address 24.1.1.1/24
+no shut
+exit
+router bgp 65511
+no bgp ebgp-requires-policy
+neighbor 21.1.1.2 remote-as 65200
+neighbor 21.1.1.2 update-source enp1s0np1
+neighbor 22.1.1.2 remote-as 65200
+neighbor 22.1.1.2 update-source enp1s0np2
+neighbor 23.1.1.2 remote-as 65200
+neighbor 23.1.1.2 update-source enp1s0np3
+neighbor 24.1.1.2 remote-as 65200
+neighbor 24.1.1.2 update-source enp1s0np4
+address-family ipv4 unicast
+neighbor 21.1.1.2 activate
+neighbor 22.1.1.2 activate
+neighbor 23.1.1.2 activate
+neighbor 24.1.1.2 activate
+exit
+do show run
