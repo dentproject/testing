@@ -16,7 +16,9 @@ Amazon Testcases:
 Sonic Community Testcases:
 
    test_bgp_local_link_failover.py
+   
    test_bgp_remote_link_failover.py
+   
    test_rib_in_convergence.py
 
 Please feel free to suggest more separation or other types of tests.
