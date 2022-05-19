@@ -1,4 +1,4 @@
-# Amazon Testing infrastructure comprises of three packages
+# DentOS Testing infrastructure comprises of three packages
 
 * DentOsTestbed -
 * DentOsTestbedDiscovery - discovery framework to manage device state
