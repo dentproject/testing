@@ -1,0 +1,16 @@
+- module: ethtool
+  description: ethtool - query or control network driver and hardware settings
+  classes:
+   - name: ethtool
+     desc: |
+       ethtool is used to query and control network device driver and hardware settings,
+       particularly for wired Ethernet devices.
+       devname is the name of the network device on which ethtool should operate.
+     apis: ['show', 'set', 'change', 'init', 'test', 'flash', 'config', 'reset' ]
+     members:
+      - name: devname
+        type: string
+        desc: "Device name"
+      - name: options
+        type: string
+        desc: command options

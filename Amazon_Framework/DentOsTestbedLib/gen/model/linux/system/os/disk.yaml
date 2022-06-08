@@ -1,0 +1,25 @@
+- module: os
+  description: os level information
+  classes:
+   - name: linux_disk_free
+     desc: Disk free inforamtion
+     implements: "dent:os:disk_free"
+     platforms: ['dentos', 'cumulus']
+     commands:
+      - name: show
+        apis: ['show']
+        cmd: [ 'df -h' ]
+        params: ['mounted_on']
+        desc: |
+          > df -h
+          Filesystem      Size  Used Avail Use% Mounted on
+          devtmpfs        1.0M     0  1.0M   0% /dev
+          /dev/sda4        24G  1.2G   22G   6% /
+          /dev/sda3       976M  306M  603M  34% /mnt/onl/images
+          /dev/sda1       123M   29M   89M  25% /mnt/onl/boot
+          /dev/sda2       120M  1.6M  110M   2% /mnt/onl/config
+          tmpfs           3.9G     0  3.9G   0% /dev/shm
+          tmpfs           3.9G  8.9M  3.9G   1% /run
+          tmpfs           5.0M     0  5.0M   0% /run/lock
+          tmpfs           3.9G     0  3.9G   0% /sys/fs/cgroup
+          ....
