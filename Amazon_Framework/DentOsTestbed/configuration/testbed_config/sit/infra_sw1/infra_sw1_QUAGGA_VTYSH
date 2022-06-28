@@ -1,0 +1,3 @@
+username cumulus nopassword
+!
+service integrated-vtysh-config

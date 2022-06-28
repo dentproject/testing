@@ -26,7 +26,7 @@ class OspfNeighSchemaDict(SchemaDict):
 
 
 class OspfNeighSchemaList(SchemaList):
-    """"""
+    """ """
 
     __item_klass__ = OspfNeighSchemaDict
 
@@ -45,7 +45,7 @@ class BgpNeighSchemaDict(SchemaDict):
 
 
 class BgpNeighSchemaList(SchemaList):
-    """"""
+    """ """
 
     __item_klass__ = BgpNeighSchemaDict
 
@@ -63,7 +63,7 @@ class NexthopSchemaDict(SchemaDict):
 
 
 class NexthopSchemaList(SchemaList):
-    """"""
+    """ """
 
     __item_klass__ = NexthopSchemaDict
 
@@ -85,7 +85,7 @@ class IpAddressInfoSchemaDict(SchemaDict):
 
 
 class IpAddressInfoSchemaList(SchemaList):
-    """"""
+    """ """
 
     __item_klass__ = IpAddressInfoSchemaDict
 
@@ -101,7 +101,7 @@ class InterfaceNamesSchemaDict(SchemaDict):
 
 
 class InterfaceNamesSchemaList(SchemaList):
-    """"""
+    """ """
 
     __item_klass__ = InterfaceNamesSchemaDict
 
@@ -121,7 +121,7 @@ class InterfaceAddrSchemaDict(SchemaDict):
 
 
 class InterfaceAddrSchemaList(SchemaList):
-    """"""
+    """ """
 
     __item_klass__ = InterfaceAddrSchemaDict
 
@@ -151,7 +151,7 @@ class TestbedOspfRoutersSchemaDict(SchemaDict):
 
 
 class TestbedOspfRoutersSchemaList(SchemaList):
-    """"""
+    """ """
 
     __item_klass__ = TestbedOspfRoutersSchemaDict
 
@@ -168,7 +168,7 @@ class TestbedBgpRoutersSchemaDict(SchemaDict):
 
 
 class TestbedBgpRoutersSchemaList(SchemaList):
-    """"""
+    """ """
 
     __item_klass__ = TestbedBgpRoutersSchemaDict
 
@@ -185,7 +185,7 @@ class TestbedInterfacesSchemaDict(SchemaDict):
 
 
 class TestbedInterfacesSchemaList(SchemaList):
-    """"""
+    """ """
 
     __item_klass__ = TestbedInterfacesSchemaDict
 
@@ -206,7 +206,7 @@ class DiskFreeSchemaDict(SchemaDict):
 
 
 class DiskFreeSchemaList(SchemaList):
-    """"""
+    """ """
 
     __item_klass__ = DiskFreeSchemaDict
 
@@ -226,7 +226,7 @@ class ServiceSchemaDict(SchemaDict):
 
 
 class ServiceSchemaList(SchemaList):
-    """"""
+    """ """
 
     __item_klass__ = ServiceSchemaDict
 
@@ -254,7 +254,7 @@ class ProcessSchemaDict(SchemaDict):
 
 
 class ProcessSchemaList(SchemaList):
-    """"""
+    """ """
 
     __item_klass__ = ProcessSchemaDict
 
@@ -296,7 +296,7 @@ class CpuUsageSchemaDict(SchemaDict):
 
 
 class CpuUsageSchemaList(SchemaList):
-    """"""
+    """ """
 
     __item_klass__ = CpuUsageSchemaDict
 
@@ -313,7 +313,7 @@ class OspfSchemaDict(SchemaDict):
 
 
 class OspfSchemaList(SchemaList):
-    """"""
+    """ """
 
     __item_klass__ = OspfSchemaDict
 
@@ -331,7 +331,7 @@ class BgpSchemaDict(SchemaDict):
 
 
 class BgpSchemaList(SchemaList):
-    """"""
+    """ """
 
     __item_klass__ = BgpSchemaDict
 
@@ -358,7 +358,7 @@ class IpTablesSchemaDict(SchemaDict):
 
 
 class IpTablesSchemaList(SchemaList):
-    """"""
+    """ """
 
     __item_klass__ = IpTablesSchemaDict
 
@@ -403,7 +403,7 @@ class IpRouteSchemaDict(SchemaDict):
 
 
 class IpRouteSchemaList(SchemaList):
-    """"""
+    """ """
 
     __item_klass__ = IpRouteSchemaDict
 
@@ -444,7 +444,7 @@ class IpAddressSchemaDict(SchemaDict):
 
 
 class IpAddressSchemaList(SchemaList):
-    """"""
+    """ """
 
     __item_klass__ = IpAddressSchemaDict
 
@@ -462,7 +462,7 @@ class BridgeSchemaDict(SchemaDict):
 
 
 class BridgeSchemaList(SchemaList):
-    """"""
+    """ """
 
     __item_klass__ = BridgeSchemaDict
 
@@ -480,7 +480,7 @@ class VlansSchemaDict(SchemaDict):
 
 
 class VlansSchemaList(SchemaList):
-    """"""
+    """ """
 
     __item_klass__ = VlansSchemaDict
 
@@ -497,7 +497,7 @@ class LagsSchemaDict(SchemaDict):
 
 
 class LagsSchemaList(SchemaList):
-    """"""
+    """ """
 
     __item_klass__ = LagsSchemaDict
 
@@ -555,7 +555,7 @@ class IpLinkSchemaDict(SchemaDict):
 
 
 class IpLinkSchemaList(SchemaList):
-    """"""
+    """ """
 
     __item_klass__ = IpLinkSchemaDict
 
@@ -588,7 +588,7 @@ class InterfacesSchemaDict(SchemaDict):
 
 
 class InterfacesSchemaList(SchemaList):
-    """"""
+    """ """
 
     __item_klass__ = InterfacesSchemaDict
 
@@ -607,7 +607,7 @@ class LldpSchemaDict(SchemaDict):
 
 
 class LldpSchemaList(SchemaList):
-    """"""
+    """ """
 
     __item_klass__ = LldpSchemaDict
 
@@ -630,7 +630,7 @@ class OnlpSfpInfoSchemaDict(SchemaDict):
 
 
 class OnlpSfpInfoSchemaList(SchemaList):
-    """"""
+    """ """
 
     __item_klass__ = OnlpSfpInfoSchemaDict
 
@@ -680,7 +680,7 @@ class PoectlSchemaDict(SchemaDict):
 
 
 class PoectlSchemaList(SchemaList):
-    """"""
+    """ """
 
     __item_klass__ = PoectlSchemaDict
 
@@ -698,7 +698,7 @@ class FruItemSchemaDict(SchemaDict):
 
 
 class FruItemSchemaList(SchemaList):
-    """"""
+    """ """
 
     __item_klass__ = FruItemSchemaDict
 
@@ -718,7 +718,7 @@ class PartitionItemSchemaDict(SchemaDict):
 
 
 class PartitionItemSchemaList(SchemaList):
-    """"""
+    """ """
 
     __item_klass__ = PartitionItemSchemaDict
 
@@ -756,7 +756,7 @@ class TestbedVlansSchemaDict(SchemaDict):
 
 
 class TestbedVlansSchemaList(SchemaList):
-    """"""
+    """ """
 
     __item_klass__ = TestbedVlansSchemaDict
 
@@ -980,7 +980,7 @@ class InfrastructureSchemaDict(SchemaDict):
 
 
 class InfrastructureSchemaList(SchemaList):
-    """"""
+    """ """
 
     __item_klass__ = InfrastructureSchemaDict
 
@@ -999,7 +999,7 @@ class DutsSchemaDict(SchemaDict):
 
 
 class DutsSchemaList(SchemaList):
-    """"""
+    """ """
 
     __item_klass__ = DutsSchemaDict
 
@@ -1019,7 +1019,7 @@ class ReportSchemaDict(SchemaDict):
 
 
 class ReportSchema(Report):
-    """"""
+    """ """
 
     def __init__(self, jsonData):
         self.data = ReportSchemaDict(jsonData)
