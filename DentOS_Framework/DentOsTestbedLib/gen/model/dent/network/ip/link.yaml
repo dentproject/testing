@@ -1,0 +1,134 @@
+- module: ip
+  description: ip route module to access kernel route table
+  classes:
+   - name: ip_link
+     desc: |
+      ip-link - network device configuration
+     apis: ['add', 'delete', 'set', 'show', 'xstats', 'afstats']
+     members:
+      - name: ifindex
+        type: int
+      - name: ifname
+        type: string
+      - name: flags
+        type: string_list
+      - name: mtu
+        type: int
+        desc: "* mtu NUMBER --- change MTU of the device."
+      - name: qdisc
+        type: string
+      - name: operstate
+        type: string
+        desc: |
+          * up / down --- change the state of the device to UP or to DOWN
+      - name: linkmode
+        type: string
+      - name: group
+        type: string
+      - name: txqlen
+        type: int
+      - name: link_type
+        type: string
+      - name: address
+        type: mac_t
+        desc: |
+          * address LLADDRESS --- change station address of the interface.
+      - name: broadcast
+        type: mac_t
+        desc: |
+          * broadcast LLADDRESS, brd LLADDRESS or peer LLADDRESS --- change
+          link layer broadcast address or peer address in the case of a
+          POINTOPOINT interface. Note that for most physical network devices
+          (Ethernet, TokenRing, etc) changing the link layer broadcast address
+          will break networking. Do not use this argument if you do not
+          understand what this operation really does.
+      - name: promiscuity
+        type: int
+      - name: min_mtu
+        type: int
+      - name: max_mtu
+        type: int
+      - name: inet6_addr_gen_mode
+        type: string
+      - name: num_tx_queues
+        type: int
+      - name: num_rx_queues
+        type: int
+      - name: gso_max_size
+        type: int
+      - name: gso_max_segs
+        type: int
+      - name: phys_port_name
+        type: string
+      - name: phys_switch_id
+        type: string
+      - name: device
+        type: string
+        desc: |
+          * dev NAME (default) --- NAME specifies the network device to operate on
+      - name: arp
+        type: bool
+        desc: |
+          * arp on / arp off --- change NOARP flag status on the device, Note
+          that this operation is not allowed if the device is already in the UP
+          state. Since neither the ip utility nor the kernel check for this
+          condition, you can get very unpredictable results changing the flag
+          while the device is running. It is better to set the device down then
+          issue this command.
+      - name: allmulticast
+        type: bool
+      - name: dynamic
+        type: bool
+        desc: |
+          * dynamic on / dynamic off --- change DYNAMIC flag on the device.
+      - name: multicast
+        type: bool
+        desc: |
+          * multicast on / multicast off --- change MULTICAST flag on the device.
+      - name: txqueuelen
+        type: int
+        desc: |
+          * txqueuelen NUMBER / txqlen NUMBER --- change transmit queue length
+          of the device
+      - name: name
+        type: string
+        desc: |
+          * name NAME --- change name of the device. Note that this operation is
+          not recommended if the device is running or has some addresses already
+          configured. You can break your systems security and screw up other
+          networking daemons and programs by changing the device name while
+          the device is running or has addressing assigned.
+      - name: netns
+        type: int
+      - name: alias
+        type: string
+      - name: vf
+        type: int
+      - name: mac
+        type: mac_t
+      - name: qos
+        type: int
+      - name: vlan
+        type: int
+      - name: rate
+        type: int
+      - name: max_tx_rate
+        type: int
+      - name: min_tx_rate
+        type: int
+      - name: spoofchk
+        type: int
+      - name: state
+        type: string
+        desc: auto| enable | disable
+      - name: master
+        type: string
+      - name: nomaster
+        type: bool
+      - name: options
+        type: string
+        desc: |
+         OPTIONS := { -V[ersion] | -h[uman-readable] | -s[tatistics] | -d[etails] | -r[esolve]
+          | -iec | -f[amily] { inet | inet6 | ipx | dnet | link } | -4 | -6 | -I | -D | -B | -0 | -l[oops]
+          { maximum-addr-flush-attempts } | -o[neline] | -rc[vbuf] [size] | -t[imestamp] | -ts[hort] |
+          -n[etns] name | -a[ll] | -c[olor] | -br[ief] | -j[son] | -p[retty] }

@@ -1,0 +1,33 @@
+- module: poe_tester
+  description: |
+    The modules is a collection of poe testers.
+  classes:
+   - name: dni_poe_tester
+     desc: |
+      - PoeTester
+          attach - [hostname, serial_dev, baudrate]
+          detach -
+          configure_port - [input_data]
+          get_port_stats - 
+     implements: "dent:poe_tester:poe_tester"
+     platforms: ['dni']
+     commands:
+      - name: attach
+        apis: ['attach', 'detach']
+        params: [hostname, serial_dev, baudrate]
+        desc: |
+         - PoeTester
+           attach - hostname, serial_dev, baudrate
+           detach -
+      - name: configure_port
+        apis: ['configure_port']
+        params: [input_data]
+        desc: |
+         - PoeTester
+           configure_port -
+      - name: get_port_stats
+        apis: ['get_port_stats']
+        params: []
+        desc: |
+         - PoeTester
+           get_port_stats

@@ -1,0 +1,27 @@
+- module: os
+  description: os level information
+  classes:
+   - name: linux_service
+     desc: Service details by runnin systemctl list-units --type=service
+     implements: "dent:os:service"
+     platforms: ['dentos', 'cumulus']
+     commands:
+      - name: show
+        apis: ['show']
+        cmd: [ 'systemctl --type=service' ]
+        params: ['name', 'status']
+        desc: |
+          > systemctl list-units --type=service
+          UNIT                               LOAD   ACTIVE SUB     DESCRIPTION
+          cron.service                       loaded active running Regular background program processing daemon
+          dbus.service                       loaded active running D-Bus System Message Bus
+          dnsmasq.service                    loaded active running dnsmasq - A lightweight DHCP and caching DNS server
+          faultd.service                     loaded active running LSB: Start Faultd Agent
+          frr.service                        loaded active running FRRouting
+          ....
+      - name: operation
+        apis: ['start', 'stop', 'restart', 'enable', 'disable']
+        cmd: [ 'systemctl ' ]
+        params: ['name']
+        desc: |
+          > systemctl <operation> <name>

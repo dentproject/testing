@@ -1,0 +1,33 @@
+- module: os
+  description: os level information
+  classes:
+   - name: linux_memory_usage
+     desc: |
+       cat /proc/meminfo
+       MemTotal:       15844588 kB
+       MemFree:         1907880 kB
+       MemAvailable:   14177180 kB
+       Buffers:         2597832 kB
+       Cached:          8131124 kB
+       SwapCached:            0 kB
+       Active:          8455648 kB
+       Inactive:        3306968 kB
+
+     implements: "dent:os:memory_usage"
+     platforms: ['dentos', 'cumulus']
+     commands:
+      - name: show
+        apis: ['show']
+        cmd: [ 'cat /proc/meminfo' ]
+        params: []
+        desc: |
+           MemTotal:       15844588 kB
+           MemFree:         1314612 kB
+           MemAvailable:   14144464 kB
+           Buffers:         2058212 kB
+           Cached:          9129160 kB
+           SwapCached:            0 kB
+           Active:          9729612 kB
+           Inactive:        2537912 kB
+           Active(anon):    1080196 kB
+           Inactive(anon):    99792 kB

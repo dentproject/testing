@@ -1,0 +1,21 @@
+- module: ip
+  description: ip route module to access kernel route table
+  classes:
+   - name: ip_neighbor
+     apis: [ 'add', 'change', 'replace', 'delete', 'show', 'flush' ]
+     desc: |
+       - ip [ OPTIONS ] neigh { COMMAND | help }
+       - ip neigh { add | del | change | replace } { ADDR [ lladdr LLADDR ] [ nud STATE ] | proxy ADDR }
+        [ dev DEV ] [ router ] [ extern_learn ]
+       - ip neigh { show | flush } [ proxy ] [ to PREFIX ] [ dev DEV ] [ nud STATE ] [ vrf NAME ]
+     members:
+      - name: dev
+        type: string
+        desc: "dev NAME --- name of the device to which we add the address"
+      - name: options
+        type: string
+        desc: |
+         OPTIONS := { -V[ersion] | -h[uman-readable] | -s[tatistics] | -d[etails] | -r[esolve]
+          | -iec | -f[amily] { inet | inet6 | ipx | dnet | link } | -4 | -6 | -I | -D | -B | -0 | -l[oops]
+          { maximum-addr-flush-attempts } | -o[neline] | -rc[vbuf] [size] | -t[imestamp] | -ts[hort] |
+          -n[etns] name | -a[ll] | -c[olor] | -br[ief] | -j[son] | -p[retty] }
