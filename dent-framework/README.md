@@ -1,4 +1,4 @@
-# DentOS Testing infrastructure comprises of three packages
+# Dent Testing infrastructure comprises of three packages
 
 * testbed -
 * discovery - discovery framework to manage device state
