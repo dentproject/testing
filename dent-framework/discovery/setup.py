@@ -12,7 +12,7 @@ for root, dirs, files in os.walk("configuration"):
     )
 
 setup(
-    name="DentOsTestbedDiscovery",
+    name="discovery",
     version="1.0",
     # declare your packages
     packages=find_namespace_packages(where="src",
@@ -29,12 +29,12 @@ setup(
     #    For convenience I usually recommend calling it main()
     #
     # 2. Uncomment this section of the setup.py arguments; this will create
-    #    bin/DentOsTestbedDiscovery (which you can obviously change!) as a script
+    #    bin/discovery (which you can obviously change!) as a script
     #    that will call your main() function, above.
     #
     # entry_points="""\
     # [console_scripts]
-    # DentOsTestbedDiscovery = testbed_discovery.cli:main
+    # discovery = testbed_discovery.cli:main
     # """,
     #
     # 3. Uncomment the Python interpreter and Python-setuptools in the

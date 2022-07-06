@@ -18,7 +18,7 @@ test_integ_args = ["-v", "test_integ"]
 test_all_args = ["unit_test", "test_integ"]
 
 setup(
-    name="DentOsTestbed",
+    name="testbed",
     version="1.0",
     # declare your packages
     packages=find_packages(
@@ -35,7 +35,7 @@ setup(
     #    For convenience I usually recommend calling it main()
     #
     # 2. Uncomment this section of the setup.py arguments; this will create
-    #    bin/DentOsTestbed (which you can obviously change!) as a script
+    #    bin/testbed (which you can obviously change!) as a script
     #    that will call your main() function, above.
     #
     entry_points="""\

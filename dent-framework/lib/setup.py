@@ -15,7 +15,7 @@ for root, dirs, files in os.walk("configuration"):
     )
 
 setup(
-    name="DentOsTestbedLib",
+    name="lib",
     version="1.0",
     # declare your packages
     packages=find_packages(where="src", exclude=("test")),
@@ -38,12 +38,12 @@ setup(
     #    For convenience I usually recommend calling it main()
     #
     # 2. Uncomment this section of the setup.py arguments; this will create
-    #    bin/DentOsTestbedLib (which you can obviously change!) as a script
+    #    bin/lib (which you can obviously change!) as a script
     #    that will call your main() function, above.
     #
     # entry_points="""\
     # [console_scripts]
-    # DentOsTestbedLib = dent_test_lib.cli:main
+    # lib = dent_test_lib.cli:main
     # """,
     #
     # 3. Uncomment the Python interpreter and Python-setuptools in the

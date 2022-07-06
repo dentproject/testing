@@ -47,7 +47,7 @@ optional arguments:
 Sample run on DENT lab
 
 ```
-dentos_testbed_runtests -d --stdout --config configuration/testbed_config/basic/testbed.json --config-dir configuration/testbed_config/basic/ --suite-groups suite_group_cleanup --discovery-reports-dir ./reports --discovery-path ../DentOsTestbedLib/src/testbed/discovery/modules/
+dentos_testbed_runtests -d --stdout --config configuration/testbed_config/basic/testbed.json --config-dir configuration/testbed_config/basic/ --suite-groups suite_group_cleanup --discovery-reports-dir ./reports --discovery-path ../lib/src/testbed/discovery/modules/
 ```
 
  ###Organizing test cases
