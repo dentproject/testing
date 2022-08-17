@@ -12,6 +12,9 @@ Test framework install using the pip tool
 ```
 pip3 install -r Requirements.txt
 pip3 install .
+
+pip install netmiko
+pip install paramiko
 ```
 
 ###Usage
