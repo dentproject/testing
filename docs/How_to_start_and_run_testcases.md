@@ -29,10 +29,10 @@ we will go through the process/steps in details below -
 
 1. create the linux [we used centos8 vm] testbed >>
 -------------------------------------------------------------------
-       a. Installing all packages https://github.com/dentproject/testing/blob/master/DentOS_Framework/README.md
+       a. Installing all packages https://github.com/dentproject/testing/DentOS_Framework/README.md
  
        b. Copy all testfiles to the linux.
-        copy/forge the directory https://github.com/dentproject/testing/tree/master/DentOS_Framework to your local Linux 
+        copy/forge the directory https://github.com/dentproject/testing/DentOS_Framework to your local Linux 
  
        c. change the testbed settings
         change the testbed.json as per your current testbed at <Linux>/root/testing/Amazon_Framework/DentOsTestbed/configuration/testbed_config/sit
@@ -41,7 +41,7 @@ we will go through the process/steps in details below -
 2.As per the testbed diagram we will connect all required cables among DUTs[DENT devies] and Ixia devices >>
 -----------------------------------------------------------------------------------------------------------------
 
-     https://github.com/dentproject/testing/tree/master/docs/System_integration_test_bed
+     https://github.com/dentproject/testing/docs/System_integration_test_bed
 
 
 3. install dentOS on the DUTs >>
