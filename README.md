@@ -1,17 +1,14 @@
 # DENT Testing
 Welcome to DENT testing repository. This is the public repository for test-cases contributed by different organizations for DENT OS features. 
 
-Test Cases should be divided up into types such as:
+Test Cases are mixes of Functional - Features (VRF, LLDP, ACL, etc) and System Test - Integration/Interop tests.
 
-Functional - Features (VRF, LLDP, ACL, etc)
+Currently testcases are not tagged so you cannot see which are functional or which are system test.
 
-Layer 1 - Link Layer Tests (Force Speed, Duplex, etc)
-
-Platform - Hardware Specific Tests (Fans, LEDs, Reboot, etc)
-
-System Test - Integration/Interop tests
+Please refer to the Doc page for all details https://github.com/dentproject/testing/tree/master/docs
 
 Please feel free to suggest more separation or other types of tests.
 
-Please refer the wiki section for general test documentation: https://github.com/dentproject/testing/wiki 
+>> You can also use keysight's LaaS infrastruture to test your boxes.
 
+Please refer the wiki section for general test documentation: https://github.com/dentproject/testing/wiki
