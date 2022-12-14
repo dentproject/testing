@@ -1,0 +1,17 @@
+FROM dent-testing-base:latest
+
+## Make apt-get non-interactive
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install generic packages
+RUN apt-get -o Acquire::Check-Valid-Until=false update && apt-get install -y \
+        vim \
+        openssh-server \
+        iputils-ping
+
+RUN sed -i "s/#PermitRootLogin prohibit-password/PermitRootLogin yes/g" /etc/ssh/sshd_config
+RUN echo 'root:onl' | chpasswd
+RUN echo "#!/bin/bash\n/etc/init.d/ssh start\n/bin/bash\n" > /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]

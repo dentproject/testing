@@ -1,0 +1,20 @@
+{
+    "devices": [
+        {
+            "friendlyName":"Dent infra1",
+            "os":"dentos",
+            "type" : "INFRA_SWITCH",
+            "hostName": "infra_sw1",
+            "ip": "172.17.0.2",
+            "login":{
+                "userName":"root",
+                "password":"onl"
+            },
+            "serialDev":"/dev/ttyUSB7",
+            "baudrate": 115200
+        }
+    ],
+    "operator" : "dent",
+    "topology" : "gordion-knot",
+    "force_discovery" : false
+}

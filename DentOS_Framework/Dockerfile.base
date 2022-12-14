@@ -1,0 +1,22 @@
+# FROM debian:bullseye
+# FROM debian:stable-slim
+FROM ubuntu:focal
+
+## Make apt-get non-interactive
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install generic packages
+RUN apt-get -o Acquire::Check-Valid-Until=false update && apt-get install -y \
+        python3 \
+        python3-pip \
+        iproute2
+
+RUN pip3 install -U pip wheel setuptools
+
+ADD DentOsTestbed/Requirements.txt /tmp/
+RUN pip3 install -r /tmp/Requirements.txt
+
+ADD DentOsTestbedLib/Requirements.txt /tmp/
+RUN pip3 install -r /tmp/Requirements.txt
+
+RUN pip3 install netmiko paramiko

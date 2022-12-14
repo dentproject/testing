@@ -1,0 +1,23 @@
+FROM dent-testing-base:latest
+
+# Make apt-get non-interactive
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get -o Acquire::Check-Valid-Until=false update && apt-get install -y \
+        vim \
+        iputils-ping
+
+RUN pip3 install pdbpp
+
+# --editable does not work with those packages
+# RUN --mount=type=bind,target=/DENT/DentOsTestbed,source=DentOsTestbed,rw \
+#         cd /DENT/DentOsTestbed && pip3 install --editable .
+# RUN --mount=type=bind,target=/DENT/DentOsTestbedDiscovery,source=DentOsTestbedDiscovery,rw \
+#         cd /DENT/DentOsTestbedDiscovery && pip3 install --editable .
+# RUN --mount=type=bind,target=/DENT/DentOsTestbedLib,source=DentOsTestbedLib,rw \
+#         cd /DENT/DentOsTestbedLib && pip3 install --editable .
+
+WORKDIR /DENT/DentOsTestbed
+
+ADD entrypoint.sh /DENT/
+
+ENTRYPOINT ["/DENT/entrypoint.sh"]
