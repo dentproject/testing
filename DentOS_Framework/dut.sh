@@ -12,6 +12,7 @@ docker build -f Dockerfile.dut -t dent-dut:latest .
 # Run
 docker run \
     -ti --rm \
+    --cap-add=NET_ADMIN \
     --name dent-dut \
     dent-dut:latest \
     /bin/bash

@@ -6,7 +6,10 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Install generic packages
 RUN apt-get -o Acquire::Check-Valid-Until=false update && apt-get install -y \
         vim \
+        ifupdown2 \
         openssh-server \
+        frr \
+        keepalived \
         iputils-ping
 
 RUN sed -i "s/#PermitRootLogin prohibit-password/PermitRootLogin yes/g" /etc/ssh/sshd_config

@@ -20,6 +20,6 @@ docker run \
     --mount=type=bind,target=/DENT/DentOsTestbed,source=$PWD/DentOsTestbed \
     --mount=type=bind,target=/DENT/DentOsTestbedDiscovery,source=$PWD/DentOsTestbedDiscovery \
     --mount=type=bind,target=/DENT/DentOsTestbedLib,source=$PWD/DentOsTestbedLib \
-    --name dent-testing \
+    --name dent-testing-$USER \
     dent-testing:latest \
     $COMMAND
