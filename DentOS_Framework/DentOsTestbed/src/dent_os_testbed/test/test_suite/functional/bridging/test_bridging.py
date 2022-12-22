@@ -21,7 +21,7 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_get_loss,
 )
 
-pytestmark = pytest.mark.suite_bridging
+pytestmark = pytest.mark.suite_functional_bridging
 
 
 @pytest.mark.asyncio
@@ -52,23 +52,16 @@ async def test_bridging(testbed):
         input_data=[{dut.host_name: [{"device": bridge, "operstate": "up"}]}])
     assert out[0][dut.host_name]["rc"] == 0, out
 
-    out = await IpLink.add(
-        input_data=[{dut.host_name: [{"device": "veth10", "type": "veth"}]}],
-        input_data=[{dut.host_name: [{"device": "veth11", "type": "veth"}]}],
-        input_data=[{dut.host_name: [{"device": "veth12", "type": "veth"}]}],
-        input_data=[{dut.host_name: [{"device": "veth13", "type": "veth"}]}])
+    out = await IpLink.set(
+        input_data=[{dut.host_name: [{"device": "swp1", "master": "br0"}]}],
+        input_data=[{dut.host_name: [{"device": "swp2", "master": "br0"}]}],
+        input_data=[{dut.host_name: [{"device": "swp3", "master": "br0"}]}],
+        input_data=[{dut.host_name: [{"device": "swp4", "master": "br0"}]}])
     assert out[0][dut.host_name]["rc"] == 0, out
 
     out = await IpLink.set(
-        input_data=[{dut.host_name: [{"device": "veth10", "master": "br1"}]}],
-        input_data=[{dut.host_name: [{"device": "veth11", "master": "br1"}]}],
-        input_data=[{dut.host_name: [{"device": "veth12", "master": "br1"}]}],
-        input_data=[{dut.host_name: [{"device": "veth13", "master": "br1"}]}])
-    assert out[0][dut.host_name]["rc"] == 0, out
-
-    out = await IpLink.set(
-        input_data=[{dut.host_name: [{"device": "veth10", "operstate": "up"}]}],
-        input_data=[{dut.host_name: [{"device": "veth11", "operstate": "up"}]}],
-        input_data=[{dut.host_name: [{"device": "veth12", "operstate": "up"}]}],
-        input_data=[{dut.host_name: [{"device": "veth13", "operstate": "up"}]}])
+        input_data=[{dut.host_name: [{"device": "swp1", "operstate": "up"}]}],
+        input_data=[{dut.host_name: [{"device": "swp2", "operstate": "up"}]}],
+        input_data=[{dut.host_name: [{"device": "swp3", "operstate": "up"}]}],
+        input_data=[{dut.host_name: [{"device": "swp4", "operstate": "up"}]}])
     assert out[0][dut.host_name]["rc"] == 0, out

@@ -35,7 +35,7 @@ DEFAULT_LOGGER = "DENT"
 # consistent
 
 PYTEST_SUITES = {
-    "suite_bridging":"Functional bridging tests",
+    "suite_functional_bridging":"Functional bridging tests",
     "suite_test": "Test marker",
     "suite_clean_config": "Bringup the switch in clean state",
     "suite_unittest": "Example suite for writing unit testcases which are run during bb",
@@ -72,7 +72,7 @@ PYTEST_SUITES = {
 }
 
 PYTEST_SUITE_GROUPS = {
-    "suite_group_bridging":["suite_bridging"],
+    "suite_group_functional":["suite_functional_bridging"],
     "suite_group_test": ["suite_test", "suite_feature_f1", "suite_feature_f2"],
     "suite_group_clean_config": ["suite_clean_config"],
     "suite_group_l3_tests": ["suite_iproute2", "suite_arp"],
