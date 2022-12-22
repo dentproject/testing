@@ -72,5 +72,3 @@ async def test_bridging(testbed):
         input_data=[{dut.host_name: [{"device": "veth12", "operstate": "up"}]}],
         input_data=[{dut.host_name: [{"device": "veth13", "operstate": "up"}]}])
     assert out[0][dut.host_name]["rc"] == 0, out
- 
- 
