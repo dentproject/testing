@@ -1,3 +1,0 @@
-2022-12-21 21:26:48,454 - infra_sw1 - DEBUG  - date
-2022-12-21 21:26:48,535 - infra_sw1 - DEBUG  - Wed Dec 21 21:26:48 UTC 2022
-
