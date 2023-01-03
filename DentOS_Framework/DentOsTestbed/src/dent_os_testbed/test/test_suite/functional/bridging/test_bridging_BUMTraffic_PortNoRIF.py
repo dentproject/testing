@@ -26,7 +26,6 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_get_traffic_stats,
     tgen_utils_get_loss,
 )
- #NOT CLEAR
 pytestmark = pytest.mark.suite_functional_bridging
 
 
@@ -35,59 +34,53 @@ async def test_bridging(testbed):
     """
     Test Name: test_bridging_BUMTraffic_PortNoRIF
     Test Suite: suite_functional_bridging
-    Test Overview: Check forwarding different bridged packets within the same 
-                   bridge domain.
+    Test Overview: This test comes to verify: forwarding/drop/trap of different 
+                   BUM L2,IPv4/6 packet types within the same bridge domain.
     Test Author: Kostiantyn Stavruk
     Test Procedure:
-    1.  Init bridge entity br0.
-    2.  Set ports swp1 swp2 swp3 swp4 master br0.
-    3.  Set bridge br0 admin state UP.
-    4.  Set entities swp1, swp2, swp3, swp4 UP state.
-    5.  Start tcpdump capture on DUT ingress port.
-    6.  Clear TG counters.
-    7.  Send different types of packets (IPv6 MC, IPv4 BC + MC) from src TG.
-    8.  Set stream utilization according to TG streams mode. If parallel - 
-        share 100% WS between streams else each stream will sent in MAX rate.
-    9.  If TG stream mode is 'serial' change stream transmit mode to 'Advance 
-        to next stream' and add inter-stream gap.
-    10. Analyze counters taking in account the traffic type that was sent vs. 
-        expected value + trapped and mirrored.
+    1. Init bridge entity br0.
+    2. Set bridge br0 admin state UP.
+    3. Set entities swp1, swp2, swp3, swp4 UP state.
+    4. Start tcpdump capture on DUT ingress port.
+    5. Clear TG counters.
+    6. Send different types of packets (IPv6 MC, IPv4 BC + MC) from source TG. 
+    7. Analyze counters: a) TX vs RX counters according to expected values;
+                         b) Trapped and mirrored packets to CPU.
     """
 
     logger = AppLogger(DEFAULT_LOGGER)
     dev = await tb_get_all_devices(testbed)
     logger.info("Devices:", dev)
 
-    dut = dev[0]
     bridge = "br0"
+    tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 2)
+    if not tgen_dev or not dent_devices:
+        logger.error("The testbed does not have enough dent eith tgn connections")
+        return
+    dent_dev = dent_devices[0]
+    device_host_name = dent_dev.host_name
+    #tg_ports = tgen_dev.links_dict[device_host_name][0]
+    ports = tgen_dev.links_dict[device_host_name][1]
 
     out = await IpLink.add(
-    input_data=[{dut.host.name: [{"device": bridge, "type": "bridge"}]}])
-    assert out[0][dut.host_name]["rc"] == 0, out
+    input_data=[{device_host_name: [{"device": bridge, "type": "bridge"}]}])
+    assert out[0][device_host_name]["rc"] == 0, out
 
     out = await IpLink.set(
-            input_data=[{dut.host_name: [{"device": "swp1", "master": "br0"}]}],
-            input_data=[{dut.host_name: [{"device": "swp2", "master": "br0"}]}],
-            input_data=[{dut.host_name: [{"device": "swp3", "master": "br0"}]}],
-            input_data=[{dut.host_name: [{"device": "swp4", "master": "br0"}]}])
-    assert out[0][dut.host_name]["rc"] == 0, out
+    input_data=[{device_host_name: [{"device": bridge, "operstate": "up"}]}])
+    assert out[0][device_host_name]["rc"] == 0, out
 
     out = await IpLink.set(
-    input_data=[{dut.host_name: [{"device": bridge, "operstate": "up"}]}])
-    assert out[0][dut.host_name]["rc"] == 0, out
+            input_data=[{device_host_name: [{"device": f"{ports[0]}", "operstate": "up"}]}],
+            input_data=[{device_host_name: [{"device": f"{ports[1]}", "operstate": "up"}]}],
+            input_data=[{device_host_name: [{"device": f"{ports[2]}", "operstate": "up"}]}],
+            input_data=[{device_host_name: [{"device": f"{ports[3]}", "operstate": "up"}]}])
+    assert out[0][device_host_name]["rc"] == 0, out
 
-    out = await IpLink.set(
-            input_data=[{dut.host_name: [{"device": "swp1", "operstate": "up"}]}],
-            input_data=[{dut.host_name: [{"device": "swp2", "operstate": "up"}]}],
-            input_data=[{dut.host_name: [{"device": "swp3", "operstate": "up"}]}],
-            input_data=[{dut.host_name: [{"device": "swp4", "operstate": "up"}]}])
-    assert out[0][dut.host_name]["rc"] == 0, out
-
-    rc = await tb_ping_device(dev, f"{dut.ip}", dump=True)
+    rc = await tb_ping_device(dev, f"{dent_dev.ip}", dump=True)
     if rc != 0:
-        dev.applog.info(f"Failed to reach {dut.host_name} {rc}")
+        dev.applog.info(f"Failed to reach {device_host_name} {rc}")
         return False
     return True
 
-    #6-10 steps 
-    #NOT CLEAR
+    #Send traffic and Verify 5-7 steps 

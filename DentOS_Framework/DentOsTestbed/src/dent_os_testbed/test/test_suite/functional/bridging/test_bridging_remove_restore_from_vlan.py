@@ -40,121 +40,94 @@ async def test_bridging(testbed):
                    a port with a bridge address entry by it's vlan.
     Test Author: Kostiantyn Stavruk
     Test Procedure:
-    1-2.  Init bridge entity br0 with vlan filtering ON.
-    3.  Set ports swp1 swp2 swp3 swp4 master br0.
-    4.  Set ports swp1 swp2 swp3 swp4 learning OFF.
-    5.  Set ports swp1 swp2 swp3 swp4 flood OFF.
-    6.  Set bridge br0 admin state UP.
-    7.  Set entities swp1, swp2, swp3, swp4 UP state.
-    8.  Add interfaces to vlans swp1 swp2 swp3 --> vlan 2.
-    9.  Adding static FDB entry aa:bb:cc:dd:ee:11 for swp1 with vlan 2.
-    10. Removing swp1 from vlan 2.
-    11. Verify that swp1 entry aa:bb:cc:dd:ee:11 vlan 2 has not been removed from the address table.
-    12. Adding swp1 back to vlan 2.
-    13. Send traffic with src mac aa:bb:cc:dd:ee:11 and vlan 2.
-    14. Verify that reception on swp1.
+    1.  Init bridge entity br0 with vlan filtering ON.
+    2.  Set ports swp1 swp2 swp3 swp4 master br0.
+    3.  Set ports swp1 swp2 swp3 swp4 learning OFF.
+    4.  Set ports swp1 swp2 swp3 swp4 flood OFF.
+    5.  Set bridge br0 admin state UP.
+    6.  Set entities swp1, swp2, swp3, swp4 UP state.
+    7.  Add interfaces to vlans swp1 swp2 swp3 --> vlan 2.
+    8.  Adding static FDB entry aa:bb:cc:dd:ee:11 for swp1 with vlan 2.
+    9.  Removing swp1 from vlan 2.
+    10. Verify that swp1 entry aa:bb:cc:dd:ee:11 vlan 2 has not been removed from the address table.
+    11. Adding swp1 back to vlan 2.
+    12. Send traffic with src mac aa:bb:cc:dd:ee:11 and vlan 2.
+    13. Verify that reception on swp1.
     """
 
     logger = AppLogger(DEFAULT_LOGGER)
     dev = await tb_get_all_devices(testbed)
     logger.info("Devices:", dev)
 
-    dut = dev[0]
     bridge = "br0"
+    tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 2)
+    if not tgen_dev or not dent_devices:
+        logger.error("The testbed does not have enough dent eith tgn connections")
+        return
+    dent_dev = dent_devices[0]
+    device_host_name = dent_dev.host_name
+    #tg_ports = tgen_dev.links_dict[device_host_name][0]
+    ports = tgen_dev.links_dict[device_host_name][1]
 
-    await IpLink.delete(input_data=[{dut.host_name: [{"device": "bridge"}]}])
-    await IpLink.delete(input_data=[{dut.host_name: [{"device": "br0"}]}])
+    await IpLink.delete(input_data=[{device_host_name: [{"device": "bridge"}]}])
+    await IpLink.delete(input_data=[{device_host_name: [{"device": "br0"}]}])
     out = await IpLink.add(
-        input_data=[{dut.host_name: [{"device": "br0", "type": "bridge", "vlan_filtering": 1}]}])
-    assert out[0][dut.host_name]["rc"] == 0, out
+        input_data=[{device_host_name: [{"device": "br0", "type": "bridge", "vlan_filtering": 1}]}])
+    assert out[0][device_host_name]["rc"] == 0, out
 
     out = await IpLink.set(
-        input_data=[{dut.host_name: [{"device": "swp1", "master": "br0"}]}],
-        input_data=[{dut.host_name: [{"device": "swp2", "master": "br0"}]}],
-        input_data=[{dut.host_name: [{"device": "swp3", "master": "br0"}]}],
-        input_data=[{dut.host_name: [{"device": "swp4", "master": "br0"}]}])
-    assert out[0][dut.host_name]["rc"] == 0, out
+        input_data=[{device_host_name: [{"device": f"{ports[0]}", "master": "br0"}]}],
+        input_data=[{device_host_name: [{"device": f"{ports[1]}", "master": "br0"}]}],
+        input_data=[{device_host_name: [{"device": f"{ports[2]}", "master": "br0"}]}],
+        input_data=[{device_host_name: [{"device": f"{ports[3]}", "master": "br0"}]}])
+    assert out[0][device_host_name]["rc"] == 0, out
 
     out = await BridgeLink.set(
-        input_data=[{dut.host_name: [{"device": "swp1", "learning": False}]}],
-        input_data=[{dut.host_name: [{"device": "swp2", "learning": False}]}],
-        input_data=[{dut.host_name: [{"device": "swp3", "learning": False}]}],
-        input_data=[{dut.host_name: [{"device": "swp4", "learning": False}]}])
-    assert out[0][dut.host_name]["rc"] == 0, out
+        input_data=[{device_host_name: [{"device": f"{ports[0]}", "learning": False}]}],
+        input_data=[{device_host_name: [{"device": f"{ports[1]}", "learning": False}]}],
+        input_data=[{device_host_name: [{"device": f"{ports[2]}", "learning": False}]}],
+        input_data=[{device_host_name: [{"device": f"{ports[3]}", "learning": False}]}])
+    assert out[0][device_host_name]["rc"] == 0, out
 
     out = await BridgeLink.set(
-        input_data=[{dut.host_name: [{"device": "swp1", "flood": False}]}],
-        input_data=[{dut.host_name: [{"device": "swp2", "flood": False}]}],
-        input_data=[{dut.host_name: [{"device": "swp3", "flood": False}]}],
-        input_data=[{dut.host_name: [{"device": "swp4", "flood": False}]}])
-    assert out[0][dut.host_name]["rc"] == 0, out
+        input_data=[{device_host_name: [{"device": f"{ports[0]}", "flood": False}]}],
+        input_data=[{device_host_name: [{"device": f"{ports[1]}", "flood": False}]}],
+        input_data=[{device_host_name: [{"device": f"{ports[2]}", "flood": False}]}],
+        input_data=[{device_host_name: [{"device": f"{ports[3]}", "flood": False}]}])
+    assert out[0][device_host_name]["rc"] == 0, out
 
     out = await IpLink.set(
-        input_data=[{dut.host_name: [{"device": bridge, "operstate": "up"}]}])
-    assert out[0][dut.host_name]["rc"] == 0, out
+        input_data=[{device_host_name: [{"device": bridge, "operstate": "up"}]}])
+    assert out[0][device_host_name]["rc"] == 0, out
 
     out = await IpLink.set(
-        input_data=[{dut.host_name: [{"device": "swp1", "operstate": "up"}]}],
-        input_data=[{dut.host_name: [{"device": "swp2", "operstate": "up"}]}],
-        input_data=[{dut.host_name: [{"device": "swp3", "operstate": "up"}]}],
-        input_data=[{dut.host_name: [{"device": "swp4", "operstate": "up"}]}])
-    assert out[0][dut.host_name]["rc"] == 0, out
+        input_data=[{device_host_name: [{"device": f"{ports[0]}", "operstate": "up"}]}],
+        input_data=[{device_host_name: [{"device": f"{ports[1]}", "operstate": "up"}]}],
+        input_data=[{device_host_name: [{"device": f"{ports[2]}", "operstate": "up"}]}],
+        input_data=[{device_host_name: [{"device": f"{ports[3]}", "operstate": "up"}]}])
+    assert out[0][device_host_name]["rc"] == 0, out
     
-    out = await BridgeVlan(
-        input_data=[{dut.host_name: [{"device": "swp1", "vid": 2}]}],
-        input_data=[{dut.host_name: [{"device": "swp2", "vid": 2}]}],
-        input_data=[{dut.host_name: [{"device": "swp3", "vid": 2}]}])
-    assert out[0][dut.host_name]["rc"] == 0, out
-    
-    out = await BridgeFdb.add(
-        input_data=[{dut.host_name: [{"device": "swp1", "vid": 2}]}])
-    assert out[0][dut.host_name]["rc"] == 0, out
-    
-    #9.  Adding static FDB entry aa:bb:cc:dd:ee:11 for swp1 with vlan 2.
-    """
-    out = await BridgeFdb.add(
-            input_data=[
-                {
-                    # device 1
-                    "test_dev1": [
-                        {
-                            "lladdr": "aa:bb:cc:dd:ee:11",
-                            #"static":True,
+    out = await BridgeVlan.add(
+        input_data=[{device_host_name: [
+            {"device": f"{ports[0]}", "vid": 2},
+            {"device": f"{ports[1]}", "vid": 2},
+            {"device": f"{ports[2]}", "vid": 2},
+            {"device": f"{ports[3]}", "vid": 2}]}])
+    assert out[0][device_host_name]["rc"] == 0, out
 
-                            'dev':'string',
-                            'lladdr':'mac_t',
-                            'local':'undefined',
-                            'static':'undefined',
-                            'dynamic':'undefined',
-                            'self':'bool',
-                            'master':'bool',
-                            'router':'bool',
-                            'use':'bool',
-                            'extern_learn':'bool',
-                            'sticky':'bool',
-                            'dst':'ip_addr_t',
-                            'src_vni':'undefined',
-                            'vni':'int',
-                            'port':'int',
-                            'via':'string',
-                            'options':'string',
-                        }
-                    ],
-                   
-                }
-            ],
-            device_obj={"test_dev1": dv1},
-        )
-    """
+    out = await BridgeFdb.add(
+        input_data=[{device_host_name: [{"lladdr": "aa:bb:cc:dd:ee:11"}]}])
+    assert out[0][device_host_name]["rc"] == 0, out
+
     out = await BridgeFdb.delete(
-        input_data=[{dut.host_name: [{"device": "swp1", "vid": 2}]}])
-    assert out[0][dut.host_name]["rc"] == 0, out
+        input_data=[{device_host_name: [{"device": f"{ports[0]}", "vid": 2}]}])
+    assert out[0][device_host_name]["rc"] == 0, out
     
     #11. Verify that swp1 entry aa:bb:cc:dd:ee:11 vlan 2 has not been removed from the address table.
     
     out = await BridgeFdb.add(
-        input_data=[{dut.host_name: [{"device": "swp1", "vid": 2}]}])
-    assert out[0][dut.host_name]["rc"] == 0, out
+        input_data=[{device_host_name: [{"device": f"{ports[0]}", "vid": 2}]}])
+    assert out[0][device_host_name]["rc"] == 0, out
 
     #13. Send traffic with src mac aa:bb:cc:dd:ee:11 and vlan 2.
     #14. Verify that reception on swp1.

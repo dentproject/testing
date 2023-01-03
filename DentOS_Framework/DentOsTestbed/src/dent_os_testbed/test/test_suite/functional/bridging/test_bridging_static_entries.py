@@ -54,51 +54,57 @@ async def test_bridging(testbed):
     dev = await tb_get_all_devices(testbed)
     logger.info("Devices:", dev)
 
-    dut = dev[0]
     bridge = "br0"
+    tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 2)
+    if not tgen_dev or not dent_devices:
+        logger.error("The testbed does not have enough dent eith tgn connections")
+        return
+    dent_dev = dent_devices[0]
+    device_host_name = dent_dev.host_name
+    #tg_ports = tgen_dev.links_dict[device_host_name][0]
+    ports = tgen_dev.links_dict[device_host_name][1]
 
     out = await IpLink.add(
-        input_data=[{dut.host.name: [{"device": bridge, "type": "bridge"}]}])
-    assert out[0][dut.host_name]["rc"] == 0, out
+        input_data=[{device_host_name: [{"device": bridge, "type": "bridge"}]}])
+    assert out[0][device_host_name]["rc"] == 0, out
 
     out = await IpLink.set(
-        input_data=[{dut.host_name: [{"device": "swp1", "master": "br0"}]}],
-        input_data=[{dut.host_name: [{"device": "swp2", "master": "br0"}]}],
-        input_data=[{dut.host_name: [{"device": "swp3", "master": "br0"}]}],
-        input_data=[{dut.host_name: [{"device": "swp4", "master": "br0"}]}])
-    assert out[0][dut.host_name]["rc"] == 0, out
+        input_data=[{device_host_name: [{"device": f"{ports[0]}", "master": "br0"}]}],
+        input_data=[{device_host_name: [{"device": f"{ports[1]}", "master": "br0"}]}],
+        input_data=[{device_host_name: [{"device": f"{ports[2]}", "master": "br0"}]}],
+        input_data=[{device_host_name: [{"device": f"{ports[3]}", "master": "br0"}]}])
+    assert out[0][device_host_name]["rc"] == 0, out
 
     out = await BridgeLink.set(
-        input_data=[{dut.host_name: [{"device": "swp1", "learning": False}]}],
-        input_data=[{dut.host_name: [{"device": "swp2", "learning": False}]}],
-        input_data=[{dut.host_name: [{"device": "swp3", "learning": False}]}],
-        input_data=[{dut.host_name: [{"device": "swp4", "learning": False}]}])
-    assert out[0][dut.host_name]["rc"] == 0, out
+        input_data=[{device_host_name: [{"device": f"{ports[0]}", "learning": False}]}],
+        input_data=[{device_host_name: [{"device": f"{ports[1]}", "learning": False}]}],
+        input_data=[{device_host_name: [{"device": f"{ports[2]}", "learning": False}]}],
+        input_data=[{device_host_name: [{"device": f"{ports[3]}", "learning": False}]}])
+    assert out[0][device_host_name]["rc"] == 0, out
 
     out = await BridgeLink.set(
-        input_data=[{dut.host_name: [{"device": "swp1", "flood": False}]}],
-        input_data=[{dut.host_name: [{"device": "swp2", "flood": False}]}],
-        input_data=[{dut.host_name: [{"device": "swp3", "flood": False}]}],
-        input_data=[{dut.host_name: [{"device": "swp4", "flood": False}]}])
-    assert out[0][dut.host_name]["rc"] == 0, out
+        input_data=[{device_host_name: [{"device": f"{ports[0]}", "flood": False}]}],
+        input_data=[{device_host_name: [{"device": f"{ports[1]}", "flood": False}]}],
+        input_data=[{device_host_name: [{"device": f"{ports[2]}", "flood": False}]}],
+        input_data=[{device_host_name: [{"device": f"{ports[3]}", "flood": False}]}])
+    assert out[0][device_host_name]["rc"] == 0, out
 
     out = await IpLink.set(
-        input_data=[{dut.host_name: [{"device": bridge, "operstate": "up"}]}])
-    assert out[0][dut.host_name]["rc"] == 0, out
+        input_data=[{device_host_name: [{"device": bridge, "operstate": "up"}]}])
+    assert out[0][device_host_name]["rc"] == 0, out
 
     out = await IpLink.set(
-        input_data=[{dut.host_name: [{"device": "swp1", "operstate": "up"}]}],
-        input_data=[{dut.host_name: [{"device": "swp2", "operstate": "up"}]}],
-        input_data=[{dut.host_name: [{"device": "swp3", "operstate": "up"}]}],
-        input_data=[{dut.host_name: [{"device": "swp4", "operstate": "up"}]}])
-    assert out[0][dut.host_name]["rc"] == 0, out
+        input_data=[{device_host_name: [{"device": f"{ports[0]}", "operstate": "up"}]}],
+        input_data=[{device_host_name: [{"device": f"{ports[1]}", "operstate": "up"}]}],
+        input_data=[{device_host_name: [{"device": f"{ports[2]}", "operstate": "up"}]}],
+        input_data=[{device_host_name: [{"device": f"{ports[3]}", "operstate": "up"}]}])
+    assert out[0][device_host_name]["rc"] == 0, out
 
     out = await BridgeFdb.add(
-        input_data=[{dut.host_name: [{"device": "swp1"}]}],
-        input_data=[{dut.host_name: [{"device": "swp2"}]}],
-        input_data=[{dut.host_name: [{"device": "swp3"}]}],
-        input_data=[{dut.host_name: [{"device": "swp4"}]}],)
-    assert out[0][dut.host_name]["rc"] == 0, out
+        input_data=[{device_host_name: [{"device": f"{ports[0]}"}]}],
+        input_data=[{device_host_name: [{"device": f"{ports[1]}"}]}],
+        input_data=[{device_host_name: [{"device": f"{ports[2]}"}]}],
+        input_data=[{device_host_name: [{"device": f"{ports[3]}"}]}],)
+    assert out[0][device_host_name]["rc"] == 0, out
     
     # Send traffic and Verify 8-9 steps
-
