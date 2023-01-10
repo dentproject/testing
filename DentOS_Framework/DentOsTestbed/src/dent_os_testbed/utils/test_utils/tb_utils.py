@@ -20,21 +20,21 @@ from dent_os_testbed.utils.Utils import check_asyncio_results
 
 async def tb_clean_config_device(d):
     config_file_list = [
-        ["_NTP", "/etc/ntp.conf"],
-        ["_QUAGGA_CONFIG", "/etc/frr/frr.conf"],
-        ["_DHCP", "/etc/dhcp/dhcpd.conf"],
-        ["_QUAGGA_DAEMONS", "/etc/frr/daemons"],
-        ["_HOSTNAME", "/etc/hostname"],
-        ["_QUAGGA_VTYSH", "/etc/frr/vtysh.conf"],
-        ["_HOSTS", "/etc/hosts"],
-        ["_RESOLV", "/etc/resolv.conf"],
-        ["_NETWORK_INTERFACES", "/etc/network/interfaces"],
-        ["_SSHD_CONF", "/etc/ssh/sshd_config"],
-        ["_KEEPALIVED_CONF", "/etc/keepalived/keepalived.conf"],
-        ["_CUMULUS_FIREWALL_RULES", "~/"],
+        ["NTP", "/etc/ntp.conf"],
+        ["QUAGGA_CONFIG", "/etc/frr/frr.conf"],
+        ["DHCP", "/etc/dhcp/dhcpd.conf"],
+        ["QUAGGA_DAEMONS", "/etc/frr/daemons"],
+        ["HOSTNAME", "/etc/hostname"],
+        ["QUAGGA_VTYSH", "/etc/frr/vtysh.conf"],
+        ["HOSTS", "/etc/hosts"],
+        ["RESOLV", "/etc/resolv.conf"],
+        ["NETWORK_INTERFACES", "/etc/network/interfaces"],
+        ["SSHD_CONF", "/etc/ssh/sshd_config"],
+        ["KEEPALIVED_CONF", "/etc/keepalived/keepalived.conf"],
+        ["CUMULUS_FIREWALL_RULES", "~/"],
     ]
     for src, dst in config_file_list:
-        file = f"{pytest._args.config_dir}/{d.host_name}/{d.host_name}{src}"
+        file = f"{pytest._args.config_dir}/{d.host_name}/{src}"
         if not os.path.exists(file):
             d.applog.info(f"Cannot find {file}")
             continue
