@@ -55,7 +55,7 @@ TODO: create a lab BOM
         ```
         sudo usermod -aG docker $USER
         ```
- - install KVM
+ - install KVM (required by IxNetwork API server)
     ```
     sudo apt -y install cpu-checker
     sudo kvm-ok
@@ -68,10 +68,8 @@ TODO: create a lab BOM
  
  - enable root (optional)
     ```
-    sudo apt -y install mc
-    (edit)/etc/ssh/sshd_config PermitRootLogin yes
-    sudo passwd
-    # we can use 'dent' as an example password (it is recomended to use a strong password)
+    sudo sed -i "s/#PermitRootLogin prohibit-password/PermitRootLogin yes/g" /etc/ssh/sshd_config
+    echo 'root:YOUR_PASSWORD' | sudo chpasswd
     sudo systemctl restart sshd
     ```
 - setup management port configuration using this sample `/etc/netplan/00-installer-config.yaml`:
