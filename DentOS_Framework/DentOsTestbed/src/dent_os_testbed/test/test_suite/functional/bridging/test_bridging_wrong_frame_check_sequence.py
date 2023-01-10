@@ -2,6 +2,8 @@ import pytest
 
 from dent_os_testbed.lib.bridge.bridge_link import BridgeLink
 from dent_os_testbed.constants import DEFAULT_LOGGER
+from dent_os_testbed.Device import DeviceType
+from dent_os_testbed.lib.bridge.bridge_vlan import BridgeVlan
 from dent_os_testbed.lib.ip.ip_link import IpLink
 from dent_os_testbed.logger.Logger import AppLogger
 from dent_os_testbed.utils.test_utils.tb_utils import (
@@ -25,10 +27,9 @@ pytestmark = pytest.mark.suite_functional_bridging
 @pytest.mark.asyncio
 async def test_bridging(testbed):
     """
-    Test Name: test_bridging_admin_state_down_up
+    Test Name: test_bridging_wrong_frame_check_sequence
     Test Suite: suite_functional_bridging
-    Test Overview: This test comes to verify: bridge is not learning 
-                   entries with bridge entity admin state down.
+    Test Overview: This test comes to verify: packet drop due to wrong frame check sequence.
     Test Author: Kostiantyn Stavruk
     Test Procedure:
     1.  Init bridge entity br0.
@@ -37,26 +38,8 @@ async def test_bridging(testbed):
     4.  Set bridge br0 admin state UP.
     5.  Set ports swp1, swp2, swp3, swp4 learning ON.
     6.  Set ports swp1, swp2, swp3, swp4 flood OFF.
-
-    7.  Set bridge br0 admin state DOWN.
-    8.  Send traffic to swp1 with src mac aa:bb:cc:dd:ee:11.
-    9.  Verify that src mac aa:bb:cc:dd:ee:11 haven't been learned for swp1.
-    10. Send traffic to swp2 with src mac aa:bb:cc:dd:ee:12.
-    11. Verify that src mac aa:bb:cc:dd:ee:12 haven't been learned for swp2.
-    12. Send traffic to swp3 with src mac aa:bb:cc:dd:ee:13.
-    13. Verify that mac aa:bb:cc:dd:ee:13 haven't been learned for swp3.
-    14. Send traffic to swp4 with src mac aa:bb:cc:dd:ee:14.
-    15. Verify that src mac aa:bb:cc:dd:ee:14 haven't been learned for swp4.
-
-    16. Set bridge br0 admin state UP.
-    17. Send traffic to swp1 with src mac aa:bb:cc:dd:ee:11.
-    18. Verify that src mac aa:bb:cc:dd:ee:11 have been learned for swp1.
-    19. Send traffic to swp2 with src mac aa:bb:cc:dd:ee:12.
-    20. Verify that src mac aa:bb:cc:dd:ee:12 have been learned for swp2.
-    21. Send traffic to swp3 with src mac aa:bb:cc:dd:ee:13.
-    22. Verify that mac aa:bb:cc:dd:ee:13 have been learned for swp3.
-    23. Send traffic to swp4 with src mac aa:bb:cc:dd:ee:14.
-    24. Verify that src mac aa:bb:cc:dd:ee:14 have been learned for swp4.
+    7.  Send traffic for bridge to learn address.
+    8.  Verify that address haven't been learned due to wrong frame check sequence in packet.
     """
 
     logger = AppLogger(DEFAULT_LOGGER)
@@ -82,20 +65,10 @@ async def test_bridging(testbed):
             {"device": port, "master": "br0", "operstate": "up"} for port in ports]},
             {"device": bridge, "operstate": "up"}])
     assert out[0][device_host_name]["rc"] == 0, f" Verify that bridge, bridge entities set to 'UP' state and links enslaved to bridge.\n {out}"
-
+    
     out = await BridgeLink.set(
         input_data=[{device_host_name: [
             {"device": port, "learning": True, "flood": False} for port in ports]}])
     assert out[0][device_host_name]["rc"] == 0, f" Verify that entities set to learning 'ON' and flooding 'OFF' state.\n {out}" 
 
-    out = await IpLink.set(
-        input_data=[{device_host_name: [{"device": bridge, "operstate": "down"}]}])
-    assert out[0][device_host_name]["rc"] == 0, f" Verify that bridge set to 'DOWN' state.\n {out}"
-
-    # Send traffic and verify 8-15 steps
-
-    out = await IpLink.set(
-        input_data=[{device_host_name: [{"device": bridge, "operstate": "up"}]}])
-    assert out[0][device_host_name]["rc"] == 0, f" Verify that bridge set to 'UP' state.\n {out}"
-
-    # Send traffic and verify 17-24 steps
+    # Send traffic and verify 7-8 steps

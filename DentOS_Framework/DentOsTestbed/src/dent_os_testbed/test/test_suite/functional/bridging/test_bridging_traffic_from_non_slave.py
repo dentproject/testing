@@ -1,15 +1,7 @@
-#!/usr/lib/env python3.6
-# Copyright 2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
-#
-
-import time
-import asyncio
 import pytest
 
 from dent_os_testbed.lib.bridge.bridge_link import BridgeLink
 from dent_os_testbed.constants import DEFAULT_LOGGER
-from dent_os_testbed.Device import DeviceType
-from dent_os_testbed.lib.bridge.bridge_vlan import BridgeVlan
 from dent_os_testbed.lib.ip.ip_link import IpLink
 from dent_os_testbed.logger.Logger import AppLogger
 from dent_os_testbed.lib.bridge.bridge_fdb import BridgeFdb
@@ -40,13 +32,13 @@ async def test_bridging(testbed):
                    to enslaved port and verifying traffic is not forward.
     Test Author: Kostiantyn Stavruk
     Test Procedure:
-    1.  Init bridge entity br0.
-    2.  Set ports swp1 swp2 swp3 swp4 master br0.
-    3.  Set ports swp1 swp2 swp3 swp4 learning OFF.
-    4.  Set ports swp1 swp2 swp3 swp4 flood OFF.
-    5.  Set bridge br0 admin state UP.
-    6.  Set entities swp1, swp2, swp3, swp4 UP state.
-    7.  Adding FDB entries to swp1, swp2, swp3, swp4.
+1.  Init bridge entity br0.
+    2.  Set ports swp1, swp2, swp3, swp4 master br0.
+    3.  Set entities swp1, swp2, swp3, swp4 UP state.
+    4.  Set bridge br0 admin state UP.
+    5.  Set ports swp1, swp2, swp3, swp4 learning OFF.
+    6.  Set ports swp1, swp2, swp3, swp4 flood OFF.
+    7.  Adding FDB static entries for ports swp1, swp2, swp3, swp4.
     8.  Setting swp1 to nomaster.
     9.  Send traffic by TG.
     10. Verify that is not being forward from nomaster to slave port.
@@ -68,49 +60,29 @@ async def test_bridging(testbed):
 
     out = await IpLink.add(
         input_data=[{device_host_name: [{"device": bridge, "type": "bridge"}]}])
-    assert out[0][device_host_name]["rc"] == 0, out
+    assert out[0][device_host_name]["rc"] == 0, f" Verify that bridge created.\n {out}"
 
     out = await IpLink.set(
-        input_data=[{device_host_name: [{"device": f"{ports[0]}", "master": "br0"}]}],
-        input_data=[{device_host_name: [{"device": f"{ports[1]}", "master": "br0"}]}],
-        input_data=[{device_host_name: [{"device": f"{ports[2]}", "master": "br0"}]}],
-        input_data=[{device_host_name: [{"device": f"{ports[3]}", "master": "br0"}]}])
-    assert out[0][device_host_name]["rc"] == 0, out
+        input_data=[{device_host_name:  [
+            {"device": port, "master": "br0", "operstate": "up"} for port in ports]},
+            {"device": bridge, "operstate": "up"}])
+    assert out[0][device_host_name]["rc"] == 0, f" Verify that bridge, bridge entities set to 'UP' state and links enslaved to bridge.\n {out}"
 
     out = await BridgeLink.set(
-        input_data=[{device_host_name: [{"device": f"{ports[0]}", "learning": False}]}],
-        input_data=[{device_host_name: [{"device": f"{ports[1]}", "learning": False}]}],
-        input_data=[{device_host_name: [{"device": f"{ports[2]}", "learning": False}]}],
-        input_data=[{device_host_name: [{"device": f"{ports[3]}", "learning": False}]}])
-    assert out[0][device_host_name]["rc"] == 0, out
-
-    out = await BridgeLink.set(
-        input_data=[{device_host_name: [{"device": f"{ports[0]}", "flood": False}]}],
-        input_data=[{device_host_name: [{"device": f"{ports[1]}", "flood": False}]}],
-        input_data=[{device_host_name: [{"device": f"{ports[2]}", "flood": False}]}],
-        input_data=[{device_host_name: [{"device": f"{ports[3]}", "flood": False}]}])
-    assert out[0][device_host_name]["rc"] == 0, out
-
-    out = await IpLink.set(
-        input_data=[{device_host_name: [{"device": bridge, "operstate": "up"}]}])
-    assert out[0][device_host_name]["rc"] == 0, out
-
-    out = await IpLink.set(
-        input_data=[{device_host_name: [{"device": f"{ports[0]}", "operstate": "up"}]}],
-        input_data=[{device_host_name: [{"device": f"{ports[1]}", "operstate": "up"}]}],
-        input_data=[{device_host_name: [{"device": f"{ports[2]}", "operstate": "up"}]}],
-        input_data=[{device_host_name: [{"device": f"{ports[3]}", "operstate": "up"}]}])
-    assert out[0][device_host_name]["rc"] == 0, out
-
+        input_data=[{device_host_name: [
+            {"device": port, "learning": False, "flood": False} for port in ports]}])
+    assert out[0][device_host_name]["rc"] == 0, f" Verify that entities set to learning 'OFF' and flooding 'OFF' state.\n {out}"
+    
     out = await BridgeFdb.add(
-        input_data=[{device_host_name: [{"device": f"{ports[0]}"}]}],
-        input_data=[{device_host_name: [{"device": f"{ports[1]}"}]}],
-        input_data=[{device_host_name: [{"device": f"{ports[2]}"}]}],
-        input_data=[{device_host_name: [{"device": f"{ports[3]}"}]}],)
-    assert out[0][device_host_name]["rc"] == 0, out
+        input_data=[{device_host_name: [
+            {"device": ports[0], 'lladdr':'46:8e:45:97:13:87'},
+            {"device": ports[1], 'lladdr':'46:8e:45:97:13:87'},
+            {"device": ports[2], 'lladdr':'46:8e:45:97:13:87'},
+            {"device": ports[3], 'lladdr':'46:8e:45:97:13:87'}]}])
+    assert out[0][device_host_name]["rc"] == 0, f" Verify that FDB static entries added.\n {out}"
 
     out = await IpLink.set(
-        input_data=[{device_host_name: [{"device": f"{ports[0]}", "nomaster": True}]}])
-    assert out[0][device_host_name]["rc"] == 0, out
+        input_data=[{device_host_name: [{"device": ports[0], "nomaster": True}]}])
+    assert out[0][device_host_name]["rc"] == 0, f" Verify that swp1 entity set to 'nomaster'.\n {out}"
    
-    # Send traffic and Verify 9-10 steps
+    # Send traffic and verify 9-10 steps

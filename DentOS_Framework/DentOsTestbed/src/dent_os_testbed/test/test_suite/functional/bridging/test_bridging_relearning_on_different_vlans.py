@@ -2,9 +2,9 @@ import pytest
 
 from dent_os_testbed.lib.bridge.bridge_link import BridgeLink
 from dent_os_testbed.constants import DEFAULT_LOGGER
+from dent_os_testbed.lib.bridge.bridge_vlan import BridgeVlan
 from dent_os_testbed.lib.ip.ip_link import IpLink
 from dent_os_testbed.logger.Logger import AppLogger
-from dent_os_testbed.lib.bridge.bridge_fdb import BridgeFdb
 from dent_os_testbed.utils.test_utils.tb_utils import (
     tb_get_all_devices,
     tb_reload_nw_and_flush_firewall
@@ -26,20 +26,22 @@ pytestmark = pytest.mark.suite_functional_bridging
 @pytest.mark.asyncio
 async def test_bridging(testbed):
     """
-    Test Name: test_bridging_static_entries
+    Test Name: test_bridging_relearning_on_different_vlans
     Test Suite: suite_functional_bridging
-    Test Overview: This test comes to verify: static bridge entries.
+    Test Overview: This test comes to verify: mac address relearning on different vlans.
     Test Author: Kostiantyn Stavruk
     Test Procedure:
     1.  Init bridge entity br0.
-    2.  Set ports swp1, swp2, swp3, swp4 master br0.
-    3.  Set entities swp1, swp2, swp3, swp4 UP state.
-    4.  Set bridge br0 admin state UP.
-    5.  Set ports swp1, swp2, swp3, swp4 learning OFF.
-    6.  Set ports swp1, swp2, swp3, swp4 flood OFF.
-    7.  Adding FDB static entries for ports swp1, swp2, swp3, swp4.
-    8.  Send traffic with matching destination macs.
-    9.  Verify that reception on matching ports.
+    2.  Set br0 ageing time to 600 seconds [default is 300 seconds].
+    3.  Set ports swp1, swp2, swp3, swp4 master br0.
+    4.  Set entities swp1, swp2, swp3, swp4 UP state.
+    5.  Set bridge br0 admin state UP.
+    6.  Set ports swp1, swp2, swp3, swp4 learning ON.
+    7.  Set ports swp1, swp2, swp3, swp4 flood OFF.
+    8.  Add interfaces to vlans swp1 swp2 swp3 --> vlans 2,3.
+    9.  Send traffic by TG.
+    10. Verify that entries have been learned on different vlans.
+    11. Verify that entries have been removed from swp1 due to mac move to swp3.
     """
 
     logger = AppLogger(DEFAULT_LOGGER)
@@ -58,25 +60,26 @@ async def test_bridging(testbed):
 
     out = await IpLink.add(
         input_data=[{device_host_name: [{"device": bridge, "type": "bridge"}]}])
-    assert out[0][device_host_name]["rc"] == 0,  f" Verify that bridge created.\n {out}"
+    assert out[0][device_host_name]["rc"] == 0, f" Verify that bridge created.\n {out}"
 
     out = await IpLink.set(
         input_data=[{device_host_name:  [
+            {"device": bridge, "ageing_time": 600},
             {"device": port, "master": "br0", "operstate": "up"} for port in ports]},
             {"device": bridge, "operstate": "up"}])
-    assert out[0][device_host_name]["rc"] == 0, f" Verify that bridge, bridge entities set to 'UP' state and links enslaved to bridge.\n {out}"
-
+    assert out[0][device_host_name]["rc"] == 0, f" Verify that ageing time set to '600', bridge and bridge entities set to 'UP' state and links enslaved to bridge.\n {out}"                    
+    
     out = await BridgeLink.set(
         input_data=[{device_host_name: [
-            {"device": port, "learning": False, "flood": False} for port in ports]}])
-    assert out[0][device_host_name]["rc"] == 0, f" Verify that entities set to learning 'OFF' and flooding 'OFF' state.\n {out}" 
+            {"device": port, "learning": True, "flood": False} for port in ports]}])
+    assert out[0][device_host_name]["rc"] == 0, f" Verify that entities set to learning 'ON' and flooding 'OFF' state.\n {out}" 
     
-    out = await BridgeFdb.add(
+    out = await BridgeVlan.add(
         input_data=[{device_host_name: [
-            {"device": ports[0], 'lladdr':'46:8e:45:97:13:87'},
-            {"device": ports[1], 'lladdr':'46:8e:45:97:13:87'},
-            {"device": ports[2], 'lladdr':'46:8e:45:97:13:87'},
-            {"device": ports[3], 'lladdr':'46:8e:45:97:13:87'}]}])
-    assert out[0][device_host_name]["rc"] == 0, f" Verify that FDB static entries added.\n {out}"
-    
-    # Send traffic and verify 8-9 steps
+            {"device": port,"vid": 2} for port in ports]},
+            {"device": port,"vid": 3} for port in ports])
+    assert out[0][device_host_name]["rc"] == 0, f" Verify that interfaces added to vlans '2' and '3'.\n {out}" 
+
+    #9.  Send traffic by TG.
+    #10. Verify that entries have been learned on different vlans.
+    #11. Verify that entries have been removed from swp1 due to mac move to swp3.

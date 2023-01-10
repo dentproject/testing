@@ -25,38 +25,31 @@ pytestmark = pytest.mark.suite_functional_bridging
 @pytest.mark.asyncio
 async def test_bridging(testbed):
     """
-    Test Name: test_bridging_admin_state_down_up
+    Test Name: test_bridging_unregistered_traffic
     Test Suite: suite_functional_bridging
-    Test Overview: This test comes to verify: bridge is not learning 
-                   entries with bridge entity admin state down.
+    Test Overview: This test comes to verify: bridge flooding behaviour of unregistered IPv4/IPv6 MC packets.
+    Unregistered {ipv} traffic conditions:
+            - MAC DA is Multicast (but not Broadcast)
+            - MAC DA has the {ipv} MAC prefix {mac_range}
+            - Packet Destination {ipv} address is in the {ipv} Multicast address range ({ip_range})
+            - FDB destination lookup does not find a matching entry
     Test Author: Kostiantyn Stavruk
     Test Procedure:
     1.  Init bridge entity br0.
     2.  Set ports swp1, swp2, swp3, swp4 master br0.
     3.  Set entities swp1, swp2, swp3, swp4 UP state.
     4.  Set bridge br0 admin state UP.
-    5.  Set ports swp1, swp2, swp3, swp4 learning ON.
-    6.  Set ports swp1, swp2, swp3, swp4 flood OFF.
-
-    7.  Set bridge br0 admin state DOWN.
-    8.  Send traffic to swp1 with src mac aa:bb:cc:dd:ee:11.
-    9.  Verify that src mac aa:bb:cc:dd:ee:11 haven't been learned for swp1.
-    10. Send traffic to swp2 with src mac aa:bb:cc:dd:ee:12.
-    11. Verify that src mac aa:bb:cc:dd:ee:12 haven't been learned for swp2.
-    12. Send traffic to swp3 with src mac aa:bb:cc:dd:ee:13.
-    13. Verify that mac aa:bb:cc:dd:ee:13 haven't been learned for swp3.
-    14. Send traffic to swp4 with src mac aa:bb:cc:dd:ee:14.
-    15. Verify that src mac aa:bb:cc:dd:ee:14 haven't been learned for swp4.
-
-    16. Set bridge br0 admin state UP.
-    17. Send traffic to swp1 with src mac aa:bb:cc:dd:ee:11.
-    18. Verify that src mac aa:bb:cc:dd:ee:11 have been learned for swp1.
-    19. Send traffic to swp2 with src mac aa:bb:cc:dd:ee:12.
-    20. Verify that src mac aa:bb:cc:dd:ee:12 have been learned for swp2.
-    21. Send traffic to swp3 with src mac aa:bb:cc:dd:ee:13.
-    22. Verify that mac aa:bb:cc:dd:ee:13 have been learned for swp3.
-    23. Send traffic to swp4 with src mac aa:bb:cc:dd:ee:14.
-    24. Verify that src mac aa:bb:cc:dd:ee:14 have been learned for swp4.
+    5.  Clear TG counters.
+    6.  Send Unregistered IPv6 MC traffic from TG#1.
+    7.  Verify that traffic flooded to all ports that are members in br0.
+    8.  Disable multicast flooding on the ports.
+    9.  Clear TG counters.
+    10. Send Unregistered IPv6 MC traffic from TG#1.
+    11. Verify that traffic was not flooded/forwarded to any of the mc disabled ports.
+    12. Enable back multicast flooding on the ports.
+    13. Clear TG counters.
+    14. Send Unregistered IPv6 MC traffic from TG#1.x
+    15. Verify that traffic flooded to all ports that are members in br0.
     """
 
     logger = AppLogger(DEFAULT_LOGGER)
@@ -83,19 +76,24 @@ async def test_bridging(testbed):
             {"device": bridge, "operstate": "up"}])
     assert out[0][device_host_name]["rc"] == 0, f" Verify that bridge, bridge entities set to 'UP' state and links enslaved to bridge.\n {out}"
 
+    # Clear TG counters 5 step
+    # Send Unregistered IPv6 MC traffic from TG#1 6 step
+    # Verify that traffic flooded to all ports that are members in br0 7 step
+
     out = await BridgeLink.set(
         input_data=[{device_host_name: [
-            {"device": port, "learning": True, "flood": False} for port in ports]}])
-    assert out[0][device_host_name]["rc"] == 0, f" Verify that entities set to learning 'ON' and flooding 'OFF' state.\n {out}" 
+            {"device": port, "flood": False} for port in ports]}])
+    assert out[0][device_host_name]["rc"] == 0,  f" Verify that entities set to flooding 'OFF' state.\n {out}" 
 
-    out = await IpLink.set(
-        input_data=[{device_host_name: [{"device": bridge, "operstate": "down"}]}])
-    assert out[0][device_host_name]["rc"] == 0, f" Verify that bridge set to 'DOWN' state.\n {out}"
+    # Clear TG counters 9 step
+    # Send Unregistered IPv6 MC traffic from TG#1 10 step
+    # Verify that traffic was not flooded/forwarded to any of the mc disabled ports 11 step
 
-    # Send traffic and verify 8-15 steps
+    out = await BridgeLink.set(
+        input_data=[{device_host_name: [
+            {"device": port, "flood": True} for port in ports]}])
+    assert out[0][device_host_name]["rc"] == 0, f" Verify that entities set to flooding 'ON' state.\n {out}" 
 
-    out = await IpLink.set(
-        input_data=[{device_host_name: [{"device": bridge, "operstate": "up"}]}])
-    assert out[0][device_host_name]["rc"] == 0, f" Verify that bridge set to 'UP' state.\n {out}"
-
-    # Send traffic and verify 17-24 steps
+    # Clear TG counters 12 step
+    # Send Unregistered IPv6 MC traffic from TG#1 13 step
+    # Verify that traffic flooded to all ports that are members in br0 14 step
