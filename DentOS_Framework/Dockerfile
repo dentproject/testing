@@ -26,6 +26,6 @@ RUN pip3 install ./DentOsTestbedDiscovery
 RUN pip3 install -r ./DentOsTestbedLib/Requirements.txt
 RUN pip3 install ./DentOsTestbedLib
 
-LABEL author="Mircea Dan Gheorghe"
+LABEL author="Mircea Dan Gheorghe <mircea-dan.gheorghe@keysight.com>"
 LABEL version="1.0"
 LABEL description="DENT env for testing"
