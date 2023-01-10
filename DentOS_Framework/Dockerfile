@@ -13,6 +13,7 @@ RUN apt -y install wget
 RUN apt -y install python3
 RUN apt -y install python3-setuptools
 RUN apt -y install python3-pip
+RUN apt -y install python-is-python3
 
 COPY . /dent-fw
 WORKDIR /dent-fw
