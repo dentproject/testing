@@ -473,3 +473,25 @@ async def tb_collect_logs_from_devices(devices):
     results = await asyncio.gather(*cos, return_exceptions=True)
     check_asyncio_results(results, "tb_collect_logs_from_devices")
 
+
+async def tb_device_tcpdump(device, interface, options, count_only=False, timeout=60, dump=False):
+    """
+    Run tcpdump on a device and return number of captured packets or complete output
+    """
+    cmd = f"timeout --preserve-status {timeout} tcpdump -i {interface} {options}"
+    device.applog.info(f"Starting {cmd} on {device.host_name}...")
+
+    rc, out = await device.run_cmd(cmd, sudo=True)
+
+    if dump:
+        device.applog.info(f"Ran {cmd} on {device.host_name} with rc {rc} and out {out}")
+
+    if count_only:
+        rr = re.findall("\n(\d+) packet[s]* captured\n", out, re.MULTILINE)
+        if rr:
+            return int(rr[0])
+        else:
+            return 0
+
+    else:
+        return out
