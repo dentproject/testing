@@ -91,32 +91,10 @@ async def tgen_utils_get_swp_info(dent_dev, swp, swp_info):
     await _get_iface_addr_info(dent_dev, swp, swp_info)
 
 
-async def tgen_utils_connect_to_tgen(device, dent_dev):
+async def tgen_utils_traffic_generator_connect(device, tgen_ports, swp_ports, dev_groups):
     """
     - Connects to the tgen
-    - sets up address for the tgen devices
     """
-    dent = dent_dev.host_name
-    device.applog.info("Connecting to Tgen")
-    tgen_ports = device.links_dict[dent][0]
-    swp_ports = device.links_dict[dent][1]
-    device.applog.info(tgen_ports)
-    dev_groups = {}
-    for ixp, swp in zip(device.links_dict[dent][0], device.links_dict[dent][1]):
-        swp_info = {}
-        await tgen_utils_get_swp_info(dent_dev, swp, swp_info)
-        dev_gw = swp_info["ip"]
-        dev_plen = swp_info["plen"]
-        dev_ip = str(int(swp[3:]) * 2)
-        dev_groups[ixp] = [
-            {
-                "name": "ip_ep1",
-                "count": 1,
-                "ip": ".".join(dev_gw[:-1] + [dev_ip]),
-                "gw": ".".join(dev_gw),
-                "plen": dev_plen,
-            }
-        ]
     ixia_port = device.port if device.port is not None else 443
     out = await TrafficGen.connect(
         input_data=[
@@ -135,6 +113,35 @@ async def tgen_utils_connect_to_tgen(device, dent_dev):
     )
     device.applog.info(out)
     assert out[0][device.host_name]["rc"] == 0
+
+
+async def tgen_utils_connect_to_tgen(device, dent_dev):
+    """
+    - Connects to the tgen
+    - sets up address for the tgen devices
+    """
+    dent = dent_dev.host_name
+    device.applog.info("Connecting to Tgen")
+    tgen_ports = device.links_dict[dent][0]
+    swp_ports = device.links_dict[dent][1]
+    device.applog.info(tgen_ports)
+    dev_groups = {}
+    for ixp, swp in zip(tgen_ports, swp_ports):
+        swp_info = {}
+        await tgen_utils_get_swp_info(dent_dev, swp, swp_info)
+        dev_gw = swp_info["ip"]
+        dev_plen = swp_info["plen"]
+        dev_ip = str(int(swp[3:]) * 2)
+        dev_groups[ixp] = [
+            {
+                "name": "ip_ep1",
+                "count": 1,
+                "ip": ".".join(dev_gw[:-1] + [dev_ip]),
+                "gw": ".".join(dev_gw),
+                "plen": dev_plen,
+            }
+        ]
+    await tgen_utils_traffic_generator_connect(device, tgen_ports, swp_ports, dev_groups)
     return dev_groups
 
 
@@ -192,24 +199,7 @@ async def tgen_utils_create_devices_and_connect(
                 if need_vlan and vid is not None:
                     dev_groups[ixp][-1]["vlan"] = vid
                 dev_ip[vname] += 10
-    ixia_port = tgen_dev.port if tgen_dev.port is not None else 443
-    out = await TrafficGen.connect(
-        input_data=[
-            {
-                tgen_dev.host_name: [
-                    {
-                        "client_addr": tgen_dev.ip,
-                        "client_port": ixia_port,
-                        "tgen_ports": tgen_ports,
-                        "swp_ports": swp_ports,
-                        "dev_groups": dev_groups,
-                    }
-                ]
-            }
-        ]
-    )
-    tgen_dev.applog.info(out)
-    assert out[0][tgen_dev.host_name]["rc"] == 0
+    await tgen_utils_traffic_generator_connect(tgen_dev, tgen_ports, swp_ports, dev_groups)
 
 
 async def tgen_utils_create_bgp_devices_and_connect(tgen_dev, dent_devices, bgp_peers_info):
@@ -364,24 +354,7 @@ async def tgen_utils_create_bgp_devices_and_connect(tgen_dev, dent_devices, bgp_
                     "vlan": dev_vlan,
                 },
             ]
-    ixia_port = tgen_dev.port if tgen_dev.port is not None else 443
-    out = await TrafficGen.connect(
-        input_data=[
-            {
-                tgen_dev.host_name: [
-                    {
-                        "client_addr": tgen_dev.ip,
-                        "client_port": ixia_port,
-                        "tgen_ports": tgen_ports,
-                        "swp_ports": swp_ports,
-                        "dev_groups": dev_groups,
-                    }
-                ]
-            }
-        ]
-    )
-    tgen_dev.applog.info(out)
-    assert out[0][tgen_dev.host_name]["rc"] == 0
+    await tgen_utils_traffic_generator_connect(tgen_dev, tgen_ports, swp_ports, dev_groups)
 
 
 async def tgen_utils_setup_streams(device, config_file_name, streams, force_update=True):
