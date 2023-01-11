@@ -91,6 +91,34 @@ async def tgen_utils_get_swp_info(dent_dev, swp, swp_info):
     await _get_iface_addr_info(dent_dev, swp, swp_info)
 
 
+def tgen_utils_dev_groups_from_config(config):
+    """
+    - Creates a device group dict that can be used in *_traffic_generator_connect
+    - Expects config to be a list of dicts:
+    [
+        {
+            "ixp": tgen port,
+            "ip": tgen port ip to be configured,
+            "gw": peer ip,
+            "plen": prefix length,
+        },
+        ...
+    ]
+    """
+    dev_groups = {}
+    for el in config:
+        if not dev_groups.get(el["ixp"], None):
+            dev_groups[el["ixp"]] = []
+        dev_groups[el["ixp"]].append({
+            "name": f'{el["ixp"]}_{el["ip"]}/{el["plen"]}',
+            "count": 1,
+            "ip": el["ip"],
+            "gw": el["gw"],
+            "plen": el["plen"],
+        })
+    return dev_groups
+
+
 async def tgen_utils_traffic_generator_connect(device, tgen_ports, swp_ports, dev_groups):
     """
     - Connects to the tgen
