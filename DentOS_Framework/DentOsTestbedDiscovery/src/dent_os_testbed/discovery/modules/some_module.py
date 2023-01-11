@@ -4,6 +4,7 @@
 
 from dent_os_testbed.discovery.Module import Module
 
+
 class SomeMod(Module):
 
     async def discover(self):

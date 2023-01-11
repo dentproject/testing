@@ -3,9 +3,10 @@
 Wrapper for the discovery report JSON.
 """
 
+import copy
 import io
 import json
-import copy
+
 
 class CommitMixin(object):
 

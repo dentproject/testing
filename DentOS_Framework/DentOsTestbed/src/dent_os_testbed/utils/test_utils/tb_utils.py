@@ -1,8 +1,9 @@
 import asyncio
 import json
 import os
-import time
 import re
+import time
+
 import pytest
 
 from dent_os_testbed.Device import DeviceType

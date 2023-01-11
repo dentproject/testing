@@ -4,22 +4,28 @@ Discovery plugin generates the ReportSchema.py with all schema and setand get me
 """
 
 import os
-
 import random
 import string
 
 from gen.lib.database import camelcase
-from gen.lib.python.pylib import PyClass, PyFile, PyImport, PyLines, PyMethod
+from gen.lib.python.pylib import (
+    PyClass,
+    PyFile,
+    PyImport,
+    PyLines,
+    PyMethod,
+)
 from gen.lib.sample_plugin import SamplePlugin
 from gen.plugins.discovery.template import (
-    discovery_py_header,
+    discover_py_code_set_attr,
+    discover_py_code_set_func,
+    discover_py_code_template,
     discovery_py_dict_schema_body,
+    discovery_py_header,
     discovery_py_list_schema_body,
     discovery_py_report_body,
-    discover_py_code_template,
-    discover_py_code_set_func,
-    discover_py_code_set_attr
 )
+
 
 class ReportPyObject(object):
     def __init__(self, pkg, fname):

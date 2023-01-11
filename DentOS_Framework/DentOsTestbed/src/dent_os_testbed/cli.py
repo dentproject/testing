@@ -19,8 +19,8 @@ from dent_os_testbed.Device import DeviceType
 from dent_os_testbed.discovery.constants import REPORTS_DIR
 from dent_os_testbed.logger.Logger import AppLogger
 from dent_os_testbed.TestBed import TestBed
-from dent_os_testbed.utils.Utils import check_asyncio_results
 from dent_os_testbed.utils.test_utils.tb_utils import tb_collect_logs_from_devices
+from dent_os_testbed.utils.Utils import check_asyncio_results
 
 
 def get_args():

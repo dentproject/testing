@@ -6,7 +6,10 @@ import time
 import pytest
 
 from dent_os_testbed.Device import DeviceType
-from dent_os_testbed.utils.test_utils.sanity_utils import check_ntp_sync, check_services
+from dent_os_testbed.utils.test_utils.sanity_utils import (
+    check_ntp_sync,
+    check_services,
+)
 from dent_os_testbed.utils.test_utils.tb_utils import (
     tb_device_onie_install,
     tb_get_all_devices,

@@ -8,8 +8,12 @@ import re
 import time
 
 import pytest
+
 from dent_os_testbed.lib.ip.ip_link import IpLink
-from dent_os_testbed.test.lib.AttrSetAndUnset import AttrSetAndUnsetBase, AttrSetAndUnsetMeta
+from dent_os_testbed.test.lib.AttrSetAndUnset import (
+    AttrSetAndUnsetBase,
+    AttrSetAndUnsetMeta,
+)
 from dent_os_testbed.utils.decorators import TestCaseSetup
 
 pytestmark = pytest.mark.suite_basic_trigger

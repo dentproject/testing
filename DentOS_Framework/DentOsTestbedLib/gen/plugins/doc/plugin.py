@@ -4,20 +4,24 @@ Discovery plugin generates documentation
 """
 
 import os
-
 import random
 import string
+
+from gen.lib.md.mdlib import (
+    MdFile,
+    MdLines,
+)
 from gen.lib.sample_plugin import SamplePlugin
-from gen.lib.md.mdlib import MdFile, MdLines
 from gen.plugins.doc.template import (
-    md_header,
     md_apis,
-    md_mbr_hdr,
+    md_header,
     md_mbr_entry,
-    md_mod_hdr,
+    md_mbr_hdr,
     md_mod_entry,
+    md_mod_hdr,
     md_sample_call,
 )
+
 
 def tokenize(str, by="\n", indent=0):
     """

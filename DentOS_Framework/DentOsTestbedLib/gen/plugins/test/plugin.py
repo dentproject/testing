@@ -17,33 +17,38 @@ in platform command model
 
 
 import os
-
 import random
 import string
 
 from gen.lib.database import camelcase
-from gen.lib.python.pylib import PyClass, PyFile, PyImport, PyLines, PyMethod
+from gen.lib.python.pylib import (
+    PyClass,
+    PyFile,
+    PyImport,
+    PyLines,
+    PyMethod,
+)
 from gen.lib.sample_plugin import SamplePlugin
 from gen.plugins.test.template import (
+    py_class_common_format_cmd,
     py_class_common_format_cmd_case,
     py_class_common_format_cmds,
-    py_class_common_format_cmd,
-    py_class_common_run_cmd_case,
-    py_class_common_run_cmds,
-    py_class_common_run_cmd,
+    py_class_common_impl_form_command,
+    py_class_common_parse_cmd,
     py_class_common_parse_cmd_case,
     py_class_common_parse_cmds,
-    py_class_common_parse_cmd,
-    py_class_common_impl_form_command,
     py_class_common_run,
     py_class_common_run_api,
+    py_class_common_run_cmd,
+    py_class_common_run_cmd_case,
+    py_class_common_run_cmds,
     py_header,
     py_impl_class_common_format_cmd,
-    py_impl_class_common_run_cmd,
     py_impl_class_common_parse_cmd,
+    py_impl_class_common_run_cmd,
     py_test_code_template,
     py_test_code_two_cmd_template_call,
-    py_test_code_two_dev_template_call
+    py_test_code_two_dev_template_call,
 )
 
 dent_prefix = "dent_"

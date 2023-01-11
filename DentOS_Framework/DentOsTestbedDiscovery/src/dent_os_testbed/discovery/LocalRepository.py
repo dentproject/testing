@@ -4,21 +4,23 @@ Implement the local repository of discovery reports
 on a single testbed server.
 """
 
-import logging
-import sys, os
-import shutil
-import time
-import tempfile
 import io
 import json
+import logging
+import os
+import shutil
+import sys
+import tempfile
+import time
 
 from dent_os_testbed.discovery.constants import (
     REPORTS_DIR,
     REPORTS_HORIZON,
+    REPORTS_SAVE_MAX,
     REPORTS_SAVE_MIN,
-    REPORTS_SAVE_MAX)
-
+)
 from dent_os_testbed.discovery.Report import Report
+
 
 class LocalRepository(object):
 

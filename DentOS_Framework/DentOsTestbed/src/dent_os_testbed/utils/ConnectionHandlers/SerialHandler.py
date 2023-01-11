@@ -3,7 +3,10 @@
 
 import asyncio
 import collections
-from threading import Lock, Thread
+from threading import (
+    Lock,
+    Thread,
+)
 
 import pexpect.fdpexpect
 import serial

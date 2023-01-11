@@ -3,7 +3,11 @@ import tempfile
 
 import pytest
 
-from dent_os_testbed.constants import DEFAULT_LOGGER, LOGDIR, PYTEST_SUITES
+from dent_os_testbed.constants import (
+    DEFAULT_LOGGER,
+    LOGDIR,
+    PYTEST_SUITES,
+)
 from dent_os_testbed.logger.Logger import AppLogger
 from dent_os_testbed.utils.FileHandlers.FileHandlerFactory import (
     FileHandlerFactory,

@@ -1,6 +1,9 @@
 import os
 
-from setuptools import find_namespace_packages, setup
+from setuptools import (
+    find_namespace_packages,
+    setup,
+)
 
 # Declare your non-python data files:
 # Files underneath configuration/ will be copied into the build preserving the

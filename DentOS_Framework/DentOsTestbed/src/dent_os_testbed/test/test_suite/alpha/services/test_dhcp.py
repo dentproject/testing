@@ -6,7 +6,10 @@ import time
 import pytest
 
 from dent_os_testbed.Device import DeviceType
-from dent_os_testbed.utils.test_utils.tb_utils import tb_device_check_services, tb_get_all_devices
+from dent_os_testbed.utils.test_utils.tb_utils import (
+    tb_device_check_services,
+    tb_get_all_devices,
+)
 
 pytestmark = pytest.mark.suite_services
 

@@ -7,11 +7,16 @@ TestSuiteLib plugin to generate test suite tests based on the templates listed i
 
 import fnmatch
 import imp
-import os
-import json
 import inspect
+import json
+import os
+
 from gen.lib.database import camelcase
-from gen.lib.python.pylib import PyFile, PyImport, PyLines
+from gen.lib.python.pylib import (
+    PyFile,
+    PyImport,
+    PyLines,
+)
 from gen.lib.sample_plugin import SamplePlugin
 from gen.plugins.test_suite.template import py_ts_header
 

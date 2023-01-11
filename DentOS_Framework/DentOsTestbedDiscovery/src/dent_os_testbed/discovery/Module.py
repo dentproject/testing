@@ -3,13 +3,15 @@
 Base class for testbed discovery modules.
 """
 
-import sys, os
-import logging
-import copy
-import io
-import importlib, importlib.util
-import operator
 import asyncio
+import copy
+import importlib
+import importlib.util
+import io
+import logging
+import operator
+import os
+import sys
 
 from dent_os_testbed.discovery.Report import Report
 

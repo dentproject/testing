@@ -8,10 +8,14 @@ import re
 import time
 
 import pytest
+
 from dent_os_testbed.lib.ip.ip_address import IpAddress
 from dent_os_testbed.lib.ip.ip_link import IpLink
 from dent_os_testbed.lib.ip.ip_route import IpRoute
-from dent_os_testbed.test.lib.DeleteAndAdd import DeleteAndAddBase, DeleteAndAddMeta
+from dent_os_testbed.test.lib.DeleteAndAdd import (
+    DeleteAndAddBase,
+    DeleteAndAddMeta,
+)
 from dent_os_testbed.utils.decorators import TestCaseSetup
 
 pytestmark = pytest.mark.suite_basic_trigger

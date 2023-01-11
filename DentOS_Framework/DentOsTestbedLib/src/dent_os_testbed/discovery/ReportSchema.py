@@ -8,7 +8,12 @@ import copy
 import io
 import json
 
-from dent_os_testbed.discovery.Report import LeafSchemaDict, Report, SchemaDict, SchemaList
+from dent_os_testbed.discovery.Report import (
+    LeafSchemaDict,
+    Report,
+    SchemaDict,
+    SchemaList,
+)
 
 
 class OspfNeighSchemaDict(SchemaDict):

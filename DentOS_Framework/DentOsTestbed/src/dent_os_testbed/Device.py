@@ -4,7 +4,10 @@
 import os
 import tempfile
 import time
-from enum import Enum, unique
+from enum import (
+    Enum,
+    unique,
+)
 
 from net_utils.PingUtil import PingUtil
 
