@@ -2,6 +2,7 @@
 
 Test Bed configuration file format
 --------------------
+```
 {
     "devices" : [
        {
@@ -31,6 +32,7 @@ Test Bed configuration file format
     "topology" : "gordion-knot",               # topology name
     "force_discovery" : false                  # if we want to retrigger discovery
 }
+```
 
 Configurations
 ---------------------

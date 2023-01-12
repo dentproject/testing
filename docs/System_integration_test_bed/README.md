@@ -1,6 +1,6 @@
 ## SIT testbed (Community)
-* OVL lab in Keysight 
-* Multivendor interop
+* Open Vendor Lab in Keysight 
+* Multi vendor interoperability
 * All features (post commit)
 * Customer demo
 * One single test bed to start with
