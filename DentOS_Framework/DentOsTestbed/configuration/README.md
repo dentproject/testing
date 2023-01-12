@@ -2,6 +2,7 @@
 
 Test Bed configuration file format
 --------------------
+```
 {
     "devices" : [
        {
@@ -31,6 +32,7 @@ Test Bed configuration file format
     "topology" : "gordion-knot",               # topology name
     "force_discovery" : false                  # if we want to retrigger discovery
 }
+```
 
 Configurations
 ---------------------
@@ -41,20 +43,21 @@ Below is the directory structure expected for testbed configuration
   - testbed_config
     - [testbed_name1]
       - [dut1]
-        - [dut1]_NTP
-        - [dut1]_QUAGGA_CONFIG
-        - [dut1]_DHCP
-        - [dut1]_QUAGGA_DAEMONS
-        - [dut1]_HOSTNAME
-        - [dut1]_QUAGGA_VTYSH
-        - [dut1]_HOSTS
-        - [dut1]_RESOLV
-        - [dut1]_NETWORK_INTERFACES
-        - [dut1]_SSHD_CONF
-        - [dut1]_KEEPALIVED_CONF
+        - NTP
+        - QUAGGA_CONFIG
+        - DHCP
+        - QUAGGA_DAEMONS
+        - HOSTNAME
+        - QUAGGA_VTYSH
+        - HOSTS
+        - RESOLV
+        - NETWORK_INTERFACES
+        - SSHD_CONF
+        - KEEPALIVED_CONF
      - [dut2]
-        - [dut1]_NTP
-        - [dut1]_QUAGGA_CONFIG
-        ...
+        - NTP
+        - QUAGGA_CONFIG
+        - ...
     - [testbed_name2]
       - [dut1]
+		- ...
