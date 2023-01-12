@@ -1,9 +1,9 @@
 # DENT Testing
 Welcome to DENT testing repository. This is the public repository for test-cases contributed by different organizations for DENT OS features. 
 
-Test Cases are mixes of Functional - Features (VRF, LLDP, ACL, etc) and System Test - Integration/Interop tests.
+Test cases are mixes of Functional - Features (VRF, LLDP, ACL, etc) and System Test - Integration/Interoperability tests.
 
-Currently testcases are not tagged so you cannot see which are functional or which are system test.
+Currently test cases are not tagged so you cannot see which are functional or which are system test.
 
 Please refer to the Doc page for all details https://github.com/dentproject/testing/tree/master/docs
 
