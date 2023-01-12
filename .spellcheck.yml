@@ -18,8 +18,8 @@ matrix:
       - alt
       ignores:
       - ':matches(code, pre)'
-      - 'code'
-      - 'pre'
-      - 'blockquote'
+      - code
+      - pre
+      - blockquote
   sources:
   - '**/*.md'
