@@ -6,7 +6,7 @@ This is the directory to document how to start/run the tests from the scratch.
   * 7 Dentos Devices.
   * 1 Ixia Chassis with 16 10G port running IxOS/IxNetwork EA versions [We are using 9.20 EA].
   * 1 IxNetwork EA API server.
-  * 1 linux with Ubuntu 22.04 (centos8 will also work or other distros but the instructions bellow are for ubuntu 22.04) 
+  * 1 linux with Ubuntu 22.04 (centos8 will also work or other distributions but the instructions bellow are for ubuntu 22.04) 
 TODO: create a lab BOM
 
 ## Prepare Testbed Server
