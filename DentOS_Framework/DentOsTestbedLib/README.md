@@ -11,7 +11,7 @@ The data model used to represent the features follow UML style schema where we h
 A  package is the collection of features/modules of the full system. For example package of linux contains the description of features within linux NOS like networking, routing,  platform and OS components. The model is fully sufficient to represent and implement the features with support for implementing custom logic.
 
 ### 2.2 Module
-A module is the collection of classes and datatypes that fully represents the subsystem/feature. The information represented in each module is sufficient to represent the part/full feature/features that are inter-related to each other. For example ip is a module and it contains various classes like route, address, link etc.
+A module is the collection of classes and data types that fully represents the subsystem/feature. The information represented in each module is sufficient to represent the part/full feature/features that are inter-related to each other. For example ip is a module and it contains various classes like route, address, link etc.
 ```code
 - module: ip
   desc: IP module
