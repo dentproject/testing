@@ -28,6 +28,7 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_start_traffic,
     tgen_utils_stop_protocols,
     tgen_utils_stop_traffic,
+    tgen_utils_get_loss,
 )
 
 pytestmark = pytest.mark.suite_acl_scale

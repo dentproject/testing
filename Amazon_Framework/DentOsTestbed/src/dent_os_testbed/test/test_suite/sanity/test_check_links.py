@@ -7,7 +7,7 @@ import pytest
 
 from dent_os_testbed.Device import DeviceType
 from dent_os_testbed.lib.ip.ip_link import IpLink
-from dent_os_testbed.utils.test_utils.tb_utils import tb_get_all_devices
+from dent_os_testbed.utils.test_utils.tb_utils import tb_get_all_devices, tb_generate_network_diagram
 
 pytestmark = pytest.mark.suite_system_health
 
@@ -27,7 +27,6 @@ async def get_link_operstate(host_name, link):
     ):
         return "UP"
     return out[0][host_name]["parsed_output"][0]["operstate"]
-
 
 async def check_and_validate_switch_links(testbed):
     """
@@ -62,19 +61,22 @@ async def check_and_validate_switch_links(testbed):
             if operstate != "UP" and other_end[0] not in devices:
                 operstate = "N/A"
 
-            # if operstate == "UP" and other_end[0] in devices:
-            #    out = await IpLink.set(
-            #        input_data=[{dev.host_name: [{"device": link, "operstate": "down"}]}],
-            #    )
-            #    assert out[0][dev.host_name]["rc"] == 0
-            #    time.sleep(5)
-            #    other_operstate = await get_link_operstate(other_end[0], other_end[1])
-            #    verified = "YES" if other_operstate != "UP" else "NO"
-            #    out = await IpLink.set(
-            #        input_data=[{dev.host_name: [{"device": link, "operstate": "up"}]}],
-            #    )
+            # this can be done on system which is not provisiond since there might be links that
+            # cannot be brought down.
+            if not testbed.args.is_provisioned and operstate == "UP" and other_end[0] in devices:
+               out = await IpLink.set(
+                   input_data=[{dev.host_name: [{"device": link, "operstate": "down"}]}],
+               )
+               assert out[0][dev.host_name]["rc"] == 0
+               time.sleep(5)
+               other_operstate = await get_link_operstate(other_end[0], other_end[1])
+               verified = "YES" if other_operstate != "UP" else "NO"
+               out = await IpLink.set(
+                   input_data=[{dev.host_name: [{"device": link, "operstate": "up"}]}],
+               )
             links_dict[dev.host_name][link] = [links[1], operstate, verified]
 
+    tb_generate_network_diagram(testbed, links_dict)
     all_links_up = True
     for dev, links in links_dict.items():
         for link, links in links.items():

@@ -84,6 +84,10 @@ async def test_system_wide_restart_and_service_reloads(testbed):
         prev_dut_state[dev.host_name] = await tb_device_check_health(dev, None, False)
         devices.append(dev)
 
+    if not devices:
+        testbed.applog.info(f"No devices to run the test")
+        return
+
     # after traffic is stopped
     trigger_types = [
         # TRIGGER_FLAP_LINK,

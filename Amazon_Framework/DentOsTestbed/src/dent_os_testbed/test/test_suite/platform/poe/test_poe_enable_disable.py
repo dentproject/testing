@@ -112,6 +112,7 @@ async def test_poe_link_enable_disable_all_ports(testbed):
             parse_output=True,
         )
         assert out[0][dev.host_name]["rc"] == 0, f"Failed to show {dev.host_name}"
+        ports = out[0][dev.host_name]["parsed_output"]
         for port in ports:
             assert port["status"] != "disabled", f"Failed to enabled {first}-{last} {dev.host_name}"
 
@@ -168,7 +169,7 @@ async def test_poe_link_enable_disable_connected_ports(testbed):
                 input_data=[{dev.host_name: [{"port": port["swp"]}]}],
             )
             assert out[0][dev.host_name]["rc"] == 0, f"Failed to disable POE port {dev.host_name}"
-            time.sleep(30)
+            time.sleep(60)
 
             out = await IpLink.show(
                 input_data=[{dev.host_name: [{"device": port["swp"], "cmd_options": "-j"}]}],

@@ -20,7 +20,7 @@ class LinuxPoectlImpl(LinuxPoectl):
         cmd = "poectl {} ".format(params.get("cmd_options", ""))
         if "port" in kwarg["params"]:
             cmd += "-i {} ".format(kwarg["params"]["port"])
-        return cmd
+        return cmd + " 2> /dev/null"
 
     def parse_show(self, command, output, *argv, **kwarg):
         try:
@@ -42,9 +42,9 @@ class LinuxPoectlImpl(LinuxPoectl):
         cmd = "poectl {} --{}-ports ".format(params.get("cmd_options", ""), command)
         ############# Implement me ################
         if "port" not in kwarg["params"]:
-            return cmd
+            return cmd + " 2> /dev/null"
         cmd += " {} ".format(kwarg["params"]["port"])
-        return cmd
+        return cmd + " 2> /dev/null"
 
     def parse_modify(self, command, output, *argv, **kwarg):
         return json.loads(output)

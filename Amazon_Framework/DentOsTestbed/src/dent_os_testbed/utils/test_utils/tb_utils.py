@@ -17,6 +17,7 @@ from dent_os_testbed.lib.os.system import System
 from dent_os_testbed.lib.tc.tc_qdisc import TcQdisc
 from dent_os_testbed.utils.Utils import check_asyncio_results
 
+from pyvis.network import Network
 
 async def tb_clean_config_device(d):
     config_file_list = [
@@ -105,6 +106,9 @@ async def tb_flap_links(dev, ports):
 
 
 async def tb_device_check_services(dev, prev_state, check, healthy_services=None):
+    # not working on cumulus
+    if dev.os == "cumulus":
+        return {}
     default_healthy_services = [
         "dnsmasq.service",
         "frr.service",
@@ -142,6 +146,7 @@ async def tb_device_check_services(dev, prev_state, check, healthy_services=None
         if s not in serv_dict:
             dev.applog.info(f"Service is {s} not found ")
             check = 0
+            continue
         if serv_dict[s]["active"] != "active":
             dev.applog.info("{} service is down {}".format(s, serv_dict[s]))
             check = 0
@@ -178,6 +183,9 @@ async def tb_device_check_memory(dev, prev_state, check):
 
 
 async def tb_device_check_cpu(dev, prev_state, check):
+    # not working on cumulus
+    if dev.os == "cumulus":
+        return {}
     out = await CpuUsage.show(
         input_data=[{dev.host_name: [{"dut_discovery": True}]}],
         parse_output=True,
@@ -292,12 +300,14 @@ async def tb_get_all_devices(
     if testbed.discovery_report:
         for dev in testbed.discovery_report.duts:
             dev = await tb_get_device_object_from_dut(
-                testbed, dev, skip_tg=False, skip_disconnected=skip_disconnected
+                testbed, dev, skip_tg=False, skip_disconnected=False
             )
             if not dev or dev.type in exclude_devices:
                 continue
             # only look for requested devices
             if include_devices is not None and dev.type not in include_devices:
+                continue
+            if skip_disconnected and not await dev.is_connected():
                 continue
             devices.append(dev)
     else:
@@ -405,6 +415,7 @@ async def tb_restore_qdisc(dev, port, direction):
         ]
     )
 
+
 async def tb_check_all_devices_are_connected(devices):
     # check if all the devices can be reached??
     for dev in devices:
@@ -444,6 +455,9 @@ async def tb_collect_logs_from_device(device):
     # copy to temp so that everyone can read
     for f in files + device.files_to_collect:
         fname = f.split("/")[-1]
+        rc, out = await device.run_cmd(f"ls {f}", sudo=True)
+        if rc != 0:
+            continue
         await device.run_cmd(f"cp {f} /tmp/{fname}", sudo=True)
         await device.run_cmd(f"chmod 755 /tmp/{fname}", sudo=True)
 
@@ -451,6 +465,9 @@ async def tb_collect_logs_from_device(device):
         l_f = f.split("/")[-1]
         r_f = os.path.join("/tmp", l_f)
         l_f = os.path.join(device.serial_logs_base_dir, l_f)
+        rc, out = await device.run_cmd(f"ls {r_f}", sudo=True)
+        if rc != 0:
+            continue
         device.applog.info("Getting the remote file " + r_f)
         device.applog.info(f"Copying file {r_f} to {l_f}")
         try:
@@ -461,15 +478,53 @@ async def tb_collect_logs_from_device(device):
         except Exception as e:
             device.applog.error(str(e))
 
-async def tb_collect_logs_from_devices(devices):
+async def tb_collect_logs_from_devices(devices,
+                                       exclude_devices=[DeviceType.TRAFFIC_GENERATOR],
+                                       ):
     """
     collect the logs from the given devices, skip if not connected.
     """
     cos = list()
     for device in devices:
+        if device.type in exclude_devices:
+            continue
         if not await device.is_connected():
             continue
         cos.append(tb_collect_logs_from_device(device))
     results = await asyncio.gather(*cos, return_exceptions=True)
     check_asyncio_results(results, "tb_collect_logs_from_devices")
 
+
+def tb_generate_network_diagram(testbed, links_dict):
+    net = Network(height='750px', width='100%', bgcolor='#222222', font_color='white', layout=True)
+    net.barnes_hut()
+    for src, links in links_dict.items():
+        for slink, links in links.items():
+            link, oper, ver = links
+            dst, dlink = link.split(':')
+            net.add_node(src, src, title=src, shape="square", group=testbed.devices_dict[src].type.value, level=testbed.devices_dict[src].type.value)
+            group = testbed.devices_dict[dst].type.value if dst in testbed.devices_dict else 0
+            net.add_node(dst, dst, title=dst, shape="square", group=group, level=group)
+            color = "grey"
+            if oper == "UP":
+                color = "green"
+            if oper == "DOWN":
+                color = "red"
+            edge = f"{src}:{slink}<-->{dst}:{dlink}"
+            # update the title
+            found = False
+            for e in net.edges:
+                if (e['to'] == dst and e['from'] == src) or (e['from'] == dst and e['to'] == src):
+                    e['title'] += "<br>" + edge + f" {oper}"
+                    found = True
+                    break
+            if not found:
+                net.add_edge(src, dst, id=edge, color=color, title=edge + f" {oper}")
+
+    neighbor_map = net.get_adj_list()
+    # add neighbor data to node hover data
+    for node in net.nodes:
+        node['title'] += ' Neighbors:<br>' + '<br>'.join(neighbor_map[node['id']])
+        node['value'] = len(neighbor_map[node['id']])
+
+    net.show('network.html')
