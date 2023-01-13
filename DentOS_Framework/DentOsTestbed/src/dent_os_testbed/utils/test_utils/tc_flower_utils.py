@@ -14,12 +14,16 @@ async def tcutil_iptable_to_tc(dent_dev, swp_tgen_ports, iptable_rules, extra_ar
     #  - iptables-scoreboard /tmp/iptables-unrolled.rules /tmp/iptables-scoreboarded.rules FORWARD swp+
     #  - tc-flower-load --scoreboard  --shared-block /tmp/iptables-scoreboarded.rules FORWARD swp+
     #  - delete the rules from iptables
-    ENVROOT = "/sputnik/env/IhmDentTcFlower/"
+    # check if there is a path else check if there is petunia
+    PREFIX=""
+    rc, out = await dent_dev.run_cmd("ls /sputnik/env/IhmDentTcFlower/", sudo=True)
+    if rc == 0:
+        PREFIX = "/sputnik/env/IhmDentTcFlower/bin/execute_in_env /sputnik/env/IhmDentTcFlower/bin/"
     cmds = [
-        f"iptables-save -t filter  > /tmp/iptables.rules",
-        f"{ENVROOT}/bin/execute_in_env  {ENVROOT}/bin/iptables-unroll --multi-interface --extended /tmp/iptables.rules /tmp/iptables-unrolled.rules FORWARD",
-        f"{ENVROOT}/bin/execute_in_env  {ENVROOT}/bin/iptables-scoreboard /tmp/iptables-unrolled.rules /tmp/iptables-scoreboarded.rules FORWARD swp+",
-        f"{ENVROOT}/bin/execute_in_env  {ENVROOT}/bin/tc-flower-load -v {extra_args} --offload --port-unroll 5 --scoreboard  --shared-block  --hack-vlan-arp --log-ignore --continue-suppress /tmp/iptables-scoreboarded.rules FORWARD swp+",
+        f"{PREFIX}iptables-save -t filter  > /tmp/iptables.rules",
+        f"{PREFIX}iptables-unroll --multi-interface --extended /tmp/iptables.rules /tmp/iptables-unrolled.rules FORWARD",
+        f"{PREFIX}iptables-scoreboard /tmp/iptables-unrolled.rules /tmp/iptables-scoreboarded.rules FORWARD swp+",
+        f"{PREFIX}tc-flower-load -v {extra_args} --offload --port-unroll 5 --scoreboard  --shared-block  --hack-vlan-arp --log-ignore --continue-suppress /tmp/iptables-scoreboarded.rules FORWARD swp+",
     ]
     dent_dev.files_to_collect.append("/tmp/iptables.rules")
     dent_dev.files_to_collect.append("/tmp/iptables-unrolled.rules")
