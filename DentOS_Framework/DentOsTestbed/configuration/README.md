@@ -22,7 +22,7 @@ Test Bed configuration file format
             "serialDev":"/dev/ttyUSB6",        # Serial console access
             "baudrate": 115200,                # Baud rate
             "links" : [                        # Link details
-                ["eth0", "oob_sw2:swp40"],     # ["local port", "remote port:remote port"]
+                ["ma1", "oob_sw2:swp40"],     # ["local port", "remote port:remote port"]
                 ...
             ]
 

@@ -46,13 +46,13 @@ class LinuxInterfaceImpl(LinuxInterface):
         if "options" in params:
             cmd += "{} ".format(params["options"])
         if "exclude_iface" in params:
-            # ifdown -X eth0 -X lo -a
+            # ifdown -X ma1 -X lo -a
             for e in params["exclude_iface"]:
                 cmd += "-X {} ".format(e)
         if "force" in params and params["force"]:
             cmd += "-f "
         if "iface" in params:
-            # ifdown eth0 lo
+            # ifdown ma1 lo
             for i in params["iface"]:
                 cmd += "{} ".format(i)
 
@@ -118,7 +118,7 @@ class LinuxInterfaceImpl(LinuxInterface):
         if "options" in params:
             cmd += "{} ".format(params["options"])
         if "exclude_iface" in params:
-            # ifdown -X eth0 -X lo -a
+            # ifdown -X ma1 -X lo -a
             for e in params["exclude_iface"]:
                 cmd += "-X {} ".format(e)
 
