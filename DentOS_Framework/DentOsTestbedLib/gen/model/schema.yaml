@@ -75,28 +75,28 @@ schema;types_schema:
 schema;tests_schema:
   type: seq
   sequence:
-  - type: map
-    mapping:
-      name: {type: str, required: True}
-      test_cases:
-        type: seq
-        sequence:
-        - type: map
-          mapping:
-            name: {type: str, required: True}
-            template: {type: str}
-            class: {type: str}
-            args: {type: str}
+    - type: map
+      mapping:
+        name: { type: str, required: True }
+        test_cases:
+          type: seq
+          sequence:
+            - type: map
+              mapping:
+                name: { type: str, required: True}
+                template: { type: str }
+                class: { type: str }
+                args: { type: str }
 
 type: seq
 sequence:
-- type: map
-  mapping:
-    module: {type: str, required: True}
-    description: {type: str}
-    classes:
-      include: classes_schema
-    types:
-      include: types_schema
-    tests:
-      include: tests_schema
+  - type: map
+    mapping:
+      module: { type: str, required: True }
+      description: { type: str }
+      classes:
+        include: classes_schema
+      types:
+        include: types_schema
+      tests:
+        include: tests_schema
