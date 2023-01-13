@@ -1,3 +1,5 @@
+import json
+
 from dent_os_testbed.lib.ip.linux.linux_ip_neighbor import LinuxIpNeighbor
 
 
@@ -44,3 +46,6 @@ class LinuxIpNeighborImpl(LinuxIpNeighbor):
             cmd += "nud {} ".format(params["nud"])
 
         return cmd
+
+    def parse_show(self, command, output, *argv, **kwarg):
+        return json.loads(output)
