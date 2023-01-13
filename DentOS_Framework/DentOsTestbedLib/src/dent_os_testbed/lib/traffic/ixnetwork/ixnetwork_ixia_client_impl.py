@@ -362,6 +362,7 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
             IxnetworkIxiaClientImpl.tis.append(ti)
             ti.Tracking.find()[0].TrackBy = ["trackingenabled0", "sourceDestValuePair0"]
             ti.Enabled = True
+            ti.BiDirectional = pkt_data.get("bi_directional", False)
             for ep in range(ep_count):
                 config_element = ti.ConfigElement.find(EndpointSetId=ep + 1)
                 # set the rate
