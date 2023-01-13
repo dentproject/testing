@@ -1,10 +1,11 @@
-## Feature Test – PR format
+# Feature Test – PR format
+
 * Feature Name
-* Feature details <link>
+* Feature details `TODO: add link here`
 * Company and Lead name
 * Community functional test pass rate (100%)
 * Reviewers
-* Test plan <link>
-* Dependent Test script PR - Test scripts <link>
+* Test plan `TODO: add link here`
+* Dependent Test script PR - Test scripts `TODO: add link here`
 * Test reviewers
-* Merge logs <links>
+* Merge logs `TODO: add link here`
