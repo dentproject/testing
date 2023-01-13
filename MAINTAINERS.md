@@ -1,4 +1,4 @@
-## Maintainers
+# Maintainers
 
 Maintainers of test cases project
 are supposed to help contributors by explain them project details,
