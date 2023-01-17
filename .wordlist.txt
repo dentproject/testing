@@ -127,3 +127,7 @@ xjf
 YAML
 yaml
 yamllint
+snoble
+sonn
+sonoble
+Linters
