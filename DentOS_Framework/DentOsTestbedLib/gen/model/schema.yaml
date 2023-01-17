@@ -1,102 +1,102 @@
 schema;classes_schema:
   type: seq
   sequence:
-  - type: map
-    mapping:
-      name: {type: str, required: True}
-      desc: {type: str}
-      apis:
-        type: seq
-        sequence:
-        - type: str
-      implements: {type: str}
-      singleton: {type: bool}
-      local: {type: bool}
-      platforms:
-        type: seq
-        sequence:
-        - type: str
-          enum: ['dentos', 'cumulus', 'juniper', 'cisco', 'ixnetwork', 'dni', 'trex-tgn']
-      members:
-        type: seq
-        sequence:
-        - type: map
-          mapping:
-            name: {type: str, required: True, unique: True}
-            desc: {type: str}
-            type: {type: str}
-            cls: {type: str}
-            key: {type: bool}
-            readonly: {type: bool}
-            mandatory:
-              type: seq
-              sequence:
-              - type: str
-      commands:
-        type: seq
-        sequence:
-        - type: map
-          mapping:
-            name: {type: str, required: True}
-            desc: {type: str}
-            cmd:
-              type: seq
-              sequence:
-              - type: str
-            params:
-              type: seq
-              sequence:
-              - type: str
-            apis:
-              type: seq
-              sequence:
-              - type: str
-      classes:
-        include: classes_schema
+    - type: map
+      mapping:
+        name: { type: str, required: True }
+        desc: { type: str }
+        apis:
+          type: seq
+          sequence:
+            - type: str
+        implements: { type: str }
+        singleton: { type: bool }
+        local:  { type: bool }
+        platforms:
+          type: seq
+          sequence:
+            - type: str
+              enum: [ 'dentos', 'cumulus', 'juniper', 'cisco' , 'ixnetwork', 'dni', 'trex-tgn']
+        members:
+          type: seq
+          sequence:
+            - type: map
+              mapping:
+                name: { type: str, required: True, unique: True }
+                desc: { type: str }
+                type: { type: str }
+                cls:  { type: str }
+                key:  { type: bool}
+                readonly: { type: bool}
+                mandatory:
+                 type: seq
+                 sequence:
+                  - type: str
+        commands:
+          type: seq
+          sequence:
+            - type: map
+              mapping:
+                name: { type: str, required: True }
+                desc: { type: str }
+                cmd:
+                  type: seq
+                  sequence:
+                    - type: str
+                params:
+                  type: seq
+                  sequence:
+                    - type: str
+                apis:
+                  type: seq
+                  sequence:
+                    - type: str
+        classes:
+          include: classes_schema
 
 schema;types_schema:
   type: seq
   sequence:
-  - type: map
-    mapping:
-      name: {type: str, required: True}
-      desc: {type: str}
-      type: {type: str}
-      list: {type: bool}
-      members:
-        type: seq
-        sequence:
-        - type: map
-          mapping:
-            name: {type: str, required: True}
-            desc: {type: str}
-            type: {type: str}
+    - type: map
+      mapping:
+        name: { type: str, required: True }
+        desc: { type: str }
+        type: { type: str }
+        list: { type: bool }
+        members:
+          type: seq
+          sequence:
+            - type: map
+              mapping:
+                name: { type: str, required: True }
+                desc: { type: str }
+                type: { type: str }
 
 schema;tests_schema:
   type: seq
   sequence:
-  - type: map
-    mapping:
-      name: {type: str, required: True}
-      test_cases:
-        type: seq
-        sequence:
-        - type: map
-          mapping:
-            name: {type: str, required: True}
-            template: {type: str}
-            class: {type: str}
-            args: {type: str}
+    - type: map
+      mapping:
+        name: { type: str, required: True }
+        test_cases:
+          type: seq
+          sequence:
+            - type: map
+              mapping:
+                name: { type: str, required: True}
+                template: { type: str }
+                class: { type: str }
+                args: { type: str }
 
 type: seq
 sequence:
-- type: map
-  mapping:
-    module: {type: str, required: True}
-    description: {type: str}
-    classes:
-      include: classes_schema
-    types:
-      include: types_schema
-    tests:
-      include: tests_schema
+  - type: map
+    mapping:
+      module: { type: str, required: True }
+      description: { type: str }
+      classes:
+        include: classes_schema
+      types:
+        include: types_schema
+      tests:
+        include: tests_schema
