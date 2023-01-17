@@ -3,11 +3,11 @@ on:
   pull_request:
     paths:
     - '**/*.md'
-    - '.wordlist.txt'
+    - '.github/configs/.wordlist.txt'
   push:
     paths:
     - '**/*.md'
-    - '.wordlist.txt'
+    - '.github/configs/.wordlist.txt'
   workflow_dispatch:
 
 jobs:
@@ -16,6 +16,6 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Spellcheck
-      uses: rojopolis/spellcheck-github-actions@0.26.0
+      uses: rojopolis/spellcheck-github-actions@0.29.0
       with:
         config_path: .github/configs/.spellcheck.yml # put path to configuration file here
