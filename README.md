@@ -1,5 +1,9 @@
 # DENT Testing
 
+[![Spellcheck](../../actions/workflows/md-spellcheck.yml/badge.svg)](../../actions/workflows/md-spellcheck.yml)
+[![Linters](../../actions/workflows/linters.yml/badge.svg)](../../actions/workflows/linters.yml)
+[![Python Lint](../../actions/workflows/python-lint.yml/badge.svg)](../../actions/workflows/python-lint.yml)
+
 Welcome to DENT testing repository. This is the public repository for test-cases contributed by different organizations for DENT OS features.
 
 Test cases are mixes of Functional - Features (VRF, LLDP, ACL, etc) and System Test - Integration/Interoperability tests.
