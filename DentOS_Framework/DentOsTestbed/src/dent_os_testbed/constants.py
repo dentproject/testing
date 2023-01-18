@@ -70,6 +70,7 @@ PYTEST_SUITES = {
     "suite_cleanup": "Test marker for test cleanup",
     "suite_functional_ipv4": "Functional IPv4 tests",
     "suite_functional_bridging": "Functional bridging tests",
+    "suite_functional_vlan": "VLAN functional tests",
 }
 
 PYTEST_SUITE_GROUPS = {
@@ -103,8 +104,7 @@ PYTEST_SUITE_GROUPS = {
     "suite_group_connection": ["suite_connection"],
     "suite_group_platform": ["suite_poe", "suite_onlpdump", "suite_lldp"],
     "suite_group_cleanup": ["suite_cleanup"],
-    "suite_group_functional": [
-        "suite_functional_ipv4",
-        "suite_functional_bridging",
-    ],
+    "suite_group_functional": ["suite_functional_vlan",
+                               "suite_functional_bridging,"
+                               "suite_functional_ipv4"]
 }
