@@ -12,8 +12,8 @@ iface lo inet loopback
     address 20.20.0.102/32
 
 # The management interface
-auto eth0
-iface eth0 inet dhcp
+auto ma1
+iface ma1 inet dhcp
 
 auto swp49
 iface swp49 inet static

@@ -86,7 +86,7 @@
           label NAME --- Each address may be tagged with a label string. In order
           to preserve compatibility with Linux-2.0 net aliases, this string must
           coincide with the name of the device or must be prefixed with device name
-          followed by a colon. (eth0:duh)
+          followed by a colon. (ma1:duh)
 
       - name: scope
         type: int

@@ -54,7 +54,7 @@ restrict ::1
 #broadcastclient
 
 # Specify interfaces, don't listen on switch ports
-#interface listen eth0
+#interface listen ma1
 interface listen lo
 interface listen lo:0
 interface listen dummy0
