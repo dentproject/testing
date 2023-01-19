@@ -6,6 +6,8 @@
       ip-link - network device configuration
      apis: ['add', 'delete', 'set', 'show', 'xstats', 'afstats']
      members:
+      - name: ageing_time
+        type: int
       - name: ifindex
         type: int
       - name: ifname

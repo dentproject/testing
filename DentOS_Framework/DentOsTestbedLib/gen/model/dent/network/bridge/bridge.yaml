@@ -43,8 +43,8 @@
           BPDU processing. Turning this flag on will disables the bridge port if a STP BPDU packet is received.
           If running Spanning Tree on bridge, hostile devices on the network may send BPDU on a port and cause network
           failure. Setting guard on will detect and stop this by disabling the port. The port will be restarted if link
-          is brought down, or removed and reattached. For example if guard is enable on eth0:
-          ip link set dev eth0 down; ip link set dev eth0 up
+          is brought down, or removed and reattached. For example if guard is enable on ma1:
+          ip link set dev ma1 down; ip link set dev ma1 up
       - name: hairpin
         type: bool
         desc: |
