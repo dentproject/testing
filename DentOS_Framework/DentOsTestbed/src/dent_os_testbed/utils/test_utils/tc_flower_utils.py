@@ -20,7 +20,7 @@ async def tcutil_iptable_to_tc(dent_dev, swp_tgen_ports, iptable_rules, extra_ar
     if rc == 0:
         PREFIX = "/sputnik/env/IhmDentTcFlower/bin/execute_in_env /sputnik/env/IhmDentTcFlower/bin/"
     cmds = [
-        f"{PREFIX}iptables-save -t filter  > /tmp/iptables.rules",
+        f"iptables-save -t filter  > /tmp/iptables.rules",
         f"{PREFIX}iptables-unroll --multi-interface --extended /tmp/iptables.rules /tmp/iptables-unrolled.rules FORWARD",
         f"{PREFIX}iptables-scoreboard /tmp/iptables-unrolled.rules /tmp/iptables-scoreboarded.rules FORWARD swp+",
         f"{PREFIX}tc-flower-load -v {extra_args} --offload --port-unroll 5 --scoreboard  --shared-block  --hack-vlan-arp --log-ignore --continue-suppress /tmp/iptables-scoreboarded.rules FORWARD swp+",
