@@ -15,56 +15,101 @@ iface lo inet loopback
 auto ma1
 iface ma1 inet dhcp
 
+# VLAN interfaces
+auto vlan100
+iface vlan100 inet static
+    address 20.1.4.2/22
+    vlan-id 100
+    vlan-raw-device bridge
+
+auto vlan300
+iface vlan300 inet static
+    address 20.3.4.2/22
+    vlan-id 300
+    vlan-raw-device bridge
+
+auto vlan400
+iface vlan400 inet static
+    address 20.4.4.2/22
+    vlan-id 400
+    vlan-raw-device bridge
+
+auto vlan500
+iface vlan500 inet static
+    address 20.5.4.2/22
+    vlan-id 500
+    vlan-raw-device bridge
+
+auto vlan600
+iface vlan600 inet static
+    address 20.6.4.2/22
+    vlan-id 600
+    vlan-raw-device bridge
+
+auto bridge
+iface bridge inet static
+alias Vlan Aware Bridge
+    bridge-ageing 600
+    bridge-ports swp1 swp2 swp3 swp4 swp5 swp6 swp7 swp8 swp9 swp10 swp11 swp12 swp13 swp14 swp15 swp16 swp17 swp18 swp19 swp20 swp21 swp22 swp23 swp24 swp25 swp26 swp27 swp28  swp29 swp30 swp31 swp32 swp33 swp34 swp35 swp36 swp37 swp38 swp39 swp40 swp41 swp42 swp43 swp44 swp45 swp46 swp47 swp48 swp49 swp50 swp51 swp52
+    bridge-vids 100 300 400 500 600
+    # Turns on STP
+    bridge-stp on
+   # Puts each port into an edge mode swp1-48
+    mstpctl-portadminedge swp1=yes swp2=yes swp3=yes swp4=yes swp5=yes swp6=yes swp7=yes swp8=yes swp9=yes swp10=yes swp11=yes swp12=yes swp13=yes swp14=yes swp15=yes swp16=yes swp17=yes swp18=yes swp19=yes swp20=yes swp21=yes swp22=yes swp23=yes swp24=yes swp25=yes swp26=yes swp27=yes swp28=yes swp29=yes swp30=yes swp31=yes swp32=yes swp33=yes swp34=yes swp35=yes swp36=yes swp37=yes swp38=yes swp39=yes swp40=yes swp41=yes swp42=yes swp43=yes swp44=yes swp45=yes swp46=yes swp47=yes swp48=yes swp49=yes swp50=yes swp51=yes swp52=yes
+   # Adds BPDU Guard to all ports swp1-48
+    mstpctl-bpduguard swp1=yes swp2=yes swp3=yes swp4=yes swp5=yes swp6=yes swp7=yes swp8=yes swp9=yes swp10=yes swp11=yes swp12=yes swp13=yes swp14=yes swp15=yes swp16=yes swp17=yes swp18=yes swp19=yes swp20=yes swp21=yes swp22=yes swp23=yes swp24=yes swp25=yes swp26=yes swp27=yes swp28=yes swp29=yes swp30=yes swp31=yes swp32=yes swp33=yes swp34=yes swp35=yes swp36=yes swp37=yes swp38=yes swp39=yes swp40=yes swp41=yes swp42=yes swp43=yes swp44=yes swp45=yes swp46=yes swp47=yes swp48=yes swp49=yes swp50=yes swp51=yes swp52=yes
+    bridge-vlan-aware yes
+
 # connected to IXIA/Keysight
 auto swp1
 iface swp1 inet static
 alias IXIA LINK
-    address 20.20.25.2/30
+    address 20.20.25.1/24
 
 auto swp2
 iface swp2 inet static
 alias IXIA LINK
-    address 20.20.26.2/30
+    address 20.20.26.1/24
 
 auto swp3
 iface swp3 inet static
 alias IXIA LINK
-    address 20.20.27.2/30
+    address 20.20.27.1/24
 
 auto swp4
 iface swp4 inet static
 alias IXIA LINK
-    address 20.20.28.2/30
+    address 20.20.28.1/24
 
 
 # connected to AGGregators
 auto swp47
 iface swp47 inet static
 alias AGG1 SWP25
-    address 20.20.128.1/30
+    address 20.20.128.1/24
 
 auto swp48
 iface swp48 inet static
 alias AGG1 SWP26
-    address 20.20.129.1/30
+    address 20.20.129.1/24
 
 auto swp49
 iface swp49 inet static
 alias AGG2 SWP27
-    address 20.20.130.1/30
+    address 20.20.130.1/24
 
 auto swp50
 iface swp50 inet static
 alias AGG2 SWP28
-    address 20.20.131.1/30
+    address 20.20.131.1/24
 
 auto swp51
 iface swp51 inet static
 alias AGG3 SWP29
-    address 20.20.132.1/30
+    address 20.20.132.1/24
 
 auto swp52
 iface swp52 inet static
 alias AGG3 SWP30
-    address 20.20.133.1/30
+    address 20.20.133.1/24
 

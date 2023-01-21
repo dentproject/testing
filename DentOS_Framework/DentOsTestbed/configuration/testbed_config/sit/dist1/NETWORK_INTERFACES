@@ -19,29 +19,29 @@ iface ma1 inet dhcp
 auto swp1
 iface swp1 inet static
 alias IXIA LINK
-    address 20.20.1.2/30
+    address 20.20.1.1/24
 
 auto swp2
 iface swp2 inet static
 alias IXIA LINK
-    address 20.20.2.2/30
+    address 20.20.2.1/24
 
 
 # connected to DISTributors
 auto swp14
 iface swp14 inet static
 alias DIST2 SWP13
-    address 20.20.64.2/30
+    address 20.20.64.2/24
 
 auto swp16
 iface swp16 inet static
 alias DIST2 SWP15
-    address 20.20.65.2/30
+    address 20.20.65.2/24
 
 auto swp18
 iface swp18 inet static
 alias DIST2 SWP17
-    address 20.20.66.2/30
+    address 20.20.66.2/24
 
 
 # connected to AGGregators 
