@@ -19,6 +19,8 @@ class LinuxIpLinkImpl(LinuxIpLink):
         # custom code here
         if "device" in params:
             cmd += "{} ".format((params["device"]))
+        if "link" in params:
+            cmd += "link {} ".format((params["link"]))
         if "name" in params:
             cmd += "name {} ".format((params["name"]))
         if "txqueuelen" in params:
@@ -41,6 +43,8 @@ class LinuxIpLinkImpl(LinuxIpLink):
             cmd += "ageing_time {} ".format((params["ageing_time"]))
         if "vlan_filtering" in params:
             cmd += "vlan_filtering {} ".format((params["vlan_filtering"]))
+        if "vlan_default_pvid" in params:
+            cmd += "vlan_default_pvid {} ".format((params["vlan_default_pvid"]))
         return cmd
 
     def format_delete(self, command, *argv, **kwarg):
