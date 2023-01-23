@@ -1,3 +1,4 @@
+import json
 from dent_os_testbed.lib.bridge.linux.linux_bridge_fdb import LinuxBridgeFdb
 
 
@@ -26,7 +27,10 @@ class LinuxBridgeFdbImpl(LinuxBridgeFdb):
 
         """
         params = kwarg["params"]
-        cmd = "bridge fdb {} ".format(command)
+        cmd = "bridge {} fdb {} ".format(params.get("cmd_options", ""), command)
         ############# Implement me ################
 
         return cmd
+
+    def parse_show(self, command, output, *argv, **kwarg):
+        return json.loads(output)
