@@ -1,0 +1,13 @@
+- module: os
+  description: sysctl module
+  classes:
+   - name: sysctl
+     desc: system control
+     apis: [ 'get' , 'set']
+     members:
+      - name: variable
+        type: string
+        desc: parameter to get/set value for
+      - name: value
+        type: string
+        desc: value to set
