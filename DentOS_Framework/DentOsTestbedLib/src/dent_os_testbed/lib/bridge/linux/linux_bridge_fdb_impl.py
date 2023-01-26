@@ -27,7 +27,7 @@ class LinuxBridgeFdbImpl(LinuxBridgeFdb):
 
         """
         params = kwarg["params"]
-        cmd = "bridge {} fdb {} ".format(params.get("cmd_options", ""), command)
+        cmd = "bridge {} fdb {} ".format(params.get("options", ""), command)
         ############# Implement me ################
 
         return cmd
