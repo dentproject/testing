@@ -1,3 +1,5 @@
+import json
+
 from dent_os_testbed.lib.tc.linux.linux_tc_qdisc import LinuxTcQdisc
 
 
@@ -37,7 +39,10 @@ class LinuxTcQdiscImpl(LinuxTcQdisc):
 
         """
         params = kwarg["params"]
-        cmd = "tc qdisc {} ".format(command)
+        cmd = "tc {} qdisc {} ".format(params.get("options", ""), command)
         ############# Implement me ################
 
         return cmd
+    
+    def parse_show(self, command, output, *argv, **kwarg):
+        return json.loads(output)
