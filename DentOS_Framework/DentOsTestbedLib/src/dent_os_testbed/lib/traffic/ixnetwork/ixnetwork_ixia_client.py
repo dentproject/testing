@@ -22,6 +22,8 @@ class IxnetworkIxiaClient(TestLibObject):
             set_protocol - [protocol]
             get_protocol_stats - [protocols]
             clear_protocol_stats - [protocols]
+            send_ping - [port, dst_ip, src_ip]
+            send_arp - [port, src_ip]
         
     """
     def format_connect(self, command, *argv, **kwarg):
@@ -60,6 +62,24 @@ class IxnetworkIxiaClient(TestLibObject):
     def parse_protocol(self, command, output, *argv, **kwarg):
         raise NotImplementedError
         
+    def format_send_ping(self, command, *argv, **kwarg):
+        raise NotImplementedError
+        
+    def run_send_ping(self, device, command, *argv, **kwarg):
+        raise NotImplementedError
+        
+    def parse_send_ping(self, command, output, *argv, **kwarg):
+        raise NotImplementedError
+        
+    def format_send_arp(self, command, *argv, **kwarg):
+        raise NotImplementedError
+        
+    def run_send_arp(self, device, command, *argv, **kwarg):
+        raise NotImplementedError
+        
+    def parse_send_arp(self, command, output, *argv, **kwarg):
+        raise NotImplementedError
+        
     def format_command(self, command, *argv, **kwarg):
         if command in ['connect', 'disconnect']:
             return self.format_connect(command, *argv, **kwarg)
@@ -72,6 +92,12 @@ class IxnetworkIxiaClient(TestLibObject):
         
         if command in ['start_protocols', 'stop_protocols', 'set_protocol', 'get_protocol_stats', 'clear_protocol_stats']:
             return self.format_protocol(command, *argv, **kwarg)
+        
+        if command in ['send_ping']:
+            return self.format_send_ping(command, *argv, **kwarg)
+        
+        if command in ['send_arp']:
+            return self.format_send_arp(command, *argv, **kwarg)
         
         
         raise NameError("Cannot find command "+command)
@@ -89,6 +115,12 @@ class IxnetworkIxiaClient(TestLibObject):
         if command in ['start_protocols', 'stop_protocols', 'set_protocol', 'get_protocol_stats', 'clear_protocol_stats']:
             return self.run_protocol(device_obj, command, *argv, **kwarg)
         
+        if command in ['send_ping']:
+            return self.run_send_ping(device_obj, command, *argv, **kwarg)
+        
+        if command in ['send_arp']:
+            return self.run_send_arp(device_obj, command, *argv, **kwarg)
+        
         
         print (len(command))
         raise NameError("Cannot find command "+command)
@@ -105,6 +137,12 @@ class IxnetworkIxiaClient(TestLibObject):
         
         if command in ['start_protocols', 'stop_protocols', 'set_protocol', 'get_protocol_stats', 'clear_protocol_stats']:
             return self.parse_protocol(command, output, *argv, **kwarg)
+        
+        if command in ['send_ping']:
+            return self.parse_send_ping(command, output, *argv, **kwarg)
+        
+        if command in ['send_arp']:
+            return self.parse_send_arp(command, output, *argv, **kwarg)
         
         
         raise NameError("Cannot find command "+command)
