@@ -101,6 +101,7 @@ def tgen_utils_dev_groups_from_config(config):
             "ip": tgen port ip to be configured,
             "gw": peer ip,
             "plen": prefix length,
+            "vlan": vlan id to be configured (optional),
         },
         ...
     ]
@@ -115,6 +116,7 @@ def tgen_utils_dev_groups_from_config(config):
             "ip": el["ip"],
             "gw": el["gw"],
             "plen": el["plen"],
+            "vlan": el.get("vlan", None),
         })
     return dev_groups
 
