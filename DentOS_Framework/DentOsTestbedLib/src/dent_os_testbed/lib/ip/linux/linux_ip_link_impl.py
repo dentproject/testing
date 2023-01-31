@@ -149,6 +149,8 @@ class LinuxIpLinkImpl(LinuxIpLink):
             cmd += "{} ".format((params["device"]))
         if "group" in params:
             cmd += "group {} ".format((params["group"]))
+        if "link_type" in params:
+            cmd += "type {} ".format((params["link_type"]))
 
         return cmd
 

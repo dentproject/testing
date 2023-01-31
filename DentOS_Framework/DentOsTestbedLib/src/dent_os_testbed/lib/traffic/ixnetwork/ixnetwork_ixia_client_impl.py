@@ -31,6 +31,7 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
     eth_eps = []  # ethernet interface end point
     raw_eps = []  # raw vort end point
     tis = []
+    bad_crc = {True: "", False: ""}
 
     def format_connect(self, command, *argv, **kwarg):
         return command
@@ -82,6 +83,8 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
             IxnetworkIxiaClientImpl.eth_eps = []
             IxnetworkIxiaClientImpl.raw_eps = []
             IxnetworkIxiaClientImpl.tis = []
+            crc = IxnetworkIxiaClientImpl.ixnet.Traffic.TrafficItem.ConfigElement._SDM_ENUM_MAP["crc"]
+            IxnetworkIxiaClientImpl.bad_crc = {True: crc[0], False: crc[1]}
 
             device.applog.info("Connection to Ixia REST API Server Established")
             ixia_ports = param["tgen_ports"]
@@ -372,6 +375,7 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                 config_element.FrameSize.update(
                     Type="fixed", FixedSize=pkt_data.get("frameSize", "512")
                 )
+                config_element.Crc = IxnetworkIxiaClientImpl.bad_crc[pkt_data.get("bad_crc", False)]
                 config_element.TransmissionControl.update(Type="continuous")
                 ipv4_stack = config_element.Stack.find(StackTypeId="^ipv4$")
                 self.set_l4_traffic(config_element, ipv4_stack, pkt_data)
