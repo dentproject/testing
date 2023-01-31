@@ -40,6 +40,8 @@ class LinuxIpAddressImpl(LinuxIpAddress):
             cmd += "valid_lft {} ".format(params["valid_lft"])
         if "preferred_lft" in params:
             cmd += "preferred_lft {} ".format(params["preferred_lft"])
+        if "metric" in params:
+            cmd += "metric {} ".format(params["metric"])
         if "confflag_list" in params:
             for confflag in params["confflag_list"]:
                 cmd += "{} ".format(confflag)

@@ -25,3 +25,6 @@
       - name: disk
         cls: "dent:os:disk_free"
         desc: "Disk related information"
+      - name: sysctl
+        cls: "dent:os:sysctl"
+        desc: "Kernel attributes manager"
