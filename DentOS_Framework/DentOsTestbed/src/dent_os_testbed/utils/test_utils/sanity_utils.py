@@ -48,9 +48,9 @@ async def check_routes(dev, devices_dict):
         # add exceptions
         dev.applog.info(f"checking route {dst} exceptions")
         # no device
-        port = route.get("dev", "eth0")
+        port = route.get("dev", "ma1")
         # mgmt interfces
-        if port in ["eth0"]:
+        if port in ["ma1"]:
             continue
         if port.startswith("vlan") and port.endswith("-v0"):
             continue

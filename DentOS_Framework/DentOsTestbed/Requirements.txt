@@ -3,7 +3,6 @@ asyncssh
 aiofiles
 aiohttp
 pexpect
-pexpectasyncio
 pytest
 pytest-asyncio
 pytest-html
