@@ -1,13 +1,28 @@
+import asyncio
 import os
 import tempfile
 
 import pytest
+import pytest_asyncio
 
 from dent_os_testbed.constants import DEFAULT_LOGGER, LOGDIR, PYTEST_SUITES
 from dent_os_testbed.logger.Logger import AppLogger
 from dent_os_testbed.utils.FileHandlers.FileHandlerFactory import (
     FileHandlerFactory,
     FileHandlerTypes,
+)
+from dent_os_testbed.utils.test_utils.tb_utils import tb_get_all_devices
+from dent_os_testbed.utils.test_utils.cleanup_utils import (
+    cleanup_ip_addrs as _cleanup_ip_addrs,
+    cleanup_bridges as _cleanup_bridges,
+    cleanup_qdiscs as _cleanup_qdiscs,
+    cleanup_routes as _cleanup_routes,
+    cleanup_vrfs as _cleanup_vrfs,
+    get_initial_routes,
+)
+from dent_os_testbed.utils.test_utils.tgen_utils import (
+    tgen_utils_get_dent_devices_with_tgen,
+    tgen_utils_stop_protocols,
 )
 
 # Add python files for defining per folder fixtures here
@@ -124,3 +139,58 @@ def pytest_runtest_makereport(item, call):
     docstring = getattr(test_fn, "__doc__")
     if docstring:
         print(docstring)
+
+
+async def _get_dent_devs_from_testbed(testbed):
+    devs = await tb_get_all_devices(testbed)
+    return devs
+
+
+@pytest_asyncio.fixture()
+async def cleanup_qdiscs(testbed):
+    yield
+    devices = await _get_dent_devs_from_testbed(testbed)
+    qdisc_cleanups = [_cleanup_qdiscs(dev) for dev in devices]
+    await asyncio.gather(*qdisc_cleanups)
+
+
+@pytest_asyncio.fixture
+async def cleanup_bridges(testbed):
+    yield
+    devices = await _get_dent_devs_from_testbed(testbed)
+    bridge_cleanups = [_cleanup_bridges(dev) for dev in devices]
+    await asyncio.gather(*bridge_cleanups)
+
+
+@pytest_asyncio.fixture
+async def cleanup_vrfs(testbed):
+    yield
+    devices = await _get_dent_devs_from_testbed(testbed)
+    vrf_cleanups = [_cleanup_vrfs(dev) for dev in devices]
+    await asyncio.gather(*vrf_cleanups)
+
+
+@pytest_asyncio.fixture
+async def cleanup_ip_addrs(testbed):
+    yield
+    tgen_dev, devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 4)
+    ip_addrs_cleanups = [_cleanup_ip_addrs(dev, tgen_dev) for dev in devices]
+    await asyncio.gather(*ip_addrs_cleanups)
+
+
+@pytest_asyncio.fixture
+async def cleanup_tgen(testbed):
+    yield
+    tgen_dev, _ = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 4)
+    await tgen_utils_stop_protocols(tgen_dev)
+
+
+@pytest_asyncio.fixture
+async def cleanup_routes(testbed):
+    devices = await _get_dent_devs_from_testbed(testbed)
+    initial_routes = dict()
+    for dev in devices:
+        initial_routes[dev.host_name] = await get_initial_routes(dev)
+    yield
+    routes_cleanups = [_cleanup_routes(dev, initial_routes[dev.host_name]) for dev in devices]
+    await asyncio.gather(*routes_cleanups)
