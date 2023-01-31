@@ -189,6 +189,50 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
     def format_traffic_item(self, command, *argv, **kwarg):
         return command
 
+    @staticmethod
+    def __parse_multivalue(value):
+        if not "type" in value:
+            raise KeyError(f"Value type is mandatory {value}")
+
+        if value["type"] == "single":
+            return {
+                "ValueType": "singleValue",
+                "SingleValue":  value.get("value", None),
+            }
+        elif value["type"] in ("increment", "decrement"):
+            return {
+                "ValueType": value["type"],
+                "StartValue": value.get("start", None),
+                "StepValue": value.get("step", None),
+                # choosing a large number will increase wait time from Ixia
+                "CountValue": value.get("count", 255),
+            }
+        elif value["type"] == "list":
+            if not value.get("list", []):
+                raise ValueError("Value list cannot be empty")
+            return {
+                "ValueType": "valueList",
+                "ValueList": value["list"],
+            }
+        elif value["type"] == "random":
+            return {
+                "ValueType": "nonRepeatableRandom",
+                "RandomMask": value.get("mask", None),  # ignored when applied to MAC
+            }
+
+        valid_types = ("single", "increment", "decrement", "list", "random")
+        raise ValueError(f"Valid multivalue types are: {valid_types}")
+
+    def __update_field(self, field, value):
+        if type(value) == str or type(value) == int or type(value) == float:
+            param = self.__parse_multivalue({"type": "single", "value": value})
+        elif type(value) == dict:
+            param = self.__parse_multivalue(value)
+        else:
+            raise ValueError(f"Unable to set {value} for field {field.Name}")
+        field.Auto = False
+        field.update(**param)
+
     def set_l4_traffic(self, config_element, ipv4_stack, pkt_data):
         if "ipproto" not in pkt_data:
             return
@@ -199,39 +243,23 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
         )
         l4_stack = config_element.Stack.read(ipv4_stack.AppendProtocol(ipproto_template))
         if "dstPort" in pkt_data:
-            dst_port = l4_stack.Field.find(
-                FieldTypeId="{}.header.dstPort".format(pkt_data["ipproto"])
-            )
-            dst_port.Auto = False
             if ":" in pkt_data["dstPort"]:
                 start, step, count = pkt_data["dstPort"].split(":")
-                dst_port.update(
-                    ValueType="increment", StartValue=start, StepValue=step, CountValue=count
-                )
+                value = {"type": "increment", "start": start, "step": step, "count": count}
             else:
-                dst_port.update(
-                    ValueType="singleValue", SingleValue="{}".format(pkt_data["dstPort"])
-                )
+                value = pkt_data["dstPort"]
+            self.__update_field(l4_stack.Field.find(FieldTypeId=f"{pkt_data['ipproto']}.header.dstPort"),
+                                value)
         if "srcPort" in pkt_data:
-            src_port = l4_stack.Field.find(
-                FieldTypeId="{}.header.srcPort".format(pkt_data["ipproto"])
-            )
-            src_port.Auto = False
-            src_port.update(ValueType="singleValue", SingleValue="{}".format(pkt_data["srcPort"]))
+            self.__update_field(l4_stack.Field.find(FieldTypeId=f"{pkt_data['ipproto']}.header.srcPort"),
+                                pkt_data["srcPort"])
 
         if "icmpType" in pkt_data:
-            icmp_type = l4_stack.Field.find(
-                FieldTypeId="{}.message.messageType".format(pkt_data["ipproto"])
-            )
-            icmp_type.Auto = False
-            icmp_type.update(ValueType="singleValue", SingleValue="{}".format(pkt_data["icmpType"]))
-
+            self.__update_field(l4_stack.Field.find(FieldTypeId=f"{pkt_data['ipproto']}.message.messageType"),
+                                pkt_data["icmpType"])
         if "icmpCode" in pkt_data:
-            icmp_code = l4_stack.Field.find(
-                FieldTypeId="{}.message.codeValue".format(pkt_data["ipproto"])
-            )
-            icmp_code.Auto = False
-            icmp_code.update(ValueType="singleValue", SingleValue="{}".format(pkt_data["icmpCode"]))
+            self.__update_field(l4_stack.Field.find(FieldTypeId=f"{pkt_data['ipproto']}.message.codeValue"),
+                                pkt_data["icmpCode"])
 
     def set_ethernet_traffic(self, device, name, pkt_data, traffic_type):
         # create an ipv4 traffic item
@@ -288,50 +316,31 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                     Type="fixed", FixedSize=pkt_data.get("frameSize", "512")
                 )
                 config_element.TransmissionControl.update(Type="continuous")
-                ethernet_stack = config_element.Stack.find(StackTypeId="^ethernet$")
+                eth_stack = config_element.Stack.find(StackTypeId="^ethernet$")
                 if "vlanID" in pkt_data:
                     vlan_stack = config_element.Stack.read(
-                        ethernet_stack.AppendProtocol(vlan_template)
+                        eth_stack.AppendProtocol(vlan_template)
                     )
                     ipv4_stack = config_element.Stack.read(vlan_stack.AppendProtocol(ipv4_template))
                 else:
                     ipv4_stack = config_element.Stack.read(
-                        ethernet_stack.AppendProtocol(ipv4_template)
+                        eth_stack.AppendProtocol(ipv4_template)
                     )
-                # update the Mac address
                 if "dstMac" in pkt_data:
-                    dst_mac = ethernet_stack.Field.find(
-                        FieldTypeId="ethernet.header.destinationAddress"
-                    )
-                    dst_mac.Auto = False
-                    dst_mac.update(
-                        ValueType="singleValue", SingleValue="{}".format(pkt_data["dstMac"])
-                    )
+                    self.__update_field(eth_stack.Field.find(FieldTypeId="ethernet.header.destinationAddress"),
+                                        pkt_data["dstMac"])
                 if "srcMac" in pkt_data:
-                    src_mac = ethernet_stack.Field.find(FieldTypeId="ethernet.header.sourceAddress")
-                    src_mac.Auto = False
-                    src_mac.update(
-                        ValueType="singleValue", SingleValue="{}".format(pkt_data["srcMac"])
-                    )
+                    self.__update_field(eth_stack.Field.find(FieldTypeId="ethernet.header.sourceAddress"),
+                                        pkt_data["srcMac"])
                 if "vlanID" in pkt_data:
-                    vlan_id = vlan_stack.Field.find(FieldTypeId="vlan.header.vlanTag.vlanID")
-                    vlan_id.Auto = False
-                    vlan_id.update(
-                        ValueType="singleValue", SingleValue="{}".format(pkt_data["vlanID"])
-                    )
-                # update the Ip address
+                    self.__update_field(vlan_stack.Field.find(FieldTypeId="vlan.header.vlanTag.vlanID"),
+                                        pkt_data["vlanID"])
                 if "dstIp" in pkt_data:
-                    dst_ip = ipv4_stack.Field.find(FieldTypeId="ipv4.header.dstIp")
-                    dst_ip.Auto = False
-                    dst_ip.update(
-                        ValueType="singleValue", SingleValue="{}".format(pkt_data["dstIp"])
-                    )
+                    self.__update_field(ipv4_stack.Field.find(FieldTypeId="ipv4.header.dstIp"),
+                                        pkt_data["dstIp"])
                 if "srcIp" in pkt_data:
-                    src_ip = ipv4_stack.Field.find(FieldTypeId="ipv4.header.srcIp")
-                    src_ip.Auto = False
-                    src_ip.update(
-                        ValueType="singleValue", SingleValue="{}".format(pkt_data["srcIp"])
-                    )
+                    self.__update_field(ipv4_stack.Field.find(FieldTypeId="ipv4.header.srcIp"),
+                                        pkt_data["srcIp"])
                 self.set_l4_traffic(config_element, ipv4_stack, pkt_data)
 
     def set_ipv4_traffic(self, device, name, pkt_data, traffic_type):
