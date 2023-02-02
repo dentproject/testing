@@ -27,7 +27,7 @@ pytestmark = pytest.mark.suite_functional_ipv4
 
 def get_random_ip():
     ip = [random.randint(11, 126), random.randint(1, 254), random.randint(1, 254), random.randint(1, 253)]
-    peer = ip[:-1] + [ip[-1] + 1]
+    peer = ip[:-1] + [ip[-1] ^ 1]
     plen = random.randint(1, 31)
     return ".".join(map(str, ip)), ".".join(map(str, peer)), plen
 
