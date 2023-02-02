@@ -1,7 +1,6 @@
 import asyncio
 import pytest
 import random
-import itertools
 
 from dent_os_testbed.lib.ip.ip_link import IpLink
 from dent_os_testbed.lib.ip.ip_route import IpRoute
@@ -87,16 +86,11 @@ async def test_ipv4_random_routing(testbed):
     await tgen_utils_traffic_generator_connect(tgen_dev, tg_ports, ports, dev_groups)
 
     # 5. Generate traffic and verify reception
-    streams = {
-        f"{tg1} <-> {tg2}": {
-            "type": "ipv4",
-            "ip_source": dev_groups[tg1][0]["name"],
-            "ip_destination": dev_groups[tg2][0]["name"],
-            "protocol": "ip",
-            "rate": "1000",  # pps
-            "bi_directional": True,
-        } for tg1, tg2 in itertools.combinations(tg_ports, 2)
-    }
+    streams = {"ipv4": {
+        "type": "ipv4",
+        "protocol": "ip",
+        "rate": "1000",  # pps
+    }}
 
     try:
         await tgen_utils_setup_streams(tgen_dev, None, streams)
