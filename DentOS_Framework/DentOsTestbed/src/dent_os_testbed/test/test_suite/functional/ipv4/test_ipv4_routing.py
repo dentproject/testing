@@ -243,9 +243,9 @@ async def test_ipv4_route_between_vlan_devs(testbed):
     Test Overview: Test IPv4 route between vlan devices
     Test Procedure:
     1. Create a bridge entity
-    2. Assign ports to bridge and create VLAN-devices
-    3. Set link up on all participant ports and VLAN-devices and add bridges to VLAN of the VLAN-devices
-    4. Configure ip address on VLAN-devices and then add ports to VLANs
+    2. Assign ports to bridge, add ports to VLAN, add bridge to VLANs, create VLAN-devices
+    3. Set link up on all participant ports and VLAN-devices
+    4. Configure ip address on VLAN-devices
     5. Verify offload flag appear in VLAN-devices default routes
     6. Prepare streams from one VLAN-device`s neighbor to the other
     7. Transmit Traffic
@@ -260,8 +260,8 @@ async def test_ipv4_route_between_vlan_devs(testbed):
         return
     dent_dev = dent_devices[0]
     dent = dent_dev.host_name
-    tg_ports = tgen_dev.links_dict[dent][0]
-    ports = tgen_dev.links_dict[dent][1]
+    tg_ports = tgen_dev.links_dict[dent][0][:2]
+    ports = tgen_dev.links_dict[dent][1][:2]
     traffic_duration = 10
     bridge = "br0"
     vlan10 = f"{bridge}.10"
@@ -285,51 +285,48 @@ async def test_ipv4_route_between_vlan_devs(testbed):
 
     # 2. Assign ports to bridge
     out = await IpLink.set(input_data=[{dent: [
-        {"device": port, "master": bridge} for port in ports[:2]
+        {"device": port, "master": bridge} for port in ports
     ]}])
     assert out[0][dent]["rc"] == 0, "Failed to assign ports to bridge"
+
+    # Add ports to VLAN, add bridge to VLANs
+    out = await BridgeVlan.add(input_data=[{dent: [
+        {"device": port, "vid": vid}
+        for port, *_, vid in address_map
+    ] + [
+        {"device": bridge, "vid": vid, "self": True}
+        for *_, vid in address_map
+    ]}])
+    assert out[0][dent]["rc"] == 0, "Failed to add vlan id to ports"
 
     # Create VLAN-devices
     out = await IpLink.add(input_data=[{dent: [
         {"link": bridge, "name": vlan, "type": f"vlan id {id}"}
-        for _, vlan, _, _, _, _, id in address_map
+        for _, vlan, *_, id in address_map
     ]}])
     assert out[0][dent]["rc"] == 0, "Failed to create vlan interfaces"
 
     # 3. Set link up on all participant ports and VLAN-devices
     out = await IpLink.set(input_data=[{dent: [
         {"device": dev, "operstate": "up"}
-        for dev in ports[:2] + [bridge, vlan10, vlan20]
+        for dev in ports + [bridge, vlan10, vlan20]
     ]}])
     assert out[0][dent]["rc"] == 0, "Failed to set port state UP"
 
-    # Add bridges to VLAN of the VLAN-devices
-    out = await BridgeVlan.add(input_data=[{dent: [
-        {"device": bridge, "vid": address_map[0][6], "self": True},
-        {"device": bridge, "vid": address_map[1][6], "self": True},
+    # 4. Configure ip address on VLAN-devices
+    out = await IpAddress.add(input_data=[{dent: [
+        {"dev": vlan, "prefix": f"{ip}/{plen}"}
+        for _, vlan, _, ip, _, plen, _ in address_map
     ]}])
-    assert out[0][dent]["rc"] == 0, "Failed to add vlan id to bridge"
+    assert out[0][dent]["rc"] == 0, "Failed to add IP addr to vlans"
 
-    # 4. Configure ip address on VLAN-devices and add ports to VLANs
     dev_groups = tgen_utils_dev_groups_from_config(
         {"ixp": tg_port, "ip": ip, "gw": gw, "plen": plen, "vlan": vid}
         for _, _, tg_port, gw, ip, plen, vid in address_map
     )
-    await tgen_utils_traffic_generator_connect(tgen_dev, tg_ports[:2], ports[:2], dev_groups)
+    await tgen_utils_traffic_generator_connect(tgen_dev, tg_ports, ports, dev_groups)
 
     try:
-        out = await BridgeVlan.add(input_data=[{dent: [
-            {"device": port, "vid": vid}
-            for port, _, _, _, _, _, vid in address_map
-        ]}])
-        assert out[0][dent]["rc"] == 0, "Failed to add vlan id to ports"
-
-        out = await IpAddress.add(input_data=[{dent: [
-            {"dev": vlan, "prefix": f"{ip}/{plen}"}
-            for _, vlan, _, ip, _, plen, _ in address_map
-        ]}])
-        assert out[0][dent]["rc"] == 0, "Failed to add IP addr to vlans"
-
         # 5. Verify offload flag appear in VLAN-devices default routes
         out = await IpRoute.show(input_data=[{dent: [
             {"cmd_options": "-j"}
@@ -338,25 +335,15 @@ async def test_ipv4_route_between_vlan_devs(testbed):
 
         for route in out[0][dent]["parsed_output"]:
             if route.get("dev", None) in (vlan10, vlan20):
-                assert "offload" in route["flags"], f"Route {route['dst']} for dev {route['dev']} should be offloaded"
+                assert "rt_trap" in route["flags"], \
+                    f"Route {route['dst']} for dev {route['dev']} should be offloaded"
 
         # 6. Prepare streams from one VLAN-device`s neighbor to the other
-        streams = {
-            f"{tg_ports[0]} -> {tg_ports[1]}": {
-                "type": "ipv4",
-                "ip_source": dev_groups[tg_ports[0]][0]["name"],
-                "ip_destination": dev_groups[tg_ports[1]][0]["name"],
-                "protocol": "ip",
-                "rate": "1000",  # pps
-            },
-            f"{tg_ports[1]} -> {tg_ports[0]}": {
-                "type": "ipv4",
-                "ip_source": dev_groups[tg_ports[1]][0]["name"],
-                "ip_destination": dev_groups[tg_ports[0]][0]["name"],
-                "protocol": "ip",
-                "rate": "1000",  # pps
-            },
-        }
+        streams = {f"traffic": {
+            "type": "ipv4",
+            "protocol": "ip",
+            "rate": "1000",  # pps
+        }}
         await tgen_utils_setup_streams(tgen_dev, None, streams)
 
         # 7. Transmit Traffic
@@ -372,8 +359,7 @@ async def test_ipv4_route_between_vlan_devs(testbed):
 
         # 9. Remove IP address from VLAN-devices
         out = await IpAddress.flush(input_data=[{dent: [
-            {"dev": vlan10},
-            {"dev": vlan20},
+            {"dev": vlan} for _, vlan, *_ in address_map
         ]}])
         assert out[0][dent]["rc"] == 0, "Failed to flush IP addr from vlans"
 
@@ -397,7 +383,8 @@ async def test_ipv4_route_between_vlan_devs(testbed):
 
         for route in out[0][dent]["parsed_output"]:
             if route.get("dev", None) in (vlan10, vlan20):
-                assert "offload" in route["flags"], f"Route {route['dst']} for dev {route['dev']} should be offloaded"
+                assert "rt_trap" in route["flags"], \
+                    f"Route {route['dst']} for dev {route['dev']} should be offloaded"
 
         # 11. Verify traffic is forwarded to both VLAN-devices` neighbors
         stats = await tgen_utils_get_traffic_stats(tgen_dev, "Flow Statistics")
