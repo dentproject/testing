@@ -1,5 +1,6 @@
 import os
 import time
+import re
 
 from dent_os_testbed.lib.traffic.ixnetwork.ixnetwork_ixia_client import IxnetworkIxiaClient
 from ixnetwork_restpy.assistants.statistics.statviewassistant import StatViewAssistant as SVA
@@ -67,7 +68,7 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
             if not caddr:
                 return 0, "No Address to connect!"
             gw = TestPlatform(ip_address=caddr, rest_port=cport)
-            gw.Authenticate("admin", "admin")
+            gw.Authenticate(device.username, device.password)
             # session = gw.Sessions.find()[0]
             # device.applog.info(session)
             # if session.Id == -1:
@@ -100,6 +101,18 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
             device.applog.info("Assigning ports")
             IxnetworkIxiaClientImpl.ixnet.AssignPorts(pports, [], vport_hrefs, True)
             for port, vport in vports.items():
+                # The port numbers for mixed mode are
+                # divided equally between copper and fiber
+                if device.media_mode == "mixed":
+                    device.applog.info("Changing port: {} media mode from copper to fiber".format(port))
+                    vport[0].L1Config.NovusTenGigLan.Media = [link[2] for link in device.links if link[0] == port][0]
+                elif device.media_mode == "fiber":
+                    device.applog.info("Changing all vports media mode to fiber")
+                    vport[0].L1Config.NovusTenGigLan.Media = "fiber"
+                else:
+                    device.applog.info("Changing all vports media mode to copper")
+                    vport[0].L1Config.NovusTenGigLan.Media = "copper"
+
                 device.applog.info("Adding Ipv4 on ixia port {} swp {}".format(port, vport[1]))
                 topo = IxnetworkIxiaClientImpl.ixnet.Topology.add(Vports=vport[0])
                 for dev in dev_groups[port]:

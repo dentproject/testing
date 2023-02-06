@@ -125,12 +125,16 @@ yamllint /etc/netplan/00-installer-config.yaml
 
 ```Shell
 git clone https://github.com/dentproject/testing
+
+# optional change to a different branch
+# cd ./testing
+# git checkout <branch name>
 ```
 
 * build container
 
 ```Shell
-docker build --no-cache --tag dent/test-framework:latest ./testing/framework
+docker build --no-cache --tag dent/test-framework:latest ./testing/DentOS_Framework
 docker tag dent/test-framework:latest dent/test-framework:1.0.0
 ```
 

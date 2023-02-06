@@ -76,13 +76,24 @@ class Device(object):
             self.files_to_collect = []
             # dictionary of links with device name as key
             self.links_dict = {}
+            # meida mode can be: fiber, mixed, or copper
+            # If mixed then all even vports are
+            # assumed to be copper and odd as fiber
+            self.media_mode = params.get("mediaMode", 'copper')
             for link in self.links:
-                fr, to = link[0], link[1]
+                if len(link) == 3:
+                    fr, to, media = link[0], link[1], link[2]
+                elif len(link) == 2:
+                    fr, to = link[0], link[1]
+                    media = self.media_mode
+                else:
+                    self.applog.debug("ERROR: links lenth looks wrong")
                 dut, port = to.split(":")
                 if dut not in self.links_dict:
-                    self.links_dict[dut] = [[], []]  # from and port seperate array
+                    self.links_dict[dut] = [[], [], []]  # from and port seperate array
                 self.links_dict[dut][0].append(fr)
                 self.links_dict[dut][1].append(port)
+                self.links_dict[dut][2].append(media)
             self.username = self.login["userName"]
             self.password = self.login["password"]
             self.ssh_log = DeviceLogger(
