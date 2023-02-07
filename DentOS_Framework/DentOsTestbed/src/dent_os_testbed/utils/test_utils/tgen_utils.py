@@ -453,12 +453,13 @@ async def tgen_utils_get_traffic_stats(device, stats_type="Port Statistics"):
                 )
             )
         elif stats_type == "Flow Statistics":
+            sip_dip = "Source/Dest Value Pair"
             device.applog.info(
                 "Tx {} Rx {} TI {} SIP-DIP {} Tx {} Rx {} Loss {}".format(
                     row["Tx Port"],
                     row["Rx Port"],
                     row["Traffic Item"],
-                    row["Source/Dest Value Pair"],
+                    row[sip_dip] if sip_dip in row.Columns else "N/A",
                     row["Tx Frames"],
                     row["Rx Frames"],
                     row["Loss %"],
