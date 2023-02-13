@@ -8,17 +8,19 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_get_dent_devices_with_tgen,
     tgen_utils_traffic_generator_connect,
     tgen_utils_dev_groups_from_config,
-    tgen_utils_stop_protocols,
     tgen_utils_setup_streams,
 )
 from dent_os_testbed.utils.test_utils.tb_utils import (
     tb_ping_device,
 )
 
-pytestmark = pytest.mark.suite_functional_ipv4
+pytestmark = [
+    pytest.mark.suite_functional_ipv4,
+    pytest.mark.usefixtures("cleanup_ip_addrs", "cleanup_tgen"),
+    pytest.mark.asyncio,
+]
 
 
-@pytest.mark.asyncio
 async def test_ipv4_addr(testbed):
     """
     Test Name: test_ipv4_addr
@@ -61,20 +63,17 @@ async def test_ipv4_addr(testbed):
     )
     await tgen_utils_traffic_generator_connect(tgen_dev, tg_ports, ports, dev_groups)
 
-    try:
-        # 3. Configure ports up
-        out = await IpLink.set(input_data=[{dent: [
-            {"device": port, "operstate": "up"}
-            for port, _, _, _, _ in address_map
-        ]}])
-        assert out[0][dent]["rc"] == 0, "Failed to set port state UP"
+    # 3. Configure ports up
+    out = await IpLink.set(input_data=[{dent: [
+        {"device": port, "operstate": "up"}
+        for port, *_ in address_map
+    ]}])
+    assert out[0][dent]["rc"] == 0, "Failed to set port state UP"
 
-        # 4. Generate ping on the ip interfaces and verify reception
-        await tgen_utils_setup_streams(tgen_dev, None, streams={"dummy": {"type": "raw"}})
+    # 4. Generate ping on the ip interfaces and verify reception
+    await tgen_utils_setup_streams(tgen_dev, None, streams={"dummy": {"type": "raw"}})
 
-        out = await asyncio.gather(*[tb_ping_device(dent_dev, addr, pkt_loss_treshold=0, dump=True)
-                                     for _, _, _, addr, _ in address_map])
-        for rc in out:
-            assert rc == 0, "Some pings did not have a reply"
-    finally:
-        await tgen_utils_stop_protocols(tgen_dev)
+    out = await asyncio.gather(*[tb_ping_device(dent_dev, addr, pkt_loss_treshold=0, dump=True)
+                                 for _, _, _, addr, _ in address_map])
+    for rc in out:
+        assert rc == 0, "Some pings did not have a reply"

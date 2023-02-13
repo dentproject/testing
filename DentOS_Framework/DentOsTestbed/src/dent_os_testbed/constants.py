@@ -35,7 +35,6 @@ DEFAULT_LOGGER = "DENT"
 # consistent
 
 PYTEST_SUITES = {
-    "suite_functional_bridging": "Functional bridging tests",
     "suite_test": "Test marker",
     "suite_clean_config": "Bringup the switch in clean state",
     "suite_unittest": "Example suite for writing unit testcases which are run during bb",
@@ -69,11 +68,11 @@ PYTEST_SUITES = {
     "suite_acl_performance": "ACL Performance related tests",
     "suite_poe_cli": "POE related tests with the cli tool",
     "suite_cleanup": "Test marker for test cleanup",
-    "suite_functional_ipv4": "IPv4 related tests",
+    "suite_functional_ipv4": "Functional IPv4 tests",
+    "suite_functional_bridging": "Functional bridging tests",
 }
 
 PYTEST_SUITE_GROUPS = {
-    "suite_group_functional": ["suite_functional_bridging"],
     "suite_group_test": ["suite_test", "suite_feature_f1", "suite_feature_f2"],
     "suite_group_clean_config": ["suite_clean_config"],
     "suite_group_l3_tests": ["suite_iproute2", "suite_arp"],
@@ -104,5 +103,8 @@ PYTEST_SUITE_GROUPS = {
     "suite_group_connection": ["suite_connection"],
     "suite_group_platform": ["suite_poe", "suite_onlpdump", "suite_lldp"],
     "suite_group_cleanup": ["suite_cleanup"],
-    "suite_group_functional": ["suite_functional_ipv4"],
+    "suite_group_functional": [
+        "suite_functional_ipv4",
+        "suite_functional_bridging",
+    ],
 }
