@@ -350,6 +350,11 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                 if "vlanID" in pkt_data:
                     self.__update_field(vlan_stack.Field.find(FieldTypeId="vlan.header.vlanTag.vlanID"),
                                         pkt_data["vlanID"])
+                    if "vlanPriority" in pkt_data:
+                        self.__update_field(vlan_stack.Field.find(FieldTypeId="vlan.header.vlanTag.vlanUserPriority"),
+                                            pkt_data["vlanPriority"])
+                    ti.Tracking.find()[0].TrackBy = ["trackingenabled0", "sourceDestValuePair0",
+                                                     "vlanVlanId0", "vlanVlanUserPriority0"]
                 if "dstIp" in pkt_data:
                     self.__update_field(ipv4_stack.Field.find(FieldTypeId="ipv4.header.dstIp"),
                                         pkt_data["dstIp"])
