@@ -38,7 +38,7 @@ async def test_alpha_lab_provisioning_services_ntp(testbed):
         # test just on this infra and should be good.
         # delete the files for
         await tb_device_onie_install(dev)
-        time.sleep(10 * 60)
+        time.sleep(15 * 60)
         await tb_reset_ssh_connections(devices)
         # now check if we can make some connection to it.
         if not await dev.is_connected():
