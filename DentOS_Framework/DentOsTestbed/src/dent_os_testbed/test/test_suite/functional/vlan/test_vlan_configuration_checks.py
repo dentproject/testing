@@ -41,7 +41,7 @@ async def test_vlan_can_set_max_vlans(testbed):
     # 4. Insert interface to all VLANs possible
     cmd = f"time for i in {{1..{max_vlans}}}; do bridge vlan add vid $i dev {test_port}; done"
     rc, _ = await dent_devices[0].run_cmd(cmd)
-    assert rc == 0, "Failed adding the interface to VLANs 1..4094"
+    assert rc == 0, f"Failed adding the interface to VLANs 1..{max_vlans}"
 
     # 5. Verify interface is in all possible (4094) VLANs
     out = await BridgeVlan.show(input_data=[{device: [{"device": test_port, "cmd_options": "-j"}]}],

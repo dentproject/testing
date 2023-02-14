@@ -104,7 +104,8 @@ PYTEST_SUITE_GROUPS = {
     "suite_group_connection": ["suite_connection"],
     "suite_group_platform": ["suite_poe", "suite_onlpdump", "suite_lldp"],
     "suite_group_cleanup": ["suite_cleanup"],
-    "suite_group_functional": ["suite_functional_vlan",
-                               "suite_functional_bridging,"
-                               "suite_functional_ipv4"]
+    "suite_group_functional": [
+        "suite_functional_vlan",
+        "suite_functional_bridging",
+        "suite_functional_ipv4"]
 }
