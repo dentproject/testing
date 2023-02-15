@@ -25,6 +25,7 @@
           start_traffic - [traffic_names]
           stop_traffic  - [traffic_names]
           get_stats - [traffic_names]
+          get_drilldown_stats - [traffic_names]
           clear_stats - [traffic_names]
           start_protocols - [protocols]
           stop_protocols - [protocols]
@@ -38,7 +39,7 @@
            'load_config', 'save_config',
            'set_traffic', 'start_traffic', 'stop_traffic', 'get_stats', 'clear_stats',
            'start_protocols', 'stop_protocols', 'set_protocol', 'get_protocol_stats',
-           'clear_protocol_stats', 'send_arp', 'send_ping', 'clear_traffic']
+           'clear_protocol_stats', 'send_arp', 'send_ping', 'clear_traffic', 'get_drilldown_stats']
     members:
     - name: client_addr
       type: ip_addr_t

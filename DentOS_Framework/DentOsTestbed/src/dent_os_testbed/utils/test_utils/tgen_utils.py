@@ -480,6 +480,91 @@ async def tgen_utils_get_traffic_stats(device, stats_type="Port Statistics"):
     return out[0][device.host_name]["result"]
 
 
+async def tgen_utils_get_egress_stats(device, stats_row, num_of_rows=None, do_log=True):
+    """
+    Returns egress stats. Egress stats show how many packets from a traffic item/flow
+    have been routed/forwarded back to the traffic generator. The stats rows are
+    grouped based on the trackers that are enabled on the traffic item.
+
+    - device:      traffic generator
+    - stats_row:   a single stats row from tgen_utils_get_traffic_stats
+    - num_of_rows: number of rows that will be returned (defaults to 8)
+    - do_log:      print egress stats
+
+    Example:
+    Assume that we received:
+    - 50 packets with vid 10 pcp 0
+    - 25 packets with vid 20 pcp 0
+    - 25 packets with vid 20 pcp 5
+
+    if only vlan id tracking is enabled:
+      stats.Rows[0]["Egress Tracking"] == "Outer VLAN ID"
+      stats.Rows[0]["Tx Frames"] == 100
+      stats.Rows[0]["Rx Frames"] == 100
+
+      stats.Rows[1]["Egress Tracking"] == 10    # vlan id
+      stats.Rows[1]["Rx Frames"] == 50
+
+      stats.Rows[2]["Egress Tracking"] == 20    # vlan id
+      stats.Rows[2]["Rx Frames"] == 50
+
+    if vlan id and vlan priority tracking is enabled:
+      stats.Rows[0]["Egress Tracking 1"] == "Outer VLAN ID"
+      stats.Rows[0]["Egress Tracking 2"] == "VLAN Priority"
+      stats.Rows[0]["Tx Frames"] == 100
+      stats.Rows[0]["Rx Frames"] == 100
+
+      stats.Rows[1]["Egress Tracking 1"] == 10  # vlan id
+      stats.Rows[1]["Egress Tracking 2"] == 0   # vlan prio
+      stats.Rows[1]["Rx Frames"] == 50
+
+      stats.Rows[2]["Egress Tracking 1"] == 20  # vlan id
+      stats.Rows[2]["Egress Tracking 2"] == 0   # vlan prio
+      stats.Rows[2]["Rx Frames"] == 25
+
+      stats.Rows[3]["Egress Tracking 1"] == 20  # vlan id
+      stats.Rows[3]["Egress Tracking 2"] == 5   # vlan prio
+      stats.Rows[3]["Rx Frames"] == 25
+
+    Note: make sure that egress tracking is enabled on the traffic item
+    """
+    out = await TrafficGen.get_drilldown_stats(input_data=[{device.host_name: [
+        {"group_by": "Show All Egress",
+         "row": stats_row,
+         "num_of_rows": num_of_rows}
+    ]}])
+    assert out[0][device.host_name]["rc"] == 0, f"Failed to get egress stats\n{out[0][device.host_name]}"
+    stats = out[0][device.host_name]["result"]
+    if not do_log:
+        return stats
+    def friendly_name(col, tracking):
+        if "VLAN ID" in tracking:
+            return "Vlan Id"
+        if "VLAN Priority" in tracking:
+            return "Vlan Priority"
+        if "DSCP" in tracking:
+            return "DSCP"
+        return col
+    for idx, row in enumerate(stats.Rows):
+        if idx == 0:
+            egress_tracking_cols = [(col, row[col]) for col in row.Columns if "Egress Tracking" in col]
+            device.applog.info("Traffic Item {} Tx {} Rx {} Loss {}".format(
+                row["Traffic Item"],
+                row["Tx Frames"],
+                row["Rx Frames"],
+                row["Loss %"],
+            ))
+            for col, tracking in egress_tracking_cols:
+                device.applog.info(f"{col}: {tracking}")
+            continue
+        device.applog.info("{} | Rx {}".format(
+            ", ".join(f"{friendly_name(col, tracking)}: {row[col]}"
+                      for col, tracking in egress_tracking_cols),
+            row["Rx Frames"],
+        ))
+    return stats
+
+
 async def tgen_utils_clear_traffic_stats(device):
     device.applog.info("Clearing Traffic Stats")
     out = await TrafficGen.clear_stats(input_data=[{device.host_name: [{}]}])
