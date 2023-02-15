@@ -124,7 +124,6 @@ async def tb_device_check_services(dev, prev_state, check, healthy_services=None
         "ssh.service",
         "systemd-udev-trigger.service",
         "systemd-udevd.service",
-        "IhmDentTcFlower.service",
     ]
     if healthy_services is None:
         healthy_services = default_healthy_services
@@ -351,7 +350,6 @@ async def tb_reload_firewall(devices):
             "systemctl restart frr.service",
             "iptables -F",
             "tc filter delete block 1 ingress",
-            "systemctl restart IhmDentTcFlower.service",
         ]:
             await device.run_cmd(cmd, sudo=True)
 
