@@ -10,7 +10,6 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_get_traffic_stats,
     tgen_utils_setup_streams,
     tgen_utils_start_traffic,
-    tgen_utils_stop_protocols,
     tgen_utils_stop_traffic,
     tgen_utils_dev_groups_from_config,
     tgen_utils_traffic_generator_connect,
@@ -18,7 +17,7 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
 )
 
 pytestmark = [
-    pytest.mark.suite_functional_bridging, 
+    pytest.mark.suite_functional_bridging,
     pytest.mark.asyncio,
     pytest.mark.usefixtures("cleanup_bridges", "cleanup_tgen")
 ]
@@ -129,10 +128,10 @@ async def test_bridging_ageing_refresh(testbed):
     fdb_entries = out[0][device_host_name]["parsed_output"]
     learned_macs = [en["mac"] for en in fdb_entries if "mac" in en]
     err_msg = f"Verify that entry exist in mac table.\n"
-    assert "aa:bb:cc:dd:ee:11" in learned_macs, err_msg
+    assert streams["bridge"]["srcMac"] in learned_macs, err_msg
 
     await tgen_utils_start_traffic(tgen_dev)
-    
+
     # check the traffic stats
     stats = await tgen_utils_get_traffic_stats(tgen_dev, "Traffic Item Statistics")
     for row in stats.Rows:
@@ -148,7 +147,7 @@ async def test_bridging_ageing_refresh(testbed):
     fdb_entries = out[0][device_host_name]["parsed_output"]
     learned_macs = [en["mac"] for en in fdb_entries if "mac" in en]
     err_msg = f"Verify that entry exist in mac table.\n"
-    assert "aa:bb:cc:dd:ee:11" in learned_macs, err_msg
+    assert streams["bridge"]["srcMac"] in learned_macs, err_msg
 
     await tgen_utils_stop_traffic(tgen_dev)
 
@@ -164,11 +163,9 @@ async def test_bridging_ageing_refresh(testbed):
     assert out[0][device_host_name]["rc"] == 0, "Failed to get fdb entry.\n"
 
     fdb_entries = out[0][device_host_name]["parsed_output"]
-    unlearned_macs = [en["mac"] for en in fdb_entries if "mac" in en]
+    learned_macs = [en["mac"] for en in fdb_entries if "mac" in en]
     err_msg = f"Verify that entry doesn't exist due to expired ageing time for that entry.\n"
-    assert "aa:bb:cc:dd:ee:11" not in unlearned_macs, err_msg
-
-    await tgen_utils_stop_protocols(tgen_dev)
+    assert streams["bridge"]["srcMac"] not in learned_macs, err_msg
 
 
 async def test_bridging_ageing_under_continue(testbed):
@@ -185,8 +182,8 @@ async def test_bridging_ageing_under_continue(testbed):
     5.  Set entities swp1, swp2, swp3, swp4 UP state.
     6.  Set ports swp1, swp2, swp3, swp4 learning ON.
     7.  Set ports swp1, swp2, swp3, swp4 flood OFF.
-    8.  Send continuous traffic to swp1, swp2, swp3, swp4 with sourse macs 
-        aa:bb:cc:dd:ee:11 aa:bb:cc:dd:ee:12 
+    8.  Send continuous traffic to swp1, swp2, swp3, swp4 with sourse macs
+        aa:bb:cc:dd:ee:11 aa:bb:cc:dd:ee:12
         aa:bb:cc:dd:ee:13 aa:bb:cc:dd:ee:14 accordingly.
     9.  Delaying 3 AT.
     10. Verify that entries exist due to continuous traffic.
@@ -195,8 +192,7 @@ async def test_bridging_ageing_under_continue(testbed):
     bridge = "br0"
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 4)
     if not tgen_dev or not dent_devices:
-        print.error(
-            "The testbed does not have enough dent with tgen connections")
+        print("The testbed does not have enough dent with tgen connections")
         return
     dent_dev = dent_devices[0]
     device_host_name = dent_dev.host_name
@@ -248,7 +244,7 @@ async def test_bridging_ageing_under_continue(testbed):
     )
 
     await tgen_utils_traffic_generator_connect(tgen_dev, tg_ports, ports, dev_groups)
-    
+
     list_macs = ["aa:bb:cc:dd:ee:11", "aa:bb:cc:dd:ee:12",
                  "aa:bb:cc:dd:ee:13", "aa:bb:cc:dd:ee:14"]
 
@@ -282,5 +278,3 @@ async def test_bridging_ageing_under_continue(testbed):
     for mac in list_macs:
         err_msg = f"Verify that entries exist due to continues traffic.\n"
         assert mac in learned_macs, err_msg
-
-    await tgen_utils_stop_protocols(tgen_dev)

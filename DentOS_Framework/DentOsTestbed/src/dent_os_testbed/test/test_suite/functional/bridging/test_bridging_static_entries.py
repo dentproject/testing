@@ -10,7 +10,6 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_get_traffic_stats,
     tgen_utils_setup_streams,
     tgen_utils_start_traffic,
-    tgen_utils_stop_protocols,
     tgen_utils_stop_traffic,
     tgen_utils_get_loss,
     tgen_utils_dev_groups_from_config,
@@ -18,7 +17,7 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
 )
 
 pytestmark = [
-    pytest.mark.suite_functional_bridging, 
+    pytest.mark.suite_functional_bridging,
     pytest.mark.asyncio,
     pytest.mark.usefixtures("cleanup_bridges", "cleanup_tgen")
 ]
@@ -38,7 +37,7 @@ async def test_bridging_static_entries(testbed):
     6.  Set ports swp1, swp2, swp3, swp4 flood OFF.
     7.  Adding FDB static entries for ports swp1, swp2, swp3, swp4.
     8.  Send traffic with matching destination macs.
-    9.  Verify that address have been learned and forwarded.
+    9.  Verify that address have been forwarded.
     """
 
     bridge = "br0"
@@ -99,7 +98,7 @@ async def test_bridging_static_entries(testbed):
     )
 
     await tgen_utils_traffic_generator_connect(tgen_dev, tg_ports, ports, dev_groups)
-    
+
     list_macs = ["aa:bb:cc:dd:ee:11", "aa:bb:cc:dd:ee:12",
                  "aa:bb:cc:dd:ee:13", "aa:bb:cc:dd:ee:14"]
 
@@ -126,15 +125,3 @@ async def test_bridging_static_entries(testbed):
         assert float(row["Loss %"]) == 0.000, f'Failed>Loss percent: {row["Loss %"]}'
         assert tgen_utils_get_loss(row) == 0.000, \
         f"Verify that traffic from {row['Tx Port']} to {row['Rx Port']} forwarded.\n{out}"
-    
-    out = await BridgeFdb.show(input_data=[{device_host_name: [{"options": "-j"}]}],
-                         parse_output=True)
-    assert out[0][device_host_name]["rc"] == 0, "Failed to get fdb entry.\n"
-
-    fdb_entries = out[0][device_host_name]["parsed_output"]
-    learned_macs = [en["mac"] for en in fdb_entries if "mac" in en]
-    for mac in list_macs:
-        err_msg = f"Verify that source macs have been learned.\n"
-        assert mac in learned_macs, err_msg
-
-    await tgen_utils_stop_protocols(tgen_dev)

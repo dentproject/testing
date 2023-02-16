@@ -14,12 +14,11 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_stop_traffic,
     tgen_utils_dev_groups_from_config,
     tgen_utils_traffic_generator_connect,
-    tgen_utils_stop_protocols,
     tgen_utils_get_loss
 )
 
 pytestmark = [
-    pytest.mark.suite_functional_bridging, 
+    pytest.mark.suite_functional_bridging,
     pytest.mark.asyncio,
     pytest.mark.usefixtures("cleanup_bridges", "cleanup_tgen")
 ]
@@ -56,7 +55,7 @@ async def test_bridging_packets_oversize(testbed):
     bridge = "br0"
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 4)
     if not tgen_dev or not dent_devices:
-        print.error("The testbed does not have enough dent with tgen connections")
+        print("The testbed does not have enough dent with tgen connections")
         return
     dent_dev = dent_devices[0]
     device_host_name = dent_dev.host_name
@@ -75,7 +74,7 @@ async def test_bridging_packets_oversize(testbed):
             {"device": bridge, "operstate": "up"}]}])
     err_msg = f"Verify that bridge set to 'UP' state.\n{out}"
     assert out[0][device_host_name]["rc"] == 0, err_msg
-    
+
     out = await IpLink.set(
         input_data=[{device_host_name: [
             {"device": port, "master": bridge, "operstate": "up"} for port in ports]}])
@@ -102,7 +101,7 @@ async def test_bridging_packets_oversize(testbed):
     )
 
     await tgen_utils_traffic_generator_connect(tgen_dev, tg_ports, ports, dev_groups)
-    
+
     list_macs = ["aa:bb:cc:dd:ee:11", "aa:bb:cc:dd:ee:12",
                  "aa:bb:cc:dd:ee:13", "aa:bb:cc:dd:ee:14"]
 
@@ -120,7 +119,7 @@ async def test_bridging_packets_oversize(testbed):
     }
 
     await tgen_utils_setup_streams(tgen_dev, config_file_name=None, streams=streams)
-    
+
     old_stats = await get_port_stats(device_host_name, (port for port, *_ in address_map))
 
     await tgen_utils_start_traffic(tgen_dev)
@@ -134,7 +133,7 @@ async def test_bridging_packets_oversize(testbed):
     for row in stats.Rows:
         loss = tgen_utils_get_loss(row)
         assert loss == 100, f"Expected loss: 100%, actual: {loss}%"
-    
+
     # check quantity of oversized packets
     for row, port in zip(stats.Rows, old_stats.keys()):
         oversized = int(new_stats[port]["oversize"]) - int(old_stats[port]["oversize"])
@@ -150,5 +149,3 @@ async def test_bridging_packets_oversize(testbed):
     for mac in list_macs:
         err_msg = f"Verify that source macs have not been learned due to oversized packet.\n"
         assert mac not in learned_macs, err_msg
-
-    await tgen_utils_stop_protocols(tgen_dev)

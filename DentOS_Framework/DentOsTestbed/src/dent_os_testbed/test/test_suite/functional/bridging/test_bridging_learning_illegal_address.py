@@ -10,7 +10,6 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_get_traffic_stats,
     tgen_utils_setup_streams,
     tgen_utils_start_traffic,
-    tgen_utils_stop_protocols,
     tgen_utils_stop_traffic,
     tgen_utils_dev_groups_from_config,
     tgen_utils_traffic_generator_connect,
@@ -18,7 +17,7 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
 )
 
 pytestmark = [
-    pytest.mark.suite_functional_bridging, 
+    pytest.mark.suite_functional_bridging,
     pytest.mark.asyncio,
     pytest.mark.usefixtures("cleanup_bridges", "cleanup_tgen")
 ]
@@ -43,7 +42,7 @@ async def test_bridging_learning_illegal_address(testbed):
     bridge = "br0"
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 4)
     if not tgen_dev or not dent_devices:
-        print.error("The testbed does not have enough dent with tgen connections")
+        print("The testbed does not have enough dent with tgen connections")
         return
     dent_dev = dent_devices[0]
     device_host_name = dent_dev.host_name
@@ -62,7 +61,7 @@ async def test_bridging_learning_illegal_address(testbed):
             {"device": bridge, "operstate": "up"}]}])
     err_msg = f"Verify that bridge set to 'UP' state.\n{out}"
     assert out[0][device_host_name]["rc"] == 0, err_msg
-    
+
     out = await IpLink.set(
         input_data=[{device_host_name: [
             {"device": port, "master": bridge, "operstate": "up"} for port in ports]}])
@@ -94,61 +93,66 @@ async def test_bridging_learning_illegal_address(testbed):
         "all_zeros": {
             "ip_source": dev_groups[tg_ports[3]][0]["name"],
             "ip_destination": dev_groups[tg_ports[0]][0]["name"],
-            "srcMac": "01:00:00:00:00:00",
-            "dstMac": "00:00:00:00:00:00",
-            "type": "raw",
-            "protocol": "802.1Q",
-        },
-        "multicast": {
-            "ip_source": dev_groups[tg_ports[2]][0]["name"],
-            "ip_destination": dev_groups[tg_ports[1]][0]["name"],
-            "srcMac": "01:00:00:00:00:00",
-            "dstMac": "aa:aa:aa:aa:aa:aa",
+            "srcMac": "00:00:00:00:00:00",
+            "dstMac": "01:00:00:00:00:00",
             "type": "raw",
             "protocol": "802.1Q",
         },
         "broadcast": {
             "ip_source": dev_groups[tg_ports[1]][0]["name"],
             "ip_destination": dev_groups[tg_ports[2]][0]["name"],
+            "srcMac": "ff:ff:ff:ff:ff:ff",
+            "dstMac": "01:00:00:00:00:00",
+            "type": "raw",
+            "protocol": "802.1Q",
+        },
+        "multicast_1": {
+            "ip_source": dev_groups[tg_ports[2]][0]["name"],
+            "ip_destination": dev_groups[tg_ports[1]][0]["name"],
+            "srcMac": "01:00:00:00:00:00",
+            "dstMac": "33:aa:aa:aa:aa:aa",
+            "type": "raw",
+            "protocol": "802.1Q",
+        },
+        "multicast_2": {
+            "ip_source": dev_groups[tg_ports[0]][0]["name"],
+            "ip_destination": dev_groups[tg_ports[3]][0]["name"],
             "srcMac": "01:00:00:00:00:00",
             "dstMac": "ff:ff:ff:ff:ff:ff",
             "type": "raw",
             "protocol": "802.1Q",
         },
-        "invalid mac": {
-            "ip_source": dev_groups[tg_ports[0]][0]["name"],
-            "ip_destination": dev_groups[tg_ports[3]][0]["name"],
-            "srcMac": "ff:ff:ff:ff:ff:ff",
-            "dstMac": "01:00:00:00:00:00",
-            "type": "raw",
-            "protocol": "802.1Q",
-        }
     }
 
     await tgen_utils_setup_streams(tgen_dev, config_file_name=None, streams=streams)
-    
+
     await tgen_utils_start_traffic(tgen_dev)
     await asyncio.sleep(traffic_duration)
     await tgen_utils_stop_traffic(tgen_dev)
 
     # check the traffic stats
-    stats = await tgen_utils_get_traffic_stats(tgen_dev, "Traffic Item Statistics")
+    stats = await tgen_utils_get_traffic_stats(tgen_dev, "Flow Statistics")
     for row in stats.Rows:
-        loss = tgen_utils_get_loss(row)
-        assert loss == 100, f"Expected loss: 100%, actual: {loss}%"
-        assert int(row["Tx Frames"]) > 0, f'Failed>Ixia should transmit traffic: {row["Tx Frames"]}'
-    
+        if row["Traffic Item"] == "all_zeros" and row["Rx Port"] == tg_ports[0]:
+            assert tgen_utils_get_loss(row) == 0.000, \
+                f"Verify that traffic from swp4 to swp1 forwarded.\n"
+        if row["Traffic Item"] == "broadcast" and row["Rx Port"] == tg_ports[2]:
+            assert tgen_utils_get_loss(row) == 100.000, \
+                f"Verify that traffic from swp2 to swp3 not forwarded.\n"
+        if row["Traffic Item"] == "multicast_1" and row["Rx Port"] == tg_ports[1]:
+            assert tgen_utils_get_loss(row) == 100.000, \
+                f"Verify that traffic from swp3 to swp2 not forwarded.\n"
+        if row["Traffic Item"] == "multicast_2" and row["Rx Port"] == tg_ports[3]:
+            assert tgen_utils_get_loss(row) == 100.000, \
+                f"Verify that traffic from swp1 to swp4 not forwarded.\n"
+
     out = await BridgeFdb.show(input_data=[{device_host_name: [{"options": "-j"}]}],
                                parse_output=True)
     assert out[0][device_host_name]["rc"] == 0, f"Failed to get fdb entry.\n"
 
-    illegal_address = ["00:00:00:00:00:00", "ff:ff:ff:ff:ff:ff",
-                       "01:00:00:00:00:00", "aa:aa:aa:aa:aa:aa"]
-
     fdb_entries = out[0][device_host_name]["parsed_output"]
     learned_macs = [en["mac"] for en in fdb_entries if "mac" in en]
+    illegal_address = ["00:00:00:00:00:00", "ff:ff:ff:ff:ff:ff", "01:00:00:00:00:00"]
     for mac in illegal_address:
         err_msg = f"Verify that source macs have not been learned due to illegal address.\n"
         assert mac not in learned_macs, err_msg
-    
-    await tgen_utils_stop_protocols(tgen_dev)
