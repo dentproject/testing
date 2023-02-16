@@ -19,6 +19,8 @@
           set_protocol - [protocol]
           get_protocol_stats - [protocols]
           clear_protocol_stats - [protocols]
+          send_ping - [port, dst_ip, src_ip]
+          send_arp - [port, src_ip]
      implements: "dent:traffic:traffic_gen"
      platforms: ['ixnetwork']
      commands:
@@ -58,3 +60,15 @@
             set_protocol - [protocol]
             get_protocol_stats - [protocols]
             clear_protocol_stats - [protocols]
+      - name: send_ping
+        apis: ['send_ping']
+        params: ['ports', 'dst_ip', 'src_ip']
+        desc: |
+         - IxiaClient
+           send_ping - [port, dst_ip, src_ip]
+      - name: send_arp
+        apis: ['send_arp']
+        params: ['ports', 'src_ip']
+        desc: |
+         - IxiaClient
+           send_arp - [port, src_ip]

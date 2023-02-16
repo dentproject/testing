@@ -21,6 +21,8 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
         stop_protocols - [protocols]
         get_protocol_stats - [protocols]
         clear_protocol_stats - [protocols]
+        send_ping - [port, dst_ip, src_ip]
+        send_arp - [port, src_ip]
 
     """
 
@@ -507,3 +509,92 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
 
     def parse_protocol(self, command, output, *argv, **kwarg):
         return command
+
+    def format_send_ping(self, command, *argv, **kwarg):
+        return command
+
+    def format_send_arp(self, command, *argv, **kwarg):
+        return command
+
+    @classmethod
+    def __get_ip_iface(cls, port, port_ip=None):
+        vport = cls.ixnet.Vport.find(Name=port)
+        for ip_ep in cls.ip_eps:
+            # ip -> eth -> dev group -> topo
+            topo = ip_ep.parent.parent.parent
+            if vport.href not in topo.Ports:
+                continue
+            if port_ip and port_ip not in str(ip_ep.Address):
+                continue
+            return ip_ep
+        return None
+
+    def run_send_ping(self, device, command, *argv, **kwarg):
+        """
+        - IxiaClient
+           send_ping - [port, dst_ip, src_ip]
+        """
+        params = kwarg["params"]
+        res = []
+        err = 0
+        for param in params:
+            port = param["port"]
+            dst = param["dst_ip"]
+            src = param.get("src_ip", None)
+            out = {
+                "port": port,
+                "src_ip": src,
+                "dst_ip": dst,
+            }
+
+            ip_ep = self.__get_ip_iface(port, src)
+            if not ip_ep:
+                err_msg = f"Did not find IP endpoint {port} with ip {src}"
+                out["arg2"] = False
+                out["arg3"] = err_msg
+                device.applog.info(err_msg)
+            else:
+                device.applog.info(f"Sending Ping from {ip_ep.Name} to {dst}")
+                out.update(ip_ep.SendPing(DestIp=dst)[0])
+
+            res.append(out)
+            if not out["arg2"]:
+                err = 1
+
+        return err, [{"success": msg["arg2"],
+                      "info": msg["arg3"],
+                      "port": msg["port"],
+                      "src_ip": msg["src_ip"],
+                      "dst_ip": msg["dst_ip"]} for msg in res]
+
+    def run_send_arp(self, device, command, *argv, **kwarg):
+        """
+        - IxiaClient
+           send_arp - [port, src_ip]
+        """
+        params = kwarg["params"]
+        res = []
+        err = 0
+        for param in params:
+            port = param["port"]
+            src = param.get("src_ip", None)
+            out = {
+                "port": port,
+                "src_ip": src,
+            }
+
+            ip_ep = self.__get_ip_iface(port, src)
+            if not ip_ep:
+                out["arg2"] = False
+                device.applog.info(f"Did not find IP endpoint {port} with ip {src}")
+            else:
+                device.applog.info(f"Sending ARP from {ip_ep.Name}")
+                out.update(ip_ep.SendArp()[0])
+
+            res.append(out)
+            if not out["arg2"]:
+                err = 1
+
+        return err, [{"success": msg["arg2"],
+                      "port": msg["port"],
+                      "src_ip": msg["src_ip"]} for msg in res]

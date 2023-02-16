@@ -589,3 +589,68 @@ def tgen_utils_get_loss(row):
     if loss == "":
         return 0.0
     return float(loss)
+
+
+async def tgen_utils_send_ping(device, config):
+    """
+    - Sends ping from TG ports to DUT
+    - Expects config to be a list of dicts:
+    [
+        {
+            "ixp": tgen port,
+            "src_ip": tgen port ip (optional),
+            "dst_ip": peer ip,
+        },
+        ...
+    ]
+    - returns a list of dicts for each ping sent
+    [
+        {
+            "success": True or False,
+            "info": string,
+            "port": tg_port,
+            "src_ip": tg_port ip,
+            "dst_ip": peer ip,
+        },
+        ...
+    ]
+    """
+    out = await TrafficGen.send_ping(input_data=[{device.host_name: [
+        {"port": ping["ixp"],
+         "dst_ip": ping["dst_ip"],
+         "src_ip": ping["src_ip"] if "src_ip" in ping else None}
+        for ping in config
+    ]}])
+    if out[0][device.host_name]["rc"] != 0:
+        device.applog.warning(f"Some pings did not reach their destination\n{out}")
+    return out[0][device.host_name]["result"]
+
+
+async def tgen_utils_send_arp(device, config):
+    """
+    - Sends arp packets from TG ports to DUT
+    - Expects config to be a list of dicts:
+    [
+        {
+            "ixp": tgen port,
+            "src_ip": tgen port ip (optional),
+        },
+        ...
+    ]
+    - returns a list of dicts for each arp sent
+    [
+        {
+            "success": True or False,
+            "port": tg_port,
+            "src_ip": tg_port ip,
+        },
+        ...
+    ]
+    """
+    out = await TrafficGen.send_arp(input_data=[{device.host_name: [
+        {"port": arp["ixp"], "src_ip": arp["src_ip"] if "src_ip" in arp else None}
+        for arp in config
+    ]}])
+    if out[0][device.host_name]["rc"] != 0:
+        device.applog.warning(f"Some arps did not reach their destination\n{out}")
+    return out[0][device.host_name]["result"]
