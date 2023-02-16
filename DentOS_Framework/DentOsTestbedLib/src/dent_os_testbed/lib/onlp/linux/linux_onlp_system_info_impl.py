@@ -64,5 +64,5 @@ class LinuxOnlpSystemInfoImpl(LinuxOnlpSystemInfo):
             line = RE_SPACES.sub(" ", line).strip().split(":")
             key = line[0].replace(" ", "_").lower()
             val = " ".join(line[1:])
-            onl_sys_info[key] = val
+            onl_sys_info[key.strip()] = val.strip()
         return onl_sys_info

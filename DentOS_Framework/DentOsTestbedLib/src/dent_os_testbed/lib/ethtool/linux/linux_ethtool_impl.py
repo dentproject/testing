@@ -100,7 +100,7 @@ class LinuxEthtoolImpl(LinuxEthtool):
             line = RE_SPACES.sub(" ", line).strip().split(":")
             key = line[0].replace(" ", "_").lower()
             val = " ".join(line[1:])
-            ethtool_info[key] = val
+            ethtool_info[key.strip()] = val.strip()
         return ethtool_info
 
     def format_set(self, command, *argv, **kwarg):
