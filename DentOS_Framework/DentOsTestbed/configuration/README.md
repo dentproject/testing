@@ -21,8 +21,9 @@
             },
             "serialDev":"/dev/ttyUSB6",        # Serial console access
             "baudrate": 115200,                # Baud rate
+            "mediaMode":"copper",              # media mode copper/fiber/mixed, defaults to copper if both are supported, optional
             "links" : [                        # Link details
-                ["ma1", "oob_sw2:swp40"],     # ["local port", "remote port:remote port"]
+                ["ma1", "oob_sw2:swp40", "copper"],     # ["local port", "remote port:remote port"], media mode is optional
                 ...
             ]
 
