@@ -22,7 +22,7 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
 
 pytestmark = [
     pytest.mark.suite_functional_ipv4,
-    pytest.mark.usefixtures("cleanup_ip_addrs", "cleanup_tgen"),
+    pytest.mark.usefixtures("cleanup_ip_addrs", "cleanup_tgen", "enable_ipv4_forwarding"),
     pytest.mark.asyncio,
 ]
 
@@ -363,3 +363,307 @@ async def test_ipv4_route_between_vlan_devs(testbed):
     for row in stats.Rows:
         loss = tgen_utils_get_loss(row)
         assert loss == 0, f"Expected loss: 0%, actual: {loss}%"
+
+
+async def test_ipv4_nexthop_static_route(testbed):
+    """
+    Test Name: test_ipv4_nexthop_static_route
+    Test Suite: suite_functional_ipv4
+    Test Overview: Test IPv4 nexthop static routing
+    Test Procedure:
+    1. Init interfaces
+    2. Configure ports up
+    3. Configure IP addrs
+    4. Add static routes
+    5. Check added static routes
+    7. Send Arp requests and generate traffic
+    8. Check added arp entries
+    9. Remove added static routes
+    10. Check static routes have been removed
+    11. Remove added dynamic arp entries
+    12. Check dynamic arp entries have been removed
+    """
+    # 1. Init interfaces
+    tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 4)
+    if not tgen_dev or not dent_devices:
+        print("The testbed does not have enough dent with tgen connections")
+        return
+    dent_dev = dent_devices[0]
+    dent = dent_dev.host_name
+    tg_ports = tgen_dev.links_dict[dent][0]
+    ports = tgen_dev.links_dict[dent][1]
+    traffic_duration = 10
+
+    port_mac = {}
+    for port in ports:
+        swp_info = {}
+        await tgen_utils_get_swp_info(dent_dev, port, swp_info)
+        port_mac[port] = swp_info["mac"]
+
+    address_map = (
+        # swp port, tg port,    swp ip,    tg ip,    plen, dst
+        (ports[0], tg_ports[0], "1.1.1.1", "1.1.1.2", 24, "100.0.0.1", port_mac[ports[0]]),
+        (ports[1], tg_ports[1], "2.2.2.1", "2.2.2.2", 24, "101.0.0.1", port_mac[ports[1]]),
+        (ports[2], tg_ports[2], "3.3.3.1", "3.3.3.2", 24, "102.0.0.1", port_mac[ports[2]]),
+        (ports[3], tg_ports[3], "4.4.4.1", "4.4.4.2", 24, "103.0.0.1", port_mac[ports[3]]),
+    )
+    nei_map = {
+        # TODO add TG lladdr
+        port: {"dst": nei_ip}
+        for port, _, _, nei_ip, *_ in address_map
+    }
+    route_map = {
+        port: {"gw": nei_ip, "dst": dst}
+        for port, _, _, nei_ip, _, dst, _ in address_map[:2]
+    }
+
+    # 2. Configure ports up
+    out = await IpLink.set(input_data=[{dent: [{"device": port, "operstate": "up"}
+                                               for port, *_ in address_map]}])
+    assert out[0][dent]["rc"] == 0, "Failed to set port state UP"
+
+    # 3. Configure IP addrs
+    out = await IpAddress.add(input_data=[{dent: [
+        {"dev": port, "prefix": f"{ip}/{plen}"}
+        for port, _, ip, _, plen, *_ in address_map
+    ]}])
+    assert out[0][dent]["rc"] == 0, "Failed to add IP addr to port"
+
+    dev_groups = tgen_utils_dev_groups_from_config(
+        {"ixp": port, "ip": ip, "gw": gw, "plen": plen}
+        for _, port, gw, ip, plen, *_ in address_map
+    )
+    await tgen_utils_traffic_generator_connect(tgen_dev, tg_ports, ports, dev_groups)
+
+    streams = {
+        f"{tg_ports[src]} -> {tg_ports[dst]}": {
+            "type": "raw",
+            "ip_source": dev_groups[tg_ports[src]][0]["name"],
+            "ip_destination": dev_groups[tg_ports[dst]][0]["name"],
+            "protocol": "ip",
+            "rate": "1000",  # pps
+            "srcMac": "02:00:00:00:00:01",
+            "dstMac": address_map[dst][6],
+            "srcIp": address_map[src][3],
+            "dstIp": address_map[dst][5],
+        } for src, dst in ((3, 0), (2, 1))
+    }
+
+    # 4. Add static routes
+    out = await IpRoute.add(input_data=[{dent: [
+        {"dev": port, "dst": dst, "nexthop": [{"via": nei_ip}]}
+        for port, _, _, nei_ip, _, dst, _ in address_map[:2]
+    ]}])
+    assert out[0][dent]["rc"] == 0, "Failed to add static routes"
+
+    # 5. Check added static routes
+    out = await IpRoute.show(input_data=[{dent: [
+        {"cmd_options": "-j"}
+    ]}], parse_output=True)
+    assert out[0][dent]["rc"] == 0, "Failed to get list of routes"
+
+    for ro in out[0][dent]["parsed_output"]:
+        if ro.get("dev", None) not in ports[:2]:
+            continue
+        if "gateway" not in ro:
+            continue
+        assert ro["dst"] == route_map[ro["dev"]]["dst"], \
+            f"Expected {route_map[ro['dev']]['dst']} for dev {ro['dev']}, not {ro['dst']}"
+        assert ro["gateway"] == route_map[ro["dev"]]["gw"], \
+            f"Expected {route_map[ro['dev']]['gw']} for dev {ro['dev']}, not {ro['gateway']}"
+        assert "rt_offload" in ro["flags"], "Route entry should be offloaded"
+
+    # 7. Send Arp requests and generate traffic
+    await tgen_utils_setup_streams(tgen_dev, None, streams)
+
+    await tgen_utils_start_traffic(tgen_dev)
+    await asyncio.sleep(traffic_duration)
+    await tgen_utils_stop_traffic(tgen_dev)
+
+    # 8. Check added arp entries
+    out = await IpNeighbor.show(input_data=[{dent: [
+        {"cmd_options": "-j"}
+    ]}], parse_output=True)
+    assert out[0][dent]["rc"] == 0, "Failed to get list of arp entries"
+
+    for nei in out[0][dent]["parsed_output"]:
+        if nei["dev"] not in ports:
+            continue
+        assert nei["dst"] == nei_map[nei["dev"]]["dst"], \
+            f"Expected {nei_map[nei['dev']]['dst']} for dev {nei['dev']}, not {nei['dst']}"
+        assert "offload" in nei, "ARP entry should be offloaded"
+        # TODO check correct mac addr
+        # assert nei["lladdr"] == nei_map[nei["dev"]]["lladdr"], \
+        #     f"Expected {nei_map[nei['dev']]['lladdr']} for dev {nei['dev']}, not {nei['lladdr']}"
+
+    # 9. Remove added static routes
+    out = await IpRoute.delete(input_data=[{dent: [
+        {"dev": port, "dst": route["dst"]}
+        for port, route in route_map.items()
+    ]}])
+    assert out[0][dent]["rc"] == 0, "Failed to delete arp entries"
+
+    # 10. Check static routes have been removed
+    out = await IpRoute.show(input_data=[{dent: [
+        {"cmd_options": "-j"}
+    ]}], parse_output=True)
+    assert out[0][dent]["rc"] == 0, "Failed to get list of routes"
+
+    for ro in out[0][dent]["parsed_output"]:
+        if "gateway" not in ro:
+            continue
+        assert ro.get("dev", None) not in ports
+
+    # 11. Remove added dynamic arp entries
+    out = await IpNeighbor.delete(input_data=[{dent: [
+        {"dev": port, "address": nei["dst"]}
+        for port, nei in nei_map.items()
+    ]}])
+    assert out[0][dent]["rc"] == 0, "Failed to delete arp entries"
+
+    # 12. Check dynamic arp entries have been removed
+    out = await IpNeighbor.show(input_data=[{dent: [
+        {"cmd_options": "-j"}
+    ]}], parse_output=True)
+    assert out[0][dent]["rc"] == 0, "Failed to get list of arp entries"
+    for nei in out[0][dent]["parsed_output"]:
+        if nei["dev"] not in ports:
+            continue
+        assert "FAILED" in nei["state"], "ARP entry should be removed"
+
+
+async def test_ipv4_two_routes_to_same_net(testbed):
+    """
+    Test Name: test_ipv4_two_routes_to_same_net
+    Test Suite: suite_functional_ipv4
+    Test Overview: Test IPv4 two routes to same network
+    Test Procedure:
+    1. Set link up on all participant ports
+    2. Configure ip addresses, and configure route to the same network as the network configured
+       in second port connected to Ixia via neighbor of the first port connected to Ixia
+    3. Verify offload flag appear in the directly connected route of the second port connected to Ixia
+    4. Resolve neighborship and prepare continuous stream with SIP of first Ixia port neighbor and DIP of second Ixia port neighbor
+    5. Transmit traffic
+    6. Verify traffic is not forwarded to second Ixia port neighbor
+    7. Remove IP address from the second port connected to Ixia
+    8. Verify offload flag appear in the next-hop static route via neighbor of the first port connected to Ixia
+    9. Verify traffic is forwarded to first Ixia port neighbor
+    """
+    tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 4)
+    if not tgen_dev or not dent_devices:
+        print("The testbed does not have enough dent with tgen connections")
+        return
+    dent = dent_devices[0].host_name
+    tg_ports = tgen_dev.links_dict[dent][0][:2]
+    ports = tgen_dev.links_dict[dent][1][:2]
+    tx_port, rx_port = tg_ports
+    traffic_duration = 10
+    address_map = (
+        # swp port, tg port,    swp ip,    tg ip,    plen
+        (ports[0], tx_port, "1.1.1.1", "1.1.1.2", 24),
+        (ports[1], rx_port, "2.2.2.1", "2.2.2.2", 24),
+    )
+    common_net_ip = f"{address_map[1][3][:-2]}.0/{address_map[1][-1]}"  # 2.2.2.0/24
+
+    # 1. Set link up on all participant ports
+    out = await IpLink.set(input_data=[{dent: [{"device": port, "operstate": "up"}
+                                               for port, *_ in address_map]}])
+    assert out[0][dent]["rc"] == 0, "Failed to set port state UP"
+
+    # 2. Configure ip addresses
+    dev_groups = tgen_utils_dev_groups_from_config(
+        {"ixp": port, "ip": ip, "gw": gw, "plen": plen}
+        for _, port, gw, ip, plen in address_map
+    )
+    await tgen_utils_traffic_generator_connect(tgen_dev, tg_ports, ports, dev_groups)
+
+    out = await IpAddress.add(input_data=[{dent: [
+        {"dev": port, "prefix": f"{ip}/{plen}"}
+        for port, _, ip, _, plen in address_map[:1]  # first port
+    ]}])
+    assert out[0][dent]["rc"] == 0, "Failed to add IP addr to port"
+
+    # Configure route to the same network as the network configured in second
+    # port connected to Ixia via neighbor of the first port connected to Ixia
+    out = await IpRoute.add(input_data=[{dent: [
+        {"dev": port, "dst": common_net_ip, "nexthop": [{"via": ip}]}
+        for port, _, _, ip, _ in address_map[:1]  # src ip of first tg port
+    ]}])
+    assert out[0][dent]["rc"] == 0, "Failed to add route"
+
+    out = await IpAddress.add(input_data=[{dent: [
+        {"dev": port, "prefix": f"{ip}/{plen}"}
+        for port, _, ip, _, plen in address_map[1:]  # second port
+    ]}])
+    assert out[0][dent]["rc"] == 0, "Failed to add IP addr to port"
+
+    # 3. Verify offload flag appear in the directly connected route of the second port connected to Ixia
+    out = await IpRoute.show(input_data=[{dent: [{"cmd_options": "-j"}]}], parse_output=True)
+    assert out[0][dent]["rc"] == 0, "Failed to get list of routes"
+
+    for ro in out[0][dent]["parsed_output"]:
+        if "dst" not in ro or ro["dst"] != common_net_ip:
+            continue
+        if ro["dev"] == ports[0]:
+            assert ro["gateway"] == address_map[0][3], f"Expected gateway to be {address_map[0][3]}"
+            assert "rt_offload" in ro["flags"], "Route should be offloaded"
+        else:
+            assert "rt_offload" not in ro["flags"], "Route should not be offloaded"
+
+    # 4. Resolve neighborship and prepare continuous stream with SIP of first Ixia port neighbor and DIP of second Ixia port neighbor
+    streams = {f"{tx_port} -> {rx_port}": {
+        "type": "ipv4",
+        "ip_source": dev_groups[tx_port][0]["name"],
+        "ip_destination": dev_groups[rx_port][0]["name"],
+        "rate": 1000,  # pps
+    }}
+    await tgen_utils_setup_streams(
+        tgen_dev,
+        f"/tmp/{tgen_dev.host_name}/tgen_ipv4_two_routes_to_same_net_config.ixncfg",
+        streams,
+        force_update=False,
+    )
+
+    # 5. Transmit traffic
+    await tgen_utils_start_traffic(tgen_dev)
+    await asyncio.sleep(traffic_duration)
+    # Don't stop
+
+    # 6. Verify traffic is not forwarded to second Ixia port neighbor
+    stats = await tgen_utils_get_traffic_stats(tgen_dev, "Traffic Item Statistics")
+    for row in stats.Rows:
+        loss = tgen_utils_get_loss(row)
+        assert loss == 100, f"Expected loss: 100%, actual: {loss}%"
+
+    # 7. Remove IP address from the second port connected to Ixia
+    out = await IpAddress.delete(input_data=[{dent: [
+        {"dev": port, "prefix": f"{ip}/{plen}"}
+        for port, _, ip, _, plen in address_map[1:]  # second port
+    ]}])
+    assert out[0][dent]["rc"] == 0, "Failed to add IP addr to port"
+
+    out = await IpRoute.show(input_data=[{dent: [{"cmd_options": "-j"}]}], parse_output=True)
+    assert out[0][dent]["rc"] == 0, "Failed to get list of routes"
+
+    for ro in out[0][dent]["parsed_output"]:
+        if "dst" not in ro or ro["dst"] != common_net_ip:
+            continue
+        assert ro["gateway"] == address_map[0][3], f"Expected gateway to be {address_map[0][3]}"
+        assert "rt_offload" in ro["flags"], "Route should be offloaded"
+        assert "offload" in ro["flags"], "Route should be offloaded"
+        break
+    else:
+        raise LookupError(f"Expected to find route {common_net_ip} via {address_map[0][3]}" +
+                          f"\n{out[0][dent]['parsed_output']}")
+
+    # 9. Verify traffic is forwarded to first Ixia port neighbor
+    await asyncio.sleep(traffic_duration)
+    stats = await tgen_utils_get_traffic_stats(tgen_dev, "Port Statistics")
+    for row in stats.Rows:
+        if row["Port Name"] == tx_port:
+            tx = int(row["Frames Tx."])
+            rx = int(row["Valid Frames Rx."])
+            tol = 5
+            # Allow a tolerance of +- 5 packets
+            assert tx - tol < rx < tx + tol, \
+                "Traffic should be forwarded to origin port"
