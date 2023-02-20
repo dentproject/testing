@@ -122,27 +122,33 @@ async def tcutil_cleanup_tc_rules(dent_dev, swp_tgen_ports, swp_tc_rules):
     )
 
 
-async def tcutil_tc_rules_to_tgen_streams(swp_tc_rules, streams, start, cnt):
+def tcutil_tc_rules_to_tgen_streams(swp_tc_rules, streams=None, start=0, cnt=None,
+                                    frame_rate_pps=10, frame_size=256):
+    if streams is None:
+        streams = {}
     for swp, rules in swp_tc_rules.items():
         count = 0
-        for rule in rules[start : start + cnt]:
+        end = start + cnt if cnt else len(rules)
+        for rule in rules[start:end]:
+            if "options" not in rule:
+                continue
             st = {
                 "ep_source": [swp],
                 "type": "ethernet",
                 "srcIp": f"20.0.{swp[3:]}.2",
                 "dstIp": f"20.0.{swp[3:]}.3",
-                "rate": "10",
-                "frameSize": "256",
+                "rate": frame_rate_pps,
+                "frameSize": frame_size,
             }
             st["type"] = "ethernetVlan" if rule["protocol"] == "802.1Q" else "ethernet"
-            name = swp + "_"
+            name = swp
             # this rule wont hit anyway
             if "indev" in rule["options"] and swp != rule["options"]["indev"]:
                 continue
             for k, v in rule["options"]["keys"].items():
                 if not isinstance(v, str) and not isinstance(v, int):
                     continue
-                name += k + "_" + str(v) + "_"
+                name += "_" + k + "_" + str(v)
                 if k == "eth_type" and v == "ipv4":
                     st["protocol"] = "ip"
                 if k == "ip_proto":
@@ -163,11 +169,18 @@ async def tcutil_tc_rules_to_tgen_streams(swp_tc_rules, streams, start, cnt):
                     st["ethType"] = str(v)
                 if k == "vlan_id":
                     st["vlanID"] = str(v)
+                if k == "dst_mac":
+                    st["type"] = "raw"
+                    st["dstMac"] = str(v)
+                if k == "src_mac":
+                    st["type"] = "raw"
+                    st["srcMac"] = str(v)
             if name not in streams:
                 count += 1
                 if count > 128:
                     break
             streams[name] = st
+    return streams
 
 
 async def tcutil_get_iptables_rule_stats(dent_dev, swp_iptables_rules):
