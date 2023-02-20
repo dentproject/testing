@@ -1,10 +1,13 @@
+from math import isclose as is_close
+import random
 import json
 
-from dent_os_testbed.lib.bridge.bridge_vlan import BridgeVlan
-from dent_os_testbed.lib.ip.ip_address import IpAddress
 from dent_os_testbed.lib.iptables.ip_tables import IpTables
 from dent_os_testbed.lib.tc.tc_filter import TcFilter
-from dent_os_testbed.utils.test_utils.tgen_utils import tgen_utils_get_swp_info
+from dent_os_testbed.utils.test_utils.tgen_utils import (
+    tgen_utils_get_swp_info,
+    tgen_utils_get_loss,
+)
 
 
 async def tcutil_iptable_to_tc(dent_dev, swp_tgen_ports, iptable_rules, extra_args=""):
@@ -251,3 +254,175 @@ async def tcutil_iptables_rules_to_tgen_streams(
                 name += "1"
             streams[name] = st
             dent_dev.applog.info(f"Adding Stream {name} with keys {st.keys()}")
+
+
+def tcutil_generate_rule_with_random_selectors(
+    port, pref=None, want_mac=False, want_vlan=False, want_ip=False, want_tcp=False,
+    want_port=False, want_icmp=False, action=None, direction="ingress",
+    skip_sw=False, skip_hw=False, want_proto=True,
+):
+    """
+    Creates a single tc rule with specified selectors:
+    - port:       swp port (mandatory)
+    - pref:       rule priority
+    - want_mac:   generate src_mac and dst_mac selectors
+    - want_vlan:  generate vlan_id and vlan_ethtype selectors
+    - want_ip:    generate src_ip and dst_ip selectors
+    - want_port:  generate src_port and dst_port selectors (relevant for want_ip=True)
+    - want_tcp:   if True ip_proto will be 'tcp', else 'udp' (relevant for want_port=True)
+    - want_icmp:  ip_proto will be 'icmp', generate icmp code and type selectors (relevant for want_vlan=False)
+    - action:     [list | str], desired rule action
+    - direction:  [ingress | egress]
+    - skip_sw:    add skip_sw flag
+    - skip_hw:    add skip_hw flag
+    - want_proto: generate protocol selector
+    """
+    def random_mac():
+        return ":".join(["02"] + [f"{random.randint(0, 255):02x}" for _ in range(5)])
+    def random_ip():
+        return ".".join(map(str, [random.randint(11, 126), random.randint(0, 255),
+                                  random.randint(0, 255), random.randint(1, 250)]))
+    def random_icmp_type():
+        return random.choice((0, 3, 4, 5, 8, 11, 12, 13, 14, 15, 16, 17, 18))
+    ip_protocols = ("ip", "ipv4", "0x0800")
+    vlan_protocols = ("0x8100", "0x88a8", "802.1q")
+
+    if want_vlan:
+        protocols = vlan_protocols
+    elif want_ip:
+        protocols = ip_protocols
+    else:
+        protocols = (f"0x9{random.randint(1, 3)}00",)
+
+    if action is None:
+        action_list = ("pass", "drop", "trap")
+    elif type(action) is str:
+        action_list = (action, )
+    else:
+        action_list = action
+
+    filter_t = {}
+    rule = {
+        "dev": port,
+        "action": random.choice(action_list),
+        "direction": direction,
+        "protocol": random.choice(protocols),
+        "filtertype": filter_t,
+    }
+    if skip_sw:
+        filter_t["skip_sw"] = ""
+    if skip_hw:
+        filter_t["skip_hw"] = ""
+    if pref is not None:
+        rule["pref"] = pref
+    if want_mac:
+        filter_t["src_mac"] = random_mac()
+        filter_t["dst_mac"] = random_mac()
+    if not want_proto:
+        del rule["protocol"]
+        return rule
+    if want_vlan:
+        filter_t["vlan_id"] = random.randint(1, 4095)
+        if want_ip:
+            filter_t["vlan_ethtype"] = random.choice(ip_protocols)
+        else:
+            filter_t["vlan_ethtype"] = f"0x9{random.randint(1, 3)}00"
+    if want_ip:
+        filter_t["src_ip"] = random_ip()
+        filter_t["dst_ip"] = random_ip()
+        if want_port:
+            filter_t["ip_proto"] = "tcp" if want_tcp else "udp"
+            filter_t["src_port"] = random.randint(1, 65535)
+            filter_t["dst_port"] = random.randint(1, 65535)
+        elif want_icmp and not want_vlan:
+            filter_t["ip_proto"] = "icmp"
+            filter_t["code"] = random.randint(0, 255)
+            filter_t["type"] = random_icmp_type()
+    return rule
+
+
+async def tcutil_get_tc_stats_pref_map(dent, port, is_block=False):
+    """
+    Returns tc stats of all port (or block) rules, grouped by pref:
+    {
+        pref: {
+            action: pass | trap | drop,
+            bytes: X,
+            packets: Y,
+            ...
+        },
+        ...
+    }
+    """
+    type_ = "block" if is_block else "dev"
+    out = await TcFilter.show(input_data=[{dent: [
+        {type_: port, "direction": "ingress", "options": "-j -s"}
+    ]}], parse_output=True)
+    assert out[0][dent]["rc"] == 0, "Failed to get tc stats"
+    return {int(r["pref"]): {"action": r["options"]["actions"][0]["control_action"]["type"],
+                             **r["options"]["actions"][0]["stats"]}
+            for r in out[0][dent]["parsed_output"] if "options" in r}
+
+
+async def tcutil_verify_tc_stats(dev, tx_packets, tc_stats, rule_action=None,
+                                 stats_type="hw", tolerance=0.05):
+    """
+    Checks that drops counter and hw/sw/packets counters of a tc rule is correct.
+    - dev:         used for logging
+    - tx_packets:  packets, that matched the rule
+    - tc_stats:    dict of packets, hw_packets, drops, bytes
+    - rule_action: pass | drop | trap
+    - stats_type:  str or list [hw | sw]
+    - tolerance:   max acceptable deviation
+    """
+    action = tc_stats.get("action", "pass")
+    if rule_action is not None:
+        action = rule_action
+    expected_stats = {
+        "drops": tx_packets if action == "drop" else 0,
+        "packets": tx_packets,
+        "hw_packets": tx_packets,
+    }
+    if "sw" in stats_type and "hw" in stats_type:
+        if action == "drop":
+            expected_stats["sw_packets"] = 0
+        else:
+            expected_stats["packets"] *= 2
+            expected_stats["sw_packets"] = tx_packets
+    if "hw" not in stats_type or tx_packets == 0:
+        del expected_stats["hw_packets"]
+
+    for field, expected in expected_stats.items():
+        dev.applog.info(f"Rule {action = }, Tx Frames = {tx_packets}, " +
+                        f"{field} = {tc_stats[field]}, {expected = }, max {tolerance = }")
+        assert is_close(int(tc_stats[field]), expected, rel_tol=tolerance), \
+            f"Expected {field} to be {expected}, but got {tc_stats[field]} (max {tolerance = })"
+
+
+async def tcutil_verify_ixia_stats(dev, row, rule_action="pass",
+                                   actual_pps=10_000, tolerance=0.05):
+    """
+    Checks that Ixia stats for a specific traffic item is correct based on
+    the matched rule.
+    - dev:         used for logging
+    - row:         Ixia stats row
+    - rule_action: pass | drop | trap
+    - actual_pps:  used for calculating traffic duration
+    - tolerance:   max acceptable deviation
+    """
+    max_acl_pps = 4000  # acl traps have a max rate of 4000 pps
+    loss = tgen_utils_get_loss(row)
+    tx_packets = int(row["Tx Frames"])
+    expected_loss = 0
+    if rule_action == "drop":
+        expected_loss = 100
+    if rule_action == "trap":
+        traffic_duration = tx_packets / actual_pps
+        expected_loss = (1 - max_acl_pps / (tx_packets / traffic_duration)) * 100
+        expected_loss = max(min(expected_loss, 100), 0)  # limit values to 0..100
+
+    dev.applog.info(f"Traffic item: {row['Traffic Item']}\n" +
+                    f"Tx Frames: {tx_packets}, Rx Frames: {row['Rx Frames']}, " +
+                    f"{loss = }, {expected_loss = :.3f} (max {tolerance = })")
+    assert is_close(loss, expected_loss, rel_tol=tolerance), \
+        f"Expected loss: {expected_loss:.3f}%, actual: {loss}%"
