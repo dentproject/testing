@@ -71,6 +71,7 @@ PYTEST_SUITES = {
     "suite_functional_ipv4": "Functional IPv4 tests",
     "suite_functional_bridging": "Functional bridging tests",
     "suite_functional_vlan": "VLAN functional tests",
+    "suite_functional_acl": "Functional ACL tests",
 }
 
 PYTEST_SUITE_GROUPS = {
@@ -107,5 +108,6 @@ PYTEST_SUITE_GROUPS = {
     "suite_group_functional": [
         "suite_functional_vlan",
         "suite_functional_bridging",
+        "suite_functional_acl",
         "suite_functional_ipv4"]
 }

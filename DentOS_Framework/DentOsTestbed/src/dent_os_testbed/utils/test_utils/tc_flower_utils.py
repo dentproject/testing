@@ -127,6 +127,27 @@ async def tcutil_cleanup_tc_rules(dent_dev, swp_tgen_ports, swp_tc_rules):
 
 def tcutil_tc_rules_to_tgen_streams(swp_tc_rules, streams=None, start=0, cnt=None,
                                     frame_rate_pps=10, frame_size=256):
+    """
+    - swp_tc_rules:   dict
+    - streams:        streams dict that will be modified
+    - start:          used to specify the first rule index, from which the streams will be created
+    - cnt:            used to specify the number of streams to be created
+    - frame_rate_pps: frame rate for each stream
+    - frame_size:     packet size for each stream
+
+    Expects swp_tc_rules to be a dict:
+    {
+        swp_port: { *output from TcFilter.show()* },
+        ...
+    }
+
+    Returns a dict with streams that match the TC rules:
+    {
+        stream_1: { *stream that matches rule #1* },
+        stream_2: { *stream that matches rule #2* },
+        ...
+    }
+    """
     if streams is None:
         streams = {}
     for swp, rules in swp_tc_rules.items():
@@ -399,7 +420,7 @@ async def tcutil_verify_tc_stats(dev, tx_packets, tc_stats, rule_action=None,
             f"Expected {field} to be {expected}, but got {tc_stats[field]} (max {tolerance = })"
 
 
-async def tcutil_verify_ixia_stats(dev, row, rule_action="pass",
+async def tcutil_verify_tgen_stats(dev, row, rule_action="pass",
                                    actual_pps=10_000, tolerance=0.05):
     """
     Checks that Ixia stats for a specific traffic item is correct based on
