@@ -135,6 +135,14 @@ class LinuxIpLinkImpl(LinuxIpLink):
             cmd += "master {} ".format((params["master"]))
         if "nomaster" in params:
             cmd += "nomaster"
+        if "mcast_snooping" in params:
+            cmd += "mcast_snooping {} ".format((params["mcast_snooping"]))
+        if "mcast_igmp_version" in params:
+            cmd += "mcast_igmp_version {} ".format((params["mcast_igmp_version"]))
+        if "mcast_querier" in params:
+            cmd += "mcast_querier {} ".format((params["mcast_querier"]))
+        if "mcast_querier_interval" in params:
+            cmd += "mcast_querier_interval {} ".format((params["mcast_querier_interval"]))
         return cmd
 
     def format_show(self, command, *argv, **kwarg):
