@@ -24,6 +24,8 @@ class TrafficGen(TestLibObject):
             set_protocol - [protocol]
             get_protocol_stats - [protocols]
             clear_protocol_stats - [protocols]
+            send_ping - [port, dst_ip, src_ip]
+            send_arp - [port, src_ip]
         
     """
     async def _run_command(api, *argv, **kwarg):
@@ -400,4 +402,47 @@ class TrafficGen(TestLibObject):
         
         """
         return await TrafficGen._run_command("clear_protocol_stats", *argv, **kwarg)
+        
+    async def send_arp(*argv, **kwarg):
+        """
+        Platforms: ['ixnetwork']
+        Usage:
+        TrafficGen.send_arp(
+            input_data = [{
+                # device 1
+                'dev1' : [{
+                    # command 1
+                        'ports':'string_list',
+                        'src_ip':'ip_addr_t',
+                }],
+            }],
+        )
+        Description:
+        - IxiaClient
+          send_arp - [port, src_ip]
+        
+        """
+        return await TrafficGen._run_command("send_arp", *argv, **kwarg)
+        
+    async def send_ping(*argv, **kwarg):
+        """
+        Platforms: ['ixnetwork']
+        Usage:
+        TrafficGen.send_ping(
+            input_data = [{
+                # device 1
+                'dev1' : [{
+                    # command 1
+                        'ports':'string_list',
+                        'dst_ip':'ip_addr_t',
+                        'src_ip':'ip_addr_t',
+                }],
+            }],
+        )
+        Description:
+        - IxiaClient
+          send_ping - [port, dst_ip, src_ip]
+        
+        """
+        return await TrafficGen._run_command("send_ping", *argv, **kwarg)
         

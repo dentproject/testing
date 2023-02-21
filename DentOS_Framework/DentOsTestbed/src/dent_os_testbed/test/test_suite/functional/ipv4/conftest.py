@@ -7,7 +7,7 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
 )
 
 
-@pytest_asyncio.fixture(autouse=True)
+@pytest_asyncio.fixture()
 async def enable_ipv4_forwarding(testbed):
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 4)
     if not tgen_dev or not dent_devices:

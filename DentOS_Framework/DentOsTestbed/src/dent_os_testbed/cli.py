@@ -168,8 +168,8 @@ def get_args():
         action="store_true",
         default=False,
     )
-    args = parser.parse_args()
-    return args
+    args, other_args = parser.parse_known_args()
+    return args, other_args
 
 
 def validate_args(args):
@@ -227,7 +227,7 @@ def main():
         Exception: Generic errors
     """
     try:
-        args = get_args()
+        args, other_args = get_args()
         validate_args(args)
         applog = AppLogger(name="DENT")
         loop = asyncio.get_event_loop()
@@ -237,7 +237,7 @@ def main():
         loop.run_until_complete(
             testbed_update_login_banner(pytest.testbed.devices, args, applog, add=True)
         )
-        run_tests(args, applog)
+        run_tests(args, other_args, applog)
         loop = asyncio.get_event_loop()
         loop.run_until_complete(
             testbed_update_login_banner(pytest.testbed.devices, args, applog, add=False)
@@ -329,19 +329,20 @@ async def testbed_update_login_banner(devices, args, applog, add):
         applog.info("Done updating banner")
 
 
-def run_tests(args, applog):
+def run_tests(args, other_args, applog):
     """
     Executes the test suite
 
     Args:
-        args: Command line arguments
+        args: Pre-defined command line arguments
+        other_args: Not-recognized command line arguments
         applog (logger.AppLogger): Logger instance
 
     Raises:
         Exception: Generic errors
     """
     try:
-        additional_args = []
+        additional_args = other_args
         additional_args.extend(["--pyargs", "dent_os_testbed.test.test_suite", "--strict-markers"])
         additional_args.append("--durations=0")
         if args.stdout:
