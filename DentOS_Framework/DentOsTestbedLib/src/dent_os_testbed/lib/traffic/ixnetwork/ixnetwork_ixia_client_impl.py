@@ -1,5 +1,6 @@
 import os
 import time
+import re
 
 from dent_os_testbed.lib.traffic.ixnetwork.ixnetwork_ixia_client import IxnetworkIxiaClient
 from ixnetwork_restpy.assistants.statistics.statviewassistant import StatViewAssistant as SVA
@@ -20,6 +21,8 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
         stop_protocols - [protocols]
         get_protocol_stats - [protocols]
         clear_protocol_stats - [protocols]
+        send_ping - [port, dst_ip, src_ip]
+        send_arp - [port, src_ip]
 
     """
 
@@ -67,7 +70,7 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
             if not caddr:
                 return 0, "No Address to connect!"
             gw = TestPlatform(ip_address=caddr, rest_port=cport)
-            gw.Authenticate("admin", "admin")
+            gw.Authenticate(device.username, device.password)
             # session = gw.Sessions.find()[0]
             # device.applog.info(session)
             # if session.Id == -1:
@@ -100,6 +103,18 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
             device.applog.info("Assigning ports")
             IxnetworkIxiaClientImpl.ixnet.AssignPorts(pports, [], vport_hrefs, True)
             for port, vport in vports.items():
+                # The port numbers for mixed mode are
+                # divided equally between copper and fiber
+                if device.media_mode == "mixed":
+                    device.applog.info("Changing port: {} media mode from copper to fiber".format(port))
+                    vport[0].L1Config.NovusTenGigLan.Media = [link[2] for link in device.links if link[0] == port][0]
+                elif device.media_mode == "fiber":
+                    device.applog.info("Changing all vports media mode to fiber")
+                    vport[0].L1Config.NovusTenGigLan.Media = "fiber"
+                else:
+                    device.applog.info("Changing all vports media mode to copper")
+                    vport[0].L1Config.NovusTenGigLan.Media = "copper"
+
                 device.applog.info("Adding Ipv4 on ixia port {} swp {}".format(port, vport[1]))
                 topo = IxnetworkIxiaClientImpl.ixnet.Topology.add(Vports=vport[0])
                 for dev in dev_groups[port]:
@@ -189,6 +204,50 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
     def format_traffic_item(self, command, *argv, **kwarg):
         return command
 
+    @staticmethod
+    def __parse_multivalue(value):
+        if not "type" in value:
+            raise KeyError(f"Value type is mandatory {value}")
+
+        if value["type"] == "single":
+            return {
+                "ValueType": "singleValue",
+                "SingleValue":  value.get("value", None),
+            }
+        elif value["type"] in ("increment", "decrement"):
+            return {
+                "ValueType": value["type"],
+                "StartValue": value.get("start", None),
+                "StepValue": value.get("step", None),
+                # choosing a large number will increase wait time from Ixia
+                "CountValue": value.get("count", 255),
+            }
+        elif value["type"] == "list":
+            if not value.get("list", []):
+                raise ValueError("Value list cannot be empty")
+            return {
+                "ValueType": "valueList",
+                "ValueList": value["list"],
+            }
+        elif value["type"] == "random":
+            return {
+                "ValueType": "nonRepeatableRandom",
+                "RandomMask": value.get("mask", None),  # ignored when applied to MAC
+            }
+
+        valid_types = ("single", "increment", "decrement", "list", "random")
+        raise ValueError(f"Valid multivalue types are: {valid_types}")
+
+    def __update_field(self, field, value):
+        if type(value) == str or type(value) == int or type(value) == float:
+            param = self.__parse_multivalue({"type": "single", "value": value})
+        elif type(value) == dict:
+            param = self.__parse_multivalue(value)
+        else:
+            raise ValueError(f"Unable to set {value} for field {field.Name}")
+        field.Auto = False
+        field.update(**param)
+
     def set_l4_traffic(self, config_element, ipv4_stack, pkt_data):
         if "ipproto" not in pkt_data:
             return
@@ -199,39 +258,23 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
         )
         l4_stack = config_element.Stack.read(ipv4_stack.AppendProtocol(ipproto_template))
         if "dstPort" in pkt_data:
-            dst_port = l4_stack.Field.find(
-                FieldTypeId="{}.header.dstPort".format(pkt_data["ipproto"])
-            )
-            dst_port.Auto = False
             if ":" in pkt_data["dstPort"]:
                 start, step, count = pkt_data["dstPort"].split(":")
-                dst_port.update(
-                    ValueType="increment", StartValue=start, StepValue=step, CountValue=count
-                )
+                value = {"type": "increment", "start": start, "step": step, "count": count}
             else:
-                dst_port.update(
-                    ValueType="singleValue", SingleValue="{}".format(pkt_data["dstPort"])
-                )
+                value = pkt_data["dstPort"]
+            self.__update_field(l4_stack.Field.find(FieldTypeId=f"{pkt_data['ipproto']}.header.dstPort"),
+                                value)
         if "srcPort" in pkt_data:
-            src_port = l4_stack.Field.find(
-                FieldTypeId="{}.header.srcPort".format(pkt_data["ipproto"])
-            )
-            src_port.Auto = False
-            src_port.update(ValueType="singleValue", SingleValue="{}".format(pkt_data["srcPort"]))
+            self.__update_field(l4_stack.Field.find(FieldTypeId=f"{pkt_data['ipproto']}.header.srcPort"),
+                                pkt_data["srcPort"])
 
         if "icmpType" in pkt_data:
-            icmp_type = l4_stack.Field.find(
-                FieldTypeId="{}.message.messageType".format(pkt_data["ipproto"])
-            )
-            icmp_type.Auto = False
-            icmp_type.update(ValueType="singleValue", SingleValue="{}".format(pkt_data["icmpType"]))
-
+            self.__update_field(l4_stack.Field.find(FieldTypeId=f"{pkt_data['ipproto']}.message.messageType"),
+                                pkt_data["icmpType"])
         if "icmpCode" in pkt_data:
-            icmp_code = l4_stack.Field.find(
-                FieldTypeId="{}.message.codeValue".format(pkt_data["ipproto"])
-            )
-            icmp_code.Auto = False
-            icmp_code.update(ValueType="singleValue", SingleValue="{}".format(pkt_data["icmpCode"]))
+            self.__update_field(l4_stack.Field.find(FieldTypeId=f"{pkt_data['ipproto']}.message.codeValue"),
+                                pkt_data["icmpCode"])
 
     def set_ethernet_traffic(self, device, name, pkt_data, traffic_type):
         # create an ipv4 traffic item
@@ -288,50 +331,36 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                     Type="fixed", FixedSize=pkt_data.get("frameSize", "512")
                 )
                 config_element.TransmissionControl.update(Type="continuous")
-                ethernet_stack = config_element.Stack.find(StackTypeId="^ethernet$")
+                eth_stack = config_element.Stack.find(StackTypeId="^ethernet$")
                 if "vlanID" in pkt_data:
                     vlan_stack = config_element.Stack.read(
-                        ethernet_stack.AppendProtocol(vlan_template)
+                        eth_stack.AppendProtocol(vlan_template)
                     )
                     ipv4_stack = config_element.Stack.read(vlan_stack.AppendProtocol(ipv4_template))
                 else:
                     ipv4_stack = config_element.Stack.read(
-                        ethernet_stack.AppendProtocol(ipv4_template)
+                        eth_stack.AppendProtocol(ipv4_template)
                     )
-                # update the Mac address
                 if "dstMac" in pkt_data:
-                    dst_mac = ethernet_stack.Field.find(
-                        FieldTypeId="ethernet.header.destinationAddress"
-                    )
-                    dst_mac.Auto = False
-                    dst_mac.update(
-                        ValueType="singleValue", SingleValue="{}".format(pkt_data["dstMac"])
-                    )
+                    self.__update_field(eth_stack.Field.find(FieldTypeId="ethernet.header.destinationAddress"),
+                                        pkt_data["dstMac"])
                 if "srcMac" in pkt_data:
-                    src_mac = ethernet_stack.Field.find(FieldTypeId="ethernet.header.sourceAddress")
-                    src_mac.Auto = False
-                    src_mac.update(
-                        ValueType="singleValue", SingleValue="{}".format(pkt_data["srcMac"])
-                    )
+                    self.__update_field(eth_stack.Field.find(FieldTypeId="ethernet.header.sourceAddress"),
+                                        pkt_data["srcMac"])
                 if "vlanID" in pkt_data:
-                    vlan_id = vlan_stack.Field.find(FieldTypeId="vlan.header.vlanTag.vlanID")
-                    vlan_id.Auto = False
-                    vlan_id.update(
-                        ValueType="singleValue", SingleValue="{}".format(pkt_data["vlanID"])
-                    )
-                # update the Ip address
+                    self.__update_field(vlan_stack.Field.find(FieldTypeId="vlan.header.vlanTag.vlanID"),
+                                        pkt_data["vlanID"])
+                    if "vlanPriority" in pkt_data:
+                        self.__update_field(vlan_stack.Field.find(FieldTypeId="vlan.header.vlanTag.vlanUserPriority"),
+                                            pkt_data["vlanPriority"])
+                    ti.Tracking.find()[0].TrackBy = ["trackingenabled0", "sourceDestValuePair0",
+                                                     "vlanVlanId0", "vlanVlanUserPriority0"]
                 if "dstIp" in pkt_data:
-                    dst_ip = ipv4_stack.Field.find(FieldTypeId="ipv4.header.dstIp")
-                    dst_ip.Auto = False
-                    dst_ip.update(
-                        ValueType="singleValue", SingleValue="{}".format(pkt_data["dstIp"])
-                    )
+                    self.__update_field(ipv4_stack.Field.find(FieldTypeId="ipv4.header.dstIp"),
+                                        pkt_data["dstIp"])
                 if "srcIp" in pkt_data:
-                    src_ip = ipv4_stack.Field.find(FieldTypeId="ipv4.header.srcIp")
-                    src_ip.Auto = False
-                    src_ip.update(
-                        ValueType="singleValue", SingleValue="{}".format(pkt_data["srcIp"])
-                    )
+                    self.__update_field(ipv4_stack.Field.find(FieldTypeId="ipv4.header.srcIp"),
+                                        pkt_data["srcIp"])
                 self.set_l4_traffic(config_element, ipv4_stack, pkt_data)
 
     def set_ipv4_traffic(self, device, name, pkt_data, traffic_type):
@@ -485,3 +514,92 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
 
     def parse_protocol(self, command, output, *argv, **kwarg):
         return command
+
+    def format_send_ping(self, command, *argv, **kwarg):
+        return command
+
+    def format_send_arp(self, command, *argv, **kwarg):
+        return command
+
+    @classmethod
+    def __get_ip_iface(cls, port, port_ip=None):
+        vport = cls.ixnet.Vport.find(Name=port)
+        for ip_ep in cls.ip_eps:
+            # ip -> eth -> dev group -> topo
+            topo = ip_ep.parent.parent.parent
+            if vport.href not in topo.Ports:
+                continue
+            if port_ip and port_ip not in str(ip_ep.Address):
+                continue
+            return ip_ep
+        return None
+
+    def run_send_ping(self, device, command, *argv, **kwarg):
+        """
+        - IxiaClient
+           send_ping - [port, dst_ip, src_ip]
+        """
+        params = kwarg["params"]
+        res = []
+        err = 0
+        for param in params:
+            port = param["port"]
+            dst = param["dst_ip"]
+            src = param.get("src_ip", None)
+            out = {
+                "port": port,
+                "src_ip": src,
+                "dst_ip": dst,
+            }
+
+            ip_ep = self.__get_ip_iface(port, src)
+            if not ip_ep:
+                err_msg = f"Did not find IP endpoint {port} with ip {src}"
+                out["arg2"] = False
+                out["arg3"] = err_msg
+                device.applog.info(err_msg)
+            else:
+                device.applog.info(f"Sending Ping from {ip_ep.Name} to {dst}")
+                out.update(ip_ep.SendPing(DestIp=dst)[0])
+
+            res.append(out)
+            if not out["arg2"]:
+                err = 1
+
+        return err, [{"success": msg["arg2"],
+                      "info": msg["arg3"],
+                      "port": msg["port"],
+                      "src_ip": msg["src_ip"],
+                      "dst_ip": msg["dst_ip"]} for msg in res]
+
+    def run_send_arp(self, device, command, *argv, **kwarg):
+        """
+        - IxiaClient
+           send_arp - [port, src_ip]
+        """
+        params = kwarg["params"]
+        res = []
+        err = 0
+        for param in params:
+            port = param["port"]
+            src = param.get("src_ip", None)
+            out = {
+                "port": port,
+                "src_ip": src,
+            }
+
+            ip_ep = self.__get_ip_iface(port, src)
+            if not ip_ep:
+                out["arg2"] = False
+                device.applog.info(f"Did not find IP endpoint {port} with ip {src}")
+            else:
+                device.applog.info(f"Sending ARP from {ip_ep.Name}")
+                out.update(ip_ep.SendArp()[0])
+
+            res.append(out)
+            if not out["arg2"]:
+                err = 1
+
+        return err, [{"success": msg["arg2"],
+                      "port": msg["port"],
+                      "src_ip": msg["src_ip"]} for msg in res]

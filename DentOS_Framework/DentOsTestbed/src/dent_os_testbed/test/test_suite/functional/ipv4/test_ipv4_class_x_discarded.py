@@ -17,7 +17,7 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
 
 pytestmark = [
     pytest.mark.suite_functional_ipv4,
-    pytest.mark.usefixtures("cleanup_ip_addrs", "cleanup_tgen"),
+    pytest.mark.usefixtures("cleanup_ip_addrs", "cleanup_tgen", "enable_ipv4_forwarding"),
     pytest.mark.asyncio,
 ]
 

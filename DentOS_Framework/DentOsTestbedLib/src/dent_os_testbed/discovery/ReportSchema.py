@@ -739,6 +739,8 @@ class TrafficGenSchemaDict(SchemaDict):
         "protocols":str,
         "traffic_names":str,
         "ports":str,
+        "src_ip":str,
+        "dst_ip":str,
 
     }
 class TestbedL3SchemaDict(SchemaDict):
