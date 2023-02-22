@@ -1,9 +1,9 @@
 import pytest
 import asyncio
 
-from dent_os_testbed.lib.bridge.bridge_fdb import BridgeFdb
 from dent_os_testbed.lib.bridge.bridge_link import BridgeLink
 from dent_os_testbed.lib.bridge.bridge_vlan import BridgeVlan
+from dent_os_testbed.lib.bridge.bridge_fdb import BridgeFdb
 from dent_os_testbed.lib.ip.ip_link import IpLink
 
 from dent_os_testbed.utils.test_utils.tgen_utils import (
@@ -12,9 +12,9 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_setup_streams,
     tgen_utils_start_traffic,
     tgen_utils_stop_traffic,
+    tgen_utils_get_loss,
     tgen_utils_dev_groups_from_config,
     tgen_utils_traffic_generator_connect,
-    tgen_utils_get_loss
 )
 
 pytestmark = [
@@ -48,8 +48,7 @@ async def test_bridging_remove_restore_from_vlan(testbed):
     bridge = "br0"
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 3)
     if not tgen_dev or not dent_devices:
-        print.error(
-            "The testbed does not have enough dent with tgen connections")
+        print("The testbed does not have enough dent with tgen connections")
         return
     dent_dev = dent_devices[0]
     device_host_name = dent_dev.host_name
@@ -96,7 +95,7 @@ async def test_bridging_remove_restore_from_vlan(testbed):
 
     out = await BridgeFdb.show(input_data=[{device_host_name: [{"options": "-j"}]}],
                                parse_output=True)
-    assert out[0][device_host_name]["rc"] == 0, "Failed to get fdb entry.\n"
+    assert out[0][device_host_name]["rc"] == 0, f"Failed to get fdb entry.\n"
 
     fdb_entries = out[0][device_host_name]["parsed_output"]
     learned_macs = [en["mac"] for en in fdb_entries if "mac" in en]
