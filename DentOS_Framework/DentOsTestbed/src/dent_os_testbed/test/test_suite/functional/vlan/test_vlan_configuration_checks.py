@@ -4,7 +4,9 @@ from dent_os_testbed.lib.bridge.bridge_vlan import BridgeVlan
 from dent_os_testbed.lib.ip.ip_link import IpLink
 from dent_os_testbed.utils.test_utils.tb_utils import tb_get_all_devices
 
-pytestmark = [pytest.mark.suite_functional_vlan, pytest.mark.asyncio]
+pytestmark = [pytest.mark.suite_functional_vlan,
+              pytest.mark.asyncio,
+              pytest.mark.usefixtures("cleanup_bridges", "cleanup_tgen")]
 
 
 async def test_vlan_can_set_max_vlans(testbed):

@@ -151,7 +151,7 @@ async def test_vlan_all_supported_modes_multicast(testbed):
     # 4. Setup packet stream(s).
     streams = {f"traffic with VLAN ID: {vlan}": {
         "type": "raw",
-        "rate": 50,
+        "rate": 10,
         "protocol": "802.1Q",
         "ip_source": tx_ports,
         "ip_destination": rx_ports,
@@ -162,7 +162,7 @@ async def test_vlan_all_supported_modes_multicast(testbed):
 
     streams.update({"Untagged traffic": {
         "type": "raw",
-        "rate": 50,
+        "rate": 10,
         "protocol": "802.1Q",
         "ip_source": tx_ports,
         "ip_destination": rx_ports,
