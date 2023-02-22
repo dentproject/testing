@@ -61,7 +61,8 @@ class LinuxBridgeFdbImpl(LinuxBridgeFdb):
         params = kwarg["params"]
         cmd = "bridge {} fdb {} ".format(params.get("options", ""), command)
         ############# Implement me ################
-
+        if "device" in params:
+            cmd += "dev {} ".format(params.get("device", ""))
         return cmd
 
     def parse_show(self, command, output, *argv, **kwarg):

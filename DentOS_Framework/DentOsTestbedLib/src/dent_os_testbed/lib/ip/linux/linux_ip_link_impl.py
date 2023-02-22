@@ -80,9 +80,11 @@ class LinuxIpLinkImpl(LinuxIpLink):
         cmd = "ip link {} ".format(command)
         # custom code here
         if "device" in params:
-            cmd += "{} ".format((params["device"]))
+            cmd += "dev {} ".format((params["device"]))
         if "group" in params:
             cmd += "group {} ".format((params["group"]))
+        if "type" in params:
+            cmd += "type {} ".format((params["type"]))
         if "ageing_time" in params:
             cmd += "ageing_time {} ".format((params["ageing_time"]))
         if "operstate" in params:
