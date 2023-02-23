@@ -1,8 +1,8 @@
 import pytest
 import asyncio
 
-from dent_os_testbed.lib.bridge.bridge_fdb import BridgeFdb
 from dent_os_testbed.lib.bridge.bridge_link import BridgeLink
+from dent_os_testbed.lib.bridge.bridge_fdb import BridgeFdb
 from dent_os_testbed.lib.ip.ip_link import IpLink
 
 from dent_os_testbed.utils.test_utils.tgen_utils import (
@@ -11,9 +11,9 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_setup_streams,
     tgen_utils_start_traffic,
     tgen_utils_stop_traffic,
+    tgen_utils_get_loss,
     tgen_utils_dev_groups_from_config,
     tgen_utils_traffic_generator_connect,
-    tgen_utils_get_loss
 )
 
 pytestmark = [
@@ -35,8 +35,8 @@ async def test_bridging_learning_illegal_address(testbed):
     4.  Set bridge br0 admin state UP.
     5.  Set ports swp1, swp2, swp3, swp4 learning ON.
     6.  Set ports swp1, swp2, swp3, swp4 flood OFF.
-    7.  Send traffic by TG with illegal address.
-    8.  Verify that illegal address haven't been learned.
+    7.  Send traffic by TG with illegal addresses.
+    8.  Verify that illegal addresses haven't been learned.
     """
 
     bridge = "br0"
@@ -53,14 +53,12 @@ async def test_bridging_learning_illegal_address(testbed):
     out = await IpLink.add(
         input_data=[{device_host_name: [
             {"device": bridge, "type": "bridge"}]}])
-    err_msg = f"Verify that bridge created.\n{out}"
-    assert out[0][device_host_name]["rc"] == 0, err_msg
+    assert out[0][device_host_name]["rc"] == 0, f"Verify that bridge created.\n{out}"
 
     out = await IpLink.set(
         input_data=[{device_host_name: [
             {"device": bridge, "operstate": "up"}]}])
-    err_msg = f"Verify that bridge set to 'UP' state.\n{out}"
-    assert out[0][device_host_name]["rc"] == 0, err_msg
+    assert out[0][device_host_name]["rc"] == 0, f"Verify that bridge set to 'UP' state.\n{out}"
 
     out = await IpLink.set(
         input_data=[{device_host_name: [
@@ -75,7 +73,7 @@ async def test_bridging_learning_illegal_address(testbed):
     assert out[0][device_host_name]["rc"] == 0, err_msg
 
     address_map = (
-        #swp port, tg port,     tg ip,     gw,        plen
+        # swp port, tg port,    tg ip,     gw,        plen
         (ports[0], tg_ports[0], "1.1.1.2", "1.1.1.1", 24),
         (ports[1], tg_ports[1], "2.2.2.2", "2.2.2.1", 24),
         (ports[2], tg_ports[2], "3.3.3.2", "3.3.3.1", 24),

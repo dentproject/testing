@@ -1,8 +1,8 @@
 import pytest
 import asyncio
 
-from dent_os_testbed.lib.bridge.bridge_fdb import BridgeFdb
 from dent_os_testbed.lib.bridge.bridge_link import BridgeLink
+from dent_os_testbed.lib.bridge.bridge_fdb import BridgeFdb
 from dent_os_testbed.lib.ip.ip_link import IpLink
 
 from dent_os_testbed.utils.test_utils.tgen_utils import (

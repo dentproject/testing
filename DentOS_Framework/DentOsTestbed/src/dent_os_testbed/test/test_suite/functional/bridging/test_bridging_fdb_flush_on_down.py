@@ -1,8 +1,8 @@
 import pytest
 import asyncio
 
-from dent_os_testbed.lib.bridge.bridge_fdb import BridgeFdb
 from dent_os_testbed.lib.bridge.bridge_link import BridgeLink
+from dent_os_testbed.lib.bridge.bridge_fdb import BridgeFdb
 from dent_os_testbed.lib.ip.ip_link import IpLink
 
 from dent_os_testbed.utils.test_utils.tgen_utils import (
@@ -10,16 +10,18 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_get_traffic_stats,
     tgen_utils_setup_streams,
     tgen_utils_start_traffic,
-    tgen_utils_stop_protocols,
     tgen_utils_stop_traffic,
+    tgen_utils_get_loss,
     tgen_utils_dev_groups_from_config,
     tgen_utils_traffic_generator_connect,
 )
 
-pytestmark = pytest.mark.suite_functional_bridging
+pytestmark = [
+    pytest.mark.suite_functional_bridging,
+    pytest.mark.asyncio,
+    pytest.mark.usefixtures("cleanup_bridges", "cleanup_tgen")
+]
 
-
-@pytest.mark.asyncio
 async def test_bridging_fdb_flush_on_down(testbed):
     """
     Test Name: test_bridging_fdb_flush_on_down
@@ -42,8 +44,7 @@ async def test_bridging_fdb_flush_on_down(testbed):
     bridge = "br0"
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 2)
     if not tgen_dev or not dent_devices:
-        print.error(
-            "The testbed does not have enough dent with tgen connections")
+        print("The testbed does not have enough dent with tgen connections")
         return
     dent_dev = dent_devices[0]
     device_host_name = dent_dev.host_name
@@ -54,14 +55,12 @@ async def test_bridging_fdb_flush_on_down(testbed):
     out = await IpLink.add(
         input_data=[{device_host_name:  [
             {"device": bridge, "type": "bridge"}]}])
-    err_msg = f"Verify that bridge created.\n{out}"
-    assert out[0][device_host_name]["rc"] == 0, err_msg
+    assert out[0][device_host_name]["rc"] == 0, f"Verify that bridge created.\n{out}"
 
     out = await IpLink.set(
         input_data=[{device_host_name:  [
             {"device": bridge, "operstate": "up"}]}])
-    err_msg = f"Verify that bridge set to 'UP' state.\n{out}"
-    assert out[0][device_host_name]["rc"] == 0, err_msg
+    assert out[0][device_host_name]["rc"] == 0, f"Verify that bridge set to 'UP' state.\n{out}"
 
     out = await IpLink.set(
         input_data=[{device_host_name:  [
@@ -76,7 +75,7 @@ async def test_bridging_fdb_flush_on_down(testbed):
     assert out[0][device_host_name]["rc"] == 0, err_msg
 
     address_map = (
-        #swp port, tg port,     tg ip,      gw          plen
+        # swp port, tg port,    tg ip,      gw          plen
         (ports[0], tg_ports[0], "11.0.0.1", "11.0.0.2", 24),
         (ports[1], tg_ports[1], "11.0.0.2", "11.0.0.1", 24)
     )
@@ -108,16 +107,17 @@ async def test_bridging_fdb_flush_on_down(testbed):
     # check the traffic stats
     stats = await tgen_utils_get_traffic_stats(tgen_dev, "Traffic Item Statistics")
     for row in stats.Rows:
-        assert float(row["Loss %"]) == 0.000, f'Failed>Loss percent: {row["Loss %"]}'
+        assert tgen_utils_get_loss(row) == 0.000, \
+            f"Verify that traffic from {row['Tx Port']} to {row['Rx Port']} forwarded.\n{out}"
 
     out = await BridgeFdb.show(input_data=[{device_host_name: [{"options": "-j"}]}],
                                parse_output=True)
-    assert out[0][device_host_name]["rc"] == 0, "Failed to get fdb entry.\n"
+    assert out[0][device_host_name]["rc"] == 0, f"Failed to get fdb entry.\n"
 
     fdb_entries = out[0][device_host_name]["parsed_output"]
     learned_macs = [en["mac"] for en in fdb_entries if "mac" in en]
     err_msg = f"Verify that entry exist in mac table.\n"
-    assert "aa:bb:cc:dd:ee:11" in learned_macs, err_msg
+    assert streams["bridge"]["srcMac"] in learned_macs, err_msg
 
     out = await IpLink.set(
         input_data=[{device_host_name:  [
@@ -127,11 +127,9 @@ async def test_bridging_fdb_flush_on_down(testbed):
 
     out = await BridgeFdb.show(input_data=[{device_host_name: [{"options": "-j"}]}],
                                parse_output=True)
-    assert out[0][device_host_name]["rc"] == 0, "Failed to get fdb entry.\n"
+    assert out[0][device_host_name]["rc"] == 0, f"Failed to get fdb entry.\n"
 
     fdb_entries = out[0][device_host_name]["parsed_output"]
-    unlearned_macs = [en["mac"] for en in fdb_entries if "mac" in en]
+    learned_macs = [en["mac"] for en in fdb_entries if "mac" in en]
     err_msg = f"Verify that entry does not exist in mac table.\n"
-    assert "aa:bb:cc:dd:ee:11" not in unlearned_macs, err_msg
-
-    await tgen_utils_stop_protocols(tgen_dev)
+    assert streams["bridge"]["srcMac"] not in learned_macs, err_msg

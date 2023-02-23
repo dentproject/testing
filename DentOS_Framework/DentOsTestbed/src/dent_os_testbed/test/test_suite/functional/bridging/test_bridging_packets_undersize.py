@@ -2,9 +2,9 @@ import pytest
 import asyncio
 
 from dent_os_testbed.lib.bridge.bridge_link import BridgeLink
-from dent_os_testbed.lib.ip.ip_link import IpLink
-from dent_os_testbed.lib.ethtool.ethtool import Ethtool
 from dent_os_testbed.lib.bridge.bridge_fdb import BridgeFdb
+from dent_os_testbed.lib.ethtool.ethtool import Ethtool
+from dent_os_testbed.lib.ip.ip_link import IpLink
 
 from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_get_dent_devices_with_tgen,
@@ -12,9 +12,9 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_setup_streams,
     tgen_utils_start_traffic,
     tgen_utils_stop_traffic,
+    tgen_utils_get_loss,
     tgen_utils_dev_groups_from_config,
     tgen_utils_traffic_generator_connect,
-    tgen_utils_get_loss
 )
 
 pytestmark = [
@@ -48,14 +48,14 @@ async def test_bridging_packets_undersize(testbed):
     5.  Set ports swp1, swp2, swp3, swp4 learning ON.
     6.  Set ports swp1, swp2, swp3, swp4 flood OFF.
     7.  Set streams frameSize 48.
-    8.  Send traffic for bridge to learn address.
-    9.  Verify that address haven't been learned due to undersized packet.
+    8.  Send traffic for bridge to learn addresses.
+    9.  Verify that addresses haven't been learned due to undersized packet.
     """
 
     bridge = "br0"
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 4)
     if not tgen_dev or not dent_devices:
-        print.error("The testbed does not have enough dent with tgen connections")
+        print("The testbed does not have enough dent with tgen connections")
         return
     dent_dev = dent_devices[0]
     device_host_name = dent_dev.host_name
@@ -86,7 +86,7 @@ async def test_bridging_packets_undersize(testbed):
     assert out[0][device_host_name]["rc"] == 0, err_msg
 
     address_map = (
-        #swp port, tg port,     tg ip,     gw,        plen
+        # swp port, tg port,    tg ip,     gw,        plen
         (ports[0], tg_ports[0], "1.1.1.2", "1.1.1.1", 24),
         (ports[1], tg_ports[1], "2.2.2.2", "2.2.2.1", 24),
         (ports[2], tg_ports[2], "3.3.3.2", "3.3.3.1", 24),
