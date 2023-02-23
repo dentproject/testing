@@ -1,8 +1,8 @@
 - module: poe
   description: poectl - query or control power over ethernet enabled ports.
   classes:
-   - name: poectl
-     desc: |
+  - name: poectl
+    desc: |
       -h, --help                           Show this help message and exit
       -i, --port-info PORT_LIST            Return detailed information for the specified ports.
         eg: -i swp1-swp5,swp10
@@ -19,32 +19,32 @@
       --save                               Save the current configuration. The saved configuration
                                            is automatically loaded on system boot.
       --load                               Load and apply the saved configuration.
-     apis: ['show', 'enable', 'disable', 'save', 'restore' ]
-     members:
-      - name: port
-        type: string
-        desc: "port name"
-        key: True
-      - name: cmd_options
-        type: string
-        desc: command line options
-      - name: status
-        type: string
-      - name: priority
-        type: string
-      - name: power
-        type: string
-      - name: pd_type
-        type: string
-      - name: current
-        type: string
-      - name: state
-        type: string
-      - name: voltage
-        type: string
-      - name: pd_class
-        type: string
-      - name: allocated_power
-        type: string
-      - name: error_str
-        type: string
+    apis: ['show', 'enable', 'disable', 'save', 'restore']
+    members:
+    - name: port
+      type: string
+      desc: "port name"
+      key: True
+    - name: cmd_options
+      type: string
+      desc: command line options
+    - name: status
+      type: string
+    - name: priority
+      type: string
+    - name: power
+      type: string
+    - name: pd_type
+      type: string
+    - name: current
+      type: string
+    - name: state
+      type: string
+    - name: voltage
+      type: string
+    - name: pd_class
+      type: string
+    - name: allocated_power
+      type: string
+    - name: error_str
+      type: string

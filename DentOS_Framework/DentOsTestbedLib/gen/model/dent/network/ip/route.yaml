@@ -1,8 +1,8 @@
 - module: ip
   description: ip route module to access kernel route table
   classes:
-   - name: ip_route
-     desc: |
+  - name: ip_route
+    desc: |
       - ip [ ip-OPTIONS ] route { COMMAND | help }
       - ip route { show | flush } SELECTOR
       - ip route save SELECTOR
@@ -10,148 +10,148 @@
       - ip route get ROUTE_GET_FLAGS ADDRESS [ from ADDRESS iif STRING ] [ oif STRING ] [ mark MARK ]
         [ tos TOS ] [ vrf NAME ] [ ipproto PROTOCOL ] [ sport NUMBER ] [ dport NUMBER ]
       - ip route { add | del | change | append | replace } ROUTE
-     apis: ['add', 'delete', 'change', 'append', 'replace', 'get', 'show', 'flush', 'save', 'restore']
-     members:
-      - name: type
-        type: string
-        desc: |
-          TYPE := [ unicast | local | broadcast | multicast | throw | unreachable | prohibit | blackhole | nat ]
-      - name: dst
-        type: ip_addr_t
-        key: True
-        desc: |
-          destination prefix of the route. If TYPE is omitted, ip assumes type unicast. Another
-          values of TYPE are listed above. PREFIX is IPv4 or IPv6 address optionally followed by
-          slash and prefix length. If the length of the prefix is missing, ip assumes full-length
-          host route. Also there is one special PREFIX --- default --- which is equivalent to
-          IP 0/0 or to IPv6 /0.
-      - name: dev
-        type: string
-        desc: "dev NAME --- the output device name."
-      - name: protocol
-        type: string
-        desc: |
-          protocol RTPROTO --- routing protocol identifier of this route. RTPROTO may be a number
-          or a string from the file /etc/iproute2/rt_protos. If the routing protocol ID is not
-          given ip assumes the protocol is boot. IE. This route has been added by someone
-          who does not understand what they are doing. Several of these protocol values have a
-          fixed interpretation.
-      - name: scope
-        type: string
-        desc : |
-          scope SCOPE_VAL --- scope of the destinations covered by the route prefix. SCOPE_VAL
-          may be a number or a string from the file /etc/iproute2/rt_scopes. If this parameter
-          is omitted, ip assumes scope global for all gatewayed unicast routes, scope link
-          for direct unicast routes and broadcasts and scope host for local routes.
-      - name: prefsrc
-        type: ip_addr_t
-      - name: flags
-        type: string_list
-      - name: tos
-        type: int
-        desc: |
-          tos TOS or dsfield TOS --- Type Of Service (TOS) key. This key has no mask associated
-          and the longest match is understood as first, compare TOS of the route and of the packet,
-          if they are not equal, then the packet still may match to a route with zero TOS. TOS is
-          either 8bit hexadecimal number or an identifier from /etc/iproute2/rt_dsfield.
-      - name: table
-        type: int
-        desc: |
-          table TABLEID --- table to add this route. TABLEID may be a number or a string from the
-          file /etc/iproute2/rt_tables. If this parameter is omitted, ip assumes table main, with
-          exception of local, broadcast and nat routes, which are put to table local by default.
-      - name: metric
-        type: int
-        desc: |
-          metric NUMBER or preference NUMBER --- preference value of the route. NUMBER is an
-          arbitrary 32bit number.
-      - name: nexthops
-        cls: "dent:ip:nexthop"
-        desc: |
-          nexthop NEXTHOP --- nexthop of multipath route. NEXTHOP is a complex value with its
-          own syntax as follows: via ADDRESS is nexthop router. dev NAME is output device.
-          weight NUMBER is weight of this element of multipath route reflecting its relative
-          bandwidth or quality.
-      - name: via
-        type: ip_addr_t
-        desc: |
-          via ADDRESS --- the address of nexthop router. Actually, the sense of this field
-          depends on route type. For normal unicast routes it is either true nexthop router
-          or, if it is a direct route installed in BSD compatibility mode, it can be a local
-          address of the interface. For NAT routes it is the first address of block of
-          translated IP destinations.
-      - name: weight
-        type: int
-        desc: "weight NUMBER is weight of this element of multipath route reflecting its relative bandwidth or quality."
-      - name: nhflags
-        type: int
-        desc: "onlink | pervasive"
-      - name: mtu
-        type: int
-        desc: |
-          mtu MTU or mtu lock MTU --- the MTU along the path to destination. If modifier lock
-          is not used, MTU may be updated by the kernel due to Path MTU Discovery. If the
-          modifier lock is used then no path MTU discovery will be performed and all the packets
-          will be sent without the DF bit set for the IPv4 case or fragmented to the MTU
-          for the IPv6 case.
-      - name: advmss
-        type: int
-      - name: rtt
-        type: int
-        desc: |
-          rtt NUMBER --- the initial RTT (``Round Trip Time) estimate. Actually, in Linux 2.2
-          and 2.0 it is not RTT but the initial TCP retransmission timeout. The kernel forgets
-          it as soon as it receives the first valid ACK from peer. Alas, this means that this
-          attribute affects only the connection retry rate and is hence useless.
-      - name: rttvar
-        type: int
-      - name: reordering
-        type: int
-      - name: window
-        type: int
-        desc: |
-          window NUMBER --- the maximal advertised window for TCP to these destinations measured
-          in bytes. This parameter limits the maximal data bursts our TCP peers are allowed to
-          send to us.
-      - name: cwnd
-        type: int
-      - name: ssthresh
-        type: int
-      - name: realms
-        type: int
-        desc: |
-          realms REALMID --- the realm which this route is assigned to. REALMID may be a number
-          or a string from the file /etc/iproute2/rt_realms.
-      - name: rto_min
-        type: time_t
-      - name: initcwnd
-        type: int
-      - name: initrwnd
-        type: int
-      - name: quickack
-        type: bool
-      - name: gateway
-        type: ip_addr_t
-      - name: src
-        type: ip_addr_t
-        desc: |
-          src ADDRESS --- the source address to prefer using when sending to the destinations
-          covered by route prefix. This address must be defined on a local machine interface.
-          This will come into play when routes and rules are combined with the masquerade rules
-          of the ipchains firewall we discuss later.
-      - name: options
-        type: string
-        desc: |
-         OPTIONS := { -V[ersion] | -h[uman-readable] | -s[tatistics] | -d[etails] | -r[esolve]
-          | -iec | -f[amily] { inet | inet6 | ipx | dnet | link } | -4 | -6 | -I | -D | -B | -0 | -l[oops]
-          { maximum-addr-flush-attempts } | -o[neline] | -rc[vbuf] [size] | -t[imestamp] | -ts[hort] |
-          -n[etns] name | -a[ll] | -c[olor] | -br[ief] | -j[son] | -p[retty] }
-   - name: nexthop
-     desc: Nexthop
-     members:
-      - name: via
-        type: string
-      - name: dev
-        type: string
-      - name: weight
-        type: int
+    apis: ['add', 'delete', 'change', 'append', 'replace', 'get', 'show', 'flush', 'save', 'restore']
+    members:
+    - name: type
+      type: string
+      desc: |
+        TYPE := [ unicast | local | broadcast | multicast | throw | unreachable | prohibit | blackhole | nat ]
+    - name: dst
+      type: ip_addr_t
+      key: True
+      desc: |
+        destination prefix of the route. If TYPE is omitted, ip assumes type unicast. Another
+        values of TYPE are listed above. PREFIX is IPv4 or IPv6 address optionally followed by
+        slash and prefix length. If the length of the prefix is missing, ip assumes full-length
+        host route. Also there is one special PREFIX --- default --- which is equivalent to
+        IP 0/0 or to IPv6 /0.
+    - name: dev
+      type: string
+      desc: "dev NAME --- the output device name."
+    - name: protocol
+      type: string
+      desc: |
+        protocol RTPROTO --- routing protocol identifier of this route. RTPROTO may be a number
+        or a string from the file /etc/iproute2/rt_protos. If the routing protocol ID is not
+        given ip assumes the protocol is boot. IE. This route has been added by someone
+        who does not understand what they are doing. Several of these protocol values have a
+        fixed interpretation.
+    - name: scope
+      type: string
+      desc: |
+        scope SCOPE_VAL --- scope of the destinations covered by the route prefix. SCOPE_VAL
+        may be a number or a string from the file /etc/iproute2/rt_scopes. If this parameter
+        is omitted, ip assumes scope global for all gatewayed unicast routes, scope link
+        for direct unicast routes and broadcasts and scope host for local routes.
+    - name: prefsrc
+      type: ip_addr_t
+    - name: flags
+      type: string_list
+    - name: tos
+      type: int
+      desc: |
+        tos TOS or dsfield TOS --- Type Of Service (TOS) key. This key has no mask associated
+        and the longest match is understood as first, compare TOS of the route and of the packet,
+        if they are not equal, then the packet still may match to a route with zero TOS. TOS is
+        either 8bit hexadecimal number or an identifier from /etc/iproute2/rt_dsfield.
+    - name: table
+      type: int
+      desc: |
+        table TABLEID --- table to add this route. TABLEID may be a number or a string from the
+        file /etc/iproute2/rt_tables. If this parameter is omitted, ip assumes table main, with
+        exception of local, broadcast and nat routes, which are put to table local by default.
+    - name: metric
+      type: int
+      desc: |
+        metric NUMBER or preference NUMBER --- preference value of the route. NUMBER is an
+        arbitrary 32bit number.
+    - name: nexthops
+      cls: "dent:ip:nexthop"
+      desc: |
+        nexthop NEXTHOP --- nexthop of multipath route. NEXTHOP is a complex value with its
+        own syntax as follows: via ADDRESS is nexthop router. dev NAME is output device.
+        weight NUMBER is weight of this element of multipath route reflecting its relative
+        bandwidth or quality.
+    - name: via
+      type: ip_addr_t
+      desc: |
+        via ADDRESS --- the address of nexthop router. Actually, the sense of this field
+        depends on route type. For normal unicast routes it is either true nexthop router
+        or, if it is a direct route installed in BSD compatibility mode, it can be a local
+        address of the interface. For NAT routes it is the first address of block of
+        translated IP destinations.
+    - name: weight
+      type: int
+      desc: "weight NUMBER is weight of this element of multipath route reflecting its relative bandwidth or quality."
+    - name: nhflags
+      type: int
+      desc: "onlink | pervasive"
+    - name: mtu
+      type: int
+      desc: |
+        mtu MTU or mtu lock MTU --- the MTU along the path to destination. If modifier lock
+        is not used, MTU may be updated by the kernel due to Path MTU Discovery. If the
+        modifier lock is used then no path MTU discovery will be performed and all the packets
+        will be sent without the DF bit set for the IPv4 case or fragmented to the MTU
+        for the IPv6 case.
+    - name: advmss
+      type: int
+    - name: rtt
+      type: int
+      desc: |
+        rtt NUMBER --- the initial RTT (``Round Trip Time) estimate. Actually, in Linux 2.2
+        and 2.0 it is not RTT but the initial TCP retransmission timeout. The kernel forgets
+        it as soon as it receives the first valid ACK from peer. Alas, this means that this
+        attribute affects only the connection retry rate and is hence useless.
+    - name: rttvar
+      type: int
+    - name: reordering
+      type: int
+    - name: window
+      type: int
+      desc: |
+        window NUMBER --- the maximal advertised window for TCP to these destinations measured
+        in bytes. This parameter limits the maximal data bursts our TCP peers are allowed to
+        send to us.
+    - name: cwnd
+      type: int
+    - name: ssthresh
+      type: int
+    - name: realms
+      type: int
+      desc: |
+        realms REALMID --- the realm which this route is assigned to. REALMID may be a number
+        or a string from the file /etc/iproute2/rt_realms.
+    - name: rto_min
+      type: time_t
+    - name: initcwnd
+      type: int
+    - name: initrwnd
+      type: int
+    - name: quickack
+      type: bool
+    - name: gateway
+      type: ip_addr_t
+    - name: src
+      type: ip_addr_t
+      desc: |
+        src ADDRESS --- the source address to prefer using when sending to the destinations
+        covered by route prefix. This address must be defined on a local machine interface.
+        This will come into play when routes and rules are combined with the masquerade rules
+        of the ipchains firewall we discuss later.
+    - name: options
+      type: string
+      desc: |
+        OPTIONS := { -V[ersion] | -h[uman-readable] | -s[tatistics] | -d[etails] | -r[esolve]
+         | -iec | -f[amily] { inet | inet6 | ipx | dnet | link } | -4 | -6 | -I | -D | -B | -0 | -l[oops]
+         { maximum-addr-flush-attempts } | -o[neline] | -rc[vbuf] [size] | -t[imestamp] | -ts[hort] |
+         -n[etns] name | -a[ll] | -c[olor] | -br[ief] | -j[son] | -p[retty] }
+  - name: nexthop
+    desc: Nexthop
+    members:
+    - name: via
+      type: string
+    - name: dev
+      type: string
+    - name: weight
+      type: int

@@ -1,9 +1,9 @@
 - module: frr
   description: vtysh is an integrated shell for Quagga routing engine
   classes:
-   - name: bgp
-     apis: ["show", "configure"]
-     desc: |
+  - name: bgp
+    apis: ["show", "configure"]
+    desc: |
       - router bgp 65534
         bgp router-id 10.2.0.101
         neighbor INFRA peer-group
@@ -15,20 +15,20 @@
         neighbor INFRA route-map DENY-ALL out
         neighbor POD soft-reconfiguration inbound
         exit-address-family
-     members:
-      - name: asn
-        type: string
-        desc: asn
-      - name: router-id
-        type: string
-        desc: bgp router-id 10.2.0.101
-      - name: neighbor
-        type: string
-        desc: neighbor
-      - name: address-family
-        type: string
-        desc: address-family
-      - name: options
-        type: string
-        desc: |
-         OPTIONS := { json }
+    members:
+    - name: asn
+      type: string
+      desc: asn
+    - name: router-id
+      type: string
+      desc: bgp router-id 10.2.0.101
+    - name: neighbor
+      type: string
+      desc: neighbor
+    - name: address-family
+      type: string
+      desc: address-family
+    - name: options
+      type: string
+      desc: |
+        OPTIONS := { json }

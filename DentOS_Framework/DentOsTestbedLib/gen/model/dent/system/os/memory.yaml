@@ -1,9 +1,9 @@
 - module: os
   description: os level information
   classes:
-   - name: memory_usage
-     singleton: True
-     desc: |
+  - name: memory_usage
+    singleton: True
+    desc: |
       cat /proc/meminfo
       MemTotal:       15844588 kB
       MemFree:         1907880 kB
@@ -14,21 +14,21 @@
       Active:          8455648 kB
       Inactive:        3306968 kB
 
-     apis: [ 'show' ]
-     members:
-      - name: mem_total
-        type: int
-      - name: mem_free
-        type: int
-      - name: mem_available
-        type: int
-      - name: buffers
-        type: int
-      - name: cached
-        type: int
-      - name: swap_cached
-        type: int
-      - name: active
-        type: int
-      - name: inactive
-        type: int
+    apis: ['show']
+    members:
+    - name: mem_total
+      type: int
+    - name: mem_free
+      type: int
+    - name: mem_available
+      type: int
+    - name: buffers
+      type: int
+    - name: cached
+      type: int
+    - name: swap_cached
+      type: int
+    - name: active
+      type: int
+    - name: inactive
+      type: int

@@ -1,8 +1,8 @@
 - module: ip
   description: ip route module to access kernel route table
   classes:
-   - name: linux_ip_link
-     desc: |
+  - name: linux_ip_link
+    desc: |
       ip-link - network device configuration
       - ip link { COMMAND | help }
       - ip link add [ link DEVICE ] [ name ] NAME [ txqueuelen PACKETS ] [ address LLADDR ] [ broadcast LLADDR ]
@@ -28,51 +28,46 @@
       ETYPE := [ TYPE | bridge_slave | bond_slave ]
       VFVLAN-LIST := [ VFVLAN-LIST ] VFVLAN
       VFVLAN := [ vlan VLANID [ qos VLAN-QOS ] [ proto VLAN-PROTO ] ]
-     implements: "dent:ip:ip_link"
-     platforms: ['dentos', 'cumulus']
-     commands:
-      - name: add
-        apis: ['add']
-        cmd: [ 'ip link' ]
-        params: ['dev', 'name', 'txqueuelen', 'address', 'broadcast', 'mtu', 'index', 'numtxqueues', 'numrxqueues',
-                 'gso_max_size', 'gso_max_segs', 'type', 'options', 'ageing_time']
-        desc: |
-         - ip link add [ link DEVICE ] [ ageing_time AGEING_TIME ] [ name ] NAME [ txqueuelen PACKETS ] [ address LLADDR ] [ broadcast LLADDR ]
-           [ mtu MTU ] [ index IDX ] [ numtxqueues QUEUE_COUNT ] [ numrxqueues QUEUE_COUNT ] [ gso_max_size BYTES ]
-           [ gso_max_segs SEGMENTS ] type TYPE [ ARGS ]
-         TYPE := [ bridge | bond | can | dummy | hsr | ifb | ipoib | macvlan | macvtap | vcan | vxcan | veth | vlan | vxlan
-           | ip6tnl | ipip | sit | gre | gretap | erspan | ip6gre | ip6gretap | ip6erspan | vti | nlmon | ipvlan | ipvtap
-           | lowpan | geneve | vrf | macsec | netdevsim | rmnet ]
-      - name: delete
-        apis: ['delete']
-        cmd: [ 'ip link' ]
-        params: ['device', 'group', 'type', 'options']
-        desc: |
-         - ip link delete { DEVICE | group GROUP } type TYPE [ ARGS ]
-         TYPE := [ bridge | bond | can | dummy | hsr | ifb | ipoib | macvlan | macvtap | vcan | vxcan | veth | vlan | vxlan
-           | ip6tnl | ipip | sit | gre | gretap | erspan | ip6gre | ip6gretap | ip6erspan | vti | nlmon | ipvlan | ipvtap
-           | lowpan | geneve | vrf | macsec | netdevsim | rmnet ]
-      - name: set
-        apis: ['set']
-        cmd: [ 'ip link' ]
-        params: ['device', 'group', 'up', 'enable', 'type', 'arp', 'dynamic', 'multicast', 'allmulticast', 'promiscuity',
-                 'protodown', 'trailers', 'txqueuelen', 'name', 'address', 'broadcast', 'mtu', 'netns', 'link-netsid',
-                 'alias', 'vf', 'mac', 'rate', 'max_tx_rate', 'min_tx_rate', 'spoofchk', 'query_rss', 'state', 'trust',
-                 'node_guid', 'port_guid', 'xdp', 'object', 'section', 'verbose', 'pinned', 'master', 'nomaster', 'vrf',
-                 'addrgenmode', 'maddr', 'op', 'mac_addr_list', 'options', 'ageing_time']
-        desc: |
-         - ip link set { DEVICE | group GROUP } [ { up | down } ] [ type ETYPE TYPE_ARGS ] [ ageing_time AGEING_TIME ] [ arp { on | off } ]
-           [ dynamic { on | off } ] [ multicast { on | off } ] [ allmulticast { on | off } ] [ promisc { on | off } ]
-           [ protodown { on | off } ] [ trailers { on | off } ] [ txqueuelen PACKETS ] [ name NEWNAME ] [ address LLADDR ]
-           [ broadcast LLADDR ] [ mtu MTU ] [ netns { PID | NETNSNAME } ] [ link-netnsid ID ] [ alias NAME ] [ vf NUM [ mac LLADDR ]
-           [ VFVLAN-LIST ] [ rate TXRATE ] [ max_tx_rate TXRATE ] [ min_tx_rate TXRATE ] [ spoofchk { on | off } ]
-           [ query_rss { on | off } ] [ state { auto | enable | disable } ] [ trust { on | off } ] [ node_guid eui64 ]
-           [ port_guid eui64 ] ] [ { xdp | xdpgeneric | xdpdrv | xdpoffload } { off | object FILE [ section NAME ] [ verbose ] |
-           pinned FILE } ] [ master DEVICE ] [ nomaster ] [ vrf NAME ] [ addrgenmode { eui64 | none | stable_secret | random } ]
-           [ macaddr { flush | { add | del } MACADDR | set [ MACADDR [ MACADDR [ ... ] ] ] } ]
-      - name: show
-        apis: ['show', 'xstats', 'afstats']
-        cmd: [ 'ip link' ]
-        params: ['device', 'group', 'options']
-        desc: |
-            ip link show [ DEVICE | group GROUP ]
+    implements: "dent:ip:ip_link"
+    platforms: ['dentos', 'cumulus']
+    commands:
+    - name: add
+      apis: ['add']
+      cmd: ['ip link']
+      params: ['dev', 'name', 'txqueuelen', 'address', 'broadcast', 'mtu', 'index', 'numtxqueues', 'numrxqueues', 'gso_max_size', 'gso_max_segs', 'type', 'options', 'ageing_time']
+      desc: |
+        - ip link add [ link DEVICE ] [ ageing_time AGEING_TIME ] [ name ] NAME [ txqueuelen PACKETS ] [ address LLADDR ] [ broadcast LLADDR ]
+          [ mtu MTU ] [ index IDX ] [ numtxqueues QUEUE_COUNT ] [ numrxqueues QUEUE_COUNT ] [ gso_max_size BYTES ]
+          [ gso_max_segs SEGMENTS ] type TYPE [ ARGS ]
+        TYPE := [ bridge | bond | can | dummy | hsr | ifb | ipoib | macvlan | macvtap | vcan | vxcan | veth | vlan | vxlan
+          | ip6tnl | ipip | sit | gre | gretap | erspan | ip6gre | ip6gretap | ip6erspan | vti | nlmon | ipvlan | ipvtap
+          | lowpan | geneve | vrf | macsec | netdevsim | rmnet ]
+    - name: delete
+      apis: ['delete']
+      cmd: ['ip link']
+      params: ['device', 'group', 'type', 'options']
+      desc: |
+        - ip link delete { DEVICE | group GROUP } type TYPE [ ARGS ]
+        TYPE := [ bridge | bond | can | dummy | hsr | ifb | ipoib | macvlan | macvtap | vcan | vxcan | veth | vlan | vxlan
+          | ip6tnl | ipip | sit | gre | gretap | erspan | ip6gre | ip6gretap | ip6erspan | vti | nlmon | ipvlan | ipvtap
+          | lowpan | geneve | vrf | macsec | netdevsim | rmnet ]
+    - name: set
+      apis: ['set']
+      cmd: ['ip link']
+      params: ['device', 'group', 'up', 'enable', 'type', 'arp', 'dynamic', 'multicast', 'allmulticast', 'promiscuity', 'protodown', 'trailers', 'txqueuelen', 'name', 'address', 'broadcast', 'mtu', 'netns', 'link-netsid', 'alias', 'vf', 'mac', 'rate', 'max_tx_rate', 'min_tx_rate', 'spoofchk', 'query_rss', 'state', 'trust', 'node_guid', 'port_guid', 'xdp', 'object', 'section', 'verbose', 'pinned', 'master', 'nomaster', 'vrf', 'addrgenmode', 'maddr', 'op', 'mac_addr_list', 'options', 'ageing_time']
+      desc: |
+        - ip link set { DEVICE | group GROUP } [ { up | down } ] [ type ETYPE TYPE_ARGS ] [ ageing_time AGEING_TIME ] [ arp { on | off } ]
+          [ dynamic { on | off } ] [ multicast { on | off } ] [ allmulticast { on | off } ] [ promisc { on | off } ]
+          [ protodown { on | off } ] [ trailers { on | off } ] [ txqueuelen PACKETS ] [ name NEWNAME ] [ address LLADDR ]
+          [ broadcast LLADDR ] [ mtu MTU ] [ netns { PID | NETNSNAME } ] [ link-netnsid ID ] [ alias NAME ] [ vf NUM [ mac LLADDR ]
+          [ VFVLAN-LIST ] [ rate TXRATE ] [ max_tx_rate TXRATE ] [ min_tx_rate TXRATE ] [ spoofchk { on | off } ]
+          [ query_rss { on | off } ] [ state { auto | enable | disable } ] [ trust { on | off } ] [ node_guid eui64 ]
+          [ port_guid eui64 ] ] [ { xdp | xdpgeneric | xdpdrv | xdpoffload } { off | object FILE [ section NAME ] [ verbose ] |
+          pinned FILE } ] [ master DEVICE ] [ nomaster ] [ vrf NAME ] [ addrgenmode { eui64 | none | stable_secret | random } ]
+          [ macaddr { flush | { add | del } MACADDR | set [ MACADDR [ MACADDR [ ... ] ] ] } ]
+    - name: show
+      apis: ['show', 'xstats', 'afstats']
+      cmd: ['ip link']
+      params: ['device', 'group', 'options']
+      desc: |
+        ip link show [ DEVICE | group GROUP ]
