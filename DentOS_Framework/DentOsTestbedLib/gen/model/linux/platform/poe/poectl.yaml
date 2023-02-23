@@ -1,30 +1,30 @@
 - module: poe
   description: poectl - query or control power over ethernet enabled ports.
   classes:
-   - name: linux_poectl
-     desc: POE details by running poectl
-     implements: "dent:poe:poectl"
-     platforms: ['dentos', 'cumulus']
-     commands:
-      - name: show
-        apis: ['show']
-        cmd: [ 'poectl ' ]
-        params: ['port']
-        desc: |
-         -i, --port-info PORT_LIST            Return detailed information for the specified ports.
-           eg: -i swp1-swp5,swp10
-      - name: modify
-        apis: ['enable', 'disable']
-        cmd: [ 'poectl ' ]
-        params: ['port']
-        desc: |
-         -d, --disable-ports PORT_LIST        Disable POE operation on the specified ports.
-         -e, --enable-ports PORT_LIST         Enable POE operation on the specified ports.
-      - name: persist
-        apis: ['save', 'restore']
-        cmd: [ 'poectl ' ]
-        params: ['port']
-        desc: |
-         --save                               Save the current configuration. The saved configuration
-                                              is automatically loaded on system boot.
-         --load                               Load and apply the saved configuration.
+  - name: linux_poectl
+    desc: POE details by running poectl
+    implements: "dent:poe:poectl"
+    platforms: ['dentos', 'cumulus']
+    commands:
+    - name: show
+      apis: ['show']
+      cmd: ['poectl ']
+      params: ['port']
+      desc: |
+        -i, --port-info PORT_LIST            Return detailed information for the specified ports.
+          eg: -i swp1-swp5,swp10
+    - name: modify
+      apis: ['enable', 'disable']
+      cmd: ['poectl ']
+      params: ['port']
+      desc: |
+        -d, --disable-ports PORT_LIST        Disable POE operation on the specified ports.
+        -e, --enable-ports PORT_LIST         Enable POE operation on the specified ports.
+    - name: persist
+      apis: ['save', 'restore']
+      cmd: ['poectl ']
+      params: ['port']
+      desc: |
+        --save                               Save the current configuration. The saved configuration
+                                             is automatically loaded on system boot.
+        --load                               Load and apply the saved configuration.

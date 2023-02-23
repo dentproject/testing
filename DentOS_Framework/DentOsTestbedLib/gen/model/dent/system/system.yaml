@@ -1,30 +1,30 @@
 - module: system
   description: "system module"
   classes:
-   - name: device_system
-     singleton: True
-     members:
-      - name: os
-        cls: "dent:system:operating_system"
-        desc: "OS related information"
-   - name: operating_system
-     singleton: True
-     members:
-      - name: cpu
-        cls: "dent:os:cpu_usage"
-        desc: "CPU usage information"
-      - name: memory
-        cls: "dent:os:memory_usage"
-        desc: "Memory related information"
-      - name: processes
-        cls: "dent:os:process"
-        desc: "Processes related information"
-      - name: services
-        cls: "dent:os:service"
-        desc: "Service related information"
-      - name: disk
-        cls: "dent:os:disk_free"
-        desc: "Disk related information"
-      - name: sysctl
-        cls: "dent:os:sysctl"
-        desc: "Kernel attributes manager"
+  - name: device_system
+    singleton: True
+    members:
+    - name: os
+      cls: "dent:system:operating_system"
+      desc: "OS related information"
+  - name: operating_system
+    singleton: True
+    members:
+    - name: cpu
+      cls: "dent:os:cpu_usage"
+      desc: "CPU usage information"
+    - name: memory
+      cls: "dent:os:memory_usage"
+      desc: "Memory related information"
+    - name: processes
+      cls: "dent:os:process"
+      desc: "Processes related information"
+    - name: services
+      cls: "dent:os:service"
+      desc: "Service related information"
+    - name: disk
+      cls: "dent:os:disk_free"
+      desc: "Disk related information"
+    - name: sysctl
+      cls: "dent:os:sysctl"
+      desc: "Kernel attributes manager"

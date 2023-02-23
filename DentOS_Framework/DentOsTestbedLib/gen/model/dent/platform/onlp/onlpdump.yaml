@@ -1,90 +1,90 @@
 - module: onlp
   description: onlp - Open Network Linux Platform
   classes:
-   - name: onlp_system_info
-     singleton: True
-     desc: |
-         ONLP System Level information
-     apis: ['show']
-     members:
-      - name: product_name
-        type: string
-        desc: |
-          Product Name: TN48M-P
-      - name: serial_number
-        type: string
-        desc: |
-          Serial Number: TN481P2TW20220013
-      - name: mac
-        type: string
-        desc: |
-          MAC: 18:be:92:12:ce:9a
-      - name: mac_range
-        type: string
-        desc: |
-          MAC Range: 55
-      - name: manufacturer
-        type: string
-        desc: |
-          Manufacturer: DNI
-      - name: manufacturer_date
-        type: string
-        desc: |
-          Manufacture Date: 06/02/2020 13:24:13
-      - name: vendor
-        type: string
-        desc: |
-          Vendor: DNI
-      - name: platform_name
-        type: string
-        desc: |
-          Platform Name: 88F7040/88F6820
-      - name: device_version
-        type: string
-        desc: |
-          Device Version: 1
-      - name: label_revision
-        type: string
-        desc: |
-          Label Revision: C1
-      - name: country_code
-        type: string
-        desc: |
-          Country Code: TW
-      - name: diag_version
-        type: string
-        desc: |
-          Diag Version: V1.2.1
-      - name: service_tag
-        type: string
-        desc: |
-          Service Tag: 3810000054
-      - name: onie_version
-        type: string
-        desc: |
-          ONIE Version: 2019.08-V02
-   - name: onlp_sfp_info
-     desc: |
+  - name: onlp_system_info
+    singleton: True
+    desc: |
+      ONLP System Level information
+    apis: ['show']
+    members:
+    - name: product_name
+      type: string
+      desc: |
+        Product Name: TN48M-P
+    - name: serial_number
+      type: string
+      desc: |
+        Serial Number: TN481P2TW20220013
+    - name: mac
+      type: string
+      desc: |
+        MAC: 18:be:92:12:ce:9a
+    - name: mac_range
+      type: string
+      desc: |
+        MAC Range: 55
+    - name: manufacturer
+      type: string
+      desc: |
+        Manufacturer: DNI
+    - name: manufacturer_date
+      type: string
+      desc: |
+        Manufacture Date: 06/02/2020 13:24:13
+    - name: vendor
+      type: string
+      desc: |
+        Vendor: DNI
+    - name: platform_name
+      type: string
+      desc: |
+        Platform Name: 88F7040/88F6820
+    - name: device_version
+      type: string
+      desc: |
+        Device Version: 1
+    - name: label_revision
+      type: string
+      desc: |
+        Label Revision: C1
+    - name: country_code
+      type: string
+      desc: |
+        Country Code: TW
+    - name: diag_version
+      type: string
+      desc: |
+        Diag Version: V1.2.1
+    - name: service_tag
+      type: string
+      desc: |
+        Service Tag: 3810000054
+    - name: onie_version
+      type: string
+      desc: |
+        ONIE Version: 2019.08-V02
+  - name: onlp_sfp_info
+    desc: |
       ONLP SFP Information
         Port  Type            Media   Status  Len    Vendor            Model             S/N
         ----  --------------  ------  ------  -----  ----------------  ----------------  ----------------
         49  10GBASE-CR      Copper          2m     FS                SFP-10G-DAC       G1807081119-1
-     apis: ['show']
-     members:
-      - name: port
-        type: int
-        key: True
-      - name: type
-        type: string
-      - name: media
-        type: string
-      - name: status
-        type: string
-      - name: len
-        type: string
-      - name: vendor
-        type: string
-      - name: model
-        type: string
-      - name: serial_number
-        type: string
+    apis: ['show']
+    members:
+    - name: port
+      type: int
+      key: True
+    - name: type
+      type: string
+    - name: media
+      type: string
+    - name: status
+      type: string
+    - name: len
+      type: string
+    - name: vendor
+      type: string
+    - name: model
+      type: string
+    - name: serial_number
+      type: string

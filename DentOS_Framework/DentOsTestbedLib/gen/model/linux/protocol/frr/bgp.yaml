@@ -1,15 +1,15 @@
 - module: frr
   description: bgp
   classes:
-   - name: linux_bgp
-     desc: |
+  - name: linux_bgp
+    desc: |
       vtysh
-     implements: "dent:frr:bgp"
-     platforms: ['dentos', 'cumulus']
-     commands:
-      - name: show
-        apis: ['show']
-        cmd: [ 'vtysh' ]
-      - name: configure
-        apis: ['configure']
-        cmd: ['vtysh']
+    implements: "dent:frr:bgp"
+    platforms: ['dentos', 'cumulus']
+    commands:
+    - name: show
+      apis: ['show']
+      cmd: ['vtysh']
+    - name: configure
+      apis: ['configure']
+      cmd: ['vtysh']

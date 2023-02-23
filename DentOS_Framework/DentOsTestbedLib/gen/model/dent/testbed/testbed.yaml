@@ -1,94 +1,94 @@
 - module: testbed
   description: Testbed related configuration and operating state
   classes:
-   - name: testbed_network
-     singleton: True
-     members:
-       - name: layer2
-         cls: "dent:testbed:testbed_l2"
-         desc: |
-          Layer 2 common configuration of the testbed
-       - name: layer3
-         cls: "dent:testbed:testbed_l3"
-         desc: |
-          Layer 3 common configration of the testbed
-   - name: testbed_l2
-     singleton: True
-     members:
-      - name: vlans
-        cls: "dent:testbed:testbed_vlans"
-        desc: |
-          Vlans that can be used across the testbed
-   - name: testbed_vlans
-     members:
-      - name: vlan_id
-        type: str
-        desc: |
-          Vlan ID
-      - name: access_port
-        cls: "dent:testbed:testbed_interfaces"
-        desc: |
-          Access Port for the VLAN
-      - name: trunk_port
-        cls: "dent:testbed:testbed_interfaces"
-        desc: |
-          Trunk port for the VLAN
-   - name: testbed_interfaces
-     members:
-      - name: device_id
-        type: str
-        desc: |
-          Device identification of the testbed
-      - name: interface
-        type: str
-        desc: |
-          Interface name
-   - name: testbed_l3
-     singleton: True
-     members:
-      - name: bgp
-        cls: "dent:testbed:testbed_bgp"
-        desc: |
-          BGP configuration and state
-      - name: ospf
-        cls: "dent:testbed:testbed_ospf"
-        desc: |
-          OSPF configuration and state
-   - name: testbed_bgp
-     singleton: True
-     members:
-      - name: routers
-        cls: "dent:testbed:testbed_bgp_routers"
-        desc: |
-          Routers informtion
-   - name: testbed_bgp_routers
-     members:
-      - name: router
-        type: str
-        desc: |
-          Router name
-      - name: device_id
-        type: str
-        desc: |
-          Router Device identification
-   - name: testbed_ospf
-     singleton: True
-     members:
-      - name: routers
-        cls: "dent:testbed:testbed_ospf_routers"
-        desc: |
-          OSPF router information
-   - name: testbed_ospf_routers
-     members:
-      - name: address
-        type: str
-        desc: |
-         address of the router
-      - name: router_id
-        type: str
-        desc: |
-         router identification
-      - name: device_id
-        type: str
-        desc: |
-         device identification
+  - name: testbed_network
+    singleton: True
+    members:
+    - name: layer2
+      cls: "dent:testbed:testbed_l2"
+      desc: |
+        Layer 2 common configuration of the testbed
+    - name: layer3
+      cls: "dent:testbed:testbed_l3"
+      desc: |
+        Layer 3 common configration of the testbed
+  - name: testbed_l2
+    singleton: True
+    members:
+    - name: vlans
+      cls: "dent:testbed:testbed_vlans"
+      desc: |
+        Vlans that can be used across the testbed
+  - name: testbed_vlans
+    members:
+    - name: vlan_id
+      type: str
+      desc: |
+        Vlan ID
+    - name: access_port
+      cls: "dent:testbed:testbed_interfaces"
+      desc: |
+        Access Port for the VLAN
+    - name: trunk_port
+      cls: "dent:testbed:testbed_interfaces"
+      desc: |
+        Trunk port for the VLAN
+  - name: testbed_interfaces
+    members:
+    - name: device_id
+      type: str
+      desc: |
+        Device identification of the testbed
+    - name: interface
+      type: str
+      desc: |
+        Interface name
+  - name: testbed_l3
+    singleton: True
+    members:
+    - name: bgp
+      cls: "dent:testbed:testbed_bgp"
+      desc: |
+        BGP configuration and state
+    - name: ospf
+      cls: "dent:testbed:testbed_ospf"
+      desc: |
+        OSPF configuration and state
+  - name: testbed_bgp
+    singleton: True
+    members:
+    - name: routers
+      cls: "dent:testbed:testbed_bgp_routers"
+      desc: |
+        Routers informtion
+  - name: testbed_bgp_routers
+    members:
+    - name: router
+      type: str
+      desc: |
+        Router name
+    - name: device_id
+      type: str
+      desc: |
+        Router Device identification
+  - name: testbed_ospf
+    singleton: True
+    members:
+    - name: routers
+      cls: "dent:testbed:testbed_ospf_routers"
+      desc: |
+        OSPF router information
+  - name: testbed_ospf_routers
+    members:
+    - name: address
+      type: str
+      desc: |
+        address of the router
+    - name: router_id
+      type: str
+      desc: |
+        router identification
+    - name: device_id
+      type: str
+      desc: |
+        device identification

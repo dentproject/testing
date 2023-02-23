@@ -1,19 +1,19 @@
 - module: os
   description: os level information
   classes:
-   - name: system
-     desc: system details
-     apis: [ 'reboot' , 'shutdown']
-     members:
-      - name: options
-        type: string
-        desc: |
-         -f, --force
-         Does not invoke shutdown(8) and instead performs the actual action you would expect from the name.
-         -p, --poweroff
-         Instructs the halt command to instead behave as poweroff.
-         -w, --wtmp-only
-         Does not call shutdown(8) or the reboot(2) system call and instead only writes the shutdown
-         record to /var/log/wtmp
-         --verbose
-         Outputs slightly more verbose messages when rebooting, useful for debugging problems with shutdown.
+  - name: system
+    desc: system details
+    apis: ['reboot', 'shutdown']
+    members:
+    - name: options
+      type: string
+      desc: |
+        -f, --force
+        Does not invoke shutdown(8) and instead performs the actual action you would expect from the name.
+        -p, --poweroff
+        Instructs the halt command to instead behave as poweroff.
+        -w, --wtmp-only
+        Does not call shutdown(8) or the reboot(2) system call and instead only writes the shutdown
+        record to /var/log/wtmp
+        --verbose
+        Outputs slightly more verbose messages when rebooting, useful for debugging problems with shutdown.

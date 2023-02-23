@@ -1,27 +1,27 @@
 - module: frr
   description: vtysh is an integrated shell for Quagga routing engine
   classes:
-   - name: frr_ip_route
-     apis: ["show", "add"]
-     desc: |
+  - name: frr_ip_route
+    apis: ["show", "add"]
+    desc: |
       - ip [ ip-OPTIONS ] route { COMMAND | help }
       - ip route { show } SELECTOR
       - Ex. ip route 10.1.0.0/16 Null0
-     members:
-      - name: network
-        type: string
-        desc: network address
-      - name: mask
-        type: string
-        desc: subnet mask
-      - name: gateway
-        type: string
-        desc: |
-          gateway for the prefix. It is taken as a IPv4 address gateway. Otherwise it is treated as an interface name.
-      - name: distance
-        type: int
-        desc: specified distance
-      - name: options
-        type: string
-        desc: |
-         OPTIONS := { json }
+    members:
+    - name: network
+      type: string
+      desc: network address
+    - name: mask
+      type: string
+      desc: subnet mask
+    - name: gateway
+      type: string
+      desc: |
+        gateway for the prefix. It is taken as a IPv4 address gateway. Otherwise it is treated as an interface name.
+    - name: distance
+      type: int
+      desc: specified distance
+    - name: options
+      type: string
+      desc: |
+        OPTIONS := { json }

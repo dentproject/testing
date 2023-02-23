@@ -2,41 +2,35 @@
   description: |
     The modules is a collection of poe testers.
   classes:
-   - name: poe_testers
-     desc: |
+  - name: poe_testers
+    desc: |
       - List of Poe Testers
-     singleton: True
-     members:
-      - name: poe_tester
-        cls: "dent:poe_tester:poe_tester"
-        desc: |
-          Device identification
+    singleton: True
+    members:
+    - name: poe_tester
+      cls: "dent:poe_tester:poe_tester"
+      desc: |
+        Device identification
 
-   - name: poe_tester
-     local: True
-     singleton: True
-     desc: |
-      - PoeTester
-          attach - [hostname, serial_dev, baudrate]
-          detach -
-          configure_port - [input_data]
-          get_port_stats - 
-     apis: ['attach', 'detach', 'configure_port',
-            'get_port_stats']
-     members:
-      - name: hostname
-        type: string
-        desc: |
-         name of poe tester to connect to
-      - name: serial_dev
-        type: string
-        desc: |
-         serial device of poe tester
-      - name: baudrate
-        type: int
-        desc: |
-         baudrate of serial device
-      - name: input_data
-        type: string
-        desc: |
-         keys and values for the port settings
+  - name: poe_tester
+    local: True
+    singleton: True
+    desc: "- PoeTester\n    attach - [hostname, serial_dev, baudrate]\n    detach -\n    configure_port - [input_data]\n    get_port_stats - \n"
+    apis: ['attach', 'detach', 'configure_port', 'get_port_stats']
+    members:
+    - name: hostname
+      type: string
+      desc: |
+        name of poe tester to connect to
+    - name: serial_dev
+      type: string
+      desc: |
+        serial device of poe tester
+    - name: baudrate
+      type: int
+      desc: |
+        baudrate of serial device
+    - name: input_data
+      type: string
+      desc: |
+        keys and values for the port settings
