@@ -1,0 +1,28 @@
+- module: dcb
+  description: dcb - show / manipulate DCB (Data Center Bridging) settings
+  classes:
+  - name: linux_dcb_app
+    desc: |
+      dcb [ OPTIONS ] { app | buffer | ets | maxrate | pfc } { COMMAND | help }
+      dcb [ -force ] -batch filename
+      dcb [ OPTIONS ] help
+    implements: 'dent:dcb:dcb_app'
+    platforms: ['dentos']
+    commands:
+    - name: set
+      apis: ['add', 'delete', 'replace']
+      cmd: ['dcb app']
+      params: ['dev', 'default_prio', 'dscp_prio', 'ethtype_prio', 'port_prio', 'stream_port_prio', 'dgram_port_prio']
+      desc: |
+        dcb app {  add  |  del  |  replace  }  dev DEV [ default-prio
+                PRIO-LIST ] [ ethtype-prio ET-MAP ] [ stream-port-prio
+                PORT-MAP ] [ dgram-port-prio PORT-MAP ] [ port-prio PORT-
+                MAP ] [ dscp-prio DSCP-MAP ]
+    - name: show
+      apis: ['show', 'flush']
+      cmd: ['dcb app']
+      params: ['dev', 'default_prio', 'dscp_prio', 'ethtype_prio', 'port_prio', 'stream_port_prio', 'dgram_port_prio']
+      desc: |
+        dcb app {  show  |  flush  }  dev DEV [ default-prio ] [
+                ethtype-prio ] [ stream-port-prio ] [ dgram-port-prio ] [
+                port-prio ] [ dscp-prio ]
