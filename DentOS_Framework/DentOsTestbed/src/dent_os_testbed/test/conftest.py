@@ -18,6 +18,7 @@ from dent_os_testbed.utils.test_utils.cleanup_utils import (
     cleanup_qdiscs as _cleanup_qdiscs,
     cleanup_routes as _cleanup_routes,
     cleanup_vrfs as _cleanup_vrfs,
+    cleanup_sysctl as _cleanup_sysctl,
     get_initial_routes,
 )
 from dent_os_testbed.utils.test_utils.tgen_utils import (
@@ -194,3 +195,9 @@ async def cleanup_routes(testbed):
     yield
     routes_cleanups = [_cleanup_routes(dev, initial_routes[dev.host_name]) for dev in devices]
     await asyncio.gather(*routes_cleanups)
+
+
+@pytest_asyncio.fixture
+async def cleanup_sysctl():
+    yield
+    await _cleanup_sysctl()
