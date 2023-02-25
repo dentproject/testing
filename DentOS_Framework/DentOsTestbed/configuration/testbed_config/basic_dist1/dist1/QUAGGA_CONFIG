@@ -1,0 +1,11 @@
+username cumulus nopassword
+!
+service integrated-vtysh-config
+!
+log timestamp precision 6
+!
+no zebra nexthop kernel enable
+!
+line vty
+!
+end
