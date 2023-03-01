@@ -569,6 +569,9 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
 
     def format_resolve_neighbor(self, command, *argv, **kwarg):
         return command
+    
+    def format_update_l1_config(self, command, *argv, **kwarg):
+        return command
 
     @classmethod
     def __get_ip_iface(cls, port, port_ip=None):
@@ -657,3 +660,43 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
         return err, [{"success": msg["arg2"],
                       "port": msg["port"],
                       "src_ip": msg["src_ip"]} for msg in res]
+
+    def run_update_l1_config(self, device, command, *argv, **kwarg):
+        if not IxnetworkIxiaClientImpl.ixnet:
+            return 1, "Ixia not connected"
+        if command == "update_l1_config":
+            vports = IxnetworkIxiaClientImpl.ixnet.Vport.find()
+            ports = kwarg['params'][0].get("tgen_ports", [])
+            if len(ports) < 1:
+                return 1, "IXIA ports not provided"
+            # fd -> full duplex ; hd -> half duplex
+            duplex = "fd" if kwarg['params'][0].get("duplex", "Full").capitalize() == "Full" else "hd"
+            speed = kwarg['params'][0].get("speed", None)
+            if speed:
+                ixia_speed = self.__convert_to_ixia_speed(speed, duplex)
+            else:
+                ixia_speed = None
+            autoneg = kwarg['params'][0].get("autoneg", True)
+            names = [vport.Name for vport in vports]
+            for port in ports:
+                if port not in names:
+                    continue
+                required_ixia_port = vports[names.index(port)]
+                card = required_ixia_port.L1Config.NovusTenGigLan or required_ixia_port.L1Config.Ethernet
+                device.applog.info(f"Changing speed from {required_ixia_port.ActualSpeed} to {speed} \
+                                     on tgen_port {required_ixia_port.Name}")
+                device.applog.info(f"Changing autoneg to {autoneg} on tgen_port {required_ixia_port.Name}")
+                card.update(AutoNegotiate=autoneg, Speed=ixia_speed)
+            return 0, ""
+
+    @classmethod
+    def __convert_to_ixia_speed(self, speed, duplex):
+        if speed == 100 or speed == 10:
+            speed = f"speed{speed}{duplex}"
+        elif speed == 1000:
+            speed = f"speed{speed}"
+        elif speed == 10000:
+            speed = "speed10g"
+        else:
+            raise ValueError(" Can not convert provided speed to IXIA speed value ")
+        return speed

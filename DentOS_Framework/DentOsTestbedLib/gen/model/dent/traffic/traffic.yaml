@@ -35,12 +35,11 @@
           send_ping - [port, dst_ip, src_ip]
           send_arp - [port, src_ip]
           clear_traffic - [traffic_names]
-    apis: ['connect', 'disconnect',
-           'load_config', 'save_config',
-           'set_traffic', 'start_traffic', 'stop_traffic', 'get_stats', 'clear_stats',
-           'start_protocols', 'stop_protocols', 'set_protocol', 'get_protocol_stats',
+          update_l1_config - ['speed', 'autoneg', 'ixia_ports']
+    apis: ['connect', 'disconnect', 'load_config', 'save_config', 'set_traffic', 'start_traffic', 'stop_traffic',
+           'get_stats', 'clear_stats', 'start_protocols', 'stop_protocols', 'set_protocol', 'get_protocol_stats',
            'clear_protocol_stats', 'send_arp', 'send_ns', 'send_ping', 'clear_traffic',
-           'get_drilldown_stats']
+           'get_drilldown_stats', 'update_l1_config']
     members:
     - name: client_addr
       type: ip_addr_t
@@ -70,3 +69,19 @@
       type: ip_addr_t
       desc: |
         Peer IP Address
+    - name: speed
+      type: string
+      desc: |
+        Port speed setting
+    - name: autoneg
+      type: bool
+      desc: |
+        Port auto negotiation setting
+    - name: tgen_ports
+      type: list
+      desc: |
+        Traffic Generator ports on which to update L1 config
+    - name: duplex
+      type: string
+      desc: |
+        Duplex on port
