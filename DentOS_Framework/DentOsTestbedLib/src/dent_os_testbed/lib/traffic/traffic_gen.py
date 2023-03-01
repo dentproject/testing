@@ -26,6 +26,7 @@ class TrafficGen(TestLibObject):
             clear_protocol_stats - [protocols]
             send_ping - [port, dst_ip, src_ip]
             send_arp - [port, src_ip]
+            clear_traffic - [traffic_names]
         
     """
     async def _run_command(api, *argv, **kwarg):
@@ -179,6 +180,7 @@ class TrafficGen(TestLibObject):
            stop_traffic  - [traffic_names]
            get_stats - [traffic_names]
            clear_stats - [traffic_names]
+           clear_traffic - [traffic_names]
         
         """
         return await TrafficGen._run_command("set_traffic", *argv, **kwarg)
@@ -204,6 +206,7 @@ class TrafficGen(TestLibObject):
            stop_traffic  - [traffic_names]
            get_stats - [traffic_names]
            clear_stats - [traffic_names]
+           clear_traffic - [traffic_names]
         
         """
         return await TrafficGen._run_command("start_traffic", *argv, **kwarg)
@@ -229,6 +232,7 @@ class TrafficGen(TestLibObject):
            stop_traffic  - [traffic_names]
            get_stats - [traffic_names]
            clear_stats - [traffic_names]
+           clear_traffic - [traffic_names]
         
         """
         return await TrafficGen._run_command("stop_traffic", *argv, **kwarg)
@@ -254,6 +258,7 @@ class TrafficGen(TestLibObject):
            stop_traffic  - [traffic_names]
            get_stats - [traffic_names]
            clear_stats - [traffic_names]
+           clear_traffic - [traffic_names]
         
         """
         return await TrafficGen._run_command("get_stats", *argv, **kwarg)
@@ -279,6 +284,7 @@ class TrafficGen(TestLibObject):
            stop_traffic  - [traffic_names]
            get_stats - [traffic_names]
            clear_stats - [traffic_names]
+           clear_traffic - [traffic_names]
         
         """
         return await TrafficGen._run_command("clear_stats", *argv, **kwarg)
@@ -446,3 +452,28 @@ class TrafficGen(TestLibObject):
         """
         return await TrafficGen._run_command("send_ping", *argv, **kwarg)
         
+    async def clear_traffic(*argv, **kwarg):
+        """
+        Platforms: ['ixnetwork']
+        Usage:
+        TrafficGen.clear_traffic(
+            input_data = [{
+                # device 1
+                'dev1' : [{
+                    # command 1
+                        'traffic_names':'string_list',
+                        'ports':'string_list',
+                }],
+            }],
+        )
+        Description:
+        - IxiaClient
+           set_traffic - [traffic_names], ports
+           start_traffic - [traffic_names]
+           stop_traffic  - [traffic_names]
+           get_stats - [traffic_names]
+           clear_stats - [traffic_names]
+           clear_traffic - [traffic_names]
+        
+        """
+        return await TrafficGen._run_command("clear_traffic", *argv, **kwarg)

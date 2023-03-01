@@ -33,7 +33,12 @@
           clear_protocol_stats - [protocols]
           send_ping - [port, dst_ip, src_ip]
           send_arp - [port, src_ip]
-    apis: ['connect', 'disconnect', 'load_config', 'save_config', 'set_traffic', 'start_traffic', 'stop_traffic', 'get_stats', 'clear_stats', 'start_protocols', 'stop_protocols', 'set_protocol', 'get_protocol_stats', 'clear_protocol_stats', 'send_arp', 'send_ping']
+          clear_traffic - [traffic_names]
+    apis: ['connect', 'disconnect',
+           'load_config', 'save_config',
+           'set_traffic', 'start_traffic', 'stop_traffic', 'get_stats', 'clear_stats',
+           'start_protocols', 'stop_protocols', 'set_protocol', 'get_protocol_stats',
+           'clear_protocol_stats', 'send_arp', 'send_ping', 'clear_traffic']
     members:
     - name: client_addr
       type: ip_addr_t
