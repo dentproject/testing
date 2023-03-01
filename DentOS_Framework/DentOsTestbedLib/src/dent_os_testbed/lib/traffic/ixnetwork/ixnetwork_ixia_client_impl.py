@@ -100,6 +100,7 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                                    "igmpv2", "igmpv3MembershipQuery", "igmpv3MembershipReport")
             }
 
+            IxnetworkIxiaClientImpl.ixnet.Traffic.EnableMinFrameSize = True
             device.applog.info("Connection to Ixia REST API Server Established")
             ixia_ports = param["tgen_ports"]
             swp_ports = param["swp_ports"]
