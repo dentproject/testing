@@ -103,11 +103,11 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
             device.applog.info("Assigning ports")
             IxnetworkIxiaClientImpl.ixnet.AssignPorts(pports, [], vport_hrefs, True)
             for port, vport in vports.items():
-                # The port numbers for mixed mode are
-                # divided equally between copper and fiber
                 if device.media_mode == "mixed":
-                    device.applog.info("Changing port: {} media mode from copper to fiber".format(port))
-                    vport[0].L1Config.NovusTenGigLan.Media = [link[2] for link in device.links if link[0] == port][0]
+                    # Get required media mode. Default - copper
+                    required_media = next((link[2] for link in device.links if link[0] == port), 'copper')
+                    device.applog.info(f"Changing port: {port} media mode {required_media}")
+                    vport[0].L1Config.NovusTenGigLan.Media = required_media
                 elif device.media_mode == "fiber":
                     device.applog.info("Changing all vports media mode to fiber")
                     vport[0].L1Config.NovusTenGigLan.Media = "fiber"
