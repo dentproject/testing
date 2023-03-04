@@ -26,10 +26,24 @@ class LinuxTcQdiscImpl(LinuxTcQdisc):
             cmd += "dev {} ".format(params["dev"])
         if "handle" in params:
             cmd += "handle {} ".format(params["handle"])
+        if "parent" in params:
+            cmd += "parent {} ".format(params["parent"])
         if "ingress_block" in params:
             cmd += "ingress_block {} ".format(params["ingress_block"])
+        if params.get("root"):
+            cmd += "root "
         cmd += "{} ".format(params.get("direction", ""))
-        ############# Implement me ################
+
+        kind = params.get("kind", "")
+        cmd += "{} ".format(kind)
+
+        cmd += " ".join(f"{key} {params[key]} "
+                        for key in ("bands", "strict", "rate", "burst", "limit")
+                        if key in params)
+
+        cmd += " ".join(f"{key} {' '.join(map(str, params[key]))} "
+                        for key in ("quanta", "priomap")
+                        if key in params)
 
         return cmd
 
@@ -40,9 +54,16 @@ class LinuxTcQdiscImpl(LinuxTcQdisc):
         """
         params = kwarg["params"]
         cmd = "tc {} qdisc {} ".format(params.get("options", ""), command)
-        ############# Implement me ################
+        if "dev" in params:
+            cmd += "dev {} ".format(params["dev"])
+        if "handle" in params:
+            cmd += "handle {} ".format(params["handle"])
+        if "parent" in params:
+            cmd += "parent {} ".format(params["parent"])
+        if params.get("root"):
+            cmd += "root "
 
         return cmd
-    
+
     def parse_show(self, command, output, *argv, **kwarg):
         return json.loads(output)
