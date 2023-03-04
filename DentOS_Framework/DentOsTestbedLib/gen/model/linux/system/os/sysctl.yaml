@@ -1,20 +1,20 @@
 - module: os
   description: sysctl module
   classes:
-   - name: linux_sysctl
-     desc: system kernel attributes manager
-     implements: "dent:os:sysctl"
-     platforms: ['dentos', 'cumulus']
-     commands:
-      - name: get
-        apis: ['get']
-        cmd: [ 'sysctl -n' ]
-        params: [ "variable" ]
-        desc: |
-          Get the attribute value
-      - name: set
-        apis: ['set']
-        cmd: [ 'sysctl -n' ]
-        params: [ "variable", "value" ]
-        desc: |
-          Set the attribute value
+  - name: linux_sysctl
+    desc: system kernel attributes manager
+    implements: "dent:os:sysctl"
+    platforms: ['dentos', 'cumulus']
+    commands:
+    - name: get
+      apis: ['get']
+      cmd: ['sysctl -n']
+      params: ["variable"]
+      desc: |
+        Get the attribute value
+    - name: set
+      apis: ['set']
+      cmd: ['sysctl -n']
+      params: ["variable", "value"]
+      desc: |
+        Set the attribute value

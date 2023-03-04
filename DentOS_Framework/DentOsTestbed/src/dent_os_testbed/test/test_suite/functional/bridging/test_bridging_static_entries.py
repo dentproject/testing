@@ -1,8 +1,8 @@
 import pytest
 import asyncio
 
-from dent_os_testbed.lib.bridge.bridge_fdb import BridgeFdb
 from dent_os_testbed.lib.bridge.bridge_link import BridgeLink
+from dent_os_testbed.lib.bridge.bridge_fdb import BridgeFdb
 from dent_os_testbed.lib.ip.ip_link import IpLink
 
 from dent_os_testbed.utils.test_utils.tgen_utils import (
@@ -37,7 +37,7 @@ async def test_bridging_static_entries(testbed):
     6.  Set ports swp1, swp2, swp3, swp4 flood OFF.
     7.  Adding FDB static entries for ports swp1, swp2, swp3, swp4.
     8.  Send traffic with matching destination macs.
-    9.  Verify that address have been forwarded.
+    9.  Verify that addresses have been forwarded.
     """
 
     bridge = "br0"
@@ -54,14 +54,12 @@ async def test_bridging_static_entries(testbed):
     out = await IpLink.add(
         input_data=[{device_host_name: [
             {"device": bridge, "type": "bridge"}]}])
-    err_msg = f"Verify that bridge created.\n{out}"
-    assert out[0][device_host_name]["rc"] == 0, err_msg
+    assert out[0][device_host_name]["rc"] == 0, f"Verify that bridge created.\n{out}"
 
     out = await IpLink.set(
         input_data=[{device_host_name: [
             {"device": bridge, "operstate": "up"}]}])
-    err_msg = f"Verify that bridge set to 'UP' state.\n{out}"
-    assert out[0][device_host_name]["rc"] == 0, err_msg
+    assert out[0][device_host_name]["rc"] == 0, f"Verify that bridge set to 'UP' state.\n{out}"
 
     out = await IpLink.set(
         input_data=[{device_host_name: [
@@ -85,7 +83,7 @@ async def test_bridging_static_entries(testbed):
     assert out[0][device_host_name]["rc"] == 0, f"Verify that FDB static entries added.\n{out}"
 
     address_map = (
-        #swp port, tg port,     tg ip,     gw,        plen
+        # swp port, tg port,    tg ip,     gw,        plen
         (ports[0], tg_ports[0], "1.1.1.2", "1.1.1.1", 24),
         (ports[1], tg_ports[1], "2.2.2.2", "2.2.2.1", 24),
         (ports[2], tg_ports[2], "3.3.3.2", "3.3.3.1", 24),
@@ -122,6 +120,5 @@ async def test_bridging_static_entries(testbed):
     # check the traffic stats
     stats = await tgen_utils_get_traffic_stats(tgen_dev, "Traffic Item Statistics")
     for row in stats.Rows:
-        assert float(row["Loss %"]) == 0.000, f'Failed>Loss percent: {row["Loss %"]}'
         assert tgen_utils_get_loss(row) == 0.000, \
-        f"Verify that traffic from {row['Tx Port']} to {row['Rx Port']} forwarded.\n{out}"
+            f"Verify that traffic from {row['Tx Port']} to {row['Rx Port']} forwarded.\n{out}"

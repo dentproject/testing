@@ -1,27 +1,27 @@
 - module: interfaces
   description: interfaces - network interface configuration for ifupdown
   classes:
-   - name: interface
-     desc: |
+  - name: interface
+    desc: |
       ifupdown/ifreload - network interface management commands
       By default, ifupdown2.conf sets /etc/network/interfaces as the network interface
       configuration file. This file contains information for the ifup(8), ifdown(8) and
       ifquery(8) commands
-     apis: ['up', 'down', 'query', 'reload' ]
-     members:
-      - name: iface
-        type: string_list
-        desc: |
-            IFACE  interface list. IFACE list and '-a' argument are mutually exclusive.
-      - name: exclude_iface
-        type: string_list
-        desc: |
-            Exclude IFACE  interface list.
-      - name: force
-        type: bool
-        desc: |
-            Force option
-      - name: options
-        type: string
-        desc: |
-            Command options
+    apis: ['up', 'down', 'query', 'reload']
+    members:
+    - name: iface
+      type: string_list
+      desc: |
+        IFACE  interface list. IFACE list and '-a' argument are mutually exclusive.
+    - name: exclude_iface
+      type: string_list
+      desc: |
+        Exclude IFACE  interface list.
+    - name: force
+      type: bool
+      desc: |
+        Force option
+    - name: options
+      type: string
+      desc: |
+        Command options
