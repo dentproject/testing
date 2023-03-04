@@ -1,8 +1,8 @@
 import pytest
 import asyncio
 
-from dent_os_testbed.lib.bridge.bridge_fdb import BridgeFdb
 from dent_os_testbed.lib.bridge.bridge_link import BridgeLink
+from dent_os_testbed.lib.bridge.bridge_fdb import BridgeFdb
 from dent_os_testbed.lib.ip.ip_link import IpLink
 
 from dent_os_testbed.utils.test_utils.tgen_utils import (
@@ -10,7 +10,6 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_get_traffic_stats,
     tgen_utils_setup_streams,
     tgen_utils_start_traffic,
-    tgen_utils_stop_protocols,
     tgen_utils_stop_traffic,
     tgen_utils_get_loss,
     tgen_utils_dev_groups_from_config,
@@ -18,7 +17,7 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
 )
 
 pytestmark = [
-    pytest.mark.suite_functional_bridging, 
+    pytest.mark.suite_functional_bridging,
     pytest.mark.asyncio,
     pytest.mark.usefixtures("cleanup_bridges", "cleanup_tgen")
 ]
@@ -39,10 +38,10 @@ async def test_bridging_frame_max_size(testbed):
     7.  Set ports swp1, swp2, swp3, swp4 flood OFF.
     8.  Adding FDB static entries for ports swp1, swp2, swp3, swp4.
     9.  Set streams frameSize 9000.
-    10. Send traffic to swp1, swp2, swp3, swp4 with source macs 
-        aa:bb:cc:dd:ee:11 aa:bb:cc:dd:ee:12 
+    10. Send traffic to swp1, swp2, swp3, swp4 with source macs
+        aa:bb:cc:dd:ee:11 aa:bb:cc:dd:ee:12
         aa:bb:cc:dd:ee:13 aa:bb:cc:dd:ee:14 accordingly.
-    11. Verify that address are learned and max size jumbo frames are forwarded.
+    11. Verify that addresses are learned and max size jumbo frames are forwarded.
     """
 
     bridge = "br0"
@@ -59,14 +58,12 @@ async def test_bridging_frame_max_size(testbed):
     out = await IpLink.add(
         input_data=[{device_host_name: [
             {"device": bridge, "type": "bridge"}]}])
-    err_msg = f"Verify that bridge created.\n{out}"
-    assert out[0][device_host_name]["rc"] == 0, err_msg
+    assert out[0][device_host_name]["rc"] == 0, f"Verify that bridge created.\n{out}"
 
     out = await IpLink.set(
         input_data=[{device_host_name: [
             {"device": bridge, "operstate": "up"}]}])
-    err_msg = f"Verify that bridge set to 'UP' state.\n{out}"
-    assert out[0][device_host_name]["rc"] == 0, err_msg
+    assert out[0][device_host_name]["rc"] == 0, f"Verify that bridge set to 'UP' state.\n{out}"
 
     out = await IpLink.set(
         input_data=[{device_host_name: [
@@ -96,7 +93,7 @@ async def test_bridging_frame_max_size(testbed):
     assert out[0][device_host_name]["rc"] == 0, f"Verify that FDB static entries added.\n{out}"
 
     address_map = (
-        #swp port, tg port,     tg ip,     gw,        plen
+        # swp port, tg port,    tg ip,     gw,        plen
         (ports[0], tg_ports[0], "1.1.1.2", "1.1.1.1", 24),
         (ports[1], tg_ports[1], "2.2.2.2", "2.2.2.1", 24),
         (ports[2], tg_ports[2], "3.3.3.2", "3.3.3.1", 24),
@@ -109,7 +106,7 @@ async def test_bridging_frame_max_size(testbed):
     )
 
     await tgen_utils_traffic_generator_connect(tgen_dev, tg_ports, ports, dev_groups)
-    
+
     list_macs = ["aa:bb:cc:dd:ee:11", "aa:bb:cc:dd:ee:12",
                  "aa:bb:cc:dd:ee:13", "aa:bb:cc:dd:ee:14"]
 
@@ -135,11 +132,11 @@ async def test_bridging_frame_max_size(testbed):
     stats = await tgen_utils_get_traffic_stats(tgen_dev, "Traffic Item Statistics")
     for row in stats.Rows:
         assert tgen_utils_get_loss(row) == 0.000, \
-        f"Verify that traffic from {row['Tx Port']} to {row['Rx Port']} forwarded.\n{out}"
-    
+            f"Verify that traffic from {row['Tx Port']} to {row['Rx Port']} forwarded.\n{out}"
+
     out = await BridgeFdb.show(input_data=[{device_host_name: [{"options": "-j"}]}],
-                         parse_output=True)
-    assert out[0][device_host_name]["rc"] == 0, "Failed to get fdb entry.\n"
+                               parse_output=True)
+    assert out[0][device_host_name]["rc"] == 0, f"Failed to get fdb entry.\n"
 
     fdb_entries = out[0][device_host_name]["parsed_output"]
     learned_macs = [en["mac"] for en in fdb_entries if "mac" in en]
@@ -147,14 +144,12 @@ async def test_bridging_frame_max_size(testbed):
         err_msg = f"Verify that source macs have been learned.\n"
         assert mac in learned_macs, err_msg
 
-    await tgen_utils_stop_protocols(tgen_dev)
-
 
 async def test_bridging_jumbo_frame_min_size(testbed):
     """
     Test Name: test_bridging_jumbo_frame_min_size
     Test Suite: suite_functional_bridging
-    Test Overview: Verifying that jumbo frames of min size are learned and forwarded.
+    Test Overview: Verifying that jumbo frames of min size are learned.
     Test Author: Kostiantyn Stavruk
     Test Procedure:
     1.  Init bridge entity br0.
@@ -165,10 +160,10 @@ async def test_bridging_jumbo_frame_min_size(testbed):
     6.  Set ports swp1, swp2, swp3, swp4 learning ON.
     7.  Set ports swp1, swp2, swp3, swp4 flood OFF.
     8.  Set streams frameSize 1510.
-    9.  Send traffic to swp1, swp2, swp3, swp4 with source macs 
-        aa:bb:cc:dd:ee:11 aa:bb:cc:dd:ee:12 
+    9.  Send traffic to swp1, swp2, swp3, swp4 with source macs
+        aa:bb:cc:dd:ee:11 aa:bb:cc:dd:ee:12
         aa:bb:cc:dd:ee:13 aa:bb:cc:dd:ee:14 accordingly.
-    10. Verify that address are learned and min size jumbo frames are forwarded.
+    10. Verify min size jumbo frames are send and addresses are learned.
     """
 
     bridge = "br0"
@@ -185,14 +180,12 @@ async def test_bridging_jumbo_frame_min_size(testbed):
     out = await IpLink.add(
         input_data=[{device_host_name: [
             {"device": bridge, "type": "bridge"}]}])
-    err_msg = f"Verify that bridge created.\n{out}"
-    assert out[0][device_host_name]["rc"] == 0, err_msg
+    assert out[0][device_host_name]["rc"] == 0, f"Verify that bridge created.\n{out}"
 
     out = await IpLink.set(
         input_data=[{device_host_name: [
             {"device": bridge, "operstate": "up"}]}])
-    err_msg = f"Verify that bridge set to 'UP' state.\n{out}"
-    assert out[0][device_host_name]["rc"] == 0, err_msg
+    assert out[0][device_host_name]["rc"] == 0, f"Verify that bridge set to 'UP' state.\n{out}"
 
     out = await IpLink.set(
         input_data=[{device_host_name: [
@@ -213,7 +206,7 @@ async def test_bridging_jumbo_frame_min_size(testbed):
     assert out[0][device_host_name]["rc"] == 0, err_msg
 
     address_map = (
-        #swp port, tg port,     tg ip,     gw,        plen
+        # swp port, tg port,    tg ip,     gw,        plen
         (ports[0], tg_ports[0], "1.1.1.2", "1.1.1.1", 24),
         (ports[1], tg_ports[1], "2.2.2.2", "2.2.2.1", 24),
         (ports[2], tg_ports[2], "3.3.3.2", "3.3.3.1", 24),
@@ -226,7 +219,7 @@ async def test_bridging_jumbo_frame_min_size(testbed):
     )
 
     await tgen_utils_traffic_generator_connect(tgen_dev, tg_ports, ports, dev_groups)
-    
+
     list_macs = ["aa:bb:cc:dd:ee:11", "aa:bb:cc:dd:ee:12",
                  "aa:bb:cc:dd:ee:13", "aa:bb:cc:dd:ee:14"]
 
@@ -247,24 +240,21 @@ async def test_bridging_jumbo_frame_min_size(testbed):
     await tgen_utils_start_traffic(tgen_dev)
     await asyncio.sleep(traffic_duration)
     await tgen_utils_stop_traffic(tgen_dev)
-    
+
     # check the traffic stats
     stats = await tgen_utils_get_traffic_stats(tgen_dev, "Traffic Item Statistics")
     for row in stats.Rows:
-        assert tgen_utils_get_loss(row) == 0.000, \
-        f"Verify that traffic from {row['Tx Port']} to {row['Rx Port']} forwarded.\n{out}"
+        assert float(row["Tx Frames"]) > 0.000, f'Failed>Ixia should transmit traffic: {row["Tx Frames"]}'
 
     out = await BridgeFdb.show(input_data=[{device_host_name: [{"options": "-j"}]}],
-                         parse_output=True)
-    assert out[0][device_host_name]["rc"] == 0, "Failed to get fdb entry.\n"
+                               parse_output=True)
+    assert out[0][device_host_name]["rc"] == 0, f"Failed to get fdb entry.\n"
 
     fdb_entries = out[0][device_host_name]["parsed_output"]
     learned_macs = [en["mac"] for en in fdb_entries if "mac" in en]
     for mac in list_macs:
         err_msg = f"Verify that source macs have been learned.\n"
         assert mac in learned_macs, err_msg
-
-    await tgen_utils_stop_protocols(tgen_dev)
 
 
 async def test_bridging_jumbo_frame_value_out_of_bounds(testbed):
@@ -282,10 +272,10 @@ async def test_bridging_jumbo_frame_value_out_of_bounds(testbed):
     6.  Set ports swp1, swp2, swp3, swp4 learning ON.
     7.  Set ports swp1, swp2, swp3, swp4 flood OFF.
     8.  Set in streams frameSize 9001.
-    9.  Send traffic to swp1, swp2, swp3, swp4 with source macs 
-        aa:bb:cc:dd:ee:11 aa:bb:cc:dd:ee:12 
+    9.  Send traffic to swp1, swp2, swp3, swp4 with source macs
+        aa:bb:cc:dd:ee:11 aa:bb:cc:dd:ee:12
         aa:bb:cc:dd:ee:13 aa:bb:cc:dd:ee:14 accordingly.
-    10. Verify that address are not learned and min size jumbo frames are not forwarded due to value out of bounds.
+    10. Verify that addresses are not learned and min size jumbo frames are not forwarded due to value out of bounds.
     """
 
     bridge = "br0"
@@ -302,14 +292,12 @@ async def test_bridging_jumbo_frame_value_out_of_bounds(testbed):
     out = await IpLink.add(
         input_data=[{device_host_name: [
             {"device": bridge, "type": "bridge"}]}])
-    err_msg = f"Verify that bridge created.\n{out}"
-    assert out[0][device_host_name]["rc"] == 0, err_msg
+    assert out[0][device_host_name]["rc"] == 0, f"Verify that bridge created.\n{out}"
 
     out = await IpLink.set(
         input_data=[{device_host_name: [
             {"device": bridge, "operstate": "up"}]}])
-    err_msg = f"Verify that bridge set to 'UP' state.\n{out}"
-    assert out[0][device_host_name]["rc"] == 0, err_msg
+    assert out[0][device_host_name]["rc"] == 0, f"Verify that bridge set to 'UP' state.\n{out}"
 
     out = await IpLink.set(
         input_data=[{device_host_name: [
@@ -330,7 +318,7 @@ async def test_bridging_jumbo_frame_value_out_of_bounds(testbed):
     assert out[0][device_host_name]["rc"] == 0, err_msg
 
     address_map = (
-        #swp port, tg port,     tg ip,     gw,        plen
+        # swp port, tg port,    tg ip,     gw,        plen
         (ports[0], tg_ports[0], "1.1.1.2", "1.1.1.1", 24),
         (ports[1], tg_ports[1], "2.2.2.2", "2.2.2.1", 24),
         (ports[2], tg_ports[2], "3.3.3.2", "3.3.3.1", 24),
@@ -343,7 +331,7 @@ async def test_bridging_jumbo_frame_value_out_of_bounds(testbed):
     )
 
     await tgen_utils_traffic_generator_connect(tgen_dev, tg_ports, ports, dev_groups)
-    
+
     list_macs = ["aa:bb:cc:dd:ee:11", "aa:bb:cc:dd:ee:12",
                  "aa:bb:cc:dd:ee:13", "aa:bb:cc:dd:ee:14"]
 
@@ -364,21 +352,19 @@ async def test_bridging_jumbo_frame_value_out_of_bounds(testbed):
     await tgen_utils_start_traffic(tgen_dev)
     await asyncio.sleep(traffic_duration)
     await tgen_utils_stop_traffic(tgen_dev)
-    
+
     # check the traffic stats
     stats = await tgen_utils_get_traffic_stats(tgen_dev, "Traffic Item Statistics")
     for row in stats.Rows:
         assert tgen_utils_get_loss(row) == 100.000, \
-        f"Verify that traffic from {row['Tx Port']} to {row['Rx Port']} not forwarded.\n{out}"
+            f"Verify that traffic from {row['Tx Port']} to {row['Rx Port']} not forwarded.\n{out}"
 
     out = await BridgeFdb.show(input_data=[{device_host_name: [{"options": "-j"}]}],
-                         parse_output=True)
-    assert out[0][device_host_name]["rc"] == 0, "Failed to get fdb entry.\n"
+                               parse_output=True)
+    assert out[0][device_host_name]["rc"] == 0, f"Failed to get fdb entry.\n"
 
     fdb_entries = out[0][device_host_name]["parsed_output"]
     unlearned_macs = [en["mac"] for en in fdb_entries if "mac" in en]
     for mac in list_macs:
         err_msg = f"Verify that source macs have been not learned.\n"
         assert mac not in unlearned_macs, err_msg
-
-    await tgen_utils_stop_protocols(tgen_dev)

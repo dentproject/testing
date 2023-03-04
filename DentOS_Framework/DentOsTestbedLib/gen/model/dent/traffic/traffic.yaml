@@ -2,20 +2,20 @@
   description: |
     The modules is a collection of traffic generators.
   classes:
-   - name: traffic_generators
-     desc: |
+  - name: traffic_generators
+    desc: |
       - List of traffic generators
-     singleton: True
-     members:
-      - name: generator
-        cls: "dent:traffic:traffic_gen"
-        desc: |
-          Device idendentification
+    singleton: True
+    members:
+    - name: generator
+      cls: "dent:traffic:traffic_gen"
+      desc: |
+        Device idendentification
 
-   - name: traffic_gen
-     local: True
-     singleton: True
-     desc: |
+  - name: traffic_gen
+    local: True
+    singleton: True
+    desc: |
       - TrafficGen
           connect - client_addr, ports
           disconnect -
@@ -33,37 +33,33 @@
           clear_protocol_stats - [protocols]
           send_ping - [port, dst_ip, src_ip]
           send_arp - [port, src_ip]
-     apis: ['connect', 'disconnect',
-            'load_config', 'save_config',
-            'set_traffic', 'start_traffic', 'stop_traffic', 'get_stats', 'clear_stats',
-            'start_protocols', 'stop_protocols', 'set_protocol', 'get_protocol_stats',
-            'clear_protocol_stats', 'send_arp', 'send_ping']
-     members:
-      - name: client_addr
-        type: ip_addr_t
-        desc: |
-          Client IP Address of the Traffic Generator API Server
-      - name: config_file_name
-        type: string
-        desc: |
-          Config file that is loaded
-      - name: protocols
-        type: string_list
-        desc: |
-         Protocol to operate on
-      - name: traffic_names
-        type: string_list
-        desc: |
-         List of Traffice names
-      - name: ports
-        type: string_list
-        desc: |
-          Traffic Generator Ports represented in "ip:slot:port"
-      - name: src_ip
-        type: ip_addr_t
-        desc: |
-          Host IP Address
-      - name: dst_ip
-        type: ip_addr_t
-        desc: |
-          Peer IP Address
+    apis: ['connect', 'disconnect', 'load_config', 'save_config', 'set_traffic', 'start_traffic', 'stop_traffic', 'get_stats', 'clear_stats', 'start_protocols', 'stop_protocols', 'set_protocol', 'get_protocol_stats', 'clear_protocol_stats', 'send_arp', 'send_ping']
+    members:
+    - name: client_addr
+      type: ip_addr_t
+      desc: |
+        Client IP Address of the Traffic Generator API Server
+    - name: config_file_name
+      type: string
+      desc: |
+        Config file that is loaded
+    - name: protocols
+      type: string_list
+      desc: |
+        Protocol to operate on
+    - name: traffic_names
+      type: string_list
+      desc: |
+        List of Traffice names
+    - name: ports
+      type: string_list
+      desc: |
+        Traffic Generator Ports represented in "ip:slot:port"
+    - name: src_ip
+      type: ip_addr_t
+      desc: |
+        Host IP Address
+    - name: dst_ip
+      type: ip_addr_t
+      desc: |
+        Peer IP Address

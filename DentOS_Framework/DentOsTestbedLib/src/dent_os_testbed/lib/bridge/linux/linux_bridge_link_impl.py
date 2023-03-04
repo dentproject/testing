@@ -29,6 +29,10 @@ class LinuxBridgeLinkImpl(LinuxBridgeLink):
         cmd += "dev {} ".format(params.get("device", ""))
         if "isolated" in params:
             cmd += "isolated {} ".format("on" if params["isolated"] else "off")
+        if "learning" in params:
+            cmd += "learning {} ".format("on" if params["learning"] else "off")
+        if "flood" in params:
+            cmd += "flood {} ".format("on" if params["flood"] else "off")
 
         return cmd
 

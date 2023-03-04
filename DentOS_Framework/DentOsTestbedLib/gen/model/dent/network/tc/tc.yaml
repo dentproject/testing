@@ -1,8 +1,8 @@
 - module: tc
   description: TC module
   classes:
-   - name: tc_qdisc
-     desc: |
+  - name: tc_qdisc
+    desc: |
       - tc [ OPTIONS ] qdisc [ add | change | replace | link | delete ] dev DEV [ parent qdisc-id | root ]
       [ handle qdisc-id ] [ ingress_block BLOCK_INDEX ] [ egress_block BLOCK_INDEX ] qdisc
       [ qdisc specific parameters ]
@@ -10,71 +10,71 @@
       OPTIONS := { [ -force ] -b[atch] [ filename ] | [ -n[etns] name ] | [ -nm | -nam[es] ] |
         [ { -cf | -c[onf] } [ filename ] ] [ -t[imestamp] ] | [ -t[short] | [ -o[neline] ] }
       FORMAT := { -s[tatistics] | -d[etails] | -r[aw] | -i[ec] | -g[raph] | -j[json] | -p[retty] | -col[or] }
-     apis: ['add', 'change', 'replace', 'link', 'delete' , 'show']
-     members:
-      - name: dev
-        type: string
-        desc: device
-      - name: parent
-        type: int
-        desc: parent qdisc-id
-      - name: root
-        type: bool
-        desc: is root
-      - name: handle
-        type: int
-        desc: handle qdisc-id
-      - name: ingress_block
-        type: int
-        desc: ingress_block BLOCK_INDEX
-      - name: egress_block
-        type: string
-        desc: egress_block BLOCK_INDEX
-      - name: qdisc
-        type: int
-        desc: qdisc id
-      - name: options
-        type: string
-        desc: |
-          OPTIONS := { [ -force ] -b[atch] [ filename ] | [ -n[etns] name ] | [ -nm | -nam[es] ] |
-          [ { -cf | -c[onf] } [ filename ] ] [ -t[imestamp] ] | [ -t[short] | [ -o[neline] ] }
-      - name: format
-        type: string
-        desc: |
-          FORMAT := { -s[tatistics] | -d[etails] | -r[aw] | -i[ec] | -g[raph] | -j[json] | -p[retty] | -col[or] }
-   - name: tc_class
-     desc: |
+    apis: ['add', 'change', 'replace', 'link', 'delete', 'show']
+    members:
+    - name: dev
+      type: string
+      desc: device
+    - name: parent
+      type: int
+      desc: parent qdisc-id
+    - name: root
+      type: bool
+      desc: is root
+    - name: handle
+      type: int
+      desc: handle qdisc-id
+    - name: ingress_block
+      type: int
+      desc: ingress_block BLOCK_INDEX
+    - name: egress_block
+      type: string
+      desc: egress_block BLOCK_INDEX
+    - name: qdisc
+      type: int
+      desc: qdisc id
+    - name: options
+      type: string
+      desc: |
+        OPTIONS := { [ -force ] -b[atch] [ filename ] | [ -n[etns] name ] | [ -nm | -nam[es] ] |
+        [ { -cf | -c[onf] } [ filename ] ] [ -t[imestamp] ] | [ -t[short] | [ -o[neline] ] }
+    - name: format
+      type: string
+      desc: |
+        FORMAT := { -s[tatistics] | -d[etails] | -r[aw] | -i[ec] | -g[raph] | -j[json] | -p[retty] | -col[or] }
+  - name: tc_class
+    desc: |
       - tc [ OPTIONS ] [ FORMAT ] class show dev DEV
       - tc [ OPTIONS ] class [ add | change | replace | delete ] dev DEV parent qdisc-id
        [ classid class-id ] qdisc [ qdisc specific parameters ]
       OPTIONS := { [ -force ] -b[atch] [ filename ] | [ -n[etns] name ] | [ -nm | -nam[es] ] |
         [ { -cf | -c[onf] } [ filename ] ] [ -t[imestamp] ] | [ -t[short] | [ -o[neline] ] }
       FORMAT := { -s[tatistics] | -d[etails] | -r[aw] | -i[ec] | -g[raph] | -j[json] | -p[retty] | -col[or] }
-     apis: ['add', 'change', 'replace', 'delete', 'show']
-     members:
-      - name: dev
-        type: string
-        desc: device
-      - name: parent
-        type: int
-        desc: parent qdisc-id
-      - name: classid
-        type: int
-        desc: class id
-      - name: qdisc
-        type: int
-        desc: qdisc-id
-      - name: options
-        type: string
-        desc: |
-          OPTIONS := { [ -force ] -b[atch] [ filename ] | [ -n[etns] name ] | [ -nm | -nam[es] ] |
-          [ { -cf | -c[onf] } [ filename ] ] [ -t[imestamp] ] | [ -t[short] | [ -o[neline] ] }
-      - name: format
-        type: string
-        desc: |
-         FORMAT := { -s[tatistics] | -d[etails] | -r[aw] | -i[ec] | -g[raph] | -j[json] | -p[retty] | -col[or] }
-   - name: tc_filter
-     desc: |
+    apis: ['add', 'change', 'replace', 'delete', 'show']
+    members:
+    - name: dev
+      type: string
+      desc: device
+    - name: parent
+      type: int
+      desc: parent qdisc-id
+    - name: classid
+      type: int
+      desc: class id
+    - name: qdisc
+      type: int
+      desc: qdisc-id
+    - name: options
+      type: string
+      desc: |
+        OPTIONS := { [ -force ] -b[atch] [ filename ] | [ -n[etns] name ] | [ -nm | -nam[es] ] |
+        [ { -cf | -c[onf] } [ filename ] ] [ -t[imestamp] ] | [ -t[short] | [ -o[neline] ] }
+    - name: format
+      type: string
+      desc: |
+        FORMAT := { -s[tatistics] | -d[etails] | -r[aw] | -i[ec] | -g[raph] | -j[json] | -p[retty] | -col[or] }
+  - name: tc_filter
+    desc: |
       - tc [ OPTIONS ] filter [ add | change | replace | delete | get ] dev DEV [ parent qdisc-id | root]
       [ handle filter-id ] protocol protocol prio priority filtertype [ filtertype specific parameters ]
       flowid flow-id
@@ -84,82 +84,82 @@
       - tc [ OPTIONS ] filter show block BLOCK_INDEX
       OPTIONS := { [ -force ] -b[atch] [ filename ] | [ -n[etns] name ] | [ -nm | -nam[es] ] |
         [ { -cf | -c[onf] } [ filename ] ] [ -t[imestamp] ] | [ -t[short] | [ -o[neline] ] }
-     apis: ['add', 'change', 'replace', 'delete', 'get', 'show']
-     members:
-      - name: dev
-        type: string
-        desc: device
-      - name: block
-        type: int
-        desc: block
-      - name: parent
-        type: int
-        desc: parent qdisc-id
-      - name: root
-        type: bool
-        desc: is root
-      - name: handle
-        type: int
-        desc: handle filter-id
-      - name: protocol
-        type: string
-        desc: protocol
-      - name: prio
-        type: int
-        desc: priority
-      - name: filtertype
-        type: string
-        desc: filtertype
-      - name: flowid
-        type: int
-        desc: flow-id
-      - name: options
-        type: string
-        desc: |
-          OPTIONS := { [ -force ] -b[atch] [ filename ] | [ -n[etns] name ] | [ -nm | -nam[es] ] |
-          [ { -cf | -c[onf] } [ filename ] ] [ -t[imestamp] ] | [ -t[short] | [ -o[neline] ] }
-   - name: tc_chain
-     desc: |
+    apis: ['add', 'change', 'replace', 'delete', 'get', 'show']
+    members:
+    - name: dev
+      type: string
+      desc: device
+    - name: block
+      type: int
+      desc: block
+    - name: parent
+      type: int
+      desc: parent qdisc-id
+    - name: root
+      type: bool
+      desc: is root
+    - name: handle
+      type: int
+      desc: handle filter-id
+    - name: protocol
+      type: string
+      desc: protocol
+    - name: prio
+      type: int
+      desc: priority
+    - name: filtertype
+      type: string
+      desc: filtertype
+    - name: flowid
+      type: int
+      desc: flow-id
+    - name: options
+      type: string
+      desc: |
+        OPTIONS := { [ -force ] -b[atch] [ filename ] | [ -n[etns] name ] | [ -nm | -nam[es] ] |
+        [ { -cf | -c[onf] } [ filename ] ] [ -t[imestamp] ] | [ -t[short] | [ -o[neline] ] }
+  - name: tc_chain
+    desc: |
       - tc [ OPTIONS ] chain [ add | delete | get ] dev DEV [ parent qdisc-id | root ] filtertype
       [ filtertype specific parameters ]
       - tc [ OPTIONS ] chain [ add | delete | get ] block BLOCK_INDEX filtertype
       [ filtertype specific parameters ]
       OPTIONS := { [ -force ] -b[atch] [ filename ] | [ -n[etns] name ] | [ -nm | -nam[es] ] |
         [ { -cf | -c[onf] } [ filename ] ] [ -t[imestamp] ] | [ -t[short] | [ -o[neline] ] }
-     apis: ['add', 'delete', 'get', 'show']
-     members:
-      - name: device
-        type: string
-        desc: device
-      - name: block
-        type: int
-        desc: block
-      - name: parent
-        type: int
-        desc: parent qdisc-id
-      - name: root
-        type: bool
-        desc: is root
-      - name: filtertype
-        type: string
-        desc: filtertype
-      - name: options
-        type: string
-        desc: |
-          OPTIONS := { [ -force ] -b[atch] [ filename ] | [ -n[etns] name ] | [ -nm | -nam[es] ] |
-          [ { -cf | -c[onf] } [ filename ] ] [ -t[imestamp] ] | [ -t[short] | [ -o[neline] ] }
-   - name: tc_monitor
-     desc: |
+    apis: ['add', 'delete', 'get', 'show']
+    members:
+    - name: device
+      type: string
+      desc: device
+    - name: block
+      type: int
+      desc: block
+    - name: parent
+      type: int
+      desc: parent qdisc-id
+    - name: root
+      type: bool
+      desc: is root
+    - name: filtertype
+      type: string
+      desc: filtertype
+    - name: options
+      type: string
+      desc: |
+        OPTIONS := { [ -force ] -b[atch] [ filename ] | [ -n[etns] name ] | [ -nm | -nam[es] ] |
+        [ { -cf | -c[onf] } [ filename ] ] [ -t[imestamp] ] | [ -t[short] | [ -o[neline] ] }
+  - name: tc_monitor
+    desc: |
       tc [ OPTIONS ] monitor [ file FILENAME ]
       OPTIONS := { [ -force ] -b[atch] [ filename ] | [ -n[etns] name ] | [ -nm | -nam[es] ] |
         [ { -cf | -c[onf] } [ filename ] ] [ -t[imestamp] ] | [ -t[short] | [ -o[neline] ] }
-     apis: ['monitor']
-     members:
-      - name: file
-        type: string
-        desc: file
-      - name: options
-        type: string
-        desc: |
-          OPTIONS := { [ -force ] -b[atch] [ filename ] | [ -n[etns] name ] | [ -nm | -nam[es] ] |
-          [ { -cf | -c[onf] } [ filename ] ] [ -t[imestamp] ] | [ -t[short] | [ -o[neline] ] }
+    apis: ['monitor']
+    members:
+    - name: file
+      type: string
+      desc: file
+    - name: options
+      type: string
+      desc: |
+        OPTIONS := { [ -force ] -b[atch] [ filename ] | [ -n[etns] name ] | [ -nm | -nam[es] ] |
+        [ { -cf | -c[onf] } [ filename ] ] [ -t[imestamp] ] | [ -t[short] | [ -o[neline] ] }

@@ -1,8 +1,8 @@
 import pytest
 import asyncio
 
-from dent_os_testbed.lib.bridge.bridge_fdb import BridgeFdb
 from dent_os_testbed.lib.bridge.bridge_link import BridgeLink
+from dent_os_testbed.lib.bridge.bridge_fdb import BridgeFdb
 from dent_os_testbed.lib.ip.ip_link import IpLink
 
 from dent_os_testbed.utils.test_utils.tgen_utils import (
@@ -11,9 +11,9 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_setup_streams,
     tgen_utils_start_traffic,
     tgen_utils_stop_traffic,
+    tgen_utils_get_loss,
     tgen_utils_dev_groups_from_config,
     tgen_utils_traffic_generator_connect,
-    tgen_utils_get_loss
 )
 
 pytestmark = [
@@ -36,7 +36,7 @@ async def test_bridging_wrong_fcs(testbed):
     5.  Set ports swp1, swp2, swp3, swp4 learning ON.
     6.  Set ports swp1, swp2, swp3, swp4 flood ON.
     7.  Send traffic with bad_crc for bridge to learn address.
-    8.  Verify that address haven't been learned and haven't been forwarded.
+    8.  Verify that addresses haven't been learned and haven't been forwarded.
     """
 
     bridge = "br0"
@@ -53,14 +53,12 @@ async def test_bridging_wrong_fcs(testbed):
     out = await IpLink.add(
         input_data=[{device_host_name: [
             {"device": bridge, "type": "bridge"}]}])
-    err_msg = f"Verify that bridge created.\n{out}"
-    assert out[0][device_host_name]["rc"] == 0, err_msg
+    assert out[0][device_host_name]["rc"] == 0, f"Verify that bridge created.\n{out}"
 
     out = await IpLink.set(
         input_data=[{device_host_name: [
             {"device": bridge, "operstate": "up"}]}])
-    err_msg = f"Verify that bridge set to 'UP' state.\n{out}"
-    assert out[0][device_host_name]["rc"] == 0, err_msg
+    assert out[0][device_host_name]["rc"] == 0, f"Verify that bridge set to 'UP' state.\n{out}"
 
     out = await IpLink.set(
         input_data=[{device_host_name: [
@@ -110,10 +108,11 @@ async def test_bridging_wrong_fcs(testbed):
     for row in stats.Rows:
         assert float(row["Tx Frames"]) > 0.000, f'Failed>Ixia should transmit traffic: {row["Tx Frames"]}'
         assert tgen_utils_get_loss(row) == 100.000, \
-        f"Verify that traffic from {row['Tx Port']} to {row['Rx Port']} not forwarded.\n{out}"
+            f"Verify that traffic from {row['Tx Port']} to {row['Rx Port']} not forwarded.\n{out}"
 
     out = await BridgeFdb.show(input_data=[{device_host_name: [{"options": "-j"}]}],
                                parse_output=True)
+    assert out[0][device_host_name]["rc"] == 0, f"Failed to get fdb entry.\n"
 
     fdb_entries = out[0][device_host_name]["parsed_output"]
     learned_macs = [en["mac"] for en in fdb_entries if "mac" in en]

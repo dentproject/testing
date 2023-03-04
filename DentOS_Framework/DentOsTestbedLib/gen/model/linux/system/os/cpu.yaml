@@ -1,18 +1,18 @@
 - module: os
   description: os level information
   classes:
-   - name: linux_cpu_usage
-     desc: |
+  - name: linux_cpu_usage
+    desc: |
       /usr/bin/mpstat
       dev-dsk-muchetan-2b-1f031d76 % mpstat
         04:47:43 AM  CPU    %usr   %nice    %sys %iowait    %irq   %soft  %steal  %guest   %idle
         04:47:43 AM  all    0.49    0.04    0.07    0.02    0.00    0.00    0.00    0.00   99.37
-     implements: "dent:os:cpu_usage"
-     platforms: ['dentos', 'cumulus']
-     commands:
-      - name: show
-        apis: ['show']
-        cmd: [ 'mpstat -A' ]
-        params: ['options', 'cpu', 'interval']
-        desc: |
-           mpstat [ -A ] [ -I { SUM | CPU | ALL } ] [ -u ] [ -P { cpu [,...] | ALL } ] [ -V ] [ interval [ count ] ]
+    implements: "dent:os:cpu_usage"
+    platforms: ['dentos', 'cumulus']
+    commands:
+    - name: show
+      apis: ['show']
+      cmd: ['mpstat -A']
+      params: ['options', 'cpu', 'interval']
+      desc: |
+        mpstat [ -A ] [ -I { SUM | CPU | ALL } ] [ -u ] [ -P { cpu [,...] | ALL } ] [ -V ] [ interval [ count ] ]

@@ -1,53 +1,53 @@
 - module: os
   description: os level information
   classes:
-   - name: cpu_usage
-     desc: |
+  - name: cpu_usage
+    desc: |
       /usr/bin/mpstat
       dev-dsk-muchetan-2b-1f031d76 % mpstat
         04:47:43 AM  CPU    %usr   %nice    %sys %iowait    %irq   %soft  %steal  %guest   %idle
         04:47:43 AM  all    0.49    0.04    0.07    0.02    0.00    0.00    0.00    0.00   99.37
-     apis: [ 'show' ]
-     members:
-      - name: cpu
-        type: int
-        desc: |
-          Processor number. The keyword all indicates that statistics are calculated as averages among all processors.
-      - name: usr
-        type: float
-        desc: |
-          Show the percentage of CPU utilization that occurred while executing at the user level (application)
-      - name: nice
-        type: float
-        desc: |
-          Show the percentage of CPU utilization that occurred while executing at the user level with nice priority
-      - name: sys
-        type: float
-        desc: |
-         Show  the  percentage  of  CPU  utilization that occurred while executing at the system level (kernel).
-         Note that this does not include time spent servicing hardware and software interrupts.
-      - name: iowait
-        type: float
-        desc: |
-          Show the percentage of time that the CPU or CPUs were idle during which the system had an outstanding disk I/O request.
-      - name: irq
-        type: float
-        desc: |
-          Show the percentage of time spent by the CPU or CPUs to service hardware interrupts
-      - name: soft
-        type: float
-        desc: |
-          Show the percentage of time spent by the CPU or CPUs to service software interrupts
-      - name: steal
-        type: float
-        desc: |
-          Show the percentage of time spent in involuntary wait by the virtual CPU or CPUs while the hypervisor
-          was servicing another virtual processor.
-      - name: guest
-        type: float
-        desc: |
-          Show the percentage of time spent by the CPU or CPUs to run a virtual processor
-      - name: idle
-        type: float
-        desc: |
-          Show the percentage of time that the CPU or CPUs were idle and the system did not have an outstanding disk I/O request
+    apis: ['show']
+    members:
+    - name: cpu
+      type: int
+      desc: |
+        Processor number. The keyword all indicates that statistics are calculated as averages among all processors.
+    - name: usr
+      type: float
+      desc: |
+        Show the percentage of CPU utilization that occurred while executing at the user level (application)
+    - name: nice
+      type: float
+      desc: |
+        Show the percentage of CPU utilization that occurred while executing at the user level with nice priority
+    - name: sys
+      type: float
+      desc: |
+        Show  the  percentage  of  CPU  utilization that occurred while executing at the system level (kernel).
+        Note that this does not include time spent servicing hardware and software interrupts.
+    - name: iowait
+      type: float
+      desc: |
+        Show the percentage of time that the CPU or CPUs were idle during which the system had an outstanding disk I/O request.
+    - name: irq
+      type: float
+      desc: |
+        Show the percentage of time spent by the CPU or CPUs to service hardware interrupts
+    - name: soft
+      type: float
+      desc: |
+        Show the percentage of time spent by the CPU or CPUs to service software interrupts
+    - name: steal
+      type: float
+      desc: |
+        Show the percentage of time spent in involuntary wait by the virtual CPU or CPUs while the hypervisor
+        was servicing another virtual processor.
+    - name: guest
+      type: float
+      desc: |
+        Show the percentage of time spent by the CPU or CPUs to run a virtual processor
+    - name: idle
+      type: float
+      desc: |
+        Show the percentage of time that the CPU or CPUs were idle and the system did not have an outstanding disk I/O request
