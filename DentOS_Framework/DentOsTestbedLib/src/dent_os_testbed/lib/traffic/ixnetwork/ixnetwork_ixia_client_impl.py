@@ -330,6 +330,7 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                 config_element.FrameSize.update(
                     Type="fixed", FixedSize=pkt_data.get("frameSize", "512")
                 )
+                config_element.Crc = IxnetworkIxiaClientImpl.bad_crc[pkt_data.get("bad_crc", False)]
                 config_element.TransmissionControl.update(Type="continuous")
                 eth_stack = config_element.Stack.find(StackTypeId="^ethernet$")
                 if "vlanID" in pkt_data:
