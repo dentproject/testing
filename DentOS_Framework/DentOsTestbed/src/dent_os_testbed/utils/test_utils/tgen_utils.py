@@ -102,6 +102,7 @@ def tgen_utils_dev_groups_from_config(config):
             "gw": peer ip,
             "plen": prefix length,
             "vlan": vlan id to be configured (optional),
+            "version": [ ipv4 | ipv6 ] (default is ipv4)
         },
         ...
     ]
@@ -117,6 +118,7 @@ def tgen_utils_dev_groups_from_config(config):
             "gw": el["gw"],
             "plen": el["plen"],
             "vlan": el.get("vlan", None),
+            "version": el.get("version", "ipv4"),
         })
     return dev_groups
 
@@ -742,4 +744,34 @@ async def tgen_utils_send_arp(device, config):
     ]}])
     if out[0][device.host_name]["rc"] != 0:
         device.applog.warning(f"Some arps did not reach their destination\n{out}")
+    return out[0][device.host_name]["result"]
+
+
+async def tgen_utils_send_ns(device, config):
+    """
+    - Sends NS packets from TG ports to DUT
+    - Expects config to be a list of dicts:
+    [
+        {
+            "ixp": tgen port,
+            "src_ip": tgen port ip (optional),
+        },
+        ...
+    ]
+    - returns a list of dicts for each NS sent
+    [
+        {
+            "success": True or False,
+            "port": tg_port,
+            "src_ip": tg_port ip,
+        },
+        ...
+    ]
+    """
+    out = await TrafficGen.send_ns(input_data=[{device.host_name: [
+        {"port": ns["ixp"], "src_ip": ns["src_ip"] if "src_ip" in ns else None}
+        for ns in config
+    ]}])
+    if out[0][device.host_name]["rc"] != 0:
+        device.applog.warning(f"Some NSs did not reach their destination\n{out}")
     return out[0][device.host_name]["result"]
