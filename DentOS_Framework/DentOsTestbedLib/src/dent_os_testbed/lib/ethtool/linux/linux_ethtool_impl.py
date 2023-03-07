@@ -56,6 +56,16 @@ class LinuxEthtoolImpl(LinuxEthtool):
         params = kwarg["params"]
         ############# Implement me ################
         cmd = "ethtool {} ".format(params.get("options", ""), command)
+        if params.get("query_driver", False):
+            cmd += "-i "
+        if params.get("statistics", False):
+            cmd += "-S "
+        if params.get("pause_frames", False):
+            cmd += "-a "
+        if params.get("offload", False):
+            cmd += "-k "
+        if params.get("read_mac", False):
+            cmd += "-P "
         if "devname" in params:
             cmd += "{} ".format(params["devname"])
         return cmd
@@ -100,7 +110,7 @@ class LinuxEthtoolImpl(LinuxEthtool):
             line = RE_SPACES.sub(" ", line).strip().split(":")
             key = line[0].replace(" ", "_").lower()
             val = " ".join(line[1:])
-            ethtool_info[key] = val
+            ethtool_info[key.strip()] = val.strip()
         return ethtool_info
 
     def format_set(self, command, *argv, **kwarg):
@@ -155,6 +165,10 @@ class LinuxEthtoolImpl(LinuxEthtool):
             cmd += "speed {} ".format(params["speed"])
         if "autoneg" in params:
             cmd += "autoneg {} ".format(params["autoneg"])
+        if "duplex" in params:
+            cmd += "duplex {} ".format(params["duplex"])
+        if "advertise" in params:
+            cmd += "advertise {} ".format(params["advertise"])
         return cmd
 
     def parse_set(self, command, output, *argv, **kwarg):

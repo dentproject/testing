@@ -8,8 +8,6 @@
 
 ## SIT testbed diagrams
 
-![Dent-SIT](../img/full_sit_1.png)
-
 ![Dent-SIT](../img/sit-testbed-wiring.drawio.svg)
 
 ## DENT PyTest Framework

@@ -1,0 +1,71 @@
+- module: dcb
+  description: dcb-app - show / manipulate application priority table of the DCB subsystem
+  classes:
+  - name: dcb_app
+    desc: |
+      dcb [ OPTIONS ] app { COMMAND | help }
+
+      dcb app  {  show  |  flush  }  dev DEV [ default-prio ] [
+               ethtype-prio ] [ stream-port-prio ] [ dgram-port-prio ] [
+               port-prio ] [ dscp-prio ]
+
+      dcb app  {  add  |  del  |  replace  }  dev DEV [ default-prio
+               PRIO-LIST ] [ ethtype-prio ET-MAP ] [ stream-port-prio
+               PORT-MAP ] [ dgram-port-prio PORT-MAP ] [ port-prio PORT-
+               MAP ] [ dscp-prio DSCP-MAP ]
+
+      PRIO-LIST := [ PRIO-LIST ] PRIO
+      ET-MAP := [ ET-MAP ] ET-MAPPING
+      ET-MAPPING := ET:PRIO
+      PORT-MAP := [ PORT-MAP ] PORT-MAPPING
+      PORT-MAPPING := PORT:PRIO
+      DSCP-MAP := [ DSCP-MAP ] DSCP-MAPPING
+      DSCP-MAPPING := { DSCP | all }:PRIO
+      ET := { 0x600 .. 0xffff }
+      PORT := { 1 .. 65535 }
+      DSCP := { 0 .. 63 }
+      PRIO := { 0 .. 7 }
+    apis: ['show', 'flush', 'add', 'delete', 'replace']
+    members:
+    - name: dev
+      type: string
+    - name: default_prio
+      type: list
+      desc: |
+        The priority to be used for traffic the priority of which
+        is otherwise unspecified. The argument is a list of
+        individual priorities. Note that default-prio rules are
+        configured as triplets (EtherType, 0, PRIO).  dcb app
+        translates these rules to the symbolic name default-prio
+        and back.
+    - name: dscp_prio
+      type: list
+      desc: |
+        DSCP-MAP uses the array parameter syntax, see dcb(8) for
+        details. Keys are DSCP points, values are priorities
+        assigned to traffic with matching DSCP. DSCP points can be
+        written either directly as numeric values, or using
+        symbolic names specified in /etc/iproute2/rt_dsfield
+        (however note that that file specifies full 8-bit dsfield
+        values, whereas dcb app will only use the higher six
+        bits).  dcb app show will similarly format DSCP values as
+        symbolic names if possible. The command line option -N
+        turns the show translation off.
+    - name: ethtype_prio
+      type: list
+      desc: |
+        ET-MAP uses the array parameter syntax, see dcb(8) for
+        details. Keys are EtherType values. Values are priorities
+        to be assigned to traffic with the matching EtherType.
+    - name: port_prio
+      type: list
+      desc: |
+        PORT-MAP uses the array parameter syntax, see dcb(8) for
+        details. Keys are L4 destination port numbers that match
+        on, respectively, TCP and SCTP traffic, UDP and DCCP
+        traffic, and either of those. Values are priorities that
+        should be assigned to matching traffic.
+    - name: stream_port_prio
+      type: list
+    - name: dgram_port_prio
+      type: list

@@ -7,7 +7,7 @@ log timestamp precision 6
 no zebra nexthop kernel enable
 !
 router bgp 65534
- bgp router-id 20.20.0.101
+ bgp router-id 20.20.0.102
  neighbor INFRA peer-group
  neighbor INFRA remote-as 65534
  neighbor INFRA timers 3 10
@@ -17,8 +17,8 @@ router bgp 65534
  neighbor POD peer-group
  neighbor POD remote-as 65511
  neighbor POD timers 3 10
-  neighbor 20.20.96.18 peer-group POD
-  neighbor 20.20.96.26 peer-group POD
+  neighbor 20.20.96.22 peer-group POD
+  neighbor 20.20.96.30 peer-group POD
  !
  address-family ipv4 unicast
   network 20.1.0.0/16
