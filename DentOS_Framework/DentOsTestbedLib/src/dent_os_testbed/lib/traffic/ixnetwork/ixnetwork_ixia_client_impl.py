@@ -103,11 +103,11 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
             device.applog.info("Assigning ports")
             IxnetworkIxiaClientImpl.ixnet.AssignPorts(pports, [], vport_hrefs, True)
             for port, vport in vports.items():
-                # The port numbers for mixed mode are
-                # divided equally between copper and fiber
                 if device.media_mode == "mixed":
-                    device.applog.info("Changing port: {} media mode from copper to fiber".format(port))
-                    vport[0].L1Config.NovusTenGigLan.Media = [link[2] for link in device.links if link[0] == port][0]
+                    # Get required media mode. Default - copper
+                    required_media = next((link[2] for link in device.links if link[0] == port), 'copper')
+                    device.applog.info(f"Changing port: {port} media mode {required_media}")
+                    vport[0].L1Config.NovusTenGigLan.Media = required_media
                 elif device.media_mode == "fiber":
                     device.applog.info("Changing all vports media mode to fiber")
                     vport[0].L1Config.NovusTenGigLan.Media = "fiber"
@@ -239,6 +239,8 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
         raise ValueError(f"Valid multivalue types are: {valid_types}")
 
     def __update_field(self, field, value):
+        if field.FieldTypeId == "ipv4.header.priority.raw":  # exception for dscp
+            field.ActiveFieldChoice = True
         if type(value) == str or type(value) == int or type(value) == float:
             param = self.__parse_multivalue({"type": "single", "value": value})
         elif type(value) == dict:
@@ -319,7 +321,7 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                     endpoint_set = ti.EndpointSet.add(Sources=ep1, Destinations=ep2)
                 ep_count += 1
             IxnetworkIxiaClientImpl.tis.append(ti)
-            ti.Tracking.find()[0].TrackBy = ["trackingenabled0", "sourceDestValuePair0"]
+            track_by = {"trackingenabled0", "sourceDestValuePair0"}
             ti.Enabled = True
             for ep in range(ep_count):
                 config_element = ti.ConfigElement.find(EndpointSetId=ep + 1)
@@ -330,6 +332,7 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                 config_element.FrameSize.update(
                     Type="fixed", FixedSize=pkt_data.get("frameSize", "512")
                 )
+                config_element.Crc = IxnetworkIxiaClientImpl.bad_crc[pkt_data.get("bad_crc", False)]
                 config_element.TransmissionControl.update(Type="continuous")
                 eth_stack = config_element.Stack.find(StackTypeId="^ethernet$")
                 if "vlanID" in pkt_data:
@@ -353,15 +356,19 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                     if "vlanPriority" in pkt_data:
                         self.__update_field(vlan_stack.Field.find(FieldTypeId="vlan.header.vlanTag.vlanUserPriority"),
                                             pkt_data["vlanPriority"])
-                    ti.Tracking.find()[0].TrackBy = ["trackingenabled0", "sourceDestValuePair0",
-                                                     "vlanVlanId0", "vlanVlanUserPriority0"]
+                    track_by.update(["vlanVlanId0", "vlanVlanUserPriority0"])
                 if "dstIp" in pkt_data:
                     self.__update_field(ipv4_stack.Field.find(FieldTypeId="ipv4.header.dstIp"),
                                         pkt_data["dstIp"])
                 if "srcIp" in pkt_data:
                     self.__update_field(ipv4_stack.Field.find(FieldTypeId="ipv4.header.srcIp"),
                                         pkt_data["srcIp"])
+                if "dscp_ecn" in pkt_data:  # dscp and ecn
+                    self.__update_field(ipv4_stack.Field.find(FieldTypeId="ipv4.header.priority.raw"),
+                                        pkt_data["dscp_ecn"])
+                    track_by.add("ipv4Raw0")
                 self.set_l4_traffic(config_element, ipv4_stack, pkt_data)
+            ti.Tracking.find()[0].TrackBy = list(track_by)
 
     def set_ipv4_traffic(self, device, name, pkt_data, traffic_type):
         # create an ipv4 traffic item
@@ -392,7 +399,7 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                     endpoint_set = ti.EndpointSet.add(Sources=rr_ep1, Destinations=rr_ep2)
                 ep_count += 1
             IxnetworkIxiaClientImpl.tis.append(ti)
-            ti.Tracking.find()[0].TrackBy = ["trackingenabled0", "sourceDestValuePair0"]
+            track_by = {"trackingenabled0", "sourceDestValuePair0"}
             ti.Enabled = True
             ti.BiDirectional = pkt_data.get("bi_directional", False)
             for ep in range(ep_count):
@@ -407,7 +414,12 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                 config_element.Crc = IxnetworkIxiaClientImpl.bad_crc[pkt_data.get("bad_crc", False)]
                 config_element.TransmissionControl.update(Type="continuous")
                 ipv4_stack = config_element.Stack.find(StackTypeId="^ipv4$")
+                if "dscp_ecn" in pkt_data:  # dscp and ecn
+                    self.__update_field(ipv4_stack.Field.find(FieldTypeId="ipv4.header.priority.raw"),
+                                        pkt_data["dscp_ecn"])
+                    track_by.add("ipv4Raw0")
                 self.set_l4_traffic(config_element, ipv4_stack, pkt_data)
+            ti.Tracking.find()[0].TrackBy = list(track_by)
 
     def run_traffic_item(self, device, command, *argv, **kwarg):
         """
@@ -462,6 +474,11 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
         elif command == "clear_stats":
             device.applog.info("Clear Stats")
             IxnetworkIxiaClientImpl.ixnet.ClearStats()
+        elif command == "clear_traffic":
+            for traffic_item in IxnetworkIxiaClientImpl.tis:
+                device.applog.info(f"TI to be removed: {traffic_item.Name}")
+                traffic_item.remove()
+            IxnetworkIxiaClientImpl.tis.clear()
         return 0, ""
 
     def parse_traffic_item(self, command, output, *argv, **kwarg):

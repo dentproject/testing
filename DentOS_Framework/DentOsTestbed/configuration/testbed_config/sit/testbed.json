@@ -1,144 +1,7 @@
 {
     "devices": [
         {
-            "friendlyName":"DENT distributor 1",
-            "os":"dentos",
-            "type" : "DISTRIBUTION_ROUTER",
-            "hostName": "dist1",
-            "model": "arm64-delta-tn48m-poe-dn-r0",
-            "ip": "10.36.118.23",
-            "login":{
-                "userName":"root",
-                "password":"onl"
-            },
-            "serialDev":"/dev/ttyUSB3",
-            "baudrate": 115200,
-            "links" : [
-                ["swp14", "dist2:swp13"],
-                ["swp16", "dist2:swp15"],
-                ["swp18", "dist2:swp17"],
-                ["swp49", "agg1:swp47"],
-                ["swp50", "agg1:swp48"],
-                ["swp52", "agg2:swp45"]
-            ]
-        },
-        {
-            "friendlyName":"DENT distributor 2",
-            "os":"dentos",
-            "type" : "DISTRIBUTION_ROUTER",
-            "hostName": "dist2",
-            "model": "arm64-accton-as4224-52p-r0",
-            "ip": "10.36.118.42",
-            "login":{
-                "userName":"root",
-                "password":"onl"
-            },
-            "serialDev":"/dev/ttyUSB3",
-            "baudrate": 115200,
-            "links" : [
-                ["swp13", "dist1:swp14"],
-                ["swp14", "dist3:swp13"],
-                ["swp15", "dist1:swp16"],
-                ["swp16", "dist3:swp15"],
-                ["swp17", "dist1:swp16"],
-                ["swp18", "dist3:swp17"],
-                ["swp49", "agg2:swp47"],
-                ["swp50", "agg2:swp48"],
-                ["swp51", "agg1:swp46"],
-                ["swp52", "agg3:swp45"]
-            ]
-        },
-        {
-            "friendlyName":"DENT distributor 3",
-            "os":"dentos",
-            "type" : "DISTRIBUTION_ROUTER",
-            "hostName": "dist3",
-            "model": "arm64-wnc-qsa72-aom-a-48p-r0",
-            "ip": "10.36.118.32",
-            "login":{
-                "userName":"root",
-                "password":"onl"
-            },
-            "serialDev":"/dev/ttyUSB3",
-            "baudrate": 115200,
-            "links" : [
-                ["swp13", "dist2:swp14"],
-                ["swp15", "dist2:swp16"],
-                ["swp17", "dist2:swp16"],
-                ["swp49", "agg3:swp47"],
-                ["swp50", "agg3:swp48"],
-                ["swp51", "agg2:swp46"]
-            ]
-        },
-        {
-            "friendlyName":"DENT aggregator 1",
-            "os":"dentos",
-            "type" : "AGGREGATION_ROUTER",
-            "hostName": "agg1",
-            "model": "arm64-delta-tx4810-r0",
-            "ip": "10.36.118.22",
-            "login":{
-                "userName":"root",
-                "password":"onl"
-             },
-            "serialDev":"/dev/ttyUSB2",
-            "baudrate": 115200,
-            "mediaMode":"fiber",
-            "links" : [
-                ["swp25", "infra1:swp51"],
-                ["swp26", "infra1:swp52"],
-                ["swp46", "dist2:swp51"],
-                ["swp47", "dist1:swp49"],
-                ["swp48", "dist1:swp50"]
-            ]
-        },
-        {
-            "friendlyName":"DENT aggregator 2",
-            "os":"dentos",
-            "type" : "AGGREGATION_ROUTER",
-            "hostName": "agg2",
-            "model": "arm64-accton-as5114-48x-r0",
-            "ip": "10.36.118.41",
-            "login":{
-                "userName":"root",
-                "password":"onl"
-            },
-            "serialDev":"/dev/ttyUSB3",
-            "baudrate": 115200,
-            "mediaMode":"fiber",
-            "links" : [
-                ["swp27", "infra1:swp49"],
-                ["swp28", "infra2:swp50"],
-                ["swp45", "dist1:swp52"],
-                ["swp46", "dist3:swp51"],
-                ["swp47", "dist2:swp49"],
-                ["swp48", "dist2:swp50"]
-            ]
-        },
-        {
-            "friendlyName":"DENT aggregator 3",
-            "os":"dentos",
-            "type" : "AGGREGATION_ROUTER",
-            "hostName": "agg3",
-            "model": "arm64-wnc-qsd61-aom-a-48-r0",
-            "ip": "10.36.118.31",
-            "login":{
-                "userName":"root",
-                "password":"onl"
-            },
-            "serialDev":"/dev/ttyUSB3",
-            "baudrate": 115200,
-            "mediaMode":"fiber",
-            "links" : [
-                ["swp29", "infra1:swp47"],
-                ["swp30", "infra2:swp48"],
-                ["swp45", "dist2:swp52"],
-                ["swp47", "dist3:swp49"],
-                ["swp48", "dist3:swp50"]
-            ]
-        },
-        {
-            "friendlyName":"DENT infrastructure 1",
+            "friendlyName":"Dent infra1",
             "os":"dentos",
             "type" : "INFRA_SWITCH",
             "hostName": "infra1",
@@ -151,12 +14,86 @@
             "serialDev":"/dev/ttyUSB0",
             "baudrate": 115200,
             "links" : [
-                ["swp51", "agg1:swp25"],
-                ["swp52", "agg1:swp26"],
-                ["swp49", "agg2:swp27"],
-                ["swp50", "agg2:swp28"],
-                ["swp47", "agg3:swp29"],
-                ["swp48", "agg3:swp30"]
+                ["swp49", "agg1:swp47"],
+                ["swp50", "agg2:swp47"],
+                ["swp51", "infra2:swp51"],
+                ["swp52", "infra2:swp52"]
+            ]
+        },
+        {
+            "friendlyName":"Dent infra2",
+            "os":"dentos",
+            "type" : "INFRA_SWITCH",
+            "hostName": "infra2",
+            "model": "arm64-delta-tn48m-poe-dn-r0",
+            "ip": "10.36.118.23",   
+            "login":{
+                "userName":"root",
+                "password":"onl"
+            },
+            "serialDev":"/dev/ttyUSB1",
+            "baudrate": 115200,
+            "links" : [
+                ["swp49", "agg1:swp48"],
+                ["swp50", "agg2:swp48"],
+                ["swp51", "infra2:swp51"],
+                ["swp52", "infra2:swp52"]
+            ]
+        },
+        {
+            "friendlyName":"Dent agg1",
+            "os":"dentos",
+            "type" : "AGGREGATION_ROUTER",
+            "hostName": "agg1",
+            "model": "arm64-accton-as5114-48x-r0",
+            "ip": "10.36.118.44",
+            "login":{
+                "userName":"root",
+                "password":"onl"
+             },
+            "serialDev":"/dev/ttyUSB2",
+            "baudrate": 115200,
+            "links" : [
+                ["swp13", "dist1:swp13"],
+                ["swp47", "infra1:swp49"],
+                ["swp48", "infra2:swp49"]
+            ]
+        },
+        {
+            "friendlyName":"Dent agg2",
+            "os":"dentos",
+            "type" : "AGGREGATION_ROUTER",
+            "hostName": "agg2",
+            "model": "arm64-accton-as5114-48x-r0",
+            "ip": "10.36.118.41",
+            "login":{
+                "userName":"root",
+                "password":"onl"
+            },
+            "serialDev":"/dev/ttyUSB3",
+            "baudrate": 115200,
+            "links" : [
+                ["swp14", "dist1:swp14"],
+                ["swp47", "infra1:swp50"],
+                ["swp48", "infra2:swp50"]
+            ]
+        },
+        {
+            "friendlyName":"Dent dist1",
+            "os":"dentos",
+            "type" : "DISTRIBUTION_ROUTER",
+            "hostName": "dist1",
+            "model": "arm64-accton-as5114-48x-r0",
+            "ip": "10.36.118.43",
+            "login":{
+                "userName":"root",
+                "password":"onl"
+            },
+            "serialDev":"/dev/ttyUSB3",
+            "baudrate": 115200,
+            "links" : [
+                ["swp13", "agg1:swp13"],
+                ["swp14", "agg2:swp14"]
             ]
         },
         {
@@ -174,22 +111,11 @@
             "baudrate": 115200,
             "mediaMode":"mixed",
             "links" : [
-                ["10.36.118.199:1:1", "dist1:swp1",   "copper"],
-                ["10.36.118.199:1:2", "dist1:swp2",   "copper"],
-                ["10.36.118.199:1:3", "agg1:swp3",    "fiber"],
-                ["10.36.118.199:1:4", "agg1:swp4",    "fiber"],
-                ["10.36.118.199:1:5", "dist2:swp1",   "copper"],
-                ["10.36.118.199:1:6", "dist2:swp2",   "copper"],
-                ["10.36.118.199:1:7", "agg2:swp3",    "fiber"],
-                ["10.36.118.199:1:8", "agg2:swp4",    "fiber"],
-                ["10.36.118.199:1:9", "dist3:swp1",   "copper"],
-                ["10.36.118.199:1:10", "dist3:swp2",  "copper"],
-                ["10.36.118.199:1:11", "agg3:swp3",   "fiber"],
-                ["10.36.118.199:1:12", "agg3:swp4",   "fiber"],
-                ["10.36.118.199:1:13", "infra1:swp1", "copper"],
-                ["10.36.118.199:1:14", "infra1:swp2", "copper"],
-                ["10.36.118.199:1:15", "infra1:swp3", "copper"],
-                ["10.36.118.199:1:16", "infra1:swp4", "copper"]
+                ["10.36.118.199:1:1",  "dist1:swp1",   "fiber"],
+                ["10.36.118.199:1:5",  "agg1:swp1",    "fiber"],
+                ["10.36.118.199:1:9",  "agg2:swp1",    "fiber"],
+                ["10.36.118.199:1:11", "infra1:swp3",  "copper"],
+                ["10.36.118.199:1:13", "infra2:swp1",  "copper"]
             ]
         }
     ],
