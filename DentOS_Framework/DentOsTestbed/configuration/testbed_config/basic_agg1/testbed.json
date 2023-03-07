@@ -1,21 +1,22 @@
 {
     "devices": [
         {
-            "friendlyName":"DENT infrastructure 1",
+            "friendlyName":"DENT aggregation 1",
             "os":"dentos",
             "type" : "INFRA_SWITCH",
-            "hostName": "infra1",
-            "model": "arm64-accton-as4224-52p-r0",
-            "ip": "10.36.118.46",
+            "hostName": "agg1",
+            "model": "arm64-accton-as5114-48x-r0",
+            "ip": "10.36.118.44",
             "login":{
                 "userName":"root",
                 "password":"onl"
             },
             "serialDev":"/dev/ttyUSB0",
             "baudrate": 115200,
+            "mediaMode":"fiber",
             "links" : [
-                ["swp5", "infra1:swp6"],
-                ["swp7", "infra1:swp8"]
+                ["swp5", "agg1:swp6"],
+                ["swp7", "agg1:swp8"]
             ]
         },
         {
@@ -33,10 +34,10 @@
             "baudrate": 115200,
             "mediaMode":"mixed",
             "links" : [
-                ["10.36.118.199:1:9", "infra1:swp1", "copper"],
-                ["10.36.118.199:1:10", "infra1:swp2", "copper"],
-                ["10.36.118.199:1:11", "infra1:swp3", "copper"],
-                ["10.36.118.199:1:12", "infra1:swp4", "copper"]
+                ["10.36.118.199:1:5", "agg1:swp1", "fiber"],
+                ["10.36.118.199:1:6", "agg1:swp2", "fiber"],
+                ["10.36.118.199:1:7", "agg1:swp3", "fiber"],
+                ["10.36.118.199:1:8", "agg1:swp4", "fiber"]
             ]
         }
     ],
