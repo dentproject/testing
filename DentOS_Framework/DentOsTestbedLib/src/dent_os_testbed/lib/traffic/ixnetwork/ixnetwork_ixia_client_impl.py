@@ -6,6 +6,7 @@ from dent_os_testbed.lib.traffic.ixnetwork.ixnetwork_ixia_client import Ixnetwor
 from ixnetwork_restpy.assistants.statistics.statviewassistant import StatViewAssistant as SVA
 from ixnetwork_restpy.files import Files
 from ixnetwork_restpy.testplatform.testplatform import TestPlatform
+from ixnetwork_restpy import SessionAssistant, Files
 
 
 class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
@@ -69,12 +70,17 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
             cport = param.get("client_port", 443)
             if not caddr:
                 return 0, "No Address to connect!"
-            gw = TestPlatform(ip_address=caddr, rest_port=cport)
-            gw.Authenticate(device.username, device.password)
-            # session = gw.Sessions.find()[0]
-            # device.applog.info(session)
-            # if session.Id == -1:
-            session = gw.Sessions.add()
+
+            gw = SessionAssistant(
+                IpAddress=caddr,
+                RestPort=cport,
+                UserName=device.username,
+                Password=device.password,
+                SessionName="DENT",
+                ClearConfig=True
+            )  # ,LogLevel='info'
+            session = gw.Session
+
             device.applog.info("Connected to Linux Gateway Session ID: %d" % session.Id)
             device.applog.info("Reserving test ports, and may take a minute...")
             IxnetworkIxiaClientImpl.session = session
