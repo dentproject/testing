@@ -53,11 +53,11 @@ async def test_tc_flower_persistency_w_traffic(testbed):
       - iptables-slice /tmp/iptables-unrolled.rules /tmp/iptables-sliced.rules FORWARD
       - tc-flower-load /tmp/iptables-sliced.rules FORWARD
     7. check the traffic stats
-      -- all the packets matching the SIP and DIP should be dropped.
+      - all the packets matching the SIP and DIP should be dropped.
     """
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 2)
     if not tgen_dev or not dent_devices:
-        print("The testbed does not have enough dent with tgen connections")
+        print("The testbed does not have the required (atleast 2) dent switches with tgen connections")
         return
     dent_dev = dent_devices[0]
     dent = dent_dev.host_name
@@ -163,10 +163,9 @@ async def test_tc_flower_persistency_w_traffic(testbed):
     await tgen_utils_stop_traffic(tgen_dev)
     stats = await tgen_utils_get_traffic_stats(tgen_dev)
     # check for no packet loss
-
     # - install iptables rules in filter table at FORWARD stage
-    #  to drop the packet matching SIP and DIP
-    #  - iptables -t filter -A FORWARD -i swp1 -s SIP -d DIP -j DROP
+    #   to drop the packet matching SIP and DIP
+    # - iptables -t filter -A FORWARD -i swp1 -s SIP -d DIP -j DROP
     iptable_rules = {}
     for swp in swp_tgen_ports:
         swp_info = {}
@@ -353,7 +352,7 @@ async def test_tc_flower_persistency_w_traffic(testbed):
     await tgen_utils_clear_traffic_stats(tgen_dev)
     await tgen_utils_start_traffic(tgen_dev)
     # - check the traffic stats
-    #  -- all the packets matching the SIP and DIP should be dropped.
+    #  - all the packets matching the SIP and DIP should be dropped.
     time.sleep(30)
     await tgen_utils_stop_traffic(tgen_dev)
     stats = await tgen_utils_get_traffic_stats(tgen_dev, "Flow Statistics")
