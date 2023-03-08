@@ -68,3 +68,32 @@ async def check_ntp_sync(dev, devices_dict):
         dev.applog.info(f"NTP not synced {rc} {out}")
         return False
     return True
+
+
+async def check_poe_devices(dev, devices_dict):
+    """
+    - check if the poectl works.
+    """
+    if dev.type is not DeviceType.INFRA_SWITCH:
+        return True
+    rc, out = await dev.run_cmd("which poectl")
+    if rc != 0:
+        return True
+    dev.applog.info("Checking for poectl Health")
+    out = await Poectl.show(
+        input_data=[{dev.host_name: [{"cmd_options": "-j -a"}]}],
+        parse_output=True,
+    )
+    if out[0][dev.host_name]["rc"] != 0:
+        dev.applog.info(f"{dev.host_name} poectl command returned failure {rc} {out}")
+        return False
+    ports = out[0][dev.host_name]["parsed_output"]
+    if len(ports) < 48:
+        n = len(ports)
+        dev.applog.info(f"{dev.host_name} has fewer ports --> {n}")
+        return False
+    for data in ports:
+        port = data["swp"]
+        if not port.startswith("swp"):
+            return False
+    return True
