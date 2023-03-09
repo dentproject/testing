@@ -18,6 +18,7 @@ class TrafficGen(TestLibObject):
             start_traffic - [traffic_names]
             stop_traffic  - [traffic_names]
             get_stats - [traffic_names]
+            get_drilldown_stats - [traffic_names]
             clear_stats - [traffic_names]
             start_protocols - [protocols]
             stop_protocols - [protocols]
@@ -179,6 +180,7 @@ class TrafficGen(TestLibObject):
            start_traffic - [traffic_names]
            stop_traffic  - [traffic_names]
            get_stats - [traffic_names]
+           get_drilldown_stats - [traffic_names]
            clear_stats - [traffic_names]
            clear_traffic - [traffic_names]
         
@@ -205,6 +207,7 @@ class TrafficGen(TestLibObject):
            start_traffic - [traffic_names]
            stop_traffic  - [traffic_names]
            get_stats - [traffic_names]
+           get_drilldown_stats - [traffic_names]
            clear_stats - [traffic_names]
            clear_traffic - [traffic_names]
         
@@ -231,6 +234,7 @@ class TrafficGen(TestLibObject):
            start_traffic - [traffic_names]
            stop_traffic  - [traffic_names]
            get_stats - [traffic_names]
+           get_drilldown_stats - [traffic_names]
            clear_stats - [traffic_names]
            clear_traffic - [traffic_names]
         
@@ -257,6 +261,7 @@ class TrafficGen(TestLibObject):
            start_traffic - [traffic_names]
            stop_traffic  - [traffic_names]
            get_stats - [traffic_names]
+           get_drilldown_stats - [traffic_names]
            clear_stats - [traffic_names]
            clear_traffic - [traffic_names]
         
@@ -283,6 +288,7 @@ class TrafficGen(TestLibObject):
            start_traffic - [traffic_names]
            stop_traffic  - [traffic_names]
            get_stats - [traffic_names]
+           get_drilldown_stats - [traffic_names]
            clear_stats - [traffic_names]
            clear_traffic - [traffic_names]
         
@@ -472,8 +478,37 @@ class TrafficGen(TestLibObject):
            start_traffic - [traffic_names]
            stop_traffic  - [traffic_names]
            get_stats - [traffic_names]
+           get_drilldown_stats - [traffic_names]
            clear_stats - [traffic_names]
            clear_traffic - [traffic_names]
         
         """
         return await TrafficGen._run_command("clear_traffic", *argv, **kwarg)
+        
+    async def get_drilldown_stats(*argv, **kwarg):
+        """
+        Platforms: ['ixnetwork']
+        Usage:
+        TrafficGen.get_drilldown_stats(
+            input_data = [{
+                # device 1
+                'dev1' : [{
+                    # command 1
+                        'traffic_names':'string_list',
+                        'ports':'string_list',
+                }],
+            }],
+        )
+        Description:
+        - IxiaClient
+           set_traffic - [traffic_names], ports
+           start_traffic - [traffic_names]
+           stop_traffic  - [traffic_names]
+           get_stats - [traffic_names]
+           get_drilldown_stats - [traffic_names]
+           clear_stats - [traffic_names]
+           clear_traffic - [traffic_names]
+        
+        """
+        return await TrafficGen._run_command("get_drilldown_stats", *argv, **kwarg)
+        

@@ -41,7 +41,7 @@
             save_config - config_file_name
       - name: traffic_item
         apis: ['set_traffic', 'start_traffic', 'stop_traffic',
-               'get_stats', 'clear_stats', 'clear_traffic']
+               'get_stats', 'clear_stats', 'clear_traffic', 'get_drilldown_stats']
         params: ['traffic_names', 'ports']
         desc: |
          - IxiaClient
@@ -49,6 +49,7 @@
             start_traffic - [traffic_names]
             stop_traffic  - [traffic_names]
             get_stats - [traffic_names]
+            get_drilldown_stats - [traffic_names]
             clear_stats - [traffic_names]
             clear_traffic - [traffic_names]
       - name: protocol
