@@ -211,6 +211,27 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
         return command
 
     @staticmethod
+    def __configure_egress_tracking(ti, pkt_data):
+        if "egress_track_by" not in pkt_data:
+            return
+        ti.EgressEnabled = True
+        track_by = pkt_data["egress_track_by"]
+        if type(track_by) is list:
+            track_by = "".join(track_by)
+        if "vlan" in track_by:
+            tracker = ti.EgressTracking.add()
+            if "vlan_4k" in track_by:
+                tracker.Offset = "Outer VLAN ID (12 bits)"  # vid 0..4095
+            else:
+                tracker.Offset = "Outer VLAN ID (4 bits)"  # vid 0..15
+        if "pcp" in track_by:
+            tracker = ti.EgressTracking.add()
+            tracker.Offset = "Outer VLAN Priority (3 bits)"  # pcp 0..7
+        if "dscp" in track_by:
+            tracker = ti.EgressTracking.add()
+            tracker.Offset = "IPv4 DSCP (6 bits)"  # dscp 0..63
+
+    @staticmethod
     def __parse_multivalue(value):
         if not "type" in value:
             raise KeyError(f"Value type is mandatory {value}")
@@ -329,6 +350,8 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
             IxnetworkIxiaClientImpl.tis.append(ti)
             track_by = {"trackingenabled0", "sourceDestValuePair0"}
             ti.Enabled = True
+            self.__configure_egress_tracking(ti, pkt_data)
+
             for ep in range(ep_count):
                 config_element = ti.ConfigElement.find(EndpointSetId=ep + 1)
                 # set the rate
@@ -408,6 +431,8 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
             track_by = {"trackingenabled0", "sourceDestValuePair0"}
             ti.Enabled = True
             ti.BiDirectional = pkt_data.get("bi_directional", False)
+            self.__configure_egress_tracking(ti, pkt_data)
+
             for ep in range(ep_count):
                 config_element = ti.ConfigElement.find(EndpointSetId=ep + 1)
                 # set the rate
@@ -434,6 +459,7 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
            start_traffic - [traffic_names]
            stop_traffic  - [traffic_names]
            get_stats - [traffic_names]
+           get_drilldown_stats - [traffic_names]
            clear_stats - [traffic_names]
 
         """
@@ -477,6 +503,17 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
             stats = SVA(IxnetworkIxiaClientImpl.ixnet, stats_type)
             # device.applog.info(stats)
             return 0, stats
+        elif command == "get_drilldown_stats":
+            UDS = "User Defined Statistics"
+            param = kwarg["params"][0]
+            row = param["row"]
+            view = IxnetworkIxiaClientImpl.ixnet.Statistics.View.find(Caption=row._view_name)
+            view.DoDrillDownByOption(row._index + 1 if row._index != -1 else 1, param["group_by"])
+            uds_view = IxnetworkIxiaClientImpl.ixnet.Statistics.View.find(Caption=UDS)
+            if param.get("num_of_rows"):
+                uds_view.Page.EgressPageSize = int(param["num_of_rows"])
+            uds_view.Enabled = True  # have to enable uds view every time it is changed
+            return self.run_traffic_item(device, "get_stats", params=[{"stats_type": UDS}])
         elif command == "clear_stats":
             device.applog.info("Clear Stats")
             IxnetworkIxiaClientImpl.ixnet.ClearStats()

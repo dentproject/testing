@@ -88,7 +88,7 @@ class IxnetworkIxiaClient(TestLibObject):
         if command in ['load_config', 'save_config']:
             return self.format_config(command, *argv, **kwarg)
         
-        if command in ['set_traffic', 'start_traffic', 'stop_traffic', 'get_stats', 'clear_stats', 'clear_traffic']:
+        if command in ['set_traffic', 'start_traffic', 'stop_traffic', 'get_stats', 'clear_stats', 'clear_traffic', 'get_drilldown_stats']:
             return self.format_traffic_item(command, *argv, **kwarg)
         
         if command in ['start_protocols', 'stop_protocols', 'set_protocol', 'get_protocol_stats', 'clear_protocol_stats']:
@@ -110,7 +110,7 @@ class IxnetworkIxiaClient(TestLibObject):
         if command in ['load_config', 'save_config']:
             return self.run_config(device_obj, command, *argv, **kwarg)
         
-        if command in ['set_traffic', 'start_traffic', 'stop_traffic', 'get_stats', 'clear_stats', 'clear_traffic']:
+        if command in ['set_traffic', 'start_traffic', 'stop_traffic', 'get_stats', 'clear_stats', 'clear_traffic', 'get_drilldown_stats']:
             return self.run_traffic_item(device_obj, command, *argv, **kwarg)
         
         if command in ['start_protocols', 'stop_protocols', 'set_protocol', 'get_protocol_stats', 'clear_protocol_stats']:
@@ -133,7 +133,7 @@ class IxnetworkIxiaClient(TestLibObject):
         if command in ['load_config', 'save_config']:
             return self.parse_config(command, output, *argv, **kwarg)
         
-        if command in ['set_traffic', 'start_traffic', 'stop_traffic', 'get_stats', 'clear_stats', 'clear_traffic']:
+        if command in ['set_traffic', 'start_traffic', 'stop_traffic', 'get_stats', 'clear_stats', 'clear_traffic', 'get_drilldown_stats']:
             return self.parse_traffic_item(command, output, *argv, **kwarg)
         
         if command in ['start_protocols', 'stop_protocols', 'set_protocol', 'get_protocol_stats', 'clear_protocol_stats']:
