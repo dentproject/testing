@@ -29,7 +29,6 @@ async def do_trigger(testbed, trigger_obj):
     elif trigger == TRIGGER_RESTART_SERVICES:
         services = [
             # "frr.service",
-            "IhmDentTcFlower",
             # "networking",
         ]
         for s in services:

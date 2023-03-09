@@ -19,7 +19,7 @@ pytestmark = pytest.mark.suite_clean_config
 
 async def disable_ztp(device):
     await device.run_cmd(f"rm -f /etc/network/if-up.d/ntpdate || true")
-    for s in ["IhmInfraCommodityZTP", "snmpd"]:
+    for s in ["snmpd"]:
         input_data = [{device.host_name: [{"name": s}]}]
         out = await Service.stop(
             input_data=input_data,
