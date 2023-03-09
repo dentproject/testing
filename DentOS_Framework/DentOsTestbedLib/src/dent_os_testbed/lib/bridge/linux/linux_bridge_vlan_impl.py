@@ -22,8 +22,8 @@ class LinuxBridgeVlanImpl(LinuxBridgeVlan):
             cmd += "dev {} ".format((params["device"]))
         if "vid" in params:
             cmd += "vid {} ".format((params["vid"]))
-        if "pvid" in params:
-            cmd += "pvid {} ".format((params["pvid"]))
+        if "pvid" in params and params["pvid"]:
+            cmd += "pvid "
         if "untagged" in params and params["untagged"]:
             cmd += "untagged "
         if "self" in params and params["self"]:
