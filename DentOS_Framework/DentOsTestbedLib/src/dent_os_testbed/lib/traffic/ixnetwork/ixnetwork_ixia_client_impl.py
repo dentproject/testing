@@ -233,21 +233,21 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
 
     @staticmethod
     def __parse_multivalue(value):
-        if not "type" in value:
+        if "type" not in value:
             raise KeyError(f"Value type is mandatory {value}")
 
         if value["type"] == "single":
             return {
                 "ValueType": "singleValue",
-                "SingleValue":  value.get("value", None),
+                "SingleValue": str(value["value"]),
             }
         elif value["type"] in ("increment", "decrement"):
             return {
                 "ValueType": value["type"],
-                "StartValue": value.get("start", None),
-                "StepValue": value.get("step", None),
+                "StartValue": str(value["start"]),
+                "StepValue": str(value["step"]),
                 # choosing a large number will increase wait time from Ixia
-                "CountValue": value.get("count", 255),
+                "CountValue": str(value.get("count", 255)),
             }
         elif value["type"] == "list":
             if not value.get("list", []):
@@ -259,7 +259,7 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
         elif value["type"] == "random":
             return {
                 "ValueType": "nonRepeatableRandom",
-                "RandomMask": value.get("mask", None),  # ignored when applied to MAC
+                "RandomMask": value.get("mask"),  # ignored when applied to MAC
             }
 
         valid_types = ("single", "increment", "decrement", "list", "random")
