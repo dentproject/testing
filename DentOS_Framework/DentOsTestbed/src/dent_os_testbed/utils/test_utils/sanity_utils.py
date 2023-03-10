@@ -76,7 +76,7 @@ async def check_poe_devices(dev, devices_dict):
     """
     if dev.type is not DeviceType.INFRA_SWITCH:
         return True
-    rc, out = await dev.run_cmd("which poectl")
+    rc, out = await dev.run_cmd("which poecli")
     if rc != 0:
         return True
     dev.applog.info("Checking for poectl Health")
