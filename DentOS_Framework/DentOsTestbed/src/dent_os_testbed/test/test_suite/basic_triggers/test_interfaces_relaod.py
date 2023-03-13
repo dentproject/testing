@@ -3,6 +3,7 @@
 
 import re
 import time
+import shutil
 
 import pytest
 
@@ -46,15 +47,17 @@ async def test_reload_interface(testbed):
         )
         fname = "interfaces." + dev.device_id
         old_fname = "interfaces." + dev.device_id + ".old"
-        fp = open(fname, "w")
+        # copy the original file
+        device.applog.info("Getting the original interface file")
+        await device.scp(old_fname, "/etc/network/interfaces", remote_to_local=True, sudo=True)
+        # copy the original file.
+        shutil.copy(fname, old_fname)
+        fp = open(fname, "a")
         for obj in dev.network.layer1.links.filter(fn=lambda x: re.compile("swp*").match(x.ifname)):
             fp.write("auto " + obj.ifname + "\n")
             fp.write("   link-down yes\n")
         fp.close()
 
-        # copy the original file
-        device.applog.info("Getting the original interface file")
-        await device.scp(old_fname, "/etc/network/interfaces", remote_to_local=True, sudo=True)
         device.applog.info("Uploading the interface config")
         await device.scp(fname, "/etc/network/interfaces", sudo=True)
 
