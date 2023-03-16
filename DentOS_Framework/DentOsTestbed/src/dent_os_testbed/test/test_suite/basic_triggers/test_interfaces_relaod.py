@@ -51,7 +51,7 @@ async def test_reload_interface(testbed):
         device.applog.info("Getting the original interface file")
         await device.scp(old_fname, "/etc/network/interfaces", remote_to_local=True, sudo=True)
         # copy the original file.
-        shutil.copy(fname, old_fname)
+        shutil.copy(old_fname, fname)
         fp = open(fname, "a")
         for obj in dev.network.layer1.links.filter(fn=lambda x: re.compile("swp*").match(x.ifname)):
             fp.write("auto " + obj.ifname + "\n")
