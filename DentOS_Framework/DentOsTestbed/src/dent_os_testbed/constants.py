@@ -76,7 +76,8 @@ PYTEST_SUITES = {
     'suite_functional_acl': 'Functional ACL tests',
     'suite_functional_qos': 'Functional QoS tests',
     'suite_functional_l1': 'Functional L1 tests',
-    'suite_functional_port_isolation': 'Functional Port Isolation tests'
+    'suite_functional_port_isolation': 'Functional Port Isolation tests',
+    'suite_functional_igmp': 'IGMP snooping functional tests',
 }
 
 PYTEST_SUITE_GROUPS = {
@@ -118,5 +119,7 @@ PYTEST_SUITE_GROUPS = {
         'suite_functional_ipv4',
         'suite_functional_ipv6',
         'suite_functional_l1',
-        'suite_functional_port_isolation']
+        'suite_functional_port_isolation',
+        'suite_functional_igmp',
+    ]
 }
