@@ -1,3 +1,4 @@
+import json
 from dent_os_testbed.lib.tc.linux.linux_tc_filter import LinuxTcFilter
 
 
@@ -58,4 +59,9 @@ class LinuxTcFilterImpl(LinuxTcFilter):
             cmd += "block {} ".format(params.get("block"))
         if "direction" in params:
             cmd += "{} ".format(params.get("direction"))
+        if "pref" in params:
+            cmd += "pref {} ".format(params["pref"])
         return cmd
+
+    def parse_show(self, command, output, *argv, **kwarg):
+        return json.loads(output)
