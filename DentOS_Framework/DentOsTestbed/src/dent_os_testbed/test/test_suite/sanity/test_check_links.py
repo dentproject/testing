@@ -76,7 +76,11 @@ async def check_and_validate_switch_links(testbed):
                )
             links_dict[dev.host_name][link] = [links[1], operstate, verified]
 
-    tb_generate_network_diagram(testbed, links_dict)
+    # try to generate a visual version of the network
+    try:
+        tb_generate_network_diagram(testbed, links_dict)
+    except:
+        pass
     all_links_up = True
     for dev, links in links_dict.items():
         for link, links in links.items():
