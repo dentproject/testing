@@ -22,6 +22,7 @@
           send_ping - [port, dst_ip, src_ip]
           send_arp - [port, src_ip]
           send_ns - [port, src_ip]
+          update_l1_config - ['speed', 'autoneg', 'tgen_ports', 'duplex']
           clear_traffic - [traffic_names]
      implements: "dent:traffic:traffic_gen"
      platforms: ['ixnetwork']
@@ -77,3 +78,9 @@
          - IxiaClient
            send_arp - [port, src_ip]
            send_ns - [port, src_ip]
+      - name: update_l1_config
+        apis: ['update_l1_config']
+        params: ['speed', 'autoneg', 'tgen_ports', 'duplex']
+        desc: |
+         - IxiaClient
+           update_l1_config - ['speed', 'autoneg', 'tgen_ports', 'duplex']

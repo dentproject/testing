@@ -28,6 +28,7 @@ class TrafficGen(TestLibObject):
             send_ping - [port, dst_ip, src_ip]
             send_arp - [port, src_ip]
             clear_traffic - [traffic_names]
+            update_l1_config - ['speed', 'autoneg', 'tgen_ports']
         
     """
     async def _run_command(api, *argv, **kwarg):
@@ -534,4 +535,27 @@ class TrafficGen(TestLibObject):
         
         """
         return await TrafficGen._run_command("get_drilldown_stats", *argv, **kwarg)
+        
+    async def update_l1_config(*argv, **kwarg):
+        """
+        Platforms: ['ixnetwork']
+        Usage:
+        TrafficGen.update_l1_config(
+            input_data = [{
+                # device 1
+                'dev1' : [{
+                    # command 1
+                        'speed':'string',
+                        'autoneg':'bool',
+                        'tgen_ports':'list',
+                        'duplex':'string',
+                }],
+            }],
+        )
+        Description:
+        - IxiaClient
+          update_l1_config - ['speed', 'autoneg', 'tgen_ports', 'duplex']
+        
+        """
+        return await TrafficGen._run_command("update_l1_config", *argv, **kwarg)
         
