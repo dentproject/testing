@@ -23,11 +23,20 @@ class LinuxSysctlImpl(LinuxSysctl):
         Get the attribute value
         
         """
-        values = dict()
-        for line in output.splitlines():
-            var, value = line.split(" = ")
-            values[var] = value
-        return values
+        # If we set -n option, values will be printed without names, so we return only values
+        if "-n" in kwarg["commands"]:
+            values = list()
+            for line in output.splitlines():
+                values.append(line.strip())
+            return values
+        # We can parse output into dict only if we set the correct options
+        if " = " in output:
+            values = dict()
+            for line in output.splitlines():
+                var, value = line.split(" = ")
+                values[var] = value
+            return values
+        return output
         
     def format_set(self, command, *argv, **kwarg):
         """

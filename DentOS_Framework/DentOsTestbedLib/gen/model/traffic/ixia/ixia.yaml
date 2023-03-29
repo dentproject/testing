@@ -21,6 +21,8 @@
           clear_protocol_stats - [protocols]
           send_ping - [port, dst_ip, src_ip]
           send_arp - [port, src_ip]
+          send_ns - [port, src_ip]
+          update_l1_config - ['speed', 'autoneg', 'tgen_ports', 'duplex']
           clear_traffic - [traffic_names]
      implements: "dent:traffic:traffic_gen"
      platforms: ['ixnetwork']
@@ -69,9 +71,16 @@
         desc: |
          - IxiaClient
            send_ping - [port, dst_ip, src_ip]
-      - name: send_arp
-        apis: ['send_arp']
+      - name: resolve_neighbor
+        apis: ['send_arp', 'send_ns']
         params: ['ports', 'src_ip']
         desc: |
          - IxiaClient
            send_arp - [port, src_ip]
+           send_ns - [port, src_ip]
+      - name: update_l1_config
+        apis: ['update_l1_config']
+        params: ['speed', 'autoneg', 'tgen_ports', 'duplex']
+        desc: |
+         - IxiaClient
+           update_l1_config - ['speed', 'autoneg', 'tgen_ports', 'duplex']
