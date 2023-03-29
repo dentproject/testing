@@ -16,6 +16,7 @@ from dent_os_testbed.lib.os.service import Service
 from dent_os_testbed.lib.os.system import System
 from dent_os_testbed.lib.tc.tc_qdisc import TcQdisc
 from dent_os_testbed.utils.Utils import check_asyncio_results
+from dent_os_testbed.lib.ethtool.ethtool import Ethtool
 
 from pyvis.network import Network
 
@@ -549,3 +550,37 @@ async def tb_device_tcpdump(device, interface, options, count_only=False, timeou
 
     else:
         return out
+
+
+async def tb_get_qualified_ports(device, ports, speed, duplex, required_ports=2):
+    """
+    Get dict of dut ports with matching speed and duplex
+    Args:
+        device (DeviceType): Dut device
+        ports (list): List of dut ports
+        speed (int): Required port speed
+        duplex (str): Required port duplex
+        required_ports (int): Required number of ports
+
+    Returns: Dictionary of qualified ports
+    """
+
+    # Check dut media mode name. If it supports the speed parameter
+    if device.media_mode == "mixed":
+        raise ValueError("Mixed mode is not supported")
+    if device.media_mode == "copper" and speed == 10000:
+        raise ValueError(f"Can not run test in device {device.host_name} with the speed: {speed}")
+
+    # Check that there are at least minimum 2 ports with the provided speed parameter
+    speed_ports = {}
+    for port in ports:
+        out = await Ethtool.show(input_data=[{device.host_name: [{"devname": port}]}], parse_output=True)
+        assert out[0][device.host_name]["rc"] == 0, f"Ethtool show failed: {out}"
+        supported_speeds = '{}baseT/{}' if "TP" in out[0][device.host_name]['parsed_output'][
+            "supported_ports"] else '{}baseSR/{}'
+        if supported_speeds.format(speed, duplex.capitalize()) in out[0][device.host_name]['result']:
+            speed_ports[port] = {"speed": speed,
+                                 "duplex": duplex}
+    err_msg = f"Need {required_ports} ports with the same speed of {speed} and duplex {duplex}"
+    assert len(speed_ports) >= required_ports, err_msg
+    return speed_ports

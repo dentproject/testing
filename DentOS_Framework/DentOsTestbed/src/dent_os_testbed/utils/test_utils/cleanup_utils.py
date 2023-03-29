@@ -2,6 +2,7 @@ from dent_os_testbed.constants import DEFAULT_LOGGER
 from dent_os_testbed.lib.ip.ip_address import IpAddress
 from dent_os_testbed.lib.ip.ip_link import IpLink
 from dent_os_testbed.lib.ip.ip_route import IpRoute
+from dent_os_testbed.lib.os.recoverable_sysctl import RecoverableSysctl
 from dent_os_testbed.lib.tc.tc_qdisc import TcQdisc
 from dent_os_testbed.logger.Logger import AppLogger
 
@@ -19,6 +20,11 @@ async def cleanup_qdiscs(dev):
     )
     qdiscs_info = out[0][dev.host_name]["parsed_output"]
     for qdisc_obj in qdiscs_info:
+        if qdisc_obj.get("root"):
+            await TcQdisc.delete(
+                input_data=[{dev.host_name: [{"dev": qdisc_obj["dev"], "root": True}]}]
+            )
+            continue
         if qdisc_obj["kind"] != "noqueue":
             await TcQdisc.delete(
                 input_data=[{dev.host_name: [{"dev": qdisc_obj["dev"], "direction": qdisc_obj["kind"]}]}]
@@ -98,4 +104,14 @@ async def cleanup_routes(dev, initial_routes):
             {"dev": route["dev"], "dst": route["dst"]}
             for route in new_routes if route not in initial_routes
         ]}])
+
+
+async def cleanup_sysctl():
+    """
+    Restores all sysctl values changed during test. 
+    Can be used separately or by using `cleanup_sysctl` fixture.
+    """
+    logger = AppLogger(DEFAULT_LOGGER)
+    logger.info("Restoring sysctl values")
+    await RecoverableSysctl.recover()
     

@@ -24,6 +24,8 @@ class IxnetworkIxiaClient(TestLibObject):
             clear_protocol_stats - [protocols]
             send_ping - [port, dst_ip, src_ip]
             send_arp - [port, src_ip]
+            send_ns - [port, src_ip]
+            update_l1_config - ['speed', 'autoneg', 'tgen_ports', 'duplex']
             clear_traffic - [traffic_names]
         
     """
@@ -72,13 +74,22 @@ class IxnetworkIxiaClient(TestLibObject):
     def parse_send_ping(self, command, output, *argv, **kwarg):
         raise NotImplementedError
         
-    def format_send_arp(self, command, *argv, **kwarg):
+    def format_resolve_neighbor(self, command, *argv, **kwarg):
         raise NotImplementedError
         
-    def run_send_arp(self, device, command, *argv, **kwarg):
+    def run_resolve_neighbor(self, device, command, *argv, **kwarg):
         raise NotImplementedError
         
-    def parse_send_arp(self, command, output, *argv, **kwarg):
+    def parse_resolve_neighbor(self, command, output, *argv, **kwarg):
+        raise NotImplementedError
+        
+    def format_update_l1_config(self, command, *argv, **kwarg):
+        raise NotImplementedError
+        
+    def run_update_l1_config(self, device, command, *argv, **kwarg):
+        raise NotImplementedError
+        
+    def parse_update_l1_config(self, command, output, *argv, **kwarg):
         raise NotImplementedError
         
     def format_command(self, command, *argv, **kwarg):
@@ -97,9 +108,11 @@ class IxnetworkIxiaClient(TestLibObject):
         if command in ['send_ping']:
             return self.format_send_ping(command, *argv, **kwarg)
         
-        if command in ['send_arp']:
-            return self.format_send_arp(command, *argv, **kwarg)
+        if command in ['send_arp', 'send_ns']:
+            return self.format_resolve_neighbor(command, *argv, **kwarg)
         
+        if command in ['update_l1_config']:
+            return self.format_update_l1_config(command, *argv, **kwarg)
         
         raise NameError("Cannot find command "+command)
         
@@ -119,9 +132,11 @@ class IxnetworkIxiaClient(TestLibObject):
         if command in ['send_ping']:
             return self.run_send_ping(device_obj, command, *argv, **kwarg)
         
-        if command in ['send_arp']:
-            return self.run_send_arp(device_obj, command, *argv, **kwarg)
+        if command in ['send_arp', 'send_ns']:
+            return self.run_resolve_neighbor(device_obj, command, *argv, **kwarg)
         
+        if command in ['update_l1_config']:
+            return self.run_update_l1_config(device_obj, command, *argv, **kwarg)
         
         print (len(command))
         raise NameError("Cannot find command "+command)
@@ -142,9 +157,11 @@ class IxnetworkIxiaClient(TestLibObject):
         if command in ['send_ping']:
             return self.parse_send_ping(command, output, *argv, **kwarg)
         
-        if command in ['send_arp']:
-            return self.parse_send_arp(command, output, *argv, **kwarg)
+        if command in ['send_arp', 'send_ns']:
+            return self.parse_resolve_neighbor(command, output, *argv, **kwarg)
         
+        if command in ['update_l1_config']:
+            return self.parse_update_l1_config(command, output, *argv, **kwarg)
         
         raise NameError("Cannot find command "+command)
         
