@@ -277,6 +277,24 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
         field.Auto = False
         field.update(**param)
 
+    def __update_frame_rate(self, config_element, pkt_data):
+        """
+        Update frame rate type and frame rate from pkt_data
+
+        Args:
+            config_element (ConfigElement): grouping of endpoints under the Traffic Item per unique packet structure
+            pkt_data (dict): Packet stream config
+        """
+        frame_rate_types = {
+            "line_rate": "percentLineRate",
+            "bps_rate": "bitsPerSecond",
+            "ipg_rate": "interPacketGap",
+            "pps_rate": "framesPerSecond"}
+        config_element.FrameRate.update(
+            Type=frame_rate_types[pkt_data.get("frame_rate_type", "pps_rate")],
+            Rate=pkt_data.get("rate", "100"),
+        )
+
     def set_l4_traffic(self, config_element, ipv4_stack, pkt_data):
         if "ipproto" not in pkt_data:
             return
@@ -354,10 +372,7 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
 
             for ep in range(ep_count):
                 config_element = ti.ConfigElement.find(EndpointSetId=ep + 1)
-                # set the rate
-                config_element.FrameRate.update(
-                    Type="framesPerSecond", Rate=pkt_data.get("rate", "100")
-                )
+                self.__update_frame_rate(config_element, pkt_data)
                 config_element.FrameSize.update(
                     Type="fixed", FixedSize=pkt_data.get("frameSize", "512")
                 )
@@ -435,10 +450,7 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
 
             for ep in range(ep_count):
                 config_element = ti.ConfigElement.find(EndpointSetId=ep + 1)
-                # set the rate
-                config_element.FrameRate.update(
-                    Type="framesPerSecond", Rate=pkt_data.get("rate", "100")
-                )
+                self.__update_frame_rate(config_element, pkt_data)
                 config_element.FrameSize.update(
                     Type="fixed", FixedSize=pkt_data.get("frameSize", "512")
                 )
