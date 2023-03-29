@@ -432,9 +432,32 @@ class TrafficGen(TestLibObject):
         Description:
         - IxiaClient
           send_arp - [port, src_ip]
+          send_ns - [port, src_ip]
         
         """
         return await TrafficGen._run_command("send_arp", *argv, **kwarg)
+        
+    async def send_ns(*argv, **kwarg):
+        """
+        Platforms: ['ixnetwork']
+        Usage:
+        TrafficGen.send_ns(
+            input_data = [{
+                # device 1
+                'dev1' : [{
+                    # command 1
+                        'ports':'string_list',
+                        'src_ip':'ip_addr_t',
+                }],
+            }],
+        )
+        Description:
+        - IxiaClient
+          send_arp - [port, src_ip]
+          send_ns - [port, src_ip]
+        
+        """
+        return await TrafficGen._run_command("send_ns", *argv, **kwarg)
         
     async def send_ping(*argv, **kwarg):
         """
