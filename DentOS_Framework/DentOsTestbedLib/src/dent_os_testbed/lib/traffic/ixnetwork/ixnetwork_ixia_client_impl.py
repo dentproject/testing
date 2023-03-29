@@ -316,6 +316,24 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
             Rate=pkt_data.get("rate", "100"),
         )
 
+    def __update_transmission_control(self, config_element, pkt_data):
+        """
+        Update transmission_control type from pkt_data
+        Args:
+            config_element (ConfigElement): grouping of endpoints under the Traffic Item per unique packet structure
+            pkt_data (dict): Packet stream config
+        """
+        transmission_control_types = {
+            "continuous": "continuous",
+            "fixedPktCount": "fixedFrameCount",
+            "fixedDuration": "fixedDuration"}
+        config_element.TransmissionControl.update(
+            Type=transmission_control_types[pkt_data.get("transmissionControlType", "continuous")],
+            StartDelay=pkt_data.get("startDelay", 0),
+            MinGapBytes=pkt_data.get("minGapBytes", 12),
+            FrameCount=pkt_data.get("frameCount", 1),
+            Duration=pkt_data.get("duration", 1))
+
     @classmethod
     def __create_traffic_items(cls, device, pkt_data, name):
         traffic_type = pkt_data.get("type", "ipv4")
@@ -449,7 +467,7 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                     Type="fixed", FixedSize=pkt_data.get("frameSize", "512")
                 )
                 config_element.Crc = self.bad_crc[pkt_data.get("bad_crc", False)]
-                config_element.TransmissionControl.update(Type="continuous")
+                self.__update_transmission_control(config_element, pkt_data)
                 eth_stack = self.__configure_l2_stack(config_element, pkt_data, track_by)
                 ip_stack = self.__configure_l3_stack(config_element, pkt_data, track_by, eth_stack)
                 self.__configure_l4_stack(config_element, pkt_data, track_by, ip_stack)
