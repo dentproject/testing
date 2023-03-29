@@ -411,6 +411,9 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                     self.__update_field(ipv4_stack.Field.find(FieldTypeId="ipv4.header.priority.raw"),
                                         pkt_data["dscp_ecn"])
                     track_by.add("ipv4Raw0")
+                if "ttl" in pkt_data:
+                    self.__update_field(ipv4_stack.Field.find(FieldTypeId="ipv4.header.ttl"),
+                                        pkt_data["ttl"])
                 self.set_l4_traffic(config_element, ipv4_stack, pkt_data)
             ti.Tracking.find()[0].TrackBy = list(track_by)
 
@@ -461,6 +464,9 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                     self.__update_field(ipv4_stack.Field.find(FieldTypeId="ipv4.header.priority.raw"),
                                         pkt_data["dscp_ecn"])
                     track_by.add("ipv4Raw0")
+                if "ttl" in pkt_data:
+                    self.__update_field(ipv4_stack.Field.find(FieldTypeId="ipv4.header.ttl"),
+                                        pkt_data["ttl"])
                 self.set_l4_traffic(config_element, ipv4_stack, pkt_data)
             ti.Tracking.find()[0].TrackBy = list(track_by)
 
