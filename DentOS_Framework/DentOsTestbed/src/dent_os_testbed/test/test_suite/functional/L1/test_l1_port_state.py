@@ -1,4 +1,5 @@
-import pytest, time
+import pytest
+import time
 from dent_os_testbed.lib.ip.ip_link import IpLink
 
 from dent_os_testbed.utils.test_utils.tgen_utils import (
@@ -13,7 +14,8 @@ pytestmark = [
     pytest.mark.usefixtures("cleanup_tgen")
 ]
 
-async def port_state(testbed, counter, software_reboot = False):
+
+async def port_state(testbed, counter, software_reboot=False):
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 4)
     if not tgen_dev or not dent_devices:
         print("The testbed does not have enough dent with tgen connections")
@@ -54,9 +56,9 @@ async def port_state(testbed, counter, software_reboot = False):
             links_up = []
             for port in ports:
                 for link in links:
-                        if port in link["ifname"]:
-                            links_up.append(link["operstate"] == "UP")
-                            break
+                    if port in link["ifname"]:
+                        links_up.append(link["operstate"] == "UP")
+                        break
             if all(links_up):
                 break
             time.sleep(timeout/6)
@@ -95,4 +97,4 @@ async def test_l1_link_up_state_software_power_cycle(testbed):
     3.  Software reboot.
     """
 
-    await port_state(testbed, 20, software_reboot = True)
+    await port_state(testbed, 20, software_reboot=True)
