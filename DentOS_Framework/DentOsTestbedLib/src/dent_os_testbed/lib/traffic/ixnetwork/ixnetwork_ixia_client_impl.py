@@ -112,6 +112,7 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
             vport_hrefs = [vport.href for vport in IxnetworkIxiaClientImpl.ixnet.Vport.find()]
             device.applog.info("Assigning ports")
             IxnetworkIxiaClientImpl.ixnet.AssignPorts(pports, [], vport_hrefs, True)
+
             for port, vport in vports.items():
                 card = vport[0].L1Config.NovusTenGigLan or vport[0].L1Config.Ethernet
                 if device.media_mode == "mixed":
@@ -119,12 +120,15 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                     required_media = next((link[2] for link in device.links if link[0] == port), 'copper')
                     device.applog.info(f"Changing port: {port} media mode {required_media}")
                     card.Media = required_media
+                    card.AutoInstrumentation = 'floating'
                 elif device.media_mode == "fiber":
                     device.applog.info("Changing all vports media mode to fiber")
                     card.Media = "fiber"
+                    card.AutoInstrumentation = 'floating'
                 else:
                     device.applog.info("Changing all vports media mode to copper")
                     card.Media = "copper"
+                    card.AutoInstrumentation = 'floating'
 
                 device.applog.info("Adding interface on ixia port {} swp {}".format(port, vport[1]))
                 topo = IxnetworkIxiaClientImpl.ixnet.Topology.add(Vports=vport[0])
