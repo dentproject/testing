@@ -20,6 +20,11 @@ async def cleanup_qdiscs(dev):
     )
     qdiscs_info = out[0][dev.host_name]["parsed_output"]
     for qdisc_obj in qdiscs_info:
+        if qdisc_obj.get("root"):
+            await TcQdisc.delete(
+                input_data=[{dev.host_name: [{"dev": qdisc_obj["dev"], "root": True}]}]
+            )
+            continue
         if qdisc_obj["kind"] != "noqueue":
             await TcQdisc.delete(
                 input_data=[{dev.host_name: [{"dev": qdisc_obj["dev"], "direction": qdisc_obj["kind"]}]}]
