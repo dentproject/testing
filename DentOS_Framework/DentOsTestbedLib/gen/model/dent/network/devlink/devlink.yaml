@@ -1,0 +1,58 @@
+- module: devlink
+  description: devlink-port - devlink port configuration
+  classes:
+  - name: devlink_port
+    desc: |
+      devlink [ OPTIONS ] port  { COMMAND | help }
+      OPTIONS := { -V[ersion] | -n[no-nice-names] }
+
+      devlink port set DEV/PORT_INDEX [ type { eth | ib | auto } ]
+      devlink port split DEV/PORT_INDEX count COUNT
+      devlink port unsplit DEV/PORT_INDEX
+      devlink port show [ DEV/PORT_INDEX ]
+      devlink port health { show | recover | diagnose | dump | set }
+      devlink port add { DEV | DEV/PORT_INDEX } [ flavour FLAVOUR ] [
+              pfnum PFNUMBER ] [ sfnum SFNUMBER ] [ controller CNUM ]
+
+      devlink port del DEV/PORT_INDEX
+      devlink port function set DEV/PORT_INDEX [ hw_addr ADDR ] [ state
+              { active | inactive } ]
+
+      devlink port function rate { show | set | add | del | help }
+      devlink dev param set DEV/PORT_INDEX name PARAMETER value VALUE
+              cmode { runtime | driverinit | permanent }
+
+      devlink dev param show [ DEV/PORT_INDEX name PARAMETER ]
+      devlink port help
+    apis: ['set', 'split', 'unsplit', 'show', 'health', 'add', 'delete', 'function', 'param']
+    members:
+    - name: dev
+      type: string
+      desc: |
+        dev - specifies the devlink port to operate on.
+        Format is:
+        BUS_NAME/BUS_ADDRESS/PORT_INDEX
+    - name: name
+      type: string
+      desc: |
+        Specify parameter name to set.
+    - name: value
+      type: string
+      desc: |
+        New value to set.
+    - name: cmode
+      type: string
+      desc: |
+        Configuration mode in which the new value is set.
+        runtime - Set new value while driver is running. This
+        configuration mode doesn't require any reset to apply the
+        new value.
+
+        driverinit - Set new value which will be applied during
+        driver initialization. This configuration mode requires
+        restart driver by devlink reload command to apply the new
+        value.
+
+        permanent - New value is written to device's non-volatile
+        memory. This configuration mode requires hard reset to
+        apply the new value.
