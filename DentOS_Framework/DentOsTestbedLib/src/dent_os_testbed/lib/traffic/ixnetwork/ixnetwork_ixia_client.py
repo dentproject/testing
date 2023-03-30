@@ -27,6 +27,7 @@ class IxnetworkIxiaClient(TestLibObject):
             send_ns - [port, src_ip]
             update_l1_config - ['speed', 'autoneg', 'tgen_ports', 'duplex']
             clear_traffic - [traffic_names]
+            switch_min_frame_size - [enable_min_size]
         
     """
     def format_connect(self, command, *argv, **kwarg):
@@ -92,6 +93,15 @@ class IxnetworkIxiaClient(TestLibObject):
     def parse_update_l1_config(self, command, output, *argv, **kwarg):
         raise NotImplementedError
         
+    def format_switch_min_frame_size(self, command, *argv, **kwarg):
+        raise NotImplementedError
+        
+    def run_switch_min_frame_size(self, device, command, *argv, **kwarg):
+        raise NotImplementedError
+        
+    def parse_switch_min_frame_size(self, command, output, *argv, **kwarg):
+        raise NotImplementedError
+        
     def format_command(self, command, *argv, **kwarg):
         if command in ['connect', 'disconnect']:
             return self.format_connect(command, *argv, **kwarg)
@@ -113,6 +123,10 @@ class IxnetworkIxiaClient(TestLibObject):
         
         if command in ['update_l1_config']:
             return self.format_update_l1_config(command, *argv, **kwarg)
+        
+        if command in ['switch_min_frame_size']:
+            return self.format_switch_min_frame_size(command, *argv, **kwarg)
+        
         
         raise NameError("Cannot find command "+command)
         
@@ -138,6 +152,10 @@ class IxnetworkIxiaClient(TestLibObject):
         if command in ['update_l1_config']:
             return self.run_update_l1_config(device_obj, command, *argv, **kwarg)
         
+        if command in ['switch_min_frame_size']:
+            return self.run_switch_min_frame_size(device_obj, command, *argv, **kwarg)
+        
+        
         print (len(command))
         raise NameError("Cannot find command "+command)
         
@@ -162,6 +180,10 @@ class IxnetworkIxiaClient(TestLibObject):
         
         if command in ['update_l1_config']:
             return self.parse_update_l1_config(command, output, *argv, **kwarg)
+        
+        if command in ['switch_min_frame_size']:
+            return self.parse_switch_min_frame_size(command, output, *argv, **kwarg)
+        
         
         raise NameError("Cannot find command "+command)
         

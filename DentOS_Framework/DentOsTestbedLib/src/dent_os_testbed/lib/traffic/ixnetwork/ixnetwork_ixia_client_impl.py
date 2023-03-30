@@ -100,7 +100,6 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                                    "igmpv2", "igmpv3MembershipQuery", "igmpv3MembershipReport")
             }
 
-            IxnetworkIxiaClientImpl.ixnet.Traffic.EnableMinFrameSize = True
             device.applog.info("Connection to Ixia REST API Server Established")
             ixia_ports = param["tgen_ports"]
             swp_ports = param["swp_ports"]
@@ -735,6 +734,19 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                 device.applog.info(f"Changing autoneg to {autoneg} on tgen_port {required_ixia_port.Name}")
                 card.update(AutoNegotiate=autoneg, Speed=ixia_speed)
             return 0, ""
+    
+    def run_switch_min_frame_size(self, device, command, *argv, **kwarg):
+        if not IxnetworkIxiaClientImpl.ixnet:
+            return 1, "Ixia not connected"
+        if command == "switch_min_frame_size":
+            IxnetworkIxiaClientImpl.ixnet.Traffic.EnableMinFrameSize = kwarg["params"][0].get("enable_min_size", True)
+        return 0, ""
+
+    def format_switch_min_frame_size(self, command, *argv, **kwarg):
+        return command
+    
+    def parse_switch_min_frame_size(self, command, *argv, **kwarg):
+        return command
 
     @classmethod
     def __convert_to_ixia_speed(self, speed, duplex):
