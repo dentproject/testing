@@ -96,7 +96,8 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
             IxnetworkIxiaClientImpl.bad_crc = {True: crc[0], False: crc[1]}
             IxnetworkIxiaClientImpl.stack_template = {
                 stack_type: IxnetworkIxiaClientImpl.ixnet.Traffic.ProtocolTemplate.find(StackTypeId=f"^{stack_type}$")
-                for stack_type in ("ipv4", "ipv6", "vlan", "ethernet", "tcp", "udp", "icmpv1", "icmpv2")
+                for stack_type in ("ipv4", "ipv6", "vlan", "ethernet", "tcp", "udp", "icmpv1", "icmpv2",
+                                   "igmpv2", "igmpv3MembershipQuery", "igmpv3MembershipReport")
             }
 
             device.applog.info("Connection to Ixia REST API Server Established")
@@ -421,6 +422,7 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                 "srcIp": "ipv4.header.srcIp",
                 "dscp_ecn": "ipv4.header.priority.raw",
                 "ttl": "ipv4.header.ttl",
+                "totalLength": "ipv4.header.totalLength",
             }
 
         ip_stack = config_element.Stack.find(StackTypeId=f"^{proto}$")
@@ -440,20 +442,37 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
         return ip_stack
 
     def __configure_l4_stack(self, config_element, pkt_data, track_by, ip_stack):
+        l4_proto_types = ["tcp", "udp", "icmpv1", "icmpv2",
+                          "igmpv2", "igmpv3MembershipQuery",
+                          "igmpv3MembershipReport"]
         if "ipproto" not in pkt_data:
             return
         proto = pkt_data["ipproto"]
-        if proto not in ["tcp", "udp", "icmpv1", "icmpv2"]:
+        if proto not in l4_proto_types:
             return
 
         l4_stack = config_element.Stack.read(
             ip_stack.AppendProtocol(self.stack_template[proto])
         )
+        if proto == "igmpv3MembershipReport":
+            grp_addr_id = "header.groupRecords.groupRecord.multicastAddress"
+            num_srcs_id = "header.groupRecords.groupRecord.numberOfSources"
+        else:
+            grp_addr_id = "header.groupAddress"
+            num_srcs_id = "header.numberOfSources"
+
         fields = {
             "dstPort": f"{proto}.header.dstPort",
             "srcPort": f"{proto}.header.srcPort",
             "icmpType": f"{proto}.message.messageType",
             "icmpCode": f"{proto}.message.codeValue",
+            "igmpType": f"{proto}.header.type",
+            "igmpChecksum": f"{proto}.header.checksum",
+            "igmpGroupAddr": f"{proto}.{grp_addr_id}",
+            "igmpRecordType": f"{proto}.header.groupRecords.groupRecord.recordType",
+            "igmpSourceAddr": f"{proto}.header.groupRecords.groupRecord.multicastSources.multicastSource",
+            "numberOfSources": f"{proto}.{num_srcs_id}",
+            "maxResponseCode": f"{proto}.header.maximumResponseCodeunits110Second",
         }
         for key, field_type in fields.items():
             if key not in pkt_data:
