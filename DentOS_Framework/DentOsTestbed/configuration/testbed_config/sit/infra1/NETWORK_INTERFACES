@@ -83,3 +83,9 @@ alias IXIA LINK
     bridge-pvid 100
     bridge-vids 300 400 500 600
 
+auto swp4
+iface swp4
+alias IXIA LINK
+    bridge-pvid 100
+    bridge-vids 300 400 500 600
+
