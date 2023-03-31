@@ -320,14 +320,19 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
     def __create_traffic_items(cls, device, pkt_data, name):
         traffic_type = pkt_data.get("type", "ipv4")
         if traffic_type == "ethernet":
-            traffic_type = "ethernetVlan"
+            ixia_traffic_type = "ethernetVlan"
+        elif traffic_type == "bgp":
+            ixia_traffic_type = "ipv4"
+        else:
+            ixia_traffic_type = traffic_type
+
         for ip1, ep1, rep1, rr1 in zip(cls.ip_eps, cls.eth_eps, cls.raw_eps, cls.rr_eps):
             if any(src in pkt_data and endpoint.Name not in pkt_data[src]
                    for src, endpoint in (("ip_source", ip1), ("ep_source", ep1), ("bgp_source", rr1))):
                 continue
             device.applog.info(f"Creating {traffic_type} traffic stream")
             ti = cls.ixnet.Traffic.TrafficItem.add(
-                Name=name, TrafficType=traffic_type
+                Name=name, TrafficType=ixia_traffic_type
             )
             ep_count = 0
             for ip2, ep2, rep2, rr2 in zip(cls.ip_eps, cls.eth_eps, cls.raw_eps, cls.rr_eps):
