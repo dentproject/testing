@@ -157,7 +157,12 @@ async def test_dentv2_acl_scale_max_rules_store(testbed):
         port = stream_input["dstPort"]
         for ip in ip_src:
             host_name, _, swp = ip.split("_")
-            stream_input["dstPort"] = f"{port}:1:{num_rules_dict[host_name][swp]-1}"
+            stream_input["dstPort"] = {
+                "type": "increment",
+                "start": port,
+                "step": 1,
+                "count": num_rules_dict[host_name][swp] - 1,
+            }
             stream_input["ep_source"] = [f"{host_name}:{swp}"]
             streams[f"{host_name}_tcp_flow_{swp}"] = stream_input.copy()
 
