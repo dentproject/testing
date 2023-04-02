@@ -1,35 +1,36 @@
 from random import randrange
 
+
 def get_streams(srcMac, self_mac, prefix, dev_groups, tg_ports):
-    return{
-    "Bridged_UnknownL2UC": {
+    return {
+     "Bridged_UnknownL2UC": {
         "ip_source": dev_groups[tg_ports[0]][0]["name"],
         "ip_destination": dev_groups[tg_ports[1]][0]["name"],
         "srcMac": srcMac,
         "dstMac": "00:00:BB:11:22:33",
         "frameSize": 96,
         "protocol": "0x6666",
-        "type" :"raw",
-    },
-    "BridgedLLDP": {
+        "type": "raw"
+     },
+     "BridgedLLDP": {
         "ip_source": dev_groups[tg_ports[0]][0]["name"],
         "ip_destination": dev_groups[tg_ports[1]][0]["name"],
         "srcMac": srcMac,
         "dstMac": "01:80:c2:00:00:0e",
         "frameSize": 96,
         "protocol": "0x88cc",
-        "type" :"raw"
-    },
-    "LACPDU": {
+        "type": "raw"
+     },
+     "LACPDU": {
         "ip_source": dev_groups[tg_ports[0]][0]["name"],
         "ip_destination": dev_groups[tg_ports[1]][0]["name"],
         "srcMac": srcMac,
         "dstMac": "01:80:c2:00:00:02",
         "frameSize": 130,
         "protocol": "0x8809",
-        "type" :"raw"
-    },
-    "IPv4ToMe": {
+        "type": "raw"
+     },
+     "IPv4ToMe": {
         "ip_source": dev_groups[tg_ports[0]][0]["name"],
         "ip_destination": dev_groups[tg_ports[1]][0]["name"],
         "srcIp": "1.1.1.2",
@@ -38,27 +39,27 @@ def get_streams(srcMac, self_mac, prefix, dev_groups, tg_ports):
         "dstMac": self_mac,
         "frameSize": 96,
         "protocol": "0x0800",
-        "type" :"raw"
-    },
-    "ARP_Request_BC": {
+        "type": "raw"
+     },
+     "ARP_Request_BC": {
         "ip_source": dev_groups[tg_ports[0]][0]["name"],
         "ip_destination": dev_groups[tg_ports[1]][0]["name"],
         "srcMac": srcMac,
         "dstMac": "FF:FF:FF:FF:FF:FF",
         "frameSize": 96,
         "protocol": "0x0806",
-        "type" :"raw"
-    },
-    "ARP_Reply": {
+        "type": "raw"
+     },
+     "ARP_Reply": {
         "ip_source": dev_groups[tg_ports[0]][0]["name"],
         "ip_destination": dev_groups[tg_ports[1]][0]["name"],
         "srcMac": srcMac,
         "dstMac": self_mac,
         "frameSize": 96,
         "protocol": "0x0806",
-        "type" :"raw"
-    },
-    "IPv4_Broadcast": {
+        "type": "raw"
+     },
+     "IPv4_Broadcast": {
         "ip_source": dev_groups[tg_ports[0]][0]["name"],
         "ip_destination": dev_groups[tg_ports[1]][0]["name"],
         "srcIp": "1.1.1.2",
@@ -67,9 +68,9 @@ def get_streams(srcMac, self_mac, prefix, dev_groups, tg_ports):
         "dstMac": "FF:FF:FF:FF:FF:FF",
         "frameSize": 96,
         "protocol": "0x0800",
-        "type" :"raw"
-    },
-    "IPV4_SSH": {
+        "type": "raw"
+     },
+     "IPV4_SSH": {
         "ip_source": dev_groups[tg_ports[0]][0]["name"],
         "ip_destination": dev_groups[tg_ports[1]][0]["name"],
         "srcIp": "1.1.1.2",
@@ -81,9 +82,9 @@ def get_streams(srcMac, self_mac, prefix, dev_groups, tg_ports):
         "dstPort": "22",
         "frameSize": 96,
         "protocol": "0x0800",
-        "type" :"raw"
-    },
-    "IPV4_Telnet": {
+        "type": "raw"
+     },
+     "IPV4_Telnet": {
         "ip_source": dev_groups[tg_ports[0]][0]["name"],
         "ip_destination": dev_groups[tg_ports[1]][0]["name"],
         "srcIp": "1.1.1.2",
@@ -95,9 +96,9 @@ def get_streams(srcMac, self_mac, prefix, dev_groups, tg_ports):
         "dstPort": "23",
         "frameSize": 96,
         "protocol": "0x0800",
-        "type" :"raw"
-    },
-    "Host_to_Host_IPv4": {
+        "type": "raw"
+     },
+     "Host_to_Host_IPv4": {
         "ip_source": dev_groups[tg_ports[0]][0]["name"],
         "ip_destination": dev_groups[tg_ports[1]][0]["name"],
         "srcIp": "192.168.1.1",
@@ -109,9 +110,9 @@ def get_streams(srcMac, self_mac, prefix, dev_groups, tg_ports):
         "dstPort": "23",
         "frameSize": 96,
         "protocol": "0x0800",
-        "type" :"raw"
-    },
-    "IPv4_ICMP_Request": {
+        "type": "raw"
+     },
+     "IPv4_ICMP_Request": {
         "ip_source": dev_groups[tg_ports[0]][0]["name"],
         "ip_destination": dev_groups[tg_ports[1]][0]["name"],
         "srcIp": "1.1.1.2",
@@ -121,9 +122,9 @@ def get_streams(srcMac, self_mac, prefix, dev_groups, tg_ports):
         "ipproto": "icmpv1",
         "frameSize": 96,
         "protocol": "0x0800",
-        "type" :"raw"
-    },
-    "IPv4_DCHP_BC": {
+        "type": "raw"
+     },
+     "IPv4_DCHP_BC": {
         "ip_source": dev_groups[tg_ports[0]][0]["name"],
         "ip_destination": dev_groups[tg_ports[1]][0]["name"],
         "srcIp": "0.0.0.0",
@@ -136,9 +137,9 @@ def get_streams(srcMac, self_mac, prefix, dev_groups, tg_ports):
         "dstPort": "68",
         "frameSize": 346,
         "protocol": "0x0800",
-        "type" :"raw"
-    },
-    "IPv4_Reserved_MC": {
+        "type": "raw"
+     },
+     "IPv4_Reserved_MC": {
         "ip_source": dev_groups[tg_ports[0]][0]["name"],
         "ip_destination": dev_groups[tg_ports[1]][0]["name"],
         "srcIp": "1.1.1.2",
@@ -147,9 +148,9 @@ def get_streams(srcMac, self_mac, prefix, dev_groups, tg_ports):
         "dstMac": "01:00:5E:00:00:45",
         "frameSize": 96,
         "protocol": "0x0800",
-        "type" :"raw"
-    },
-    "IPv4_All_Systems_on_this_Subnet": {
+        "type": "raw"
+     },
+     "IPv4_All_Systems_on_this_Subnet": {
         "ip_source": dev_groups[tg_ports[0]][0]["name"],
         "ip_destination": dev_groups[tg_ports[1]][0]["name"],
         "srcIp": "1.1.1.2",
@@ -158,9 +159,9 @@ def get_streams(srcMac, self_mac, prefix, dev_groups, tg_ports):
         "dstMac": "01:00:5E:00:00:01",
         "frameSize": 96,
         "protocol": "0x0800",
-        "type" :"raw"
-    },
-    "IPv4_All_Routers_on_this_Subnet": {
+        "type": "raw"
+     },
+     "IPv4_All_Routers_on_this_Subnet": {
         "ip_source": dev_groups[tg_ports[0]][0]["name"],
         "ip_destination": dev_groups[tg_ports[1]][0]["name"],
         "srcIp": "1.1.1.2",
@@ -169,9 +170,9 @@ def get_streams(srcMac, self_mac, prefix, dev_groups, tg_ports):
         "dstMac": "01:00:5E:00:00:02",
         "frameSize": 96,
         "protocol": "0x0800",
-        "type" :"raw"
-    },
-    "IPv4_OSPFIGP": {
+        "type": "raw"
+     },
+     "IPv4_OSPFIGP": {
         "ip_source": dev_groups[tg_ports[0]][0]["name"],
         "ip_destination": dev_groups[tg_ports[1]][0]["name"],
         "srcIp": "1.1.1.2",
@@ -180,9 +181,9 @@ def get_streams(srcMac, self_mac, prefix, dev_groups, tg_ports):
         "dstMac": "01:00:5E:00:00:05",
         "frameSize": 96,
         "protocol": "0x0800",
-        "type" :"raw"
-    },
-    "IPv4_RIP2_Routers": {
+        "type": "raw"
+     },
+     "IPv4_RIP2_Routers": {
         "ip_source": dev_groups[tg_ports[0]][0]["name"],
         "ip_destination": dev_groups[tg_ports[1]][0]["name"],
         "srcIp": "1.1.1.2",
@@ -191,9 +192,9 @@ def get_streams(srcMac, self_mac, prefix, dev_groups, tg_ports):
         "dstMac": "01:00:5E:00:00:09",
         "frameSize": 96,
         "protocol": "0x0800",
-        "type" :"raw"
-    },
-    "IPv4_EIGRP_Routers": {
+        "type": "raw"
+     },
+     "IPv4_EIGRP_Routers": {
         "ip_source": dev_groups[tg_ports[0]][0]["name"],
         "ip_destination": dev_groups[tg_ports[1]][0]["name"],
         "srcIp": "1.1.1.2",
@@ -202,9 +203,9 @@ def get_streams(srcMac, self_mac, prefix, dev_groups, tg_ports):
         "dstMac": "01:00:5E:00:00:0A",
         "frameSize": 96,
         "protocol": "0x0800",
-        "type" :"raw"
-    },
-    "IPv4_DHCP_Server/Relay_Agent": {
+        "type": "raw"
+     },
+     "IPv4_DHCP_Server/Relay_Agent": {
         "ip_source": dev_groups[tg_ports[0]][0]["name"],
         "ip_destination": dev_groups[tg_ports[1]][0]["name"],
         "srcIp": "1.1.1.2",
@@ -216,21 +217,20 @@ def get_streams(srcMac, self_mac, prefix, dev_groups, tg_ports):
         "dstPort": "67",
         "frameSize": 96,
         "protocol": "0x0800",
-        "type" :"raw"
-    },
-    "IPv4_VRRP": {
+        "type": "raw"
+     },
+     "IPv4_VRRP": {
         "ip_source": dev_groups[tg_ports[0]][0]["name"],
         "ip_destination": dev_groups[tg_ports[1]][0]["name"],
         "srcIp": "1.1.1.2",
         "dstIp": "224.0.0.18",
         "srcMac": srcMac,
         "dstMac": "01:00:5E:00:00:12",
-        # "packet.ipv4.protocol": 112,
         "frameSize": 96,
         "protocol": "0x0800",
-        "type" :"raw"
-    },
-    "IPv4_IGMP" : {
+        "type": "raw"
+     },
+     "IPv4_IGMP": {
         "ip_source": dev_groups[tg_ports[0]][0]["name"],
         "ip_destination": dev_groups[tg_ports[1]][0]["name"],
         "srcIp": "1.1.1.2",
@@ -239,9 +239,9 @@ def get_streams(srcMac, self_mac, prefix, dev_groups, tg_ports):
         "dstMac": "01:00:5E:00:00:16",
         "frameSize": 96,
         "protocol": "0x0800",
-        "type" :"raw"
-    },
-    "IPV4_BGP": {
+        "type": "raw"
+     },
+     "IPV4_BGP": {
         "ip_source": dev_groups[tg_ports[0]][0]["name"],
         "ip_destination": dev_groups[tg_ports[1]][0]["name"],
         "srcIp": "1.1.1.2",
@@ -253,6 +253,6 @@ def get_streams(srcMac, self_mac, prefix, dev_groups, tg_ports):
         "dstMac": self_mac,
         "frameSize": 96,
         "protocol": "0x0800",
-        "type" :"raw"
+        "type": "raw"
+     }
     }
-}

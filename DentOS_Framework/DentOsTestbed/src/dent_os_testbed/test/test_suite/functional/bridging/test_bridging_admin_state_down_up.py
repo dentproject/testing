@@ -7,13 +7,13 @@ from dent_os_testbed.lib.ip.ip_link import IpLink
 
 from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_get_dent_devices_with_tgen,
+    tgen_utils_traffic_generator_connect,
+    tgen_utils_dev_groups_from_config,
     tgen_utils_get_traffic_stats,
     tgen_utils_setup_streams,
     tgen_utils_start_traffic,
     tgen_utils_stop_traffic,
-    tgen_utils_get_loss,
-    tgen_utils_dev_groups_from_config,
-    tgen_utils_traffic_generator_connect,
+    tgen_utils_get_loss
 )
 
 pytestmark = [
@@ -21,6 +21,7 @@ pytestmark = [
     pytest.mark.asyncio,
     pytest.mark.usefixtures("cleanup_bridges", "cleanup_tgen")
 ]
+
 
 async def test_bridging_admin_state_down_up(testbed):
     """
@@ -58,10 +59,8 @@ async def test_bridging_admin_state_down_up(testbed):
     bridge = "br0"
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 4)
     if not tgen_dev or not dent_devices:
-        print("The testbed does not have enough dent with tgen connections")
-        return
-    dent_dev = dent_devices[0]
-    device_host_name = dent_dev.host_name
+        pytest.skip("The testbed does not have enough dent with tgen connections")
+    device_host_name = dent_devices[0].host_name
     tg_ports = tgen_dev.links_dict[device_host_name][0]
     ports = tgen_dev.links_dict[device_host_name][1]
     traffic_duration = 5
@@ -137,16 +136,16 @@ async def test_bridging_admin_state_down_up(testbed):
 
     out = await BridgeFdb.show(input_data=[{device_host_name: [{"options": "-j"}]}],
                                parse_output=True)
-    assert out[0][device_host_name]["rc"] == 0, f"Failed to get fdb entry.\n"
+    assert out[0][device_host_name]["rc"] == 0, "Failed to get fdb entry."
 
     fdb_entries = out[0][device_host_name]["parsed_output"]
     learned_macs = [en["mac"] for en in fdb_entries if "mac" in en]
     for mac in list_macs:
-        err_msg = f"Verify that source macs have not been learned.\n"
+        err_msg = "Verify that source macs have not been learned."
         assert mac not in learned_macs, err_msg
 
     out = await IpLink.set(
-        input_data=[{device_host_name:  [
+        input_data=[{device_host_name: [
             {"device": bridge, "operstate": "up"}]}])
     assert out[0][device_host_name]["rc"] == 0, f"Verify that bridge set to 'UP' state.\n{out}"
 
@@ -161,10 +160,10 @@ async def test_bridging_admin_state_down_up(testbed):
 
     out = await BridgeFdb.show(input_data=[{device_host_name: [{"options": "-j"}]}],
                                parse_output=True)
-    assert out[0][device_host_name]["rc"] == 0, f"Failed to get fdb entry.\n"
+    assert out[0][device_host_name]["rc"] == 0, "Failed to get fdb entry."
 
     fdb_entries = out[0][device_host_name]["parsed_output"]
     learned_macs = [en["mac"] for en in fdb_entries if "mac" in en]
     for mac in list_macs:
-        err_msg = f"Verify that source macs have been learned.\n"
+        err_msg = "Verify that source macs have been learned."
         assert mac in learned_macs, err_msg

@@ -7,13 +7,13 @@ from dent_os_testbed.lib.ip.ip_link import IpLink
 
 from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_get_dent_devices_with_tgen,
+    tgen_utils_traffic_generator_connect,
+    tgen_utils_dev_groups_from_config,
     tgen_utils_get_traffic_stats,
     tgen_utils_setup_streams,
     tgen_utils_start_traffic,
     tgen_utils_stop_traffic,
-    tgen_utils_get_loss,
-    tgen_utils_dev_groups_from_config,
-    tgen_utils_traffic_generator_connect,
+    tgen_utils_get_loss
 )
 
 pytestmark = [
@@ -21,6 +21,7 @@ pytestmark = [
     pytest.mark.asyncio,
     pytest.mark.usefixtures("cleanup_bridges", "cleanup_tgen")
 ]
+
 
 async def test_bridging_static_entries(testbed):
     """
@@ -43,10 +44,8 @@ async def test_bridging_static_entries(testbed):
     bridge = "br0"
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 4)
     if not tgen_dev or not dent_devices:
-        print("The testbed does not have enough dent with tgen connections")
-        return
-    dent_dev = dent_devices[0]
-    device_host_name = dent_dev.host_name
+        pytest.skip("The testbed does not have enough dent with tgen connections")
+    device_host_name = dent_devices[0].host_name
     tg_ports = tgen_dev.links_dict[device_host_name][0]
     ports = tgen_dev.links_dict[device_host_name][1]
     traffic_duration = 5
@@ -75,11 +74,8 @@ async def test_bridging_static_entries(testbed):
 
     out = await BridgeFdb.add(
         input_data=[{device_host_name: [
-            {"device": ports[0], "lladdr": "aa:bb:cc:dd:ee:11", "master": True, "static": True},
-            {"device": ports[1], "lladdr": "aa:bb:cc:dd:ee:12", "master": True, "static": True},
-            {"device": ports[2], "lladdr": "aa:bb:cc:dd:ee:13", "master": True, "static": True},
-            {"device": ports[3], "lladdr": "aa:bb:cc:dd:ee:14", "master": True, "static": True},
-            ]}])
+            {"device": ports[x], "lladdr": f"aa:bb:cc:dd:ee:1{x+1}", "master": True, "static": True}
+            for x in range(4)]}])
     assert out[0][device_host_name]["rc"] == 0, f"Verify that FDB static entries added.\n{out}"
 
     address_map = (

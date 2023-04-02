@@ -22,6 +22,7 @@ pytestmark = [
     pytest.mark.usefixtures("cleanup_bridges", "cleanup_tgen")
 ]
 
+
 async def test_bridging_robustness_macs(testbed):
     """
     Test Name: test_bridging_robustness_macs
@@ -41,8 +42,7 @@ async def test_bridging_robustness_macs(testbed):
     bridge = "br0"
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 4)
     if not tgen_dev or not dent_devices:
-        print("The testbed does not have enough dent with tgen connections")
-        return
+        pytest.skip("The testbed does not have enough dent with tgen connections")
     dent_dev = dent_devices[0]
     device_host_name = dent_dev.host_name
     tg_ports = tgen_dev.links_dict[device_host_name][0]
@@ -50,7 +50,7 @@ async def test_bridging_robustness_macs(testbed):
     # packages do not have enough time to all be sent
     traffic_duration = 10
     ixia_vhost_mac_count = 4
-    #define base on test stability
+    # define base on test stability
     mac_count = 16000
     pps_value = 15000
     tolerance = 0.8
@@ -90,7 +90,7 @@ async def test_bridging_robustness_macs(testbed):
         for x in range(3):
             streams = {
                     f"bridge_{x + 1}": {
-                        "ip_source": dev_groups[tg_ports[random.randint(0,2)]][0]["name"],
+                        "ip_source": dev_groups[tg_ports[random.randint(0, 2)]][0]["name"],
                         "ip_destination": dev_groups[tg_ports[3]][0]["name"],
                         "srcMac": {"type": "increment",
                                    "start": "00:00:00:00:00:35",
@@ -116,10 +116,10 @@ async def test_bridging_robustness_macs(testbed):
             assert loss == 0, f"Expected loss: 0%, actual: {loss}%"
 
         rc, out = await dent_dev.run_cmd("bridge fdb show br br0 | grep 'extern_learn.*offload' | wc -l")
-        assert rc == 0, f"Failed to grep 'extern_learn.*offload'.\n"
+        assert rc == 0, "Failed to grep 'extern_learn.*offload'."
 
         amount = int(out) - ixia_vhost_mac_count
         err_msg = f"Expected count of extern_learn offload entities: >{mac_count}*{tolerance}, Actual count: {amount}"
         assert amount > mac_count*tolerance, err_msg
-        if x != 2 :
+        if x != 2:
             await tgen_utils_clear_traffic_items(tgen_dev)

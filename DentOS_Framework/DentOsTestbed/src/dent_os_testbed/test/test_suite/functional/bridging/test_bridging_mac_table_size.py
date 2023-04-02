@@ -6,13 +6,13 @@ from dent_os_testbed.lib.ip.ip_link import IpLink
 
 from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_get_dent_devices_with_tgen,
+    tgen_utils_traffic_generator_connect,
+    tgen_utils_dev_groups_from_config,
     tgen_utils_get_traffic_stats,
     tgen_utils_setup_streams,
     tgen_utils_start_traffic,
     tgen_utils_stop_traffic,
-    tgen_utils_get_loss,
-    tgen_utils_dev_groups_from_config,
-    tgen_utils_traffic_generator_connect,
+    tgen_utils_get_loss
 )
 
 pytestmark = [
@@ -20,6 +20,7 @@ pytestmark = [
     pytest.mark.asyncio,
     pytest.mark.usefixtures("cleanup_bridges", "cleanup_tgen")
 ]
+
 
 async def test_bridging_mac_table_size(testbed):
     """
@@ -40,8 +41,7 @@ async def test_bridging_mac_table_size(testbed):
     bridge = "br0"
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 2)
     if not tgen_dev or not dent_devices:
-        print("The testbed does not have enough dent with tgen connections")
-        return
+        pytest.skip("The testbed does not have enough dent with tgen connections")
     dent_dev = dent_devices[0]
     device_host_name = dent_dev.host_name
     tg_ports = tgen_dev.links_dict[device_host_name][0]
@@ -90,9 +90,9 @@ async def test_bridging_mac_table_size(testbed):
             "ip_source": dev_groups[tg_ports[0]][0]["name"],
             "ip_destination": dev_groups[tg_ports[1]][0]["name"],
             "srcMac": {"type": "increment",
-                   "start": "00:00:00:00:00:35",
-                   "step": "00:00:00:00:10:00",
-                   "count": pps_value},
+                       "start": "00:00:00:00:00:35",
+                       "step": "00:00:00:00:10:00",
+                       "count": pps_value},
             "dstMac": "aa:bb:cc:dd:ee:11",
             "type": "raw",
             "protocol": "802.1Q",
@@ -112,9 +112,9 @@ async def test_bridging_mac_table_size(testbed):
         loss = tgen_utils_get_loss(row)
         assert loss == 0, f"Expected loss: 0%, actual: {loss}%"
 
-    rc, out = await dent_dev.run_cmd("bridge fdb show br br0   |  grep 'extern_learn.*offload'  |  wc -l")
-    assert rc == 0, f"Failed to grep 'extern_learn.*offload'.\n"
+    rc, out = await dent_dev.run_cmd("bridge fdb show br br0 | grep 'extern_learn.*offload' | wc -l")
+    assert rc == 0, "Failed to grep 'extern_learn.*offload'."
 
     amount = int(out) - ixia_vhost_mac_count
     err_msg = f"Expected count of extern_learn offload entities: 4000, Actual count: {amount}"
-    assert amount  == pps_value, err_msg
+    assert amount == pps_value, err_msg
