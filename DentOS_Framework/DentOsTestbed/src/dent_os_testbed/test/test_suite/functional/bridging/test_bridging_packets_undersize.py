@@ -55,8 +55,7 @@ async def test_bridging_packets_undersize(testbed):
     bridge = "br0"
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 4)
     if not tgen_dev or not dent_devices:
-        print("The testbed does not have enough dent with tgen connections")
-        return
+        pytest.skip("The testbed does not have enough dent with tgen connections")
     dent_dev = dent_devices[0]
     device_host_name = dent_dev.host_name
     tg_ports = tgen_dev.links_dict[device_host_name][0]

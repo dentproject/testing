@@ -84,8 +84,7 @@ async def test_ipv4_class_a_dis(testbed):
     """
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 4)
     if not tgen_dev or not dent_devices:
-        print("The testbed does not have enough dent with tgen connections")
-        return
+        pytest.skip("The testbed does not have enough dent with tgen connections")
     dent_dev = dent_devices[0]
     dent = dent_dev.host_name
     tg_ports = tgen_dev.links_dict[dent][0]
@@ -113,8 +112,7 @@ async def test_ipv4_class_b_dis(testbed):
     """
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 4)
     if not tgen_dev or not dent_devices:
-        print("The testbed does not have enough dent with tgen connections")
-        return
+        pytest.skip("The testbed does not have enough dent with tgen connections")
     dent_dev = dent_devices[0]
     dent = dent_dev.host_name
     tg_ports = tgen_dev.links_dict[dent][0]
@@ -142,8 +140,7 @@ async def test_ipv4_class_c_dis(testbed):
     """
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 4)
     if not tgen_dev or not dent_devices:
-        print("The testbed does not have enough dent with tgen connections")
-        return
+        pytest.skip("The testbed does not have enough dent with tgen connections")
     dent_dev = dent_devices[0]
     dent = dent_dev.host_name
     tg_ports = tgen_dev.links_dict[dent][0]
@@ -168,8 +165,7 @@ async def test_ipv4_class_d_dis(testbed):
     """
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 4)
     if not tgen_dev or not dent_devices:
-        print("The testbed does not have enough dent with tgen connections")
-        return
+        pytest.skip("The testbed does not have enough dent with tgen connections")
     dent_dev = dent_devices[0]
     dent = dent_dev.host_name
 
@@ -193,8 +189,7 @@ async def test_ipv4_class_e_dis(testbed):
     """
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 4)
     if not tgen_dev or not dent_devices:
-        print("The testbed does not have enough dent with tgen connections")
-        return
+        pytest.skip("The testbed does not have enough dent with tgen connections")
     dent_dev = dent_devices[0]
     dent = dent_dev.host_name
     tg_ports = tgen_dev.links_dict[dent][0]

@@ -35,8 +35,7 @@ async def test_l1_settings_(testbed, l1_settings):
 
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 1)
     if not tgen_dev or not dent_devices:
-        print("The testbed does not have enough dent with tgen connections")
-        return
+        pytest.skip("The testbed does not have enough dent with tgen connections")
     device_host_name = dent_devices[0].host_name
     tg_port = tgen_dev.links_dict[device_host_name][0][0]
     port = tgen_dev.links_dict[device_host_name][1][0]
