@@ -28,7 +28,7 @@ enum34==1.1.6
 et-xmlfile==1.0.1
 filelock==3.0.12
 funcsigs==1.0.2
-future==0.18.2
+future==0.18.3
 graphviz==0.13
 idna==2.9
 ifaddr==0.1.6
