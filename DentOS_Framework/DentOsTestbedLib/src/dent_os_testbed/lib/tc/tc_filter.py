@@ -245,4 +245,3 @@ class TcFilter(TestLibObject):
 
         """
         return await TcFilter._run_command("show", *argv, **kwarg)
-

@@ -243,4 +243,3 @@ class DevlinkPort(TestLibObject):
 
         """
         return await DevlinkPort._run_command("param", *argv, **kwarg)
-

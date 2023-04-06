@@ -77,4 +77,3 @@ class Dnsmasq(TestLibObject):
 
         """
         return await Dnsmasq._run_command("test", *argv, **kwarg)
-

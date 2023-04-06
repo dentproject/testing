@@ -144,4 +144,3 @@ class PoeTester(TestLibObject):
           get_port_stats
         """
         return await PoeTester._run_command("get_port_stats", *argv, **kwarg)
-

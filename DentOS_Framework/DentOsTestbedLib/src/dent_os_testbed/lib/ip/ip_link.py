@@ -251,4 +251,3 @@ class IpLink(TestLibObject):
 
         """
         return await IpLink._run_command("afstats", *argv, **kwarg)
-

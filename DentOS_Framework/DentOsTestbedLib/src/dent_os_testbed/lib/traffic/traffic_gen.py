@@ -579,4 +579,3 @@ class TrafficGen(TestLibObject):
 
         """
         return await TrafficGen._run_command("switch_min_frame_size", *argv, **kwarg)
-

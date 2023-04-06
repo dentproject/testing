@@ -41,4 +41,3 @@ class LinuxLldp(TestLibObject):
 
 
         raise NameError("Cannot find command "+command)
-

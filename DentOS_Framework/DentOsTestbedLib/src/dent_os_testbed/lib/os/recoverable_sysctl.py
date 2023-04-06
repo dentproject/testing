@@ -40,4 +40,3 @@ class RecoverableSysctl(Sysctl):
                 } for variable, value in config.items()],
             }])
         RecoverableSysctl.saved_values.clear()
-

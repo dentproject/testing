@@ -226,4 +226,3 @@ class BridgeFdb(TestLibObject):
 
         """
         return await BridgeFdb._run_command("show", *argv, **kwarg)
-

@@ -52,4 +52,3 @@ class LinuxPoectl(TestLibObject):
 
 
         raise NameError("Cannot find command "+command)
-

@@ -40,4 +40,3 @@ class LinuxTcClass(TestLibObject):
 
 
         raise NameError("Cannot find command "+command)
-

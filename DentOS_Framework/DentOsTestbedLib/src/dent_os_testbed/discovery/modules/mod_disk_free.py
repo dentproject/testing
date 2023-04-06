@@ -45,4 +45,3 @@ class DiskFreeMod(Module):
                 continue
             self.set_disk_free(out[0][dev.host_name]["parsed_output"], self.report.duts[i].system.os.disk)
             print("Finished disk_free Discovery on {} with {} entries".format(dev.host_name, len(self.report.duts[i].system.os.disk)))
-

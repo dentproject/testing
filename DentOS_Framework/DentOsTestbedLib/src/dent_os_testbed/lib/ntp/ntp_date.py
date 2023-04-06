@@ -113,4 +113,3 @@ class NtpDate(TestLibObject):
 
         """
         return await NtpDate._run_command("set", *argv, **kwarg)
-

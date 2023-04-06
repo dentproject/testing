@@ -122,4 +122,3 @@ class BridgeMdb(TestLibObject):
 
         """
         return await BridgeMdb._run_command("show", *argv, **kwarg)
-

@@ -581,4 +581,3 @@ class IpRoute(TestLibObject):
 
         """
         return await IpRoute._run_command("restore", *argv, **kwarg)
-

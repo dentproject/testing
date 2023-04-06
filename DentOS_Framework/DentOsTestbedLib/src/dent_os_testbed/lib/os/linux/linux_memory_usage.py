@@ -37,4 +37,3 @@ class LinuxMemoryUsage(TestLibObject):
 
 
         raise NameError("Cannot find command "+command)
-

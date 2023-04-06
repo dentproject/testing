@@ -61,4 +61,3 @@ class LinuxSysctlImpl(LinuxSysctl):
         if "sysctl:" in output:
             raise ValueError("Error while setting sysctl value:\n{}".format(output))
         return output.strip()
-

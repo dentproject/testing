@@ -74,4 +74,3 @@ class IpRouteMod(Module):
                 continue
             self.set_ip_route(out[0][dev.host_name]["parsed_output"], self.report.duts[i].network.layer3.routes)
             print("Finished ip_route Discovery on {} with {} entries".format(dev.host_name, len(self.report.duts[i].network.layer3.routes)))
-

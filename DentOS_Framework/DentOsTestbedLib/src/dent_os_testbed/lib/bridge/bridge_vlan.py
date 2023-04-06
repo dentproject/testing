@@ -144,4 +144,3 @@ class BridgeVlan(TestLibObject):
 
         """
         return await BridgeVlan._run_command("tunnelshow", *argv, **kwarg)
-

@@ -53,4 +53,3 @@ class OnlpSystemInfoMod(Module):
                 continue
             self.set_onlp_system_info(out[0][dev.host_name]["parsed_output"], self.report.duts[i].platform.onlp.system_information)
             print("Finished onlp_system_info Discovery on {} with {} entries".format(dev.host_name, len(self.report.duts[i].platform.onlp.system_information)))
-

@@ -489,4 +489,3 @@ class Ethtool(TestLibObject):
 
         """
         return await Ethtool._run_command("reset", *argv, **kwarg)
-

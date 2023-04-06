@@ -101,4 +101,3 @@ class FrrIpRoute(TestLibObject):
 
         """
         return await FrrIpRoute._run_command("add", *argv, **kwarg)
-

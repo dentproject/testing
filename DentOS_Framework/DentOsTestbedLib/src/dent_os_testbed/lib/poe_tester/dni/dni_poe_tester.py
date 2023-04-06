@@ -80,4 +80,3 @@ class DniPoeTester(TestLibObject):
 
 
         raise NameError("Cannot find command "+command)
-
