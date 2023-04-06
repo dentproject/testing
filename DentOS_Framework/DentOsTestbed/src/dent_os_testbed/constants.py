@@ -1,6 +1,7 @@
 """ Constants used in the Testbed application
 """
 TESTBED_CONFIG_FILE_NAME = "testbed_config.json"
+PLATFORMS_CONSTANTS = "/DENT/DentOsTestbed/src/dent_os_testbed/utils/test_utils/data/platforms.json"
 TEST_OUTPUT_FOLDER = "test_output"
 TESTBED_ARGS_FILE = "testbed_args"
 TESTBED_CONFIG_FILE = "testbed_config.json"
