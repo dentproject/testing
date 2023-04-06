@@ -539,6 +539,7 @@ async def tgen_utils_get_egress_stats(device, stats_row, num_of_rows=None, do_lo
     stats = out[0][device.host_name]['result']
     if not do_log:
         return stats
+
     def friendly_name(col, tracking):
         if 'VLAN ID' in tracking:
             return 'Vlan Id'
@@ -547,6 +548,7 @@ async def tgen_utils_get_egress_stats(device, stats_row, num_of_rows=None, do_lo
         if 'DSCP' in tracking:
             return 'DSCP'
         return col
+
     for idx, row in enumerate(stats.Rows):
         if idx == 0:
             egress_tracking_cols = [(col, row[col]) for col in row.Columns if 'Egress Tracking' in col]
