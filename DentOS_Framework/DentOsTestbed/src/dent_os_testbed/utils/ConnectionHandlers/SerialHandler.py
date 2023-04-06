@@ -34,10 +34,10 @@ class SerialAsyncLoop:
             logger (Logger.Apploger): Logger
         """
         if logger:
-            logger.info("Initializing SerialAsyncLoop")
+            logger.info('Initializing SerialAsyncLoop')
         SerialAsyncLoop._loop = asyncio.new_event_loop()
         SerialAsyncLoop._thread = Thread(
-            name="SerialAsyncLoop",
+            name='SerialAsyncLoop',
             target=SerialAsyncLoop.start_loop,
             args=[SerialAsyncLoop, SerialAsyncLoop._loop],
         )
@@ -65,7 +65,7 @@ class SerialAsyncLoop:
             SerialAsyncLoop.mutex.acquire()
             SerialAsyncLoop.count -= 1
             if logger:
-                logger.info(f"SerialAsyncLoop instance count: {SerialAsyncLoop.count}")
+                logger.info(f'SerialAsyncLoop instance count: {SerialAsyncLoop.count}')
             if SerialAsyncLoop.count == 0:
                 loop = SerialAsyncLoop._loop
                 loop.call_soon_threadsafe(loop.stop)
@@ -89,7 +89,7 @@ class SerialAsyncLoop:
                 SerialAsyncLoop(logger)
             SerialAsyncLoop.count += 1
             if logger:
-                logger.info(f"SerialAsyncLoop instance count: {SerialAsyncLoop.count}")
+                logger.info(f'SerialAsyncLoop instance count: {SerialAsyncLoop.count}')
             return SerialAsyncLoop._loop
         except Exception as e:
             raise
@@ -103,8 +103,8 @@ class SerialConsole:
     """
 
     MAX_CONSOLE_BUFFER = 1024 * 100
-    PRINT_PREFIX = "<console>:"
-    COMMAND_PROMPT = ""
+    PRINT_PREFIX = '<console>:'
+    COMMAND_PROMPT = ''
     LOGIN_RETRIES = 20
     ONIE_WAIT = 30
 
@@ -121,9 +121,9 @@ class SerialConsole:
         CMD_PROMPT = 5
         PEXPECT_MAP = collections.OrderedDict(
             [
-                (ONIE, "ONIE"),
-                (LOGIN, "(?i)login"),
-                (PASSWORD, "(?i)password"),
+                (ONIE, 'ONIE'),
+                (LOGIN, '(?i)login'),
+                (PASSWORD, '(?i)password'),
                 (EOF, pexpect.EOF),
                 (TIMEOUT, pexpect.TIMEOUT),
             ]
@@ -150,41 +150,41 @@ class SerialConsole:
             self.login_successful = False
             self.console = None
             self.pexpect_child = None
-            self.console_buffer = ""
-            if self.username == "root":
-                self.cmd_prompt = f"{self.username}@localhost:~#"
+            self.console_buffer = ''
+            if self.username == 'root':
+                self.cmd_prompt = f'{self.username}@localhost:~#'
             else:
-                self.cmd_prompt = f"{self.username}@{self.hostname}:~$"
+                self.cmd_prompt = f'{self.username}@{self.hostname}:~$'
             SerialConsole.LoginPexpectHelper.PEXPECT_MAP[
                 SerialConsole.LoginPexpectHelper.CMD_PROMPT
             ] = self.cmd_prompt
             if not self.username and not self.password:
-                self.applog.info("Not trying to login since username/password " "not available")
+                self.applog.info('Not trying to login since username/password ' 'not available')
                 return
         except Exception as e:
-            self.applog.exception("Exception --> Error initializing serial connection", exc_info=e)
+            self.applog.exception('Exception --> Error initializing serial connection', exc_info=e)
             raise
 
     def _validate_and_update_params(self, logger, loop, conn_params):
         if not loop:
             raise ValueError(
-                "SerialConsole class needs a running event loop to manage its async APIs"
+                'SerialConsole class needs a running event loop to manage its async APIs'
             )
         if not conn_params.dev:
-            raise ValueError("No serial device provided")
+            raise ValueError('No serial device provided')
         self.dev = conn_params.dev
         self.logger = logger
         self.applog = logger.tag_logs(self.dev)
         # self.devlog = conn_params.logger.tag_logs(self.dev)
-        self.log_file = open(conn_params.log_file_path, "w")
+        self.log_file = open(conn_params.log_file_path, 'w')
         if not conn_params.username:
-            raise ValueError("No username provided")
+            raise ValueError('No username provided')
         self.username = conn_params.username
         if not conn_params.hostname:
-            raise ValueError("No hostname provided")
+            raise ValueError('No hostname provided')
         self.hostname = conn_params.hostname
         if not conn_params.baudrate:
-            raise ValueError("Baud rate not provided")
+            raise ValueError('Baud rate not provided')
         self.baudrate = conn_params.baudrate
         self.password = conn_params.password  # Not validating - What if password is empty?
 
@@ -196,10 +196,10 @@ class SerialConsole:
             Exception: For generic failures
         """
         try:
-            self.applog.info("Login done. %s" % ("Succeeded" if result.result() else "Failed"))
+            self.applog.info('Login done. %s' % ('Succeeded' if result.result() else 'Failed'))
             self.login_successful = result.result()
         except:
-            self.applog.exception("Login to console %s failed" % self.dev)
+            self.applog.exception('Login to console %s failed' % self.dev)
             self.login_successful = False
         self.login_done = True
         return
@@ -227,15 +227,15 @@ class SerialConsole:
             return False
         try:
             self._flush_buffer()
-            exit_status, result = await self._run_cmd("who")
+            exit_status, result = await self._run_cmd('who')
             if exit_status is not 0:
                 return False
             if result:
                 fields = [line for line in result.splitlines()][0].split()
-            self.applog.info(f"user/ttyinfo:{fields}")
-            return fields and fields[0] == self.username and "tty" in fields[1]
+            self.applog.info(f'user/ttyinfo:{fields}')
+            return fields and fields[0] == self.username and 'tty' in fields[1]
         except Exception as e:
-            self.applog.exception("Exception --> logged_in()", exc_info=e)
+            self.applog.exception('Exception --> logged_in()', exc_info=e)
             return False
 
     async def handle_username_prompt(self):
@@ -245,15 +245,15 @@ class SerialConsole:
         Raises:
             Exception: For generic failures
         """
-        self.applog.info("sending username %s" % self.username)
+        self.applog.info('sending username %s' % self.username)
         self._flush_buffer()
         self.pexpect_child.sendline(self.username)
-        ret = self.pexpect_child.expect(["(?i)password", pexpect.TIMEOUT, pexpect.EOF], timeout=10)
-        self.applog.info("handle_username %s ret:%s" % (self.username, ret))
+        ret = self.pexpect_child.expect(['(?i)password', pexpect.TIMEOUT, pexpect.EOF], timeout=10)
+        self.applog.info('handle_username %s ret:%s' % (self.username, ret))
         if ret == 0:
             return await self.handle_password_prompt()
         elif ret == 2:
-            self.applog.info("Login username prompt failed with %s" % ret)
+            self.applog.info('Login username prompt failed with %s' % ret)
         return False
 
     async def handle_password_prompt(self):
@@ -263,7 +263,7 @@ class SerialConsole:
         Raises:
             Exception: For generic failures
         """
-        self.applog.info("sending password %s" % self.password)
+        self.applog.info('sending password %s' % self.password)
         self._flush_buffer()
         self.pexpect_child.sendline(self.password)
         ret = self.pexpect_child.expect_exact(
@@ -271,7 +271,7 @@ class SerialConsole:
         )
         if ret == 0:
             return True
-        self.applog.info("handle_password_prompt failed with %s" % ret)
+        self.applog.info('handle_password_prompt failed with %s' % ret)
         return False
 
     async def _login_routine(self):
@@ -281,16 +281,16 @@ class SerialConsole:
         Raises:
             Exception: For generic failures
         """
-        self.applog.info("----Starting login----")
+        self.applog.info('----Starting login----')
         for i in range(self.LOGIN_RETRIES):
             self._flush_buffer()
-            self.pexpect_child.sendline("")
-            self.applog.info("retrying login: %s" % i)
+            self.pexpect_child.sendline('')
+            self.applog.info('retrying login: %s' % i)
             ret = self.pexpect_child.expect(
                 list(SerialConsole.LoginPexpectHelper.PEXPECT_MAP.values()), timeout=10
             )
             self.applog.info(
-                "Login expect: got %s" % SerialConsole.LoginPexpectHelper.PEXPECT_MAP[ret]
+                'Login expect: got %s' % SerialConsole.LoginPexpectHelper.PEXPECT_MAP[ret]
             )
             if ret == SerialConsole.LoginPexpectHelper.PASSWORD:
                 if await self.handle_password_prompt() and await self.logged_in():
@@ -299,11 +299,11 @@ class SerialConsole:
                 if await self.handle_username_prompt() and await self.logged_in():
                     return True
             elif ret == SerialConsole.LoginPexpectHelper.CMD_PROMPT:
-                self.applog.info("Received command prompt, verify if already logged in")
+                self.applog.info('Received command prompt, verify if already logged in')
                 if await self.logged_in():
                     return True
             elif ret == SerialConsole.LoginPexpectHelper.EOF:
-                self.applog.info("Login failed with EOF")
+                self.applog.info('Login failed with EOF')
                 return False
             elif (
                 ret == SerialConsole.LoginPexpectHelper.ONIE
@@ -311,11 +311,11 @@ class SerialConsole:
             ):
                 await asyncio.sleep(30)
             else:
-                self.applog.info("Login attempt failed with expect ret:%s. Trying again.." % ret)
-            self.applog.info("Login expect ret: %s" % ret)
+                self.applog.info('Login attempt failed with expect ret:%s. Trying again..' % ret)
+            self.applog.info('Login expect ret: %s' % ret)
 
-        self.applog.warning("console login unsuccessful")
-        raise TimeoutError("Serial console login to %s timed out" % self.dev)
+        self.applog.warning('console login unsuccessful')
+        raise TimeoutError('Serial console login to %s timed out' % self.dev)
 
     async def _login(self):
         """
@@ -331,14 +331,14 @@ class SerialConsole:
                 self.console = serial.Serial(
                     self.dev,
                     baudrate=int(self.baudrate),
-                    parity="N",
+                    parity='N',
                     stopbits=1,
                     bytesize=8,
                     timeout=8,
                 )
             if not self.pexpect_child:
                 self.pexpect_child = pexpect.fdpexpect.fdspawn(
-                    self.console.fileno(), encoding="utf-8"
+                    self.console.fileno(), encoding='utf-8'
                 )
                 self.pexpect_child.logfile = self.log_file
             self.connect_future = asyncio.run_coroutine_threadsafe(self._login_routine(), self.loop)
@@ -346,9 +346,9 @@ class SerialConsole:
             while not self.login_done:
                 await asyncio.sleep(2)
             if not self.login_successful:
-                raise RuntimeError(f"Unable to login to {self.dev}")
+                raise RuntimeError(f'Unable to login to {self.dev}')
         except Exception as e:
-            self.applog.exception("Exception occured --> __login", exc_info=e)
+            self.applog.exception('Exception occured --> __login', exc_info=e)
             raise
 
     def _flush_buffer(self):
@@ -359,8 +359,8 @@ class SerialConsole:
             Exception: For generic failures
         """
         self.pexpect_child.logfile = None
-        flushedStuff = ""
-        while self.pexpect_child.expect([pexpect.TIMEOUT, r".+"], timeout=1):
+        flushedStuff = ''
+        while self.pexpect_child.expect([pexpect.TIMEOUT, r'.+'], timeout=1):
             flushedStuff += self.pexpect_child.match.group(0)
         self.pexpect_child.logfile = self.log_file
 
@@ -372,7 +372,7 @@ class SerialConsole:
             Command output
         """
         output_lines = cmd_out.splitlines()
-        res = output_lines[1].strip() if output_lines else ""
+        res = output_lines[1].strip() if output_lines else ''
         return res
 
     async def _run_cmd(self, cmd, timeout=5):
@@ -391,8 +391,8 @@ class SerialConsole:
             ret = self.pexpect_child.expect_exact(
                 [self.cmd_prompt, pexpect.TIMEOUT], timeout=timeout
             )
-            stdout = self.parse_cmd_output(self.pexpect_child.before) if ret == 0 else ""
-            self.pexpect_child.sendline("echo $?")
+            stdout = self.parse_cmd_output(self.pexpect_child.before) if ret == 0 else ''
+            self.pexpect_child.sendline('echo $?')
             ret = self.pexpect_child.expect_exact(
                 [self.cmd_prompt, pexpect.TIMEOUT], timeout=timeout
             )
@@ -403,7 +403,7 @@ class SerialConsole:
                 exit_status = -1
             return exit_status, stdout
         except Exception as e:
-            self.applog.exception("Exception occured --> _run_command", exc_info=e)
+            self.applog.exception('Exception occured --> _run_command', exc_info=e)
             raise
 
     async def run_cmd(self, cmd, timeout=5):
@@ -418,12 +418,12 @@ class SerialConsole:
         """
         try:
             if not await self.logged_in():
-                self.applog.info(f"Logging in to console")
+                self.applog.info(f'Logging in to console')
                 await self._login()
-            self.applog.info(f"Executing command {cmd}")
+            self.applog.info(f'Executing command {cmd}')
             return await self._run_cmd(cmd, timeout)
         except Exception as e:
-            self.applog.exception("Exception occured --> run_command", exc_info=e)
+            self.applog.exception('Exception occured --> run_command', exc_info=e)
             raise
 
     def cleanup(self):
@@ -438,7 +438,7 @@ class SerialConsole:
             self.log_file.close()
             SerialAsyncLoop.stop_loop(self.logger)
         except Exception as e:
-            self.applog.exception(f"Exception --> {SerialConsole.cleanup.__qualname__}", exc_info=e)
+            self.applog.exception(f'Exception --> {SerialConsole.cleanup.__qualname__}', exc_info=e)
             raise
 
     def disconnect(self):
@@ -450,12 +450,12 @@ class SerialConsole:
         """
         try:
             if self.console:
-                self.applog.debug("Disconnecting serial connection")
+                self.applog.debug('Disconnecting serial connection')
                 self.console.close()
                 self.console = self.pexpect_child.logfile = self.pexpect_child = None
-                self.applog.debug("Serial connection disconnected")
+                self.applog.debug('Serial connection disconnected')
             else:
-                self.applog.debug("No active connection to disconnect")
+                self.applog.debug('No active connection to disconnect')
         except Exception as e:
-            self.applog.exception("Exception --> serial disconnect:", exc_info=e)
+            self.applog.exception('Exception --> serial disconnect:', exc_info=e)
             raise

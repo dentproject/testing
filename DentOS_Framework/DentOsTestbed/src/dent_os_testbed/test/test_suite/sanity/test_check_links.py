@@ -13,29 +13,29 @@ pytestmark = pytest.mark.suite_system_health
 
 
 async def get_link_operstate(host_name, link):
-    if host_name == "tgen":
-        return "UP"
+    if host_name == 'tgen':
+        return 'UP'
     out = await IpLink.show(
-        input_data=[{host_name: [{"device": link, "cmd_options": "-j"}]}],
+        input_data=[{host_name: [{'device': link, 'cmd_options': '-j'}]}],
         parse_output=True,
     )
-    assert out[0][host_name]["rc"] == 0
+    assert out[0][host_name]['rc'] == 0
     # bond interface parent will take care of the UP/DOWN
     if (
-        out[0][host_name]["parsed_output"][0]["operstate"] == "DOWN"
-        and "SLAVE" in out[0][host_name]["parsed_output"][0]["flags"]
+        out[0][host_name]['parsed_output'][0]['operstate'] == 'DOWN'
+        and 'SLAVE' in out[0][host_name]['parsed_output'][0]['flags']
     ):
-        return "UP"
-    return out[0][host_name]["parsed_output"][0]["operstate"]
+        return 'UP'
+    return out[0][host_name]['parsed_output'][0]['operstate']
 
 async def check_and_validate_switch_links(testbed):
     """
     - check the links if they are up
     - down on one and see of the other end goes down for validity
     """
-    CGREEN = "\33[32m"
-    CRED = "\33[91m"
-    CEND = "\33[0m"
+    CGREEN = '\33[32m'
+    CRED = '\33[91m'
+    CEND = '\33[0m'
 
     devices = {}
     links_dict = {}
@@ -54,25 +54,25 @@ async def check_and_validate_switch_links(testbed):
         for links in dev.links:
             # check now
             link = links[0]
-            other_end = links[1].split(":")
+            other_end = links[1].split(':')
             operstate = await get_link_operstate(dev.host_name, link)
-            verified = "N/A"
+            verified = 'N/A'
             # if the other is not in the topo then mark as not available
-            if operstate != "UP" and other_end[0] not in devices:
-                operstate = "N/A"
+            if operstate != 'UP' and other_end[0] not in devices:
+                operstate = 'N/A'
 
             # this can be done on system which is not provisiond since there might be links that
             # cannot be brought down.
-            if not testbed.args.is_provisioned and operstate == "UP" and other_end[0] in devices:
+            if not testbed.args.is_provisioned and operstate == 'UP' and other_end[0] in devices:
                out = await IpLink.set(
-                   input_data=[{dev.host_name: [{"device": link, "operstate": "down"}]}],
+                   input_data=[{dev.host_name: [{'device': link, 'operstate': 'down'}]}],
                )
-               assert out[0][dev.host_name]["rc"] == 0
+               assert out[0][dev.host_name]['rc'] == 0
                time.sleep(5)
                other_operstate = await get_link_operstate(other_end[0], other_end[1])
-               verified = "YES" if other_operstate != "UP" else "NO"
+               verified = 'YES' if other_operstate != 'UP' else 'NO'
                out = await IpLink.set(
-                   input_data=[{dev.host_name: [{"device": link, "operstate": "up"}]}],
+                   input_data=[{dev.host_name: [{'device': link, 'operstate': 'up'}]}],
                )
             links_dict[dev.host_name][link] = [links[1], operstate, verified]
 
@@ -87,15 +87,15 @@ async def check_and_validate_switch_links(testbed):
             other = links[0]
             operstate = links[1]
             verified = links[2]
-            if operstate in ["UP", "N/A"]:
+            if operstate in ['UP', 'N/A']:
                 print(
-                    f"{dev:>10}:{link:<10}<-->{other:>20} {CGREEN}[{operstate} - {verified}]{CEND}"
+                    f'{dev:>10}:{link:<10}<-->{other:>20} {CGREEN}[{operstate} - {verified}]{CEND}'
                 )
             else:
-                print(f"{dev:>10}:{link:<10}<-->{other:>20} {CRED}[DOWN!!]{CEND}")
+                print(f'{dev:>10}:{link:<10}<-->{other:>20} {CRED}[DOWN!!]{CEND}')
                 all_links_up = False
 
-    assert all_links_up == True, "One or more links down"
+    assert all_links_up == True, 'One or more links down'
 
 
 @pytest.mark.asyncio

@@ -128,7 +128,7 @@ class IxnetworkIxiaClient(TestLibObject):
             return self.format_switch_min_frame_size(command, *argv, **kwarg)
 
 
-        raise NameError("Cannot find command "+command)
+        raise NameError('Cannot find command '+command)
 
     def run_command(self, device_obj, command, *argv, **kwarg):
         if command in ['connect', 'disconnect']:
@@ -157,7 +157,7 @@ class IxnetworkIxiaClient(TestLibObject):
 
 
         print (len(command))
-        raise NameError("Cannot find command "+command)
+        raise NameError('Cannot find command '+command)
 
     def parse_output(self, command, output, *argv, **kwarg):
         if command in ['connect', 'disconnect']:
@@ -185,4 +185,4 @@ class IxnetworkIxiaClient(TestLibObject):
             return self.parse_switch_min_frame_size(command, output, *argv, **kwarg)
 
 
-        raise NameError("Cannot find command "+command)
+        raise NameError('Cannot find command '+command)

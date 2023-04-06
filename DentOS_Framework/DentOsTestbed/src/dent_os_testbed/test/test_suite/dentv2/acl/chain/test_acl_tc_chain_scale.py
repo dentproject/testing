@@ -30,7 +30,7 @@ async def test_iptables_tc_scale(testbed):
     """
     devices = await tb_get_all_devices(testbed, include_devices=[DeviceType.INFRA_SWITCH])
     if not devices:
-        testbed.applog.info(f"No Infra devices reachable... Skipping test!!!")
+        testbed.applog.info(f'No Infra devices reachable... Skipping test!!!')
         assert 0
         return
     dent_dev = devices[0]
@@ -39,21 +39,21 @@ async def test_iptables_tc_scale(testbed):
     # cleanup the firewall
     await tb_reload_nw_and_flush_firewall([dent_dev])
     iptable_rules = {}
-    swp = "swp1"
+    swp = 'swp1'
 
     rules = []
     # install 2000 rules with different sport.
     for i in range(1000, 3000):
         rule = {
-            "table": "filter",
-            "chain": "FORWARD",
-            "in-interface": swp,
-            "source": "10.0.0.0/24",
-            "destination": "20.0.0.0/24",
-            "protocol": "tcp",
-            "dport": "443",
-            "sport": f"{i}",
-            "target": 'ACCEPT -m comment --comment "TC:--vlan-tag TC:100"',
+            'table': 'filter',
+            'chain': 'FORWARD',
+            'in-interface': swp,
+            'source': '10.0.0.0/24',
+            'destination': '20.0.0.0/24',
+            'protocol': 'tcp',
+            'dport': '443',
+            'sport': f'{i}',
+            'target': 'ACCEPT -m comment --comment "TC:--vlan-tag TC:100"',
         }
         rules.append(rule)
         if len(rules) > 10:
@@ -64,15 +64,15 @@ async def test_iptables_tc_scale(testbed):
     # install 10 icmp rules
     for type in range(1, 10):
         rule = {
-            "table": "filter",
-            "chain": "FORWARD",
-            "in-interface": swp,
-            "source": "30.0.0.0/24",
-            "destination": "40.0.0.0/24",
-            "protocol": "icmp",
-            "icmp-type": type,
+            'table': 'filter',
+            'chain': 'FORWARD',
+            'in-interface': swp,
+            'source': '30.0.0.0/24',
+            'destination': '40.0.0.0/24',
+            'protocol': 'icmp',
+            'icmp-type': type,
             # "icmp-code": code,
-            "target": 'ACCEPT -m comment --comment "TC:--vlan-tag TC:100"',
+            'target': 'ACCEPT -m comment --comment "TC:--vlan-tag TC:100"',
         }
         rules.append(rule)
     out = await IpTables.append(input_data=[{dent: rules}])
@@ -81,10 +81,10 @@ async def test_iptables_tc_scale(testbed):
     # convert it to tc
     # perform the rule translation
     await tcutil_iptable_to_tc(
-        dent_dev, [swp], iptable_rules, extra_args=" --prestera-chain-mode --no-batch --non-atomic "
+        dent_dev, [swp], iptable_rules, extra_args=' --prestera-chain-mode --no-batch --non-atomic '
     )
     swp_tc_rules = {}
     await tcutil_get_tc_rule_stats(dent_dev, [swp], swp_tc_rules)
 
     # check how many rules got to tc.
-    assert len(swp_tc_rules[swp]) == 2011, "Failed to install 2011 rules in chain"
+    assert len(swp_tc_rules[swp]) == 2011, 'Failed to install 2011 rules in chain'

@@ -20,11 +20,11 @@ class PerfValueException(ValueError):
 
 class PerfBase(object):
     def __init__(self, *args, **kwargs):
-        self._device = kwargs["device"]
-        self._type = kwargs["type"]
+        self._device = kwargs['device']
+        self._type = kwargs['type']
         self._data = []
-        self._threshold = kwargs["thresholds"].get(self._type, {})
-        self._max_records = kwargs["max_records"]
+        self._threshold = kwargs['thresholds'].get(self._type, {})
+        self._max_records = kwargs['max_records']
 
     def set_thresholds(self, thresholds):
         if self._type in thresholds:
@@ -56,8 +56,8 @@ class PerfCpu(PerfBase):
             parse_output=True,
         )
         try:
-            ctime = time.strftime("%X %x %Z")
-            record = output[0][self._device.host_name]["parsed_output"]
+            ctime = time.strftime('%X %x %Z')
+            record = output[0][self._device.host_name]['parsed_output']
             if self._threshold:
                 self.analyze_data(ctime, record, self._threshold)
             self.add_data((ctime, record))
@@ -73,13 +73,13 @@ class PerfCpu(PerfBase):
             if k in threshold:
                 if v < threshold[k][0] or v > threshold[k][1]:
                     raise PerfValueException(
-                        "Cpu {} Usage out of range usage {} threshold {} at {}".format(
+                        'Cpu {} Usage out of range usage {} threshold {} at {}'.format(
                             k, v, threshold[k], time
                         )
                     )
 
     def analyze(self, thresholds):
-        threshold = thresholds.get("CPU", self._threshold)
+        threshold = thresholds.get('CPU', self._threshold)
         for time, record in self._data:
             self.analyze_data(time, record, threshold)
 
@@ -99,8 +99,8 @@ class PerfMemory(PerfBase):
             parse_output=True,
         )
         try:
-            ctime = time.strftime("%X %x %Z")
-            record = output[0][self._device.host_name]["parsed_output"]
+            ctime = time.strftime('%X %x %Z')
+            record = output[0][self._device.host_name]['parsed_output']
             if self._threshold:
                 self.analyze_data(ctime, record, self._threshold)
             self.add_data((ctime, record))
@@ -113,25 +113,25 @@ class PerfMemory(PerfBase):
             if key in threshold:
                 if val < threshold[key][1] or val > threshold[key][1]:
                     raise PerfValueException(
-                        "Memory {} Usage(in kB) out of range usage {} threshold {} at {}".format(
+                        'Memory {} Usage(in kB) out of range usage {} threshold {} at {}'.format(
                             key, val, threshold[key], time
                         )
                     )
 
     def analyze(self, thresholds):
-        threshold = thresholds.get("Memory", self._threshold)
+        threshold = thresholds.get('Memory', self._threshold)
         for time, record in self._data:
             self.analyze_data(time, record, threshold)
 
 
 class PerfProcesses(PerfBase):
     critical_processes = [
-        "sshd",
-        "zebra",
-        "bfpd",
-        "watchfrr",
-        "staticd",
-        "tfpd",
+        'sshd',
+        'zebra',
+        'bfpd',
+        'watchfrr',
+        'staticd',
+        'tfpd',
     ]
 
     def __init__(self, *args, **kwargs):
@@ -139,49 +139,49 @@ class PerfProcesses(PerfBase):
         self._data = dict()
         for name in PerfProcesses.critical_processes:
             self._data[name] = {}
-            self._data[name]["pid"] = None
-            self._data[name]["data"] = []
+            self._data[name]['pid'] = None
+            self._data[name]['data'] = []
 
     def construct_command(self):
-        return "ps -eo pid,comm"
+        return 'ps -eo pid,comm'
 
     def run(self):
         # 1. get the PID of the process
         cmd = self.construct_command()
         rc, lines = self._device.run_command(cmd)
-        for line in lines.split("\\n"):
-            words = line.strip().split(" ")
+        for line in lines.split('\\n'):
+            words = line.strip().split(' ')
             if len(words) != 2:
                 continue
             pid, name = words[0], words[1]
             # if this is a process to monitor
             if name in PerfProcesses.critical_processes:
-                self._data[name]["pid"] = pid
+                self._data[name]['pid'] = pid
         # 2. get the stats for the process
         for proc in PerfProcesses.critical_processes:
-            if not self._data[proc]["pid"]:
+            if not self._data[proc]['pid']:
                 continue
-            pid = self._data[proc]["pid"]
+            pid = self._data[proc]['pid']
             output = Process.show(
                 input_data=[
                     {
-                        self._device.host_name: [{"pid": pid}],
+                        self._device.host_name: [{'pid': pid}],
                     }
                 ],
                 device_obj={self._device.host_name: self._device},
                 parse_output=True,
             )
             try:
-                ctime = time.strftime("%X %x %Z")
-                record = output[0][self._device.host_name]["parsed_output"]
-                if pid in self._threshold or "all" in self._threshold:
+                ctime = time.strftime('%X %x %Z')
+                record = output[0][self._device.host_name]['parsed_output']
+                if pid in self._threshold or 'all' in self._threshold:
                     self.analyze_data(
-                        proc, ctime, record, self._threshold.get(pid, self._threshold["all"])
+                        proc, ctime, record, self._threshold.get(pid, self._threshold['all'])
                     )
                 # save for future processing.
-                self._data[proc]["data"].append((ctime, record))
-                if len(self._data[proc]["data"] > self._max_records):
-                    self._data[proc]["data"].pop(0)
+                self._data[proc]['data'].append((ctime, record))
+                if len(self._data[proc]['data'] > self._max_records):
+                    self._data[proc]['data'].pop(0)
             except Exception as e:
                 print(str(e))
                 pass
@@ -191,26 +191,26 @@ class PerfProcesses(PerfBase):
             if key in threshold:
                 if val < threshold[key][0] or val > threshold[key][1]:
                     raise PerfValueException(
-                        "Process {} {} Usage out of range usage {} threshold {} at {}".format(
+                        'Process {} {} Usage out of range usage {} threshold {} at {}'.format(
                             name, key, val, threshold[key], time
                         )
                     )
 
     def analyze(self, thresholds):
         if thresholds:
-            threshold = thresholds["Process"]
+            threshold = thresholds['Process']
         else:
             threshold = self._threshold
         for name, proc in self._data.items():
             if name not in threshold:
                 # if there no process name then try for all
-                if "all" in threshold:
-                    threshold = threshold["all"]
+                if 'all' in threshold:
+                    threshold = threshold['all']
                 else:
                     continue
             else:
                 threshold = threshold[name]
-            for time, record in proc["data"]:
+            for time, record in proc['data']:
                 self.analyze_data(name, time, record, threshold)
 
 
@@ -219,16 +219,16 @@ class PerfRunner(threading.Thread):
         super(PerfRunner, self).__init__()
         self._event = threading.Event()
         self._event.set()
-        self.device = kwargs["device"]
-        self._frequency = kwargs["frequency"]
-        self._max_records = kwargs["max_records"]
-        self._thresholds = kwargs["thresholds"]
+        self.device = kwargs['device']
+        self._frequency = kwargs['frequency']
+        self._max_records = kwargs['max_records']
+        self._thresholds = kwargs['thresholds']
         self._run = True
         self._objects = []
         self._objects.append(
             PerfCpu(
                 device=self.device,
-                type="CPU",
+                type='CPU',
                 thresholds=self._thresholds,
                 max_records=self._max_records,
             )
@@ -236,7 +236,7 @@ class PerfRunner(threading.Thread):
         self._objects.append(
             PerfMemory(
                 device=self.device,
-                type="Memory",
+                type='Memory',
                 thresholds=self._thresholds,
                 max_records=self._max_records,
             )
@@ -244,7 +244,7 @@ class PerfRunner(threading.Thread):
         self._objects.append(
             PerfProcesses(
                 device=self.device,
-                type="Process",
+                type='Process',
                 thresholds=self._thresholds,
                 max_records=self._max_records,
             )
@@ -284,10 +284,10 @@ class PerfRunner(threading.Thread):
 
 class PerfUtil(object):
     def __init__(self, *args, **kwargs):
-        devices = kwargs["devices"]
-        frequency = kwargs.get("frequency", 10)
-        max_records = kwargs.get("max_records", 1000)
-        thresholds = kwargs.get("thresholds", {})
+        devices = kwargs['devices']
+        frequency = kwargs.get('frequency', 10)
+        max_records = kwargs.get('max_records', 1000)
+        thresholds = kwargs.get('thresholds', {})
         self.threads = {}
         for device in devices:
             self.threads[device.host_name] = PerfRunner(

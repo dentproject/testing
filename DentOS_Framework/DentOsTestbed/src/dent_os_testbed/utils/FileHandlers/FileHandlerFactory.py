@@ -37,4 +37,4 @@ class FileHandlerFactory(object):
         elif file_type == FileHandlerTypes.S3:
             raise NotImplementedError
         else:
-            raise ValueError("Unknown file type: %s" % file_type)
+            raise ValueError('Unknown file type: %s' % file_type)

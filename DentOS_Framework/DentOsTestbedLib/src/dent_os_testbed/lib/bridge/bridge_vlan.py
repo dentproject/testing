@@ -24,11 +24,11 @@ class BridgeVlan(TestLibObject):
                     device_obj = kwarg.get('device_obj', None)[device_name]
                 else:
                     if device_name not in pytest.testbed.devices_dict:
-                        device_result[device_name] =  "No matching device "+ device_name
+                        device_result[device_name] =  'No matching device '+ device_name
                         result.append(device_result)
                         return result
                     device_obj = pytest.testbed.devices_dict[device_name]
-                commands = ""
+                commands = ''
                 if device_obj.os in ['dentos', 'cumulus']:
                     impl_obj = LinuxBridgeVlanImpl()
                     for command in device[device_name]:
@@ -38,12 +38,12 @@ class BridgeVlan(TestLibObject):
 
                 else:
                     device_result[device_name]['rc'] = -1
-                    device_result[device_name]['result'] = "No matching device OS "+ device_obj.os
+                    device_result[device_name]['result'] = 'No matching device OS '+ device_obj.os
                     result.append(device_result)
                     return result
                 device_result[device_name]['command'] = commands
                 try:
-                    rc, output = await device_obj.run_cmd(("sudo " if device_obj.ssh_conn_params.pssh else "") + commands)
+                    rc, output = await device_obj.run_cmd(('sudo ' if device_obj.ssh_conn_params.pssh else '') + commands)
                     device_result[device_name]['rc'] = rc
                     device_result[device_name]['result'] = output
                     if 'parse_output' in kwarg:
@@ -79,7 +79,7 @@ class BridgeVlan(TestLibObject):
         bridge vlan { add | del } dev DEV vid VID [ tunnel_info TUNNEL_ID ] [ pvid ] [ untagged ] [ self ] [ master ]
 
         """
-        return await BridgeVlan._run_command("add", *argv, **kwarg)
+        return await BridgeVlan._run_command('add', *argv, **kwarg)
 
     async def delete(*argv, **kwarg):
         """
@@ -105,7 +105,7 @@ class BridgeVlan(TestLibObject):
         bridge vlan { add | del } dev DEV vid VID [ tunnel_info TUNNEL_ID ] [ pvid ] [ untagged ] [ self ] [ master ]
 
         """
-        return await BridgeVlan._run_command("delete", *argv, **kwarg)
+        return await BridgeVlan._run_command('delete', *argv, **kwarg)
 
     async def show(*argv, **kwarg):
         """
@@ -124,7 +124,7 @@ class BridgeVlan(TestLibObject):
         Description:
 
         """
-        return await BridgeVlan._run_command("show", *argv, **kwarg)
+        return await BridgeVlan._run_command('show', *argv, **kwarg)
 
     async def tunnelshow(*argv, **kwarg):
         """
@@ -143,4 +143,4 @@ class BridgeVlan(TestLibObject):
         Description:
 
         """
-        return await BridgeVlan._run_command("tunnelshow", *argv, **kwarg)
+        return await BridgeVlan._run_command('tunnelshow', *argv, **kwarg)

@@ -28,8 +28,8 @@ class ConnectionManager:
         """
         if not loop:
             raise ValueError(
-                "ConnectionManager class needs a running event loop"
-                + " to manage its connection objects"
+                'ConnectionManager class needs a running event loop'
+                + ' to manage its connection objects'
             )
         self.applog = logger
         self.ssh_connection = None
@@ -74,7 +74,7 @@ class ConnectionManager:
                 self._close_serial_connection()
         except Exception as e:
             self.applog.exception(
-                f"Exception --> {ConnectionManager.close_connections.__qualname__}", exc_info=e
+                f'Exception --> {ConnectionManager.close_connections.__qualname__}', exc_info=e
             )
             raise
 
@@ -90,7 +90,7 @@ class ConnectionManager:
                 self.serial_connection.cleanup()
         except Exception as e:
             self.applog.exception(
-                f"Exception --> {ConnectionManager.cleanup.__qualname__}", exc_info=e
+                f'Exception --> {ConnectionManager.cleanup.__qualname__}', exc_info=e
             )
             raise
 
@@ -99,7 +99,7 @@ class ConnectionManager:
             await self.ssh_connection.disconnect()
         except Exception as e:
             self.applog.exception(
-                f"Exception --> {ConnectionManager._close_ssh_connection.__qualname__}", exc_info=e
+                f'Exception --> {ConnectionManager._close_ssh_connection.__qualname__}', exc_info=e
             )
             raise
 
@@ -108,7 +108,7 @@ class ConnectionManager:
             self.serial_connection.disconnect()
         except Exception as e:
             self.applog.exception(
-                f"Exception --> {ConnectionManager._close_serial_connection.__qualname__}",
+                f'Exception --> {ConnectionManager._close_serial_connection.__qualname__}',
                 exc_info=e,
             )
             raise

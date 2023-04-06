@@ -39,7 +39,7 @@ async def test_alpha_lab_switching_vlan_access_via_trunk_port(testbed):
         testbed, [DeviceType.INFRA_SWITCH], 1
     )
     if not tgen_dev or not infra_devices:
-        print("The testbed does not have enough dent with tgen connections")
+        print('The testbed does not have enough dent with tgen connections')
         return
     await tb_reload_nw_and_flush_firewall(infra_devices)
     devices_info = {}
@@ -47,9 +47,9 @@ async def test_alpha_lab_switching_vlan_access_via_trunk_port(testbed):
         devices_info[dd.host_name] = [
             # 'count' is the number of endpoints
             {
-                "vlan": 100,
-                "name": "MGMT",
-                "count": 1,
+                'vlan': 100,
+                'name': 'MGMT',
+                'count': 1,
             },
         ]
 
@@ -60,31 +60,31 @@ async def test_alpha_lab_switching_vlan_access_via_trunk_port(testbed):
     mgmt_dst = []
     for dd in infra_devices:
         for swp in tgen_dev.links_dict[dd.host_name][1]:
-            mgmt_src.append(f"{dd.host_name}_MGMT_{swp}")
-            mgmt_dst.append(f"{dd.host_name}_MGMT_{swp}")
+            mgmt_src.append(f'{dd.host_name}_MGMT_{swp}')
+            mgmt_dst.append(f'{dd.host_name}_MGMT_{swp}')
 
     streams = {
-        "tcp_ssh_mgmt_flow": {
-            "ip_source": mgmt_src,
-            "ip_destination": mgmt_dst,
-            "protocol": "ip",
-            "ipproto": "tcp",
-            "dstPort": "22",
+        'tcp_ssh_mgmt_flow': {
+            'ip_source': mgmt_src,
+            'ip_destination': mgmt_dst,
+            'protocol': 'ip',
+            'ipproto': 'tcp',
+            'dstPort': '22',
         },
     }
     await tgen_utils_setup_streams(
         tgen_dev,
-        pytest._args.config_dir + f"/{tgen_dev.host_name}/tgen_access_port",
+        pytest._args.config_dir + f'/{tgen_dev.host_name}/tgen_access_port',
         streams,
         force_update=True,
     )
 
     await tgen_utils_start_traffic(tgen_dev)
     sleep_time = 60 * 2
-    tgen_dev.applog.info(f"zzZZZZZ({sleep_time})s")
+    tgen_dev.applog.info(f'zzZZZZZ({sleep_time})s')
     time.sleep(sleep_time)
     await tgen_utils_stop_traffic(tgen_dev)
-    stats = await tgen_utils_get_traffic_stats(tgen_dev, "Flow Statistics")
+    stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
     for row in stats.Rows:
         assert tgen_utils_get_loss(row) != 100.000, f'Failed>Loss percent: {row["Loss %"]}'
     await tgen_utils_stop_protocols(tgen_dev)

@@ -18,12 +18,12 @@ class LinuxServiceImpl(LinuxService):
         ....
 
         """
-        params = kwarg["params"]
-        if "name" in params:
-            return "systemctl status {}.service".format(params["name"])
-        cmd = "systemctl list-units --type=service "
-        if "status" in params:
-            cmd += " --state={} ".format("status")
+        params = kwarg['params']
+        if 'name' in params:
+            return 'systemctl status {}.service'.format(params['name'])
+        cmd = 'systemctl list-units --type=service '
+        if 'status' in params:
+            cmd += ' --state={} '.format('status')
         return cmd
 
     def parse_show(self, command, output, *argv, **kwarg):
@@ -39,7 +39,7 @@ class LinuxServiceImpl(LinuxService):
 
         """
         services = []
-        records = output.split("\n")[1:-8]
+        records = output.split('\n')[1:-8]
         for r in records:
             r = r.strip()
             tokens = r.split()
@@ -47,14 +47,14 @@ class LinuxServiceImpl(LinuxService):
             loaded = tokens.pop(0)
             active = tokens.pop(0)
             status = tokens.pop(0)
-            desc = " ".join(tokens)
+            desc = ' '.join(tokens)
             services.append(
                 {
-                    "name": name,
-                    "loaded": loaded,
-                    "active": active,
-                    "status": status,
-                    "description": desc,
+                    'name': name,
+                    'loaded': loaded,
+                    'active': active,
+                    'status': status,
+                    'description': desc,
                 }
             )
 
@@ -65,10 +65,10 @@ class LinuxServiceImpl(LinuxService):
         > systemctl <operation> <name>
 
         """
-        params = kwarg["params"]
-        flags = params.get("flags", "")
-        cmd = "systemctl {} {} ".format(flags, command)
+        params = kwarg['params']
+        flags = params.get('flags', '')
+        cmd = 'systemctl {} {} '.format(flags, command)
         ############# Implement me ################
-        if "name" in params:
-            cmd += params["name"]
+        if 'name' in params:
+            cmd += params['name']
         return cmd

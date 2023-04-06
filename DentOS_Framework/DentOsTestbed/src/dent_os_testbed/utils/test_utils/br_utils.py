@@ -13,22 +13,22 @@ async def configure_bridge_setup(device, dut_ports, default_pvid=0):
     """
 
     out = await IpLink.add(input_data=[{device: [{
-        "device": "br0",
-        "type": "bridge",
-        "vlan_filtering": 1,
-        "vlan_default_pvid": default_pvid}]
+        'device': 'br0',
+        'type': 'bridge',
+        'vlan_filtering': 1,
+        'vlan_default_pvid': default_pvid}]
     }])
-    assert out[0][device]["rc"] == 0, f"Failed creating bridge."
+    assert out[0][device]['rc'] == 0, f'Failed creating bridge.'
 
-    await IpLink.set(input_data=[{device: [{"device": "br0", "operstate": "up"}]}])
-    assert out[0][device]["rc"] == 0, f"Failed setting bridge to state UP."
+    await IpLink.set(input_data=[{device: [{'device': 'br0', 'operstate': 'up'}]}])
+    assert out[0][device]['rc'] == 0, f'Failed setting bridge to state UP.'
 
     out = await IpLink.set(input_data=[{device: [{
-        "device": port,
-        "operstate": "up",
-        "master": "br0"
+        'device': port,
+        'operstate': 'up',
+        'master': 'br0'
     } for port in dut_ports]}])
-    assert out[0][device]["rc"] == 0, f"Failed setting link to state UP."
+    assert out[0][device]['rc'] == 0, f'Failed setting link to state UP.'
 
 
 async def configure_vlan_setup(device, port_vlan_map, dut_ports):
@@ -44,15 +44,15 @@ async def configure_vlan_setup(device, port_vlan_map, dut_ports):
     """
 
     for config in port_vlan_map:
-        port = dut_ports[config["port"]]
+        port = dut_ports[config['port']]
         out = await BridgeVlan.add(input_data=[{device: [{
-            "device": port,
-            "vid": setting["vlan"],
-            "pvid": setting["pvid"],
-            "untagged": setting["untagged"]
-        } for setting in config["settings"]]}])
+            'device': port,
+            'vid': setting['vlan'],
+            'pvid': setting['pvid'],
+            'untagged': setting['untagged']
+        } for setting in config['settings']]}])
 
-        assert out[0][device]["rc"] == 0, f'Vlan: {config["settings"]["vlan"]}  is not added to link: {port}.'
+        assert out[0][device]['rc'] == 0, f'Vlan: {config["settings"]["vlan"]}  is not added to link: {port}.'
 
 
 def get_traffic_port_vlan_mapping(streams, port_vlan_map, tg_ports, tx_port=0, default_pvid=0):
@@ -75,15 +75,15 @@ def get_traffic_port_vlan_mapping(streams, port_vlan_map, tg_ports, tx_port=0, d
 
     ti_to_rx_port_map = {k: [] for k in list(streams.keys())}
     for stream_name, stream in streams.items():
-        vid = stream.get("vlanID", None)
+        vid = stream.get('vlanID', None)
         #  If no vlanID in stream apply pvid of transmitting port
         if not vid:
-            for item in port_vlan_map[tx_port]["settings"]:
-                if item["pvid"] is True:
-                    vid = item["vlan"]
+            for item in port_vlan_map[tx_port]['settings']:
+                if item['pvid'] is True:
+                    vid = item['vlan']
                     continue
         for port in port_vlan_map:
-            for setting in port["settings"]:
-                if vid == setting["vlan"] or vid == default_pvid:
-                    ti_to_rx_port_map[stream_name].append(tg_ports[port["port"]])
+            for setting in port['settings']:
+                if vid == setting['vlan'] or vid == default_pvid:
+                    ti_to_rx_port_map[stream_name].append(tg_ports[port['port']])
     return ti_to_rx_port_map

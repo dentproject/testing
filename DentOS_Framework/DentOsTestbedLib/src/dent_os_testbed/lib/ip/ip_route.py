@@ -31,11 +31,11 @@ class IpRoute(TestLibObject):
                     device_obj = kwarg.get('device_obj', None)[device_name]
                 else:
                     if device_name not in pytest.testbed.devices_dict:
-                        device_result[device_name] =  "No matching device "+ device_name
+                        device_result[device_name] =  'No matching device '+ device_name
                         result.append(device_result)
                         return result
                     device_obj = pytest.testbed.devices_dict[device_name]
-                commands = ""
+                commands = ''
                 if device_obj.os in ['dentos', 'cumulus']:
                     impl_obj = LinuxIpRouteImpl()
                     for command in device[device_name]:
@@ -45,12 +45,12 @@ class IpRoute(TestLibObject):
 
                 else:
                     device_result[device_name]['rc'] = -1
-                    device_result[device_name]['result'] = "No matching device OS "+ device_obj.os
+                    device_result[device_name]['result'] = 'No matching device OS '+ device_obj.os
                     result.append(device_result)
                     return result
                 device_result[device_name]['command'] = commands
                 try:
-                    rc, output = await device_obj.run_cmd(("sudo " if device_obj.ssh_conn_params.pssh else "") + commands)
+                    rc, output = await device_obj.run_cmd(('sudo ' if device_obj.ssh_conn_params.pssh else '') + commands)
                     device_result[device_name]['rc'] = rc
                     device_result[device_name]['result'] = output
                     if 'parse_output' in kwarg:
@@ -133,7 +133,7 @@ class IpRoute(TestLibObject):
         ENCAP_SEG6LOCAL := seg6local action SEG6_ACTION [ SEG6_ACTION_PARAM ]
 
         """
-        return await IpRoute._run_command("add", *argv, **kwarg)
+        return await IpRoute._run_command('add', *argv, **kwarg)
 
     async def delete(*argv, **kwarg):
         """
@@ -206,7 +206,7 @@ class IpRoute(TestLibObject):
         ENCAP_SEG6LOCAL := seg6local action SEG6_ACTION [ SEG6_ACTION_PARAM ]
 
         """
-        return await IpRoute._run_command("delete", *argv, **kwarg)
+        return await IpRoute._run_command('delete', *argv, **kwarg)
 
     async def change(*argv, **kwarg):
         """
@@ -279,7 +279,7 @@ class IpRoute(TestLibObject):
         ENCAP_SEG6LOCAL := seg6local action SEG6_ACTION [ SEG6_ACTION_PARAM ]
 
         """
-        return await IpRoute._run_command("change", *argv, **kwarg)
+        return await IpRoute._run_command('change', *argv, **kwarg)
 
     async def append(*argv, **kwarg):
         """
@@ -352,7 +352,7 @@ class IpRoute(TestLibObject):
         ENCAP_SEG6LOCAL := seg6local action SEG6_ACTION [ SEG6_ACTION_PARAM ]
 
         """
-        return await IpRoute._run_command("append", *argv, **kwarg)
+        return await IpRoute._run_command('append', *argv, **kwarg)
 
     async def replace(*argv, **kwarg):
         """
@@ -425,7 +425,7 @@ class IpRoute(TestLibObject):
         ENCAP_SEG6LOCAL := seg6local action SEG6_ACTION [ SEG6_ACTION_PARAM ]
 
         """
-        return await IpRoute._run_command("replace", *argv, **kwarg)
+        return await IpRoute._run_command('replace', *argv, **kwarg)
 
     async def get(*argv, **kwarg):
         """
@@ -457,7 +457,7 @@ class IpRoute(TestLibObject):
         ROUTE_GET_FLAGS := [ fibmatch ]
 
         """
-        return await IpRoute._run_command("get", *argv, **kwarg)
+        return await IpRoute._run_command('get', *argv, **kwarg)
 
     async def show(*argv, **kwarg):
         """
@@ -492,7 +492,7 @@ class IpRoute(TestLibObject):
         RTPROTO := [ kernel | boot | static | NUMBER ]
 
         """
-        return await IpRoute._run_command("show", *argv, **kwarg)
+        return await IpRoute._run_command('show', *argv, **kwarg)
 
     async def flush(*argv, **kwarg):
         """
@@ -527,7 +527,7 @@ class IpRoute(TestLibObject):
         RTPROTO := [ kernel | boot | static | NUMBER ]
 
         """
-        return await IpRoute._run_command("flush", *argv, **kwarg)
+        return await IpRoute._run_command('flush', *argv, **kwarg)
 
     async def save(*argv, **kwarg):
         """
@@ -561,7 +561,7 @@ class IpRoute(TestLibObject):
         RTPROTO := [ kernel | boot | static | NUMBER ]
 
         """
-        return await IpRoute._run_command("save", *argv, **kwarg)
+        return await IpRoute._run_command('save', *argv, **kwarg)
 
     async def restore(*argv, **kwarg):
         """
@@ -580,4 +580,4 @@ class IpRoute(TestLibObject):
         Restore the route ip route restore
 
         """
-        return await IpRoute._run_command("restore", *argv, **kwarg)
+        return await IpRoute._run_command('restore', *argv, **kwarg)

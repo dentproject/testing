@@ -14,7 +14,7 @@ import asyncio
 from dent_os_testbed.discovery.Report import Report
 
 srcdir = os.path.dirname(os.path.abspath(__file__))
-MODULES_DIR = os.path.join(srcdir, "modules")
+MODULES_DIR = os.path.join(srcdir, 'modules')
 
 class DiscoveryFailed(Exception):
     def __init__(self, msg, info, report):
@@ -37,7 +37,7 @@ class Module(object):
         Read state from 'self.rpt',
         write state to dict keys in 'self.rpt.asDict()'
         """
-        raise NotImplementedError("this is a base class")
+        raise NotImplementedError('this is a base class')
 
     async def do_discovery(self):
 
@@ -70,18 +70,18 @@ class DiscoveryRunner(object):
             if not e.endswith('.py'): continue
 
             b = os.path.splitext(e)[0]
-            n = "dent_os_testbed.discovery.%s" % b
+            n = 'dent_os_testbed.discovery.%s' % b
             p = os.path.join(self.modulesDir, e)
 
-            self.log.info("importing %s", n)
-            print("importing %s", n)
+            self.log.info('importing %s', n)
+            print('importing %s', n)
 
             spec = importlib.util.spec_from_file_location(n, p)
             module = importlib.util.module_from_spec(spec)
             try:
                 spec.loader.exec_module(module)
             except Exception as ex:
-                self.log.exception("import failed")
+                self.log.exception('import failed')
                 return report
 
             for k, v in module.__dict__.items():
@@ -102,7 +102,7 @@ class DiscoveryRunner(object):
                 await dinst.do_discovery()
             except Exception as ex:
                 if force:
-                    msg = "discovery failed for %s" % self.__class__.__name__
+                    msg = 'discovery failed for %s' % self.__class__.__name__
                     raise DiscoveryFailed(msg,
                                           sys.exc_info(),
                                           report)
@@ -114,7 +114,7 @@ class DiscoveryRunner(object):
 
 def discovery_main():
     logging.basicConfig()
-    logger = logging.getLogger("discover")
+    logger = logging.getLogger('discover')
     logger.setLevel(logging.DEBUG)
     rpt = Report.fromData({})
     runner = DiscoveryRunner(log=logger)
@@ -122,5 +122,5 @@ def discovery_main():
     loop.run_until_complete(runner.discover(rpt))
     sys.exit(0)
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     discovery_main()

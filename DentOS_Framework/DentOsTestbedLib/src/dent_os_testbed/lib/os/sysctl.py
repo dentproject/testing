@@ -24,11 +24,11 @@ class Sysctl(TestLibObject):
                     device_obj = kwarg.get('device_obj', None)[device_name]
                 else:
                     if device_name not in pytest.testbed.devices_dict:
-                        device_result[device_name] =  "No matching device "+ device_name
+                        device_result[device_name] =  'No matching device '+ device_name
                         result.append(device_result)
                         return result
                     device_obj = pytest.testbed.devices_dict[device_name]
-                commands = ""
+                commands = ''
                 if device_obj.os in ['dentos', 'cumulus']:
                     impl_obj = LinuxSysctlImpl()
                     for command in device[device_name]:
@@ -38,12 +38,12 @@ class Sysctl(TestLibObject):
 
                 else:
                     device_result[device_name]['rc'] = -1
-                    device_result[device_name]['result'] = "No matching device OS "+ device_obj.os
+                    device_result[device_name]['result'] = 'No matching device OS '+ device_obj.os
                     result.append(device_result)
                     return result
                 device_result[device_name]['command'] = commands
                 try:
-                    rc, output = await device_obj.run_cmd(("sudo " if device_obj.ssh_conn_params.pssh else "") + commands)
+                    rc, output = await device_obj.run_cmd(('sudo ' if device_obj.ssh_conn_params.pssh else '') + commands)
                     device_result[device_name]['rc'] = rc
                     device_result[device_name]['result'] = output
                     if 'parse_output' in kwarg:
@@ -72,7 +72,7 @@ class Sysctl(TestLibObject):
         Get the attribute value
 
         """
-        return await Sysctl._run_command("get", *argv, **kwarg)
+        return await Sysctl._run_command('get', *argv, **kwarg)
 
     async def set(*argv, **kwarg):
         """
@@ -92,4 +92,4 @@ class Sysctl(TestLibObject):
         Set the attribute value
 
         """
-        return await Sysctl._run_command("set", *argv, **kwarg)
+        return await Sysctl._run_command('set', *argv, **kwarg)

@@ -38,7 +38,7 @@ class LinuxPoectl(TestLibObject):
             return self.format_persist(command, *argv, **kwarg)
 
 
-        raise NameError("Cannot find command "+command)
+        raise NameError('Cannot find command '+command)
 
     def parse_output(self, command, output, *argv, **kwarg):
         if command in ['show']:
@@ -51,4 +51,4 @@ class LinuxPoectl(TestLibObject):
             return self.parse_persist(command, output, *argv, **kwarg)
 
 
-        raise NameError("Cannot find command "+command)
+        raise NameError('Cannot find command '+command)

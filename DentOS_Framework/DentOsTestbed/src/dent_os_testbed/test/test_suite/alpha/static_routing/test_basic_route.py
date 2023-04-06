@@ -41,7 +41,7 @@ async def test_alpha_lab_static_routing_basic_static_route(testbed):
     # 2. then send the packet it should show up in tgen port.
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 2)
     if not tgen_dev or not dent_devices:
-        print("The testbed does not have enough dent with tgen connections")
+        print('The testbed does not have enough dent with tgen connections')
         return
     dent_dev = dent_devices[0]
     dent = dent_dev.host_name
@@ -49,35 +49,35 @@ async def test_alpha_lab_static_routing_basic_static_route(testbed):
     swp = swp_tgen_ports[1]
 
     out = await IpLink.show(
-        input_data=[{dent: [{"device": swp, "cmd_options": "-j"}]}],
+        input_data=[{dent: [{'device': swp, 'cmd_options': '-j'}]}],
     )
 
     swp_info = {}
     await tgen_utils_get_swp_info(dent_dev, swp, swp_info)
-    sip = ".".join(swp_info["ip"][:-1] + [str(int(swp[3:]) * 2)])
+    sip = '.'.join(swp_info['ip'][:-1] + [str(int(swp[3:]) * 2)])
 
     await tb_reload_nw_and_flush_firewall([dent_dev])
 
     await tgen_utils_connect_to_tgen(tgen_dev, dent_dev)
     streams = {
-        "bgp": {
-            "dstIp": "100.0.0.10",
-            "protocol": "ip",
-            "ipproto": "tcp",
-            "dstPort": "179",
+        'bgp': {
+            'dstIp': '100.0.0.10',
+            'protocol': 'ip',
+            'ipproto': 'tcp',
+            'dstPort': '179',
         },
     }
     await tgen_utils_setup_streams(
         tgen_dev,
-        pytest._args.config_dir + f"/{dent}/tgen_basic_static_route.ixncfg",
+        pytest._args.config_dir + f'/{dent}/tgen_basic_static_route.ixncfg',
         streams,
     )
 
     # start from a clean state
     out = await FrrIpRoute.add(
-        input_data=[{dent_dev.host_name: [{"network": "100.0.0.0/24", "gateway": sip}]}]
+        input_data=[{dent_dev.host_name: [{'network': '100.0.0.0/24', 'gateway': sip}]}]
     )
-    dent_dev.applog.info(f"Ran command FrrIpRoute.add out {out}")
+    dent_dev.applog.info(f'Ran command FrrIpRoute.add out {out}')
 
     await tgen_utils_start_traffic(tgen_dev)
     time.sleep(10)

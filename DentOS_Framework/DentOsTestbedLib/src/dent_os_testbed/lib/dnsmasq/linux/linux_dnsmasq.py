@@ -23,11 +23,11 @@ class LinuxDnsmasq(TestLibObject):
             return self.format_test(command, *argv, **kwarg)
 
 
-        raise NameError("Cannot find command "+command)
+        raise NameError('Cannot find command '+command)
 
     def parse_output(self, command, output, *argv, **kwarg):
         if command in ['test']:
             return self.parse_test(command, output, *argv, **kwarg)
 
 
-        raise NameError("Cannot find command "+command)
+        raise NameError('Cannot find command '+command)

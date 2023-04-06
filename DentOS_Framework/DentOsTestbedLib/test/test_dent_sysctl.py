@@ -9,8 +9,8 @@ from .utils import TestDevice
 from dent_os_testbed.lib.os.sysctl import Sysctl
 def test_that_sysctl_get(capfd):
 
-    dv1 = TestDevice(platform="dentos")
-    dv2 = TestDevice(platform="dentos")
+    dv1 = TestDevice(platform='dentos')
+    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(Sysctl.get(input_data = [{
         # device 1
@@ -20,7 +20,7 @@ def test_that_sysctl_get(capfd):
     assert 'command' in out[0]['test_dev'].keys()
     assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]['test_dev']["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(Sysctl.get(input_data = [{
@@ -41,7 +41,7 @@ def test_that_sysctl_get(capfd):
     # check if the result was formed
     assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]['test_dev1']["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(Sysctl.get(input_data = [{
@@ -64,14 +64,14 @@ def test_that_sysctl_get(capfd):
     assert 'result' in out[0]['test_dev1'].keys()
     assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]['test_dev1']["rc"] == 0
-    assert out[1]['test_dev2']["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0
 
 
 def test_that_sysctl_set(capfd):
 
-    dv1 = TestDevice(platform="dentos")
-    dv2 = TestDevice(platform="dentos")
+    dv1 = TestDevice(platform='dentos')
+    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(Sysctl.set(input_data = [{
         # device 1
@@ -81,7 +81,7 @@ def test_that_sysctl_set(capfd):
     assert 'command' in out[0]['test_dev'].keys()
     assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]['test_dev']["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(Sysctl.set(input_data = [{
@@ -104,7 +104,7 @@ def test_that_sysctl_set(capfd):
     # check if the result was formed
     assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]['test_dev1']["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(Sysctl.set(input_data = [{
@@ -129,5 +129,5 @@ def test_that_sysctl_set(capfd):
     assert 'result' in out[0]['test_dev1'].keys()
     assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]['test_dev1']["rc"] == 0
-    assert out[1]['test_dev2']["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0

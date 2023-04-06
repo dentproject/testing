@@ -13,8 +13,8 @@ class RecoverableSysctl(Sysctl):
             for device_name in device:
                 saved_options[device_name] = []
                 for command in device[device_name]:
-                    saved_options[device_name].append(command.get("options", ""))
-                    command["options"] = ""
+                    saved_options[device_name].append(command.get('options', ''))
+                    command['options'] = ''
         out = await Sysctl.get(*argv, **kwarg)
         for device in devices:
             for device_name in device:
@@ -27,7 +27,7 @@ class RecoverableSysctl(Sysctl):
         for device in devices:
             for device_name in device:
                 for i, command in enumerate(device[device_name]):
-                    command["options"] = saved_options[device_name][i]
+                    command['options'] = saved_options[device_name][i]
                 saved_options[device_name] = []
         return await Sysctl.set(*argv, **kwarg)
 

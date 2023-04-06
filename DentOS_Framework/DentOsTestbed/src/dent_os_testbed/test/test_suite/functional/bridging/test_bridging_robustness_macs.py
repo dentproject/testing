@@ -19,7 +19,7 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
 pytestmark = [
     pytest.mark.suite_functional_bridging,
     pytest.mark.asyncio,
-    pytest.mark.usefixtures("cleanup_bridges", "cleanup_tgen")
+    pytest.mark.usefixtures('cleanup_bridges', 'cleanup_tgen')
 ]
 
 async def test_bridging_robustness_macs(testbed):
@@ -38,10 +38,10 @@ async def test_bridging_robustness_macs(testbed):
     6.  Verify that address have been learned and removed from previous learned port.
     """
 
-    bridge = "br0"
+    bridge = 'br0'
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 4)
     if not tgen_dev or not dent_devices:
-        pytest.skip("The testbed does not have enough dent with tgen connections")
+        pytest.skip('The testbed does not have enough dent with tgen connections')
     dent_dev = dent_devices[0]
     device_host_name = dent_dev.host_name
     tg_ports = tgen_dev.links_dict[device_host_name][0]
@@ -56,30 +56,30 @@ async def test_bridging_robustness_macs(testbed):
 
     out = await IpLink.add(
         input_data=[{device_host_name: [
-            {"device": bridge, "type": "bridge"}]}])
-    assert out[0][device_host_name]["rc"] == 0, f"Verify that bridge created.\n{out}"
+            {'device': bridge, 'type': 'bridge'}]}])
+    assert out[0][device_host_name]['rc'] == 0, f'Verify that bridge created.\n{out}'
 
     out = await IpLink.set(
         input_data=[{device_host_name: [
-            {"device": bridge, "operstate": "up"}]}])
-    assert out[0][device_host_name]["rc"] == 0, f"Verify that bridge set to 'UP' state.\n{out}"
+            {'device': bridge, 'operstate': 'up'}]}])
+    assert out[0][device_host_name]['rc'] == 0, f"Verify that bridge set to 'UP' state.\n{out}"
 
     out = await IpLink.set(
         input_data=[{device_host_name: [
-            {"device": port, "master": bridge, "operstate": "up"} for port in ports]}])
+            {'device': port, 'master': bridge, 'operstate': 'up'} for port in ports]}])
     err_msg = f"Verify that bridge entities set to 'UP' state and links enslaved to bridge.\n{out}"
-    assert out[0][device_host_name]["rc"] == 0, err_msg
+    assert out[0][device_host_name]['rc'] == 0, err_msg
 
     address_map = (
         # swp port, tg port,    tg ip,     gw,        plen
-        (ports[0], tg_ports[0], "1.1.1.2", "1.1.1.1", 24),
-        (ports[1], tg_ports[1], "1.1.1.3", "1.1.1.1", 24),
-        (ports[2], tg_ports[2], "1.1.1.4", "1.1.1.1", 24),
-        (ports[3], tg_ports[3], "1.1.1.5", "1.1.1.1", 24),
+        (ports[0], tg_ports[0], '1.1.1.2', '1.1.1.1', 24),
+        (ports[1], tg_ports[1], '1.1.1.3', '1.1.1.1', 24),
+        (ports[2], tg_ports[2], '1.1.1.4', '1.1.1.1', 24),
+        (ports[3], tg_ports[3], '1.1.1.5', '1.1.1.1', 24),
     )
 
     dev_groups = tgen_utils_dev_groups_from_config(
-        {"ixp": port, "ip": ip, "gw": gw, "plen": plen}
+        {'ixp': port, 'ip': ip, 'gw': gw, 'plen': plen}
         for _, port, ip, gw, plen in address_map
     )
 
@@ -88,17 +88,17 @@ async def test_bridging_robustness_macs(testbed):
     for _ in range(7):
         for x in range(3):
             streams = {
-                    f"bridge_{x + 1}": {
-                        "ip_source": dev_groups[tg_ports[random.randint(0,2)]][0]["name"],
-                        "ip_destination": dev_groups[tg_ports[3]][0]["name"],
-                        "srcMac": {"type": "increment",
-                                   "start": "00:00:00:00:00:35",
-                                   "step": "00:00:00:00:10:00",
-                                   "count": mac_count},
-                        "dstMac": f"aa:bb:cc:dd:ee:1{x+1}",
-                        "type": "raw",
-                        "protocol": "802.1Q",
-                        "rate": pps_value,
+                    f'bridge_{x + 1}': {
+                        'ip_source': dev_groups[tg_ports[random.randint(0,2)]][0]['name'],
+                        'ip_destination': dev_groups[tg_ports[3]][0]['name'],
+                        'srcMac': {'type': 'increment',
+                                   'start': '00:00:00:00:00:35',
+                                   'step': '00:00:00:00:10:00',
+                                   'count': mac_count},
+                        'dstMac': f'aa:bb:cc:dd:ee:1{x+1}',
+                        'type': 'raw',
+                        'protocol': '802.1Q',
+                        'rate': pps_value,
                     }
                 }
 
@@ -109,16 +109,16 @@ async def test_bridging_robustness_macs(testbed):
         await tgen_utils_stop_traffic(tgen_dev)
 
         # check the traffic stats
-        stats = await tgen_utils_get_traffic_stats(tgen_dev, "Traffic Item Statistics")
+        stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Traffic Item Statistics')
         for row in stats.Rows:
             loss = tgen_utils_get_loss(row)
-            assert loss == 0, f"Expected loss: 0%, actual: {loss}%"
+            assert loss == 0, f'Expected loss: 0%, actual: {loss}%'
 
         rc, out = await dent_dev.run_cmd("bridge fdb show br br0 | grep 'extern_learn.*offload' | wc -l")
         assert rc == 0, f"Failed to grep 'extern_learn.*offload'.\n"
 
         amount = int(out) - ixia_vhost_mac_count
-        err_msg = f"Expected count of extern_learn offload entities: >{mac_count}*{tolerance}, Actual count: {amount}"
+        err_msg = f'Expected count of extern_learn offload entities: >{mac_count}*{tolerance}, Actual count: {amount}'
         assert amount > mac_count*tolerance, err_msg
         if x != 2 :
             await tgen_utils_clear_traffic_items(tgen_dev)

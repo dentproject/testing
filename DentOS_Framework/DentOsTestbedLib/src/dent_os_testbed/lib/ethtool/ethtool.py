@@ -27,11 +27,11 @@ class Ethtool(TestLibObject):
                     device_obj = kwarg.get('device_obj', None)[device_name]
                 else:
                     if device_name not in pytest.testbed.devices_dict:
-                        device_result[device_name] =  "No matching device "+ device_name
+                        device_result[device_name] =  'No matching device '+ device_name
                         result.append(device_result)
                         return result
                     device_obj = pytest.testbed.devices_dict[device_name]
-                commands = ""
+                commands = ''
                 if device_obj.os in ['dentos', 'cumulus']:
                     impl_obj = LinuxEthtoolImpl()
                     for command in device[device_name]:
@@ -41,12 +41,12 @@ class Ethtool(TestLibObject):
 
                 else:
                     device_result[device_name]['rc'] = -1
-                    device_result[device_name]['result'] = "No matching device OS "+ device_obj.os
+                    device_result[device_name]['result'] = 'No matching device OS '+ device_obj.os
                     result.append(device_result)
                     return result
                 device_result[device_name]['command'] = commands
                 try:
-                    rc, output = await device_obj.run_cmd(("sudo " if device_obj.ssh_conn_params.pssh else "") + commands)
+                    rc, output = await device_obj.run_cmd(('sudo ' if device_obj.ssh_conn_params.pssh else '') + commands)
                     device_result[device_name]['rc'] = rc
                     device_result[device_name]['result'] = output
                     if 'parse_output' in kwarg:
@@ -116,7 +116,7 @@ class Ethtool(TestLibObject):
              Downshift is useful where cable does not have the 4 pairs instance. Gets the PHY downshift count/status.
 
         """
-        return await Ethtool._run_command("show", *argv, **kwarg)
+        return await Ethtool._run_command('show', *argv, **kwarg)
 
     async def set(*argv, **kwarg):
         """
@@ -193,7 +193,7 @@ class Ethtool(TestLibObject):
              specified as e.g. encoding auto rs ; the semantics of such combinations vary between drivers.
 
         """
-        return await Ethtool._run_command("set", *argv, **kwarg)
+        return await Ethtool._run_command('set', *argv, **kwarg)
 
     async def change(*argv, **kwarg):
         """
@@ -284,7 +284,7 @@ class Ethtool(TestLibObject):
             rxhash on|off-Specifies whether receive hashing offload should be enabled
 
         """
-        return await Ethtool._run_command("change", *argv, **kwarg)
+        return await Ethtool._run_command('change', *argv, **kwarg)
 
     async def init(*argv, **kwarg):
         """
@@ -309,7 +309,7 @@ class Ethtool(TestLibObject):
         -r --negotiate - Restarts auto-negotiation on the specified Ethernet device, if auto-negotiation is enabled.
 
         """
-        return await Ethtool._run_command("init", *argv, **kwarg)
+        return await Ethtool._run_command('init', *argv, **kwarg)
 
     async def test(*argv, **kwarg):
         """
@@ -335,7 +335,7 @@ class Ethtool(TestLibObject):
             external_lb - Perform full set of tests, as for offline, and additionally an external-loopback test.
 
         """
-        return await Ethtool._run_command("test", *argv, **kwarg)
+        return await Ethtool._run_command('test', *argv, **kwarg)
 
     async def flash(*argv, **kwarg):
         """
@@ -362,7 +362,7 @@ class Ethtool(TestLibObject):
              regions are written. All other values are driver-dependent.
 
         """
-        return await Ethtool._run_command("flash", *argv, **kwarg)
+        return await Ethtool._run_command('flash', *argv, **kwarg)
 
     async def config(*argv, **kwarg):
         """
@@ -446,7 +446,7 @@ class Ethtool(TestLibObject):
            delete N - Deletes the RX classification rule with the given ID.
 
         """
-        return await Ethtool._run_command("config", *argv, **kwarg)
+        return await Ethtool._run_command('config', *argv, **kwarg)
 
     async def reset(*argv, **kwarg):
         """
@@ -488,4 +488,4 @@ class Ethtool(TestLibObject):
             all - All components used by this interface, even if shared
 
         """
-        return await Ethtool._run_command("reset", *argv, **kwarg)
+        return await Ethtool._run_command('reset', *argv, **kwarg)

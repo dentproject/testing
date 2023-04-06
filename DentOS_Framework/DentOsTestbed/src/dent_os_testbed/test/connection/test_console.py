@@ -12,8 +12,8 @@ def test_serial_run_command(serial_setup):
     serial_console = device.conn_mgr.get_serial_connection()
     login_done, login_successful = serial_console.login_info()
     assert login_done and login_successful
-    output = serial_console.run_command("uname -a", timeout=2)
-    assert output.lower().find("linux") != -1
+    output = serial_console.run_command('uname -a', timeout=2)
+    assert output.lower().find('linux') != -1
 
 
 def test_serial_get_console_log(serial_setup):
@@ -36,7 +36,7 @@ def serial_setup():
     while not login_done:
         login_done, login_successful = serial_console.login_info()
         print(
-            "WAIT for LOGIN: %s login_done: %s login_successful:%s"
+            'WAIT for LOGIN: %s login_done: %s login_successful:%s'
             % (retry, login_done, login_successful)
         )
         retry += 1

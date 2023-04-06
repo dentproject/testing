@@ -19,23 +19,23 @@ class LinuxLldpImpl(LinuxLldp):
         see manual page lldpcli(8) for more information
 
         """
-        params = kwarg["params"]
-        if params.get("dut_discovery", False):
-            params["cmd_options"] = "-f json"
-        cmd = "lldpctl {} ".format(params.get("cmd_options", ""))
-        if "interface" in kwarg["params"]:
-            cmd += " {} ".format(kwarg["params"]["interface"])
+        params = kwarg['params']
+        if params.get('dut_discovery', False):
+            params['cmd_options'] = '-f json'
+        cmd = 'lldpctl {} '.format(params.get('cmd_options', ''))
+        if 'interface' in kwarg['params']:
+            cmd += ' {} '.format(kwarg['params']['interface'])
         return cmd
 
     def parse_show(self, command, output, *argv, **kwarg):
         interfaces = []
         try:
             parsed_out = json.loads(output)
-            for interface in parsed_out["lldp"]["interface"]:
+            for interface in parsed_out['lldp']['interface']:
                 for port, data in interface.items():
-                    item = {"interface": port, "remote_interface": data["port"]["id"]["value"]}
-                    for chassis in data["chassis"]:
-                        item["remote_host"] = chassis
+                    item = {'interface': port, 'remote_interface': data['port']['id']['value']}
+                    for chassis in data['chassis']:
+                        item['remote_host'] = chassis
                     interfaces.append(item)
         except:
             return []
@@ -51,8 +51,8 @@ class LinuxLldpImpl(LinuxLldp):
         see manual page lldpcli(8) for more information
 
         """
-        params = kwarg["params"]
-        cmd = "lldpcli {} ".format(command)
+        params = kwarg['params']
+        cmd = 'lldpcli {} '.format(command)
         ############# Implement me ################
 
         return cmd
@@ -67,8 +67,8 @@ class LinuxLldpImpl(LinuxLldp):
         see manual page lldpcli(8) for more information
 
         """
-        params = kwarg["params"]
-        cmd = "lldpcli {} ".format(command)
+        params = kwarg['params']
+        cmd = 'lldpcli {} '.format(command)
         ############# Implement me ################
 
         return cmd

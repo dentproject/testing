@@ -18,7 +18,7 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
 
 pytestmark = [pytest.mark.suite_functional_l1,
               pytest.mark.asyncio,
-              pytest.mark.usefixtures("cleanup_bridges", "cleanup_tgen")]
+              pytest.mark.usefixtures('cleanup_bridges', 'cleanup_tgen')]
 
 
 async def test_l1_mixed_speed(testbed):
@@ -49,10 +49,10 @@ async def test_l1_mixed_speed(testbed):
     5. Verify no packet loss occurred and all transmitted traffic received.
     """
 
-    bridge = "br0"
+    bridge = 'br0'
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 4)
     if not tgen_dev or not dent_devices:
-        pytest.skip("The testbed does not have enough dent with tgen connections")
+        pytest.skip('The testbed does not have enough dent with tgen connections')
     dent_dev = dent_devices[0]
     device_host_name = dent_dev.host_name
     tg_ports = tgen_dev.links_dict[device_host_name][0]
@@ -60,53 +60,53 @@ async def test_l1_mixed_speed(testbed):
     timeout = 10
 
     # 1. Init bridge entity br0.
-    out = await IpLink.add(input_data=[{device_host_name: [{"device": bridge, "type": "bridge"}]}])
-    assert out[0][device_host_name]["rc"] == 0, f"Verify that bridge created."
+    out = await IpLink.add(input_data=[{device_host_name: [{'device': bridge, 'type': 'bridge'}]}])
+    assert out[0][device_host_name]['rc'] == 0, f'Verify that bridge created.'
 
-    out = await IpLink.set(input_data=[{device_host_name: [{"device": bridge, "operstate": "up"}]}])
-    assert out[0][device_host_name]["rc"] == 0, f"Verify that bridge set to 'UP' state."
+    out = await IpLink.set(input_data=[{device_host_name: [{'device': bridge, 'operstate': 'up'}]}])
+    assert out[0][device_host_name]['rc'] == 0, f"Verify that bridge set to 'UP' state."
 
     # 2. Enslave ports to bridge br0
     out = await IpLink.set(input_data=[{device_host_name: [
-        {"device": port,
-         "operstate": "up",
-         "master": bridge} for port in ports]}])
+        {'device': port,
+         'operstate': 'up',
+         'master': bridge} for port in ports]}])
     err_msg = f"Verify that bridge entities set to 'UP' state and links enslaved to bridge."
-    assert out[0][device_host_name]["rc"] == 0, err_msg
+    assert out[0][device_host_name]['rc'] == 0, err_msg
 
     # 3. Configure dut ports
     out = await Ethtool.set(input_data=[{device_host_name: [
-        {"devname": ports[0],
-         "speed": 1000,
-         "autoneg": "off",
-         "duplex": "full"}]}])
-    assert out[0][device_host_name]["rc"] == 0, f"Verify port settings has been changed "
+        {'devname': ports[0],
+         'speed': 1000,
+         'autoneg': 'off',
+         'duplex': 'full'}]}])
+    assert out[0][device_host_name]['rc'] == 0, f'Verify port settings has been changed '
 
     out = await Ethtool.set(input_data=[{device_host_name: [{
-        "devname": ports[1],
-        "speed": 100,
-        "autoneg": "on",
-        "duplex": "half"}]}])
-    assert out[0][device_host_name]["rc"] == 0, f"Verify port settings has been changed "
+        'devname': ports[1],
+        'speed': 100,
+        'autoneg': 'on',
+        'duplex': 'half'}]}])
+    assert out[0][device_host_name]['rc'] == 0, f'Verify port settings has been changed '
 
     out = await Ethtool.set(input_data=[{device_host_name: [{
-        "devname": ports[2],
-        "speed": 10,
-        "autoneg": "off",
-        "duplex": "full"}]}])
-    assert out[0][device_host_name]["rc"] == 0, f"Verify port settings has been changed "
+        'devname': ports[2],
+        'speed': 10,
+        'autoneg': 'off',
+        'duplex': 'full'}]}])
+    assert out[0][device_host_name]['rc'] == 0, f'Verify port settings has been changed '
 
     out = await Ethtool.set(input_data=[{device_host_name: [{
-        "devname": ports[3],
-        "autoneg": "off",
-        "advertise": "0x004"}]}])
-    assert out[0][device_host_name]["rc"] == 0, f"Verify port settings has been changed "
+        'devname': ports[3],
+        'autoneg': 'off',
+        'advertise': '0x004'}]}])
+    assert out[0][device_host_name]['rc'] == 0, f'Verify port settings has been changed '
 
     dev_groups = tgen_utils_dev_groups_from_config(
-        [{"ixp": tg_ports[0], "ip": "100.1.1.2", "gw": "100.1.1.6", "plen": 24},
-         {"ixp": tg_ports[1], "ip": "100.1.1.3", "gw": "100.1.1.6", "plen": 24},
-         {"ixp": tg_ports[2], "ip": "100.1.1.4", "gw": "100.1.1.6", "plen": 24},
-         {"ixp": tg_ports[3], "ip": "100.1.1.5", "gw": "100.1.1.6", "plen": 24}])
+        [{'ixp': tg_ports[0], 'ip': '100.1.1.2', 'gw': '100.1.1.6', 'plen': 24},
+         {'ixp': tg_ports[1], 'ip': '100.1.1.3', 'gw': '100.1.1.6', 'plen': 24},
+         {'ixp': tg_ports[2], 'ip': '100.1.1.4', 'gw': '100.1.1.6', 'plen': 24},
+         {'ixp': tg_ports[3], 'ip': '100.1.1.5', 'gw': '100.1.1.6', 'plen': 24}])
     await tgen_utils_traffic_generator_connect(tgen_dev, tg_ports, ports, dev_groups)
 
     # Set autoneg on all connected IXIA ports
@@ -115,12 +115,12 @@ async def test_l1_mixed_speed(testbed):
 
     # 4. Send traffic by TG with  bits per second rate of 9_000_000
     streams = {
-        f"{tg_ports[0]} --> {tg_ports[1], tg_ports[2],tg_ports[3]}": {
-            "type": "ethernet",
-            "ep_source": ports[0],
-            "ep_destination": ports[1:],
-            "frame_rate_type": "bps_rate",
-            "rate": 9000000
+        f'{tg_ports[0]} --> {tg_ports[1], tg_ports[2],tg_ports[3]}': {
+            'type': 'ethernet',
+            'ep_source': ports[0],
+            'ep_destination': ports[1:],
+            'frame_rate_type': 'bps_rate',
+            'rate': 9000000
         }
     }
 
@@ -130,7 +130,7 @@ async def test_l1_mixed_speed(testbed):
     await tgen_utils_stop_traffic(tgen_dev)
 
     # 5. Verify no packet loss occurred and all transmitted traffic received.
-    stats = await tgen_utils_get_traffic_stats(tgen_dev, "Flow Statistics")
+    stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
     for row in stats.Rows:
         assert tgen_utils_get_loss(row) == 0.000, \
             f"Verify that traffic from {row['Tx Port']} to {row['Rx Port']} forwarded."

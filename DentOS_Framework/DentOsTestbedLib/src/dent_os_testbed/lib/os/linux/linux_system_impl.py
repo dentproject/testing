@@ -8,7 +8,7 @@ class LinuxSystemImpl(LinuxSystem):
         Reboot the system
 
         """
-        cmd = "#reboot"
+        cmd = '#reboot'
         # custom code here
 
         return cmd
@@ -18,10 +18,10 @@ class LinuxSystemImpl(LinuxSystem):
         Shutdown the system
 
         """
-        params = kwarg["params"]
-        cmd = "shutdown "
+        params = kwarg['params']
+        cmd = 'shutdown '
         ############# Implement me ################
-        if "options" in params:
-            cmd += params["options"]
+        if 'options' in params:
+            cmd += params['options']
 
         return cmd

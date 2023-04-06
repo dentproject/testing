@@ -72,19 +72,19 @@ class DeviceGroup:
             os_image_download_url(str): HTTP url of the OS image
         """
         coroutines = []
-        self.applog.debug("DeviceGroup::install_image++")
+        self.applog.debug('DeviceGroup::install_image++')
         for device in self.devices:
-            if device.force_update == "true" and device.os == "dentos":
+            if device.force_update == 'true' and device.os == 'dentos':
                 staging_device = device
-                staging_path = "/onie-installer"
+                staging_path = '/onie-installer'
                 coroutines.append(
                     self.installer.install_os(
                         device, os_image_download_url, staging_device, staging_path
                     )
                 )
         results = await asyncio.gather(*coroutines, return_exceptions=True)
-        self._handle_device_failures_if_exists(results, "image installation")
-        self.applog.debug("DeviceGroup::install_image--")
+        self._handle_device_failures_if_exists(results, 'image installation')
+        self.applog.debug('DeviceGroup::install_image--')
 
     async def verify_os(self, os_image_download_url):
         """
@@ -94,22 +94,22 @@ class DeviceGroup:
             os_image_download_url(str): HTTP url of the OS image
         """
         coroutines = []
-        self.applog.debug("DeviceGroup::verify_image++")
+        self.applog.debug('DeviceGroup::verify_image++')
         for device in self.devices:
-            if device.force_update == "true" and device.os == "dentos":
+            if device.force_update == 'true' and device.os == 'dentos':
                 staging_device = device
-                staging_path = "/onie-installer"
+                staging_path = '/onie-installer'
                 coroutines.append(
                     self.installer.verify_os(
                         device, os_image_download_url, staging_device, staging_path
                     )
                 )
         results = await asyncio.gather(*coroutines, return_exceptions=True)
-        self._handle_device_failures_if_exists(results, "image verification")
-        self.applog.debug("DeviceGroup::verify_image--")
+        self._handle_device_failures_if_exists(results, 'image verification')
+        self.applog.debug('DeviceGroup::verify_image--')
 
     async def update_links(self, discovery_report):
-        self.applog.debug("DeviceGroup::update_links++")
+        self.applog.debug('DeviceGroup::update_links++')
         for i, device in enumerate(self.devices):
             for dut in discovery_report.duts.filter(
                 fn=lambda dut: dut.device_id == device.host_name
@@ -127,7 +127,7 @@ class DeviceGroup:
                         # Overwrite matching existing data with discovery data
                         if srcDiscovered:
                             self.applog.warning(
-                                f"Overriding existing configuration for {device.host_name} src links"
+                                f'Overriding existing configuration for {device.host_name} src links'
                             )
                             index = remoteHostLinkPairs[0].index(interface.interface)
                             self.devices[i].links_dict[interface.remote_host][1][
@@ -139,11 +139,11 @@ class DeviceGroup:
                             )
                             self.devices[i].links[index] = [
                                 interface.interface,
-                                f"{interface.remote_host}:{interface.remote_interface}",
+                                f'{interface.remote_host}:{interface.remote_interface}',
                             ]
                         if dstDiscovered:
                             self.applog.warning(
-                                f"Overriding existing configuration for {device.host_name} dst links"
+                                f'Overriding existing configuration for {device.host_name} dst links'
                             )
                             index = remoteHostLinkPairs[1].index(interface.remote_interface)
                             self.devices[i].links_dict[interface.remote_host][0][
@@ -153,11 +153,11 @@ class DeviceGroup:
                             index = next(
                                 i
                                 for i, v in enumerate(device.links)
-                                if v[1].split(":")[1] == interface.remote_interface
+                                if v[1].split(':')[1] == interface.remote_interface
                             )
                             self.devices[i].links[index] = [
                                 interface.interface,
-                                f"{interface.remote_host}:{interface.remote_interface}",
+                                f'{interface.remote_host}:{interface.remote_interface}',
                             ]
                         if (not srcDiscovered) and (not dstDiscovered):
                             self.devices[i].links_dict[interface.remote_host][0].append(
@@ -169,7 +169,7 @@ class DeviceGroup:
                             self.devices[i].links.append(
                                 [
                                     interface.interface,
-                                    f"{interface.remote_host}:{interface.remote_interface}",
+                                    f'{interface.remote_host}:{interface.remote_interface}',
                                 ]
                             )
                         # Ensure no duplicates
@@ -188,7 +188,7 @@ class DeviceGroup:
                             for n, link in enumerate(self.devices[i].links)
                             if link not in self.devices[i].links[:n]
                         ]
-        self.applog.debug("DeviceGroup::update_links--")
+        self.applog.debug('DeviceGroup::update_links--')
 
     def _handle_device_failures_if_exists(self, results, op):
         exception_occured = False
@@ -197,10 +197,10 @@ class DeviceGroup:
         for r in results:
             if isinstance(r, Exception):
                 exception_occured = True
-                if "extra_info" in dir(r):
+                if 'extra_info' in dir(r):
                     failed_devices.append(r.extra_info)
         if exception_occured:
-            e = Exception(f"Failure in {op} for one more devices")
+            e = Exception(f'Failure in {op} for one more devices')
             e.extra_info = failed_devices
             raise e
 
@@ -219,7 +219,7 @@ class DeviceGroup:
                 await device.cleanup()
             except Exception as e:
                 self.applog.error(
-                    f"Error closing connections for {device.host_name}."
-                    + "Program termination will have issues. Kill the process before next run"
+                    f'Error closing connections for {device.host_name}.'
+                    + 'Program termination will have issues. Kill the process before next run'
                 )
                 raise e

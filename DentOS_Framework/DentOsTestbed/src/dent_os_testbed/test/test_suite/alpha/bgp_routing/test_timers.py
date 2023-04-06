@@ -50,7 +50,7 @@ async def test_alpha_lab_bgp_routing_timers(testbed):
         1,
     )
     if not tgen_dev or not devices or len(devices) < 2:
-        print("The testbed does not have enough dent with tgen connections")
+        print('The testbed does not have enough dent with tgen connections')
         return
     devices_info = {}
     bgp_neighbors = {}
@@ -61,14 +61,14 @@ async def test_alpha_lab_bgp_routing_timers(testbed):
         bgp_neighbors[dd.host_name] = {}
         for swp in tgen_dev.links_dict[dd.host_name][1]:
             bgp_neighbors[dd.host_name][swp] = {
-                "num_route_ranges": 1,
-                "local_as": 200,
-                "hold_timer": 10,
-                "update_interval": 3,
-                "route_ranges": [
+                'num_route_ranges': 1,
+                'local_as': 200,
+                'hold_timer': 10,
+                'update_interval': 3,
+                'route_ranges': [
                     {
-                        "number_of_routes": num_routes,
-                        "first_route": f"{br_ip}.0.0.1",
+                        'number_of_routes': num_routes,
+                        'first_route': f'{br_ip}.0.0.1',
                     },
                 ],
             }
@@ -79,23 +79,23 @@ async def test_alpha_lab_bgp_routing_timers(testbed):
     dst = []
     for dd in devices:
         for swp in tgen_dev.links_dict[dd.host_name][1]:
-            src.append(f"{dd.host_name}_{swp}")
-            dst.append(f"{dd.host_name}_{swp}")
+            src.append(f'{dd.host_name}_{swp}')
+            dst.append(f'{dd.host_name}_{swp}')
 
     # create mesh stream.
     streams = {
-        "stream1": {
-            "type": "bgp",
-            "bgp_source": src,
-            "bgp_destination": dst,
-            "protocol": "ip",
-            "ipproto": "tcp",
+        'stream1': {
+            'type': 'bgp',
+            'bgp_source': src,
+            'bgp_destination': dst,
+            'protocol': 'ip',
+            'ipproto': 'tcp',
         },
     }
 
     await tgen_utils_setup_streams(
         tgen_dev,
-        pytest._args.config_dir + f"/{tgen_dev.host_name}/tgen_bgp_route_flap_config.ixncfg",
+        pytest._args.config_dir + f'/{tgen_dev.host_name}/tgen_bgp_route_flap_config.ixncfg',
         streams,
         force_update=True,
     )
@@ -104,7 +104,7 @@ async def test_alpha_lab_bgp_routing_timers(testbed):
     # - check the traffic stats
     time.sleep(60)
     await tgen_utils_stop_traffic(tgen_dev)
-    stats = await tgen_utils_get_traffic_stats(tgen_dev, "Flow Statistics")
+    stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
     for row in stats.Rows:
         assert tgen_utils_get_loss(row) != 100.000, f'Failed>Loss percent: {row["Loss %"]}'
 
@@ -118,9 +118,9 @@ async def test_alpha_lab_bgp_routing_timers(testbed):
             {
                 d1.host_name: [
                     {
-                        "asn": d1_as,
-                        "neighbor": {"options": {"timers": f"{test_keep_alive} {test_hold}"}},
-                        "group": "IXIA",
+                        'asn': d1_as,
+                        'neighbor': {'options': {'timers': f'{test_keep_alive} {test_hold}'}},
+                        'group': 'IXIA',
                     }
                 ]
             }
@@ -128,7 +128,7 @@ async def test_alpha_lab_bgp_routing_timers(testbed):
     ]
     for input in inputs:
         out = await Bgp.configure(input_data=input)
-        d1.applog.info(f"Ran Bgp.configure out {out}")
+        d1.applog.info(f'Ran Bgp.configure out {out}')
 
     # allow some time to take effect
     time.sleep(30)
@@ -137,22 +137,22 @@ async def test_alpha_lab_bgp_routing_timers(testbed):
     for dd in devices[:1]:
         for i in range(num_routes):
             out = await Bgp.show(
-                input_data=[{dd.host_name: [{"neighbors": {}, "options": "json"}]}]
+                input_data=[{dd.host_name: [{'neighbors': {}, 'options': 'json'}]}]
             )
-            dd.applog.info(f"Ran Bgp.show neighbors out {out}")
-            neighbors = json.loads(out[0][dd.host_name]["result"])
+            dd.applog.info(f'Ran Bgp.show neighbors out {out}')
+            neighbors = json.loads(out[0][dd.host_name]['result'])
             if not neighbors:
-                assert 0, f"No Neighbors on  {dd.host_name}"
+                assert 0, f'No Neighbors on  {dd.host_name}'
             for neighbor in neighbors.values():
-                if neighbor["peerGroup"] != "IXIA":
+                if neighbor['peerGroup'] != 'IXIA':
                     continue
                 # check what is the configured timers?
                 if (
-                    neighbor["bgpTimerConfiguredHoldTimeMsecs"] != test_hold * 1000
-                    or neighbor["bgpTimerConfiguredKeepAliveIntervalMsecs"]
+                    neighbor['bgpTimerConfiguredHoldTimeMsecs'] != test_hold * 1000
+                    or neighbor['bgpTimerConfiguredKeepAliveIntervalMsecs']
                     != test_keep_alive * 1000
                 ):
-                    msg = f"Timers misconfigured on {dd.host_name}"
+                    msg = f'Timers misconfigured on {dd.host_name}'
                     dd.applog.info(msg)
                     # assert 0, msg
 
@@ -161,7 +161,7 @@ async def test_alpha_lab_bgp_routing_timers(testbed):
     time.sleep(60)
     await tgen_utils_stop_traffic(tgen_dev)
     await tgen_utils_stop_traffic(tgen_dev)
-    stats = await tgen_utils_get_traffic_stats(tgen_dev, "Flow Statistics")
+    stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
     for row in stats.Rows:
         assert tgen_utils_get_loss(row) != 100.000, f'Failed>Loss percent: {row["Loss %"]}'
 

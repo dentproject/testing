@@ -24,7 +24,7 @@ class PerfMonitor:
             self.monitoring = True
         except Exception as e:
             self.applog.exception(
-                f"Exception occured --> {PerfMonitor.start.__qualname__}", exec_info=e
+                f'Exception occured --> {PerfMonitor.start.__qualname__}', exec_info=e
             )
             raise
 
@@ -35,6 +35,6 @@ class PerfMonitor:
                 self.perf_util.stop_monitoring()
         except Exception as e:
             self.applog.exception(
-                f"Exception occured --> {PerfMonitor.stop.__qualname__}", exec_info=e
+                f'Exception occured --> {PerfMonitor.stop.__qualname__}', exec_info=e
             )
             raise

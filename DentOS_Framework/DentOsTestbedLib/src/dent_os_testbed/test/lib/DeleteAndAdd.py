@@ -7,7 +7,7 @@ class DeleteAndAddMeta(object):
 
     @staticmethod
     def cls_name(obj=None):
-        return "undefined"
+        return 'undefined'
 
     @staticmethod
     def delete_fn(obj=None):
@@ -39,36 +39,36 @@ class DeleteAndAddBase(object):
     async def run_test(self, testbed):
 
         if not testbed.discovery_report:
-            testbed.applog.info("Discovery report is none, skipping run_test of DeleteAndAddBase")
+            testbed.applog.info('Discovery report is none, skipping run_test of DeleteAndAddBase')
             return
 
         for i, dev in enumerate(testbed.discovery_report.duts):
             if dev.device_id not in testbed.devices_dict:
-                device.applog.info("Skipping device {}".format(dev.device_id))
+                device.applog.info('Skipping device {}'.format(dev.device_id))
                 continue
             device = testbed.devices_dict[dev.device_id]
             if device.type == DeviceType.TRAFFIC_GENERATOR:
                 continue
             dev_objects = self.meta.device_objects(dev)
             device.applog.info(
-                "{} has {} {}".format(
+                '{} has {} {}'.format(
                     testbed.discovery_report.duts[i].device_id,
                     len(dev_objects),
                     self.meta.cls_name(),
                 )
             )
             if not await device.is_connected():
-                device.applog.info("Device not connected skipping")
+                device.applog.info('Device not connected skipping')
                 continue
             for obj in dev_objects.filter(fn=self.meta.device_object_filter):
-                device.applog.info("Deleting/Adding " + self.meta.cls_name())
+                device.applog.info('Deleting/Adding ' + self.meta.cls_name())
                 out = await self.meta.delete_fn()(input_data=[{dev.device_id: [obj.__dikt__]}])
 
-                device.applog.info("Show " + self.meta.cls_name())
+                device.applog.info('Show ' + self.meta.cls_name())
                 out = await self.meta.show_fn()(input_data=[{dev.device_id: [obj.__dikt__]}])
 
-                device.applog.info("Add " + self.meta.cls_name())
+                device.applog.info('Add ' + self.meta.cls_name())
                 out = await self.meta.add_fn()(input_data=[{dev.device_id: [obj.__dikt__]}])
 
-                device.applog.info("Show " + self.meta.cls_name())
+                device.applog.info('Show ' + self.meta.cls_name())
                 out = await self.meta.show_fn()(input_data=[{dev.device_id: [obj.__dikt__]}])

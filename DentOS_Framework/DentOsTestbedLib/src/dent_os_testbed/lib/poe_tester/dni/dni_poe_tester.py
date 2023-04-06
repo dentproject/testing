@@ -52,7 +52,7 @@ class DniPoeTester(TestLibObject):
             return self.format_get_port_stats(command, *argv, **kwarg)
 
 
-        raise NameError("Cannot find command "+command)
+        raise NameError('Cannot find command '+command)
 
     def run_command(self, device_obj, command, *argv, **kwarg):
         if command in ['attach', 'detach']:
@@ -66,7 +66,7 @@ class DniPoeTester(TestLibObject):
 
 
         print (len(command))
-        raise NameError("Cannot find command "+command)
+        raise NameError('Cannot find command '+command)
 
     def parse_output(self, command, output, *argv, **kwarg):
         if command in ['attach', 'detach']:
@@ -79,4 +79,4 @@ class DniPoeTester(TestLibObject):
             return self.parse_get_port_stats(command, output, *argv, **kwarg)
 
 
-        raise NameError("Cannot find command "+command)
+        raise NameError('Cannot find command '+command)

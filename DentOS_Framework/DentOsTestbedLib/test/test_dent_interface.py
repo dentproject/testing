@@ -13,25 +13,25 @@ from .utils import TestDevice
 
 def test_that_interface_up(capfd):
 
-    dv1 = TestDevice(platform="dentos")
-    dv2 = TestDevice(platform="dentos")
+    dv1 = TestDevice(platform='dentos')
+    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         Interface.up(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -39,62 +39,62 @@ def test_that_interface_up(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
-                            "iface": [
-                                "wbqhtrrl",
-                                "lfdmyilz",
-                                "dreqcaye",
-                                "imbdjtlt",
-                                "icbndovd",
-                                "okzkjcwj",
-                                "bzsdckjv",
-                                "zglossuh",
-                                "fhsnuomc",
-                                "tkqzzvab",
+                            'iface': [
+                                'wbqhtrrl',
+                                'lfdmyilz',
+                                'dreqcaye',
+                                'imbdjtlt',
+                                'icbndovd',
+                                'okzkjcwj',
+                                'bzsdckjv',
+                                'zglossuh',
+                                'fhsnuomc',
+                                'tkqzzvab',
                             ],
-                            "exclude_iface": [
-                                "guxhnizp",
-                                "pgdcegzf",
-                                "pevjenky",
-                                "zmqqzkpd",
-                                "ofvhoxmo",
-                                "iaqnqkoo",
-                                "jwkogdis",
-                                "jdzsadkm",
-                                "mrlridvt",
+                            'exclude_iface': [
+                                'guxhnizp',
+                                'pgdcegzf',
+                                'pevjenky',
+                                'zmqqzkpd',
+                                'ofvhoxmo',
+                                'iaqnqkoo',
+                                'jwkogdis',
+                                'jdzsadkm',
+                                'mrlridvt',
                             ],
-                            "force": False,
-                            "options": "rtxkxzsk",
+                            'force': False,
+                            'options': 'rtxkxzsk',
                         },
                         {
                             # command 2
-                            "iface": [
-                                "rwayjfzy",
-                                "vlvtkyju",
-                                "rckuxswi",
-                                "wtgglvkv",
-                                "gzanclqw",
-                                "bookvpan",
+                            'iface': [
+                                'rwayjfzy',
+                                'vlvtkyju',
+                                'rckuxswi',
+                                'wtgglvkv',
+                                'gzanclqw',
+                                'bookvpan',
                             ],
-                            "exclude_iface": ["tsxnblla"],
-                            "force": True,
-                            "options": "suduigif",
+                            'exclude_iface': ['tsxnblla'],
+                            'force': True,
+                            'options': 'suduigif',
                         },
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -102,89 +102,89 @@ def test_that_interface_up(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
-                            "iface": [
-                                "wbqhtrrl",
-                                "lfdmyilz",
-                                "dreqcaye",
-                                "imbdjtlt",
-                                "icbndovd",
-                                "okzkjcwj",
-                                "bzsdckjv",
-                                "zglossuh",
-                                "fhsnuomc",
-                                "tkqzzvab",
+                            'iface': [
+                                'wbqhtrrl',
+                                'lfdmyilz',
+                                'dreqcaye',
+                                'imbdjtlt',
+                                'icbndovd',
+                                'okzkjcwj',
+                                'bzsdckjv',
+                                'zglossuh',
+                                'fhsnuomc',
+                                'tkqzzvab',
                             ],
-                            "exclude_iface": [
-                                "guxhnizp",
-                                "pgdcegzf",
-                                "pevjenky",
-                                "zmqqzkpd",
-                                "ofvhoxmo",
-                                "iaqnqkoo",
-                                "jwkogdis",
-                                "jdzsadkm",
-                                "mrlridvt",
+                            'exclude_iface': [
+                                'guxhnizp',
+                                'pgdcegzf',
+                                'pevjenky',
+                                'zmqqzkpd',
+                                'ofvhoxmo',
+                                'iaqnqkoo',
+                                'jwkogdis',
+                                'jdzsadkm',
+                                'mrlridvt',
                             ],
-                            "force": False,
-                            "options": "rtxkxzsk",
+                            'force': False,
+                            'options': 'rtxkxzsk',
                         }
                     ],
                     # device 2
-                    "test_dev2": [
+                    'test_dev2': [
                         {
-                            "iface": [
-                                "rwayjfzy",
-                                "vlvtkyju",
-                                "rckuxswi",
-                                "wtgglvkv",
-                                "gzanclqw",
-                                "bookvpan",
+                            'iface': [
+                                'rwayjfzy',
+                                'vlvtkyju',
+                                'rckuxswi',
+                                'wtgglvkv',
+                                'gzanclqw',
+                                'bookvpan',
                             ],
-                            "exclude_iface": ["tsxnblla"],
-                            "force": True,
-                            "options": "suduigif",
+                            'exclude_iface': ['tsxnblla'],
+                            'force': True,
+                            'options': 'suduigif',
                         }
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0
 
 
 def test_that_interface_down(capfd):
 
-    dv1 = TestDevice(platform="dentos")
-    dv2 = TestDevice(platform="dentos")
+    dv1 = TestDevice(platform='dentos')
+    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         Interface.down(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -192,73 +192,73 @@ def test_that_interface_down(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
-                            "iface": [
-                                "jxxpaepu",
-                                "csqxczbu",
-                                "masyixfs",
-                                "bzomhnkt",
-                                "pnoqiahe",
-                                "uvxxkhvm",
-                                "ztuczwuw",
+                            'iface': [
+                                'jxxpaepu',
+                                'csqxczbu',
+                                'masyixfs',
+                                'bzomhnkt',
+                                'pnoqiahe',
+                                'uvxxkhvm',
+                                'ztuczwuw',
                             ],
-                            "exclude_iface": [
-                                "pakhmjvw",
-                                "ocwjuaez",
-                                "dhgviwga",
-                                "hmahhzvl",
-                                "jfvhxgip",
-                                "sbfkabaz",
-                                "ectsxhto",
-                                "arewxryb",
+                            'exclude_iface': [
+                                'pakhmjvw',
+                                'ocwjuaez',
+                                'dhgviwga',
+                                'hmahhzvl',
+                                'jfvhxgip',
+                                'sbfkabaz',
+                                'ectsxhto',
+                                'arewxryb',
                             ],
-                            "force": False,
-                            "options": "lbprfqfk",
+                            'force': False,
+                            'options': 'lbprfqfk',
                         },
                         {
                             # command 2
-                            "iface": [
-                                "swaeuzxx",
-                                "rpmpcggz",
-                                "zrnsgajc",
-                                "eqylgljm",
-                                "zmkaqolc",
-                                "rityrdza",
-                                "tujbhfsv",
-                                "hjazkxrq",
-                                "wqnquqav",
-                                "jzetewhp",
+                            'iface': [
+                                'swaeuzxx',
+                                'rpmpcggz',
+                                'zrnsgajc',
+                                'eqylgljm',
+                                'zmkaqolc',
+                                'rityrdza',
+                                'tujbhfsv',
+                                'hjazkxrq',
+                                'wqnquqav',
+                                'jzetewhp',
                             ],
-                            "exclude_iface": [
-                                "jawoyriu",
-                                "rlqxrfxz",
-                                "wvofoizu",
-                                "jfbzruea",
-                                "rxuudjuv",
-                                "rpibzlja",
-                                "btaidoha",
-                                "bfuvndcr",
-                                "yenjfuxc",
-                                "meiuxeiy",
+                            'exclude_iface': [
+                                'jawoyriu',
+                                'rlqxrfxz',
+                                'wvofoizu',
+                                'jfbzruea',
+                                'rxuudjuv',
+                                'rpibzlja',
+                                'btaidoha',
+                                'bfuvndcr',
+                                'yenjfuxc',
+                                'meiuxeiy',
                             ],
-                            "force": False,
-                            "options": "wfoftjek",
+                            'force': False,
+                            'options': 'wfoftjek',
                         },
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -266,100 +266,100 @@ def test_that_interface_down(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
-                            "iface": [
-                                "jxxpaepu",
-                                "csqxczbu",
-                                "masyixfs",
-                                "bzomhnkt",
-                                "pnoqiahe",
-                                "uvxxkhvm",
-                                "ztuczwuw",
+                            'iface': [
+                                'jxxpaepu',
+                                'csqxczbu',
+                                'masyixfs',
+                                'bzomhnkt',
+                                'pnoqiahe',
+                                'uvxxkhvm',
+                                'ztuczwuw',
                             ],
-                            "exclude_iface": [
-                                "pakhmjvw",
-                                "ocwjuaez",
-                                "dhgviwga",
-                                "hmahhzvl",
-                                "jfvhxgip",
-                                "sbfkabaz",
-                                "ectsxhto",
-                                "arewxryb",
+                            'exclude_iface': [
+                                'pakhmjvw',
+                                'ocwjuaez',
+                                'dhgviwga',
+                                'hmahhzvl',
+                                'jfvhxgip',
+                                'sbfkabaz',
+                                'ectsxhto',
+                                'arewxryb',
                             ],
-                            "force": False,
-                            "options": "lbprfqfk",
+                            'force': False,
+                            'options': 'lbprfqfk',
                         }
                     ],
                     # device 2
-                    "test_dev2": [
+                    'test_dev2': [
                         {
-                            "iface": [
-                                "swaeuzxx",
-                                "rpmpcggz",
-                                "zrnsgajc",
-                                "eqylgljm",
-                                "zmkaqolc",
-                                "rityrdza",
-                                "tujbhfsv",
-                                "hjazkxrq",
-                                "wqnquqav",
-                                "jzetewhp",
+                            'iface': [
+                                'swaeuzxx',
+                                'rpmpcggz',
+                                'zrnsgajc',
+                                'eqylgljm',
+                                'zmkaqolc',
+                                'rityrdza',
+                                'tujbhfsv',
+                                'hjazkxrq',
+                                'wqnquqav',
+                                'jzetewhp',
                             ],
-                            "exclude_iface": [
-                                "jawoyriu",
-                                "rlqxrfxz",
-                                "wvofoizu",
-                                "jfbzruea",
-                                "rxuudjuv",
-                                "rpibzlja",
-                                "btaidoha",
-                                "bfuvndcr",
-                                "yenjfuxc",
-                                "meiuxeiy",
+                            'exclude_iface': [
+                                'jawoyriu',
+                                'rlqxrfxz',
+                                'wvofoizu',
+                                'jfbzruea',
+                                'rxuudjuv',
+                                'rpibzlja',
+                                'btaidoha',
+                                'bfuvndcr',
+                                'yenjfuxc',
+                                'meiuxeiy',
                             ],
-                            "force": False,
-                            "options": "wfoftjek",
+                            'force': False,
+                            'options': 'wfoftjek',
                         }
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0
 
 
 def test_that_interface_query(capfd):
 
-    dv1 = TestDevice(platform="dentos")
-    dv2 = TestDevice(platform="dentos")
+    dv1 = TestDevice(platform='dentos')
+    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         Interface.query(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -367,30 +367,30 @@ def test_that_interface_query(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
-                            "iface": ["ychrxtql"],
-                            "options": "gvxwqyop",
+                            'iface': ['ychrxtql'],
+                            'options': 'gvxwqyop',
                         },
                         {
                             # command 2
-                            "iface": ["ewcitmua", "exfmisad", "oxynuxqk", "twkonmgb", "omqyxebe"],
-                            "options": "qjglyrac",
+                            'iface': ['ewcitmua', 'exfmisad', 'oxynuxqk', 'twkonmgb', 'omqyxebe'],
+                            'options': 'qjglyrac',
                         },
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -398,57 +398,57 @@ def test_that_interface_query(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
-                            "iface": ["ychrxtql"],
-                            "options": "gvxwqyop",
+                            'iface': ['ychrxtql'],
+                            'options': 'gvxwqyop',
                         }
                     ],
                     # device 2
-                    "test_dev2": [
+                    'test_dev2': [
                         {
-                            "iface": ["ewcitmua", "exfmisad", "oxynuxqk", "twkonmgb", "omqyxebe"],
-                            "options": "qjglyrac",
+                            'iface': ['ewcitmua', 'exfmisad', 'oxynuxqk', 'twkonmgb', 'omqyxebe'],
+                            'options': 'qjglyrac',
                         }
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0
 
 
 def test_that_interface_reload(capfd):
 
-    dv1 = TestDevice(platform="dentos")
-    dv2 = TestDevice(platform="dentos")
+    dv1 = TestDevice(platform='dentos')
+    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         Interface.reload(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -456,32 +456,32 @@ def test_that_interface_reload(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
-                            "force": False,
-                            "exclude_iface": ["inozijqm"],
-                            "options": "edpcusnc",
+                            'force': False,
+                            'exclude_iface': ['inozijqm'],
+                            'options': 'edpcusnc',
                         },
                         {
                             # command 2
-                            "force": False,
-                            "exclude_iface": ["rtvgpyli", "mabfoojb"],
-                            "options": "ywkgzkpu",
+                            'force': False,
+                            'exclude_iface': ['rtvgpyli', 'mabfoojb'],
+                            'options': 'ywkgzkpu',
                         },
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -489,33 +489,33 @@ def test_that_interface_reload(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
-                            "force": False,
-                            "exclude_iface": ["inozijqm"],
-                            "options": "edpcusnc",
+                            'force': False,
+                            'exclude_iface': ['inozijqm'],
+                            'options': 'edpcusnc',
                         }
                     ],
                     # device 2
-                    "test_dev2": [
+                    'test_dev2': [
                         {
-                            "force": False,
-                            "exclude_iface": ["rtvgpyli", "mabfoojb"],
-                            "options": "ywkgzkpu",
+                            'force': False,
+                            'exclude_iface': ['rtvgpyli', 'mabfoojb'],
+                            'options': 'ywkgzkpu',
                         }
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0

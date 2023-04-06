@@ -13,25 +13,25 @@ from .utils import TestDevice
 
 def test_that_tc_class_add(capfd):
 
-    dv1 = TestDevice(platform="dentos")
-    dv2 = TestDevice(platform="dentos")
+    dv1 = TestDevice(platform='dentos')
+    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         TcClass.add(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -39,36 +39,36 @@ def test_that_tc_class_add(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
-                            "dev": "rsqjiauo",
-                            "parent": 2179,
-                            "classid": 4701,
-                            "qdisc": 9440,
-                            "options": "gbrxleuf",
+                            'dev': 'rsqjiauo',
+                            'parent': 2179,
+                            'classid': 4701,
+                            'qdisc': 9440,
+                            'options': 'gbrxleuf',
                         },
                         {
                             # command 2
-                            "dev": "rtsevtvb",
-                            "parent": 2235,
-                            "classid": 961,
-                            "qdisc": 7545,
-                            "options": "fngmonmq",
+                            'dev': 'rtsevtvb',
+                            'parent': 2235,
+                            'classid': 961,
+                            'qdisc': 7545,
+                            'options': 'fngmonmq',
                         },
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -76,63 +76,63 @@ def test_that_tc_class_add(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
-                            "dev": "rsqjiauo",
-                            "parent": 2179,
-                            "classid": 4701,
-                            "qdisc": 9440,
-                            "options": "gbrxleuf",
+                            'dev': 'rsqjiauo',
+                            'parent': 2179,
+                            'classid': 4701,
+                            'qdisc': 9440,
+                            'options': 'gbrxleuf',
                         }
                     ],
                     # device 2
-                    "test_dev2": [
+                    'test_dev2': [
                         {
-                            "dev": "rtsevtvb",
-                            "parent": 2235,
-                            "classid": 961,
-                            "qdisc": 7545,
-                            "options": "fngmonmq",
+                            'dev': 'rtsevtvb',
+                            'parent': 2235,
+                            'classid': 961,
+                            'qdisc': 7545,
+                            'options': 'fngmonmq',
                         }
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0
 
 
 def test_that_tc_class_change(capfd):
 
-    dv1 = TestDevice(platform="dentos")
-    dv2 = TestDevice(platform="dentos")
+    dv1 = TestDevice(platform='dentos')
+    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         TcClass.change(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -140,36 +140,36 @@ def test_that_tc_class_change(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
-                            "dev": "lrpohvfa",
-                            "parent": 8282,
-                            "classid": 3602,
-                            "qdisc": 7715,
-                            "options": "hjsakyiv",
+                            'dev': 'lrpohvfa',
+                            'parent': 8282,
+                            'classid': 3602,
+                            'qdisc': 7715,
+                            'options': 'hjsakyiv',
                         },
                         {
                             # command 2
-                            "dev": "zppxbveb",
-                            "parent": 9983,
-                            "classid": 6646,
-                            "qdisc": 3090,
-                            "options": "wjvvngef",
+                            'dev': 'zppxbveb',
+                            'parent': 9983,
+                            'classid': 6646,
+                            'qdisc': 3090,
+                            'options': 'wjvvngef',
                         },
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -177,63 +177,63 @@ def test_that_tc_class_change(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
-                            "dev": "lrpohvfa",
-                            "parent": 8282,
-                            "classid": 3602,
-                            "qdisc": 7715,
-                            "options": "hjsakyiv",
+                            'dev': 'lrpohvfa',
+                            'parent': 8282,
+                            'classid': 3602,
+                            'qdisc': 7715,
+                            'options': 'hjsakyiv',
                         }
                     ],
                     # device 2
-                    "test_dev2": [
+                    'test_dev2': [
                         {
-                            "dev": "zppxbveb",
-                            "parent": 9983,
-                            "classid": 6646,
-                            "qdisc": 3090,
-                            "options": "wjvvngef",
+                            'dev': 'zppxbveb',
+                            'parent': 9983,
+                            'classid': 6646,
+                            'qdisc': 3090,
+                            'options': 'wjvvngef',
                         }
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0
 
 
 def test_that_tc_class_replace(capfd):
 
-    dv1 = TestDevice(platform="dentos")
-    dv2 = TestDevice(platform="dentos")
+    dv1 = TestDevice(platform='dentos')
+    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         TcClass.replace(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -241,36 +241,36 @@ def test_that_tc_class_replace(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
-                            "dev": "edbleohs",
-                            "parent": 6479,
-                            "classid": 6481,
-                            "qdisc": 3246,
-                            "options": "yspsgapk",
+                            'dev': 'edbleohs',
+                            'parent': 6479,
+                            'classid': 6481,
+                            'qdisc': 3246,
+                            'options': 'yspsgapk',
                         },
                         {
                             # command 2
-                            "dev": "ovqsqhuy",
-                            "parent": 4284,
-                            "classid": 1189,
-                            "qdisc": 2039,
-                            "options": "astywdla",
+                            'dev': 'ovqsqhuy',
+                            'parent': 4284,
+                            'classid': 1189,
+                            'qdisc': 2039,
+                            'options': 'astywdla',
                         },
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -278,63 +278,63 @@ def test_that_tc_class_replace(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
-                            "dev": "edbleohs",
-                            "parent": 6479,
-                            "classid": 6481,
-                            "qdisc": 3246,
-                            "options": "yspsgapk",
+                            'dev': 'edbleohs',
+                            'parent': 6479,
+                            'classid': 6481,
+                            'qdisc': 3246,
+                            'options': 'yspsgapk',
                         }
                     ],
                     # device 2
-                    "test_dev2": [
+                    'test_dev2': [
                         {
-                            "dev": "ovqsqhuy",
-                            "parent": 4284,
-                            "classid": 1189,
-                            "qdisc": 2039,
-                            "options": "astywdla",
+                            'dev': 'ovqsqhuy',
+                            'parent': 4284,
+                            'classid': 1189,
+                            'qdisc': 2039,
+                            'options': 'astywdla',
                         }
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0
 
 
 def test_that_tc_class_delete(capfd):
 
-    dv1 = TestDevice(platform="dentos")
-    dv2 = TestDevice(platform="dentos")
+    dv1 = TestDevice(platform='dentos')
+    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         TcClass.delete(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -342,36 +342,36 @@ def test_that_tc_class_delete(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
-                            "dev": "mcwgynlz",
-                            "parent": 7532,
-                            "classid": 3221,
-                            "qdisc": 668,
-                            "options": "gjuirksk",
+                            'dev': 'mcwgynlz',
+                            'parent': 7532,
+                            'classid': 3221,
+                            'qdisc': 668,
+                            'options': 'gjuirksk',
                         },
                         {
                             # command 2
-                            "dev": "huwiulyq",
-                            "parent": 5637,
-                            "classid": 958,
-                            "qdisc": 5331,
-                            "options": "hcpqohbv",
+                            'dev': 'huwiulyq',
+                            'parent': 5637,
+                            'classid': 958,
+                            'qdisc': 5331,
+                            'options': 'hcpqohbv',
                         },
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -379,63 +379,63 @@ def test_that_tc_class_delete(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
-                            "dev": "mcwgynlz",
-                            "parent": 7532,
-                            "classid": 3221,
-                            "qdisc": 668,
-                            "options": "gjuirksk",
+                            'dev': 'mcwgynlz',
+                            'parent': 7532,
+                            'classid': 3221,
+                            'qdisc': 668,
+                            'options': 'gjuirksk',
                         }
                     ],
                     # device 2
-                    "test_dev2": [
+                    'test_dev2': [
                         {
-                            "dev": "huwiulyq",
-                            "parent": 5637,
-                            "classid": 958,
-                            "qdisc": 5331,
-                            "options": "hcpqohbv",
+                            'dev': 'huwiulyq',
+                            'parent': 5637,
+                            'classid': 958,
+                            'qdisc': 5331,
+                            'options': 'hcpqohbv',
                         }
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0
 
 
 def test_that_tc_class_show(capfd):
 
-    dv1 = TestDevice(platform="dentos")
-    dv2 = TestDevice(platform="dentos")
+    dv1 = TestDevice(platform='dentos')
+    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         TcClass.show(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -443,32 +443,32 @@ def test_that_tc_class_show(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
-                            "dev": "nkkojvfl",
-                            "format": "evdrirdq",
-                            "options": "kzoxxzbt",
+                            'dev': 'nkkojvfl',
+                            'format': 'evdrirdq',
+                            'options': 'kzoxxzbt',
                         },
                         {
                             # command 2
-                            "dev": "tudqtods",
-                            "format": "tqsrkyxx",
-                            "options": "qjzhdjzt",
+                            'dev': 'tudqtods',
+                            'format': 'tqsrkyxx',
+                            'options': 'qjzhdjzt',
                         },
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -476,33 +476,33 @@ def test_that_tc_class_show(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
-                            "dev": "nkkojvfl",
-                            "format": "evdrirdq",
-                            "options": "kzoxxzbt",
+                            'dev': 'nkkojvfl',
+                            'format': 'evdrirdq',
+                            'options': 'kzoxxzbt',
                         }
                     ],
                     # device 2
-                    "test_dev2": [
+                    'test_dev2': [
                         {
-                            "dev": "tudqtods",
-                            "format": "tqsrkyxx",
-                            "options": "qjzhdjzt",
+                            'dev': 'tudqtods',
+                            'format': 'tqsrkyxx',
+                            'options': 'qjzhdjzt',
                         }
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0

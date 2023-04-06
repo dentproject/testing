@@ -3,7 +3,7 @@
 Module init for dent_os_testbed.discovery
 """
 
-REPORTS_DIR = "/var/lib/testbed/discovery"
+REPORTS_DIR = '/var/lib/testbed/discovery'
 
 REPORTS_SAVE_MIN = 3
 # save at least three of each report

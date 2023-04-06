@@ -28,11 +28,11 @@ class Interface(TestLibObject):
                     device_obj = kwarg.get('device_obj', None)[device_name]
                 else:
                     if device_name not in pytest.testbed.devices_dict:
-                        device_result[device_name] =  "No matching device "+ device_name
+                        device_result[device_name] =  'No matching device '+ device_name
                         result.append(device_result)
                         return result
                     device_obj = pytest.testbed.devices_dict[device_name]
-                commands = ""
+                commands = ''
                 if device_obj.os in ['dentos', 'cumulus']:
                     impl_obj = LinuxInterfaceImpl()
                     for command in device[device_name]:
@@ -42,12 +42,12 @@ class Interface(TestLibObject):
 
                 else:
                     device_result[device_name]['rc'] = -1
-                    device_result[device_name]['result'] = "No matching device OS "+ device_obj.os
+                    device_result[device_name]['result'] = 'No matching device OS '+ device_obj.os
                     result.append(device_result)
                     return result
                 device_result[device_name]['command'] = commands
                 try:
-                    rc, output = await device_obj.run_cmd(("sudo " if device_obj.ssh_conn_params.pssh else "") + commands)
+                    rc, output = await device_obj.run_cmd(('sudo ' if device_obj.ssh_conn_params.pssh else '') + commands)
                     device_result[device_name]['rc'] = rc
                     device_result[device_name]['result'] = output
                     if 'parse_output' in kwarg:
@@ -104,7 +104,7 @@ class Interface(TestLibObject):
                Only run the interfaces file parser
 
         """
-        return await Interface._run_command("up", *argv, **kwarg)
+        return await Interface._run_command('up', *argv, **kwarg)
 
     async def down(*argv, **kwarg):
         """
@@ -151,7 +151,7 @@ class Interface(TestLibObject):
                Only run the interfaces file parser
 
         """
-        return await Interface._run_command("down", *argv, **kwarg)
+        return await Interface._run_command('down', *argv, **kwarg)
 
     async def query(*argv, **kwarg):
         """
@@ -195,7 +195,7 @@ class Interface(TestLibObject):
                supported syntax from them if provided by the module.
 
         """
-        return await Interface._run_command("query", *argv, **kwarg)
+        return await Interface._run_command('query', *argv, **kwarg)
 
     async def reload(*argv, **kwarg):
         """
@@ -228,4 +228,4 @@ class Interface(TestLibObject):
                 Only run the interfaces file parser
 
         """
-        return await Interface._run_command("reload", *argv, **kwarg)
+        return await Interface._run_command('reload', *argv, **kwarg)

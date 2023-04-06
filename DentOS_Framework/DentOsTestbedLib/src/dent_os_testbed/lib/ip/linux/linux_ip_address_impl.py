@@ -19,32 +19,32 @@ class LinuxIpAddressImpl(LinuxIpAddress):
         LFT := forever | SECONDS
 
         """
-        params = kwarg["params"]
-        cmd = "ip address {} ".format(command)
+        params = kwarg['params']
+        cmd = 'ip address {} '.format(command)
         # custom code here
-        if "prefix" in params:
-            cmd += "{} ".format(params["prefix"])
-        if "peer" in params:
-            cmd += "peer {} ".format(params["peer"])
-        if "broadcast" in params:
-            cmd += "broadcast {} ".format(params["broadcast"])
-        if "anycast" in params:
-            cmd += "anycast {} ".format(params["anycast"])
-        if "label" in params:
-            cmd += "label {} ".format(params["label"])
-        if "scope" in params:
-            cmd += "scope {} ".format(params["scope"])
-        if "dev" in params:
-            cmd += "dev {} ".format(params["dev"])
-        if "valid_lft" in params:
-            cmd += "valid_lft {} ".format(params["valid_lft"])
-        if "preferred_lft" in params:
-            cmd += "preferred_lft {} ".format(params["preferred_lft"])
-        if "metric" in params:
-            cmd += "metric {} ".format(params["metric"])
-        if "confflag_list" in params:
-            for confflag in params["confflag_list"]:
-                cmd += "{} ".format(confflag)
+        if 'prefix' in params:
+            cmd += '{} '.format(params['prefix'])
+        if 'peer' in params:
+            cmd += 'peer {} '.format(params['peer'])
+        if 'broadcast' in params:
+            cmd += 'broadcast {} '.format(params['broadcast'])
+        if 'anycast' in params:
+            cmd += 'anycast {} '.format(params['anycast'])
+        if 'label' in params:
+            cmd += 'label {} '.format(params['label'])
+        if 'scope' in params:
+            cmd += 'scope {} '.format(params['scope'])
+        if 'dev' in params:
+            cmd += 'dev {} '.format(params['dev'])
+        if 'valid_lft' in params:
+            cmd += 'valid_lft {} '.format(params['valid_lft'])
+        if 'preferred_lft' in params:
+            cmd += 'preferred_lft {} '.format(params['preferred_lft'])
+        if 'metric' in params:
+            cmd += 'metric {} '.format(params['metric'])
+        if 'confflag_list' in params:
+            for confflag in params['confflag_list']:
+                cmd += '{} '.format(confflag)
         return cmd
 
     def format_delete(self, command, *argv, **kwarg):
@@ -57,23 +57,23 @@ class LinuxIpAddressImpl(LinuxIpAddress):
         SCOPE-ID := [ host | link | global | NUMBER ]
 
         """
-        params = kwarg["params"]
-        cmd = "ip address {} ".format(command)
+        params = kwarg['params']
+        cmd = 'ip address {} '.format(command)
         # custom code here
-        if "prefix" in params:
-            cmd += "{} ".format(params["prefix"])
-        if "dev" in params:
-            cmd += "dev {} ".format(params["dev"])
-        if "peer" in params:
-            cmd += "peer {} ".format(params["peer"])
-        if "broadcast" in params:
-            cmd += "broadcast {} ".format(params["broadcast"])
-        if "anycast" in params:
-            cmd += "anycast {} ".format(params["anycast"])
-        if "label" in params:
-            cmd += "label {} ".format(params["label"])
-        if "scope" in params:
-            cmd += "scope {} ".format(params["scope"])
+        if 'prefix' in params:
+            cmd += '{} '.format(params['prefix'])
+        if 'dev' in params:
+            cmd += 'dev {} '.format(params['dev'])
+        if 'peer' in params:
+            cmd += 'peer {} '.format(params['peer'])
+        if 'broadcast' in params:
+            cmd += 'broadcast {} '.format(params['broadcast'])
+        if 'anycast' in params:
+            cmd += 'anycast {} '.format(params['anycast'])
+        if 'label' in params:
+            cmd += 'label {} '.format(params['label'])
+        if 'scope' in params:
+            cmd += 'scope {} '.format(params['scope'])
 
         return cmd
 
@@ -91,21 +91,21 @@ class LinuxIpAddressImpl(LinuxIpAddress):
         CONFFLAG  := [ home | nodad | mngtmpaddr | noprefixroute | autojoin ]
 
         """
-        params = kwarg["params"]
-        cmd = "ip address {} ".format(command)
+        params = kwarg['params']
+        cmd = 'ip address {} '.format(command)
         # custom code here
-        if "dev" in params:
-            cmd += "{} ".format(params["dev"])
-        if "scope" in params:
-            cmd += "scope {} ".format(params["scope"])
-        if "prefix" in params:
-            cmd += "to {} ".format(params["prefix"])
-        if "flag_list" in params:
-            for flag in params["flag_list"]:
-                cmd += "{} ".format(flag)
-        if "confflag_list" in params:
-            for confflag in params["confflag_list"]:
-                cmd += "{} ".format(confflag)
+        if 'dev' in params:
+            cmd += '{} '.format(params['dev'])
+        if 'scope' in params:
+            cmd += 'scope {} '.format(params['scope'])
+        if 'prefix' in params:
+            cmd += 'to {} '.format(params['prefix'])
+        if 'flag_list' in params:
+            for flag in params['flag_list']:
+                cmd += '{} '.format(flag)
+        if 'confflag_list' in params:
+            for confflag in params['confflag_list']:
+                cmd += '{} '.format(confflag)
         return cmd
 
     def format_show(self, command, *argv, **kwarg):
@@ -127,30 +127,30 @@ class LinuxIpAddressImpl(LinuxIpAddress):
                  ip [ OPTIONS ] address { COMMAND | help }
 
         """
-        params = kwarg["params"]
-        if params.get("dut_discovery", False):
-            params["cmd_options"] = "-j -d"
-        cmd = "ip {} address {} ".format(params.get("cmd_options", ""), command)
-        if "dev" in params:
-            cmd += "{} ".format(params["dev"])
-        if "scope" in params:
-            cmd += "scope {} ".format(params["scope"])
-        if "master" in params:
-            cmd += "master {} ".format(params["master"])
-        if "type" in params:
-            cmd += "type {} ".format(params["type"])
-        if "prefix" in params:
-            cmd += "to {} ".format(params["prefix"])
-        if "flag_list" in params:
-            for flag in params["flag_list"]:
-                cmd += "{} ".format(flag)
-        if "confflag_list" in params:
-            for confflag in params["confflag_list"]:
-                cmd += "{} ".format(confflag)
-        if "label" in params:
-            cmd += "label {} ".format(params["label"])
-        if "vrf" in params:
-            cmd += "vrf {} ".format(params["vrf"])
+        params = kwarg['params']
+        if params.get('dut_discovery', False):
+            params['cmd_options'] = '-j -d'
+        cmd = 'ip {} address {} '.format(params.get('cmd_options', ''), command)
+        if 'dev' in params:
+            cmd += '{} '.format(params['dev'])
+        if 'scope' in params:
+            cmd += 'scope {} '.format(params['scope'])
+        if 'master' in params:
+            cmd += 'master {} '.format(params['master'])
+        if 'type' in params:
+            cmd += 'type {} '.format(params['type'])
+        if 'prefix' in params:
+            cmd += 'to {} '.format(params['prefix'])
+        if 'flag_list' in params:
+            for flag in params['flag_list']:
+                cmd += '{} '.format(flag)
+        if 'confflag_list' in params:
+            for confflag in params['confflag_list']:
+                cmd += '{} '.format(confflag)
+        if 'label' in params:
+            cmd += 'label {} '.format(params['label'])
+        if 'vrf' in params:
+            cmd += 'vrf {} '.format(params['vrf'])
         return cmd
 
     def format_restore(self, command, *argv, **kwarg):
@@ -158,8 +158,8 @@ class LinuxIpAddressImpl(LinuxIpAddress):
         """
         Restore the config
         """
-        params = kwarg["params"]
-        cmd = "ip address {} ".format(command)
+        params = kwarg['params']
+        cmd = 'ip address {} '.format(command)
         # custom code here
 
         return cmd

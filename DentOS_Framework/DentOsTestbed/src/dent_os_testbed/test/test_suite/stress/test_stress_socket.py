@@ -33,36 +33,36 @@ async def test_stress_sock_usage(testbed):
     """
     if not testbed.discovery_report:
         testbed.applog.info(
-            f"Discovery report not present, +"
-            "skipping run_test in {test_stress_exhause_disk_space.__func__}"
+            f'Discovery report not present, +'
+            'skipping run_test in {test_stress_exhause_disk_space.__func__}'
         )
         return
     for dev in testbed.discovery_report.duts:
         device = await tb_get_device_object_from_dut(testbed, dev)
         if not device:
             continue
-        if not await tb_check_and_install_pkg(device, "stress-ng"):
+        if not await tb_check_and_install_pkg(device, 'stress-ng'):
             continue
         cpu = len(dev.system.os.cpu)
         prev_state = await tb_device_check_health(device, None, False)
         cmds = [
             # "dccp",  # --dccp N             start N workers exercising network DCCP I/O
-            "dnotify",  # --dnotify N          start N workers exercising dnotify events
-            "epoll",  # --epoll N            start N workers doing epoll handled socket activity
-            "fifo",  # --fifo N             start N workers exercising fifo I/O
-            "inotify",  # --inotify N          start N workers exercising inotify events
-            "mq",  # --mq N               start N workers passing messages using POSIX messages
+            'dnotify',  # --dnotify N          start N workers exercising dnotify events
+            'epoll',  # --epoll N            start N workers doing epoll handled socket activity
+            'fifo',  # --fifo N             start N workers exercising fifo I/O
+            'inotify',  # --inotify N          start N workers exercising inotify events
+            'mq',  # --mq N               start N workers passing messages using POSIX messages
             # "netlink-proc",  # --netlink-proc N     start N workers exercising netlink process events
-            "pipe",  # --pipe N             start N workers exercising pipe I/O
-            "sock",  # --sock N             start N workers exercising socket I/O
-            "sockfd",  # --sockfd N           start N workers sending file descriptors over sockets
-            "udp",  # --udp N              start N workers performing UDP send/receives
-            "udp-flood",  # --udp-flood N        start N workers that performs a UDP flood attack
+            'pipe',  # --pipe N             start N workers exercising pipe I/O
+            'sock',  # --sock N             start N workers exercising socket I/O
+            'sockfd',  # --sockfd N           start N workers sending file descriptors over sockets
+            'udp',  # --udp N              start N workers performing UDP send/receives
+            'udp-flood',  # --udp-flood N        start N workers that performs a UDP flood attack
         ]
         for cmd in cmds:
-            cmd = f"stress-ng --{cmd} {cpu} --metrics-brief --perf --timeout 10s"
+            cmd = f'stress-ng --{cmd} {cpu} --metrics-brief --perf --timeout 10s'
             rc, out = await device.run_cmd(cmd)
-            assert rc == 0, f"Failed to run {cmd} {out}"
-            device.applog.info(f"{cmd}: {rc} {out}")
+            assert rc == 0, f'Failed to run {cmd} {out}'
+            device.applog.info(f'{cmd}: {rc} {out}')
         # check the system state
         await tb_device_check_health(device, prev_state, True)

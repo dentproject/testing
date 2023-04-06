@@ -20,7 +20,7 @@ class SSHClient(asyncssh.SSHClient):
 
     def auth_completed(self):
         self.auth_made = True
-        print("Authentication complete")
+        print('Authentication complete')
 
     def connection_lost(self, exc):
         self.conn_made = False
@@ -56,7 +56,7 @@ class SSHConnection:
             self._validate_and_update_params(logger, loop, connection_params)
             self.conn = None
         except Exception as e:
-            self.applog.exception(f"Error initializing SSH connection", exc_info=e)
+            self.applog.exception(f'Error initializing SSH connection', exc_info=e)
             raise
 
     async def run_cmd(self, cmd, bufsize=io.DEFAULT_BUFFER_SIZE, input=None):
@@ -72,15 +72,15 @@ class SSHConnection:
             Exception: For generic failures
         """
         try:
-            self.applog.debug(f"Running {cmd}")
+            self.applog.debug(f'Running {cmd}')
             await self._connect()
             self.sshlog.debug(cmd)
             result = await self.conn.run(cmd, bufsize=bufsize, input=input)
-            self.applog.debug(f"Executed {cmd}; exit_status {result.exit_status}")
+            self.applog.debug(f'Executed {cmd}; exit_status {result.exit_status}')
             self.sshlog.debug(result.stdout + result.stderr)
             return result.exit_status, result.stdout + result.stderr
         except Exception as e:
-            self.applog.exception(f"Error running command: {cmd}", exc_info=e)
+            self.applog.exception(f'Error running command: {cmd}', exc_info=e)
             raise
 
     async def copy_local_to_remote(self, src, dst):
@@ -95,12 +95,12 @@ class SSHConnection:
             Exception: For generic failures
         """
         try:
-            self.applog.debug(f"Copying from local {src} to remote {dst}")
+            self.applog.debug(f'Copying from local {src} to remote {dst}')
             await self._connect()
             await asyncssh.scp(src, (self.conn, dst))
-            self.applog.debug(f"Successfully copied from local {src} to remote {dst}")
+            self.applog.debug(f'Successfully copied from local {src} to remote {dst}')
         except Exception as e:
-            self.applog.exception(f"copy_local_to_remote {src} {dst}", exc_info=e)
+            self.applog.exception(f'copy_local_to_remote {src} {dst}', exc_info=e)
             raise
 
     async def copy_remote_to_local(self, src, dst):
@@ -115,12 +115,12 @@ class SSHConnection:
             Exception: For generic failures
         """
         try:
-            self.applog.debug(f"Copying from remote {src} to local {dst}")
+            self.applog.debug(f'Copying from remote {src} to local {dst}')
             await self._connect()
             await asyncssh.scp((self.conn, src), dst)
-            self.applog.debug(f"Successfully copied from remote {src} to local {dst}")
+            self.applog.debug(f'Successfully copied from remote {src} to local {dst}')
         except Exception as e:
-            self.applog.exception(f"copy_remote_to_local {src} {dst}", exc_info=e)
+            self.applog.exception(f'copy_remote_to_local {src} {dst}', exc_info=e)
             raise
 
     async def is_connected(self):
@@ -133,7 +133,7 @@ class SSHConnection:
         try:
             return await self._connected()
         except Exception as e:
-            self.applog.exception("Exception occured --> is_connected", exc_info=e)
+            self.applog.exception('Exception occured --> is_connected', exc_info=e)
             raise
 
     async def disconnect(self):
@@ -145,28 +145,28 @@ class SSHConnection:
         """
         try:
             if await self._connected():
-                self.applog.debug("Disconnecting")
+                self.applog.debug('Disconnecting')
                 self.conn.close()
                 self.conn = None
-                self.applog.debug("Disconnect complete")
+                self.applog.debug('Disconnect complete')
             else:
-                self.applog.debug("No active connection to disconnect")
+                self.applog.debug('No active connection to disconnect')
         except Exception as e:
-            self.applog.exception("Exception --> SSH disconnect", exc_info=e)
+            self.applog.exception('Exception --> SSH disconnect', exc_info=e)
             raise
 
     def _validate_and_update_params(self, logger, loop, connection_params):
         if not loop:
             raise ValueError(
-                "SSHConnection class needs a running event loop to manage its async APIs"
+                'SSHConnection class needs a running event loop to manage its async APIs'
             )
         if not connection_params.ip:
-            raise ValueError("No IP provided to create SSHConnection")
+            raise ValueError('No IP provided to create SSHConnection')
         self.ip = connection_params.ip
         self.applog = logger.tag_logs(self.ip)
         self.sshlog = connection_params.logger
         if not connection_params.username:
-            raise ValueError("No username provided to create SSHConnection")
+            raise ValueError('No username provided to create SSHConnection')
         self.user_name = connection_params.username
         if connection_params.password:
             self.password = connection_params.password
@@ -174,15 +174,15 @@ class SSHConnection:
             self.public_key = connection_params.public_key
             self.passphrase = connection_params.passphrase
         else:
-            raise ValueError("Neither password nor public key provided to create SSHConnection")
+            raise ValueError('Neither password nor public key provided to create SSHConnection')
 
     async def _connected(self):
         try:
             if self.conn:
-                result = await self.conn.run("date")
+                result = await self.conn.run('date')
                 if result.exit_status == SSHConnection._SUCCESS:
-                    stdout = result.stdout.rstrip("\n")
-                    self.applog.debug(f"Connection to device is healthy at {stdout}")
+                    stdout = result.stdout.rstrip('\n')
+                    self.applog.debug(f'Connection to device is healthy at {stdout}')
                     result = True
                 else:
                     result = False
@@ -191,7 +191,7 @@ class SSHConnection:
             return result
         except Exception as e:
             print(e)
-            self.applog.debug(f"Currently no connection exists to device")
+            self.applog.debug(f'Currently no connection exists to device')
             return False
 
     async def _connect(self):
@@ -215,8 +215,8 @@ class SSHConnection:
                         known_hosts=None,
                     )
                 else:
-                    invalid_credentials = "Invalid SSH credentials for device %s" % self.ip
+                    invalid_credentials = 'Invalid SSH credentials for device %s' % self.ip
                     raise RuntimeError(invalid_credentials)
         except Exception as e:
-            self.applog.exception("Error establishing connection", exc_info=e)
+            self.applog.exception('Error establishing connection', exc_info=e)
             raise
