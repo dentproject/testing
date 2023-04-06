@@ -40,7 +40,7 @@ class LinuxBridgeFdbImpl(LinuxBridgeFdb):
         """
         params = kwarg['params']
         cmd = 'bridge fdb {} '.format(command)
-       ############# Implement me ################
+        ############# Implement me ################
         if 'lladdr' in params:
             cmd += '{} '.format((params['lladdr']))
         if 'device' in params:
