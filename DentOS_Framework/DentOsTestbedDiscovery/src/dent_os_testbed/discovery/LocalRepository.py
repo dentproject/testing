@@ -5,7 +5,8 @@ on a single testbed server.
 """
 
 import logging
-import sys, os
+import sys
+import os
 import shutil
 import time
 import tempfile
