@@ -9,8 +9,8 @@ from .utils import TestDevice
 from dent_os_testbed.lib.devlink.devlink_port import DevlinkPort
 def test_that_devlink_port_set(capfd):
 
-    dv1 = TestDevice(platform="dentos")
-    dv2 = TestDevice(platform="dentos")
+    dv1 = TestDevice(platform='dentos')
+    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DevlinkPort.set(input_data = [{
         # device 1
@@ -20,7 +20,7 @@ def test_that_devlink_port_set(capfd):
     assert 'command' in out[0]['test_dev'].keys()
     assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]['test_dev']["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DevlinkPort.set(input_data = [{
@@ -47,7 +47,7 @@ def test_that_devlink_port_set(capfd):
     # check if the result was formed
     assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]['test_dev1']["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DevlinkPort.set(input_data = [{
@@ -76,14 +76,14 @@ def test_that_devlink_port_set(capfd):
     assert 'result' in out[0]['test_dev1'].keys()
     assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]['test_dev1']["rc"] == 0
-    assert out[1]['test_dev2']["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0
 
 
 def test_that_devlink_port_split(capfd):
 
-    dv1 = TestDevice(platform="dentos")
-    dv2 = TestDevice(platform="dentos")
+    dv1 = TestDevice(platform='dentos')
+    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DevlinkPort.split(input_data = [{
         # device 1
@@ -93,13 +93,13 @@ def test_that_devlink_port_split(capfd):
     assert 'command' in out[0]['test_dev'].keys()
     assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]['test_dev']["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
 
 def test_that_devlink_port_unsplit(capfd):
 
-    dv1 = TestDevice(platform="dentos")
-    dv2 = TestDevice(platform="dentos")
+    dv1 = TestDevice(platform='dentos')
+    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DevlinkPort.unsplit(input_data = [{
         # device 1
@@ -109,13 +109,13 @@ def test_that_devlink_port_unsplit(capfd):
     assert 'command' in out[0]['test_dev'].keys()
     assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]['test_dev']["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
 
 def test_that_devlink_port_show(capfd):
 
-    dv1 = TestDevice(platform="dentos")
-    dv2 = TestDevice(platform="dentos")
+    dv1 = TestDevice(platform='dentos')
+    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DevlinkPort.show(input_data = [{
         # device 1
@@ -125,7 +125,7 @@ def test_that_devlink_port_show(capfd):
     assert 'command' in out[0]['test_dev'].keys()
     assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]['test_dev']["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DevlinkPort.show(input_data = [{
@@ -148,7 +148,7 @@ def test_that_devlink_port_show(capfd):
     # check if the result was formed
     assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]['test_dev1']["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DevlinkPort.show(input_data = [{
@@ -173,14 +173,14 @@ def test_that_devlink_port_show(capfd):
     assert 'result' in out[0]['test_dev1'].keys()
     assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]['test_dev1']["rc"] == 0
-    assert out[1]['test_dev2']["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0
 
 
 def test_that_devlink_port_health(capfd):
 
-    dv1 = TestDevice(platform="dentos")
-    dv2 = TestDevice(platform="dentos")
+    dv1 = TestDevice(platform='dentos')
+    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DevlinkPort.health(input_data = [{
         # device 1
@@ -190,13 +190,13 @@ def test_that_devlink_port_health(capfd):
     assert 'command' in out[0]['test_dev'].keys()
     assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]['test_dev']["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
 
 def test_that_devlink_port_add(capfd):
 
-    dv1 = TestDevice(platform="dentos")
-    dv2 = TestDevice(platform="dentos")
+    dv1 = TestDevice(platform='dentos')
+    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DevlinkPort.add(input_data = [{
         # device 1
@@ -206,13 +206,13 @@ def test_that_devlink_port_add(capfd):
     assert 'command' in out[0]['test_dev'].keys()
     assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]['test_dev']["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
 
 def test_that_devlink_port_delete(capfd):
 
-    dv1 = TestDevice(platform="dentos")
-    dv2 = TestDevice(platform="dentos")
+    dv1 = TestDevice(platform='dentos')
+    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DevlinkPort.delete(input_data = [{
         # device 1
@@ -222,13 +222,13 @@ def test_that_devlink_port_delete(capfd):
     assert 'command' in out[0]['test_dev'].keys()
     assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]['test_dev']["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
 
 def test_that_devlink_port_function(capfd):
 
-    dv1 = TestDevice(platform="dentos")
-    dv2 = TestDevice(platform="dentos")
+    dv1 = TestDevice(platform='dentos')
+    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DevlinkPort.function(input_data = [{
         # device 1
@@ -238,13 +238,13 @@ def test_that_devlink_port_function(capfd):
     assert 'command' in out[0]['test_dev'].keys()
     assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]['test_dev']["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
 
 def test_that_devlink_port_param(capfd):
 
-    dv1 = TestDevice(platform="dentos")
-    dv2 = TestDevice(platform="dentos")
+    dv1 = TestDevice(platform='dentos')
+    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DevlinkPort.param(input_data = [{
         # device 1
@@ -254,4 +254,4 @@ def test_that_devlink_port_param(capfd):
     assert 'command' in out[0]['test_dev'].keys()
     assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]['test_dev']["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0

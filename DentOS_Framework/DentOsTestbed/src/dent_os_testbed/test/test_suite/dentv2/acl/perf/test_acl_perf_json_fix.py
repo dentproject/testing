@@ -46,7 +46,7 @@ async def test_dentv2_acl_perf_json_fix(testbed):
         if dd.type in [DeviceType.INFRA_SWITCH]:
             infra_devices.append(dd)
     if not infra_devices:
-        print("The testbed does not have enough dent")
+        print('The testbed does not have enough dent')
         return
 
     for dd in infra_devices:
@@ -56,24 +56,24 @@ async def test_dentv2_acl_perf_json_fix(testbed):
                     {
                         dd.host_name: [
                             {
-                                "block": 1,
-                                "direction": "ingress",
-                                "protocol": "ip",
-                                "handle": 8314,
-                                "pref": 1,
-                                "filtertype": {
-                                    "verbose": "",
-                                    "skip_sw": "",
-                                    "indev": swp,
-                                    "ip_proto": "udp",
-                                    "src_port": 53,
+                                'block': 1,
+                                'direction': 'ingress',
+                                'protocol': 'ip',
+                                'handle': 8314,
+                                'pref': 1,
+                                'filtertype': {
+                                    'verbose': '',
+                                    'skip_sw': '',
+                                    'indev': swp,
+                                    'ip_proto': 'udp',
+                                    'src_port': 53,
                                 },
-                                "action": {
-                                    "police": {
-                                        "rate": "1kbps",
-                                        "burst": 100,
-                                        "conform-exceed": "",
-                                        "drop": "",
+                                'action': {
+                                    'police': {
+                                        'rate': '1kbps',
+                                        'burst': 100,
+                                        'conform-exceed': '',
+                                        'drop': '',
                                     }
                                 },
                             }
@@ -82,9 +82,9 @@ async def test_dentv2_acl_perf_json_fix(testbed):
                 ]
             )
             out = await TcFilter.show(
-                input_data=[{dd.host_name: [{"block": 1, "options": "-json"}]}]
+                input_data=[{dd.host_name: [{'block': 1, 'options': '-json'}]}]
             )
             try:
-                json_output = json.loads(out[0][dd.host_name]["result"])
+                json_output = json.loads(out[0][dd.host_name]['result'])
             except JSONDecodeError as e:
                 pytest.fail(f"json format error: {out[0][dd.host_name]['result']}")

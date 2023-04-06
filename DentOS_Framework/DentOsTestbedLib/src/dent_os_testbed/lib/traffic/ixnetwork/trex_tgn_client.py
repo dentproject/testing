@@ -64,65 +64,65 @@ class TrexTgnClient(TestLibObject):
         raise NotImplementedError
 
     def format_command(self, command, *argv, **kwarg):
-        if command in ["connect", "disconnect"]:
+        if command in ['connect', 'disconnect']:
             return self.format_connect(command, *argv, **kwarg)
 
-        if command in ["load_config", "save_config"]:
+        if command in ['load_config', 'save_config']:
             return self.format_config(command, *argv, **kwarg)
 
-        if command in ["set_traffic", "start_traffic", "stop_traffic", "get_stats", "clear_stats"]:
+        if command in ['set_traffic', 'start_traffic', 'stop_traffic', 'get_stats', 'clear_stats']:
             return self.format_traffic_item(command, *argv, **kwarg)
 
         if command in [
-            "start_protocols",
-            "stop_protocols",
-            "set_protocol",
-            "get_protocol_stats",
-            "clear_protocol_stats",
+            'start_protocols',
+            'stop_protocols',
+            'set_protocol',
+            'get_protocol_stats',
+            'clear_protocol_stats',
         ]:
             return self.format_protocol(command, *argv, **kwarg)
 
-        raise NameError("Cannot find command " + command)
+        raise NameError('Cannot find command ' + command)
 
     def run_command(self, device_obj, command, *argv, **kwarg):
-        if command in ["connect", "disconnect"]:
+        if command in ['connect', 'disconnect']:
             return self.run_connect(device_obj, command, *argv, **kwarg)
 
-        if command in ["load_config", "save_config"]:
+        if command in ['load_config', 'save_config']:
             return self.run_config(device_obj, command, *argv, **kwarg)
 
-        if command in ["set_traffic", "start_traffic", "stop_traffic", "get_stats", "clear_stats"]:
+        if command in ['set_traffic', 'start_traffic', 'stop_traffic', 'get_stats', 'clear_stats']:
             return self.run_traffic_item(device_obj, command, *argv, **kwarg)
 
         if command in [
-            "start_protocols",
-            "stop_protocols",
-            "set_protocol",
-            "get_protocol_stats",
-            "clear_protocol_stats",
+            'start_protocols',
+            'stop_protocols',
+            'set_protocol',
+            'get_protocol_stats',
+            'clear_protocol_stats',
         ]:
             return self.run_protocol(device_obj, command, *argv, **kwarg)
 
         print(len(command))
-        raise NameError("Cannot find command " + command)
+        raise NameError('Cannot find command ' + command)
 
     def parse_output(self, command, output, *argv, **kwarg):
-        if command in ["connect", "disconnect"]:
+        if command in ['connect', 'disconnect']:
             return self.parse_connect(command, output, *argv, **kwarg)
 
-        if command in ["load_config", "save_config"]:
+        if command in ['load_config', 'save_config']:
             return self.parse_config(command, output, *argv, **kwarg)
 
-        if command in ["set_traffic", "start_traffic", "stop_traffic", "get_stats", "clear_stats"]:
+        if command in ['set_traffic', 'start_traffic', 'stop_traffic', 'get_stats', 'clear_stats']:
             return self.parse_traffic_item(command, output, *argv, **kwarg)
 
         if command in [
-            "start_protocols",
-            "stop_protocols",
-            "set_protocol",
-            "get_protocol_stats",
-            "clear_protocol_stats",
+            'start_protocols',
+            'stop_protocols',
+            'set_protocol',
+            'get_protocol_stats',
+            'clear_protocol_stats',
         ]:
             return self.parse_protocol(command, output, *argv, **kwarg)
 
-        raise NameError("Cannot find command " + command)
+        raise NameError('Cannot find command ' + command)

@@ -32,22 +32,22 @@ class PoectlMod(Module):
         for i, dut in enumerate(self.report.duts):
             if not dut.device_id: continue
             dev = self.ctx.devices_dict[dut.device_id]
-            if dev.os == "ixnetwork" or not await dev.is_connected():
-                print("Device not connected skipping poectl discovery")
+            if dev.os == 'ixnetwork' or not await dev.is_connected():
+                print('Device not connected skipping poectl discovery')
                 continue
-            print("Running poectl Discovery on " + dev.host_name)
+            print('Running poectl Discovery on ' + dev.host_name)
             out = await Poectl.show(
                 input_data=[{dev.host_name: [{'dut_discovery':True}]}],
                 device_obj={dev.host_name: dev},
                 parse_output=True
             )
-            if out[0][dev.host_name]["rc"] != 0:
+            if out[0][dev.host_name]['rc'] != 0:
                 print(out)
-                print("Failed to get poectl")
+                print('Failed to get poectl')
                 continue
             if 'parsed_output' not in out[0][dev.host_name]:
-                print("Failed to get parsed_output poectl")
+                print('Failed to get parsed_output poectl')
                 print (out)
                 continue
-            self.set_poectl(out[0][dev.host_name]["parsed_output"], self.report.duts[i].platform.poe.ports)
-            print("Finished poectl Discovery on {} with {} entries".format(dev.host_name, len(self.report.duts[i].platform.poe.ports)))
+            self.set_poectl(out[0][dev.host_name]['parsed_output'], self.report.duts[i].platform.poe.ports)
+            print('Finished poectl Discovery on {} with {} entries'.format(dev.host_name, len(self.report.duts[i].platform.poe.ports)))

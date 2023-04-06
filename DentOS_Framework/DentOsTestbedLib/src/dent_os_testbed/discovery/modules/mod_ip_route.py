@@ -55,22 +55,22 @@ class IpRouteMod(Module):
         for i, dut in enumerate(self.report.duts):
             if not dut.device_id: continue
             dev = self.ctx.devices_dict[dut.device_id]
-            if dev.os == "ixnetwork" or not await dev.is_connected():
-                print("Device not connected skipping ip_route discovery")
+            if dev.os == 'ixnetwork' or not await dev.is_connected():
+                print('Device not connected skipping ip_route discovery')
                 continue
-            print("Running ip_route Discovery on " + dev.host_name)
+            print('Running ip_route Discovery on ' + dev.host_name)
             out = await IpRoute.show(
                 input_data=[{dev.host_name: [{'dut_discovery':True}]}],
                 device_obj={dev.host_name: dev},
                 parse_output=True
             )
-            if out[0][dev.host_name]["rc"] != 0:
+            if out[0][dev.host_name]['rc'] != 0:
                 print(out)
-                print("Failed to get ip_route")
+                print('Failed to get ip_route')
                 continue
             if 'parsed_output' not in out[0][dev.host_name]:
-                print("Failed to get parsed_output ip_route")
+                print('Failed to get parsed_output ip_route')
                 print (out)
                 continue
-            self.set_ip_route(out[0][dev.host_name]["parsed_output"], self.report.duts[i].network.layer3.routes)
-            print("Finished ip_route Discovery on {} with {} entries".format(dev.host_name, len(self.report.duts[i].network.layer3.routes)))
+            self.set_ip_route(out[0][dev.host_name]['parsed_output'], self.report.duts[i].network.layer3.routes)
+            print('Finished ip_route Discovery on {} with {} entries'.format(dev.host_name, len(self.report.duts[i].network.layer3.routes)))

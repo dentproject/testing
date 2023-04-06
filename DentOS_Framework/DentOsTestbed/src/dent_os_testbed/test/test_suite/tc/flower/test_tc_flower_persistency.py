@@ -57,7 +57,7 @@ async def test_tc_flower_persistency_w_traffic(testbed):
     """
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 2)
     if not tgen_dev or not dent_devices:
-        print("The testbed does not have the required (atleast 2) dent switches with tgen connections")
+        print('The testbed does not have the required (atleast 2) dent switches with tgen connections')
         return
     dent_dev = dent_devices[0]
     dent = dent_dev.host_name
@@ -70,92 +70,92 @@ async def test_tc_flower_persistency_w_traffic(testbed):
     # get a link and mac address
     swp = swp_tgen_ports[0]
     out = await IpLink.show(
-        input_data=[{dent: [{"device": swp, "cmd_options": "-j"}]}],
+        input_data=[{dent: [{'device': swp, 'cmd_options': '-j'}]}],
     )
     dent_dev.applog.info(out)
-    assert out[0][dent]["rc"] == 0
-    link = json.loads(out[0][dent]["result"])
-    swp_mac = link[0]["address"]
+    assert out[0][dent]['rc'] == 0
+    link = json.loads(out[0][dent]['result'])
+    swp_mac = link[0]['address']
 
     streams = {
-        "bgp": {
-            "protocol": "ip",
-            "ipproto": "tcp",
-            "dstPort": "179",
+        'bgp': {
+            'protocol': 'ip',
+            'ipproto': 'tcp',
+            'dstPort': '179',
         },
-        "ssh": {
-            "protocol": "ip",
-            "ipproto": "tcp",
-            "dstPort": "22",
+        'ssh': {
+            'protocol': 'ip',
+            'ipproto': 'tcp',
+            'dstPort': '22',
         },
-        "https": {
-            "protocol": "ip",
-            "ipproto": "tcp",
-            "dstPort": "443",
+        'https': {
+            'protocol': 'ip',
+            'ipproto': 'tcp',
+            'dstPort': '443',
         },
         # create a raw vlan stream
-        "https_vlan": {
-            "srcIp": f"20.0.{swp[3:]}.2",
-            "dstIp": f"20.0.{swp[3:]}.1",
-            "srcMac": "00:11:01:00:00:01",
-            "dstMac": "00:12:01:00:00:01",
-            "type": "raw",
-            "rate": "10",
-            "frameSize": "256",
-            "protocol": "802.1Q",
-            "vlanID": "100",
-            "ipproto": "tcp",
-            "dstPort": "443",
+        'https_vlan': {
+            'srcIp': f'20.0.{swp[3:]}.2',
+            'dstIp': f'20.0.{swp[3:]}.1',
+            'srcMac': '00:11:01:00:00:01',
+            'dstMac': '00:12:01:00:00:01',
+            'type': 'raw',
+            'rate': '10',
+            'frameSize': '256',
+            'protocol': '802.1Q',
+            'vlanID': '100',
+            'ipproto': 'tcp',
+            'dstPort': '443',
         },
-        "dns": {
-            "protocol": "ip",
-            "ipproto": "udp",
-            "dstPort": "53",
+        'dns': {
+            'protocol': 'ip',
+            'ipproto': 'udp',
+            'dstPort': '53',
         },
-        "ntp": {
-            "protocol": "ip",
-            "ipproto": "udp",
-            "dstPort": "123",
+        'ntp': {
+            'protocol': 'ip',
+            'ipproto': 'udp',
+            'dstPort': '123',
         },
-        "dhcp": {
-            "protocol": "ip",
-            "ipproto": "udp",
-            "srcPort": 67,
-            "dstPort": "68",
+        'dhcp': {
+            'protocol': 'ip',
+            'ipproto': 'udp',
+            'srcPort': 67,
+            'dstPort': '68',
         },
-        "mqtt": {
-            "protocol": "ip",
-            "ipproto": "tcp",
-            "dstPort": "8883",
+        'mqtt': {
+            'protocol': 'ip',
+            'ipproto': 'tcp',
+            'dstPort': '8883',
         },
-        "ztp": {
-            "protocol": "ip",
-            "ipproto": "tcp",
-            "dstPort": "8080",
+        'ztp': {
+            'protocol': 'ip',
+            'ipproto': 'tcp',
+            'dstPort': '8080',
         },
-        "bum": {"protocol": "ip", "srcIp": "10.0.0.1", "dstIp": "224.0.1.1", "type": "ethernet"},
-        "icmp": {
-            "protocol": "ip",
-            "ipproto": "icmpv1",
-            "srcIp": "10.0.0.2",
-            "dstIp": "10.0.0.1",
-            "type": "ethernet",
+        'bum': {'protocol': 'ip', 'srcIp': '10.0.0.1', 'dstIp': '224.0.1.1', 'type': 'ethernet'},
+        'icmp': {
+            'protocol': 'ip',
+            'ipproto': 'icmpv1',
+            'srcIp': '10.0.0.2',
+            'dstIp': '10.0.0.1',
+            'type': 'ethernet',
         },
-        "mac": {
-            "protocol": "ip",
-            "ipproto": "udp",
-            "srcIp": f"20.0.{swp[3:]}.2",
-            "dstIp": f"20.0.{swp[3:]}.1",
-            "srcMac": "00:11:01:00:00:01",
-            "dstMac": swp_mac,
-            "type": "raw",
-            "rate": "10",
-            "frameSize": "256",
+        'mac': {
+            'protocol': 'ip',
+            'ipproto': 'udp',
+            'srcIp': f'20.0.{swp[3:]}.2',
+            'dstIp': f'20.0.{swp[3:]}.1',
+            'srcMac': '00:11:01:00:00:01',
+            'dstMac': swp_mac,
+            'type': 'raw',
+            'rate': '10',
+            'frameSize': '256',
         },
     }
     await tgen_utils_setup_streams(
         tgen_dev,
-        pytest._args.config_dir + f"/{dent}/tgen_tc_basic_config.ixncfg",
+        pytest._args.config_dir + f'/{dent}/tgen_tc_basic_config.ixncfg',
         streams,
     )
     await tgen_utils_start_traffic(tgen_dev)
@@ -170,169 +170,169 @@ async def test_tc_flower_persistency_w_traffic(testbed):
     for swp in swp_tgen_ports:
         swp_info = {}
         await tgen_utils_get_swp_info(dent_dev, swp, swp_info)
-        sip = ".".join(swp_info["ip"][:-1] + [str(int(swp[3:]) * 2)])
+        sip = '.'.join(swp_info['ip'][:-1] + [str(int(swp[3:]) * 2)])
         iptable_rules[swp] = [
             {
-                "table": "filter",
-                "chain": "FORWARD",
-                "in-interface": swp,
-                "source": sip,
-                "protocol": "tcp",
-                "dport": "179",
-                "target": "ACCEPT",
+                'table': 'filter',
+                'chain': 'FORWARD',
+                'in-interface': swp,
+                'source': sip,
+                'protocol': 'tcp',
+                'dport': '179',
+                'target': 'ACCEPT',
             },
             {
-                "table": "filter",
-                "chain": "FORWARD",
-                "in-interface": swp,
-                "protocol": "tcp",
-                "dport": "179",
-                "target": "DROP",
+                'table': 'filter',
+                'chain': 'FORWARD',
+                'in-interface': swp,
+                'protocol': 'tcp',
+                'dport': '179',
+                'target': 'DROP',
             },
             {
-                "table": "filter",
-                "chain": "FORWARD",
-                "in-interface": swp,
-                "source": sip,
-                "protocol": "tcp",
-                "dport": "22",
-                "target": "ACCEPT",
+                'table': 'filter',
+                'chain': 'FORWARD',
+                'in-interface': swp,
+                'source': sip,
+                'protocol': 'tcp',
+                'dport': '22',
+                'target': 'ACCEPT',
             },
             {
-                "table": "filter",
-                "chain": "FORWARD",
-                "in-interface": swp,
-                "protocol": "tcp",
-                "dport": "22",
-                "target": "DROP",
+                'table': 'filter',
+                'chain': 'FORWARD',
+                'in-interface': swp,
+                'protocol': 'tcp',
+                'dport': '22',
+                'target': 'DROP',
             },
             # this is for check vlan(100) only packets
             {
-                "table": "filter",
-                "chain": "FORWARD",
-                "in-interface": swp,
+                'table': 'filter',
+                'chain': 'FORWARD',
+                'in-interface': swp,
                 # "source": sip,
-                "protocol": "tcp",
-                "dport": "443",
-                "target": 'ACCEPT -m comment --comment "TC:--vlan-tag TC:100"',
+                'protocol': 'tcp',
+                'dport': '443',
+                'target': 'ACCEPT -m comment --comment "TC:--vlan-tag TC:100"',
             },
             {
-                "table": "filter",
-                "chain": "FORWARD",
-                "in-interface": swp,
-                "source": sip,
-                "protocol": "tcp",
-                "dport": "443",
-                "target": "ACCEPT",
+                'table': 'filter',
+                'chain': 'FORWARD',
+                'in-interface': swp,
+                'source': sip,
+                'protocol': 'tcp',
+                'dport': '443',
+                'target': 'ACCEPT',
             },
             {
-                "table": "filter",
-                "chain": "FORWARD",
-                "in-interface": swp,
-                "protocol": "tcp",
-                "dport": "443",
-                "target": "DROP",
+                'table': 'filter',
+                'chain': 'FORWARD',
+                'in-interface': swp,
+                'protocol': 'tcp',
+                'dport': '443',
+                'target': 'DROP',
             },
             {
-                "table": "filter",
-                "chain": "FORWARD",
-                "in-interface": swp,
-                "source": sip,
-                "protocol": "udp",
-                "dport": "53",
-                "target": "ACCEPT",
+                'table': 'filter',
+                'chain': 'FORWARD',
+                'in-interface': swp,
+                'source': sip,
+                'protocol': 'udp',
+                'dport': '53',
+                'target': 'ACCEPT',
             },
             {
-                "table": "filter",
-                "chain": "FORWARD",
-                "in-interface": swp,
-                "protocol": "udp",
-                "dport": "53",
-                "target": "DROP",
+                'table': 'filter',
+                'chain': 'FORWARD',
+                'in-interface': swp,
+                'protocol': 'udp',
+                'dport': '53',
+                'target': 'DROP',
             },
             {
-                "table": "filter",
-                "chain": "FORWARD",
-                "in-interface": swp,
-                "source": sip,
-                "protocol": "udp",
-                "dport": "123",
-                "target": "ACCEPT",
+                'table': 'filter',
+                'chain': 'FORWARD',
+                'in-interface': swp,
+                'source': sip,
+                'protocol': 'udp',
+                'dport': '123',
+                'target': 'ACCEPT',
             },
             {
-                "table": "filter",
-                "chain": "FORWARD",
-                "in-interface": swp,
-                "protocol": "udp",
-                "dport": "123",
-                "target": "DROP",
+                'table': 'filter',
+                'chain': 'FORWARD',
+                'in-interface': swp,
+                'protocol': 'udp',
+                'dport': '123',
+                'target': 'DROP',
             },
             {
-                "table": "filter",
-                "chain": "FORWARD",
-                "in-interface": swp,
-                "source": sip,
-                "protocol": "udp",
-                "sport": "67",
-                "dport": "68",
-                "target": "ACCEPT",
+                'table': 'filter',
+                'chain': 'FORWARD',
+                'in-interface': swp,
+                'source': sip,
+                'protocol': 'udp',
+                'sport': '67',
+                'dport': '68',
+                'target': 'ACCEPT',
             },
             {
-                "table": "filter",
-                "chain": "FORWARD",
-                "in-interface": swp,
-                "protocol": "udp",
-                "sport": "67",
-                "dport": "68",
-                "target": "DROP",
+                'table': 'filter',
+                'chain': 'FORWARD',
+                'in-interface': swp,
+                'protocol': 'udp',
+                'sport': '67',
+                'dport': '68',
+                'target': 'DROP',
             },
             {
-                "table": "filter",
-                "chain": "FORWARD",
-                "in-interface": swp,
-                "source": sip,
-                "protocol": "tcp",
-                "dport": "8080",
-                "target": "ACCEPT",
+                'table': 'filter',
+                'chain': 'FORWARD',
+                'in-interface': swp,
+                'source': sip,
+                'protocol': 'tcp',
+                'dport': '8080',
+                'target': 'ACCEPT',
             },
             {
-                "table": "filter",
-                "chain": "FORWARD",
-                "in-interface": swp,
-                "protocol": "tcp",
-                "dport": "8080",
-                "target": "DROP",
+                'table': 'filter',
+                'chain': 'FORWARD',
+                'in-interface': swp,
+                'protocol': 'tcp',
+                'dport': '8080',
+                'target': 'DROP',
             },
             {
-                "table": "filter",
-                "chain": "FORWARD",
-                "in-interface": swp,
-                "destination": "224.0.1.0/24",
-                "target": "DROP",
+                'table': 'filter',
+                'chain': 'FORWARD',
+                'in-interface': swp,
+                'destination': '224.0.1.0/24',
+                'target': 'DROP',
             },
             {
-                "table": "filter",
-                "chain": "FORWARD",
-                "in-interface": swp,
-                "protocol": "icmp",
-                "target": "DROP",
+                'table': 'filter',
+                'chain': 'FORWARD',
+                'in-interface': swp,
+                'protocol': 'icmp',
+                'target': 'DROP',
             },
             {
-                "table": "filter",
-                "chain": "INPUT",
-                "in-interface": swp,
-                "protocol": "udp",
-                "mac-source": "00:10:00:00:00:01",
-                "target": 'LOG --log-prefix " MAC Rule: INPUT-RULE#0 "',
+                'table': 'filter',
+                'chain': 'INPUT',
+                'in-interface': swp,
+                'protocol': 'udp',
+                'mac-source': '00:10:00:00:00:01',
+                'target': 'LOG --log-prefix " MAC Rule: INPUT-RULE#0 "',
             },
             {
-                "table": "filter",
-                "chain": "FORWARD",
-                "in-interface": swp,
-                "target": "ACCEPT",
+                'table': 'filter',
+                'chain': 'FORWARD',
+                'in-interface': swp,
+                'target': 'ACCEPT',
             },
         ]
-        dent_dev.applog.info(f"Adding iptable rule for {swp}")
+        dent_dev.applog.info(f'Adding iptable rule for {swp}')
         out = await IpTables.append(input_data=[{dent: iptable_rules[swp]}])
         dent_dev.applog.info(out)
     # out = await IpTables.list(input_data=[{dent: [{"table": "filter", "chain": "FORWARD",}]}])
@@ -355,7 +355,7 @@ async def test_tc_flower_persistency_w_traffic(testbed):
     #  - all the packets matching the SIP and DIP should be dropped.
     time.sleep(30)
     await tgen_utils_stop_traffic(tgen_dev)
-    stats = await tgen_utils_get_traffic_stats(tgen_dev, "Flow Statistics")
+    stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
     # TODO verify stats should drop all packets now.
     swp_tc_rules = {}
     await tcutil_get_tc_rule_stats(dent_dev, swp_tgen_ports, swp_tc_rules)
@@ -376,7 +376,7 @@ async def test_tc_flower_persistency_w_traffic(testbed):
             {
                 dent: [
                     {
-                        "table": "filter",
+                        'table': 'filter',
                     }
                 ]
             }

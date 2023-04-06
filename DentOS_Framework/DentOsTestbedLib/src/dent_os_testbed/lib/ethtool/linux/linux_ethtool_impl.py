@@ -2,7 +2,7 @@ import re
 
 from dent_os_testbed.lib.ethtool.linux.linux_ethtool import LinuxEthtool
 
-RE_SPACES = re.compile("\s+")
+RE_SPACES = re.compile('\s+')
 
 
 class LinuxEthtoolImpl(LinuxEthtool):
@@ -53,21 +53,21 @@ class LinuxEthtoolImpl(LinuxEthtool):
              Downshift is useful where cable does not have the 4 pairs instance. Gets the PHY downshift count/status.
 
         """
-        params = kwarg["params"]
+        params = kwarg['params']
         ############# Implement me ################
-        cmd = "ethtool {} ".format(params.get("options", ""), command)
-        if params.get("query_driver", False):
-            cmd += "-i "
-        if params.get("statistics", False):
-            cmd += "-S "
-        if params.get("pause_frames", False):
-            cmd += "-a "
-        if params.get("offload", False):
-            cmd += "-k "
-        if params.get("read_mac", False):
-            cmd += "-P "
-        if "devname" in params:
-            cmd += "{} ".format(params["devname"])
+        cmd = 'ethtool {} '.format(params.get('options', ''), command)
+        if params.get('query_driver', False):
+            cmd += '-i '
+        if params.get('statistics', False):
+            cmd += '-S '
+        if params.get('pause_frames', False):
+            cmd += '-a '
+        if params.get('offload', False):
+            cmd += '-k '
+        if params.get('read_mac', False):
+            cmd += '-P '
+        if 'devname' in params:
+            cmd += '{} '.format(params['devname'])
         return cmd
 
     def parse_show(self, command, output, *argv, **kwarg):
@@ -98,18 +98,18 @@ class LinuxEthtoolImpl(LinuxEthtool):
             MDI-X: on (auto)
             Link detected: yes
         """
-        if output[0] == "b":
+        if output[0] == 'b':
             output = output[2:]
         record = output
         ethtool_info = {}
-        if "\\n" in record:
-            records = record.split("\\n")[:-1]
+        if '\\n' in record:
+            records = record.split('\\n')[:-1]
         else:
-            records = record.split("\n")[:-1]
+            records = record.split('\n')[:-1]
         for line in records:
-            line = RE_SPACES.sub(" ", line).strip().split(":")
-            key = line[0].replace(" ", "_").lower()
-            val = " ".join(line[1:])
+            line = RE_SPACES.sub(' ', line).strip().split(':')
+            key = line[0].replace(' ', '_').lower()
+            val = ' '.join(line[1:])
             ethtool_info[key.strip()] = val.strip()
         return ethtool_info
 
@@ -157,18 +157,18 @@ class LinuxEthtoolImpl(LinuxEthtool):
              specified as e.g. encoding auto rs ; the semantics of such combinations vary between drivers.
 
         """
-        params = kwarg["params"]
-        cmd = "ethtool -s {} ".format(params.get("options", ""), command)
-        if "devname" in params:
-            cmd += "{} ".format(params["devname"])
-        if "speed" in params:
-            cmd += "speed {} ".format(params["speed"])
-        if "autoneg" in params:
-            cmd += "autoneg {} ".format(params["autoneg"])
-        if "duplex" in params:
-            cmd += "duplex {} ".format(params["duplex"])
-        if "advertise" in params:
-            cmd += "advertise {} ".format(params["advertise"])
+        params = kwarg['params']
+        cmd = 'ethtool -s {} '.format(params.get('options', ''), command)
+        if 'devname' in params:
+            cmd += '{} '.format(params['devname'])
+        if 'speed' in params:
+            cmd += 'speed {} '.format(params['speed'])
+        if 'autoneg' in params:
+            cmd += 'autoneg {} '.format(params['autoneg'])
+        if 'duplex' in params:
+            cmd += 'duplex {} '.format(params['duplex'])
+        if 'advertise' in params:
+            cmd += 'advertise {} '.format(params['advertise'])
         return cmd
 
     def parse_set(self, command, output, *argv, **kwarg):
@@ -215,8 +215,8 @@ class LinuxEthtoolImpl(LinuxEthtool):
              specified as e.g. encoding auto rs ; the semantics of such combinations vary between drivers.
 
         """
-        params = kwarg["params"]
-        cmd = "ethtool {} ".format(command)
+        params = kwarg['params']
+        cmd = 'ethtool {} '.format(command)
         ############# Implement me ################
 
         return cmd
@@ -274,8 +274,8 @@ class LinuxEthtoolImpl(LinuxEthtool):
             rxhash on|off-Specifies whether receive hashing offload should be enabled
 
         """
-        params = kwarg["params"]
-        cmd = "ethtool {} ".format(command)
+        params = kwarg['params']
+        cmd = 'ethtool {} '.format(command)
         ############# Implement me ################
 
         return cmd
@@ -333,8 +333,8 @@ class LinuxEthtoolImpl(LinuxEthtool):
             rxhash on|off-Specifies whether receive hashing offload should be enabled
 
         """
-        params = kwarg["params"]
-        cmd = "ethtool {} ".format(command)
+        params = kwarg['params']
+        cmd = 'ethtool {} '.format(command)
         ############# Implement me ################
 
         return cmd
@@ -348,8 +348,8 @@ class LinuxEthtoolImpl(LinuxEthtool):
         -r --negotiate - Restarts auto-negotiation on the specified Ethernet device, if auto-negotiation is enabled.
 
         """
-        params = kwarg["params"]
-        cmd = "ethtool {} ".format(command)
+        params = kwarg['params']
+        cmd = 'ethtool {} '.format(command)
         ############# Implement me ################
 
         return cmd
@@ -363,8 +363,8 @@ class LinuxEthtoolImpl(LinuxEthtool):
         -r --negotiate - Restarts auto-negotiation on the specified Ethernet device, if auto-negotiation is enabled.
 
         """
-        params = kwarg["params"]
-        cmd = "ethtool {} ".format(command)
+        params = kwarg['params']
+        cmd = 'ethtool {} '.format(command)
         ############# Implement me ################
 
         return cmd
@@ -377,8 +377,8 @@ class LinuxEthtoolImpl(LinuxEthtool):
             external_lb - Perform full set of tests, as for offline, and additionally an external-loopback test.
 
         """
-        params = kwarg["params"]
-        cmd = "ethtool {} ".format(command)
+        params = kwarg['params']
+        cmd = 'ethtool {} '.format(command)
         ############# Implement me ################
 
         return cmd
@@ -391,8 +391,8 @@ class LinuxEthtoolImpl(LinuxEthtool):
             external_lb - Perform full set of tests, as for offline, and additionally an external-loopback test.
 
         """
-        params = kwarg["params"]
-        cmd = "ethtool {} ".format(command)
+        params = kwarg['params']
+        cmd = 'ethtool {} '.format(command)
         ############# Implement me ################
 
         return cmd
@@ -407,8 +407,8 @@ class LinuxEthtoolImpl(LinuxEthtool):
              regions are written. All other values are driver-dependent.
 
         """
-        params = kwarg["params"]
-        cmd = "ethtool {} ".format(command)
+        params = kwarg['params']
+        cmd = 'ethtool {} '.format(command)
         ############# Implement me ################
 
         return cmd
@@ -423,8 +423,8 @@ class LinuxEthtoolImpl(LinuxEthtool):
              regions are written. All other values are driver-dependent.
 
         """
-        params = kwarg["params"]
-        cmd = "ethtool {} ".format(command)
+        params = kwarg['params']
+        cmd = 'ethtool {} '.format(command)
         ############# Implement me ################
 
         return cmd
@@ -474,8 +474,8 @@ class LinuxEthtoolImpl(LinuxEthtool):
            delete N - Deletes the RX classification rule with the given ID.
 
         """
-        params = kwarg["params"]
-        cmd = "ethtool {} ".format(command)
+        params = kwarg['params']
+        cmd = 'ethtool {} '.format(command)
         ############# Implement me ################
 
         return cmd
@@ -525,8 +525,8 @@ class LinuxEthtoolImpl(LinuxEthtool):
            delete N - Deletes the RX classification rule with the given ID.
 
         """
-        params = kwarg["params"]
-        cmd = "ethtool {} ".format(command)
+        params = kwarg['params']
+        cmd = 'ethtool {} '.format(command)
         ############# Implement me ################
 
         return cmd
@@ -547,8 +547,8 @@ class LinuxEthtoolImpl(LinuxEthtool):
             all - All components used by this interface, even if shared
 
         """
-        params = kwarg["params"]
-        cmd = "ethtool {} ".format(command)
+        params = kwarg['params']
+        cmd = 'ethtool {} '.format(command)
         ############# Implement me ################
 
         return cmd
@@ -569,8 +569,8 @@ class LinuxEthtoolImpl(LinuxEthtool):
             all - All components used by this interface, even if shared
 
         """
-        params = kwarg["params"]
-        cmd = "ethtool {} ".format(command)
+        params = kwarg['params']
+        cmd = 'ethtool {} '.format(command)
         ############# Implement me ################
 
         return cmd

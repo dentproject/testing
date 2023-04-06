@@ -53,7 +53,7 @@ async def test_tc_flower_persistency_atomic_update_w_traffic(testbed):
     """
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 2)
     if not tgen_dev or not dent_devices:
-        print("The testbed does not have enough dent with tgen connections")
+        print('The testbed does not have enough dent with tgen connections')
         return
     dent_dev = dent_devices[0]
     dent = dent_dev.host_name
@@ -63,15 +63,15 @@ async def test_tc_flower_persistency_atomic_update_w_traffic(testbed):
 
     await tgen_utils_connect_to_tgen(tgen_dev, dent_dev)
     streams = {
-        "bgp": {
-            "protocol": "ip",
-            "ipproto": "tcp",
-            "dstPort": "179",
+        'bgp': {
+            'protocol': 'ip',
+            'ipproto': 'tcp',
+            'dstPort': '179',
         },
     }
     await tgen_utils_setup_streams(
         tgen_dev,
-        pytest._args.config_dir + f"/{dent}/tgen_tc_atomic_config.ixncfg",
+        pytest._args.config_dir + f'/{dent}/tgen_tc_atomic_config.ixncfg',
         streams,
     )
 
@@ -84,35 +84,35 @@ async def test_tc_flower_persistency_atomic_update_w_traffic(testbed):
     for swp in swp_tgen_ports:
         swp_info = {}
         await tgen_utils_get_swp_info(dent_dev, swp, swp_info)
-        sip[swp] = ".".join(swp_info["ip"][:-1] + [str(int(swp[3:]) * 2)])
-        sip2[swp] = ".".join(swp_info["ip"][:-1] + [str(int(swp[3:]) * 2 + 1)])
+        sip[swp] = '.'.join(swp_info['ip'][:-1] + [str(int(swp[3:]) * 2)])
+        sip2[swp] = '.'.join(swp_info['ip'][:-1] + [str(int(swp[3:]) * 2 + 1)])
         iptable_rules[swp] = [
             {
-                "table": "filter",
-                "chain": "FORWARD",
-                "in-interface": swp,
-                "source": sip[swp],  # FIXME
-                "protocol": "tcp",
-                "dport": "179",
-                "target": "DROP",
+                'table': 'filter',
+                'chain': 'FORWARD',
+                'in-interface': swp,
+                'source': sip[swp],  # FIXME
+                'protocol': 'tcp',
+                'dport': '179',
+                'target': 'DROP',
             },
             {
-                "table": "filter",
-                "chain": "FORWARD",
-                "in-interface": swp,
-                "source": sip[swp],  # FIXME
-                "protocol": "tcp",
-                "dport": "179",
-                "target": "ACCEPT",
+                'table': 'filter',
+                'chain': 'FORWARD',
+                'in-interface': swp,
+                'source': sip[swp],  # FIXME
+                'protocol': 'tcp',
+                'dport': '179',
+                'target': 'ACCEPT',
             },
             {
-                "table": "filter",
-                "chain": "FORWARD",
-                "in-interface": swp,
-                "target": "ACCEPT",
+                'table': 'filter',
+                'chain': 'FORWARD',
+                'in-interface': swp,
+                'target': 'ACCEPT',
             },
         ]
-        dent_dev.applog.info(f"Adding iptable rule for {swp}")
+        dent_dev.applog.info(f'Adding iptable rule for {swp}')
         out = await IpTables.append(input_data=[{dent: iptable_rules[swp]}])
         dent_dev.applog.info(out)
     # out = await IpTables.list(input_data=[{dent: [{"table": "filter", "chain": "FORWARD",}]}])
@@ -123,7 +123,7 @@ async def test_tc_flower_persistency_atomic_update_w_traffic(testbed):
     await tgen_utils_start_traffic(tgen_dev)
     # - check the traffic stats
     #  -- all the packets matching the SIP and DIP should be dropped.
-    dent_dev.applog.info("zzzZZZ!! (20s)")
+    dent_dev.applog.info('zzzZZZ!! (20s)')
     time.sleep(20)
     swp_tc_rules = {}
     await tcutil_get_tc_rule_stats(dent_dev, swp_tgen_ports, swp_tc_rules)
@@ -132,56 +132,56 @@ async def test_tc_flower_persistency_atomic_update_w_traffic(testbed):
     for swp in swp_tgen_ports:
         iptable_rules[swp] = [
             {
-                "table": "filter",
-                "chain": "FORWARD",
-                "in-interface": swp,
-                "source": sip[swp],
-                "protocol": "tcp",
-                "dport": "179",
-                "target": "DROP",
+                'table': 'filter',
+                'chain': 'FORWARD',
+                'in-interface': swp,
+                'source': sip[swp],
+                'protocol': 'tcp',
+                'dport': '179',
+                'target': 'DROP',
             },
             {
-                "table": "filter",
-                "chain": "FORWARD",
-                "in-interface": swp,
-                "source": sip[swp],
-                "protocol": "tcp",
-                "dport": "179",
-                "target": "ACCEPT",
+                'table': 'filter',
+                'chain': 'FORWARD',
+                'in-interface': swp,
+                'source': sip[swp],
+                'protocol': 'tcp',
+                'dport': '179',
+                'target': 'ACCEPT',
             },
             {
-                "table": "filter",
-                "chain": "FORWARD",
-                "in-interface": swp,
-                "source": sip2[swp],
-                "protocol": "tcp",
-                "dport": "179",
-                "target": "DROP",
+                'table': 'filter',
+                'chain': 'FORWARD',
+                'in-interface': swp,
+                'source': sip2[swp],
+                'protocol': 'tcp',
+                'dport': '179',
+                'target': 'DROP',
             },
             {
-                "table": "filter",
-                "chain": "FORWARD",
-                "in-interface": swp,
-                "source": sip2[swp],
-                "protocol": "tcp",
-                "dport": "179",
-                "target": "ACCEPT",
+                'table': 'filter',
+                'chain': 'FORWARD',
+                'in-interface': swp,
+                'source': sip2[swp],
+                'protocol': 'tcp',
+                'dport': '179',
+                'target': 'ACCEPT',
             },
             {
-                "table": "filter",
-                "chain": "FORWARD",
-                "in-interface": swp,
-                "target": "ACCEPT",
+                'table': 'filter',
+                'chain': 'FORWARD',
+                'in-interface': swp,
+                'target': 'ACCEPT',
             },
         ]
-        dent_dev.applog.info(f"Updating iptable rule for {swp}")
+        dent_dev.applog.info(f'Updating iptable rule for {swp}')
         out = await IpTables.append(input_data=[{dent: iptable_rules[swp]}])
         dent_dev.applog.info(out)
     # out = await IpTables.list(input_data=[{dent: [{"table": "filter", "chain": "FORWARD",}]}])
     # dent_dev.applog.info(out)
     # perform the rule translation
     await tcutil_iptable_to_tc(dent_dev, swp_tgen_ports, iptable_rules)
-    dent_dev.applog.info("zzzZZZ!! (20s)")
+    dent_dev.applog.info('zzzZZZ!! (20s)')
     time.sleep(20)
     swp_tc_rules = {}
     await tcutil_get_tc_rule_stats(dent_dev, swp_tgen_ports, swp_tc_rules)
@@ -191,42 +191,42 @@ async def test_tc_flower_persistency_atomic_update_w_traffic(testbed):
     for swp in swp_tgen_ports:
         iptable_rules[swp] = [
             {
-                "table": "filter",
-                "chain": "FORWARD",
-                "in-interface": swp,
-                "source": sip2[swp],
-                "protocol": "tcp",
-                "dport": "179",
-                "target": "DROP",
+                'table': 'filter',
+                'chain': 'FORWARD',
+                'in-interface': swp,
+                'source': sip2[swp],
+                'protocol': 'tcp',
+                'dport': '179',
+                'target': 'DROP',
             },
             {
-                "table": "filter",
-                "chain": "FORWARD",
-                "in-interface": swp,
-                "source": sip2[swp],
-                "protocol": "tcp",
-                "dport": "179",
-                "target": "ACCEPT",
+                'table': 'filter',
+                'chain': 'FORWARD',
+                'in-interface': swp,
+                'source': sip2[swp],
+                'protocol': 'tcp',
+                'dport': '179',
+                'target': 'ACCEPT',
             },
             {
-                "table": "filter",
-                "chain": "FORWARD",
-                "in-interface": swp,
-                "target": "ACCEPT",
+                'table': 'filter',
+                'chain': 'FORWARD',
+                'in-interface': swp,
+                'target': 'ACCEPT',
             },
         ]
-        dent_dev.applog.info(f"Updating iptable rule for {swp}")
+        dent_dev.applog.info(f'Updating iptable rule for {swp}')
         out = await IpTables.append(input_data=[{dent: iptable_rules[swp]}])
         dent_dev.applog.info(out)
     # out = await IpTables.list(input_data=[{dent: [{"table": "filter", "chain": "FORWARD",}]}])
     # dent_dev.applog.info(out)
     # perform the rule translation
     await tcutil_iptable_to_tc(dent_dev, swp_tgen_ports, iptable_rules)
-    dent_dev.applog.info("zzzZZZ!! (20s)")
+    dent_dev.applog.info('zzzZZZ!! (20s)')
     time.sleep(20)
 
     await tgen_utils_stop_traffic(tgen_dev)
-    stats = await tgen_utils_get_traffic_stats(tgen_dev, "Flow Statistics")
+    stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
     swp_tc_rules = {}
     await tcutil_get_tc_rule_stats(dent_dev, swp_tgen_ports, swp_tc_rules)
     # verify the rules stats

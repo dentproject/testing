@@ -29,7 +29,7 @@ class LinuxTcChain(TestLibObject):
             return self.format_show(command, *argv, **kwarg)
 
 
-        raise NameError("Cannot find command "+command)
+        raise NameError('Cannot find command '+command)
 
     def parse_output(self, command, output, *argv, **kwarg):
         if command in ['add', 'delete', 'get']:
@@ -39,4 +39,4 @@ class LinuxTcChain(TestLibObject):
             return self.parse_show(command, output, *argv, **kwarg)
 
 
-        raise NameError("Cannot find command "+command)
+        raise NameError('Cannot find command '+command)

@@ -15,17 +15,17 @@ class DevlinkPortImpl(DevlinkPort):
                 cmode { runtime | driverinit | permanent }
 
         """
-        params = kwarg["params"]
+        params = kwarg['params']
         cmd = 'devlink port param {} '.format(command)
         ############# Implement me ################
-        if "dev" in params:
-            cmd += "{} ".format(params["dev"])
-        if "name" in params:
-            cmd += "name {} ".format(params["name"])
-        if "value" in params:
-            cmd += "value {} ".format(params["value"])
-        if "cmode" in params:
-            cmd += "cmode {} ".format(params["cmode"])
+        if 'dev' in params:
+            cmd += '{} '.format(params['dev'])
+        if 'name' in params:
+            cmd += 'name {} '.format(params['name'])
+        if 'value' in params:
+            cmd += 'value {} '.format(params['value'])
+        if 'cmode' in params:
+            cmd += 'cmode {} '.format(params['cmode'])
 
         return cmd
 
@@ -35,7 +35,7 @@ class DevlinkPortImpl(DevlinkPort):
                 cmode { runtime | driverinit | permanent }
 
         """
-        params = kwarg["params"]
+        params = kwarg['params']
         cmd = 'devlink port param {} '.format(command)
         ############# Implement me ################
 
@@ -45,13 +45,13 @@ class DevlinkPortImpl(DevlinkPort):
         """
         devlink port param show [ DEV/PORT_INDEX name PARAMETER ]
         """
-        params = kwarg["params"]
-        cmd = 'devlink {} port param {} '.format(params.get("options", ""), command)
+        params = kwarg['params']
+        cmd = 'devlink {} port param {} '.format(params.get('options', ''), command)
         ############# Implement me ################
-        if "dev" in params:
-            cmd += "{} ".format(params["dev"])
-        if "name" in params:
-            cmd += "name {} ".format(params["name"])
+        if 'dev' in params:
+            cmd += '{} '.format(params['dev'])
+        if 'name' in params:
+            cmd += 'name {} '.format(params['name'])
         return cmd
 
     def parse_show(self, command, output, *argv, **kwarg):

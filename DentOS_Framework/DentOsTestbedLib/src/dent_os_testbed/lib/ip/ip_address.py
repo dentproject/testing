@@ -32,11 +32,11 @@ class IpAddress(TestLibObject):
                     device_obj = kwarg.get('device_obj', None)[device_name]
                 else:
                     if device_name not in pytest.testbed.devices_dict:
-                        device_result[device_name] =  "No matching device "+ device_name
+                        device_result[device_name] =  'No matching device '+ device_name
                         result.append(device_result)
                         return result
                     device_obj = pytest.testbed.devices_dict[device_name]
-                commands = ""
+                commands = ''
                 if device_obj.os in ['dentos', 'cumulus']:
                     impl_obj = LinuxIpAddressImpl()
                     for command in device[device_name]:
@@ -46,12 +46,12 @@ class IpAddress(TestLibObject):
 
                 else:
                     device_result[device_name]['rc'] = -1
-                    device_result[device_name]['result'] = "No matching device OS "+ device_obj.os
+                    device_result[device_name]['result'] = 'No matching device OS '+ device_obj.os
                     result.append(device_result)
                     return result
                 device_result[device_name]['command'] = commands
                 try:
-                    rc, output = await device_obj.run_cmd(("sudo " if device_obj.ssh_conn_params.pssh else "") + commands)
+                    rc, output = await device_obj.run_cmd(('sudo ' if device_obj.ssh_conn_params.pssh else '') + commands)
                     device_result[device_name]['rc'] = rc
                     device_result[device_name]['result'] = output
                     if 'parse_output' in kwarg:
@@ -97,7 +97,7 @@ class IpAddress(TestLibObject):
         LFT := forever | SECONDS
 
         """
-        return await IpAddress._run_command("add", *argv, **kwarg)
+        return await IpAddress._run_command('add', *argv, **kwarg)
 
     async def change(*argv, **kwarg):
         """
@@ -133,7 +133,7 @@ class IpAddress(TestLibObject):
         LFT := forever | SECONDS
 
         """
-        return await IpAddress._run_command("change", *argv, **kwarg)
+        return await IpAddress._run_command('change', *argv, **kwarg)
 
     async def replace(*argv, **kwarg):
         """
@@ -169,7 +169,7 @@ class IpAddress(TestLibObject):
         LFT := forever | SECONDS
 
         """
-        return await IpAddress._run_command("replace", *argv, **kwarg)
+        return await IpAddress._run_command('replace', *argv, **kwarg)
 
     async def delete(*argv, **kwarg):
         """
@@ -198,7 +198,7 @@ class IpAddress(TestLibObject):
         SCOPE-ID := [ host | link | global | NUMBER ]
 
         """
-        return await IpAddress._run_command("delete", *argv, **kwarg)
+        return await IpAddress._run_command('delete', *argv, **kwarg)
 
     async def save(*argv, **kwarg):
         """
@@ -230,7 +230,7 @@ class IpAddress(TestLibObject):
         CONFFLAG  := [ home | nodad | mngtmpaddr | noprefixroute | autojoin ]
 
         """
-        return await IpAddress._run_command("save", *argv, **kwarg)
+        return await IpAddress._run_command('save', *argv, **kwarg)
 
     async def flush(*argv, **kwarg):
         """
@@ -262,7 +262,7 @@ class IpAddress(TestLibObject):
         CONFFLAG  := [ home | nodad | mngtmpaddr | noprefixroute | autojoin ]
 
         """
-        return await IpAddress._run_command("flush", *argv, **kwarg)
+        return await IpAddress._run_command('flush', *argv, **kwarg)
 
     async def show(*argv, **kwarg):
         """
@@ -303,7 +303,7 @@ class IpAddress(TestLibObject):
                  ip [ OPTIONS ] address { COMMAND | help }
 
         """
-        return await IpAddress._run_command("show", *argv, **kwarg)
+        return await IpAddress._run_command('show', *argv, **kwarg)
 
     async def showdump(*argv, **kwarg):
         """
@@ -321,7 +321,7 @@ class IpAddress(TestLibObject):
         Description:
         Restore the config
         """
-        return await IpAddress._run_command("showdump", *argv, **kwarg)
+        return await IpAddress._run_command('showdump', *argv, **kwarg)
 
     async def restore(*argv, **kwarg):
         """
@@ -339,4 +339,4 @@ class IpAddress(TestLibObject):
         Description:
         Restore the config
         """
-        return await IpAddress._run_command("restore", *argv, **kwarg)
+        return await IpAddress._run_command('restore', *argv, **kwarg)

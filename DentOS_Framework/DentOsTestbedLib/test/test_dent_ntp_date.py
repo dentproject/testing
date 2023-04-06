@@ -13,25 +13,25 @@ from .utils import TestDevice
 
 def test_that_ntp_date_set(capfd):
 
-    dv1 = TestDevice(platform="dentos")
-    dv2 = TestDevice(platform="dentos")
+    dv1 = TestDevice(platform='dentos')
+    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         NtpDate.set(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -39,52 +39,52 @@ def test_that_ntp_date_set(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
-                            "servers": ["gktrlgdi", "rcoxexvr", "nwaexsuq", "hfadfpgn", "aomfaspr"],
-                            "command_options": "fxyzfxiw",
-                            "key": "boutxzic",
-                            "authdelay": 0.3171408366439167,
-                            "keyfile": "qqisgjot",
-                            "version": "jjtcwftl",
-                            "samples": 1877,
-                            "timeout": 0.9855617740463128,
+                            'servers': ['gktrlgdi', 'rcoxexvr', 'nwaexsuq', 'hfadfpgn', 'aomfaspr'],
+                            'command_options': 'fxyzfxiw',
+                            'key': 'boutxzic',
+                            'authdelay': 0.3171408366439167,
+                            'keyfile': 'qqisgjot',
+                            'version': 'jjtcwftl',
+                            'samples': 1877,
+                            'timeout': 0.9855617740463128,
                         },
                         {
                             # command 2
-                            "servers": [
-                                "sskktosn",
-                                "rsxxdfrm",
-                                "jsltkjwk",
-                                "rodprlvn",
-                                "zqleesdu",
-                                "ucvqgblg",
-                                "msfritmy",
-                                "hwljtilm",
-                                "ydgsvira",
+                            'servers': [
+                                'sskktosn',
+                                'rsxxdfrm',
+                                'jsltkjwk',
+                                'rodprlvn',
+                                'zqleesdu',
+                                'ucvqgblg',
+                                'msfritmy',
+                                'hwljtilm',
+                                'ydgsvira',
                             ],
-                            "command_options": "mbwxkvwg",
-                            "key": "zlexvoxz",
-                            "authdelay": 0.39887500359556116,
-                            "keyfile": "rkvksapo",
-                            "version": "decpbkwr",
-                            "samples": 9760,
-                            "timeout": 0.9541778430083334,
+                            'command_options': 'mbwxkvwg',
+                            'key': 'zlexvoxz',
+                            'authdelay': 0.39887500359556116,
+                            'keyfile': 'rkvksapo',
+                            'version': 'decpbkwr',
+                            'samples': 9760,
+                            'timeout': 0.9541778430083334,
                         },
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -92,53 +92,53 @@ def test_that_ntp_date_set(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
-                            "servers": ["gktrlgdi", "rcoxexvr", "nwaexsuq", "hfadfpgn", "aomfaspr"],
-                            "command_options": "fxyzfxiw",
-                            "key": "boutxzic",
-                            "authdelay": 0.3171408366439167,
-                            "keyfile": "qqisgjot",
-                            "version": "jjtcwftl",
-                            "samples": 1877,
-                            "timeout": 0.9855617740463128,
+                            'servers': ['gktrlgdi', 'rcoxexvr', 'nwaexsuq', 'hfadfpgn', 'aomfaspr'],
+                            'command_options': 'fxyzfxiw',
+                            'key': 'boutxzic',
+                            'authdelay': 0.3171408366439167,
+                            'keyfile': 'qqisgjot',
+                            'version': 'jjtcwftl',
+                            'samples': 1877,
+                            'timeout': 0.9855617740463128,
                         }
                     ],
                     # device 2
-                    "test_dev2": [
+                    'test_dev2': [
                         {
-                            "servers": [
-                                "sskktosn",
-                                "rsxxdfrm",
-                                "jsltkjwk",
-                                "rodprlvn",
-                                "zqleesdu",
-                                "ucvqgblg",
-                                "msfritmy",
-                                "hwljtilm",
-                                "ydgsvira",
+                            'servers': [
+                                'sskktosn',
+                                'rsxxdfrm',
+                                'jsltkjwk',
+                                'rodprlvn',
+                                'zqleesdu',
+                                'ucvqgblg',
+                                'msfritmy',
+                                'hwljtilm',
+                                'ydgsvira',
                             ],
-                            "command_options": "mbwxkvwg",
-                            "key": "zlexvoxz",
-                            "authdelay": 0.39887500359556116,
-                            "keyfile": "rkvksapo",
-                            "version": "decpbkwr",
-                            "samples": 9760,
-                            "timeout": 0.9541778430083334,
+                            'command_options': 'mbwxkvwg',
+                            'key': 'zlexvoxz',
+                            'authdelay': 0.39887500359556116,
+                            'keyfile': 'rkvksapo',
+                            'version': 'decpbkwr',
+                            'samples': 9760,
+                            'timeout': 0.9541778430083334,
                         }
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0

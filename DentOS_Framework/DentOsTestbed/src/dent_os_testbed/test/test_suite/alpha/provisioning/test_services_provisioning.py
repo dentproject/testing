@@ -28,7 +28,7 @@ async def test_alpha_lab_provisioning_services_ntp(testbed):
     3. check for ntp sync
     """
     if not testbed.args.is_provisioned:
-        testbed.applog.info(f"Skipping test since not on provisioned setup")
+        testbed.applog.info(f'Skipping test since not on provisioned setup')
         return
     # pick a infra switch then run onie-select this should trigger the network based boot
     devices = await tb_get_all_devices(testbed)
@@ -42,10 +42,10 @@ async def test_alpha_lab_provisioning_services_ntp(testbed):
         await tb_reset_ssh_connections(devices)
         # now check if we can make some connection to it.
         if not await dev.is_connected():
-            assert 0, f"Device {dev.host_name} didnt boot up with new image from USB"
+            assert 0, f'Device {dev.host_name} didnt boot up with new image from USB'
         # check ntp sync has happened
         rc = await check_ntp_sync(dev, None)
-        assert rc, f"NTP Sync has failed."
+        assert rc, f'NTP Sync has failed.'
         return
 
 
@@ -61,7 +61,7 @@ async def test_alpha_lab_provisioning_services_dhcp(testbed):
     3. check for services to come up
     """
     if not testbed.args.is_provisioned:
-        testbed.applog.info(f"Skipping test since not on provisioned setup")
+        testbed.applog.info(f'Skipping test since not on provisioned setup')
         return
     # pick a infra switch then run onie-select this should trigger the network based boot
     devices = await tb_get_all_devices(testbed)
@@ -75,8 +75,8 @@ async def test_alpha_lab_provisioning_services_dhcp(testbed):
         await tb_reset_ssh_connections(devices)
         # now check if we can make some connection to it.
         if not await dev.is_connected():
-            assert 0, f"Device {dev.host_name} didnt boot up with new image from USB"
+            assert 0, f'Device {dev.host_name} didnt boot up with new image from USB'
         # check if the dhcp service is up and running
         rc = await check_services(dev, None)
-        assert rc, f"Services check failed."
+        assert rc, f'Services check failed.'
         return

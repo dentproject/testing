@@ -58,22 +58,22 @@ class IpLinkMod(Module):
         for i, dut in enumerate(self.report.duts):
             if not dut.device_id: continue
             dev = self.ctx.devices_dict[dut.device_id]
-            if dev.os == "ixnetwork" or not await dev.is_connected():
-                print("Device not connected skipping ip_link discovery")
+            if dev.os == 'ixnetwork' or not await dev.is_connected():
+                print('Device not connected skipping ip_link discovery')
                 continue
-            print("Running ip_link Discovery on " + dev.host_name)
+            print('Running ip_link Discovery on ' + dev.host_name)
             out = await IpLink.show(
                 input_data=[{dev.host_name: [{'dut_discovery':True}]}],
                 device_obj={dev.host_name: dev},
                 parse_output=True
             )
-            if out[0][dev.host_name]["rc"] != 0:
+            if out[0][dev.host_name]['rc'] != 0:
                 print(out)
-                print("Failed to get ip_link")
+                print('Failed to get ip_link')
                 continue
             if 'parsed_output' not in out[0][dev.host_name]:
-                print("Failed to get parsed_output ip_link")
+                print('Failed to get parsed_output ip_link')
                 print (out)
                 continue
-            self.set_ip_link(out[0][dev.host_name]["parsed_output"], self.report.duts[i].network.layer1.links)
-            print("Finished ip_link Discovery on {} with {} entries".format(dev.host_name, len(self.report.duts[i].network.layer1.links)))
+            self.set_ip_link(out[0][dev.host_name]['parsed_output'], self.report.duts[i].network.layer1.links)
+            print('Finished ip_link Discovery on {} with {} entries'.format(dev.host_name, len(self.report.duts[i].network.layer1.links)))

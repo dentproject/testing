@@ -9,8 +9,8 @@ class LinuxTcMonitorImpl(LinuxTcMonitor):
         tc [ OPTIONS ] monitor [ file FILENAME ]
 
         """
-        params = kwarg["params"]
-        cmd = "tc  {} ".format(command)
+        params = kwarg['params']
+        cmd = 'tc  {} '.format(command)
         ############# Implement me ################
 
         return cmd

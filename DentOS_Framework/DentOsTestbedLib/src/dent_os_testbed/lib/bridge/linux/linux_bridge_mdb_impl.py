@@ -14,18 +14,18 @@ class LinuxBridgeMdbImpl(LinuxBridgeMdb):
         bridge mdb { add | del } dev DEV port PORT grp GROUP [ permanent | temp ] [ vid VID ]
 
         """
-        params = kwarg["params"]
-        cmd = "bridge mdb {} ".format(command)
+        params = kwarg['params']
+        cmd = 'bridge mdb {} '.format(command)
         ############# Implement me ################
-        mdb_entry_type = params.get("permanent", "temp")
-        if "dev" in params:
-            cmd += "dev {} ".format(params["dev"])
-        if "port" in params:
-            cmd += "port {} ".format(params["port"])
-        if "group" in params:
-            cmd += "grp {} {} ".format(params["group"], mdb_entry_type)
-        if "vid" in params:
-            cmd += "vid {} ".format(params["vid"])
+        mdb_entry_type = params.get('permanent', 'temp')
+        if 'dev' in params:
+            cmd += 'dev {} '.format(params['dev'])
+        if 'port' in params:
+            cmd += 'port {} '.format(params['port'])
+        if 'group' in params:
+            cmd += 'grp {} {} '.format(params['group'], mdb_entry_type)
+        if 'vid' in params:
+            cmd += 'vid {} '.format(params['vid'])
 
         return cmd
 
@@ -34,8 +34,8 @@ class LinuxBridgeMdbImpl(LinuxBridgeMdb):
         bridge mdb show [ dev DEV ]
 
         """
-        params = kwarg["params"]
-        cmd = "bridge {} mdb {} ".format(params.get("options", ""), command)
+        params = kwarg['params']
+        cmd = 'bridge {} mdb {} '.format(params.get('options', ''), command)
         ############# Implement me ################
 
         return cmd

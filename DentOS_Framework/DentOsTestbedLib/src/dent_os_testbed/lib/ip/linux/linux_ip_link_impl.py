@@ -14,37 +14,37 @@ class LinuxIpLinkImpl(LinuxIpLink):
                   veth | vlan | vxlan | ip6tnl | ipip | sit | gre | gretap | ip6gre | ip6gretap ]
 
         """
-        params = kwarg["params"]
-        cmd = "ip link {} ".format(command)
+        params = kwarg['params']
+        cmd = 'ip link {} '.format(command)
         # custom code here
-        if "device" in params:
-            cmd += "{} ".format((params["device"]))
-        if "link" in params:
-            cmd += "link {} ".format((params["link"]))
-        if "name" in params:
-            cmd += "name {} ".format((params["name"]))
-        if "txqueuelen" in params:
-            cmd += "txqueuelen {} ".format((params["txqueuelen"]))
-        if "address" in params:
-            cmd += "address {} ".format((params["address"]))
-        if "broadcast" in params:
-            cmd += "broadcast {} ".format((params["broadcast"]))
-        if "mtu" in params:
-            cmd += "mtu {} ".format((params["mtu"]))
-        if "index" in params:
-            cmd += "index {} ".format((params["index"]))
-        if "numtxqueues" in params:
-            cmd += "numtxqueues {} ".format((params["numtxqueues"]))
-        if "numrxqueues" in params:
-            cmd += "numrxqueues {} ".format((params["numrxqueues"]))
-        if "type" in params:
-            cmd += "type {} ".format((params["type"]))
-        if "ageing_time" in params:
-            cmd += "ageing_time {} ".format((params["ageing_time"]))
-        if "vlan_filtering" in params:
-            cmd += "vlan_filtering {} ".format((params["vlan_filtering"]))
-        if "vlan_default_pvid" in params:
-            cmd += "vlan_default_pvid {} ".format((params["vlan_default_pvid"]))
+        if 'device' in params:
+            cmd += '{} '.format((params['device']))
+        if 'link' in params:
+            cmd += 'link {} '.format((params['link']))
+        if 'name' in params:
+            cmd += 'name {} '.format((params['name']))
+        if 'txqueuelen' in params:
+            cmd += 'txqueuelen {} '.format((params['txqueuelen']))
+        if 'address' in params:
+            cmd += 'address {} '.format((params['address']))
+        if 'broadcast' in params:
+            cmd += 'broadcast {} '.format((params['broadcast']))
+        if 'mtu' in params:
+            cmd += 'mtu {} '.format((params['mtu']))
+        if 'index' in params:
+            cmd += 'index {} '.format((params['index']))
+        if 'numtxqueues' in params:
+            cmd += 'numtxqueues {} '.format((params['numtxqueues']))
+        if 'numrxqueues' in params:
+            cmd += 'numrxqueues {} '.format((params['numrxqueues']))
+        if 'type' in params:
+            cmd += 'type {} '.format((params['type']))
+        if 'ageing_time' in params:
+            cmd += 'ageing_time {} '.format((params['ageing_time']))
+        if 'vlan_filtering' in params:
+            cmd += 'vlan_filtering {} '.format((params['vlan_filtering']))
+        if 'vlan_default_pvid' in params:
+            cmd += 'vlan_default_pvid {} '.format((params['vlan_default_pvid']))
         return cmd
 
     def format_delete(self, command, *argv, **kwarg):
@@ -55,13 +55,13 @@ class LinuxIpLinkImpl(LinuxIpLink):
                   veth | vlan | vxlan | ip6tnl | ipip | sit | gre | gretap | ip6gre | ip6gretap ]
 
         """
-        params = kwarg["params"]
-        cmd = "ip link {} ".format(command)
+        params = kwarg['params']
+        cmd = 'ip link {} '.format(command)
         # custom code here
-        if "device" in params:
-            cmd += "{} ".format((params["device"]))
-        if "type" in params:
-            cmd += "type {} ".format((params["type"]))
+        if 'device' in params:
+            cmd += '{} '.format((params['device']))
+        if 'type' in params:
+            cmd += 'type {} '.format((params['type']))
         return cmd
 
     def format_set(self, command, *argv, **kwarg):
@@ -76,73 +76,73 @@ class LinuxIpLinkImpl(LinuxIpLink):
                       [{master DEVICE | nomaster }]
 
         """
-        params = kwarg["params"]
-        cmd = "ip link {} ".format(command)
+        params = kwarg['params']
+        cmd = 'ip link {} '.format(command)
         # custom code here
-        if "device" in params:
-            cmd += "dev {} ".format((params["device"]))
-        if "group" in params:
-            cmd += "group {} ".format((params["group"]))
-        if "type" in params:
-            cmd += "type {} ".format((params["type"]))
-        if "ageing_time" in params:
-            cmd += "ageing_time {} ".format((params["ageing_time"]))
-        if "operstate" in params:
-            cmd += "{} ".format((params["operstate"]))
-        if "arp" in params:
-            cmd += "arp {} ".format((params["arp"]))
-        if "promiscuity" in params:
-            cmd += "promisc {} ".format((params["promiscuity"]))
-        if "allmulticast" in params:
-            cmd += "allmulticast {} ".format((params["allmulticast"]))
-        if "dynamic" in params:
-            cmd += "dynamic {} ".format((params["dynamic"]))
-        if "multicast" in params:
-            cmd += "multicast {} ".format((params["multicast"]))
-        if "txqueuelen" in params:
-            cmd += "txqueuelen {} ".format((params["txqueuelen"]))
-        if "name" in params:
-            cmd += "name {} ".format((params["name"]))
-        if "address" in params:
-            cmd += "address {} ".format((params["address"]))
-        if "broadcast" in params:
-            cmd += "broadcast {} ".format((params["broadcast"]))
-        if "mtu" in params:
-            cmd += "mtu {} ".format((params["mtu"]))
-        if "netns" in params:
-            cmd += "netns {} ".format((params["netns"]))
-        if "alias" in params:
-            cmd += "alias {} ".format((params["alias"]))
-        if "vf" in params:
-            cmd += "vf {} ".format((params["vf"]))
-        if "mac" in params:
-            cmd += "mac {} ".format((params["mac"]))
-        if "vlan" in params:
-            cmd += "vlan {} ".format((params["vlan"]))
-            if "qos" in params:
-                cmd += "qos {} ".format((params["qos"]))
-        if "rate" in params:
-            cmd += "rate {} ".format((params["rate"]))
-        if "max_tx_rate" in params:
-            cmd += "max_tx_rate {} ".format((params["max_tx_rate"]))
-        if "min_tx_rate" in params:
-            cmd += "min_tx_rate {} ".format((params["min_tx_rate"]))
-        if "spoofchk" in params:
-            cmd += "spoofchk {} ".format((params["spoofchk"]))
-        if "state" in params:
-            cmd += "state {} ".format((params["state"]))
-        if "master" in params:
-            cmd += "master {} ".format((params["master"]))
-        if "nomaster" in params:
-            cmd += "nomaster"
-        if "mcast_snooping" in params:
-            cmd += "mcast_snooping {} ".format((params["mcast_snooping"]))
-        if "mcast_igmp_version" in params:
-            cmd += "mcast_igmp_version {} ".format((params["mcast_igmp_version"]))
-        if "mcast_querier" in params:
-            cmd += "mcast_querier {} ".format((params["mcast_querier"]))
-        if "mcast_querier_interval" in params:
-            cmd += "mcast_querier_interval {} ".format((params["mcast_querier_interval"]))
+        if 'device' in params:
+            cmd += 'dev {} '.format((params['device']))
+        if 'group' in params:
+            cmd += 'group {} '.format((params['group']))
+        if 'type' in params:
+            cmd += 'type {} '.format((params['type']))
+        if 'ageing_time' in params:
+            cmd += 'ageing_time {} '.format((params['ageing_time']))
+        if 'operstate' in params:
+            cmd += '{} '.format((params['operstate']))
+        if 'arp' in params:
+            cmd += 'arp {} '.format((params['arp']))
+        if 'promiscuity' in params:
+            cmd += 'promisc {} '.format((params['promiscuity']))
+        if 'allmulticast' in params:
+            cmd += 'allmulticast {} '.format((params['allmulticast']))
+        if 'dynamic' in params:
+            cmd += 'dynamic {} '.format((params['dynamic']))
+        if 'multicast' in params:
+            cmd += 'multicast {} '.format((params['multicast']))
+        if 'txqueuelen' in params:
+            cmd += 'txqueuelen {} '.format((params['txqueuelen']))
+        if 'name' in params:
+            cmd += 'name {} '.format((params['name']))
+        if 'address' in params:
+            cmd += 'address {} '.format((params['address']))
+        if 'broadcast' in params:
+            cmd += 'broadcast {} '.format((params['broadcast']))
+        if 'mtu' in params:
+            cmd += 'mtu {} '.format((params['mtu']))
+        if 'netns' in params:
+            cmd += 'netns {} '.format((params['netns']))
+        if 'alias' in params:
+            cmd += 'alias {} '.format((params['alias']))
+        if 'vf' in params:
+            cmd += 'vf {} '.format((params['vf']))
+        if 'mac' in params:
+            cmd += 'mac {} '.format((params['mac']))
+        if 'vlan' in params:
+            cmd += 'vlan {} '.format((params['vlan']))
+            if 'qos' in params:
+                cmd += 'qos {} '.format((params['qos']))
+        if 'rate' in params:
+            cmd += 'rate {} '.format((params['rate']))
+        if 'max_tx_rate' in params:
+            cmd += 'max_tx_rate {} '.format((params['max_tx_rate']))
+        if 'min_tx_rate' in params:
+            cmd += 'min_tx_rate {} '.format((params['min_tx_rate']))
+        if 'spoofchk' in params:
+            cmd += 'spoofchk {} '.format((params['spoofchk']))
+        if 'state' in params:
+            cmd += 'state {} '.format((params['state']))
+        if 'master' in params:
+            cmd += 'master {} '.format((params['master']))
+        if 'nomaster' in params:
+            cmd += 'nomaster'
+        if 'mcast_snooping' in params:
+            cmd += 'mcast_snooping {} '.format((params['mcast_snooping']))
+        if 'mcast_igmp_version' in params:
+            cmd += 'mcast_igmp_version {} '.format((params['mcast_igmp_version']))
+        if 'mcast_querier' in params:
+            cmd += 'mcast_querier {} '.format((params['mcast_querier']))
+        if 'mcast_querier_interval' in params:
+            cmd += 'mcast_querier_interval {} '.format((params['mcast_querier_interval']))
         return cmd
 
     def format_show(self, command, *argv, **kwarg):
@@ -150,17 +150,17 @@ class LinuxIpLinkImpl(LinuxIpLink):
         """
         ip link show [ DEVICE | group GROUP ]
         """
-        params = kwarg["params"]
-        if params.get("dut_discovery", False):
-            params["cmd_options"] = "-j -d"
-        cmd = "ip {} link {} ".format(params.get("cmd_options", ""), command)
+        params = kwarg['params']
+        if params.get('dut_discovery', False):
+            params['cmd_options'] = '-j -d'
+        cmd = 'ip {} link {} '.format(params.get('cmd_options', ''), command)
         # custom code here
-        if "device" in params:
-            cmd += "{} ".format((params["device"]))
-        if "group" in params:
-            cmd += "group {} ".format((params["group"]))
-        if "link_type" in params:
-            cmd += "type {} ".format((params["link_type"]))
+        if 'device' in params:
+            cmd += '{} '.format((params['device']))
+        if 'group' in params:
+            cmd += 'group {} '.format((params['group']))
+        if 'link_type' in params:
+            cmd += 'type {} '.format((params['link_type']))
 
         return cmd
 

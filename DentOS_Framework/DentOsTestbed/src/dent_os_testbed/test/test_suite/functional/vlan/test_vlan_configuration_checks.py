@@ -6,7 +6,7 @@ from dent_os_testbed.utils.test_utils.tb_utils import tb_get_all_devices
 
 pytestmark = [pytest.mark.suite_functional_vlan,
               pytest.mark.asyncio,
-              pytest.mark.usefixtures("cleanup_bridges", "cleanup_tgen")]
+              pytest.mark.usefixtures('cleanup_bridges', 'cleanup_tgen')]
 
 
 async def test_vlan_can_set_max_vlans(testbed):
@@ -27,29 +27,29 @@ async def test_vlan_can_set_max_vlans(testbed):
     device = dent_devices[0].host_name
     test_port = dent_devices[0].links_dict[device][1][0]  # get first port from config
     max_vlans = 4094
-    bridge = "br0"
+    bridge = 'br0'
 
     # 2. Create bridge entity and set state to "up" state
-    out = await IpLink.add(input_data=[{device: [{"device": bridge, "type": "bridge", "vlan_filtering": 1}]}])
-    assert out[0][device]["rc"] == 0, f"Failed to create bridge"
+    out = await IpLink.add(input_data=[{device: [{'device': bridge, 'type': 'bridge', 'vlan_filtering': 1}]}])
+    assert out[0][device]['rc'] == 0, f'Failed to create bridge'
 
-    out = await IpLink.set(input_data=[{device: [{"device": bridge, "operstate": "up"}]}])
-    assert out[0][device]["rc"] == 0, f"Failed to set bridge status to UP"
+    out = await IpLink.set(input_data=[{device: [{'device': bridge, 'operstate': 'up'}]}])
+    assert out[0][device]['rc'] == 0, f'Failed to set bridge status to UP'
 
     # 3. Enslave interface to the created bridge entity
-    out = await IpLink.set(input_data=[{device: [{"device": test_port, "master": bridge, "operstate": "up"}]}])
-    assert out[0][device]["rc"] == 0, f"Failed to enslave links to bridge"
+    out = await IpLink.set(input_data=[{device: [{'device': test_port, 'master': bridge, 'operstate': 'up'}]}])
+    assert out[0][device]['rc'] == 0, f'Failed to enslave links to bridge'
 
     # 4. Insert interface to all VLANs possible
-    cmd = f"time for i in {{1..{max_vlans}}}; do bridge vlan add vid $i dev {test_port}; done"
+    cmd = f'time for i in {{1..{max_vlans}}}; do bridge vlan add vid $i dev {test_port}; done'
     rc, _ = await dent_devices[0].run_cmd(cmd)
-    assert rc == 0, f"Failed adding the interface to VLANs 1..{max_vlans}"
+    assert rc == 0, f'Failed adding the interface to VLANs 1..{max_vlans}'
 
     # 5. Verify interface is in all possible (4094) VLANs
-    out = await BridgeVlan.show(input_data=[{device: [{"device": test_port, "cmd_options": "-j"}]}],
+    out = await BridgeVlan.show(input_data=[{device: [{'device': test_port, 'cmd_options': '-j'}]}],
                                 parse_output=True)
-    assert len(out[0][device]['parsed_output'][0]["vlans"]) == max_vlans, \
-        f"Not all VLANS has been added to {test_port} on {device} device"
+    assert len(out[0][device]['parsed_output'][0]['vlans']) == max_vlans, \
+        f'Not all VLANS has been added to {test_port} on {device} device'
 
 
 async def test_vlan_can_not_add_interface_to_vlan_wo_bridge(testbed):
@@ -71,19 +71,19 @@ async def test_vlan_can_not_add_interface_to_vlan_wo_bridge(testbed):
     device = dent_devices[0].host_name
     test_port = dent_devices[0].links_dict[device][1][0]  # get first port from config
     vid = 2
-    bridge = "br0"
+    bridge = 'br0'
 
     # 2. Insert interface to any VLAN. Verify adding interface to VLAN fails
-    out = await BridgeVlan.add(input_data=[{device: [{"device": test_port, "vid": vid}]}])
-    assert out[0][device]["rc"] != 0, "No error on adding interface to VLAN without creating bridge beforehand"
+    out = await BridgeVlan.add(input_data=[{device: [{'device': test_port, 'vid': vid}]}])
+    assert out[0][device]['rc'] != 0, 'No error on adding interface to VLAN without creating bridge beforehand'
 
     # 3. Create bridge entity.
-    out = await IpLink.add(input_data=[{device: [{"device": bridge, "type": "bridge"}]}])
-    assert out[0][device]["rc"] == 0, f"Failed to create bridge"
+    out = await IpLink.add(input_data=[{device: [{'device': bridge, 'type': 'bridge'}]}])
+    assert out[0][device]['rc'] == 0, f'Failed to create bridge'
 
-    out = await IpLink.set(input_data=[{device: [{"device": bridge, "operstate": "up"}]}])
-    assert out[0][device]["rc"] == 0, f"Failed setting bridge to state UP"
+    out = await IpLink.set(input_data=[{device: [{'device': bridge, 'operstate': 'up'}]}])
+    assert out[0][device]['rc'] == 0, f'Failed setting bridge to state UP'
 
     # 4. Insert interface to any VLAN. Verify adding interface to VLAN fails
-    out = await BridgeVlan.add(input_data=[{device: [{"device": test_port, "vid": vid}]}])
-    assert out[0][device]["rc"] != 0, "No error on inserting port to a VLAN without bridge"
+    out = await BridgeVlan.add(input_data=[{device: [{'device': test_port, 'vid': vid}]}])
+    assert out[0][device]['rc'] != 0, 'No error on inserting port to a VLAN without bridge'

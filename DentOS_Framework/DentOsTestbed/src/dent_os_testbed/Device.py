@@ -37,10 +37,10 @@ class Device(object):
     """
 
     PING_PKT_LOSS_TRESHOLD_PERCENT = 20
-    SERIAL_LOG_FILE_NAME = "serial_logs.txt"
-    SSH_LOG_FILE_NAME = "ssh_logs.txt"
-    LOGS_BASE_DIR = "./logs/"
-    GET_OS_INFO_CMD = "cat /etc/onl/SWI | cut -d: -f 2"
+    SERIAL_LOG_FILE_NAME = 'serial_logs.txt'
+    SSH_LOG_FILE_NAME = 'ssh_logs.txt'
+    LOGS_BASE_DIR = './logs/'
+    GET_OS_INFO_CMD = 'cat /etc/onl/SWI | cut -d: -f 2'
 
     def __init__(self, logger, loop, params):
         """
@@ -57,28 +57,28 @@ class Device(object):
             Exception: For generic failure in device initialization
         """
         if not loop:
-            raise ValueError("Device class needs a running event loop to manage its async APIs")
+            raise ValueError('Device class needs a running event loop to manage its async APIs')
         try:
             self.loop = loop
-            self.friendly_name = params["friendlyName"]
+            self.friendly_name = params['friendlyName']
             self.applog = logger.tag_logs(self.friendly_name)
-            self.applog.debug(f"Initializing device")
-            self.os = params["os"]
-            self.host_name = params["hostName"]
-            self.ip = params["ip"]
-            self.port = params.get("port", None)
-            self.force_update = params.get("forceUpdate", True)
-            self.login = params["login"]
-            self.serial_dev = params["serialDev"]
-            self.baudrate = params["baudrate"]
-            self.links = params.get("links", [])
-            self.type = DeviceType.__members__[params.get("type", "UNKNOWN")]
+            self.applog.debug(f'Initializing device')
+            self.os = params['os']
+            self.host_name = params['hostName']
+            self.ip = params['ip']
+            self.port = params.get('port', None)
+            self.force_update = params.get('forceUpdate', True)
+            self.login = params['login']
+            self.serial_dev = params['serialDev']
+            self.baudrate = params['baudrate']
+            self.links = params.get('links', [])
+            self.type = DeviceType.__members__[params.get('type', 'UNKNOWN')]
             self.files_to_collect = []
             # dictionary of links with device name as key
             self.links_dict = {}
             # media mode can be: fiber, mixed, or copper
             # If mixed each port media type must be specified.
-            self.media_mode = params.get("mediaMode", 'copper')
+            self.media_mode = params.get('mediaMode', 'copper')
             for link in self.links:
                 if len(link) == 3:
                     fr, to, media = link[0], link[1], link[2]
@@ -86,57 +86,57 @@ class Device(object):
                     fr, to = link[0], link[1]
                     media = self.media_mode
                 else:
-                    self.applog.debug("ERROR: links lenth looks wrong")
-                dut, port = to.split(":")
+                    self.applog.debug('ERROR: links lenth looks wrong')
+                dut, port = to.split(':')
                 if dut not in self.links_dict:
                     self.links_dict[dut] = [[], [], []]  # from and port seperate array
                 self.links_dict[dut][0].append(fr)
                 self.links_dict[dut][1].append(port)
                 self.links_dict[dut][2].append(media)
-            self.username = self.login["userName"]
-            self.password = self.login["password"]
+            self.username = self.login['userName']
+            self.password = self.login['password']
             self.ssh_log = DeviceLogger(
                 device_name=self.host_name, log_file_name=Device.SSH_LOG_FILE_NAME
             )
             self.ssh_conn_params = (
                 ConnectionParams.Builder()
-                .username(self.login["userName"])
+                .username(self.login['userName'])
                 .ip(self.ip)
-                .password(self.login["password"])
+                .password(self.login['password'])
                 .hostname(self.host_name)
                 .logger(self.ssh_log)
                 .build()
             )
-            if "pssh" in params:
-                self.ssh_conn_params.pssh = params["pssh"]
-                self.ssh_conn_params.aws_region = params["aws_region"]
-                self.ssh_conn_params.store_domain = params["store_domain"]
-                self.ssh_conn_params.store_type = params["store_type"]
-                self.ssh_conn_params.store_id = params["store_id"]
+            if 'pssh' in params:
+                self.ssh_conn_params.pssh = params['pssh']
+                self.ssh_conn_params.aws_region = params['aws_region']
+                self.ssh_conn_params.store_domain = params['store_domain']
+                self.ssh_conn_params.store_type = params['store_type']
+                self.ssh_conn_params.store_id = params['store_id']
 
             self.serial_logs_base_dir = Device.LOGS_BASE_DIR + self.host_name
             if not os.path.exists(self.serial_logs_base_dir):
                 os.makedirs(self.serial_logs_base_dir)
             self.serial_conn_params = (
                 ConnectionParams.Builder()
-                .username(self.login["userName"])
-                .password(self.login["password"])
+                .username(self.login['userName'])
+                .password(self.login['password'])
                 .serial_dev(self.serial_dev)
                 .baudrate(self.baudrate)
                 .hostname(self.host_name)
-                .log_file_path(self.serial_logs_base_dir + "/" + Device.SERIAL_LOG_FILE_NAME)
+                .log_file_path(self.serial_logs_base_dir + '/' + Device.SERIAL_LOG_FILE_NAME)
                 .build()
             )
             self.conn_mgr = ConnectionManager(
                 logger, loop, self.ssh_conn_params, self.serial_conn_params
             )
-            self.applog.debug(f"Device successfully initialized")
+            self.applog.debug(f'Device successfully initialized')
 
         except Exception as e:
-            self._handle_exception(e, "Error in device initialization")
+            self._handle_exception(e, 'Error in device initialization')
 
     def __repr__(self):
-        return f"[{self.friendly_name}: {self.ip}]"
+        return f'[{self.friendly_name}: {self.ip}]'
 
     async def verify_ping(self, timeout):
         """
@@ -150,7 +150,7 @@ class Device(object):
             Exception: For generic failures
         """
         try:
-            self.applog.debug(f"Testing reachability through ping..")
+            self.applog.debug(f'Testing reachability through ping..')
             exec_time = 0
             while exec_time <= timeout:
                 ping_chk_stime = time.time()
@@ -159,15 +159,15 @@ class Device(object):
                 )
                 ping_chk_etime = time.time()
                 if reachable:
-                    self.applog.debug(f"Device is reachable through ping")
+                    self.applog.debug(f'Device is reachable through ping')
                     return
                 exec_time += int(ping_chk_etime - ping_chk_stime)
                 self.applog.debug(
-                    f"Not reachable after {exec_time} secs, retrying ping to {self.host_name}"
+                    f'Not reachable after {exec_time} secs, retrying ping to {self.host_name}'
                 )
-            raise TimeoutError(f"No ping response from {self.host_name} after timeout secs")
+            raise TimeoutError(f'No ping response from {self.host_name} after timeout secs')
         except Exception as e:
-            self._handle_exception(e, "Error in ping")
+            self._handle_exception(e, 'Error in ping')
 
     async def scp(self, local_path, remote_path, remote_to_local=False, sudo=False):
         """
@@ -186,37 +186,37 @@ class Device(object):
             if sudo:
                 # if sudo then copy it to /tmp then use sudo command to mv the file
                 tpl = next(iter(tempfile._RandomNameSequence()))
-                tmp = f"/tmp/tmp_{tpl}"
+                tmp = f'/tmp/tmp_{tpl}'
 
-            self.applog.debug(f"Copying from {local_path} to {remote_path}")
+            self.applog.debug(f'Copying from {local_path} to {remote_path}')
             if not remote_to_local:
                 if sudo:
                     await self.conn_mgr.get_ssh_connection().copy_local_to_remote(local_path, tmp)
-                    await self.run_cmd(f"mv {tmp} {remote_path}", sudo=sudo)
+                    await self.run_cmd(f'mv {tmp} {remote_path}', sudo=sudo)
                     await self.run_cmd(
-                        f"chown root {remote_path}; chgrp root {remote_path}", sudo=sudo
+                        f'chown root {remote_path}; chgrp root {remote_path}', sudo=sudo
                     )
                 else:
                     await self.conn_mgr.get_ssh_connection().copy_local_to_remote(
                         local_path, remote_path
                     )
-                self.applog.debug(f"Successfully copied from {local_path} to {remote_path}")
+                self.applog.debug(f'Successfully copied from {local_path} to {remote_path}')
             else:
                 if sudo:
                     # if sudo then copy it to /tmp then use sudo command to mv the file
-                    await self.run_cmd(f"cp {remote_path} {tmp}", sudo=sudo)
-                    await self.run_cmd(f"chmod 755 {tmp}", sudo=sudo)
+                    await self.run_cmd(f'cp {remote_path} {tmp}', sudo=sudo)
+                    await self.run_cmd(f'chmod 755 {tmp}', sudo=sudo)
                     await self.conn_mgr.get_ssh_connection().copy_remote_to_local(tmp, local_path)
-                    await self.run_cmd(f"rm -f {tmp}", sudo=sudo)
+                    await self.run_cmd(f'rm -f {tmp}', sudo=sudo)
                 else:
                     await self.conn_mgr.get_ssh_connection().copy_remote_to_local(
                         remote_path, local_path
                     )
-                self.applog.debug(f"Successfully copied from {remote_path} to {local_path}")
+                self.applog.debug(f'Successfully copied from {remote_path} to {local_path}')
         except Exception as e:
-            self._handle_exception(e, "Error in scp")
+            self._handle_exception(e, 'Error in scp')
 
-    async def run_cmd(self, cmd, console="ssh", sudo=False):
+    async def run_cmd(self, cmd, console='ssh', sudo=False):
         """
         Run the command on the devices console SSH/Serial
 
@@ -231,15 +231,15 @@ class Device(object):
         try:
             if sudo:
                 cmd = self._get_sudo_cmd(cmd)
-            self.applog.debug(f"Executing command {cmd}")
-            if console == "ssh":
+            self.applog.debug(f'Executing command {cmd}')
+            if console == 'ssh':
                 exit_status, stdout = await self.conn_mgr.get_ssh_connection().run_cmd(cmd)
-            elif console == "serial":
+            elif console == 'serial':
                 exit_status, stdout = await self.conn_mgr.get_serial_connection().run_cmd(cmd)
-            self.applog.debug(f"{cmd} executed, ret_code = {exit_status}")
+            self.applog.debug(f'{cmd} executed, ret_code = {exit_status}')
             return exit_status, stdout
         except Exception as e:
-            self._handle_exception(e, f"Error executing {cmd}")
+            self._handle_exception(e, f'Error executing {cmd}')
 
     async def get_os_info(self):
         """
@@ -252,7 +252,7 @@ class Device(object):
             _, stdout = await self.conn_mgr.get_serial_connection().run_cmd(Device.GET_OS_INFO_CMD)
             return stdout
         except Exception as e:
-            self._handle_exception(e, "Error in get_os_info")
+            self._handle_exception(e, 'Error in get_os_info')
             raise
 
     async def reboot(self):
@@ -265,14 +265,14 @@ class Device(object):
         try:
             await self.conn_mgr.close_connections()
         except Exception as e:
-            self.applog.exception("Exception while closing connections", exc_info=e)
+            self.applog.exception('Exception while closing connections', exc_info=e)
         try:
-            self.applog.debug(f"Triggering reboot")
-            reboot_cmd = self._get_sudo_cmd("reboot")
+            self.applog.debug(f'Triggering reboot')
+            reboot_cmd = self._get_sudo_cmd('reboot')
             await self.conn_mgr.get_ssh_connection().run_cmd(reboot_cmd)
-            self.applog.debug("Successfully triggered reboot")
+            self.applog.debug('Successfully triggered reboot')
         except Exception as e:
-            self._handle_exception(e, "Error in reboot")
+            self._handle_exception(e, 'Error in reboot')
 
     async def is_connected(self):
         """
@@ -286,11 +286,11 @@ class Device(object):
             await self.conn_mgr.get_ssh_connection().disconnect()
         result = False
         try:
-            exit_status, _ = await self.conn_mgr.get_ssh_connection().run_cmd("date")
+            exit_status, _ = await self.conn_mgr.get_ssh_connection().run_cmd('date')
             if exit_status == 0:
                 result = True
         except Exception as e:
-            self.applog.exception(f"Exception --> {Device.is_connected.__qualname__}", exc_info=e)
+            self.applog.exception(f'Exception --> {Device.is_connected.__qualname__}', exc_info=e)
         return result
 
     async def cleanup(self):
@@ -303,13 +303,13 @@ class Device(object):
         try:
             self.conn_mgr.cleanup()
         except Exception as e:
-            self.applog.exception(f"Exception --> {Device.cleanup.__qualname__}", exc_info=e)
+            self.applog.exception(f'Exception --> {Device.cleanup.__qualname__}', exc_info=e)
             raise
 
     def _get_sudo_cmd(self, cmd):
         return f'echo {self.login["password"]} | sudo -S {cmd}'
 
     def _handle_exception(self, e, except_str):
-        self.applog.exception(f"{except_str}", exc_info=e)
+        self.applog.exception(f'{except_str}', exc_info=e)
         e.extra_info = self.friendly_name
         raise e

@@ -21,7 +21,7 @@ async def bonding_get_interconnected_infra_devices(testbed, infra_devices):
     return devices
 
 
-async def bonding_setup(infra_devices, state="down"):
+async def bonding_setup(infra_devices, state='down'):
     # break down all the links and pass the traffic thru the infra links
     await tb_reload_nw_and_flush_firewall(infra_devices)
     """

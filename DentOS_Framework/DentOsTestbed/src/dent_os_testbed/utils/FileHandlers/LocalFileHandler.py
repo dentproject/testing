@@ -35,12 +35,12 @@ class LocalFileHandler(FileHandler):
 
         """
         try:
-            with open(filename, "r") as f:
+            with open(filename, 'r') as f:
                 data = f.read()
-                self.applog.debug("Read from file:%s" % data)
+                self.applog.debug('Read from file:%s' % data)
             return data
         except Exception as e:
-            self.applog.exception("Error reading file:%s" % filename, exec_info=e)
+            self.applog.exception('Error reading file:%s' % filename, exec_info=e)
             return None
 
     def write(self, filename, data):
@@ -54,11 +54,11 @@ class LocalFileHandler(FileHandler):
             Exception - For generic failures
         """
         try:
-            with open(filename, "w") as f:
+            with open(filename, 'w') as f:
                 f.write(data)
-                self.applog.debug("Wrote data:%s to to file:%s" % (filename, data))
+                self.applog.debug('Wrote data:%s to to file:%s' % (filename, data))
         except Exception as e:
-            self.applog.exception("Error writing file:%s" % filename, exec_info=e)
+            self.applog.exception('Error writing file:%s' % filename, exec_info=e)
             raise
 
     def delete(self, filename):
@@ -102,7 +102,7 @@ class LocalFileHandler(FileHandler):
         dst_path = dst if os.path.isabs(dst) else os.path.join(os.getcwd(), dst)
         try:
             shutil.copy2(src_path, dst_path, follow_symlinks=follow_symlinks)
-            self.applog.info("Copy file succeeded src:%s dst:%s" % (src_path, dst_path))
+            self.applog.info('Copy file succeeded src:%s dst:%s' % (src_path, dst_path))
         except:
-            self.applog.error("Copy file failed src:%s dst:%s" % (src_path, dst_path))
+            self.applog.error('Copy file failed src:%s dst:%s' % (src_path, dst_path))
             raise

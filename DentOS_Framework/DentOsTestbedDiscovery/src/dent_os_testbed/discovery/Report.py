@@ -28,7 +28,7 @@ class CommitMixin(object):
             elif isinstance(ob, (SchemaList, LeafSchemaList,)):
                 ob_ = ob.__lizt__
             else:
-                raise ValueError("invalid child context %s"
+                raise ValueError('invalid child context %s'
                                  % ob.__class__.__name__)
 
             # perform a setattr/setitem on the parent
@@ -45,12 +45,12 @@ class CommitMixin(object):
                 elif item == len(parent_):
                     parent_.append(ob_)
                 else:
-                    raise IndexError("%s: %s index %d out of range"
+                    raise IndexError('%s: %s index %d out of range'
                                      % (parent.__class__.__name__,
                                         ob.__class__.__name__,
                                         item,))
             else:
-                raise ValueError("invalid parent context %s"
+                raise ValueError('invalid parent context %s'
                                  % parent.__class__.__name__)
 
             ob = parent
@@ -116,7 +116,7 @@ class SchemaDict(CommitMixin):
         if attr == 'get':
             return self.__dikt__.get
         if attr not in self.__schema_slots__:
-            raise AttributeError("%s: invalid slot %s"
+            raise AttributeError('%s: invalid slot %s'
                                  % (self.__class__.__name__, attr,))
         cls = self.__schema_slots__[attr]
 
@@ -133,7 +133,7 @@ class SchemaDict(CommitMixin):
         elif issubclass(cls, (SchemaList, LeafSchemaList, list,)):
             dflt = []
         else:
-            raise ValueError("invalid %s attr %s"
+            raise ValueError('invalid %s attr %s'
                              % (cls.__name__, attr,))
 
         # this attribute does not exist.
@@ -153,7 +153,7 @@ class SchemaDict(CommitMixin):
         """Set a leaf value."""
 
         if attr not in self.__schema_slots__:
-            raise AttributeError("%s: invalid slot %s"
+            raise AttributeError('%s: invalid slot %s'
                                  % (self.__class__.__name__, attr,))
         cls = self.__schema_slots__[attr]
 
@@ -167,13 +167,13 @@ class SchemaDict(CommitMixin):
 
             return
 
-        raise ValueError("%s: cannot assign non-leaf %s"
+        raise ValueError('%s: cannot assign non-leaf %s'
                          % (self.__class__.__name__, attr,))
 
     def validate(self, data):
         for k, v in data.items():
             if k not in self.__schema_slots__:
-                raise AttributeError("%s: invalid slot %s"
+                raise AttributeError('%s: invalid slot %s'
                                      % (self.__class__.__name__, k,))
             cls = self.__schema_slots__[k]
             if issubclass(cls, (SchemaDict, LeafSchemaDict,)):
@@ -207,7 +207,7 @@ class LeafSchemaList(CommitMixin):
 
         # more than a simple append
         if item > len(self.__lizt__):
-            raise IndexError("%s: list index %d out of range"
+            raise IndexError('%s: list index %d out of range'
                              % (self.__class__.__name__, item,))
 
         dflt = {}
@@ -241,7 +241,7 @@ class LeafSchemaList(CommitMixin):
             return
 
         # out of range
-        raise IndexError("%s: list index %d out of range"
+        raise IndexError('%s: list index %d out of range'
                          % (self.__class__.__name__, item,))
 
     def filter(self, fn=None, **kwargs):
@@ -288,12 +288,12 @@ class SchemaList(CommitMixin):
 
         # more than a simple append
         if item > len(self.__lizt__):
-            raise IndexError("%s: list index %d out of range"
+            raise IndexError('%s: list index %d out of range'
                              % (self.__class__.__name__, item,))
 
         # atomic leaf values do not support auto-append
         if issubclass(self.__item_klass__, (int, str, float,)):
-            raise IndexError("%s: list index %d out of range"
+            raise IndexError('%s: list index %d out of range'
                              % (self.__class__.__name__, item,))
 
         if issubclass(self.__item_klass__, (LeafSchemaDict, SchemaDict, dict,)):
@@ -301,7 +301,7 @@ class SchemaList(CommitMixin):
         elif issubclass(self.__item_klass__, (SchemaList, list,)):
             dflt = []
         else:
-            raise ValueError("invalid index %s (%s)"
+            raise ValueError('invalid index %s (%s)'
                              % (item, self.__item_klass__,))
 
         # reference to an object one past the end of the list,
@@ -336,10 +336,10 @@ class SchemaList(CommitMixin):
                 return
 
             # out of range
-            raise IndexError("%s: list index %d out of range"
+            raise IndexError('%s: list index %d out of range'
                              % (self.__class__.__name__, item,))
 
-        raise ValueError("%s: cannot assign non-leaf %s at %d"
+        raise ValueError('%s: cannot assign non-leaf %s at %d'
                          % (self.__class__.__name__, self.__item_klass__, item,))
 
     def filter(self, fn=None, **kwargs):
@@ -584,7 +584,7 @@ class Report(object):
 
     @classmethod
     def fromPath(cls, path):
-        with io.open(path, "rt") as fd:
+        with io.open(path, 'rt') as fd:
             data = json.load(fd)
         return cls(data)
 

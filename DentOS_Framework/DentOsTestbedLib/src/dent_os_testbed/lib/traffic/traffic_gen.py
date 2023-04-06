@@ -45,11 +45,11 @@ class TrafficGen(TestLibObject):
                     device_obj = kwarg.get('device_obj', None)[device_name]
                 else:
                     if device_name not in pytest.testbed.devices_dict:
-                        device_result[device_name] =  "No matching device "+ device_name
+                        device_result[device_name] =  'No matching device '+ device_name
                         result.append(device_result)
                         return result
                     device_obj = pytest.testbed.devices_dict[device_name]
-                commands = ""
+                commands = ''
                 if device_obj.os in ['ixnetwork']:
                     impl_obj = IxnetworkIxiaClientImpl()
                     for command in device[device_name]:
@@ -59,7 +59,7 @@ class TrafficGen(TestLibObject):
 
                 else:
                     device_result[device_name]['rc'] = -1
-                    device_result[device_name]['result'] = "No matching device OS "+ device_obj.os
+                    device_result[device_name]['result'] = 'No matching device OS '+ device_obj.os
                     result.append(device_result)
                     return result
                 device_result[device_name]['command'] = commands
@@ -96,7 +96,7 @@ class TrafficGen(TestLibObject):
           disconnect -
 
         """
-        return await TrafficGen._run_command("connect", *argv, **kwarg)
+        return await TrafficGen._run_command('connect', *argv, **kwarg)
 
     async def disconnect(*argv, **kwarg):
         """
@@ -118,7 +118,7 @@ class TrafficGen(TestLibObject):
           disconnect -
 
         """
-        return await TrafficGen._run_command("disconnect", *argv, **kwarg)
+        return await TrafficGen._run_command('disconnect', *argv, **kwarg)
 
     async def load_config(*argv, **kwarg):
         """
@@ -139,7 +139,7 @@ class TrafficGen(TestLibObject):
            save_config - config_file_name
 
         """
-        return await TrafficGen._run_command("load_config", *argv, **kwarg)
+        return await TrafficGen._run_command('load_config', *argv, **kwarg)
 
     async def save_config(*argv, **kwarg):
         """
@@ -160,7 +160,7 @@ class TrafficGen(TestLibObject):
            save_config - config_file_name
 
         """
-        return await TrafficGen._run_command("save_config", *argv, **kwarg)
+        return await TrafficGen._run_command('save_config', *argv, **kwarg)
 
     async def set_traffic(*argv, **kwarg):
         """
@@ -187,7 +187,7 @@ class TrafficGen(TestLibObject):
            clear_traffic - [traffic_names]
 
         """
-        return await TrafficGen._run_command("set_traffic", *argv, **kwarg)
+        return await TrafficGen._run_command('set_traffic', *argv, **kwarg)
 
     async def start_traffic(*argv, **kwarg):
         """
@@ -214,7 +214,7 @@ class TrafficGen(TestLibObject):
            clear_traffic - [traffic_names]
 
         """
-        return await TrafficGen._run_command("start_traffic", *argv, **kwarg)
+        return await TrafficGen._run_command('start_traffic', *argv, **kwarg)
 
     async def stop_traffic(*argv, **kwarg):
         """
@@ -241,7 +241,7 @@ class TrafficGen(TestLibObject):
            clear_traffic - [traffic_names]
 
         """
-        return await TrafficGen._run_command("stop_traffic", *argv, **kwarg)
+        return await TrafficGen._run_command('stop_traffic', *argv, **kwarg)
 
     async def get_stats(*argv, **kwarg):
         """
@@ -268,7 +268,7 @@ class TrafficGen(TestLibObject):
            clear_traffic - [traffic_names]
 
         """
-        return await TrafficGen._run_command("get_stats", *argv, **kwarg)
+        return await TrafficGen._run_command('get_stats', *argv, **kwarg)
 
     async def clear_stats(*argv, **kwarg):
         """
@@ -295,7 +295,7 @@ class TrafficGen(TestLibObject):
            clear_traffic - [traffic_names]
 
         """
-        return await TrafficGen._run_command("clear_stats", *argv, **kwarg)
+        return await TrafficGen._run_command('clear_stats', *argv, **kwarg)
 
     async def start_protocols(*argv, **kwarg):
         """
@@ -319,7 +319,7 @@ class TrafficGen(TestLibObject):
            clear_protocol_stats - [protocols]
 
         """
-        return await TrafficGen._run_command("start_protocols", *argv, **kwarg)
+        return await TrafficGen._run_command('start_protocols', *argv, **kwarg)
 
     async def stop_protocols(*argv, **kwarg):
         """
@@ -343,7 +343,7 @@ class TrafficGen(TestLibObject):
            clear_protocol_stats - [protocols]
 
         """
-        return await TrafficGen._run_command("stop_protocols", *argv, **kwarg)
+        return await TrafficGen._run_command('stop_protocols', *argv, **kwarg)
 
     async def set_protocol(*argv, **kwarg):
         """
@@ -367,7 +367,7 @@ class TrafficGen(TestLibObject):
            clear_protocol_stats - [protocols]
 
         """
-        return await TrafficGen._run_command("set_protocol", *argv, **kwarg)
+        return await TrafficGen._run_command('set_protocol', *argv, **kwarg)
 
     async def get_protocol_stats(*argv, **kwarg):
         """
@@ -391,7 +391,7 @@ class TrafficGen(TestLibObject):
            clear_protocol_stats - [protocols]
 
         """
-        return await TrafficGen._run_command("get_protocol_stats", *argv, **kwarg)
+        return await TrafficGen._run_command('get_protocol_stats', *argv, **kwarg)
 
     async def clear_protocol_stats(*argv, **kwarg):
         """
@@ -415,7 +415,7 @@ class TrafficGen(TestLibObject):
            clear_protocol_stats - [protocols]
 
         """
-        return await TrafficGen._run_command("clear_protocol_stats", *argv, **kwarg)
+        return await TrafficGen._run_command('clear_protocol_stats', *argv, **kwarg)
 
     async def send_arp(*argv, **kwarg):
         """
@@ -437,7 +437,7 @@ class TrafficGen(TestLibObject):
           send_ns - [port, src_ip]
 
         """
-        return await TrafficGen._run_command("send_arp", *argv, **kwarg)
+        return await TrafficGen._run_command('send_arp', *argv, **kwarg)
 
     async def send_ns(*argv, **kwarg):
         """
@@ -459,7 +459,7 @@ class TrafficGen(TestLibObject):
           send_ns - [port, src_ip]
 
         """
-        return await TrafficGen._run_command("send_ns", *argv, **kwarg)
+        return await TrafficGen._run_command('send_ns', *argv, **kwarg)
 
     async def send_ping(*argv, **kwarg):
         """
@@ -481,7 +481,7 @@ class TrafficGen(TestLibObject):
           send_ping - [port, dst_ip, src_ip]
 
         """
-        return await TrafficGen._run_command("send_ping", *argv, **kwarg)
+        return await TrafficGen._run_command('send_ping', *argv, **kwarg)
 
     async def clear_traffic(*argv, **kwarg):
         """
@@ -508,7 +508,7 @@ class TrafficGen(TestLibObject):
            clear_traffic - [traffic_names]
 
         """
-        return await TrafficGen._run_command("clear_traffic", *argv, **kwarg)
+        return await TrafficGen._run_command('clear_traffic', *argv, **kwarg)
 
     async def get_drilldown_stats(*argv, **kwarg):
         """
@@ -535,7 +535,7 @@ class TrafficGen(TestLibObject):
            clear_traffic - [traffic_names]
 
         """
-        return await TrafficGen._run_command("get_drilldown_stats", *argv, **kwarg)
+        return await TrafficGen._run_command('get_drilldown_stats', *argv, **kwarg)
 
     async def update_l1_config(*argv, **kwarg):
         """
@@ -558,7 +558,7 @@ class TrafficGen(TestLibObject):
           update_l1_config - ['speed', 'autoneg', 'tgen_ports', 'duplex']
 
         """
-        return await TrafficGen._run_command("update_l1_config", *argv, **kwarg)
+        return await TrafficGen._run_command('update_l1_config', *argv, **kwarg)
 
     async def switch_min_frame_size(*argv, **kwarg):
         """
@@ -578,4 +578,4 @@ class TrafficGen(TestLibObject):
           switch_min_frame_size - ['enable_min_size']
 
         """
-        return await TrafficGen._run_command("switch_min_frame_size", *argv, **kwarg)
+        return await TrafficGen._run_command('switch_min_frame_size', *argv, **kwarg)

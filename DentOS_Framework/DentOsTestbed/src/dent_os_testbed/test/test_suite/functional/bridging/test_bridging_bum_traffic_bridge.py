@@ -24,7 +24,7 @@ from dent_os_testbed.utils.test_utils.tb_utils import (
 pytestmark = [
     pytest.mark.suite_functional_bridging,
     pytest.mark.asyncio,
-    pytest.mark.usefixtures("cleanup_bridges", "cleanup_tgen", "cleanup_ip_addrs")
+    pytest.mark.usefixtures('cleanup_bridges', 'cleanup_tgen', 'cleanup_ip_addrs')
 ]
 
 async def test_bridging_bum_traffic_bridge_with_rif(testbed):
@@ -47,55 +47,55 @@ async def test_bridging_bum_traffic_bridge_with_rif(testbed):
                          b) Trapped packets to CPU.
     """
 
-    bridge = "br0"
+    bridge = 'br0'
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 2)
     if not tgen_dev or not dent_devices:
-        print("The testbed does not have enough dent with tgen connections")
+        print('The testbed does not have enough dent with tgen connections')
         return
     dent_dev = dent_devices[0]
     device_host_name = dent_dev.host_name
     tg_ports = tgen_dev.links_dict[device_host_name][0]
     ports = tgen_dev.links_dict[device_host_name][1]
     traffic_duration = 10
-    prefix = "100.1.1.253"
+    prefix = '100.1.1.253'
 
     out = await IpLink.add(
         input_data=[{device_host_name: [
-            {"device": bridge, "type": "bridge"}]}])
-    assert out[0][device_host_name]["rc"] == 0, f"Verify that bridge created.\n{out}"
+            {'device': bridge, 'type': 'bridge'}]}])
+    assert out[0][device_host_name]['rc'] == 0, f'Verify that bridge created.\n{out}'
 
     out = await IpLink.set(
         input_data=[{device_host_name: [
-            {"device": bridge, "operstate": "up"}]}])
-    assert out[0][device_host_name]["rc"] == 0, f"Verify that bridge set to 'UP' state.\n{out}"
+            {'device': bridge, 'operstate': 'up'}]}])
+    assert out[0][device_host_name]['rc'] == 0, f"Verify that bridge set to 'UP' state.\n{out}"
 
     out = await IpLink.set(
         input_data=[{device_host_name: [
-            {"device": port, "master": bridge, "operstate": "up"} for port in ports]}])
+            {'device': port, 'master': bridge, 'operstate': 'up'} for port in ports]}])
     err_msg = f"Verify that bridge entities set to 'UP' state and links enslaved to bridge.\n{out}"
-    assert out[0][device_host_name]["rc"] == 0, err_msg
+    assert out[0][device_host_name]['rc'] == 0, err_msg
 
     out = await IpAddress.add(
         input_data=[{device_host_name: [
-            {"dev": bridge, "prefix": f"{prefix}/24"}]}])
-    assert out[0][device_host_name]["rc"] == 0, f"Failed to add IP address to bridge.\n{out}"
+            {'dev': bridge, 'prefix': f'{prefix}/24'}]}])
+    assert out[0][device_host_name]['rc'] == 0, f'Failed to add IP address to bridge.\n{out}'
 
-    out = await IpLink.show(input_data=[{device_host_name: [{"device": ports[0], "cmd_options": "-j"}]}],
+    out = await IpLink.show(input_data=[{device_host_name: [{'device': ports[0], 'cmd_options': '-j'}]}],
                             parse_output=True)
-    assert out[0][device_host_name]["rc"] == 0, f"Failed to display device attributes.\n{out}"
+    assert out[0][device_host_name]['rc'] == 0, f'Failed to display device attributes.\n{out}'
 
-    dev_attributes = out[0][device_host_name]["parsed_output"]
-    self_mac = dev_attributes[0]["address"]
-    srcMac = "00:00:AA:00:00:01"
+    dev_attributes = out[0][device_host_name]['parsed_output']
+    self_mac = dev_attributes[0]['address']
+    srcMac = '00:00:AA:00:00:01'
 
     address_map = (
         # swp port, tg port,    tg ip,     gw,        plen
-        (ports[0], tg_ports[0], "1.1.1.2", "1.1.1.1", 24),
-        (ports[1], tg_ports[1], "1.1.1.3", "1.1.1.1", 24)
+        (ports[0], tg_ports[0], '1.1.1.2', '1.1.1.1', 24),
+        (ports[1], tg_ports[1], '1.1.1.3', '1.1.1.1', 24)
     )
 
     dev_groups = tgen_utils_dev_groups_from_config(
-        {"ixp": port, "ip": ip, "gw": gw, "plen": plen}
+        {'ixp': port, 'ip': ip, 'gw': gw, 'plen': plen}
         for _, port, ip, gw, plen in address_map
     )
 
@@ -104,52 +104,52 @@ async def test_bridging_bum_traffic_bridge_with_rif(testbed):
     list_streams = get_streams(srcMac, self_mac, prefix, dev_groups, tg_ports)
     await tgen_utils_setup_streams(tgen_dev, config_file_name=None, streams=list_streams)
 
-    tcpdump = asyncio.create_task(tb_device_tcpdump(dent_dev, "swp1", "-n", count_only=False, timeout=5, dump=True))
+    tcpdump = asyncio.create_task(tb_device_tcpdump(dent_dev, 'swp1', '-n', count_only=False, timeout=5, dump=True))
 
     await tgen_utils_start_traffic(tgen_dev)
     await asyncio.sleep(traffic_duration)
     await tgen_utils_stop_traffic(tgen_dev)
 
     # check the traffic stats
-    stats = await tgen_utils_get_traffic_stats(tgen_dev, "Flow Statistics")
+    stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
     expected_loss = {
-        "Bridged_UnknownL2UC": 0,
-        "BridgedLLDP": 100,
-        "LACPDU": 100,
-        "IPv4ToMe": 100,
-        "ARP_Request_BC": 0,
-        "ARP_Reply": 100,
-        "IPv4_Broadcast": 0,
-        "IPV4_SSH": 100,
-        "IPV4_Telnet": 100,
-        "Host_to_Host_IPv4": 100,
-        "IPv4_ICMP_Request": 100,
-        "IPv4_DCHP_BC": 0,
-        "IPv4_Reserved_MC" :0,
-        "IPv4_All_Systems_on_this_Subnet": 0,
-        "IPv4_All_Routers_on_this_Subnet": 0,
-        "IPv4_OSPFIGP" : 0,
-        "IPv4_RIP2_Routers": 0,
-        "IPv4_EIGRP_Routers": 0,
-        "IPv4_DHCP_Server/Relay_Agent": 0,
-        "IPv4_VRRP": 0,
-        "IPv4_IGMP": 0,
-        "IPV4_BGP": 100,
+        'Bridged_UnknownL2UC': 0,
+        'BridgedLLDP': 100,
+        'LACPDU': 100,
+        'IPv4ToMe': 100,
+        'ARP_Request_BC': 0,
+        'ARP_Reply': 100,
+        'IPv4_Broadcast': 0,
+        'IPV4_SSH': 100,
+        'IPV4_Telnet': 100,
+        'Host_to_Host_IPv4': 100,
+        'IPv4_ICMP_Request': 100,
+        'IPv4_DCHP_BC': 0,
+        'IPv4_Reserved_MC' :0,
+        'IPv4_All_Systems_on_this_Subnet': 0,
+        'IPv4_All_Routers_on_this_Subnet': 0,
+        'IPv4_OSPFIGP' : 0,
+        'IPv4_RIP2_Routers': 0,
+        'IPv4_EIGRP_Routers': 0,
+        'IPv4_DHCP_Server/Relay_Agent': 0,
+        'IPv4_VRRP': 0,
+        'IPv4_IGMP': 0,
+        'IPV4_BGP': 100,
     }
     for row in stats.Rows:
-        assert tgen_utils_get_loss(row) == expected_loss[row["Traffic Item"]], \
-            f"Verify that traffic from swp1 to swp2 forwarded/not forwarded in accordance.\n"
+        assert tgen_utils_get_loss(row) == expected_loss[row['Traffic Item']], \
+            f'Verify that traffic from swp1 to swp2 forwarded/not forwarded in accordance.\n'
 
     await tcpdump
-    print(f"TCPDUMP: packets={tcpdump.result()}")
+    print(f'TCPDUMP: packets={tcpdump.result()}')
     data = tcpdump.result()
 
-    count_of_packets = re.findall(r"(\d+) packets (captured|received|dropped)", data)
+    count_of_packets = re.findall(r'(\d+) packets (captured|received|dropped)', data)
     for count, type in count_of_packets:
-        if type == "received":
-            assert int(count) > 0, f"Verify that packets are received by filter.\n"
-        if type == "captured" or type == "dropped":
-            assert int(count) == 0, f"Verify that packets are captured and dropped by kernel.\n"
+        if type == 'received':
+            assert int(count) > 0, f'Verify that packets are received by filter.\n'
+        if type == 'captured' or type == 'dropped':
+            assert int(count) == 0, f'Verify that packets are captured and dropped by kernel.\n'
 
 async def test_bridging_bum_traffic_bridge_without_rif(testbed):
     """
@@ -170,50 +170,50 @@ async def test_bridging_bum_traffic_bridge_without_rif(testbed):
                          b) Trapped packets to CPU.
     """
 
-    bridge = "br0"
+    bridge = 'br0'
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 2)
     if not tgen_dev or not dent_devices:
-        print("The testbed does not have enough dent with tgen connections")
+        print('The testbed does not have enough dent with tgen connections')
         return
     dent_dev = dent_devices[0]
     device_host_name = dent_dev.host_name
     tg_ports = tgen_dev.links_dict[device_host_name][0]
     ports = tgen_dev.links_dict[device_host_name][1]
     traffic_duration = 10
-    prefix = "100.1.1.253"
+    prefix = '100.1.1.253'
 
     out = await IpLink.add(
         input_data=[{device_host_name: [
-            {"device": bridge, "type": "bridge"}]}])
-    assert out[0][device_host_name]["rc"] == 0, f"Verify that bridge created.\n{out}"
+            {'device': bridge, 'type': 'bridge'}]}])
+    assert out[0][device_host_name]['rc'] == 0, f'Verify that bridge created.\n{out}'
 
     out = await IpLink.set(
         input_data=[{device_host_name: [
-            {"device": bridge, "operstate": "up"}]}])
-    assert out[0][device_host_name]["rc"] == 0, f"Verify that bridge set to 'UP' state.\n{out}"
+            {'device': bridge, 'operstate': 'up'}]}])
+    assert out[0][device_host_name]['rc'] == 0, f"Verify that bridge set to 'UP' state.\n{out}"
 
     out = await IpLink.set(
         input_data=[{device_host_name: [
-            {"device": port, "master": bridge, "operstate": "up"} for port in ports]}])
+            {'device': port, 'master': bridge, 'operstate': 'up'} for port in ports]}])
     err_msg = f"Verify that bridge entities set to 'UP' state and links enslaved to bridge.\n{out}"
-    assert out[0][device_host_name]["rc"] == 0, err_msg
+    assert out[0][device_host_name]['rc'] == 0, err_msg
 
-    out = await IpLink.show(input_data=[{device_host_name: [{"device": ports[0], "cmd_options": "-j"}]}],
+    out = await IpLink.show(input_data=[{device_host_name: [{'device': ports[0], 'cmd_options': '-j'}]}],
                             parse_output=True)
-    assert out[0][device_host_name]["rc"] == 0, f"Failed to display device attributes.\n{out}"
+    assert out[0][device_host_name]['rc'] == 0, f'Failed to display device attributes.\n{out}'
 
-    dev_attributes = out[0][device_host_name]["parsed_output"]
-    self_mac = dev_attributes[0]["address"]
-    srcMac = "00:00:AA:00:00:01"
+    dev_attributes = out[0][device_host_name]['parsed_output']
+    self_mac = dev_attributes[0]['address']
+    srcMac = '00:00:AA:00:00:01'
 
     address_map = (
         # swp port, tg port,    tg ip,     gw,        plen
-        (ports[0], tg_ports[0], "1.1.1.2", "1.1.1.1", 24),
-        (ports[1], tg_ports[1], "1.1.1.3", "1.1.1.1", 24)
+        (ports[0], tg_ports[0], '1.1.1.2', '1.1.1.1', 24),
+        (ports[1], tg_ports[1], '1.1.1.3', '1.1.1.1', 24)
     )
 
     dev_groups = tgen_utils_dev_groups_from_config(
-        {"ixp": port, "ip": ip, "gw": gw, "plen": plen}
+        {'ixp': port, 'ip': ip, 'gw': gw, 'plen': plen}
         for _, port, ip, gw, plen in address_map
     )
 
@@ -222,49 +222,49 @@ async def test_bridging_bum_traffic_bridge_without_rif(testbed):
     list_streams = get_streams(srcMac, self_mac, prefix, dev_groups, tg_ports)
     await tgen_utils_setup_streams(tgen_dev, config_file_name=None, streams=list_streams)
 
-    tcpdump = asyncio.create_task(tb_device_tcpdump(dent_dev, "swp1", "-n", count_only=False, timeout=5, dump=True))
+    tcpdump = asyncio.create_task(tb_device_tcpdump(dent_dev, 'swp1', '-n', count_only=False, timeout=5, dump=True))
 
     await tgen_utils_start_traffic(tgen_dev)
     await asyncio.sleep(traffic_duration)
     await tgen_utils_stop_traffic(tgen_dev)
 
     # check the traffic stats
-    stats = await tgen_utils_get_traffic_stats(tgen_dev, "Flow Statistics")
+    stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
     expected_loss = {
-        "Bridged_UnknownL2UC": 0,
-        "BridgedLLDP": 100,
-        "LACPDU": 100,
-        "IPv4ToMe": 100,
-        "ARP_Request_BC": 0,
-        "ARP_Reply": 100,
-        "IPv4_Broadcast": 0,
-        "IPV4_SSH": 100,
-        "IPV4_Telnet": 100,
-        "Host_to_Host_IPv4": 100,
-        "IPv4_ICMP_Request": 100,
-        "IPv4_DCHP_BC": 0,
-        "IPv4_Reserved_MC" :0,
-        "IPv4_All_Systems_on_this_Subnet": 0,
-        "IPv4_All_Routers_on_this_Subnet": 0,
-        "IPv4_OSPFIGP" : 0,
-        "IPv4_RIP2_Routers": 0,
-        "IPv4_EIGRP_Routers": 0,
-        "IPv4_DHCP_Server/Relay_Agent": 0,
-        "IPv4_VRRP": 0,
-        "IPv4_IGMP": 0,
-        "IPV4_BGP": 100,
+        'Bridged_UnknownL2UC': 0,
+        'BridgedLLDP': 100,
+        'LACPDU': 100,
+        'IPv4ToMe': 100,
+        'ARP_Request_BC': 0,
+        'ARP_Reply': 100,
+        'IPv4_Broadcast': 0,
+        'IPV4_SSH': 100,
+        'IPV4_Telnet': 100,
+        'Host_to_Host_IPv4': 100,
+        'IPv4_ICMP_Request': 100,
+        'IPv4_DCHP_BC': 0,
+        'IPv4_Reserved_MC' :0,
+        'IPv4_All_Systems_on_this_Subnet': 0,
+        'IPv4_All_Routers_on_this_Subnet': 0,
+        'IPv4_OSPFIGP' : 0,
+        'IPv4_RIP2_Routers': 0,
+        'IPv4_EIGRP_Routers': 0,
+        'IPv4_DHCP_Server/Relay_Agent': 0,
+        'IPv4_VRRP': 0,
+        'IPv4_IGMP': 0,
+        'IPV4_BGP': 100,
     }
     for row in stats.Rows:
-        assert tgen_utils_get_loss(row) == expected_loss[row["Traffic Item"]], \
-            f"Verify that traffic from swp1 to swp2 forwarded/not forwarded in accordance.\n"
+        assert tgen_utils_get_loss(row) == expected_loss[row['Traffic Item']], \
+            f'Verify that traffic from swp1 to swp2 forwarded/not forwarded in accordance.\n'
 
     await tcpdump
-    print(f"TCPDUMP: packets={tcpdump.result()}")
+    print(f'TCPDUMP: packets={tcpdump.result()}')
     data = tcpdump.result()
 
-    count_of_packets = re.findall(r"(\d+) packets (captured|received|dropped)", data)
+    count_of_packets = re.findall(r'(\d+) packets (captured|received|dropped)', data)
     for count, type in count_of_packets:
-        if type == "received":
-            assert int(count) > 0, f"Verify that packets are received by filter.\n"
-        if type == "captured" or type == "dropped":
-            assert int(count) == 0, f"Verify that packets are captured and dropped by kernel.\n"
+        if type == 'received':
+            assert int(count) > 0, f'Verify that packets are received by filter.\n'
+        if type == 'captured' or type == 'dropped':
+            assert int(count) == 0, f'Verify that packets are captured and dropped by kernel.\n'

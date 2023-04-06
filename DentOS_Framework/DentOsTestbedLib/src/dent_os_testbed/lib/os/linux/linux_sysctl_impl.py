@@ -8,12 +8,12 @@ class LinuxSysctlImpl(LinuxSysctl):
         Get the attribute value
 
         """
-        params = kwarg["params"]
-        cmd = "sysctl "
-        if "options" in params:
-            cmd += params["options"]
+        params = kwarg['params']
+        cmd = 'sysctl '
+        if 'options' in params:
+            cmd += params['options']
 
-        cmd += " {}".format(params["variable"])
+        cmd += ' {}'.format(params['variable'])
         ############# Implement me ################
 
         return cmd
@@ -24,16 +24,16 @@ class LinuxSysctlImpl(LinuxSysctl):
 
         """
         # If we set -n option, values will be printed without names, so we return only values
-        if "-n" in kwarg["commands"]:
+        if '-n' in kwarg['commands']:
             values = list()
             for line in output.splitlines():
                 values.append(line.strip())
             return values
         # We can parse output into dict only if we set the correct options
-        if " = " in output:
+        if ' = ' in output:
             values = dict()
             for line in output.splitlines():
-                var, value = line.split(" = ")
+                var, value = line.split(' = ')
                 values[var] = value
             return values
         return output
@@ -43,12 +43,12 @@ class LinuxSysctlImpl(LinuxSysctl):
         Set the attribute value
 
         """
-        params = kwarg["params"]
-        cmd = "sysctl "
-        if "options" in params:
-            cmd += params["options"]
+        params = kwarg['params']
+        cmd = 'sysctl '
+        if 'options' in params:
+            cmd += params['options']
 
-        cmd += " {}={}".format(params["variable"], params["value"])
+        cmd += ' {}={}'.format(params['variable'], params['value'])
         ############# Implement me ################
 
         return cmd
@@ -58,6 +58,6 @@ class LinuxSysctlImpl(LinuxSysctl):
         Set the attribute value
 
         """
-        if "sysctl:" in output:
-            raise ValueError("Error while setting sysctl value:\n{}".format(output))
+        if 'sysctl:' in output:
+            raise ValueError('Error while setting sysctl value:\n{}'.format(output))
         return output.strip()

@@ -8,7 +8,7 @@ from dent_os_testbed.utils.perf_util import PerfUtil
 from .utils import TestDevice
 
 pytest.devices = [TestDevice()]
-pytestmark = pytest.mark.skip("Perf tests still WIP")
+pytestmark = pytest.mark.skip('Perf tests still WIP')
 
 
 class TestBedSetup(object):
@@ -20,16 +20,16 @@ class TestBedSetup(object):
         if not TestBedSetup.perf_util:
             TestBedSetup.perf_util = PerfUtil(devices=pytest.devices, frequency=1)
             # TestBedSetup.perf_util.start_monitoring()
-        if "perf_thresholds" in kw:
-            TestBedSetup.perf_util.set_thresholds(thresholds=kw.get("perf_thresholds"))
+        if 'perf_thresholds' in kw:
+            TestBedSetup.perf_util.set_thresholds(thresholds=kw.get('perf_thresholds'))
 
     def __call__(self, func, *args, **kwargs):
         def wrapper(*args, **kwargs):
-            if "perf_thresholds" in self.conf_kw:
-                print("Enabling Per for " + func.__name__)
+            if 'perf_thresholds' in self.conf_kw:
+                print('Enabling Per for ' + func.__name__)
                 TestBedSetup.perf_util.resume()
             val = func(*args, **kwargs)
-            if "perf_thresholds" in self.conf_kw:
+            if 'perf_thresholds' in self.conf_kw:
                 TestBedSetup.perf_util.pause()
             return val
 
@@ -39,9 +39,9 @@ class TestBedSetup(object):
 @TestBedSetup(
     discovery=True,
     perf_thresholds={
-        "CPU": {"idle": (50.0, 100.0)},
-        "Memory": {"MemTotal": (0, 81308160)},
-        "Process": {"all": {"VmPeak": (0, 114680)}, "sshd": {"VmPeak": (0, 114680)}},
+        'CPU': {'idle': (50.0, 100.0)},
+        'Memory': {'MemTotal': (0, 81308160)},
+        'Process': {'all': {'VmPeak': (0, 114680)}, 'sshd': {'VmPeak': (0, 114680)}},
     },
 )
 def test_that_iproute2_address(*args):
@@ -50,21 +50,21 @@ def test_that_iproute2_address(*args):
     dv1 = TestDevice()
 
     out = IpAddress.show(
-        input_data=[{"test_dev": [{}]}],
-        device_obj={"test_dev": dv1},
+        input_data=[{'test_dev': [{}]}],
+        device_obj={'test_dev': dv1},
     )
     # check if the command was formed
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     time.sleep(3)
 
 
 @TestBedSetup(
     discovery=True,
     perf_thresholds={
-        "CPU": {"idle": (60.0, 100.0)},
-        "Memory": {"MemTotal": (0, 81308160)},
-        "Process": {"all": {"VmPeak": (0, 114680)}, "sshd": {"VmPeak": (0, 114680)}},
+        'CPU': {'idle': (60.0, 100.0)},
+        'Memory': {'MemTotal': (0, 81308160)},
+        'Process': {'all': {'VmPeak': (0, 114680)}, 'sshd': {'VmPeak': (0, 114680)}},
     },
 )
 def test_that_iproute2_link(*args):
@@ -73,11 +73,11 @@ def test_that_iproute2_link(*args):
     dv1 = TestDevice()
 
     out = IpLink.show(
-        input_data=[{"test_dev": [{}]}],
-        device_obj={"test_dev": dv1},
+        input_data=[{'test_dev': [{}]}],
+        device_obj={'test_dev': dv1},
     )
 
     # check if the command was formed
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     time.sleep(3)

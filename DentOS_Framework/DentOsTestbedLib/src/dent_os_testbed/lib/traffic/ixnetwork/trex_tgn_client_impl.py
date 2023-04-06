@@ -38,36 +38,36 @@ class TrexTgnClientImpl(TrexTgnClient):
 
         """
         ############# Implement me ################
-        if command == "disconnect":
+        if command == 'disconnect':
             if TrexTgnClientImpl.session is not None:
                 device.applog.info(
-                    "Removing Session ID %d" % (TrexTgnClientImpl.session.ctx.session_id)
+                    'Removing Session ID %d' % (TrexTgnClientImpl.session.ctx.session_id)
                 )
                 TrexTgnClientImpl.session.disconnect()
                 TrexTgnClientImpl.session = None
 
-        params = kwarg["params"]
-        if not params or not params[0] or "test" in device.host_name:
-            return 0, ""
+        params = kwarg['params']
+        if not params or not params[0] or 'test' in device.host_name:
+            return 0, ''
         param = params[0]
         try:
             from trex_stl_lib.api import STLClient
 
-            caddr = param["client_addr"]
+            caddr = param['client_addr']
             if not caddr:
-                return 0, "No Address to connect!"
+                return 0, 'No Address to connect!'
             TrexTgnClientImpl.session = STLClient(server=caddr)
             TrexTgnClientImpl.session.connect()
             device.applog.info(
-                "Connection to TREX API Server Established %d"
+                'Connection to TREX API Server Established %d'
                 % (TrexTgnClientImpl.session.ctx.session_id)
             )
-            ixia_ports = param["ixia_ports"]
-            swp_ports = param["swp_ports"]
-            dev_groups = param["dev_groups"]
+            ixia_ports = param['ixia_ports']
+            swp_ports = param['swp_ports']
+            dev_groups = param['dev_groups']
         except Exception as e:
             return -1, str(e)
-        return 0, ""
+        return 0, ''
 
     def parse_connect(self, command, output, *argv, **kwarg):
         """
@@ -76,8 +76,8 @@ class TrexTgnClientImpl(TrexTgnClient):
           disconnect -
 
         """
-        params = kwarg["params"]
-        cmd = " {} ".format(command)
+        params = kwarg['params']
+        cmd = ' {} '.format(command)
         ############# Implement me ################
 
         return cmd
@@ -89,8 +89,8 @@ class TrexTgnClientImpl(TrexTgnClient):
            save_config - config_file_name
 
         """
-        params = kwarg["params"]
-        cmd = " {} ".format(command)
+        params = kwarg['params']
+        cmd = ' {} '.format(command)
         ############# Implement me ################
 
         return cmd
@@ -104,7 +104,7 @@ class TrexTgnClientImpl(TrexTgnClient):
         """
         ############# Implement me ################
 
-        return 0, ""
+        return 0, ''
 
     def parse_config(self, command, output, *argv, **kwarg):
         """
@@ -113,8 +113,8 @@ class TrexTgnClientImpl(TrexTgnClient):
            save_config - config_file_name
 
         """
-        params = kwarg["params"]
-        cmd = " {} ".format(command)
+        params = kwarg['params']
+        cmd = ' {} '.format(command)
         ############# Implement me ################
 
         return cmd
@@ -129,8 +129,8 @@ class TrexTgnClientImpl(TrexTgnClient):
            clear_stats - [traffic_names]
 
         """
-        params = kwarg["params"]
-        cmd = " {} ".format(command)
+        params = kwarg['params']
+        cmd = ' {} '.format(command)
         ############# Implement me ################
 
         return cmd
@@ -147,7 +147,7 @@ class TrexTgnClientImpl(TrexTgnClient):
         """
         ############# Implement me ################
 
-        return 0, ""
+        return 0, ''
 
     def parse_traffic_item(self, command, output, *argv, **kwarg):
         """
@@ -159,8 +159,8 @@ class TrexTgnClientImpl(TrexTgnClient):
            clear_stats - [traffic_names]
 
         """
-        params = kwarg["params"]
-        cmd = " {} ".format(command)
+        params = kwarg['params']
+        cmd = ' {} '.format(command)
         ############# Implement me ################
 
         return cmd
@@ -175,8 +175,8 @@ class TrexTgnClientImpl(TrexTgnClient):
            clear_protocol_stats - [protocols]
 
         """
-        params = kwarg["params"]
-        cmd = " {} ".format(command)
+        params = kwarg['params']
+        cmd = ' {} '.format(command)
         ############# Implement me ################
 
         return cmd
@@ -193,7 +193,7 @@ class TrexTgnClientImpl(TrexTgnClient):
         """
         ############# Implement me ################
 
-        return 0, ""
+        return 0, ''
 
     def parse_protocol(self, command, output, *argv, **kwarg):
         """
@@ -205,8 +205,8 @@ class TrexTgnClientImpl(TrexTgnClient):
            clear_protocol_stats - [protocols]
 
         """
-        params = kwarg["params"]
-        cmd = " {} ".format(command)
+        params = kwarg['params']
+        cmd = ' {} '.format(command)
         ############# Implement me ################
 
         return cmd

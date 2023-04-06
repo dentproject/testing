@@ -52,7 +52,7 @@ class LinuxIpTables(TestLibObject):
             return self.format_update_chain(command, *argv, **kwarg)
 
 
-        raise NameError("Cannot find command "+command)
+        raise NameError('Cannot find command '+command)
 
     def parse_output(self, command, output, *argv, **kwarg):
         if command in ['append', 'check', 'delete', 'insert', 'replace']:
@@ -65,4 +65,4 @@ class LinuxIpTables(TestLibObject):
             return self.parse_update_chain(command, output, *argv, **kwarg)
 
 
-        raise NameError("Cannot find command "+command)
+        raise NameError('Cannot find command '+command)

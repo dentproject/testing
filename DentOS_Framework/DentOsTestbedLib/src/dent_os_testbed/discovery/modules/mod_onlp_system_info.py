@@ -34,22 +34,22 @@ class OnlpSystemInfoMod(Module):
         for i, dut in enumerate(self.report.duts):
             if not dut.device_id: continue
             dev = self.ctx.devices_dict[dut.device_id]
-            if dev.os == "ixnetwork" or not await dev.is_connected():
-                print("Device not connected skipping onlp_system_info discovery")
+            if dev.os == 'ixnetwork' or not await dev.is_connected():
+                print('Device not connected skipping onlp_system_info discovery')
                 continue
-            print("Running onlp_system_info Discovery on " + dev.host_name)
+            print('Running onlp_system_info Discovery on ' + dev.host_name)
             out = await OnlpSystemInfo.show(
                 input_data=[{dev.host_name: [{'dut_discovery':True}]}],
                 device_obj={dev.host_name: dev},
                 parse_output=True
             )
-            if out[0][dev.host_name]["rc"] != 0:
+            if out[0][dev.host_name]['rc'] != 0:
                 print(out)
-                print("Failed to get onlp_system_info")
+                print('Failed to get onlp_system_info')
                 continue
             if 'parsed_output' not in out[0][dev.host_name]:
-                print("Failed to get parsed_output onlp_system_info")
+                print('Failed to get parsed_output onlp_system_info')
                 print (out)
                 continue
-            self.set_onlp_system_info(out[0][dev.host_name]["parsed_output"], self.report.duts[i].platform.onlp.system_information)
-            print("Finished onlp_system_info Discovery on {} with {} entries".format(dev.host_name, len(self.report.duts[i].platform.onlp.system_information)))
+            self.set_onlp_system_info(out[0][dev.host_name]['parsed_output'], self.report.duts[i].platform.onlp.system_information)
+            print('Finished onlp_system_info Discovery on {} with {} entries'.format(dev.host_name, len(self.report.duts[i].platform.onlp.system_information)))

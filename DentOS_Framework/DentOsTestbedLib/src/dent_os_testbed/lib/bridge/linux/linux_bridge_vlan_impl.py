@@ -15,33 +15,33 @@ class LinuxBridgeVlanImpl(LinuxBridgeVlan):
 
         """
         ############# Implement me ################
-        params = kwarg["params"]
-        cmd = "bridge {} vlan {} ".format(params.get("cmd_options", ""), command)
+        params = kwarg['params']
+        cmd = 'bridge {} vlan {} '.format(params.get('cmd_options', ''), command)
         # custom code here
-        if "device" in params:
-            cmd += "dev {} ".format((params["device"]))
-        if "vid" in params:
-            cmd += "vid {} ".format((params["vid"]))
-        if "pvid" in params and params["pvid"]:
-            cmd += "pvid "
-        if "untagged" in params and params["untagged"]:
-            cmd += "untagged "
-        if "self" in params and params["self"]:
-            cmd += "self "
-        if "master" in params and params["master"]:
-            cmd += "master "
+        if 'device' in params:
+            cmd += 'dev {} '.format((params['device']))
+        if 'vid' in params:
+            cmd += 'vid {} '.format((params['vid']))
+        if 'pvid' in params and params['pvid']:
+            cmd += 'pvid '
+        if 'untagged' in params and params['untagged']:
+            cmd += 'untagged '
+        if 'self' in params and params['self']:
+            cmd += 'self '
+        if 'master' in params and params['master']:
+            cmd += 'master '
         return cmd
 
     def format_show(self, command, *argv, **kwarg):
         """"""
         ############# Implement me ################
-        params = kwarg["params"]
-        if params.get("dut_discovery", False):
-            params["cmd_options"] = "-j"
-        cmd = "bridge {} vlan {} ".format(params.get("cmd_options", ""), command)
+        params = kwarg['params']
+        if params.get('dut_discovery', False):
+            params['cmd_options'] = '-j'
+        cmd = 'bridge {} vlan {} '.format(params.get('cmd_options', ''), command)
         # custom code here
-        if "device" in params:
-            cmd += "dev {} ".format((params["device"]))
+        if 'device' in params:
+            cmd += 'dev {} '.format((params['device']))
 
         return cmd
 

@@ -20,7 +20,7 @@ async def test_alpha_lab_services_ntp(testbed):
     Test Procedure:
     """
     if not testbed.args.is_provisioned:
-        testbed.applog.info(f"Skipping test since not on provisioned setup")
+        testbed.applog.info(f'Skipping test since not on provisioned setup')
         return
     # Several devices need to be NTP servers (OOBs and DIS), validate service can be run on the devices and
     #   clients can sync (see also ECU tests and provisioning tests for additional tests on this)
@@ -32,6 +32,6 @@ async def test_alpha_lab_services_ntp(testbed):
     for dev in devices:
         # these services should run on these devices
         if dev.type in [DeviceType.OUT_OF_BOUND_SWITCH, DeviceType.DISTRIBUTION_ROUTER]:
-            await tb_device_check_services(dev, None, True, ["ntp.service"])
+            await tb_device_check_services(dev, None, True, ['ntp.service'])
         # the ntp on others should have synced from one of the above OOB or DIST
         # TODO

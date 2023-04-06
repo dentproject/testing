@@ -40,21 +40,21 @@ class LinuxInterfaceImpl(LinuxInterface):
                Only run the interfaces file parser
 
         """
-        params = kwarg["params"]
-        cmd = "if{} ".format(command)
+        params = kwarg['params']
+        cmd = 'if{} '.format(command)
         ############# Implement me ################
-        if "options" in params:
-            cmd += "{} ".format(params["options"])
-        if "exclude_iface" in params:
+        if 'options' in params:
+            cmd += '{} '.format(params['options'])
+        if 'exclude_iface' in params:
             # ifdown -X ma1 -X lo -a
-            for e in params["exclude_iface"]:
-                cmd += "-X {} ".format(e)
-        if "force" in params and params["force"]:
-            cmd += "-f "
-        if "iface" in params:
+            for e in params['exclude_iface']:
+                cmd += '-X {} '.format(e)
+        if 'force' in params and params['force']:
+            cmd += '-f '
+        if 'iface' in params:
             # ifdown ma1 lo
-            for i in params["iface"]:
-                cmd += "{} ".format(i)
+            for i in params['iface']:
+                cmd += '{} '.format(i)
 
         return cmd
 
@@ -85,14 +85,14 @@ class LinuxInterfaceImpl(LinuxInterface):
                supported syntax from them if provided by the module.
 
         """
-        params = kwarg["params"]
-        cmd = "ifquery "
+        params = kwarg['params']
+        cmd = 'ifquery '
         ############# Implement me ################
-        if "options" in params:
-            cmd += "{} ".format(params["options"])
-        if "iface" in params:
-            for i in params["iface"]:
-                cmd += "{} ".format(i)
+        if 'options' in params:
+            cmd += '{} '.format(params['options'])
+        if 'iface' in params:
+            for i in params['iface']:
+                cmd += '{} '.format(i)
         return cmd
 
     def format_reload(self, command, *argv, **kwarg):
@@ -112,14 +112,14 @@ class LinuxInterfaceImpl(LinuxInterface):
                 Only run the interfaces file parser
 
         """
-        params = kwarg["params"]
-        cmd = "ifreload "
+        params = kwarg['params']
+        cmd = 'ifreload '
         ############# Implement me ################
-        if "options" in params:
-            cmd += "{} ".format(params["options"])
-        if "exclude_iface" in params:
+        if 'options' in params:
+            cmd += '{} '.format(params['options'])
+        if 'exclude_iface' in params:
             # ifdown -X ma1 -X lo -a
-            for e in params["exclude_iface"]:
-                cmd += "-X {} ".format(e)
+            for e in params['exclude_iface']:
+                cmd += '-X {} '.format(e)
 
         return cmd

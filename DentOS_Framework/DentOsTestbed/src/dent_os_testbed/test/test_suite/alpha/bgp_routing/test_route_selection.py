@@ -47,7 +47,7 @@ async def test_alpha_lab_bgp_routing_route_selection(testbed):
         1,
     )
     if not tgen_dev or not devices or len(devices) < 2:
-        print("The testbed does not have enough dent with tgen connections")
+        print('The testbed does not have enough dent with tgen connections')
         return
     devices_info = {}
     bgp_neighbors = {}
@@ -58,14 +58,14 @@ async def test_alpha_lab_bgp_routing_route_selection(testbed):
         bgp_neighbors[dd.host_name] = {}
         for swp in tgen_dev.links_dict[dd.host_name][1]:
             bgp_neighbors[dd.host_name][swp] = {
-                "num_route_ranges": 1,
-                "local_as": 200,
-                "hold_timer": 10,
-                "update_interval": 3,
-                "route_ranges": [
+                'num_route_ranges': 1,
+                'local_as': 200,
+                'hold_timer': 10,
+                'update_interval': 3,
+                'route_ranges': [
                     {
-                        "number_of_routes": num_routes,
-                        "first_route": f"{br_ip}.0.0.1",
+                        'number_of_routes': num_routes,
+                        'first_route': f'{br_ip}.0.0.1',
                     },
                 ],
             }
@@ -76,22 +76,22 @@ async def test_alpha_lab_bgp_routing_route_selection(testbed):
     dst = []
     for dd in devices:
         for swp in tgen_dev.links_dict[dd.host_name][1]:
-            src.append(f"{dd.host_name}_{swp}")
-            dst.append(f"{dd.host_name}_{swp}")
+            src.append(f'{dd.host_name}_{swp}')
+            dst.append(f'{dd.host_name}_{swp}')
 
     # create mesh stream.
     streams = {
-        "stream1": {
-            "type": "bgp",
-            "bgp_source": src,
-            "bgp_destination": dst,
-            "protocol": "ip",
-            "ipproto": "tcp",
+        'stream1': {
+            'type': 'bgp',
+            'bgp_source': src,
+            'bgp_destination': dst,
+            'protocol': 'ip',
+            'ipproto': 'tcp',
         },
     }
     await tgen_utils_setup_streams(
         tgen_dev,
-        pytest._args.config_dir + f"/{tgen_dev.host_name}/tgen_bgp_route_flap_config.ixncfg",
+        pytest._args.config_dir + f'/{tgen_dev.host_name}/tgen_bgp_route_flap_config.ixncfg',
         streams,
         force_update=True,
     )
@@ -107,62 +107,62 @@ async def test_alpha_lab_bgp_routing_route_selection(testbed):
         swp_tgen_ports = tgen_dev.links_dict[d1.host_name][1]
         swp = swp_tgen_ports[0]
         await tgen_utils_get_swp_info(d1, swp, swp_info)
-        sip = ".".join(swp_info["ip"][:-1] + ["2"])
+        sip = '.'.join(swp_info['ip'][:-1] + ['2'])
 
         for i in range(num_routes):
             out = await FrrIpRoute.add(
                 input_data=[
-                    {d1.host_name: [{"network": f"30.0.{i}.0/24", "gateway": sip, "distance": 240}]}
+                    {d1.host_name: [{'network': f'30.0.{i}.0/24', 'gateway': sip, 'distance': 240}]}
                 ]
             )
-            d1.applog.info(f"Ran command FrrIpRoute.add out {out}")
+            d1.applog.info(f'Ran command FrrIpRoute.add out {out}')
             out = await FrrIpRoute.show(
-                input_data=[{dd.host_name: [{"network": f"30.0.{i}.0/24", "options": "json"}]}]
+                input_data=[{dd.host_name: [{'network': f'30.0.{i}.0/24', 'options': 'json'}]}]
             )
-            dd.applog.info(f"Ran command FrrIpRoute.show out {out}")
-            route_info = json.loads(out[0][dd.host_name]["result"])
+            dd.applog.info(f'Ran command FrrIpRoute.show out {out}')
+            route_info = json.loads(out[0][dd.host_name]['result'])
             if not route_info:
-                assert 0, f"30.0.{i}.0/24 Route not seen on {dd.host_name}"
+                assert 0, f'30.0.{i}.0/24 Route not seen on {dd.host_name}'
             # check if this is learnt on BGP
             found = False
-            for route in route_info[f"30.0.{i}.0/24"]:
-                if route["protocol"] == "bgp":
+            for route in route_info[f'30.0.{i}.0/24']:
+                if route['protocol'] == 'bgp':
                     found = True
             if not found:
-                assert 0, f"30.0.{i}.0/24 Route is not bgp {dd.host_name}"
+                assert 0, f'30.0.{i}.0/24 Route is not bgp {dd.host_name}'
     await tgen_utils_start_traffic(tgen_dev)
     # - check the traffic stats
     time.sleep(60)
     await tgen_utils_stop_traffic(tgen_dev)
-    stats = await tgen_utils_get_traffic_stats(tgen_dev, "Flow Statistics")
+    stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
     for row in stats.Rows:
         assert tgen_utils_get_loss(row) != 100.000, f'Failed>Loss percent: {row["Loss %"]}'
 
-    await tgen_util_flap_bgp_peer(tgen_dev, src[0][:-1] + " 1", skip_up=True)
-    tgen_dev.applog.info(f"Triggering flap on {tgen_dev.host_name}")
+    await tgen_util_flap_bgp_peer(tgen_dev, src[0][:-1] + ' 1', skip_up=True)
+    tgen_dev.applog.info(f'Triggering flap on {tgen_dev.host_name}')
 
     for dd in devices[1:]:
         for i in range(num_routes):
             out = await FrrIpRoute.show(
-                input_data=[{dd.host_name: [{"network": f"30.0.{i}.0/24", "options": "json"}]}]
+                input_data=[{dd.host_name: [{'network': f'30.0.{i}.0/24', 'options': 'json'}]}]
             )
-            dd.applog.info(f"Ran command FrrIpRoute.show out {out}")
-            route_info = json.loads(out[0][dd.host_name]["result"])
+            dd.applog.info(f'Ran command FrrIpRoute.show out {out}')
+            route_info = json.loads(out[0][dd.host_name]['result'])
             if not route_info:
-                assert 0, f"30.0.{i}.0/24 Route not seen on {dd.host_name}"
+                assert 0, f'30.0.{i}.0/24 Route not seen on {dd.host_name}'
             #  check for static nature here.
-            if route_info[f"30.0.{i}.0/24"][0]["protocol"] != "static":
-                assert 0, f"30.0.{i}.0/24 Route is not static {dd.host_name}"
+            if route_info[f'30.0.{i}.0/24'][0]['protocol'] != 'static':
+                assert 0, f'30.0.{i}.0/24 Route is not static {dd.host_name}'
 
     await tgen_utils_start_traffic(tgen_dev)
     # - check the traffic stats
     time.sleep(60)
     await tgen_utils_stop_traffic(tgen_dev)
     await tgen_utils_stop_traffic(tgen_dev)
-    stats = await tgen_utils_get_traffic_stats(tgen_dev, "Flow Statistics")
+    stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
     for row in stats.Rows:
         # if stream with dst 30.0.0.1 should have no traffic on it
-        if "-30.0.0.1" not in row["Source/Dest Value Pair"]:
+        if '-30.0.0.1' not in row['Source/Dest Value Pair']:
             continue
         assert tgen_utils_get_loss(row) == 100.000, f'Failed>Loss percent: {row["Loss %"]}'
 

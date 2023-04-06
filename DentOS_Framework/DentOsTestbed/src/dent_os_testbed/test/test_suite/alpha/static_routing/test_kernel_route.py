@@ -38,27 +38,27 @@ async def test_alpha_lab_static_routing_kernel_route_on_table(testbed):
     """
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 2)
     if not tgen_dev or not dent_devices:
-        print("The testbed does not have enough dent with tgen connections")
+        print('The testbed does not have enough dent with tgen connections')
         return
     dent_dev = dent_devices[0]
     dent = dent_dev.host_name
     swp_tgen_ports = tgen_dev.links_dict[dent][1]
-    swp = "ma1"
+    swp = 'ma1'
 
     out = await IpLink.show(
-        input_data=[{dent: [{"device": swp, "cmd_options": "-j"}]}],
+        input_data=[{dent: [{'device': swp, 'cmd_options': '-j'}]}],
     )
 
     swp_info = {}
     await tgen_utils_get_swp_info(dent_dev, swp, swp_info)
-    sip = ".".join(swp_info["ip"][:-1] + [str(int(swp[3:]) * 2)])
+    sip = '.'.join(swp_info['ip'][:-1] + [str(int(swp[3:]) * 2)])
 
     # start from a clean state
     await IpRoute.add(
         input_data=[
             {
                 dent_dev.host_name: [
-                    {"dst": "100.0.0.0/24", "via": f"{sip}", "dev": swp, "protocol": "kernel"}
+                    {'dst': '100.0.0.0/24', 'via': f'{sip}', 'dev': swp, 'protocol': 'kernel'}
                 ]
             }
         ],
@@ -67,16 +67,16 @@ async def test_alpha_lab_static_routing_kernel_route_on_table(testbed):
 
     await tgen_utils_connect_to_tgen(tgen_dev, dent_dev)
     streams = {
-        "bgp": {
-            "dstIp": "100.0.0.10",
-            "protocol": "ip",
-            "ipproto": "tcp",
-            "dstPort": "179",
+        'bgp': {
+            'dstIp': '100.0.0.10',
+            'protocol': 'ip',
+            'ipproto': 'tcp',
+            'dstPort': '179',
         },
     }
     await tgen_utils_setup_streams(
         tgen_dev,
-        pytest._args.config_dir + f"/{dent}/tgen_basic_static_route.ixncfg",
+        pytest._args.config_dir + f'/{dent}/tgen_basic_static_route.ixncfg',
         streams,
     )
     await tgen_utils_start_traffic(tgen_dev)

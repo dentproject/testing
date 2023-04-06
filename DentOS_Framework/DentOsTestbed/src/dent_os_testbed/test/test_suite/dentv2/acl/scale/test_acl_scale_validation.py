@@ -46,7 +46,7 @@ async def test_dentv2_acl_scale_validation(testbed):
         testbed, [DeviceType.INFRA_SWITCH], 2
     )
     if not tgen_dev or not infra_devices:
-        print("The testbed does not have enough dent with tgen connections")
+        print('The testbed does not have enough dent with tgen connections')
         return
 
     await tb_reload_nw_and_flush_firewall(infra_devices)
@@ -56,19 +56,19 @@ async def test_dentv2_acl_scale_validation(testbed):
         devices_info[dd.host_name] = [
             # 'count' is the number of endpoints
             {
-                "vlan": 500,
-                "name": "CHAIN0",
-                "count": 1,
+                'vlan': 500,
+                'name': 'CHAIN0',
+                'count': 1,
             },
             {
-                "vlan": 600,
-                "name": "CHAIN1",
-                "count": 1,
+                'vlan': 600,
+                'name': 'CHAIN1',
+                'count': 1,
             },
             {
-                "vlan": 400,
-                "name": "CHAIN2",
-                "count": 1,
+                'vlan': 400,
+                'name': 'CHAIN2',
+                'count': 1,
             },
         ]
 
@@ -80,157 +80,157 @@ async def test_dentv2_acl_scale_validation(testbed):
     chain2_dst = []
     for dd in infra_devices:
         for swp in tgen_dev.links_dict[dd.host_name][1]:
-            await tb_reset_qdisc(dd, swp, "ingress")
+            await tb_reset_qdisc(dd, swp, 'ingress')
 
-            chain0_src.append(f"{dd.host_name}_CHAIN0_{swp}")
-            chain0_dst.append(f"{dd.host_name}_CHAIN0_{swp}")
-            chain1_src.append(f"{dd.host_name}_CHAIN1_{swp}")
-            chain1_dst.append(f"{dd.host_name}_CHAIN1_{swp}")
-            chain2_src.append(f"{dd.host_name}_CHAIN2_{swp}")
-            chain2_dst.append(f"{dd.host_name}_CHAIN2_{swp}")
+            chain0_src.append(f'{dd.host_name}_CHAIN0_{swp}')
+            chain0_dst.append(f'{dd.host_name}_CHAIN0_{swp}')
+            chain1_src.append(f'{dd.host_name}_CHAIN1_{swp}')
+            chain1_dst.append(f'{dd.host_name}_CHAIN1_{swp}')
+            chain2_src.append(f'{dd.host_name}_CHAIN2_{swp}')
+            chain2_dst.append(f'{dd.host_name}_CHAIN2_{swp}')
             chain_input = {
-                "dev": swp,
-                "chain": "0",
-                "direction": "ingress",
-                "proto": "802.1q",
-                "filtertype": {
-                    "vlan_id": 4095,
-                    "vlan_ethtype": "ipv4",
-                    "src_ip": "0.0.0.0/32",
-                    "dst_ip": "0.0.0.0/32",
-                    "ip_proto": "tcp",
+                'dev': swp,
+                'chain': '0',
+                'direction': 'ingress',
+                'proto': '802.1q',
+                'filtertype': {
+                    'vlan_id': 4095,
+                    'vlan_ethtype': 'ipv4',
+                    'src_ip': '0.0.0.0/32',
+                    'dst_ip': '0.0.0.0/32',
+                    'ip_proto': 'tcp',
                 },
             }
             for chain_num in range(3):
-                chain_input["chain"] = f"{chain_num}"
+                chain_input['chain'] = f'{chain_num}'
                 if chain_num == 1:
-                    chain_input["filtertype"]["dst_port"] = 65535
+                    chain_input['filtertype']['dst_port'] = 65535
                 if chain_num == 2:
-                    chain_input["filtertype"]["src_port"] = 65535
+                    chain_input['filtertype']['src_port'] = 65535
                 out = await TcChain.add(input_data=[{dd.host_name: [chain_input]}])
-                assert out[0][dd.host_name]["rc"] == 0, out
+                assert out[0][dd.host_name]['rc'] == 0, out
 
             out = await TcFilter.add(
                 input_data=[
                     {
                         dd.host_name: [
                             {
-                                "dev": swp,
-                                "chain": "0",
-                                "direction": "ingress",
-                                "protocol": "802.1q",
-                                "pref": 1,
-                                "action": "drop",
-                                "filtertype": {
-                                    "skip_sw": "",
-                                    "vlan_id": 500,
-                                    "vlan_ethtype": "ipv4",
+                                'dev': swp,
+                                'chain': '0',
+                                'direction': 'ingress',
+                                'protocol': '802.1q',
+                                'pref': 1,
+                                'action': 'drop',
+                                'filtertype': {
+                                    'skip_sw': '',
+                                    'vlan_id': 500,
+                                    'vlan_ethtype': 'ipv4',
                                 },
                             },
                             {
-                                "dev": swp,
-                                "chain": 0,
-                                "direction": "ingress",
-                                "protocol": "802.1q",
-                                "pref": 2,
-                                "action": "goto chain 1",
-                                "filtertype": {
-                                    "skip_sw": "",
-                                    "vlan_id": 600,
-                                    "vlan_ethtype": "ipv4",
-                                    "ip_proto": "tcp",
+                                'dev': swp,
+                                'chain': 0,
+                                'direction': 'ingress',
+                                'protocol': '802.1q',
+                                'pref': 2,
+                                'action': 'goto chain 1',
+                                'filtertype': {
+                                    'skip_sw': '',
+                                    'vlan_id': 600,
+                                    'vlan_ethtype': 'ipv4',
+                                    'ip_proto': 'tcp',
                                 },
                             },
                             {
-                                "dev": swp,
-                                "chain": 0,
-                                "direction": "ingress",
-                                "protocol": "802.1q",
-                                "pref": 3,
-                                "action": "goto chain 2",
-                                "filtertype": {
-                                    "skip_sw": "",
-                                    "vlan_id": 400,
-                                    "vlan_ethtype": "ipv4",
-                                    "ip_proto": "udp",
+                                'dev': swp,
+                                'chain': 0,
+                                'direction': 'ingress',
+                                'protocol': '802.1q',
+                                'pref': 3,
+                                'action': 'goto chain 2',
+                                'filtertype': {
+                                    'skip_sw': '',
+                                    'vlan_id': 400,
+                                    'vlan_ethtype': 'ipv4',
+                                    'ip_proto': 'udp',
                                 },
                             },
                         ]
                     }
                 ]
             )
-            assert out[0][dd.host_name]["rc"] == 0, out
+            assert out[0][dd.host_name]['rc'] == 0, out
             out = await TcFilter.add(
                 input_data=[
                     {
                         dd.host_name: [
                             {
-                                "dev": swp,
-                                "chain": "1",
-                                "direction": "ingress",
-                                "protocol": "802.1q",
-                                "pref": 4,
-                                "action": "drop",
-                                "filtertype": {
-                                    "skip_sw": "",
-                                    "vlan_id": 600,
-                                    "vlan_ethtype": "ipv4",
-                                    "ip_proto": "tcp",
-                                    "dst_port": 80,
+                                'dev': swp,
+                                'chain': '1',
+                                'direction': 'ingress',
+                                'protocol': '802.1q',
+                                'pref': 4,
+                                'action': 'drop',
+                                'filtertype': {
+                                    'skip_sw': '',
+                                    'vlan_id': 600,
+                                    'vlan_ethtype': 'ipv4',
+                                    'ip_proto': 'tcp',
+                                    'dst_port': 80,
                                 },
                             }
                         ]
                     }
                 ]
             )
-            assert out[0][dd.host_name]["rc"] == 0, out
+            assert out[0][dd.host_name]['rc'] == 0, out
             out = await TcFilter.add(
                 input_data=[
                     {
                         dd.host_name: [
                             {
-                                "dev": swp,
-                                "chain": "2",
-                                "direction": "ingress",
-                                "protocol": "802.1q",
-                                "pref": 5,
-                                "action": "drop",
-                                "filtertype": {
-                                    "skip_sw": "",
-                                    "vlan_id": 400,
-                                    "vlan_ethtype": "ipv4",
-                                    "ip_proto": "udp",
-                                    "src_port": 100,
+                                'dev': swp,
+                                'chain': '2',
+                                'direction': 'ingress',
+                                'protocol': '802.1q',
+                                'pref': 5,
+                                'action': 'drop',
+                                'filtertype': {
+                                    'skip_sw': '',
+                                    'vlan_id': 400,
+                                    'vlan_ethtype': 'ipv4',
+                                    'ip_proto': 'udp',
+                                    'src_port': 100,
                                 },
                             }
                         ]
                     }
                 ]
             )
-            assert out[0][dd.host_name]["rc"] == 0, out
+            assert out[0][dd.host_name]['rc'] == 0, out
     streams = {
-        "tcp_flow_chain0": {
-            "ip_source": chain0_src,
-            "ip_destination": chain0_dst,
-            "vlanID": 500,
-            "protocol": "ip",
-            "ipproto": "tcp",
+        'tcp_flow_chain0': {
+            'ip_source': chain0_src,
+            'ip_destination': chain0_dst,
+            'vlanID': 500,
+            'protocol': 'ip',
+            'ipproto': 'tcp',
         },
-        "tcp_http_flow_chain1": {
-            "ip_source": chain1_src,
-            "ip_destination": chain1_dst,
-            "vlanID": 600,
-            "protocol": "ip",
-            "ipproto": "tcp",
-            "dstPort": "80",
+        'tcp_http_flow_chain1': {
+            'ip_source': chain1_src,
+            'ip_destination': chain1_dst,
+            'vlanID': 600,
+            'protocol': 'ip',
+            'ipproto': 'tcp',
+            'dstPort': '80',
         },
-        "udp_flow_chain2": {
-            "ip_source": chain2_src,
-            "ip_destination": chain2_dst,
-            "vlanID": 400,
-            "protocol": "ip",
-            "ipproto": "udp",
-            "srcPort": "100",
+        'udp_flow_chain2': {
+            'ip_source': chain2_src,
+            'ip_destination': chain2_dst,
+            'vlanID': 400,
+            'protocol': 'ip',
+            'ipproto': 'udp',
+            'srcPort': '100',
         },
     }
 
@@ -239,19 +239,19 @@ async def test_dentv2_acl_scale_validation(testbed):
     )
     await tgen_utils_setup_streams(
         tgen_dev,
-        pytest._args.config_dir + f"/{tgen_dev.host_name}/tgen_acl_scale_validation",
+        pytest._args.config_dir + f'/{tgen_dev.host_name}/tgen_acl_scale_validation',
         streams,
         force_update=True,
     )
     await tgen_utils_start_traffic(tgen_dev)
     sleep_time = 60 * 2
-    tgen_dev.applog.info(f"zzZZZZZ({sleep_time})s")
+    tgen_dev.applog.info(f'zzZZZZZ({sleep_time})s')
     time.sleep(sleep_time)
     # await tgen_utils_stop_traffic(tgen_dev)
-    stats = await tgen_utils_get_traffic_stats(tgen_dev, "Flow Statistics")
+    stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
     # Traffic Verification
     for row in stats.Rows:
-        assert float(row["Loss %"]) == 100.000, f'Failed>Loss percent: {row["Loss %"]}'
+        assert float(row['Loss %']) == 100.000, f'Failed>Loss percent: {row["Loss %"]}'
 
     await tgen_utils_stop_protocols(tgen_dev)
 
@@ -261,7 +261,7 @@ async def test_dentv2_acl_scale_validation(testbed):
             for chain_num in range(3):
                 await TcChain.delete(
                     input_data=[
-                        {dd.host_name: [{"dev": swp, "chain": chain_num, "direction": "ingress"}]}
+                        {dd.host_name: [{'dev': swp, 'chain': chain_num, 'direction': 'ingress'}]}
                     ]
                 )
-            tb_restore_qdisc(dd, swp, "ingress")
+            tb_restore_qdisc(dd, swp, 'ingress')

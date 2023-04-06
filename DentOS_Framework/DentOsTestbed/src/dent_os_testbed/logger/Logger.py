@@ -12,7 +12,7 @@ from dent_os_testbed.constants import LOGDIR
 app_logging_configured = False
 
 
-def setup_logging(default_path="log_config.yaml", default_level=logging.INFO):
+def setup_logging(default_path='log_config.yaml', default_level=logging.INFO):
     """
     Setup logging module - Loads log configuration
     """
@@ -21,7 +21,7 @@ def setup_logging(default_path="log_config.yaml", default_level=logging.INFO):
     # "%(asctime)s - %(name)s - %(levelname)s - %(fileName)s - %(message)s"
 
     if os.path.exists(path):
-        with open(path, "rt") as f:
+        with open(path, 'rt') as f:
             try:
                 if not os.path.exists(LOGDIR):
                     os.makedirs(LOGDIR)
@@ -30,13 +30,13 @@ def setup_logging(default_path="log_config.yaml", default_level=logging.INFO):
                 app_logging_configured = True
             except Exception as e:
                 print(e)
-                print("Error in Logging Configuration. Using default configs")
+                print('Error in Logging Configuration. Using default configs')
                 logging.basicConfig(level=default_level)
                 app_logging_configured = True
     else:
         logging.basicConfig(level=default_level)
         app_logging_configured = True
-        print("Failed to load configuration file. Using default configs")
+        print('Failed to load configuration file. Using default configs')
 
 
 class LoggerAdapter(logging.LoggerAdapter):
@@ -52,8 +52,8 @@ class LoggerAdapter(logging.LoggerAdapter):
             msg: Log message
             kwargs: Keyword args of the log message
         """
-        if "tag" in self.extra:
-            return "[%s] %s" % (self.extra["tag"], msg), kwargs
+        if 'tag' in self.extra:
+            return '[%s] %s' % (self.extra['tag'], msg), kwargs
         return msg, kwargs
 
 
@@ -72,7 +72,7 @@ class TaggedLogger:
         """
         self.logger = logger
         self.tag = tag
-        self.adapter = LoggerAdapter(logger, {"tag": tag})
+        self.adapter = LoggerAdapter(logger, {'tag': tag})
 
     def info(self, *args):
         """
@@ -200,7 +200,7 @@ class DeviceLogger(Logger):
     Device specific logger
     """
 
-    LOG_MSG_FMT = "%(asctime)s - %(name)s - %(levelname)s  - %(message)s"
+    LOG_MSG_FMT = '%(asctime)s - %(name)s - %(levelname)s  - %(message)s'
 
     def __init__(self, device_name=None, log_file_name=None, logger=None):
         """
@@ -220,14 +220,14 @@ class DeviceLogger(Logger):
             self.logger = logger
         else:
             raise ValueError(
-                "Either logger instance or device_name" + "log_filename should be passed"
+                'Either logger instance or device_name' + 'log_filename should be passed'
             )
         self.logger.setLevel(logging.DEBUG)
-        log_dir = f"./logs/{device_name}"
+        log_dir = f'./logs/{device_name}'
         if not os.path.exists(log_dir):
             os.makedirs(log_dir)
         handler = TimedRotatingFileHandler(
-            log_dir + "/" + log_file_name, when="h", interval=1, backupCount=10
+            log_dir + '/' + log_file_name, when='h', interval=1, backupCount=10
         )
         handler.setLevel(logging.DEBUG)
         handler.setFormatter(logging.Formatter(DeviceLogger.LOG_MSG_FMT))
@@ -271,7 +271,7 @@ class AppLogger(Logger):
             elif name:
                 self.logger = logging.getLogger(name)
             else:
-                raise ValueError("Either logger instance or logger name should be passed")
+                raise ValueError('Either logger instance or logger name should be passed')
         except Exception as e:
             print(str(e))
             raise e
