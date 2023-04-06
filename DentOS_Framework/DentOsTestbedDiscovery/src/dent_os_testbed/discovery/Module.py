@@ -93,9 +93,11 @@ class DiscoveryRunner(object):
                 dcl.append((k, v,))
 
         print(dcl)
+
         def _fn(item):
             k, dc = item
             return dc.PRIORITY
+
         for k, dc in sorted(dcl, key=_fn):
             dinst = dc(self.ctx, report, log=self.log.getChild(k))
             try:
@@ -121,6 +123,7 @@ def discovery_main():
     loop = asyncio.get_event_loop()
     loop.run_until_complete(runner.discover(rpt))
     sys.exit(0)
+
 
 if __name__ == '__main__':
     discovery_main()
