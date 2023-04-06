@@ -550,10 +550,14 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
             device.applog.info("Clear Stats")
             IxnetworkIxiaClientImpl.ixnet.ClearStats()
         elif command == "clear_traffic":
-            for traffic_item in IxnetworkIxiaClientImpl.tis:
+            traffic_names = kwarg["params"][0]["traffic_names"]
+            tis_to_remove = IxnetworkIxiaClientImpl.tis[:]
+            if traffic_names:
+                tis_to_remove = filter(lambda ti: ti.Name in traffic_names, tis_to_remove)
+            for traffic_item in tis_to_remove:
                 device.applog.info(f"TI to be removed: {traffic_item.Name}")
                 traffic_item.remove()
-            IxnetworkIxiaClientImpl.tis.clear()
+                IxnetworkIxiaClientImpl.tis.remove(traffic_item)
         return 0, ""
 
     def parse_traffic_item(self, command, output, *argv, **kwarg):
