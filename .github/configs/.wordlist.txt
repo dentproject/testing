@@ -114,9 +114,11 @@ TODO
 ubuntu
 UML
 vcpus
+VE
 virsh
 virt
 virtio
+VLAN
 VM
 vm
 vms
@@ -130,5 +132,6 @@ yamllint
 snoble
 sonn
 sonoble
+subfolder
 Linters
 pre
