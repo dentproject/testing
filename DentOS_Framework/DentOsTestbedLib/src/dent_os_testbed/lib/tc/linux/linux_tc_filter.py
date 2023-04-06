@@ -40,4 +40,3 @@ class LinuxTcFilter(TestLibObject):
 
 
         raise NameError("Cannot find command "+command)
-

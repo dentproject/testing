@@ -122,4 +122,3 @@ class BridgeLink(TestLibObject):
 
         """
         return await BridgeLink._run_command("show", *argv, **kwarg)
-

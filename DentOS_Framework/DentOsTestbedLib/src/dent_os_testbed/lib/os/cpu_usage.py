@@ -79,4 +79,3 @@ class CpuUsage(TestLibObject):
 
         """
         return await CpuUsage._run_command("show", *argv, **kwarg)
-

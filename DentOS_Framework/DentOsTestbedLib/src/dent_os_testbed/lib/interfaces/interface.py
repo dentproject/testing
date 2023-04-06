@@ -229,4 +229,3 @@ class Interface(TestLibObject):
 
         """
         return await Interface._run_command("reload", *argv, **kwarg)
-

@@ -91,4 +91,3 @@ class MemoryUsage(TestLibObject):
 
         """
         return await MemoryUsage._run_command("show", *argv, **kwarg)
-

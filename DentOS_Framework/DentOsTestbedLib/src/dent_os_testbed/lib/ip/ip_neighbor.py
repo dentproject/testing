@@ -204,4 +204,3 @@ class IpNeighbor(TestLibObject):
 
         """
         return await IpNeighbor._run_command("flush", *argv, **kwarg)
-

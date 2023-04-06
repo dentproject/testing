@@ -92,4 +92,3 @@ class System(TestLibObject):
 
         """
         return await System._run_command("shutdown", *argv, **kwarg)
-

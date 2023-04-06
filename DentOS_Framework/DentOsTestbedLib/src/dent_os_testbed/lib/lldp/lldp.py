@@ -105,4 +105,3 @@ class Lldp(TestLibObject):
 
         """
         return await Lldp._run_command("set", *argv, **kwarg)
-

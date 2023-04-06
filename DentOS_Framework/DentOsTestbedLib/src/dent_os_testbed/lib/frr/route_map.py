@@ -78,4 +78,3 @@ class RouteMap(TestLibObject):
 
         """
         return await RouteMap._run_command("configure", *argv, **kwarg)
-

@@ -47,4 +47,3 @@ class MemoryUsageMod(Module):
                 continue
             self.set_memory_usage(out[0][dev.host_name]["parsed_output"], self.report.duts[i].system.os.memory)
             print("Finished memory_usage Discovery on {} with {} entries".format(dev.host_name, len(self.report.duts[i].system.os.memory)))
-

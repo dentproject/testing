@@ -41,4 +41,3 @@ class LinuxBgp(TestLibObject):
 
 
         raise NameError("Cannot find command "+command)
-

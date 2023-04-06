@@ -93,4 +93,3 @@ class Sysctl(TestLibObject):
 
         """
         return await Sysctl._run_command("set", *argv, **kwarg)
-

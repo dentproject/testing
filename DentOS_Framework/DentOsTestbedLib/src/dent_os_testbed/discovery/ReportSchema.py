@@ -861,4 +861,3 @@ class ReportSchema(Report):
         with io.open(path, "rt") as fd:
             data = json.load(fd)
         return ReportSchema(data)
-

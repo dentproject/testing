@@ -340,4 +340,3 @@ class IpAddress(TestLibObject):
         Restore the config
         """
         return await IpAddress._run_command("restore", *argv, **kwarg)
-

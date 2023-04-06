@@ -255,5 +255,3 @@ def test_that_devlink_port_param(capfd):
     assert 'result' in out[0]['test_dev'].keys()
     # check the rc
     assert out[0]['test_dev']["rc"] == 0
-
-

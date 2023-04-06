@@ -87,4 +87,3 @@ class OnlpSfpInfo(TestLibObject):
 
         """
         return await OnlpSfpInfo._run_command("show", *argv, **kwarg)
-

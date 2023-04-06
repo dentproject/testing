@@ -77,4 +77,3 @@ class TcMonitor(TestLibObject):
 
         """
         return await TcMonitor._run_command("monitor", *argv, **kwarg)
-

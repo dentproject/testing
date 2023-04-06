@@ -50,4 +50,3 @@ class ProcessMod(Module):
                 continue
             self.set_process(out[0][dev.host_name]["parsed_output"], self.report.duts[i].system.os.processes)
             print("Finished process Discovery on {} with {} entries".format(dev.host_name, len(self.report.duts[i].system.os.processes)))
-

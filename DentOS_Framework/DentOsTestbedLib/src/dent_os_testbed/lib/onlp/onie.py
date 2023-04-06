@@ -74,4 +74,3 @@ class Onie(TestLibObject):
 
         """
         return await Onie._run_command("select", *argv, **kwarg)
-

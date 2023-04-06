@@ -101,4 +101,3 @@ class OnlpSystemInfo(TestLibObject):
 
         """
         return await OnlpSystemInfo._run_command("show", *argv, **kwarg)
-

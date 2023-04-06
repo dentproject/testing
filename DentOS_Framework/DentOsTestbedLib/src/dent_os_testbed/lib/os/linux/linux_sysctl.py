@@ -40,4 +40,3 @@ class LinuxSysctl(TestLibObject):
 
 
         raise NameError("Cannot find command "+command)
-

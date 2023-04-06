@@ -73,4 +73,3 @@ class BridgeMonitor(TestLibObject):
 
         """
         return await BridgeMonitor._run_command("monitor", *argv, **kwarg)
-

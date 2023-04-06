@@ -77,4 +77,3 @@ class IpLinkMod(Module):
                 continue
             self.set_ip_link(out[0][dev.host_name]["parsed_output"], self.report.duts[i].network.layer1.links)
             print("Finished ip_link Discovery on {} with {} entries".format(dev.host_name, len(self.report.duts[i].network.layer1.links)))
-

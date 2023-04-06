@@ -131,5 +131,3 @@ def test_that_sysctl_set(capfd):
     # check the rc
     assert out[0]['test_dev1']["rc"] == 0
     assert out[1]['test_dev2']["rc"] == 0
-
-

@@ -114,4 +114,3 @@ async def cleanup_sysctl():
     logger = AppLogger(DEFAULT_LOGGER)
     logger.info("Restoring sysctl values")
     await RecoverableSysctl.recover()
-
