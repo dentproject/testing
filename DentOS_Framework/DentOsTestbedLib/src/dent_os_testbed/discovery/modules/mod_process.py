@@ -10,7 +10,7 @@ class ProcessMod(Module):
     """
     """
     def set_process(self, src, dst):
-        
+
         for i,process in enumerate(src):
             if 'pid' in process: dst[i].pid = process.get('pid')
             if 'command' in process: dst[i].command = process.get('command')
@@ -23,8 +23,8 @@ class ProcessMod(Module):
             if 'cpu_utilization' in process: dst[i].cpu_utilization = process.get('cpu_utilization')
             if 'memory_usage' in process: dst[i].memory_usage = process.get('memory_usage')
             if 'memory_utilization' in process: dst[i].memory_utilization = process.get('memory_utilization')
-        
-        
+
+
     async def discover(self):
         # need to get device instance to get the data from
         #
@@ -50,4 +50,4 @@ class ProcessMod(Module):
                 continue
             self.set_process(out[0][dev.host_name]["parsed_output"], self.report.duts[i].system.os.processes)
             print("Finished process Discovery on {} with {} entries".format(dev.host_name, len(self.report.duts[i].system.os.processes)))
-        
+

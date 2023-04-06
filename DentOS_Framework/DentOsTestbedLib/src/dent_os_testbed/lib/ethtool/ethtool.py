@@ -6,13 +6,13 @@
 
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
-from dent_os_testbed.lib.ethtool.linux.linux_ethtool_impl import LinuxEthtoolImpl 
+from dent_os_testbed.lib.ethtool.linux.linux_ethtool_impl import LinuxEthtoolImpl
 class Ethtool(TestLibObject):
     """
         ethtool is used to query and control network device driver and hardware settings,
         particularly for wired Ethernet devices.
         devname is the name of the network device on which ethtool should operate.
-        
+
     """
     async def _run_command(api, *argv, **kwarg):
         devices = kwarg['input_data']
@@ -38,7 +38,7 @@ class Ethtool(TestLibObject):
                         commands += impl_obj.format_command(command=api, params=command)
                         commands += '&& '
                     commands = commands[:-3]
-        
+
                 else:
                     device_result[device_name]['rc'] = -1
                     device_result[device_name]['result'] = "No matching device OS "+ device_obj.os
@@ -57,7 +57,7 @@ class Ethtool(TestLibObject):
                     device_result[device_name]['result'] = str(e)
                 result.append(device_result)
         return result
-        
+
     async def show(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -114,10 +114,10 @@ class Ethtool(TestLibObject):
             downshift - For operation in cabling environments that are incompatible with 1000BASE-T, PHY device provides an
              automatic link speed downshift operation. Link speed downshift after N failed 1000BASE-T auto-negotiation attempts.
              Downshift is useful where cable does not have the 4 pairs instance. Gets the PHY downshift count/status.
-        
+
         """
         return await Ethtool._run_command("show", *argv, **kwarg)
-        
+
     async def set(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -191,10 +191,10 @@ class Ethtool(TestLibObject):
           link down administratively and report the problem in the system logs for users to correct.
             encoding auto|off|rs|baser [...] - Sets the FEC encoding for the device. Combinations of options are
              specified as e.g. encoding auto rs ; the semantics of such combinations vary between drivers.
-        
+
         """
         return await Ethtool._run_command("set", *argv, **kwarg)
-        
+
     async def change(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -282,10 +282,10 @@ class Ethtool(TestLibObject):
             txvlan on|off-Specifies whether TX VLAN acceleration should be enabled
             ntuple on|off-Specifies whether Rx ntuple filters and actions should be enabled
             rxhash on|off-Specifies whether receive hashing offload should be enabled
-        
+
         """
         return await Ethtool._run_command("change", *argv, **kwarg)
-        
+
     async def init(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -307,10 +307,10 @@ class Ethtool(TestLibObject):
            LEDs on the specific network port.
             [ N] Length of time to perform phys-id, in seconds.
         -r --negotiate - Restarts auto-negotiation on the specified Ethernet device, if auto-negotiation is enabled.
-        
+
         """
         return await Ethtool._run_command("init", *argv, **kwarg)
-        
+
     async def test(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -333,10 +333,10 @@ class Ethtool(TestLibObject):
             offline - Perform full set of tests, possibly interrupting normal operation during the tests,
             online - Perform limited set of tests, not interrupting normal operation,
             external_lb - Perform full set of tests, as for offline, and additionally an external-loopback test.
-        
+
         """
         return await Ethtool._run_command("test", *argv, **kwarg)
-        
+
     async def flash(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -360,10 +360,10 @@ class Ethtool(TestLibObject):
             N - If the device stores multiple firmware images in separate regions of non-volatile memory, this
              parameter may be used to specify which region is to be written. The default is 0, requesting that all
              regions are written. All other values are driver-dependent.
-        
+
         """
         return await Ethtool._run_command("flash", *argv, **kwarg)
-        
+
     async def config(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -444,10 +444,10 @@ class Ethtool(TestLibObject):
            loc N - Specify the location/ID to insert the rule. This will overwrite any rule present in that location and will not
             go through any of the rule ordering process.
            delete N - Deletes the RX classification rule with the given ID.
-        
+
         """
         return await Ethtool._run_command("config", *argv, **kwarg)
-        
+
     async def reset(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -486,7 +486,7 @@ class Ethtool(TestLibObject):
             ram - RAM shared between multiple components ap Application Processor
             dedicated - All components dedicated to this interface
             all - All components used by this interface, even if shared
-        
+
         """
         return await Ethtool._run_command("reset", *argv, **kwarg)
-        
+

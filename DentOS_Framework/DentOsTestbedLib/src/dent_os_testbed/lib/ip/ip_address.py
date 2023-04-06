@@ -6,7 +6,7 @@
 
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
-from dent_os_testbed.lib.ip.linux.linux_ip_address_impl import LinuxIpAddressImpl 
+from dent_os_testbed.lib.ip.linux.linux_ip_address_impl import LinuxIpAddressImpl
 class IpAddress(TestLibObject):
     """
         ip [ OPTIONS ] address { COMMAND | help }
@@ -17,7 +17,7 @@ class IpAddress(TestLibObject):
         - ip address [ show [ dev IFNAME ] [ scope SCOPE-ID ] [ to PREFIX ] [ FLAG-LIST ] [ label PATTERN
           ] [ master DEVICE ] [ type TYPE ] [ vrf NAME ] [ up ] ]
         - ip address { showdump | restore }
-        
+
     """
     async def _run_command(api, *argv, **kwarg):
         devices = kwarg['input_data']
@@ -43,7 +43,7 @@ class IpAddress(TestLibObject):
                         commands += impl_obj.format_command(command=api, params=command)
                         commands += '&& '
                     commands = commands[:-3]
-        
+
                 else:
                     device_result[device_name]['rc'] = -1
                     device_result[device_name]['result'] = "No matching device OS "+ device_obj.os
@@ -62,7 +62,7 @@ class IpAddress(TestLibObject):
                     device_result[device_name]['result'] = str(e)
                 result.append(device_result)
         return result
-        
+
     async def add(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -95,10 +95,10 @@ class IpAddress(TestLibObject):
         CONFFLAG  := [ home | nodad | mngtmpaddr | noprefixroute | autojoin ]
         LIFETIME := [ valid_lft LFT ] [ preferred_lft LFT ]
         LFT := forever | SECONDS
-        
+
         """
         return await IpAddress._run_command("add", *argv, **kwarg)
-        
+
     async def change(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -131,10 +131,10 @@ class IpAddress(TestLibObject):
         CONFFLAG  := [ home | nodad | mngtmpaddr | noprefixroute | autojoin ]
         LIFETIME := [ valid_lft LFT ] [ preferred_lft LFT ]
         LFT := forever | SECONDS
-        
+
         """
         return await IpAddress._run_command("change", *argv, **kwarg)
-        
+
     async def replace(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -167,10 +167,10 @@ class IpAddress(TestLibObject):
         CONFFLAG  := [ home | nodad | mngtmpaddr | noprefixroute | autojoin ]
         LIFETIME := [ valid_lft LFT ] [ preferred_lft LFT ]
         LFT := forever | SECONDS
-        
+
         """
         return await IpAddress._run_command("replace", *argv, **kwarg)
-        
+
     async def delete(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -196,10 +196,10 @@ class IpAddress(TestLibObject):
                [ broadcast ADDR ] [ anycast ADDR ]
                [ label IFNAME ] [ scope SCOPE-ID ]
         SCOPE-ID := [ host | link | global | NUMBER ]
-        
+
         """
         return await IpAddress._run_command("delete", *argv, **kwarg)
-        
+
     async def save(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -228,10 +228,10 @@ class IpAddress(TestLibObject):
                     CONFFLAG-LIST ]
         CONFFLAG-LIST := [ CONFFLAG-LIST ] CONFFLAG
         CONFFLAG  := [ home | nodad | mngtmpaddr | noprefixroute | autojoin ]
-        
+
         """
         return await IpAddress._run_command("save", *argv, **kwarg)
-        
+
     async def flush(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -260,10 +260,10 @@ class IpAddress(TestLibObject):
                     CONFFLAG-LIST ]
         CONFFLAG-LIST := [ CONFFLAG-LIST ] CONFFLAG
         CONFFLAG  := [ home | nodad | mngtmpaddr | noprefixroute | autojoin ]
-        
+
         """
         return await IpAddress._run_command("flush", *argv, **kwarg)
-        
+
     async def show(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -301,10 +301,10 @@ class IpAddress(TestLibObject):
                   gre | gretap | ip6gre | ip6gretap | vti | nlmon | can |
                   bond_slave | ipvlan | geneve | bridge_slave | vrf | hsr | macsec }
                  ip [ OPTIONS ] address { COMMAND | help }
-        
+
         """
         return await IpAddress._run_command("show", *argv, **kwarg)
-        
+
     async def showdump(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -322,7 +322,7 @@ class IpAddress(TestLibObject):
         Restore the config
         """
         return await IpAddress._run_command("showdump", *argv, **kwarg)
-        
+
     async def restore(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -340,4 +340,4 @@ class IpAddress(TestLibObject):
         Restore the config
         """
         return await IpAddress._run_command("restore", *argv, **kwarg)
-        
+

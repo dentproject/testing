@@ -10,7 +10,7 @@ class PoectlMod(Module):
     """
     """
     def set_poectl(self, src, dst):
-        
+
         for i,poectl in enumerate(src):
             if 'port' in poectl: dst[i].port = poectl.get('port')
             if 'cmd_options' in poectl: dst[i].cmd_options = poectl.get('cmd_options')
@@ -24,8 +24,8 @@ class PoectlMod(Module):
             if 'pd_class' in poectl: dst[i].pd_class = poectl.get('pd_class')
             if 'allocated_power' in poectl: dst[i].allocated_power = poectl.get('allocated_power')
             if 'error_str' in poectl: dst[i].error_str = poectl.get('error_str')
-        
-        
+
+
     async def discover(self):
         # need to get device instance to get the data from
         #
@@ -51,4 +51,4 @@ class PoectlMod(Module):
                 continue
             self.set_poectl(out[0][dev.host_name]["parsed_output"], self.report.duts[i].platform.poe.ports)
             print("Finished poectl Discovery on {} with {} entries".format(dev.host_name, len(self.report.duts[i].platform.poe.ports)))
-        
+

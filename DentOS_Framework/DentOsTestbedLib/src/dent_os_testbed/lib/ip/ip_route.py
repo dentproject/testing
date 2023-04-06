@@ -6,7 +6,7 @@
 
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
-from dent_os_testbed.lib.ip.linux.linux_ip_route_impl import LinuxIpRouteImpl 
+from dent_os_testbed.lib.ip.linux.linux_ip_route_impl import LinuxIpRouteImpl
 class IpRoute(TestLibObject):
     """
         - ip [ ip-OPTIONS ] route { COMMAND | help }
@@ -16,7 +16,7 @@ class IpRoute(TestLibObject):
         - ip route get ROUTE_GET_FLAGS ADDRESS [ from ADDRESS iif STRING ] [ oif STRING ] [ mark MARK ]
           [ tos TOS ] [ vrf NAME ] [ ipproto PROTOCOL ] [ sport NUMBER ] [ dport NUMBER ]
         - ip route { add | del | change | append | replace } ROUTE
-        
+
     """
     async def _run_command(api, *argv, **kwarg):
         devices = kwarg['input_data']
@@ -42,7 +42,7 @@ class IpRoute(TestLibObject):
                         commands += impl_obj.format_command(command=api, params=command)
                         commands += '&& '
                     commands = commands[:-3]
-        
+
                 else:
                     device_result[device_name]['rc'] = -1
                     device_result[device_name]['result'] = "No matching device OS "+ device_obj.os
@@ -61,7 +61,7 @@ class IpRoute(TestLibObject):
                     device_result[device_name]['result'] = str(e)
                 result.append(device_result)
         return result
-        
+
     async def add(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -131,10 +131,10 @@ class IpRoute(TestLibObject):
         ENCAP_BPF := bpf [ in PROG ] [ out PROG ] [ xmit PROG ] [ headroom SIZE ]
         ENCAP_SEG6 := seg6 mode [ encap | inline | l2encap ] segs SEGMENTS [ hmac KEYID ]
         ENCAP_SEG6LOCAL := seg6local action SEG6_ACTION [ SEG6_ACTION_PARAM ]
-        
+
         """
         return await IpRoute._run_command("add", *argv, **kwarg)
-        
+
     async def delete(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -204,10 +204,10 @@ class IpRoute(TestLibObject):
         ENCAP_BPF := bpf [ in PROG ] [ out PROG ] [ xmit PROG ] [ headroom SIZE ]
         ENCAP_SEG6 := seg6 mode [ encap | inline | l2encap ] segs SEGMENTS [ hmac KEYID ]
         ENCAP_SEG6LOCAL := seg6local action SEG6_ACTION [ SEG6_ACTION_PARAM ]
-        
+
         """
         return await IpRoute._run_command("delete", *argv, **kwarg)
-        
+
     async def change(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -277,10 +277,10 @@ class IpRoute(TestLibObject):
         ENCAP_BPF := bpf [ in PROG ] [ out PROG ] [ xmit PROG ] [ headroom SIZE ]
         ENCAP_SEG6 := seg6 mode [ encap | inline | l2encap ] segs SEGMENTS [ hmac KEYID ]
         ENCAP_SEG6LOCAL := seg6local action SEG6_ACTION [ SEG6_ACTION_PARAM ]
-        
+
         """
         return await IpRoute._run_command("change", *argv, **kwarg)
-        
+
     async def append(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -350,10 +350,10 @@ class IpRoute(TestLibObject):
         ENCAP_BPF := bpf [ in PROG ] [ out PROG ] [ xmit PROG ] [ headroom SIZE ]
         ENCAP_SEG6 := seg6 mode [ encap | inline | l2encap ] segs SEGMENTS [ hmac KEYID ]
         ENCAP_SEG6LOCAL := seg6local action SEG6_ACTION [ SEG6_ACTION_PARAM ]
-        
+
         """
         return await IpRoute._run_command("append", *argv, **kwarg)
-        
+
     async def replace(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -423,10 +423,10 @@ class IpRoute(TestLibObject):
         ENCAP_BPF := bpf [ in PROG ] [ out PROG ] [ xmit PROG ] [ headroom SIZE ]
         ENCAP_SEG6 := seg6 mode [ encap | inline | l2encap ] segs SEGMENTS [ hmac KEYID ]
         ENCAP_SEG6LOCAL := seg6local action SEG6_ACTION [ SEG6_ACTION_PARAM ]
-        
+
         """
         return await IpRoute._run_command("replace", *argv, **kwarg)
-        
+
     async def get(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -455,10 +455,10 @@ class IpRoute(TestLibObject):
         - ip route get ROUTE_GET_FLAGS ADDRESS [ from ADDRESS iif STRING ] [ oif STRING ] [ mark MARK ]
           [ tos TOS ] [ vrf NAME ] [ ipproto PROTOCOL ] [ sport NUMBER ] [ dport NUMBER ]
         ROUTE_GET_FLAGS := [ fibmatch ]
-        
+
         """
         return await IpRoute._run_command("get", *argv, **kwarg)
-        
+
     async def show(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -490,10 +490,10 @@ class IpRoute(TestLibObject):
         TABLE_ID := [ local| main | default | all | NUMBER ]
         SCOPE := [ host | link | global | NUMBER ]
         RTPROTO := [ kernel | boot | static | NUMBER ]
-        
+
         """
         return await IpRoute._run_command("show", *argv, **kwarg)
-        
+
     async def flush(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -525,10 +525,10 @@ class IpRoute(TestLibObject):
         TABLE_ID := [ local| main | default | all | NUMBER ]
         SCOPE := [ host | link | global | NUMBER ]
         RTPROTO := [ kernel | boot | static | NUMBER ]
-        
+
         """
         return await IpRoute._run_command("flush", *argv, **kwarg)
-        
+
     async def save(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -559,10 +559,10 @@ class IpRoute(TestLibObject):
         TABLE_ID := [ local| main | default | all | NUMBER ]
         SCOPE := [ host | link | global | NUMBER ]
         RTPROTO := [ kernel | boot | static | NUMBER ]
-        
+
         """
         return await IpRoute._run_command("save", *argv, **kwarg)
-        
+
     async def restore(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -572,13 +572,13 @@ class IpRoute(TestLibObject):
                 # device 1
                 'dev1' : [{
                     # command 1
-        
+
                 }],
             }],
         )
         Description:
         Restore the route ip route restore
-        
+
         """
         return await IpRoute._run_command("restore", *argv, **kwarg)
-        
+

@@ -6,12 +6,12 @@
 
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
-from dent_os_testbed.lib.bridge.linux.linux_bridge_link_impl import LinuxBridgeLinkImpl 
+from dent_os_testbed.lib.bridge.linux.linux_bridge_link_impl import LinuxBridgeLinkImpl
 class BridgeLink(TestLibObject):
     """
         - bridge [ OPTIONS ] OBJECT { COMMAND | help }
         - bridge link [ show ] [ dev DEV ]
-        
+
     """
     async def _run_command(api, *argv, **kwarg):
         devices = kwarg['input_data']
@@ -37,7 +37,7 @@ class BridgeLink(TestLibObject):
                         commands += impl_obj.format_command(command=api, params=command)
                         commands += '&& '
                     commands = commands[:-3]
-        
+
                 else:
                     device_result[device_name]['rc'] = -1
                     device_result[device_name]['result'] = "No matching device OS "+ device_obj.os
@@ -56,7 +56,7 @@ class BridgeLink(TestLibObject):
                     device_result[device_name]['result'] = str(e)
                 result.append(device_result)
         return result
-        
+
     async def set(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -99,10 +99,10 @@ class BridgeLink(TestLibObject):
           [ hwmode { vepa | veb } ] [ mcast_flood { on | off } ] [ mcast_to_unicast { on | off } ]
           [ neigh_suppress { on | off } ] [ vlan_tunnel { on | off } ] [ isolated { on | off } ]
           [ backup_port DEVICE ] [ nobackup_port ] [ self ] [ master ]
-        
+
         """
         return await BridgeLink._run_command("set", *argv, **kwarg)
-        
+
     async def show(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -119,7 +119,7 @@ class BridgeLink(TestLibObject):
         )
         Description:
         bridge link [ show ] [ dev DEV ]
-        
+
         """
         return await BridgeLink._run_command("show", *argv, **kwarg)
-        
+

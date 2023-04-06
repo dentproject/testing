@@ -6,7 +6,7 @@
 
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
-from dent_os_testbed.lib.frr.linux.linux_bgp_impl import LinuxBgpImpl 
+from dent_os_testbed.lib.frr.linux.linux_bgp_impl import LinuxBgpImpl
 class Bgp(TestLibObject):
     """
         - router bgp 65534
@@ -20,7 +20,7 @@ class Bgp(TestLibObject):
           neighbor INFRA route-map DENY-ALL out
           neighbor POD soft-reconfiguration inbound
           exit-address-family
-        
+
     """
     async def _run_command(api, *argv, **kwarg):
         devices = kwarg['input_data']
@@ -46,7 +46,7 @@ class Bgp(TestLibObject):
                         commands += impl_obj.format_command(command=api, params=command)
                         commands += '&& '
                     commands = commands[:-3]
-        
+
                 else:
                     device_result[device_name]['rc'] = -1
                     device_result[device_name]['result'] = "No matching device OS "+ device_obj.os
@@ -65,7 +65,7 @@ class Bgp(TestLibObject):
                     device_result[device_name]['result'] = str(e)
                 result.append(device_result)
         return result
-        
+
     async def show(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -84,10 +84,10 @@ class Bgp(TestLibObject):
             }],
         )
         Description:
-        
+
         """
         return await Bgp._run_command("show", *argv, **kwarg)
-        
+
     async def configure(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -106,7 +106,7 @@ class Bgp(TestLibObject):
             }],
         )
         Description:
-        
+
         """
         return await Bgp._run_command("configure", *argv, **kwarg)
-        
+

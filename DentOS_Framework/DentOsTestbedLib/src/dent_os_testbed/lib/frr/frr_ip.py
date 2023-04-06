@@ -6,13 +6,13 @@
 
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
-from dent_os_testbed.lib.frr.linux.linux_frr_ip_impl import LinuxFrrIpImpl 
+from dent_os_testbed.lib.frr.linux.linux_frr_ip_impl import LinuxFrrIpImpl
 class FrrIp(TestLibObject):
     """
         - ip [ ip-OPTIONS ] { prefix-list | access-list [N] } { deny | permit }
         - ip { configure } SELECTOR
         - Ex. ip as-path access-list IXIA-AS deny ^200$
-        
+
     """
     async def _run_command(api, *argv, **kwarg):
         devices = kwarg['input_data']
@@ -38,7 +38,7 @@ class FrrIp(TestLibObject):
                         commands += impl_obj.format_command(command=api, params=command)
                         commands += '&& '
                     commands = commands[:-3]
-        
+
                 else:
                     device_result[device_name]['rc'] = -1
                     device_result[device_name]['result'] = "No matching device OS "+ device_obj.os
@@ -57,7 +57,7 @@ class FrrIp(TestLibObject):
                     device_result[device_name]['result'] = str(e)
                 result.append(device_result)
         return result
-        
+
     async def set(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -76,7 +76,7 @@ class FrrIp(TestLibObject):
             }],
         )
         Description:
-        
+
         """
         return await FrrIp._run_command("set", *argv, **kwarg)
-        
+

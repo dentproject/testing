@@ -10,15 +10,15 @@ class IpRouteMod(Module):
     """
     """
     def set_nexthop(self, src, dst):
-        
+
         for i,nexthop in enumerate(src):
             if 'via' in nexthop: dst[i].via = nexthop.get('via')
             if 'dev' in nexthop: dst[i].dev = nexthop.get('dev')
             if 'weight' in nexthop: dst[i].weight = nexthop.get('weight')
-        
-        
+
+
     def set_ip_route(self, src, dst):
-        
+
         for i,ip_route in enumerate(src):
             if 'type' in ip_route: dst[i].type = ip_route.get('type')
             if 'dst' in ip_route: dst[i].dst = ip_route.get('dst')
@@ -47,8 +47,8 @@ class IpRouteMod(Module):
             if 'gateway' in ip_route: dst[i].gateway = ip_route.get('gateway')
             if 'src' in ip_route: dst[i].src = ip_route.get('src')
             if 'options' in ip_route: dst[i].options = ip_route.get('options')
-        
-        
+
+
     async def discover(self):
         # need to get device instance to get the data from
         #
@@ -74,4 +74,4 @@ class IpRouteMod(Module):
                 continue
             self.set_ip_route(out[0][dev.host_name]["parsed_output"], self.report.duts[i].network.layer3.routes)
             print("Finished ip_route Discovery on {} with {} entries".format(dev.host_name, len(self.report.duts[i].network.layer3.routes)))
-        
+

@@ -6,7 +6,7 @@
 
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
-from dent_os_testbed.lib.iptables.linux.linux_ip_tables_impl import LinuxIpTablesImpl 
+from dent_os_testbed.lib.iptables.linux.linux_ip_tables_impl import LinuxIpTablesImpl
 class IpTables(TestLibObject):
     """
         Iptables is used to set up, maintain, and inspect the tables of IPv4 packet filter rules in
@@ -15,7 +15,7 @@ class IpTables(TestLibObject):
         Each chain is a list of rules which can match a set of packets.  Each rule specifies what to
         do with a packet that matches.  This is called a `target', which may be a jump to a user-defined
         chain in the same table.
-        
+
     """
     async def _run_command(api, *argv, **kwarg):
         devices = kwarg['input_data']
@@ -41,7 +41,7 @@ class IpTables(TestLibObject):
                         commands += impl_obj.format_command(command=api, params=command)
                         commands += '&& '
                     commands = commands[:-3]
-        
+
                 else:
                     device_result[device_name]['rc'] = -1
                     device_result[device_name]['result'] = "No matching device OS "+ device_obj.os
@@ -60,7 +60,7 @@ class IpTables(TestLibObject):
                     device_result[device_name]['result'] = str(e)
                 result.append(device_result)
         return result
-        
+
     async def append(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -89,12 +89,12 @@ class IpTables(TestLibObject):
         -A, --append chain rule-specification
                Append one or more rules to the end of the selected chain.  When the source and/or destination names resolve
                to more than one address, a rule will be added for each possible  address combination.
-        
+
         -C, --check chain rule-specification
                Check whether a rule matching the specification does exist in the selected chain. This command uses the same
                logic as -D to find a matching entry, but does not alter the existing
                iptables configuration and uses its exit code to indicate success or failure.
-        
+
         -D, --delete chain rule-specification
         -D, --delete chain rulenum
                Delete one or more rules from the selected chain.  There are two versions of this command: the rule
@@ -106,10 +106,10 @@ class IpTables(TestLibObject):
         -R, --replace chain rulenum rule-specification
              Replace a rule in the selected chain.  If the source and/or destination names resolve to multiple
              addresses, the command will fail.  Rules are numbered starting at 1.
-        
+
         """
         return await IpTables._run_command("append", *argv, **kwarg)
-        
+
     async def check(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -138,12 +138,12 @@ class IpTables(TestLibObject):
         -A, --append chain rule-specification
                Append one or more rules to the end of the selected chain.  When the source and/or destination names resolve
                to more than one address, a rule will be added for each possible  address combination.
-        
+
         -C, --check chain rule-specification
                Check whether a rule matching the specification does exist in the selected chain. This command uses the same
                logic as -D to find a matching entry, but does not alter the existing
                iptables configuration and uses its exit code to indicate success or failure.
-        
+
         -D, --delete chain rule-specification
         -D, --delete chain rulenum
                Delete one or more rules from the selected chain.  There are two versions of this command: the rule
@@ -155,10 +155,10 @@ class IpTables(TestLibObject):
         -R, --replace chain rulenum rule-specification
              Replace a rule in the selected chain.  If the source and/or destination names resolve to multiple
              addresses, the command will fail.  Rules are numbered starting at 1.
-        
+
         """
         return await IpTables._run_command("check", *argv, **kwarg)
-        
+
     async def delete(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -187,12 +187,12 @@ class IpTables(TestLibObject):
         -A, --append chain rule-specification
                Append one or more rules to the end of the selected chain.  When the source and/or destination names resolve
                to more than one address, a rule will be added for each possible  address combination.
-        
+
         -C, --check chain rule-specification
                Check whether a rule matching the specification does exist in the selected chain. This command uses the same
                logic as -D to find a matching entry, but does not alter the existing
                iptables configuration and uses its exit code to indicate success or failure.
-        
+
         -D, --delete chain rule-specification
         -D, --delete chain rulenum
                Delete one or more rules from the selected chain.  There are two versions of this command: the rule
@@ -204,10 +204,10 @@ class IpTables(TestLibObject):
         -R, --replace chain rulenum rule-specification
              Replace a rule in the selected chain.  If the source and/or destination names resolve to multiple
              addresses, the command will fail.  Rules are numbered starting at 1.
-        
+
         """
         return await IpTables._run_command("delete", *argv, **kwarg)
-        
+
     async def insert(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -236,12 +236,12 @@ class IpTables(TestLibObject):
         -A, --append chain rule-specification
                Append one or more rules to the end of the selected chain.  When the source and/or destination names resolve
                to more than one address, a rule will be added for each possible  address combination.
-        
+
         -C, --check chain rule-specification
                Check whether a rule matching the specification does exist in the selected chain. This command uses the same
                logic as -D to find a matching entry, but does not alter the existing
                iptables configuration and uses its exit code to indicate success or failure.
-        
+
         -D, --delete chain rule-specification
         -D, --delete chain rulenum
                Delete one or more rules from the selected chain.  There are two versions of this command: the rule
@@ -253,10 +253,10 @@ class IpTables(TestLibObject):
         -R, --replace chain rulenum rule-specification
              Replace a rule in the selected chain.  If the source and/or destination names resolve to multiple
              addresses, the command will fail.  Rules are numbered starting at 1.
-        
+
         """
         return await IpTables._run_command("insert", *argv, **kwarg)
-        
+
     async def replace(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -285,12 +285,12 @@ class IpTables(TestLibObject):
         -A, --append chain rule-specification
                Append one or more rules to the end of the selected chain.  When the source and/or destination names resolve
                to more than one address, a rule will be added for each possible  address combination.
-        
+
         -C, --check chain rule-specification
                Check whether a rule matching the specification does exist in the selected chain. This command uses the same
                logic as -D to find a matching entry, but does not alter the existing
                iptables configuration and uses its exit code to indicate success or failure.
-        
+
         -D, --delete chain rule-specification
         -D, --delete chain rulenum
                Delete one or more rules from the selected chain.  There are two versions of this command: the rule
@@ -302,10 +302,10 @@ class IpTables(TestLibObject):
         -R, --replace chain rulenum rule-specification
              Replace a rule in the selected chain.  If the source and/or destination names resolve to multiple
              addresses, the command will fail.  Rules are numbered starting at 1.
-        
+
         """
         return await IpTables._run_command("replace", *argv, **kwarg)
-        
+
     async def list(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -331,23 +331,23 @@ class IpTables(TestLibObject):
           It is legal to specify the -Z (zero) option as well, in which case the chain(s) will be atomically listed
           and zeroed.  The exact output is affected by the other arguments given. The exact rules are suppressed
           until you use iptables -L -v  or iptables-save(8).
-        
+
         -S, --list-rules [chain]
          Print all rules in the selected chain.  If no chain is selected, all chains are printed like iptables-save.
          Like every other iptables command, it applies to the  specified  table (filter is the default).
-        
+
         -F, --flush [chain]
          Flush the selected chain (all the chains in the table if none is given).  This is equivalent to deleting
          all the rules one by one.
-        
+
         -Z, --zero [chain [rulenum]]
          Zero  the  packet and byte counters in all chains, or only the given chain, or only the given rule in a chain.
          It is legal to specify the -L, --list (list) option as well, to see the counters immediately before they are
          cleared. (See above.)
-        
+
         """
         return await IpTables._run_command("list", *argv, **kwarg)
-        
+
     async def list_rules(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -373,23 +373,23 @@ class IpTables(TestLibObject):
           It is legal to specify the -Z (zero) option as well, in which case the chain(s) will be atomically listed
           and zeroed.  The exact output is affected by the other arguments given. The exact rules are suppressed
           until you use iptables -L -v  or iptables-save(8).
-        
+
         -S, --list-rules [chain]
          Print all rules in the selected chain.  If no chain is selected, all chains are printed like iptables-save.
          Like every other iptables command, it applies to the  specified  table (filter is the default).
-        
+
         -F, --flush [chain]
          Flush the selected chain (all the chains in the table if none is given).  This is equivalent to deleting
          all the rules one by one.
-        
+
         -Z, --zero [chain [rulenum]]
          Zero  the  packet and byte counters in all chains, or only the given chain, or only the given rule in a chain.
          It is legal to specify the -L, --list (list) option as well, to see the counters immediately before they are
          cleared. (See above.)
-        
+
         """
         return await IpTables._run_command("list_rules", *argv, **kwarg)
-        
+
     async def flush(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -415,23 +415,23 @@ class IpTables(TestLibObject):
           It is legal to specify the -Z (zero) option as well, in which case the chain(s) will be atomically listed
           and zeroed.  The exact output is affected by the other arguments given. The exact rules are suppressed
           until you use iptables -L -v  or iptables-save(8).
-        
+
         -S, --list-rules [chain]
          Print all rules in the selected chain.  If no chain is selected, all chains are printed like iptables-save.
          Like every other iptables command, it applies to the  specified  table (filter is the default).
-        
+
         -F, --flush [chain]
          Flush the selected chain (all the chains in the table if none is given).  This is equivalent to deleting
          all the rules one by one.
-        
+
         -Z, --zero [chain [rulenum]]
          Zero  the  packet and byte counters in all chains, or only the given chain, or only the given rule in a chain.
          It is legal to specify the -L, --list (list) option as well, to see the counters immediately before they are
          cleared. (See above.)
-        
+
         """
         return await IpTables._run_command("flush", *argv, **kwarg)
-        
+
     async def zero(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -457,23 +457,23 @@ class IpTables(TestLibObject):
           It is legal to specify the -Z (zero) option as well, in which case the chain(s) will be atomically listed
           and zeroed.  The exact output is affected by the other arguments given. The exact rules are suppressed
           until you use iptables -L -v  or iptables-save(8).
-        
+
         -S, --list-rules [chain]
          Print all rules in the selected chain.  If no chain is selected, all chains are printed like iptables-save.
          Like every other iptables command, it applies to the  specified  table (filter is the default).
-        
+
         -F, --flush [chain]
          Flush the selected chain (all the chains in the table if none is given).  This is equivalent to deleting
          all the rules one by one.
-        
+
         -Z, --zero [chain [rulenum]]
          Zero  the  packet and byte counters in all chains, or only the given chain, or only the given rule in a chain.
          It is legal to specify the -L, --list (list) option as well, to see the counters immediately before they are
          cleared. (See above.)
-        
+
         """
         return await IpTables._run_command("zero", *argv, **kwarg)
-        
+
     async def new_chain(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -498,18 +498,18 @@ class IpTables(TestLibObject):
          If there are, you must delete or replace the referring rules before the chain can be deleted.
          The chain must be empty, i.e. not contain any rules.  If no argument is given, it will attempt
          to delete every non-builtin chain in the table.
-        
+
         -P, --policy chain target
          Set the policy for the built-in (non-user-defined) chain to the given target.  The policy target
          must be either ACCEPT or DROP.
-        
+
         -E, --rename-chain old-chain new-chain
          Rename the user specified chain to the user supplied name.  This is cosmetic, and has no effect
          on the structure of the table.
-        
+
         """
         return await IpTables._run_command("new_chain", *argv, **kwarg)
-        
+
     async def policy(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -534,18 +534,18 @@ class IpTables(TestLibObject):
          If there are, you must delete or replace the referring rules before the chain can be deleted.
          The chain must be empty, i.e. not contain any rules.  If no argument is given, it will attempt
          to delete every non-builtin chain in the table.
-        
+
         -P, --policy chain target
          Set the policy for the built-in (non-user-defined) chain to the given target.  The policy target
          must be either ACCEPT or DROP.
-        
+
         -E, --rename-chain old-chain new-chain
          Rename the user specified chain to the user supplied name.  This is cosmetic, and has no effect
          on the structure of the table.
-        
+
         """
         return await IpTables._run_command("policy", *argv, **kwarg)
-        
+
     async def rename_chain(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -570,15 +570,15 @@ class IpTables(TestLibObject):
          If there are, you must delete or replace the referring rules before the chain can be deleted.
          The chain must be empty, i.e. not contain any rules.  If no argument is given, it will attempt
          to delete every non-builtin chain in the table.
-        
+
         -P, --policy chain target
          Set the policy for the built-in (non-user-defined) chain to the given target.  The policy target
          must be either ACCEPT or DROP.
-        
+
         -E, --rename-chain old-chain new-chain
          Rename the user specified chain to the user supplied name.  This is cosmetic, and has no effect
          on the structure of the table.
-        
+
         """
         return await IpTables._run_command("rename_chain", *argv, **kwarg)
-        
+

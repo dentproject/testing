@@ -6,7 +6,7 @@
 
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
-from dent_os_testbed.lib.bridge.linux.linux_bridge_mdb_impl import LinuxBridgeMdbImpl 
+from dent_os_testbed.lib.bridge.linux.linux_bridge_mdb_impl import LinuxBridgeMdbImpl
 class BridgeMdb(TestLibObject):
     """
         mdb objects contain known IP multicast group addresses on a link.
@@ -35,7 +35,7 @@ class BridgeMdb(TestLibObject):
                         commands += impl_obj.format_command(command=api, params=command)
                         commands += '&& '
                     commands = commands[:-3]
-        
+
                 else:
                     device_result[device_name]['rc'] = -1
                     device_result[device_name]['result'] = "No matching device OS "+ device_obj.os
@@ -54,7 +54,7 @@ class BridgeMdb(TestLibObject):
                     device_result[device_name]['result'] = str(e)
                 result.append(device_result)
         return result
-        
+
     async def add(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -75,10 +75,10 @@ class BridgeMdb(TestLibObject):
         )
         Description:
         bridge mdb { add | del } dev DEV port PORT grp GROUP [ permanent | temp ] [ vid VID ]
-        
+
         """
         return await BridgeMdb._run_command("add", *argv, **kwarg)
-        
+
     async def delete(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -99,10 +99,10 @@ class BridgeMdb(TestLibObject):
         )
         Description:
         bridge mdb { add | del } dev DEV port PORT grp GROUP [ permanent | temp ] [ vid VID ]
-        
+
         """
         return await BridgeMdb._run_command("delete", *argv, **kwarg)
-        
+
     async def show(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -119,7 +119,7 @@ class BridgeMdb(TestLibObject):
         )
         Description:
         bridge mdb show [ dev DEV ]
-        
+
         """
         return await BridgeMdb._run_command("show", *argv, **kwarg)
-        
+

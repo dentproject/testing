@@ -10,7 +10,7 @@ class DiskFreeMod(Module):
     """
     """
     def set_disk_free(self, src, dst):
-        
+
         for i,disk_free in enumerate(src):
             if 'filesystem' in disk_free: dst[i].filesystem = disk_free.get('filesystem')
             if 'size' in disk_free: dst[i].size = disk_free.get('size')
@@ -18,8 +18,8 @@ class DiskFreeMod(Module):
             if 'available' in disk_free: dst[i].available = disk_free.get('available')
             if 'use_percentage' in disk_free: dst[i].use_percentage = disk_free.get('use_percentage')
             if 'mounted_on' in disk_free: dst[i].mounted_on = disk_free.get('mounted_on')
-        
-        
+
+
     async def discover(self):
         # need to get device instance to get the data from
         #
@@ -45,4 +45,4 @@ class DiskFreeMod(Module):
                 continue
             self.set_disk_free(out[0][dev.host_name]["parsed_output"], self.report.duts[i].system.os.disk)
             print("Finished disk_free Discovery on {} with {} entries".format(dev.host_name, len(self.report.duts[i].system.os.disk)))
-        
+

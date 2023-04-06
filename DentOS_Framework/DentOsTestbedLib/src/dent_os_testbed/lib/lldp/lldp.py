@@ -6,11 +6,11 @@
 
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
-from dent_os_testbed.lib.lldp.linux.linux_lldp_impl import LinuxLldpImpl 
+from dent_os_testbed.lib.lldp.linux.linux_lldp_impl import LinuxLldpImpl
 class Lldp(TestLibObject):
     """
         LLDP module
-        
+
     """
     async def _run_command(api, *argv, **kwarg):
         devices = kwarg['input_data']
@@ -36,7 +36,7 @@ class Lldp(TestLibObject):
                         commands += impl_obj.format_command(command=api, params=command)
                         commands += '&& '
                     commands = commands[:-3]
-        
+
                 else:
                     device_result[device_name]['rc'] = -1
                     device_result[device_name]['result'] = "No matching device OS "+ device_obj.os
@@ -55,7 +55,7 @@ class Lldp(TestLibObject):
                     device_result[device_name]['result'] = str(e)
                 result.append(device_result)
         return result
-        
+
     async def show(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -77,10 +77,10 @@ class Lldp(TestLibObject):
         -u socket   Specify the Unix-domain socket used for communication with lldpd(8).
         -f format   Choose output format (plain, keyvalue, json, json0, xml).
         see manual page lldpcli(8) for more information
-        
+
         """
         return await Lldp._run_command("show", *argv, **kwarg)
-        
+
     async def set(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -102,7 +102,7 @@ class Lldp(TestLibObject):
         -u socket   Specify the Unix-domain socket used for communication with lldpd(8).
         -f format   Choose output format (plain, keyvalue, json, json0, xml).
         see manual page lldpcli(8) for more information
-        
+
         """
         return await Lldp._run_command("set", *argv, **kwarg)
-        
+

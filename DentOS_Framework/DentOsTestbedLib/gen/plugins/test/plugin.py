@@ -373,7 +373,7 @@ class TestPlugin(SamplePlugin):
                 o = TestCmdImplPyObject(c, fname, "ixnetwork")
                 o.generate_code()
                 o.write_file()
-                
+
         for mname, m in dbs["poe_tester"].modules.items():
             mdir = os.path.join(tdir, mname)
             mdir = os.path.join(mdir, "dni")

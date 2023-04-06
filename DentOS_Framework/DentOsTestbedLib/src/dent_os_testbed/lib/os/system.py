@@ -6,7 +6,7 @@
 
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
-from dent_os_testbed.lib.os.linux.linux_system_impl import LinuxSystemImpl 
+from dent_os_testbed.lib.os.linux.linux_system_impl import LinuxSystemImpl
 class System(TestLibObject):
     """
         system details
@@ -35,7 +35,7 @@ class System(TestLibObject):
                         commands += impl_obj.format_command(command=api, params=command)
                         commands += '&& '
                     commands = commands[:-3]
-        
+
                 else:
                     device_result[device_name]['rc'] = -1
                     device_result[device_name]['result'] = "No matching device OS "+ device_obj.os
@@ -54,7 +54,7 @@ class System(TestLibObject):
                     device_result[device_name]['result'] = str(e)
                 result.append(device_result)
         return result
-        
+
     async def reboot(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -70,10 +70,10 @@ class System(TestLibObject):
         )
         Description:
         Reboot the system
-        
+
         """
         return await System._run_command("reboot", *argv, **kwarg)
-        
+
     async def shutdown(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -89,7 +89,7 @@ class System(TestLibObject):
         )
         Description:
         Shutdown the system
-        
+
         """
         return await System._run_command("shutdown", *argv, **kwarg)
-        
+

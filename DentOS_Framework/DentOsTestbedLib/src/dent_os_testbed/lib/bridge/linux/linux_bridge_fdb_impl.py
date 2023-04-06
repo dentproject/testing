@@ -33,10 +33,10 @@ class LinuxBridgeFdbImpl(LinuxBridgeFdb):
     def format_add(self, command, *argv, **kwarg):
 
         """
-        bridge fdb { add | append | del | replace } LLADDR dev DEV { local | static | dynamic } [ self ] 
-        [ master ] [ router ] [ use ] [ extern_learn ] [ sticky ] [ src_vni VNI ] { [ dst IPADDR ] 
+        bridge fdb { add | append | del | replace } LLADDR dev DEV { local | static | dynamic } [ self ]
+        [ master ] [ router ] [ use ] [ extern_learn ] [ sticky ] [ src_vni VNI ] { [ dst IPADDR ]
         [ vni VNI ] [ port PORT ] [ via DEVICE ] | nhid NHID }
-        
+
         """
         params = kwarg["params"]
         cmd = "bridge fdb {} ".format(command)

@@ -6,13 +6,13 @@
 
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
-from dent_os_testbed.lib.tc.linux.linux_tc_monitor_impl import LinuxTcMonitorImpl 
+from dent_os_testbed.lib.tc.linux.linux_tc_monitor_impl import LinuxTcMonitorImpl
 class TcMonitor(TestLibObject):
     """
         tc [ OPTIONS ] monitor [ file FILENAME ]
         OPTIONS := { [ -force ] -b[atch] [ filename ] | [ -n[etns] name ] | [ -nm | -nam[es] ] |
           [ { -cf | -c[onf] } [ filename ] ] [ -t[imestamp] ] | [ -t[short] | [ -o[neline] ] }
-        
+
     """
     async def _run_command(api, *argv, **kwarg):
         devices = kwarg['input_data']
@@ -38,7 +38,7 @@ class TcMonitor(TestLibObject):
                         commands += impl_obj.format_command(command=api, params=command)
                         commands += '&& '
                     commands = commands[:-3]
-        
+
                 else:
                     device_result[device_name]['rc'] = -1
                     device_result[device_name]['result'] = "No matching device OS "+ device_obj.os
@@ -57,7 +57,7 @@ class TcMonitor(TestLibObject):
                     device_result[device_name]['result'] = str(e)
                 result.append(device_result)
         return result
-        
+
     async def monitor(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -74,7 +74,7 @@ class TcMonitor(TestLibObject):
         )
         Description:
         tc [ OPTIONS ] monitor [ file FILENAME ]
-        
+
         """
         return await TcMonitor._run_command("monitor", *argv, **kwarg)
-        
+

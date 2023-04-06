@@ -298,7 +298,7 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
             raise ValueError(f"Unable to set {value} for field {field.Name}")
         field.Auto = False
         field.update(**param)
-    
+
     def __update_frame_rate(self, config_element, pkt_data):
         """
         Update frame rate type and frame rate from pkt_data
@@ -619,7 +619,7 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
 
     def format_resolve_neighbor(self, command, *argv, **kwarg):
         return command
-    
+
     def format_update_l1_config(self, command, *argv, **kwarg):
         return command
 
@@ -752,7 +752,7 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                 device.applog.info(f"Changing autoneg to {autoneg} on tgen_port {required_ixia_port.Name}")
                 card.update(AutoNegotiate=autoneg, Speed=ixia_speed)
             return 0, ""
-    
+
     def run_switch_min_frame_size(self, device, command, *argv, **kwarg):
         if not IxnetworkIxiaClientImpl.ixnet:
             return 1, "Ixia not connected"
@@ -762,7 +762,7 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
 
     def format_switch_min_frame_size(self, command, *argv, **kwarg):
         return command
-    
+
     def parse_switch_min_frame_size(self, command, *argv, **kwarg):
         return command
 

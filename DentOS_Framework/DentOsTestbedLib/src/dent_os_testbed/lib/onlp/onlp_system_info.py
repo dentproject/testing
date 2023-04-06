@@ -6,11 +6,11 @@
 
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
-from dent_os_testbed.lib.onlp.linux.linux_onlp_system_info_impl import LinuxOnlpSystemInfoImpl 
+from dent_os_testbed.lib.onlp.linux.linux_onlp_system_info_impl import LinuxOnlpSystemInfoImpl
 class OnlpSystemInfo(TestLibObject):
     """
         ONLP System Level information
-        
+
     """
     async def _run_command(api, *argv, **kwarg):
         devices = kwarg['input_data']
@@ -36,7 +36,7 @@ class OnlpSystemInfo(TestLibObject):
                         commands += impl_obj.format_command(command=api, params=command)
                         commands += '&& '
                     commands = commands[:-3]
-        
+
                 else:
                     device_result[device_name]['rc'] = -1
                     device_result[device_name]['result'] = "No matching device OS "+ device_obj.os
@@ -55,7 +55,7 @@ class OnlpSystemInfo(TestLibObject):
                     device_result[device_name]['result'] = str(e)
                 result.append(device_result)
         return result
-        
+
     async def show(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -98,7 +98,7 @@ class OnlpSystemInfo(TestLibObject):
          Diag Version: V1.2.1
          Service Tag: 3810000054
          ONIE Version: 2019.08-V02
-        
+
         """
         return await OnlpSystemInfo._run_command("show", *argv, **kwarg)
-        
+

@@ -6,12 +6,12 @@
 
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
-from dent_os_testbed.lib.devlink.linux.devlink_port_impl import DevlinkPortImpl 
+from dent_os_testbed.lib.devlink.linux.devlink_port_impl import DevlinkPortImpl
 class DevlinkPort(TestLibObject):
     """
         devlink [ OPTIONS ] port  { COMMAND | help }
         OPTIONS := { -V[ersion] | -n[no-nice-names] }
-        
+
         devlink port set DEV/PORT_INDEX [ type { eth | ib | auto } ]
         devlink port split DEV/PORT_INDEX count COUNT
         devlink port unsplit DEV/PORT_INDEX
@@ -19,18 +19,18 @@ class DevlinkPort(TestLibObject):
         devlink port health { show | recover | diagnose | dump | set }
         devlink port add { DEV | DEV/PORT_INDEX } [ flavour FLAVOUR ] [
                 pfnum PFNUMBER ] [ sfnum SFNUMBER ] [ controller CNUM ]
-        
+
         devlink port del DEV/PORT_INDEX
         devlink port function set DEV/PORT_INDEX [ hw_addr ADDR ] [ state
                 { active | inactive } ]
-        
+
         devlink port function rate { show | set | add | del | help }
         devlink dev param set DEV/PORT_INDEX name PARAMETER value VALUE
                 cmode { runtime | driverinit | permanent }
-        
+
         devlink dev param show [ DEV/PORT_INDEX name PARAMETER ]
         devlink port help
-        
+
     """
     async def _run_command(api, *argv, **kwarg):
         devices = kwarg['input_data']
@@ -56,7 +56,7 @@ class DevlinkPort(TestLibObject):
                         commands += impl_obj.format_command(command=api, params=command)
                         commands += '&& '
                     commands = commands[:-3]
-        
+
                 else:
                     device_result[device_name]['rc'] = -1
                     device_result[device_name]['result'] = "No matching device OS "+ device_obj.os
@@ -75,7 +75,7 @@ class DevlinkPort(TestLibObject):
                     device_result[device_name]['result'] = str(e)
                 result.append(device_result)
         return result
-        
+
     async def set(*argv, **kwarg):
         """
         Platforms: ['dentos']
@@ -95,10 +95,10 @@ class DevlinkPort(TestLibObject):
         Description:
         devlink port param set DEV/PORT_INDEX name PARAMETER value VALUE
                 cmode { runtime | driverinit | permanent }
-        
+
         """
         return await DevlinkPort._run_command("set", *argv, **kwarg)
-        
+
     async def split(*argv, **kwarg):
         """
         Platforms: ['dentos']
@@ -108,15 +108,15 @@ class DevlinkPort(TestLibObject):
                 # device 1
                 'dev1' : [{
                     # command 1
-        
+
                 }],
             }],
         )
         Description:
-        
+
         """
         return await DevlinkPort._run_command("split", *argv, **kwarg)
-        
+
     async def unsplit(*argv, **kwarg):
         """
         Platforms: ['dentos']
@@ -126,15 +126,15 @@ class DevlinkPort(TestLibObject):
                 # device 1
                 'dev1' : [{
                     # command 1
-        
+
                 }],
             }],
         )
         Description:
-        
+
         """
         return await DevlinkPort._run_command("unsplit", *argv, **kwarg)
-        
+
     async def show(*argv, **kwarg):
         """
         Platforms: ['dentos']
@@ -153,7 +153,7 @@ class DevlinkPort(TestLibObject):
         devlink port param show [ DEV/PORT_INDEX name PARAMETER ]
         """
         return await DevlinkPort._run_command("show", *argv, **kwarg)
-        
+
     async def health(*argv, **kwarg):
         """
         Platforms: ['dentos']
@@ -163,15 +163,15 @@ class DevlinkPort(TestLibObject):
                 # device 1
                 'dev1' : [{
                     # command 1
-        
+
                 }],
             }],
         )
         Description:
-        
+
         """
         return await DevlinkPort._run_command("health", *argv, **kwarg)
-        
+
     async def add(*argv, **kwarg):
         """
         Platforms: ['dentos']
@@ -181,15 +181,15 @@ class DevlinkPort(TestLibObject):
                 # device 1
                 'dev1' : [{
                     # command 1
-        
+
                 }],
             }],
         )
         Description:
-        
+
         """
         return await DevlinkPort._run_command("add", *argv, **kwarg)
-        
+
     async def delete(*argv, **kwarg):
         """
         Platforms: ['dentos']
@@ -199,15 +199,15 @@ class DevlinkPort(TestLibObject):
                 # device 1
                 'dev1' : [{
                     # command 1
-        
+
                 }],
             }],
         )
         Description:
-        
+
         """
         return await DevlinkPort._run_command("delete", *argv, **kwarg)
-        
+
     async def function(*argv, **kwarg):
         """
         Platforms: ['dentos']
@@ -217,15 +217,15 @@ class DevlinkPort(TestLibObject):
                 # device 1
                 'dev1' : [{
                     # command 1
-        
+
                 }],
             }],
         )
         Description:
-        
+
         """
         return await DevlinkPort._run_command("function", *argv, **kwarg)
-        
+
     async def param(*argv, **kwarg):
         """
         Platforms: ['dentos']
@@ -235,12 +235,12 @@ class DevlinkPort(TestLibObject):
                 # device 1
                 'dev1' : [{
                     # command 1
-        
+
                 }],
             }],
         )
         Description:
-        
+
         """
         return await DevlinkPort._run_command("param", *argv, **kwarg)
-        
+

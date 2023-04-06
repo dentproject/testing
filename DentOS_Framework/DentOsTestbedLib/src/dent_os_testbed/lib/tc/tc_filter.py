@@ -6,7 +6,7 @@
 
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
-from dent_os_testbed.lib.tc.linux.linux_tc_filter_impl import LinuxTcFilterImpl 
+from dent_os_testbed.lib.tc.linux.linux_tc_filter_impl import LinuxTcFilterImpl
 class TcFilter(TestLibObject):
     """
         - tc [ OPTIONS ] filter [ add | change | replace | delete | get ] dev DEV [ parent qdisc-id | root]
@@ -18,7 +18,7 @@ class TcFilter(TestLibObject):
         - tc [ OPTIONS ] filter show block BLOCK_INDEX
         OPTIONS := { [ -force ] -b[atch] [ filename ] | [ -n[etns] name ] | [ -nm | -nam[es] ] |
           [ { -cf | -c[onf] } [ filename ] ] [ -t[imestamp] ] | [ -t[short] | [ -o[neline] ] }
-        
+
     """
     async def _run_command(api, *argv, **kwarg):
         devices = kwarg['input_data']
@@ -44,7 +44,7 @@ class TcFilter(TestLibObject):
                         commands += impl_obj.format_command(command=api, params=command)
                         commands += '&& '
                     commands = commands[:-3]
-        
+
                 else:
                     device_result[device_name]['rc'] = -1
                     device_result[device_name]['result'] = "No matching device OS "+ device_obj.os
@@ -63,7 +63,7 @@ class TcFilter(TestLibObject):
                     device_result[device_name]['result'] = str(e)
                 result.append(device_result)
         return result
-        
+
     async def add(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -92,10 +92,10 @@ class TcFilter(TestLibObject):
         tc [ OPTIONS ] filter [ add | change | replace | delete | get ] block  BLOCK_INDEX
         [  handle filter-id ] protocol protocol prio priority filtertype [ filtertype spe
         cific parameters ] flowid flow-id
-        
+
         """
         return await TcFilter._run_command("add", *argv, **kwarg)
-        
+
     async def change(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -124,10 +124,10 @@ class TcFilter(TestLibObject):
         tc [ OPTIONS ] filter [ add | change | replace | delete | get ] block  BLOCK_INDEX
         [  handle filter-id ] protocol protocol prio priority filtertype [ filtertype spe
         cific parameters ] flowid flow-id
-        
+
         """
         return await TcFilter._run_command("change", *argv, **kwarg)
-        
+
     async def replace(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -156,10 +156,10 @@ class TcFilter(TestLibObject):
         tc [ OPTIONS ] filter [ add | change | replace | delete | get ] block  BLOCK_INDEX
         [  handle filter-id ] protocol protocol prio priority filtertype [ filtertype spe
         cific parameters ] flowid flow-id
-        
+
         """
         return await TcFilter._run_command("replace", *argv, **kwarg)
-        
+
     async def delete(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -188,10 +188,10 @@ class TcFilter(TestLibObject):
         tc [ OPTIONS ] filter [ add | change | replace | delete | get ] block  BLOCK_INDEX
         [  handle filter-id ] protocol protocol prio priority filtertype [ filtertype spe
         cific parameters ] flowid flow-id
-        
+
         """
         return await TcFilter._run_command("delete", *argv, **kwarg)
-        
+
     async def get(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -220,10 +220,10 @@ class TcFilter(TestLibObject):
         tc [ OPTIONS ] filter [ add | change | replace | delete | get ] block  BLOCK_INDEX
         [  handle filter-id ] protocol protocol prio priority filtertype [ filtertype spe
         cific parameters ] flowid flow-id
-        
+
         """
         return await TcFilter._run_command("get", *argv, **kwarg)
-        
+
     async def show(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -242,7 +242,7 @@ class TcFilter(TestLibObject):
         Description:
         tc [ OPTIONS ] filter show dev DEV
         tc [ OPTIONS ] filter show block BLOCK_INDEX
-        
+
         """
         return await TcFilter._run_command("show", *argv, **kwarg)
-        
+

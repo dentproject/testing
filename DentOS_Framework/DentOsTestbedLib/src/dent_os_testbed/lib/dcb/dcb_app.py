@@ -6,20 +6,20 @@
 
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
-from dent_os_testbed.lib.dcb.linux.linux_dcb_app_impl import LinuxDcbAppImpl 
+from dent_os_testbed.lib.dcb.linux.linux_dcb_app_impl import LinuxDcbAppImpl
 class DcbApp(TestLibObject):
     """
         dcb [ OPTIONS ] app { COMMAND | help }
-        
+
         dcb app  {  show  |  flush  }  dev DEV [ default-prio ] [
                  ethtype-prio ] [ stream-port-prio ] [ dgram-port-prio ] [
                  port-prio ] [ dscp-prio ]
-        
+
         dcb app  {  add  |  del  |  replace  }  dev DEV [ default-prio
                  PRIO-LIST ] [ ethtype-prio ET-MAP ] [ stream-port-prio
                  PORT-MAP ] [ dgram-port-prio PORT-MAP ] [ port-prio PORT-
                  MAP ] [ dscp-prio DSCP-MAP ]
-        
+
         PRIO-LIST := [ PRIO-LIST ] PRIO
         ET-MAP := [ ET-MAP ] ET-MAPPING
         ET-MAPPING := ET:PRIO
@@ -31,7 +31,7 @@ class DcbApp(TestLibObject):
         PORT := { 1 .. 65535 }
         DSCP := { 0 .. 63 }
         PRIO := { 0 .. 7 }
-        
+
     """
     async def _run_command(api, *argv, **kwarg):
         devices = kwarg['input_data']
@@ -57,7 +57,7 @@ class DcbApp(TestLibObject):
                         commands += impl_obj.format_command(command=api, params=command)
                         commands += '&& '
                     commands = commands[:-3]
-        
+
                 else:
                     device_result[device_name]['rc'] = -1
                     device_result[device_name]['result'] = "No matching device OS "+ device_obj.os
@@ -76,7 +76,7 @@ class DcbApp(TestLibObject):
                     device_result[device_name]['result'] = str(e)
                 result.append(device_result)
         return result
-        
+
     async def show(*argv, **kwarg):
         """
         Platforms: ['dentos']
@@ -100,10 +100,10 @@ class DcbApp(TestLibObject):
         dcb app {  show  |  flush  }  dev DEV [ default-prio ] [
                 ethtype-prio ] [ stream-port-prio ] [ dgram-port-prio ] [
                 port-prio ] [ dscp-prio ]
-        
+
         """
         return await DcbApp._run_command("show", *argv, **kwarg)
-        
+
     async def flush(*argv, **kwarg):
         """
         Platforms: ['dentos']
@@ -127,10 +127,10 @@ class DcbApp(TestLibObject):
         dcb app {  show  |  flush  }  dev DEV [ default-prio ] [
                 ethtype-prio ] [ stream-port-prio ] [ dgram-port-prio ] [
                 port-prio ] [ dscp-prio ]
-        
+
         """
         return await DcbApp._run_command("flush", *argv, **kwarg)
-        
+
     async def add(*argv, **kwarg):
         """
         Platforms: ['dentos']
@@ -155,10 +155,10 @@ class DcbApp(TestLibObject):
                 PRIO-LIST ] [ ethtype-prio ET-MAP ] [ stream-port-prio
                 PORT-MAP ] [ dgram-port-prio PORT-MAP ] [ port-prio PORT-
                 MAP ] [ dscp-prio DSCP-MAP ]
-        
+
         """
         return await DcbApp._run_command("add", *argv, **kwarg)
-        
+
     async def delete(*argv, **kwarg):
         """
         Platforms: ['dentos']
@@ -183,10 +183,10 @@ class DcbApp(TestLibObject):
                 PRIO-LIST ] [ ethtype-prio ET-MAP ] [ stream-port-prio
                 PORT-MAP ] [ dgram-port-prio PORT-MAP ] [ port-prio PORT-
                 MAP ] [ dscp-prio DSCP-MAP ]
-        
+
         """
         return await DcbApp._run_command("delete", *argv, **kwarg)
-        
+
     async def replace(*argv, **kwarg):
         """
         Platforms: ['dentos']
@@ -211,7 +211,7 @@ class DcbApp(TestLibObject):
                 PRIO-LIST ] [ ethtype-prio ET-MAP ] [ stream-port-prio
                 PORT-MAP ] [ dgram-port-prio PORT-MAP ] [ port-prio PORT-
                 MAP ] [ dscp-prio DSCP-MAP ]
-        
+
         """
         return await DcbApp._run_command("replace", *argv, **kwarg)
-        
+

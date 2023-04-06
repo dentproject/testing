@@ -10,7 +10,7 @@ class MemoryUsageMod(Module):
     """
     """
     def set_memory_usage(self, src, dst):
-        
+
         for i,memory_usage in enumerate([src]):
             if 'mem_total' in memory_usage: dst.mem_total = memory_usage.get('mem_total')
             if 'mem_free' in memory_usage: dst.mem_free = memory_usage.get('mem_free')
@@ -20,8 +20,8 @@ class MemoryUsageMod(Module):
             if 'swap_cached' in memory_usage: dst.swap_cached = memory_usage.get('swap_cached')
             if 'active' in memory_usage: dst.active = memory_usage.get('active')
             if 'inactive' in memory_usage: dst.inactive = memory_usage.get('inactive')
-        
-        
+
+
     async def discover(self):
         # need to get device instance to get the data from
         #
@@ -47,4 +47,4 @@ class MemoryUsageMod(Module):
                 continue
             self.set_memory_usage(out[0][dev.host_name]["parsed_output"], self.report.duts[i].system.os.memory)
             print("Finished memory_usage Discovery on {} with {} entries".format(dev.host_name, len(self.report.duts[i].system.os.memory)))
-        
+
