@@ -19,7 +19,7 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_clear_traffic_items)
 from dent_os_testbed.utils.test_utils.br_utils import (
     get_traffic_port_vlan_mapping,
-    configure_bridge_setup, 
+    configure_bridge_setup,
     configure_vlan_setup)
 
 

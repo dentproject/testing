@@ -6,14 +6,14 @@
 
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
-from dent_os_testbed.lib.onlp.linux.linux_onlp_sfp_info_impl import LinuxOnlpSfpInfoImpl 
+from dent_os_testbed.lib.onlp.linux.linux_onlp_sfp_info_impl import LinuxOnlpSfpInfoImpl
 class OnlpSfpInfo(TestLibObject):
     """
         ONLP SFP Information
           Port  Type            Media   Status  Len    Vendor            Model             S/N
           ----  --------------  ------  ------  -----  ----------------  ----------------  ----------------
           49  10GBASE-CR      Copper          2m     FS                SFP-10G-DAC       G1807081119-1
-        
+
     """
     async def _run_command(api, *argv, **kwarg):
         devices = kwarg['input_data']
@@ -39,7 +39,7 @@ class OnlpSfpInfo(TestLibObject):
                         commands += impl_obj.format_command(command=api, params=command)
                         commands += '&& '
                     commands = commands[:-3]
-        
+
                 else:
                     device_result[device_name]['rc'] = -1
                     device_result[device_name]['result'] = "No matching device OS "+ device_obj.os
@@ -58,7 +58,7 @@ class OnlpSfpInfo(TestLibObject):
                     device_result[device_name]['result'] = str(e)
                 result.append(device_result)
         return result
-        
+
     async def show(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -84,7 +84,7 @@ class OnlpSfpInfo(TestLibObject):
         ----  --------------  ------  ------  -----  ----------------  ----------------  ----------------
         49  10GBASE-CR      Copper          2m     FS                SFP-10G-DAC       G1807081119-1
         50  10GBASE-CR      Copper          1m     FCI Electronics   10110818-2010LF               0009
-        
+
         """
         return await OnlpSfpInfo._run_command("show", *argv, **kwarg)
-        
+

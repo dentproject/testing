@@ -26,7 +26,7 @@
             "type" : "INFRA_SWITCH",
             "hostName": "infra2",
             "model": "arm64-delta-tn48m-poe-dn-r0",
-            "ip": "10.36.118.23",   
+            "ip": "10.36.118.23",
             "login":{
                 "userName":"root",
                 "password":"onl"

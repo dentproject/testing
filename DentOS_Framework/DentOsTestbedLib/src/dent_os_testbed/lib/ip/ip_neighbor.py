@@ -6,14 +6,14 @@
 
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
-from dent_os_testbed.lib.ip.linux.linux_ip_neighbor_impl import LinuxIpNeighborImpl 
+from dent_os_testbed.lib.ip.linux.linux_ip_neighbor_impl import LinuxIpNeighborImpl
 class IpNeighbor(TestLibObject):
     """
         - ip [ OPTIONS ] neigh { COMMAND | help }
         - ip neigh { add | del | change | replace } { ADDR [ lladdr LLADDR ] [ nud STATE ] | proxy ADDR }
          [ dev DEV ] [ router ] [ extern_learn ]
         - ip neigh { show | flush } [ proxy ] [ to PREFIX ] [ dev DEV ] [ nud STATE ] [ vrf NAME ]
-        
+
     """
     async def _run_command(api, *argv, **kwarg):
         devices = kwarg['input_data']
@@ -39,7 +39,7 @@ class IpNeighbor(TestLibObject):
                         commands += impl_obj.format_command(command=api, params=command)
                         commands += '&& '
                     commands = commands[:-3]
-        
+
                 else:
                     device_result[device_name]['rc'] = -1
                     device_result[device_name]['result'] = "No matching device OS "+ device_obj.os
@@ -58,7 +58,7 @@ class IpNeighbor(TestLibObject):
                     device_result[device_name]['result'] = str(e)
                 result.append(device_result)
         return result
-        
+
     async def add(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -80,10 +80,10 @@ class IpNeighbor(TestLibObject):
         Description:
         ip neigh { add | del | change | replace } { ADDR [ lladdr LLADDR ]
                  [ nud { permanent | noarp | stale | reachable } ] | proxy ADDR } [ dev DEV ]
-        
+
         """
         return await IpNeighbor._run_command("add", *argv, **kwarg)
-        
+
     async def change(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -105,10 +105,10 @@ class IpNeighbor(TestLibObject):
         Description:
         ip neigh { add | del | change | replace } { ADDR [ lladdr LLADDR ]
                  [ nud { permanent | noarp | stale | reachable } ] | proxy ADDR } [ dev DEV ]
-        
+
         """
         return await IpNeighbor._run_command("change", *argv, **kwarg)
-        
+
     async def replace(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -130,10 +130,10 @@ class IpNeighbor(TestLibObject):
         Description:
         ip neigh { add | del | change | replace } { ADDR [ lladdr LLADDR ]
                  [ nud { permanent | noarp | stale | reachable } ] | proxy ADDR } [ dev DEV ]
-        
+
         """
         return await IpNeighbor._run_command("replace", *argv, **kwarg)
-        
+
     async def delete(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -155,10 +155,10 @@ class IpNeighbor(TestLibObject):
         Description:
         ip neigh { add | del | change | replace } { ADDR [ lladdr LLADDR ]
                  [ nud { permanent | noarp | stale | reachable } ] | proxy ADDR } [ dev DEV ]
-        
+
         """
         return await IpNeighbor._run_command("delete", *argv, **kwarg)
-        
+
     async def show(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -178,10 +178,10 @@ class IpNeighbor(TestLibObject):
         )
         Description:
         ip neigh { show | flush } [ proxy ] [ to PREFIX ] [ dev DEV ] [ nud STATE ]
-        
+
         """
         return await IpNeighbor._run_command("show", *argv, **kwarg)
-        
+
     async def flush(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -201,7 +201,7 @@ class IpNeighbor(TestLibObject):
         )
         Description:
         ip neigh { show | flush } [ proxy ] [ to PREFIX ] [ dev DEV ] [ nud STATE ]
-        
+
         """
         return await IpNeighbor._run_command("flush", *argv, **kwarg)
-        
+

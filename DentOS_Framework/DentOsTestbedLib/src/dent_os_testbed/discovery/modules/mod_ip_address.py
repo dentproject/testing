@@ -10,7 +10,7 @@ class IpAddressMod(Module):
     """
     """
     def set_ip_address_info(self, src, dst):
-        
+
         for i,ip_address_info in enumerate(src):
             if 'family' in ip_address_info: dst[i].family = ip_address_info.get('family')
             if 'local' in ip_address_info: dst[i].local = ip_address_info.get('local')
@@ -19,10 +19,10 @@ class IpAddressMod(Module):
             if 'label' in ip_address_info: dst[i].label = ip_address_info.get('label')
             if 'valid_life_time' in ip_address_info: dst[i].valid_life_time = ip_address_info.get('valid_life_time')
             if 'preferred_life_time' in ip_address_info: dst[i].preferred_life_time = ip_address_info.get('preferred_life_time')
-        
-        
+
+
     def set_ip_address(self, src, dst):
-        
+
         for i,ip_address in enumerate(src):
             if 'ifindex' in ip_address: dst[i].ifindex = ip_address.get('ifindex')
             if 'ifname' in ip_address: dst[i].ifname = ip_address.get('ifname')
@@ -49,8 +49,8 @@ class IpAddressMod(Module):
             if 'scope' in ip_address: dst[i].scope = ip_address.get('scope')
             if 'dev' in ip_address: dst[i].dev = ip_address.get('dev')
             if 'options' in ip_address: dst[i].options = ip_address.get('options')
-        
-        
+
+
     async def discover(self):
         # need to get device instance to get the data from
         #
@@ -76,4 +76,4 @@ class IpAddressMod(Module):
                 continue
             self.set_ip_address(out[0][dev.host_name]["parsed_output"], self.report.duts[i].network.layer3.addresses)
             print("Finished ip_address Discovery on {} with {} entries".format(dev.host_name, len(self.report.duts[i].network.layer3.addresses)))
-        
+

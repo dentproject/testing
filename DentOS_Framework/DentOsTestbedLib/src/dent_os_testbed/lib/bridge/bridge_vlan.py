@@ -6,7 +6,7 @@
 
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
-from dent_os_testbed.lib.bridge.linux.linux_bridge_vlan_impl import LinuxBridgeVlanImpl 
+from dent_os_testbed.lib.bridge.linux.linux_bridge_vlan_impl import LinuxBridgeVlanImpl
 class BridgeVlan(TestLibObject):
     """
         vlan objects contain known VLAN IDs for a link.
@@ -35,7 +35,7 @@ class BridgeVlan(TestLibObject):
                         commands += impl_obj.format_command(command=api, params=command)
                         commands += '&& '
                     commands = commands[:-3]
-        
+
                 else:
                     device_result[device_name]['rc'] = -1
                     device_result[device_name]['result'] = "No matching device OS "+ device_obj.os
@@ -54,7 +54,7 @@ class BridgeVlan(TestLibObject):
                     device_result[device_name]['result'] = str(e)
                 result.append(device_result)
         return result
-        
+
     async def add(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -77,10 +77,10 @@ class BridgeVlan(TestLibObject):
         )
         Description:
         bridge vlan { add | del } dev DEV vid VID [ tunnel_info TUNNEL_ID ] [ pvid ] [ untagged ] [ self ] [ master ]
-        
+
         """
         return await BridgeVlan._run_command("add", *argv, **kwarg)
-        
+
     async def delete(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -103,10 +103,10 @@ class BridgeVlan(TestLibObject):
         )
         Description:
         bridge vlan { add | del } dev DEV vid VID [ tunnel_info TUNNEL_ID ] [ pvid ] [ untagged ] [ self ] [ master ]
-        
+
         """
         return await BridgeVlan._run_command("delete", *argv, **kwarg)
-        
+
     async def show(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -122,10 +122,10 @@ class BridgeVlan(TestLibObject):
             }],
         )
         Description:
-        
+
         """
         return await BridgeVlan._run_command("show", *argv, **kwarg)
-        
+
     async def tunnelshow(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -141,7 +141,7 @@ class BridgeVlan(TestLibObject):
             }],
         )
         Description:
-        
+
         """
         return await BridgeVlan._run_command("tunnelshow", *argv, **kwarg)
-        
+

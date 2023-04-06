@@ -6,13 +6,13 @@
 
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
-from dent_os_testbed.lib.ntp.linux.linux_ntp_date_impl import LinuxNtpDateImpl 
+from dent_os_testbed.lib.ntp.linux.linux_ntp_date_impl import LinuxNtpDateImpl
 class NtpDate(TestLibObject):
     """
         ntpdate - set the date and time via NTP
         ntpdate [-46bBdqsuv] [-a key] [-e authdelay] [-k keyfile] [-o version]
           [-p samples] [-t timeout] server [...]
-        
+
     """
     async def _run_command(api, *argv, **kwarg):
         devices = kwarg['input_data']
@@ -38,7 +38,7 @@ class NtpDate(TestLibObject):
                         commands += impl_obj.format_command(command=api, params=command)
                         commands += '&& '
                     commands = commands[:-3]
-        
+
                 else:
                     device_result[device_name]['rc'] = -1
                     device_result[device_name]['result'] = "No matching device OS "+ device_obj.os
@@ -57,7 +57,7 @@ class NtpDate(TestLibObject):
                     device_result[device_name]['result'] = str(e)
                 result.append(device_result)
         return result
-        
+
     async def set(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -110,7 +110,7 @@ class NtpDate(TestLibObject):
                   behind a firewall that blocks incoming traffic to privileged ports, and you want to
                   synchronise with hosts beyond the firewall. Note that the -d option always uses unprivileged ports.
          -v     - Be verbose. This option will cause ntpdate's version identification string to be logged.
-        
+
         """
         return await NtpDate._run_command("set", *argv, **kwarg)
-        
+

@@ -6,7 +6,7 @@
 
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
-from dent_os_testbed.lib.poe.linux.linux_poectl_impl import LinuxPoectlImpl 
+from dent_os_testbed.lib.poe.linux.linux_poectl_impl import LinuxPoectlImpl
 class Poectl(TestLibObject):
     """
         -h, --help                           Show this help message and exit
@@ -25,7 +25,7 @@ class Poectl(TestLibObject):
         --save                               Save the current configuration. The saved configuration
                                              is automatically loaded on system boot.
         --load                               Load and apply the saved configuration.
-        
+
     """
     async def _run_command(api, *argv, **kwarg):
         devices = kwarg['input_data']
@@ -51,7 +51,7 @@ class Poectl(TestLibObject):
                         commands += impl_obj.format_command(command=api, params=command)
                         commands += '&& '
                     commands = commands[:-3]
-        
+
                 else:
                     device_result[device_name]['rc'] = -1
                     device_result[device_name]['result'] = "No matching device OS "+ device_obj.os
@@ -70,7 +70,7 @@ class Poectl(TestLibObject):
                     device_result[device_name]['result'] = str(e)
                 result.append(device_result)
         return result
-        
+
     async def show(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -87,10 +87,10 @@ class Poectl(TestLibObject):
         Description:
         -i, --port-info PORT_LIST            Return detailed information for the specified ports.
           eg: -i swp1-swp5,swp10
-        
+
         """
         return await Poectl._run_command("show", *argv, **kwarg)
-        
+
     async def enable(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -107,10 +107,10 @@ class Poectl(TestLibObject):
         Description:
         -d, --disable-ports PORT_LIST        Disable POE operation on the specified ports.
         -e, --enable-ports PORT_LIST         Enable POE operation on the specified ports.
-        
+
         """
         return await Poectl._run_command("enable", *argv, **kwarg)
-        
+
     async def disable(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -127,10 +127,10 @@ class Poectl(TestLibObject):
         Description:
         -d, --disable-ports PORT_LIST        Disable POE operation on the specified ports.
         -e, --enable-ports PORT_LIST         Enable POE operation on the specified ports.
-        
+
         """
         return await Poectl._run_command("disable", *argv, **kwarg)
-        
+
     async def save(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -148,10 +148,10 @@ class Poectl(TestLibObject):
         --save                               Save the current configuration. The saved configuration
                                              is automatically loaded on system boot.
         --load                               Load and apply the saved configuration.
-        
+
         """
         return await Poectl._run_command("save", *argv, **kwarg)
-        
+
     async def restore(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -169,7 +169,7 @@ class Poectl(TestLibObject):
         --save                               Save the current configuration. The saved configuration
                                              is automatically loaded on system boot.
         --load                               Load and apply the saved configuration.
-        
+
         """
         return await Poectl._run_command("restore", *argv, **kwarg)
-        
+

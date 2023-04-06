@@ -6,7 +6,7 @@
 
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
-from dent_os_testbed.lib.traffic.ixnetwork.ixnetwork_ixia_client_impl import IxnetworkIxiaClientImpl 
+from dent_os_testbed.lib.traffic.ixnetwork.ixnetwork_ixia_client_impl import IxnetworkIxiaClientImpl
 class TrafficGen(TestLibObject):
     """
         - TrafficGen
@@ -30,7 +30,7 @@ class TrafficGen(TestLibObject):
             clear_traffic - [traffic_names]
             update_l1_config - ['speed', 'autoneg', 'ixia_ports']
             switch_min_frame_size - [enable_min_size]
-        
+
     """
     async def _run_command(api, *argv, **kwarg):
         devices = kwarg['input_data']
@@ -56,7 +56,7 @@ class TrafficGen(TestLibObject):
                         commands += impl_obj.format_command(command=api, params=command)
                         commands += '&& '
                     commands = commands[:-3]
-        
+
                 else:
                     device_result[device_name]['rc'] = -1
                     device_result[device_name]['result'] = "No matching device OS "+ device_obj.os
@@ -75,7 +75,7 @@ class TrafficGen(TestLibObject):
                     device_result[device_name]['result'] = str(e)
                 result.append(device_result)
         return result
-        
+
     async def connect(*argv, **kwarg):
         """
         Platforms: ['ixnetwork']
@@ -94,10 +94,10 @@ class TrafficGen(TestLibObject):
         - IxiaClient
           connect - client_addr, ports
           disconnect -
-        
+
         """
         return await TrafficGen._run_command("connect", *argv, **kwarg)
-        
+
     async def disconnect(*argv, **kwarg):
         """
         Platforms: ['ixnetwork']
@@ -116,10 +116,10 @@ class TrafficGen(TestLibObject):
         - IxiaClient
           connect - client_addr, ports
           disconnect -
-        
+
         """
         return await TrafficGen._run_command("disconnect", *argv, **kwarg)
-        
+
     async def load_config(*argv, **kwarg):
         """
         Platforms: ['ixnetwork']
@@ -137,10 +137,10 @@ class TrafficGen(TestLibObject):
         - IxiaClient
            load_config - config_file_name
            save_config - config_file_name
-        
+
         """
         return await TrafficGen._run_command("load_config", *argv, **kwarg)
-        
+
     async def save_config(*argv, **kwarg):
         """
         Platforms: ['ixnetwork']
@@ -158,10 +158,10 @@ class TrafficGen(TestLibObject):
         - IxiaClient
            load_config - config_file_name
            save_config - config_file_name
-        
+
         """
         return await TrafficGen._run_command("save_config", *argv, **kwarg)
-        
+
     async def set_traffic(*argv, **kwarg):
         """
         Platforms: ['ixnetwork']
@@ -185,10 +185,10 @@ class TrafficGen(TestLibObject):
            get_drilldown_stats - [traffic_names]
            clear_stats - [traffic_names]
            clear_traffic - [traffic_names]
-        
+
         """
         return await TrafficGen._run_command("set_traffic", *argv, **kwarg)
-        
+
     async def start_traffic(*argv, **kwarg):
         """
         Platforms: ['ixnetwork']
@@ -212,10 +212,10 @@ class TrafficGen(TestLibObject):
            get_drilldown_stats - [traffic_names]
            clear_stats - [traffic_names]
            clear_traffic - [traffic_names]
-        
+
         """
         return await TrafficGen._run_command("start_traffic", *argv, **kwarg)
-        
+
     async def stop_traffic(*argv, **kwarg):
         """
         Platforms: ['ixnetwork']
@@ -239,10 +239,10 @@ class TrafficGen(TestLibObject):
            get_drilldown_stats - [traffic_names]
            clear_stats - [traffic_names]
            clear_traffic - [traffic_names]
-        
+
         """
         return await TrafficGen._run_command("stop_traffic", *argv, **kwarg)
-        
+
     async def get_stats(*argv, **kwarg):
         """
         Platforms: ['ixnetwork']
@@ -266,10 +266,10 @@ class TrafficGen(TestLibObject):
            get_drilldown_stats - [traffic_names]
            clear_stats - [traffic_names]
            clear_traffic - [traffic_names]
-        
+
         """
         return await TrafficGen._run_command("get_stats", *argv, **kwarg)
-        
+
     async def clear_stats(*argv, **kwarg):
         """
         Platforms: ['ixnetwork']
@@ -293,10 +293,10 @@ class TrafficGen(TestLibObject):
            get_drilldown_stats - [traffic_names]
            clear_stats - [traffic_names]
            clear_traffic - [traffic_names]
-        
+
         """
         return await TrafficGen._run_command("clear_stats", *argv, **kwarg)
-        
+
     async def start_protocols(*argv, **kwarg):
         """
         Platforms: ['ixnetwork']
@@ -317,10 +317,10 @@ class TrafficGen(TestLibObject):
            set_protocol - [protocol]
            get_protocol_stats - [protocols]
            clear_protocol_stats - [protocols]
-        
+
         """
         return await TrafficGen._run_command("start_protocols", *argv, **kwarg)
-        
+
     async def stop_protocols(*argv, **kwarg):
         """
         Platforms: ['ixnetwork']
@@ -341,10 +341,10 @@ class TrafficGen(TestLibObject):
            set_protocol - [protocol]
            get_protocol_stats - [protocols]
            clear_protocol_stats - [protocols]
-        
+
         """
         return await TrafficGen._run_command("stop_protocols", *argv, **kwarg)
-        
+
     async def set_protocol(*argv, **kwarg):
         """
         Platforms: ['ixnetwork']
@@ -365,10 +365,10 @@ class TrafficGen(TestLibObject):
            set_protocol - [protocol]
            get_protocol_stats - [protocols]
            clear_protocol_stats - [protocols]
-        
+
         """
         return await TrafficGen._run_command("set_protocol", *argv, **kwarg)
-        
+
     async def get_protocol_stats(*argv, **kwarg):
         """
         Platforms: ['ixnetwork']
@@ -389,10 +389,10 @@ class TrafficGen(TestLibObject):
            set_protocol - [protocol]
            get_protocol_stats - [protocols]
            clear_protocol_stats - [protocols]
-        
+
         """
         return await TrafficGen._run_command("get_protocol_stats", *argv, **kwarg)
-        
+
     async def clear_protocol_stats(*argv, **kwarg):
         """
         Platforms: ['ixnetwork']
@@ -413,10 +413,10 @@ class TrafficGen(TestLibObject):
            set_protocol - [protocol]
            get_protocol_stats - [protocols]
            clear_protocol_stats - [protocols]
-        
+
         """
         return await TrafficGen._run_command("clear_protocol_stats", *argv, **kwarg)
-        
+
     async def send_arp(*argv, **kwarg):
         """
         Platforms: ['ixnetwork']
@@ -435,10 +435,10 @@ class TrafficGen(TestLibObject):
         - IxiaClient
           send_arp - [port, src_ip]
           send_ns - [port, src_ip]
-        
+
         """
         return await TrafficGen._run_command("send_arp", *argv, **kwarg)
-        
+
     async def send_ns(*argv, **kwarg):
         """
         Platforms: ['ixnetwork']
@@ -457,10 +457,10 @@ class TrafficGen(TestLibObject):
         - IxiaClient
           send_arp - [port, src_ip]
           send_ns - [port, src_ip]
-        
+
         """
         return await TrafficGen._run_command("send_ns", *argv, **kwarg)
-        
+
     async def send_ping(*argv, **kwarg):
         """
         Platforms: ['ixnetwork']
@@ -479,10 +479,10 @@ class TrafficGen(TestLibObject):
         Description:
         - IxiaClient
           send_ping - [port, dst_ip, src_ip]
-        
+
         """
         return await TrafficGen._run_command("send_ping", *argv, **kwarg)
-        
+
     async def clear_traffic(*argv, **kwarg):
         """
         Platforms: ['ixnetwork']
@@ -506,10 +506,10 @@ class TrafficGen(TestLibObject):
            get_drilldown_stats - [traffic_names]
            clear_stats - [traffic_names]
            clear_traffic - [traffic_names]
-        
+
         """
         return await TrafficGen._run_command("clear_traffic", *argv, **kwarg)
-        
+
     async def get_drilldown_stats(*argv, **kwarg):
         """
         Platforms: ['ixnetwork']
@@ -533,10 +533,10 @@ class TrafficGen(TestLibObject):
            get_drilldown_stats - [traffic_names]
            clear_stats - [traffic_names]
            clear_traffic - [traffic_names]
-        
+
         """
         return await TrafficGen._run_command("get_drilldown_stats", *argv, **kwarg)
-        
+
     async def update_l1_config(*argv, **kwarg):
         """
         Platforms: ['ixnetwork']
@@ -556,10 +556,10 @@ class TrafficGen(TestLibObject):
         Description:
         - IxiaClient
           update_l1_config - ['speed', 'autoneg', 'tgen_ports', 'duplex']
-        
+
         """
         return await TrafficGen._run_command("update_l1_config", *argv, **kwarg)
-        
+
     async def switch_min_frame_size(*argv, **kwarg):
         """
         Platforms: ['ixnetwork']
@@ -576,7 +576,7 @@ class TrafficGen(TestLibObject):
         Description:
         - IxiaClient
           switch_min_frame_size - ['enable_min_size']
-        
+
         """
         return await TrafficGen._run_command("switch_min_frame_size", *argv, **kwarg)
-        
+

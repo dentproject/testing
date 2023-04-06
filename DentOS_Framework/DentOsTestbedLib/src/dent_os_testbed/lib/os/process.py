@@ -6,7 +6,7 @@
 
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
-from dent_os_testbed.lib.os.linux.linux_process_impl import LinuxProcessImpl 
+from dent_os_testbed.lib.os.linux.linux_process_impl import LinuxProcessImpl
 class Process(TestLibObject):
     """
         Process details by reading /proc/[pid]/status
@@ -35,7 +35,7 @@ class Process(TestLibObject):
                         commands += impl_obj.format_command(command=api, params=command)
                         commands += '&& '
                     commands = commands[:-3]
-        
+
                 else:
                     device_result[device_name]['rc'] = -1
                     device_result[device_name]['result'] = "No matching device OS "+ device_obj.os
@@ -54,7 +54,7 @@ class Process(TestLibObject):
                     device_result[device_name]['result'] = str(e)
                 result.append(device_result)
         return result
-        
+
     async def show(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -91,7 +91,7 @@ class Process(TestLibObject):
         VmPin:           0 kB
         VmHWM:        2972 kB
         VmRSS:        2972 kB
-        
+
         """
         return await Process._run_command("show", *argv, **kwarg)
-        
+

@@ -6,11 +6,11 @@
 
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
-from dent_os_testbed.lib.onlp.linux.linux_onie_impl import LinuxOnieImpl 
+from dent_os_testbed.lib.onlp.linux.linux_onie_impl import LinuxOnieImpl
 class Onie(TestLibObject):
     """
         ONIE related api's
-        
+
     """
     async def _run_command(api, *argv, **kwarg):
         devices = kwarg['input_data']
@@ -36,7 +36,7 @@ class Onie(TestLibObject):
                         commands += impl_obj.format_command(command=api, params=command)
                         commands += '&& '
                     commands = commands[:-3]
-        
+
                 else:
                     device_result[device_name]['rc'] = -1
                     device_result[device_name]['result'] = "No matching device OS "+ device_obj.os
@@ -55,7 +55,7 @@ class Onie(TestLibObject):
                     device_result[device_name]['result'] = str(e)
                 result.append(device_result)
         return result
-        
+
     async def select(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -71,7 +71,7 @@ class Onie(TestLibObject):
         )
         Description:
         Onie select
-        
+
         """
         return await Onie._run_command("select", *argv, **kwarg)
-        
+

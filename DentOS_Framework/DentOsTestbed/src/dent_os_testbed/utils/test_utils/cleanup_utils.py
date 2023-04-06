@@ -9,13 +9,13 @@ from dent_os_testbed.logger.Logger import AppLogger
 
 async def cleanup_qdiscs(dev):
     """
-    Removes all non-default qdiscs created during test. 
+    Removes all non-default qdiscs created during test.
     Can be used separately or by using `cleanup_qdiscs` fixture.
     """
     logger = AppLogger(DEFAULT_LOGGER)
     logger.info("Clearing TC")
     out = await TcQdisc.show(
-        input_data=[{dev.host_name: [{"options": "-j"}]}], 
+        input_data=[{dev.host_name: [{"options": "-j"}]}],
         parse_output=True
     )
     qdiscs_info = out[0][dev.host_name]["parsed_output"]
@@ -33,13 +33,13 @@ async def cleanup_qdiscs(dev):
 
 async def cleanup_bridges(dev):
     """
-    Removes all bridges created during test. 
+    Removes all bridges created during test.
     Can be used separately or by using `cleanup_bridges` fixture.
     """
     logger = AppLogger(DEFAULT_LOGGER)
     logger.info("Clearing bridges")
     out = await IpLink.show(
-        input_data=[{dev.host_name: [{"link_type": "bridge", "cmd_options": "-j"}]}], 
+        input_data=[{dev.host_name: [{"link_type": "bridge", "cmd_options": "-j"}]}],
         parse_output=True
     )
     bridges_info = out[0][dev.host_name]["parsed_output"]
@@ -51,13 +51,13 @@ async def cleanup_bridges(dev):
 
 async def cleanup_vrfs(dev):
     """
-    Removes all VRFs created during test. 
+    Removes all VRFs created during test.
     Can be used separately or by using `cleanup_vrfs` fixture.
     """
     logger = AppLogger(DEFAULT_LOGGER)
     logger.info("Deleting VRFs")
     out = await IpLink.show(
-        input_data=[{dev.host_name: [{"link_type": "vrf",  "cmd_options": "-j"}]}], 
+        input_data=[{dev.host_name: [{"link_type": "vrf",  "cmd_options": "-j"}]}],
         parse_output=True
     )
     vrfs_info = out[0][dev.host_name]["parsed_output"]
@@ -69,7 +69,7 @@ async def cleanup_vrfs(dev):
 
 async def cleanup_ip_addrs(dev, tgen_dev):
     """
-    Removes all IP addresses configured during test. 
+    Removes all IP addresses configured during test.
     Can be used separately or by using `cleanup_addrs` fixture.
     """
     logger = AppLogger(DEFAULT_LOGGER)
@@ -81,7 +81,7 @@ async def cleanup_ip_addrs(dev, tgen_dev):
 async def get_initial_routes(dev):
     """Gets routes defined before test. Needed to cleanup routes configured during the test"""
     out = await IpRoute.show(
-        input_data=[{dev.host_name: [{"cmd_options": "-j"}]}], 
+        input_data=[{dev.host_name: [{"cmd_options": "-j"}]}],
         parse_output=True
     )
     return out[0][dev.host_name]["parsed_output"]
@@ -89,13 +89,13 @@ async def get_initial_routes(dev):
 
 async def cleanup_routes(dev, initial_routes):
     """
-    Removes all IP routes configured during test. 
+    Removes all IP routes configured during test.
     Can be used separately or by using `cleanup_routes` fixture.
     """
     logger = AppLogger(DEFAULT_LOGGER)
     logger.info("Deleting routes")
     out = await IpRoute.show(
-        input_data=[{dev.host_name: [{"cmd_options": "-j"}]}], 
+        input_data=[{dev.host_name: [{"cmd_options": "-j"}]}],
         parse_output=True
     )
     new_routes = out[0][dev.host_name]["parsed_output"]
@@ -108,10 +108,10 @@ async def cleanup_routes(dev, initial_routes):
 
 async def cleanup_sysctl():
     """
-    Restores all sysctl values changed during test. 
+    Restores all sysctl values changed during test.
     Can be used separately or by using `cleanup_sysctl` fixture.
     """
     logger = AppLogger(DEFAULT_LOGGER)
     logger.info("Restoring sysctl values")
     await RecoverableSysctl.recover()
-    
+

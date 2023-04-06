@@ -6,7 +6,7 @@
 
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
-from dent_os_testbed.lib.os.linux.linux_memory_usage_impl import LinuxMemoryUsageImpl 
+from dent_os_testbed.lib.os.linux.linux_memory_usage_impl import LinuxMemoryUsageImpl
 class MemoryUsage(TestLibObject):
     """
         cat /proc/meminfo
@@ -18,7 +18,7 @@ class MemoryUsage(TestLibObject):
         SwapCached:            0 kB
         Active:          8455648 kB
         Inactive:        3306968 kB
-        
+
     """
     async def _run_command(api, *argv, **kwarg):
         devices = kwarg['input_data']
@@ -44,7 +44,7 @@ class MemoryUsage(TestLibObject):
                         commands += impl_obj.format_command(command=api, params=command)
                         commands += '&& '
                     commands = commands[:-3]
-        
+
                 else:
                     device_result[device_name]['rc'] = -1
                     device_result[device_name]['result'] = "No matching device OS "+ device_obj.os
@@ -63,7 +63,7 @@ class MemoryUsage(TestLibObject):
                     device_result[device_name]['result'] = str(e)
                 result.append(device_result)
         return result
-        
+
     async def show(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -73,7 +73,7 @@ class MemoryUsage(TestLibObject):
                 # device 1
                 'dev1' : [{
                     # command 1
-        
+
                 }],
             }],
         )
@@ -88,7 +88,7 @@ class MemoryUsage(TestLibObject):
         Inactive:        2537912 kB
         Active(anon):    1080196 kB
         Inactive(anon):    99792 kB
-        
+
         """
         return await MemoryUsage._run_command("show", *argv, **kwarg)
-        
+

@@ -6,7 +6,7 @@
 
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
-from dent_os_testbed.lib.tc.linux.linux_tc_class_impl import LinuxTcClassImpl 
+from dent_os_testbed.lib.tc.linux.linux_tc_class_impl import LinuxTcClassImpl
 class TcClass(TestLibObject):
     """
         - tc [ OPTIONS ] [ FORMAT ] class show dev DEV
@@ -15,7 +15,7 @@ class TcClass(TestLibObject):
         OPTIONS := { [ -force ] -b[atch] [ filename ] | [ -n[etns] name ] | [ -nm | -nam[es] ] |
           [ { -cf | -c[onf] } [ filename ] ] [ -t[imestamp] ] | [ -t[short] | [ -o[neline] ] }
         FORMAT := { -s[tatistics] | -d[etails] | -r[aw] | -i[ec] | -g[raph] | -j[json] | -p[retty] | -col[or] }
-        
+
     """
     async def _run_command(api, *argv, **kwarg):
         devices = kwarg['input_data']
@@ -41,7 +41,7 @@ class TcClass(TestLibObject):
                         commands += impl_obj.format_command(command=api, params=command)
                         commands += '&& '
                     commands = commands[:-3]
-        
+
                 else:
                     device_result[device_name]['rc'] = -1
                     device_result[device_name]['result'] = "No matching device OS "+ device_obj.os
@@ -60,7 +60,7 @@ class TcClass(TestLibObject):
                     device_result[device_name]['result'] = str(e)
                 result.append(device_result)
         return result
-        
+
     async def add(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -81,10 +81,10 @@ class TcClass(TestLibObject):
         Description:
         tc [ OPTIONS ] class [ add | change | replace | delete ] dev DEV parent qdisc-id [
         classid class-id ] qdisc [ qdisc specific parameters ]
-        
+
         """
         return await TcClass._run_command("add", *argv, **kwarg)
-        
+
     async def change(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -105,10 +105,10 @@ class TcClass(TestLibObject):
         Description:
         tc [ OPTIONS ] class [ add | change | replace | delete ] dev DEV parent qdisc-id [
         classid class-id ] qdisc [ qdisc specific parameters ]
-        
+
         """
         return await TcClass._run_command("change", *argv, **kwarg)
-        
+
     async def replace(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -129,10 +129,10 @@ class TcClass(TestLibObject):
         Description:
         tc [ OPTIONS ] class [ add | change | replace | delete ] dev DEV parent qdisc-id [
         classid class-id ] qdisc [ qdisc specific parameters ]
-        
+
         """
         return await TcClass._run_command("replace", *argv, **kwarg)
-        
+
     async def delete(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -153,10 +153,10 @@ class TcClass(TestLibObject):
         Description:
         tc [ OPTIONS ] class [ add | change | replace | delete ] dev DEV parent qdisc-id [
         classid class-id ] qdisc [ qdisc specific parameters ]
-        
+
         """
         return await TcClass._run_command("delete", *argv, **kwarg)
-        
+
     async def show(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -174,7 +174,7 @@ class TcClass(TestLibObject):
         )
         Description:
         tc [ OPTIONS ] [ FORMAT ] class show dev DEV
-        
+
         """
         return await TcClass._run_command("show", *argv, **kwarg)
-        
+

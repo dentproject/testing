@@ -11,21 +11,21 @@ class LinuxOnie(TestLibObject):
     """
     def format_select(self, command, *argv, **kwarg):
         raise NotImplementedError
-        
+
     def parse_select(self, command, output, *argv, **kwarg):
         raise NotImplementedError
-        
+
     def format_command(self, command, *argv, **kwarg):
         if command in ['select']:
             return self.format_select(command, *argv, **kwarg)
-        
-        
+
+
         raise NameError("Cannot find command "+command)
-        
+
     def parse_output(self, command, output, *argv, **kwarg):
         if command in ['select']:
             return self.parse_select(command, output, *argv, **kwarg)
-        
-        
+
+
         raise NameError("Cannot find command "+command)
-        
+

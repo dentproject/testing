@@ -6,7 +6,7 @@
 
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
-from dent_os_testbed.lib.os.linux.linux_disk_free_impl import LinuxDiskFreeImpl 
+from dent_os_testbed.lib.os.linux.linux_disk_free_impl import LinuxDiskFreeImpl
 class DiskFree(TestLibObject):
     """
         Disk free
@@ -35,7 +35,7 @@ class DiskFree(TestLibObject):
                         commands += impl_obj.format_command(command=api, params=command)
                         commands += '&& '
                     commands = commands[:-3]
-        
+
                 else:
                     device_result[device_name]['rc'] = -1
                     device_result[device_name]['result'] = "No matching device OS "+ device_obj.os
@@ -54,7 +54,7 @@ class DiskFree(TestLibObject):
                     device_result[device_name]['result'] = str(e)
                 result.append(device_result)
         return result
-        
+
     async def show(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -81,7 +81,7 @@ class DiskFree(TestLibObject):
         tmpfs           5.0M     0  5.0M   0% /run/lock
         tmpfs           3.9G     0  3.9G   0% /sys/fs/cgroup
         ....
-        
+
         """
         return await DiskFree._run_command("show", *argv, **kwarg)
-        
+

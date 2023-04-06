@@ -6,9 +6,9 @@
 
 import asyncio
 from .utils import TestDevice
-from dent_os_testbed.lib.dcb.dcb_app import DcbApp 
+from dent_os_testbed.lib.dcb.dcb_app import DcbApp
 def test_that_dcb_app_show(capfd):
-    
+
     dv1 = TestDevice(platform="dentos")
     dv2 = TestDevice(platform="dentos")
     loop = asyncio.get_event_loop()
@@ -21,7 +21,7 @@ def test_that_dcb_app_show(capfd):
     assert 'result' in out[0]['test_dev'].keys()
     # check the rc
     assert out[0]['test_dev']["rc"] == 0
-    
+
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DcbApp.show(input_data = [{
         # device 1
@@ -34,7 +34,7 @@ def test_that_dcb_app_show(capfd):
             'port-prio':'',
             'stream-port-prio':'',
             'dgram-port-prio':'',
-    
+
         },{
         # command 2
             'dev':'vaoohlzo',
@@ -44,7 +44,7 @@ def test_that_dcb_app_show(capfd):
             'port-prio':'',
             'stream-port-prio':'',
             'dgram-port-prio':'',
-    
+
         }],
     }], device_obj={'test_dev1':dv1, 'test_dev2':dv2}))
     print(out)
@@ -54,7 +54,7 @@ def test_that_dcb_app_show(capfd):
     assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
     assert out[0]['test_dev1']["rc"] == 0
-    
+
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DcbApp.show(input_data = [{
         # device 1
@@ -66,7 +66,7 @@ def test_that_dcb_app_show(capfd):
             'port-prio':'',
             'stream-port-prio':'',
             'dgram-port-prio':'',
-    
+
          }],
          # device 2
          'test_dev2' : [{
@@ -77,7 +77,7 @@ def test_that_dcb_app_show(capfd):
             'port-prio':'',
             'stream-port-prio':'',
             'dgram-port-prio':'',
-    
+
         }],
     }], device_obj={'test_dev1':dv1, 'test_dev2':dv2}))
     print(out)
@@ -90,10 +90,10 @@ def test_that_dcb_app_show(capfd):
     # check the rc
     assert out[0]['test_dev1']["rc"] == 0
     assert out[1]['test_dev2']["rc"] == 0
-    
-    
+
+
 def test_that_dcb_app_flush(capfd):
-    
+
     dv1 = TestDevice(platform="dentos")
     dv2 = TestDevice(platform="dentos")
     loop = asyncio.get_event_loop()
@@ -106,7 +106,7 @@ def test_that_dcb_app_flush(capfd):
     assert 'result' in out[0]['test_dev'].keys()
     # check the rc
     assert out[0]['test_dev']["rc"] == 0
-    
+
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DcbApp.flush(input_data = [{
         # device 1
@@ -119,7 +119,7 @@ def test_that_dcb_app_flush(capfd):
             'port-prio':'',
             'stream-port-prio':'',
             'dgram-port-prio':'',
-    
+
         },{
         # command 2
             'dev':'sxlqptce',
@@ -129,7 +129,7 @@ def test_that_dcb_app_flush(capfd):
             'port-prio':'',
             'stream-port-prio':'',
             'dgram-port-prio':'',
-    
+
         }],
     }], device_obj={'test_dev1':dv1, 'test_dev2':dv2}))
     print(out)
@@ -139,7 +139,7 @@ def test_that_dcb_app_flush(capfd):
     assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
     assert out[0]['test_dev1']["rc"] == 0
-    
+
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DcbApp.flush(input_data = [{
         # device 1
@@ -151,7 +151,7 @@ def test_that_dcb_app_flush(capfd):
             'port-prio':'',
             'stream-port-prio':'',
             'dgram-port-prio':'',
-    
+
          }],
          # device 2
          'test_dev2' : [{
@@ -162,7 +162,7 @@ def test_that_dcb_app_flush(capfd):
             'port-prio':'',
             'stream-port-prio':'',
             'dgram-port-prio':'',
-    
+
         }],
     }], device_obj={'test_dev1':dv1, 'test_dev2':dv2}))
     print(out)
@@ -175,10 +175,10 @@ def test_that_dcb_app_flush(capfd):
     # check the rc
     assert out[0]['test_dev1']["rc"] == 0
     assert out[1]['test_dev2']["rc"] == 0
-    
-    
+
+
 def test_that_dcb_app_add(capfd):
-    
+
     dv1 = TestDevice(platform="dentos")
     dv2 = TestDevice(platform="dentos")
     loop = asyncio.get_event_loop()
@@ -191,7 +191,7 @@ def test_that_dcb_app_add(capfd):
     assert 'result' in out[0]['test_dev'].keys()
     # check the rc
     assert out[0]['test_dev']["rc"] == 0
-    
+
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DcbApp.add(input_data = [{
         # device 1
@@ -204,7 +204,7 @@ def test_that_dcb_app_add(capfd):
             'port-prio':'',
             'stream-port-prio':'',
             'dgram-port-prio':'',
-    
+
         },{
         # command 2
             'dev':'apzgccxw',
@@ -214,7 +214,7 @@ def test_that_dcb_app_add(capfd):
             'port-prio':'',
             'stream-port-prio':'',
             'dgram-port-prio':'',
-    
+
         }],
     }], device_obj={'test_dev1':dv1, 'test_dev2':dv2}))
     print(out)
@@ -224,7 +224,7 @@ def test_that_dcb_app_add(capfd):
     assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
     assert out[0]['test_dev1']["rc"] == 0
-    
+
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DcbApp.add(input_data = [{
         # device 1
@@ -236,7 +236,7 @@ def test_that_dcb_app_add(capfd):
             'port-prio':'',
             'stream-port-prio':'',
             'dgram-port-prio':'',
-    
+
          }],
          # device 2
          'test_dev2' : [{
@@ -247,7 +247,7 @@ def test_that_dcb_app_add(capfd):
             'port-prio':'',
             'stream-port-prio':'',
             'dgram-port-prio':'',
-    
+
         }],
     }], device_obj={'test_dev1':dv1, 'test_dev2':dv2}))
     print(out)
@@ -260,10 +260,10 @@ def test_that_dcb_app_add(capfd):
     # check the rc
     assert out[0]['test_dev1']["rc"] == 0
     assert out[1]['test_dev2']["rc"] == 0
-    
-    
+
+
 def test_that_dcb_app_delete(capfd):
-    
+
     dv1 = TestDevice(platform="dentos")
     dv2 = TestDevice(platform="dentos")
     loop = asyncio.get_event_loop()
@@ -276,7 +276,7 @@ def test_that_dcb_app_delete(capfd):
     assert 'result' in out[0]['test_dev'].keys()
     # check the rc
     assert out[0]['test_dev']["rc"] == 0
-    
+
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DcbApp.delete(input_data = [{
         # device 1
@@ -289,7 +289,7 @@ def test_that_dcb_app_delete(capfd):
             'port-prio':'',
             'stream-port-prio':'',
             'dgram-port-prio':'',
-    
+
         },{
         # command 2
             'dev':'pzcioafr',
@@ -299,7 +299,7 @@ def test_that_dcb_app_delete(capfd):
             'port-prio':'',
             'stream-port-prio':'',
             'dgram-port-prio':'',
-    
+
         }],
     }], device_obj={'test_dev1':dv1, 'test_dev2':dv2}))
     print(out)
@@ -309,7 +309,7 @@ def test_that_dcb_app_delete(capfd):
     assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
     assert out[0]['test_dev1']["rc"] == 0
-    
+
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DcbApp.delete(input_data = [{
         # device 1
@@ -321,7 +321,7 @@ def test_that_dcb_app_delete(capfd):
             'port-prio':'',
             'stream-port-prio':'',
             'dgram-port-prio':'',
-    
+
          }],
          # device 2
          'test_dev2' : [{
@@ -332,7 +332,7 @@ def test_that_dcb_app_delete(capfd):
             'port-prio':'',
             'stream-port-prio':'',
             'dgram-port-prio':'',
-    
+
         }],
     }], device_obj={'test_dev1':dv1, 'test_dev2':dv2}))
     print(out)
@@ -345,10 +345,10 @@ def test_that_dcb_app_delete(capfd):
     # check the rc
     assert out[0]['test_dev1']["rc"] == 0
     assert out[1]['test_dev2']["rc"] == 0
-    
-    
+
+
 def test_that_dcb_app_replace(capfd):
-    
+
     dv1 = TestDevice(platform="dentos")
     dv2 = TestDevice(platform="dentos")
     loop = asyncio.get_event_loop()
@@ -361,7 +361,7 @@ def test_that_dcb_app_replace(capfd):
     assert 'result' in out[0]['test_dev'].keys()
     # check the rc
     assert out[0]['test_dev']["rc"] == 0
-    
+
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DcbApp.replace(input_data = [{
         # device 1
@@ -374,7 +374,7 @@ def test_that_dcb_app_replace(capfd):
             'port-prio':'',
             'stream-port-prio':'',
             'dgram-port-prio':'',
-    
+
         },{
         # command 2
             'dev':'ckdmewks',
@@ -384,7 +384,7 @@ def test_that_dcb_app_replace(capfd):
             'port-prio':'',
             'stream-port-prio':'',
             'dgram-port-prio':'',
-    
+
         }],
     }], device_obj={'test_dev1':dv1, 'test_dev2':dv2}))
     print(out)
@@ -394,7 +394,7 @@ def test_that_dcb_app_replace(capfd):
     assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
     assert out[0]['test_dev1']["rc"] == 0
-    
+
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DcbApp.replace(input_data = [{
         # device 1
@@ -406,7 +406,7 @@ def test_that_dcb_app_replace(capfd):
             'port-prio':'',
             'stream-port-prio':'',
             'dgram-port-prio':'',
-    
+
          }],
          # device 2
          'test_dev2' : [{
@@ -417,7 +417,7 @@ def test_that_dcb_app_replace(capfd):
             'port-prio':'',
             'stream-port-prio':'',
             'dgram-port-prio':'',
-    
+
         }],
     }], device_obj={'test_dev1':dv1, 'test_dev2':dv2}))
     print(out)
@@ -430,5 +430,5 @@ def test_that_dcb_app_replace(capfd):
     # check the rc
     assert out[0]['test_dev1']["rc"] == 0
     assert out[1]['test_dev2']["rc"] == 0
-    
-    
+
+

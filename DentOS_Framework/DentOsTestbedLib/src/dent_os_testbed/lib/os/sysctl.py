@@ -6,7 +6,7 @@
 
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
-from dent_os_testbed.lib.os.linux.linux_sysctl_impl import LinuxSysctlImpl 
+from dent_os_testbed.lib.os.linux.linux_sysctl_impl import LinuxSysctlImpl
 class Sysctl(TestLibObject):
     """
         system control
@@ -35,7 +35,7 @@ class Sysctl(TestLibObject):
                         commands += impl_obj.format_command(command=api, params=command)
                         commands += '&& '
                     commands = commands[:-3]
-        
+
                 else:
                     device_result[device_name]['rc'] = -1
                     device_result[device_name]['result'] = "No matching device OS "+ device_obj.os
@@ -54,7 +54,7 @@ class Sysctl(TestLibObject):
                     device_result[device_name]['result'] = str(e)
                 result.append(device_result)
         return result
-        
+
     async def get(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -70,10 +70,10 @@ class Sysctl(TestLibObject):
         )
         Description:
         Get the attribute value
-        
+
         """
         return await Sysctl._run_command("get", *argv, **kwarg)
-        
+
     async def set(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -90,7 +90,7 @@ class Sysctl(TestLibObject):
         )
         Description:
         Set the attribute value
-        
+
         """
         return await Sysctl._run_command("set", *argv, **kwarg)
-        
+

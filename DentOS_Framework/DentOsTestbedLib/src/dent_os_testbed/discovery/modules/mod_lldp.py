@@ -10,14 +10,14 @@ class LldpMod(Module):
     """
     """
     def set_lldp(self, src, dst):
-        
+
         for i,lldp in enumerate(src):
             if 'interface' in lldp: dst[i].interface = lldp.get('interface')
             if 'options' in lldp: dst[i].options = lldp.get('options')
             if 'remote_host' in lldp: dst[i].remote_host = lldp.get('remote_host')
             if 'remote_interface' in lldp: dst[i].remote_interface = lldp.get('remote_interface')
-        
-        
+
+
     async def discover(self):
         # need to get device instance to get the data from
         #
@@ -43,4 +43,4 @@ class LldpMod(Module):
                 continue
             self.set_lldp(out[0][dev.host_name]["parsed_output"], self.report.duts[i].platform.lldp.interfaces)
             print("Finished lldp Discovery on {} with {} entries".format(dev.host_name, len(self.report.duts[i].platform.lldp.interfaces)))
-        
+

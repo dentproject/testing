@@ -10,7 +10,7 @@ class OnlpSfpInfoMod(Module):
     """
     """
     def set_onlp_sfp_info(self, src, dst):
-        
+
         for i,onlp_sfp_info in enumerate(src):
             if 'port' in onlp_sfp_info: dst[i].port = onlp_sfp_info.get('port')
             if 'type' in onlp_sfp_info: dst[i].type = onlp_sfp_info.get('type')
@@ -20,8 +20,8 @@ class OnlpSfpInfoMod(Module):
             if 'vendor' in onlp_sfp_info: dst[i].vendor = onlp_sfp_info.get('vendor')
             if 'model' in onlp_sfp_info: dst[i].model = onlp_sfp_info.get('model')
             if 'serial_number' in onlp_sfp_info: dst[i].serial_number = onlp_sfp_info.get('serial_number')
-        
-        
+
+
     async def discover(self):
         # need to get device instance to get the data from
         #
@@ -47,4 +47,4 @@ class OnlpSfpInfoMod(Module):
                 continue
             self.set_onlp_sfp_info(out[0][dev.host_name]["parsed_output"], self.report.duts[i].platform.onlp.sfps)
             print("Finished onlp_sfp_info Discovery on {} with {} entries".format(dev.host_name, len(self.report.duts[i].platform.onlp.sfps)))
-        
+

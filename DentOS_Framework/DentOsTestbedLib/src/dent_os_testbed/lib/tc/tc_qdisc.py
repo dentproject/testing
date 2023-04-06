@@ -6,7 +6,7 @@
 
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
-from dent_os_testbed.lib.tc.linux.linux_tc_qdisc_impl import LinuxTcQdiscImpl 
+from dent_os_testbed.lib.tc.linux.linux_tc_qdisc_impl import LinuxTcQdiscImpl
 class TcQdisc(TestLibObject):
     """
         - tc [ OPTIONS ] qdisc [ add | change | replace | link | delete ] dev DEV [ parent qdisc-id | root ]
@@ -16,7 +16,7 @@ class TcQdisc(TestLibObject):
         OPTIONS := { [ -force ] -b[atch] [ filename ] | [ -n[etns] name ] | [ -nm | -nam[es] ] |
           [ { -cf | -c[onf] } [ filename ] ] [ -t[imestamp] ] | [ -t[short] | [ -o[neline] ] }
         FORMAT := { -s[tatistics] | -d[etails] | -r[aw] | -i[ec] | -g[raph] | -j[json] | -p[retty] | -col[or] }
-        
+
     """
     async def _run_command(api, *argv, **kwarg):
         devices = kwarg['input_data']
@@ -42,7 +42,7 @@ class TcQdisc(TestLibObject):
                         commands += impl_obj.format_command(command=api, params=command)
                         commands += '&& '
                     commands = commands[:-3]
-        
+
                 else:
                     device_result[device_name]['rc'] = -1
                     device_result[device_name]['result'] = "No matching device OS "+ device_obj.os
@@ -61,7 +61,7 @@ class TcQdisc(TestLibObject):
                     device_result[device_name]['result'] = str(e)
                 result.append(device_result)
         return result
-        
+
     async def add(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -87,10 +87,10 @@ class TcQdisc(TestLibObject):
         tc  [  OPTIONS ] qdisc [ add | change | replace | link | delete ] dev DEV [ parent
         qdisc-id | root ] [ handle qdisc-id ] [ ingress_block BLOCK_INDEX ] [ egress_block
         BLOCK_INDEX ] qdisc [ qdisc specific parameters ]
-        
+
         """
         return await TcQdisc._run_command("add", *argv, **kwarg)
-        
+
     async def change(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -116,10 +116,10 @@ class TcQdisc(TestLibObject):
         tc  [  OPTIONS ] qdisc [ add | change | replace | link | delete ] dev DEV [ parent
         qdisc-id | root ] [ handle qdisc-id ] [ ingress_block BLOCK_INDEX ] [ egress_block
         BLOCK_INDEX ] qdisc [ qdisc specific parameters ]
-        
+
         """
         return await TcQdisc._run_command("change", *argv, **kwarg)
-        
+
     async def replace(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -145,10 +145,10 @@ class TcQdisc(TestLibObject):
         tc  [  OPTIONS ] qdisc [ add | change | replace | link | delete ] dev DEV [ parent
         qdisc-id | root ] [ handle qdisc-id ] [ ingress_block BLOCK_INDEX ] [ egress_block
         BLOCK_INDEX ] qdisc [ qdisc specific parameters ]
-        
+
         """
         return await TcQdisc._run_command("replace", *argv, **kwarg)
-        
+
     async def link(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -174,10 +174,10 @@ class TcQdisc(TestLibObject):
         tc  [  OPTIONS ] qdisc [ add | change | replace | link | delete ] dev DEV [ parent
         qdisc-id | root ] [ handle qdisc-id ] [ ingress_block BLOCK_INDEX ] [ egress_block
         BLOCK_INDEX ] qdisc [ qdisc specific parameters ]
-        
+
         """
         return await TcQdisc._run_command("link", *argv, **kwarg)
-        
+
     async def delete(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -203,10 +203,10 @@ class TcQdisc(TestLibObject):
         tc  [  OPTIONS ] qdisc [ add | change | replace | link | delete ] dev DEV [ parent
         qdisc-id | root ] [ handle qdisc-id ] [ ingress_block BLOCK_INDEX ] [ egress_block
         BLOCK_INDEX ] qdisc [ qdisc specific parameters ]
-        
+
         """
         return await TcQdisc._run_command("delete", *argv, **kwarg)
-        
+
     async def show(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -224,7 +224,7 @@ class TcQdisc(TestLibObject):
         )
         Description:
         tc [ OPTIONS ] [ FORMAT ] qdisc show [ dev DEV ]
-        
+
         """
         return await TcQdisc._run_command("show", *argv, **kwarg)
-        
+

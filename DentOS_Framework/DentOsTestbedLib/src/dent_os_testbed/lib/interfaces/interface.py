@@ -6,14 +6,14 @@
 
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
-from dent_os_testbed.lib.interfaces.linux.linux_interface_impl import LinuxInterfaceImpl 
+from dent_os_testbed.lib.interfaces.linux.linux_interface_impl import LinuxInterfaceImpl
 class Interface(TestLibObject):
     """
         ifupdown/ifreload - network interface management commands
         By default, ifupdown2.conf sets /etc/network/interfaces as the network interface
         configuration file. This file contains information for the ifup(8), ifdown(8) and
         ifquery(8) commands
-        
+
     """
     async def _run_command(api, *argv, **kwarg):
         devices = kwarg['input_data']
@@ -39,7 +39,7 @@ class Interface(TestLibObject):
                         commands += impl_obj.format_command(command=api, params=command)
                         commands += '&& '
                     commands = commands[:-3]
-        
+
                 else:
                     device_result[device_name]['rc'] = -1
                     device_result[device_name]['result'] = "No matching device OS "+ device_obj.os
@@ -58,7 +58,7 @@ class Interface(TestLibObject):
                     device_result[device_name]['result'] = str(e)
                 result.append(device_result)
         return result
-        
+
     async def up(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -102,10 +102,10 @@ class Interface(TestLibObject):
                print iface dependency in list or dot format
         -s, --syntax-check
                Only run the interfaces file parser
-        
+
         """
         return await Interface._run_command("up", *argv, **kwarg)
-        
+
     async def down(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -149,10 +149,10 @@ class Interface(TestLibObject):
                print iface dependency in list or dot format
         -s, --syntax-check
                Only run the interfaces file parser
-        
+
         """
         return await Interface._run_command("down", *argv, **kwarg)
-        
+
     async def query(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -193,10 +193,10 @@ class Interface(TestLibObject):
         -s, --syntax-help
                print supported interface config syntax. Scans all addon modules and dumps
                supported syntax from them if provided by the module.
-        
+
         """
         return await Interface._run_command("query", *argv, **kwarg)
-        
+
     async def reload(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -226,7 +226,7 @@ class Interface(TestLibObject):
                 specified in order to be excluded.
          -s, --syntax-check
                 Only run the interfaces file parser
-        
+
         """
         return await Interface._run_command("reload", *argv, **kwarg)
-        
+

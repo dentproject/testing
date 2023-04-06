@@ -21,49 +21,49 @@ class LinuxIpTables(TestLibObject):
         rule-specification = [matches...] [target]
         match = -m matchname [per-match-options]
         target = -j targetname [per-target-options]
-        
+
     """
     def format_update_rules(self, command, *argv, **kwarg):
         raise NotImplementedError
-        
+
     def parse_update_rules(self, command, output, *argv, **kwarg):
         raise NotImplementedError
-        
+
     def format_show_rules(self, command, *argv, **kwarg):
         raise NotImplementedError
-        
+
     def parse_show_rules(self, command, output, *argv, **kwarg):
         raise NotImplementedError
-        
+
     def format_update_chain(self, command, *argv, **kwarg):
         raise NotImplementedError
-        
+
     def parse_update_chain(self, command, output, *argv, **kwarg):
         raise NotImplementedError
-        
+
     def format_command(self, command, *argv, **kwarg):
         if command in ['append', 'check', 'delete', 'insert', 'replace']:
             return self.format_update_rules(command, *argv, **kwarg)
-        
+
         if command in ['list', 'list_rules', 'flush', 'zero']:
             return self.format_show_rules(command, *argv, **kwarg)
-        
+
         if command in ['new_chain', 'policy', 'rename_chain']:
             return self.format_update_chain(command, *argv, **kwarg)
-        
-        
+
+
         raise NameError("Cannot find command "+command)
-        
+
     def parse_output(self, command, output, *argv, **kwarg):
         if command in ['append', 'check', 'delete', 'insert', 'replace']:
             return self.parse_update_rules(command, output, *argv, **kwarg)
-        
+
         if command in ['list', 'list_rules', 'flush', 'zero']:
             return self.parse_show_rules(command, output, *argv, **kwarg)
-        
+
         if command in ['new_chain', 'policy', 'rename_chain']:
             return self.parse_update_chain(command, output, *argv, **kwarg)
-        
-        
+
+
         raise NameError("Cannot find command "+command)
-        
+

@@ -30,7 +30,7 @@ class RecoverableSysctl(Sysctl):
                     command["options"] = saved_options[device_name][i]
                 saved_options[device_name] = []
         return await Sysctl.set(*argv, **kwarg)
-    
+
     async def recover():
         for device_name, config in RecoverableSysctl.saved_values.items():
             await Sysctl.set(input_data=[{

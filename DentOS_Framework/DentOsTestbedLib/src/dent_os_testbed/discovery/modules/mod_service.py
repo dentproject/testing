@@ -10,15 +10,15 @@ class ServiceMod(Module):
     """
     """
     def set_service(self, src, dst):
-        
+
         for i,service in enumerate(src):
             if 'name' in service: dst[i].name = service.get('name')
             if 'loaded' in service: dst[i].loaded = service.get('loaded')
             if 'active' in service: dst[i].active = service.get('active')
             if 'status' in service: dst[i].status = service.get('status')
             if 'description' in service: dst[i].description = service.get('description')
-        
-        
+
+
     async def discover(self):
         # need to get device instance to get the data from
         #
@@ -44,4 +44,4 @@ class ServiceMod(Module):
                 continue
             self.set_service(out[0][dev.host_name]["parsed_output"], self.report.duts[i].system.os.services)
             print("Finished service Discovery on {} with {} entries".format(dev.host_name, len(self.report.duts[i].system.os.services)))
-        
+

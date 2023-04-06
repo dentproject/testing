@@ -10,7 +10,7 @@ class IpLinkMod(Module):
     """
     """
     def set_ip_link(self, src, dst):
-        
+
         for i,ip_link in enumerate(src):
             if 'ageing_time' in ip_link: dst[i].ageing_time = ip_link.get('ageing_time')
             if 'ifindex' in ip_link: dst[i].ifindex = ip_link.get('ifindex')
@@ -50,8 +50,8 @@ class IpLinkMod(Module):
             if 'state' in ip_link: dst[i].state = ip_link.get('state')
             if 'master' in ip_link: dst[i].master = ip_link.get('master')
             if 'options' in ip_link: dst[i].options = ip_link.get('options')
-        
-        
+
+
     async def discover(self):
         # need to get device instance to get the data from
         #
@@ -77,4 +77,4 @@ class IpLinkMod(Module):
                 continue
             self.set_ip_link(out[0][dev.host_name]["parsed_output"], self.report.duts[i].network.layer1.links)
             print("Finished ip_link Discovery on {} with {} entries".format(dev.host_name, len(self.report.duts[i].network.layer1.links)))
-        
+

@@ -6,7 +6,7 @@
 
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
-from dent_os_testbed.lib.bridge.linux.linux_bridge_monitor_impl import LinuxBridgeMonitorImpl 
+from dent_os_testbed.lib.bridge.linux.linux_bridge_monitor_impl import LinuxBridgeMonitorImpl
 class BridgeMonitor(TestLibObject):
     """
         The bridge utility can monitor the state of devices and addresses continuously.
@@ -35,7 +35,7 @@ class BridgeMonitor(TestLibObject):
                         commands += impl_obj.format_command(command=api, params=command)
                         commands += '&& '
                     commands = commands[:-3]
-        
+
                 else:
                     device_result[device_name]['rc'] = -1
                     device_result[device_name]['result'] = "No matching device OS "+ device_obj.os
@@ -54,7 +54,7 @@ class BridgeMonitor(TestLibObject):
                     device_result[device_name]['result'] = str(e)
                 result.append(device_result)
         return result
-        
+
     async def monitor(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -70,7 +70,7 @@ class BridgeMonitor(TestLibObject):
         )
         Description:
         bridge monitor [ all | neigh | link | mdb ]
-        
+
         """
         return await BridgeMonitor._run_command("monitor", *argv, **kwarg)
-        
+

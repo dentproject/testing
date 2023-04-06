@@ -6,15 +6,15 @@
 
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
-from dent_os_testbed.lib.poe_tester.dni.dni_poe_tester_impl import DniPoeTesterImpl 
+from dent_os_testbed.lib.poe_tester.dni.dni_poe_tester_impl import DniPoeTesterImpl
 class PoeTester(TestLibObject):
     """
         - PoeTester
             attach - [hostname, serial_dev, baudrate]
             detach -
             configure_port - [input_data]
-            get_port_stats - 
-        
+            get_port_stats -
+
     """
     async def _run_command(api, *argv, **kwarg):
         devices = kwarg['input_data']
@@ -40,7 +40,7 @@ class PoeTester(TestLibObject):
                         commands += impl_obj.format_command(command=api, params=command)
                         commands += '&& '
                     commands = commands[:-3]
-        
+
                 else:
                     device_result[device_name]['rc'] = -1
                     device_result[device_name]['result'] = "No matching device OS "+ device_obj.os
@@ -59,7 +59,7 @@ class PoeTester(TestLibObject):
                     device_result[device_name]['result'] = str(e)
                 result.append(device_result)
         return result
-        
+
     async def attach(*argv, **kwarg):
         """
         Platforms: ['dni']
@@ -79,10 +79,10 @@ class PoeTester(TestLibObject):
         - PoeTester
           attach - hostname, serial_dev, baudrate
           detach -
-        
+
         """
         return await PoeTester._run_command("attach", *argv, **kwarg)
-        
+
     async def detach(*argv, **kwarg):
         """
         Platforms: ['dni']
@@ -102,10 +102,10 @@ class PoeTester(TestLibObject):
         - PoeTester
           attach - hostname, serial_dev, baudrate
           detach -
-        
+
         """
         return await PoeTester._run_command("detach", *argv, **kwarg)
-        
+
     async def configure_port(*argv, **kwarg):
         """
         Platforms: ['dni']
@@ -122,10 +122,10 @@ class PoeTester(TestLibObject):
         Description:
         - PoeTester
           configure_port -
-        
+
         """
         return await PoeTester._run_command("configure_port", *argv, **kwarg)
-        
+
     async def get_port_stats(*argv, **kwarg):
         """
         Platforms: ['dni']
@@ -135,7 +135,7 @@ class PoeTester(TestLibObject):
                 # device 1
                 'dev1' : [{
                     # command 1
-        
+
                 }],
             }],
         )
@@ -144,4 +144,4 @@ class PoeTester(TestLibObject):
           get_port_stats
         """
         return await PoeTester._run_command("get_port_stats", *argv, **kwarg)
-        
+

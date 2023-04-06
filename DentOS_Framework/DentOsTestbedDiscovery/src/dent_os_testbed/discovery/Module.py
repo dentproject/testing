@@ -119,7 +119,7 @@ def discovery_main():
     rpt = Report.fromData({})
     runner = DiscoveryRunner(log=logger)
     loop = asyncio.get_event_loop()
-    loop.run_until_complete(runner.discover(rpt)) 
+    loop.run_until_complete(runner.discover(rpt))
     sys.exit(0)
 
 if __name__ == "__main__":

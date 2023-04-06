@@ -6,13 +6,13 @@
 
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
-from dent_os_testbed.lib.frr.linux.linux_frr_ip_route_impl import LinuxFrrIpRouteImpl 
+from dent_os_testbed.lib.frr.linux.linux_frr_ip_route_impl import LinuxFrrIpRouteImpl
 class FrrIpRoute(TestLibObject):
     """
         - ip [ ip-OPTIONS ] route { COMMAND | help }
         - ip route { show } SELECTOR
         - Ex. ip route 10.1.0.0/16 Null0
-        
+
     """
     async def _run_command(api, *argv, **kwarg):
         devices = kwarg['input_data']
@@ -38,7 +38,7 @@ class FrrIpRoute(TestLibObject):
                         commands += impl_obj.format_command(command=api, params=command)
                         commands += '&& '
                     commands = commands[:-3]
-        
+
                 else:
                     device_result[device_name]['rc'] = -1
                     device_result[device_name]['result'] = "No matching device OS "+ device_obj.os
@@ -57,7 +57,7 @@ class FrrIpRoute(TestLibObject):
                     device_result[device_name]['result'] = str(e)
                 result.append(device_result)
         return result
-        
+
     async def show(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -76,10 +76,10 @@ class FrrIpRoute(TestLibObject):
             }],
         )
         Description:
-        
+
         """
         return await FrrIpRoute._run_command("show", *argv, **kwarg)
-        
+
     async def add(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -98,7 +98,7 @@ class FrrIpRoute(TestLibObject):
             }],
         )
         Description:
-        
+
         """
         return await FrrIpRoute._run_command("add", *argv, **kwarg)
-        
+

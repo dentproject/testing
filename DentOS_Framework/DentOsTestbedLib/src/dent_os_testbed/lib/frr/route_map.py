@@ -6,13 +6,13 @@
 
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
-from dent_os_testbed.lib.frr.linux.linux_route_map_impl import LinuxRouteMapImpl 
+from dent_os_testbed.lib.frr.linux.linux_route_map_impl import LinuxRouteMapImpl
 class RouteMap(TestLibObject):
     """
         - Defines the conditions and actions for redistributing routes
           Ex. route-map TO-POD permit 10
           route-map DENY-ALL deny 10
-        
+
     """
     async def _run_command(api, *argv, **kwarg):
         devices = kwarg['input_data']
@@ -38,7 +38,7 @@ class RouteMap(TestLibObject):
                         commands += impl_obj.format_command(command=api, params=command)
                         commands += '&& '
                     commands = commands[:-3]
-        
+
                 else:
                     device_result[device_name]['rc'] = -1
                     device_result[device_name]['result'] = "No matching device OS "+ device_obj.os
@@ -57,7 +57,7 @@ class RouteMap(TestLibObject):
                     device_result[device_name]['result'] = str(e)
                 result.append(device_result)
         return result
-        
+
     async def configure(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -75,7 +75,7 @@ class RouteMap(TestLibObject):
             }],
         )
         Description:
-        
+
         """
         return await RouteMap._run_command("configure", *argv, **kwarg)
-        
+

@@ -6,14 +6,14 @@
 
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
-from dent_os_testbed.lib.os.linux.linux_cpu_usage_impl import LinuxCpuUsageImpl 
+from dent_os_testbed.lib.os.linux.linux_cpu_usage_impl import LinuxCpuUsageImpl
 class CpuUsage(TestLibObject):
     """
         /usr/bin/mpstat
         dev-dsk-muchetan-2b-1f031d76 % mpstat
           04:47:43 AM  CPU    %usr   %nice    %sys %iowait    %irq   %soft  %steal  %guest   %idle
           04:47:43 AM  all    0.49    0.04    0.07    0.02    0.00    0.00    0.00    0.00   99.37
-        
+
     """
     async def _run_command(api, *argv, **kwarg):
         devices = kwarg['input_data']
@@ -39,7 +39,7 @@ class CpuUsage(TestLibObject):
                         commands += impl_obj.format_command(command=api, params=command)
                         commands += '&& '
                     commands = commands[:-3]
-        
+
                 else:
                     device_result[device_name]['rc'] = -1
                     device_result[device_name]['result'] = "No matching device OS "+ device_obj.os
@@ -58,7 +58,7 @@ class CpuUsage(TestLibObject):
                     device_result[device_name]['result'] = str(e)
                 result.append(device_result)
         return result
-        
+
     async def show(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -76,7 +76,7 @@ class CpuUsage(TestLibObject):
         )
         Description:
         mpstat [ -A ] [ -I { SUM | CPU | ALL } ] [ -u ] [ -P { cpu [,...] | ALL } ] [ -V ] [ interval [ count ] ]
-        
+
         """
         return await CpuUsage._run_command("show", *argv, **kwarg)
-        
+

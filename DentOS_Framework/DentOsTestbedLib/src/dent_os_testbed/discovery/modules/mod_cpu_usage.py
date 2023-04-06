@@ -10,7 +10,7 @@ class CpuUsageMod(Module):
     """
     """
     def set_cpu_usage(self, src, dst):
-        
+
         for i,cpu_usage in enumerate(src):
             if 'cpu' in cpu_usage: dst[i].cpu = cpu_usage.get('cpu')
             if 'usr' in cpu_usage: dst[i].usr = cpu_usage.get('usr')
@@ -22,8 +22,8 @@ class CpuUsageMod(Module):
             if 'steal' in cpu_usage: dst[i].steal = cpu_usage.get('steal')
             if 'guest' in cpu_usage: dst[i].guest = cpu_usage.get('guest')
             if 'idle' in cpu_usage: dst[i].idle = cpu_usage.get('idle')
-        
-        
+
+
     async def discover(self):
         # need to get device instance to get the data from
         #
@@ -49,4 +49,4 @@ class CpuUsageMod(Module):
                 continue
             self.set_cpu_usage(out[0][dev.host_name]["parsed_output"], self.report.duts[i].system.os.cpu)
             print("Finished cpu_usage Discovery on {} with {} entries".format(dev.host_name, len(self.report.duts[i].system.os.cpu)))
-        
+

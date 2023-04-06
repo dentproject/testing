@@ -11,33 +11,33 @@ class LinuxSysctl(TestLibObject):
     """
     def format_get(self, command, *argv, **kwarg):
         raise NotImplementedError
-        
+
     def parse_get(self, command, output, *argv, **kwarg):
         raise NotImplementedError
-        
+
     def format_set(self, command, *argv, **kwarg):
         raise NotImplementedError
-        
+
     def parse_set(self, command, output, *argv, **kwarg):
         raise NotImplementedError
-        
+
     def format_command(self, command, *argv, **kwarg):
         if command in ['get']:
             return self.format_get(command, *argv, **kwarg)
-        
+
         if command in ['set']:
             return self.format_set(command, *argv, **kwarg)
-        
-        
+
+
         raise NameError("Cannot find command "+command)
-        
+
     def parse_output(self, command, output, *argv, **kwarg):
         if command in ['get']:
             return self.parse_get(command, output, *argv, **kwarg)
-        
+
         if command in ['set']:
             return self.parse_set(command, output, *argv, **kwarg)
-        
-        
+
+
         raise NameError("Cannot find command "+command)
-        
+

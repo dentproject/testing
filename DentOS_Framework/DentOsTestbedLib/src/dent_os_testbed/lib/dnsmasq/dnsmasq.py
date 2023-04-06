@@ -6,13 +6,13 @@
 
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
-from dent_os_testbed.lib.dnsmasq.linux.linux_dnsmasq_impl import LinuxDnsmasqImpl 
+from dent_os_testbed.lib.dnsmasq.linux.linux_dnsmasq_impl import LinuxDnsmasqImpl
 class Dnsmasq(TestLibObject):
     """
         dnsmasq is a lightweight DNS, TFTP, PXE, router advertisement and DHCP server.
         It is intended to provide coupled DNS and DHCP service to a LAN.
         dnsmasq [OPTION]...
-        
+
     """
     async def _run_command(api, *argv, **kwarg):
         devices = kwarg['input_data']
@@ -38,7 +38,7 @@ class Dnsmasq(TestLibObject):
                         commands += impl_obj.format_command(command=api, params=command)
                         commands += '&& '
                     commands = commands[:-3]
-        
+
                 else:
                     device_result[device_name]['rc'] = -1
                     device_result[device_name]['result'] = "No matching device OS "+ device_obj.os
@@ -57,7 +57,7 @@ class Dnsmasq(TestLibObject):
                     device_result[device_name]['result'] = str(e)
                 result.append(device_result)
         return result
-        
+
     async def test(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -74,7 +74,7 @@ class Dnsmasq(TestLibObject):
         Description:
         --test - Read and syntax check configuration file(s). Exit with code 0 if
           all is OK, or a non-zero code otherwise. Do not start up dnsmasq.
-        
+
         """
         return await Dnsmasq._run_command("test", *argv, **kwarg)
-        
+
