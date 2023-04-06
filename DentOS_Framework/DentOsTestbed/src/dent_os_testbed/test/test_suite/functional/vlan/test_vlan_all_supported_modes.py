@@ -42,8 +42,7 @@ async def test_vlan_all_supported_modes_broadcast(testbed):
     # 1. Initiate test params.
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 4)
     if not tgen_dev or not dent_devices:
-        print("The testbed does not have enough dent with tgn connections")
-        return
+        pytest.skip("The testbed does not have enough dent with tgen connections")
     device = dent_devices[0].host_name
     tg_ports = tgen_dev.links_dict[device][0]
     dut_ports = tgen_dev.links_dict[device][1]
@@ -124,8 +123,7 @@ async def test_vlan_all_supported_modes_multicast(testbed):
     # 1. Initiate test params.
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 4)
     if not tgen_dev or not dent_devices:
-        print("The testbed does not have enough dent with tgn connections")
-        return
+        pytest.skip("The testbed does not have enough dent with tgen connections")
     device = dent_devices[0].host_name
     tg_ports = tgen_dev.links_dict[device][0]
     dut_ports = tgen_dev.links_dict[device][1]
@@ -208,8 +206,7 @@ async def test_vlan_all_supported_modes_unicast(testbed):
     # 1. Initiate test params.
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 4)
     if not tgen_dev or not dent_devices:
-        print("The testbed does not have enough dent with tgn connections")
-        return
+        pytest.skip("The testbed does not have enough dent with tgen connections")
     device = dent_devices[0].host_name
     tg_ports = tgen_dev.links_dict[device][0]
     dut_ports = tgen_dev.links_dict[device][1]
