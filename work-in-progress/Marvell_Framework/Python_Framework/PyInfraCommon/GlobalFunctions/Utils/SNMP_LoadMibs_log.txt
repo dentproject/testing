@@ -1,134 +1,0 @@
-################################################################################
-Built at 16:41:08 on November 01, 2017, by sstas
-################################################################################
-Source MIB repositories: http://mibs.snmplabs.com/asn1/@mib@
-Borrow missing/failed MIBs from: http://mibs.snmplabs.com/pysnmp/notexts/@mib@
-Existing/compiled MIB locations: pysnmp.smi.mibs, pysnmp_mibs
-Compiled MIBs destination directory: C:\Git\Python_Platform_Validation_Tests\testenv\Lib\site-packages\pysnmp\smi\mibs
-MIBs excluded from code generation: INET-ADDRESS-MIB, PYSNMP-USM-MIB, RFC-1212, RFC-1215, RFC1065-SMI, RFC1155-SMI, RFC1158-MIB, RFC1213-MIB, SNMP-FRAMEWORK-MIB, SNMP-TARGET-MIB, SNMPv2-CONF, SNMPv2-SMI, SNMPv2-TC, SNMPv2-TM, TRANSPORT-ADDRESS-MIB
-MIBs to compile: Sentry3-MIB
-Destination format: pysnmp
-Parser grammar cache directory: not used
-Also compile all relevant MIBs: yes
-Rebuild MIBs regardless of age: no
-Dry run mode: no
-Create/update MIBs: yes
-Byte-compile Python modules: yes (optimization level no)
-Ignore compilation errors: no
-Generate OID->MIB index: no
-Generate texts in MIBs: no
-Keep original texts layout: no
-Try various file names while searching for MIB module: yes
-Created/updated MIBs: Sentry3-MIB
-Pre-compiled MIBs borrowed: 
-Up to date MIBs: SNMPv2-CONF, SNMPv2-SMI, SNMPv2-TC
-Missing source MIBs: 
-Ignored MIBs: 
-Failed MIBs: 
-
-Build finished without errors, exit code: 0
-################################################################################
-
-
-################################################################################
-Built at 17:52:45 on November 01, 2017, by sstas
-################################################################################
-ERROR: MIB modules names not specified
-Usage: C:\Git\Python_Platform_Validation_Tests\testenv\Scripts\mibdump.py [--help]
-      [--version]
-      [--quiet]
-      [--debug=<all|borrower|codegen|compiler|grammar|lexer|parser|reader|searcher|writer>]
-      [--mib-source=<URI>]
-      [--mib-searcher=<PATH|PACKAGE>]
-      [--mib-stub=<MIB-NAME>]
-      [--mib-borrower=<PATH>]
-      [--destination-format=<FORMAT>]
-      [--destination-directory=<DIRECTORY>]
-      [--cache-directory=<DIRECTORY>]
-      [--disable-fuzzy-source]
-      [--no-dependencies]
-      [--no-python-compile]
-      [--python-optimization-level]
-      [--ignore-errors]
-      [--build-index]
-      [--rebuild]
-      [--dry-run]
-      [--no-mib-writes]
-      [--generate-mib-texts]
-      [--keep-texts-layout]
-      <MIB-NAME> [MIB-NAME [...]]]
-Where:
-    URI      - file, zip, http, https, ftp, sftp schemes are supported. 
-               Use @mib@ placeholder token in URI to refer directly to
-               the required MIB module when source does not support
-               directory listing (e.g. HTTP).
-    FORMAT   - pysnmp, json, null
-
-Build finished Fail errors, exit code: -1
-################################################################################
-
-
-################################################################################
-Built at 18:02:48 on November 01, 2017, by sstas
-################################################################################
-Source MIB repositories: http://mibs.snmplabs.com/asn1/@mib@
-Borrow missing/failed MIBs from: http://mibs.snmplabs.com/pysnmp/notexts/@mib@
-Existing/compiled MIB locations: pysnmp.smi.mibs, pysnmp_mibs
-Compiled MIBs destination directory: C:\Git\Python_Platform_Validation_Tests\PyInfraCommon\Managers\PowerDistributionUnit\mibs
-MIBs excluded from code generation: INET-ADDRESS-MIB, PYSNMP-USM-MIB, RFC-1212, RFC-1215, RFC1065-SMI, RFC1155-SMI, RFC1158-MIB, RFC1213-MIB, SNMP-FRAMEWORK-MIB, SNMP-TARGET-MIB, SNMPv2-CONF, SNMPv2-SMI, SNMPv2-TC, SNMPv2-TM, TRANSPORT-ADDRESS-MIB
-MIBs to compile: Sentry3-MIB
-Destination format: pysnmp
-Parser grammar cache directory: not used
-Also compile all relevant MIBs: yes
-Rebuild MIBs regardless of age: no
-Dry run mode: no
-Create/update MIBs: yes
-Byte-compile Python modules: yes (optimization level no)
-Ignore compilation errors: no
-Generate OID->MIB index: no
-Generate texts in MIBs: no
-Keep original texts layout: no
-Try various file names while searching for MIB module: yes
-Created/updated MIBs: Sentry3-MIB
-Pre-compiled MIBs borrowed: 
-Up to date MIBs: SNMPv2-CONF, SNMPv2-SMI, SNMPv2-TC
-Missing source MIBs: 
-Ignored MIBs: 
-Failed MIBs: 
-
-Build finished without errors, exit code: 0
-################################################################################
-
-
-################################################################################
-Built at 18:03:06 on November 01, 2017, by sstas
-################################################################################
-Source MIB repositories: http://mibs.snmplabs.com/asn1/@mib@
-Borrow missing/failed MIBs from: http://mibs.snmplabs.com/pysnmp/notexts/@mib@
-Existing/compiled MIB locations: pysnmp.smi.mibs, pysnmp_mibs
-Compiled MIBs destination directory: C:\Git\Python_Platform_Validation_Tests\PyInfraCommon\Managers\PowerDistributionUnit\mibs
-MIBs excluded from code generation: INET-ADDRESS-MIB, PYSNMP-USM-MIB, RFC-1212, RFC-1215, RFC1065-SMI, RFC1155-SMI, RFC1158-MIB, RFC1213-MIB, SNMP-FRAMEWORK-MIB, SNMP-TARGET-MIB, SNMPv2-CONF, SNMPv2-SMI, SNMPv2-TC, SNMPv2-TM, TRANSPORT-ADDRESS-MIB
-MIBs to compile: POWERNET-MIB
-Destination format: pysnmp
-Parser grammar cache directory: not used
-Also compile all relevant MIBs: yes
-Rebuild MIBs regardless of age: no
-Dry run mode: no
-Create/update MIBs: yes
-Byte-compile Python modules: yes (optimization level no)
-Ignore compilation errors: no
-Generate OID->MIB index: no
-Generate texts in MIBs: no
-Keep original texts layout: no
-Try various file names while searching for MIB module: yes
-Created/updated MIBs: IANAifType-MIB, IF-MIB, POWERNET-MIB
-Pre-compiled MIBs borrowed: 
-Up to date MIBs: RFC-1212, RFC-1215, RFC1155-SMI, RFC1213-MIB, SNMPv2-CONF, SNMPv2-MIB, SNMPv2-SMI, SNMPv2-TC
-Missing source MIBs: 
-Ignored MIBs: 
-Failed MIBs: 
-
-Build finished without errors, exit code: 0
-################################################################################
-
-
