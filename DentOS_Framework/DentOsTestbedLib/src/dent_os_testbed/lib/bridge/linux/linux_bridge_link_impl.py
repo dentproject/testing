@@ -33,6 +33,8 @@ class LinuxBridgeLinkImpl(LinuxBridgeLink):
             cmd += "learning {} ".format("on" if params["learning"] else "off")
         if "flood" in params:
             cmd += "flood {} ".format("on" if params["flood"] else "off")
+        if "fastleave" in params:
+          cmd += "fastleave {} ".format("on" if params["fastleave"] else "off")
 
         return cmd
 
