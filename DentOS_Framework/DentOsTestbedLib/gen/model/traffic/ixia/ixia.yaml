@@ -24,6 +24,7 @@
           send_ns - [port, src_ip]
           update_l1_config - ['speed', 'autoneg', 'tgen_ports', 'duplex']
           clear_traffic - [traffic_names]
+          switch_min_frame_size - [enable_min_size]
      implements: "dent:traffic:traffic_gen"
      platforms: ['ixnetwork']
      commands:
@@ -84,3 +85,9 @@
         desc: |
          - IxiaClient
            update_l1_config - ['speed', 'autoneg', 'tgen_ports', 'duplex']
+      - name: switch_min_frame_size
+        apis: ['switch_min_frame_size']
+        params: ['enable_min_size']
+        desc: |
+         - IxiaClient
+           switch_min_frame_size - ['enable_min_size']

@@ -796,3 +796,16 @@ async def tgen_utils_update_l1_config(device, tgen_ports, speed=None, autoneg=Tr
          "duplex": duplex}]}])
     device.applog.info(out)
     assert out[0][device.host_name]["rc"] == 0, f'Failed updating L1 config: {out[0][device.host_name]["result"]}'
+
+
+async def tgen_utils_switch_min_frame_size(device, enable=False):
+    """
+    Enable/disable smaller frame size (4 Byte Signature)
+    Args:
+        device (DeviceType): Ixia device
+        enable (bool): Enable/disable smaller frame size
+    """
+    device.applog.info(f"{'En' if enable else 'Dis'}abling smaller frame size (4 Byte Signature)")
+    out = await TrafficGen.switch_min_frame_size(input_data=[{device.host_name: [{"enable_min_size": enable}]}])
+    device.applog.info(out)
+    assert out[0][device.host_name]["rc"] == 0, 'Failed to enable/disable min frame sizes'

@@ -36,10 +36,11 @@
           send_arp - [port, src_ip]
           clear_traffic - [traffic_names]
           update_l1_config - ['speed', 'autoneg', 'ixia_ports']
+          switch_min_frame_size - [enable_min_size]
     apis: ['connect', 'disconnect', 'load_config', 'save_config', 'set_traffic', 'start_traffic', 'stop_traffic',
            'get_stats', 'clear_stats', 'start_protocols', 'stop_protocols', 'set_protocol', 'get_protocol_stats',
            'clear_protocol_stats', 'send_arp', 'send_ns', 'send_ping', 'clear_traffic',
-           'get_drilldown_stats', 'update_l1_config']
+           'get_drilldown_stats', 'update_l1_config', 'switch_min_frame_size']
     members:
     - name: client_addr
       type: ip_addr_t
@@ -85,3 +86,7 @@
       type: string
       desc: |
         Duplex on port
+    - name: enable_min_size
+      type: bool
+      desc: |
+        Traffic Generator smaller frame sizes option

@@ -28,7 +28,8 @@ class TrafficGen(TestLibObject):
             send_ping - [port, dst_ip, src_ip]
             send_arp - [port, src_ip]
             clear_traffic - [traffic_names]
-            update_l1_config - ['speed', 'autoneg', 'tgen_ports']
+            update_l1_config - ['speed', 'autoneg', 'ixia_ports']
+            switch_min_frame_size - [enable_min_size]
         
     """
     async def _run_command(api, *argv, **kwarg):
@@ -558,4 +559,24 @@ class TrafficGen(TestLibObject):
         
         """
         return await TrafficGen._run_command("update_l1_config", *argv, **kwarg)
+        
+    async def switch_min_frame_size(*argv, **kwarg):
+        """
+        Platforms: ['ixnetwork']
+        Usage:
+        TrafficGen.switch_min_frame_size(
+            input_data = [{
+                # device 1
+                'dev1' : [{
+                    # command 1
+                        'enable_min_size':'bool',
+                }],
+            }],
+        )
+        Description:
+        - IxiaClient
+          switch_min_frame_size - ['enable_min_size']
+        
+        """
+        return await TrafficGen._run_command("switch_min_frame_size", *argv, **kwarg)
         
