@@ -3,11 +3,13 @@
 Base class for testbed discovery modules.
 """
 
-import sys, os
+import sys
+import os
 import logging
 import copy
 import io
-import importlib, importlib.util
+import importlib
+import importlib.util
 import operator
 import asyncio
 
