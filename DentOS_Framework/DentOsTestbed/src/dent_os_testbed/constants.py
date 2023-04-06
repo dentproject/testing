@@ -70,6 +70,7 @@ PYTEST_SUITES = {
     "suite_poe_cli": "POE related tests with the cli tool",
     "suite_cleanup": "Test marker for test cleanup",
     "suite_functional_ipv4": "Functional IPv4 tests",
+    "suite_functional_ipv6": "Functional IPv6 tests",
     "suite_functional_bridging": "Functional bridging tests",
     "suite_functional_vlan": "VLAN functional tests",
     "suite_functional_acl": "Functional ACL tests",
@@ -114,5 +115,6 @@ PYTEST_SUITE_GROUPS = {
         "suite_functional_acl",
         "suite_functional_qos",
         "suite_functional_ipv4",
+        "suite_functional_ipv6",
         "suite_functional_l1"]
 }

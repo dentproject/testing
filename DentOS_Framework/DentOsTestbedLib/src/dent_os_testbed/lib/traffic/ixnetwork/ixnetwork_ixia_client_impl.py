@@ -631,9 +631,23 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
             topo = ip_ep.parent.parent.parent
             if vport.href not in topo.Ports:
                 continue
-            if port_ip and port_ip not in str(ip_ep.Address):
-                continue
-            return ip_ep
+            if not port_ip:
+                return ip_ep
+
+            if "::" in port_ip:  # aa:bb::cc:dd -> aa:bb:0:0:0:0:cc:dd
+                ip = port_ip
+                if ip.startswith("::"):
+                    ip = "0" + ip
+                if ip.endswith("::"):
+                    ip = ip + "0"
+                begin, end = ip.split("::")
+                num_of_zero_groups = 8 - port_ip.count(":")
+                ip = ":".join([begin] + ["0"]*num_of_zero_groups + [end])
+            else:
+                ip = port_ip
+
+            if ip in ip_ep.Address.Pattern:
+                return ip_ep
         return None
 
     def run_send_ping(self, device, command, *argv, **kwarg):
