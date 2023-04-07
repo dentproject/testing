@@ -102,8 +102,8 @@ async def test_switch_reload_all(testbed):
                         host, k, v['operstate'], links[k]['operstate']
                     )
                 )
-                ## enable this to enable check other links as well
-                #if v["operstate"] != links[k]["operstate"]:
+                # enable this to enable check other links as well
+                # if v["operstate"] != links[k]["operstate"]:
                 #    assert 0, "{} Link {} state not same prev {} current {}".format(
                 #        host, k, v["operstate"], links[k]["operstate"]
                 #    )
@@ -234,22 +234,22 @@ async def _test_switch_reload_disr1_switch(testbed):
         testbed.applog.info(
             f'********************** Reboot_ALL ITERATION {i} ************************'
         )
-        #await System.shutdown(input_data=[{dev.host_name: [{"options": "-r +1"}]}])
+        # await System.shutdown(input_data=[{dev.host_name: [{"options": "-r +1"}]}])
         cmd = 'for i in {1..8};do ip link set swp${i} down; done;'
-        #cmd = "ip link set swp4 down"
+        # cmd = "ip link set swp4 down"
         rc, out = await dev.run_cmd(cmd)
         assert rc == 0, f'Could not run the {cmd}'
         #
         time.sleep(2)
         cmd = 'for i in {1..8};do ip link set swp${i} up; done;'
-        #cmd = "ip link set swp4 up"
+        # cmd = "ip link set swp4 up"
         rc, out = await dev.run_cmd(cmd)
         time.sleep(2)
         #
         # assert rc == 0, f"Could not run the {cmd}"
-        #await tb_reset_ssh_connections([dev])
-        #testbed.applog.info("zzzZZZ! (4min)")
-        #for i in range(4):
+        # await tb_reset_ssh_connections([dev])
+        # testbed.applog.info("zzzZZZ! (4min)")
+        # for i in range(4):
         time.sleep(15)
 
         cmd = 'sudo onlpdump -S'
@@ -277,7 +277,7 @@ async def _test_switch_reload_disr1_switch(testbed):
         assert rc == 0, f'Could not run the {cmd}'
         data = json.loads(out)
         peers = data['ipv4Unicast']['peers']
-        #for swp in [ "15", "16", "17", "18","19", "20", "39", "40", "41", "42", "43", "44" ]:
+        # for swp in [ "15", "16", "17", "18","19", "20", "39", "40", "41", "42", "43", "44" ]:
         #   operstate = await get_link_operstate(dev.host_name, f"swp{swp}")
         #   assert operstate == "UP" , f"Link swp{swp} not UP operstate is  {operstate}"
         #   ip = f"10.2.{swp}.74"

@@ -140,7 +140,7 @@ async def test_tgen_link_speed_change(testbed):
                 assert 0, f'Rate does not match {rx_rate} {rate}'
 
     await tgen_utils_stop_protocols(tgen_dev)
-    ## bring back up the links
+    # bring back up the links
     # for dd in infra_devices:
     #    # bring down the links that are 10g links
     #    for swp in range(49, 53):

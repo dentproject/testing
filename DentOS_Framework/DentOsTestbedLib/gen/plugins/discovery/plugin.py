@@ -195,8 +195,8 @@ class DiscoveryPlugin(SamplePlugin):
         print('Generating Discovery')
         # create the directory
         tdir = os.path.join(odir, 'src/dent_os_testbed/discovery/')
-        #gi = os.path.join(tdir, ".gitignore")
-        #gd = open(gi, "w")
+        # gi = os.path.join(tdir, ".gitignore")
+        # gd = open(gi, "w")
         if not os.path.exists(tdir):
             os.makedirs(tdir)
             fname = os.path.join(tdir, '__init__.py')
@@ -204,7 +204,7 @@ class DiscoveryPlugin(SamplePlugin):
             f.write("__import__(\"pkg_resources\").declare_namespace(__name__)")
             f.close()
         fname = os.path.join(tdir, 'ReportSchema.py')
-        #gd.write("ReportSchema.py\n")
+        # gd.write("ReportSchema.py\n")
         o = ReportPyObject(dbs['dent'], fname)
         o.generate_code()
         o.write_file()
@@ -218,7 +218,7 @@ class DiscoveryPlugin(SamplePlugin):
             f.close()
         # BFS from base class and create discovery for each class that has implemented by
         visited = {}
-        #queue=[(dbs["dent"].modules['base'].classes_dct['duts'],'data["duts"][i]')]
+        # queue=[(dbs["dent"].modules['base'].classes_dct['duts'],'data["duts"][i]')]
         queue=[(dbs['dent'].modules['base'].classes_dct['duts'],'self.report.duts[i]')]
         while queue:
             (node, parent) = queue.pop(0)
@@ -232,8 +232,8 @@ class DiscoveryPlugin(SamplePlugin):
             if 'show' not in node.apis: continue
             # now need to create discovery module
             fname = os.path.join(tdir, 'mod_' + node.name + '.py')
-            #gd.write(f"modules/mod_{node.name}.py\n")
+            # gd.write(f"modules/mod_{node.name}.py\n")
             o = DiscoveryModulePyObject(node, parent, fname)
             o.generate_code()
             o.write_file()
-        #gd.close()
+        # gd.close()

@@ -210,7 +210,7 @@ class Class(object):
         self.members_dct = {m.name:m for m in self.members}
         self.apis = ydata['apis'] if 'apis' in ydata else ['add', 'del', 'get', 'dump']
         self.implements = ydata['implements'] if 'implements' in ydata else None
-        #indicates how many instances the object can have
+        # indicates how many instances the object can have
         self.singleton = ydata['singleton'] if 'singleton' in ydata else False
         self.local = ydata['local'] if 'local' in ydata else False
         self.platforms = ydata['platforms'] if 'platforms' in ydata else []

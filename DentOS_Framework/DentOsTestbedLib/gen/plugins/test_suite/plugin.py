@@ -86,7 +86,7 @@ class TestSuitePyObject(object):
                     )
                 )
                 classes += camelcase(tc.cls.name)+tc.template + ','
-            #self._methods.append(PyLines(lines=tokenize(self._templates[tc.template]._data%targs)))
+            # self._methods.append(PyLines(lines=tokenize(self._templates[tc.template]._data%targs)))
         self._methods.append(PyLines(lines=['@pytest.fixture(params=[%s])' % classes]))
         self._methods.append(PyMethod(self._test.name+'_class', 'request',  ['return request.param']))
         self._methods.append(PyLines(lines=['@pytest.mark.asyncio']))
@@ -112,8 +112,8 @@ class TestSuitePlugin(SamplePlugin):
 
         # create the directory
         tdir = os.path.join(odir, 'src/dent_os_testbed/test/test_suite/generated')
-        #gi = os.path.join(tdir, ".gitignore")
-        #gd = open(gi, "w")
+        # gi = os.path.join(tdir, ".gitignore")
+        # gd = open(gi, "w")
         if not os.path.exists(tdir):
             os.makedirs(tdir)
             fname = os.path.join(tdir, '__init__.py')
@@ -126,5 +126,5 @@ class TestSuitePlugin(SamplePlugin):
                 o = TestSuitePyObject(t, fname)
                 o.generate_code()
                 o.write_file()
-                #gd.write(f"test_{t.name}.py\n")
-        #gd.close()
+                # gd.write(f"test_{t.name}.py\n")
+        # gd.close()
