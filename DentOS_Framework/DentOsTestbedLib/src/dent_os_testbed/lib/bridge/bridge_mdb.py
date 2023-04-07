@@ -7,6 +7,8 @@
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
 from dent_os_testbed.lib.bridge.linux.linux_bridge_mdb_impl import LinuxBridgeMdbImpl
+
+
 class BridgeMdb(TestLibObject):
     """
         mdb objects contain known IP multicast group addresses on a link.

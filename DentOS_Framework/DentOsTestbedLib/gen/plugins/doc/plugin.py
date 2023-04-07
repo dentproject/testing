@@ -19,6 +19,7 @@ from gen.plugins.doc.template import (
     md_sample_call,
 )
 
+
 def tokenize(str, by='\n', indent=0):
     """
     split the lines based on by and return a list of lines by indenting with spaces
@@ -26,6 +27,7 @@ def tokenize(str, by='\n', indent=0):
     if indent == 0:
         return str.split(by)
     return [ (' '*indent + s) for s in str.split(by) ]
+
 
 class DocsMdObject(object):
     def __init__(self, pkg, fname):
@@ -51,6 +53,7 @@ class DocsMdObject(object):
     def write_file(self):
         p = MdFile(self._header, self._body, self._tailer)
         p.write(self._fname)
+
 
 class DocMdObject(object):
     def __init__(self, cls, fname):
@@ -106,6 +109,7 @@ class DocMdObject(object):
     def write_file(self):
         p = MdFile(self._header, self._body, self._tailer)
         p.write(self._fname)
+
 
 class DocPlugin(SamplePlugin):
     """

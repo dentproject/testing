@@ -50,6 +50,7 @@ class TypeMember(object):
     def post_validate(self):
         pass
 
+
 class Type(object):
     def __init__(self, mod, name, ydata, fname):
         self._mod = mod
@@ -83,6 +84,7 @@ class Type(object):
         for m in self.members:
             m.post_validate()
 
+
 class TestCase(object):
     def __init__(self, test, name, ydata):
         self._test = test
@@ -105,6 +107,7 @@ class TestCase(object):
             pkg, mod, cls = self.cls.split(':')
             self.cls = self._test._mod._pkg._db[pkg].lookup_class(mod, cls)
 
+
 class Test(object):
     def __init__(self, mod, name, ydata, fname):
         self._mod = mod
@@ -126,6 +129,7 @@ class Test(object):
     def validate(self):
         for t in self.test_cases:
             t.validate()
+
 
 class ClassMember(object):
     def __init__(self, cls, name, ydata):
@@ -245,6 +249,7 @@ class Class(object):
         for c in self.commands:
             c.post_validate()
         for s in self.classes: s.post_validate()
+
 
 class Module(object):
     def __init__(self, pkg, name, ydata, fname):

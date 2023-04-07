@@ -7,6 +7,8 @@
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
 from dent_os_testbed.lib.lldp.linux.linux_lldp_impl import LinuxLldpImpl
+
+
 class Lldp(TestLibObject):
     """
         LLDP module

@@ -7,6 +7,8 @@
 import asyncio
 from .utils import TestDevice
 from dent_os_testbed.lib.os.sysctl import Sysctl
+
+
 def test_that_sysctl_get(capfd):
 
     dv1 = TestDevice(platform='dentos')

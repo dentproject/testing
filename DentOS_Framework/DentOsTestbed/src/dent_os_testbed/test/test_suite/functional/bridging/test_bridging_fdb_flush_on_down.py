@@ -22,6 +22,7 @@ pytestmark = [
     pytest.mark.usefixtures('cleanup_bridges', 'cleanup_tgen')
 ]
 
+
 async def test_bridging_fdb_flush_on_down(testbed):
     """
     Test Name: test_bridging_fdb_flush_on_down

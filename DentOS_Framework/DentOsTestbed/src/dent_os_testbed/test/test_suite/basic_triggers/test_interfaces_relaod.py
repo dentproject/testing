@@ -14,6 +14,8 @@ from dent_os_testbed.utils.test_utils.tb_utils import tb_get_device_object_from_
 pytestmark = pytest.mark.suite_basic_trigger
 
 # @TestCaseSetup(perf_thresholds={"CPU": {"usr": (0.0, 50.0)}})
+
+
 @pytest.mark.asyncio
 async def test_reload_interface(testbed):
     """

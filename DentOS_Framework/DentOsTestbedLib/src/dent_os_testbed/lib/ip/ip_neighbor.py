@@ -7,6 +7,8 @@
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
 from dent_os_testbed.lib.ip.linux.linux_ip_neighbor_impl import LinuxIpNeighborImpl
+
+
 class IpNeighbor(TestLibObject):
     """
         - ip [ OPTIONS ] neigh { COMMAND | help }

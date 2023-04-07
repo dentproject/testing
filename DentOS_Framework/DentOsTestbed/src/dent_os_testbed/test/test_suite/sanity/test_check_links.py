@@ -28,6 +28,7 @@ async def get_link_operstate(host_name, link):
         return 'UP'
     return out[0][host_name]['parsed_output'][0]['operstate']
 
+
 async def check_and_validate_switch_links(testbed):
     """
     - check the links if they are up

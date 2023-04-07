@@ -396,6 +396,7 @@ class TestPlugin(SamplePlugin):
                 o.write_file()
         #gd.close()
 
+
 class TestCodePyObject(object):
     def __init__(self, cls, fname):
         self._cls = cls

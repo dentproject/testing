@@ -7,6 +7,8 @@
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
 from dent_os_testbed.lib.ip.linux.linux_ip_link_impl import LinuxIpLinkImpl
+
+
 class IpLink(TestLibObject):
     """
         ip-link - network device configuration

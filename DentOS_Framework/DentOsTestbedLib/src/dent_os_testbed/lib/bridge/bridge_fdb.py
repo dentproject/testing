@@ -7,6 +7,8 @@
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
 from dent_os_testbed.lib.bridge.linux.linux_bridge_fdb_impl import LinuxBridgeFdbImpl
+
+
 class BridgeFdb(TestLibObject):
     """
         fdb objects contain known Ethernet addresses on a link.

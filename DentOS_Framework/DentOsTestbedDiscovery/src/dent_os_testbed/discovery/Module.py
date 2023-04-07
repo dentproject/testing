@@ -18,11 +18,13 @@ from dent_os_testbed.discovery.Report import Report
 srcdir = os.path.dirname(os.path.abspath(__file__))
 MODULES_DIR = os.path.join(srcdir, 'modules')
 
+
 class DiscoveryFailed(Exception):
     def __init__(self, msg, info, report):
         Exception.__init__(self, msg)
         self.info = info
         self.report = report
+
 
 class Module(object):
 
@@ -49,6 +51,7 @@ class Module(object):
         except:
             self.report = rpt
             raise
+
 
 class DiscoveryRunner(object):
     """Gather and execute discovery modules.
@@ -115,6 +118,7 @@ class DiscoveryRunner(object):
             report = dinst.report
 
         return report
+
 
 def discovery_main():
     logging.basicConfig()

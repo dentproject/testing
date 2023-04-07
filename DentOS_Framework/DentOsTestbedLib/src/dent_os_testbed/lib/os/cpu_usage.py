@@ -7,6 +7,8 @@
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
 from dent_os_testbed.lib.os.linux.linux_cpu_usage_impl import LinuxCpuUsageImpl
+
+
 class CpuUsage(TestLibObject):
     """
         /usr/bin/mpstat

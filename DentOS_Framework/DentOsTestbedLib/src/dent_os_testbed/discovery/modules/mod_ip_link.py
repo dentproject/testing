@@ -6,6 +6,8 @@
 
 from dent_os_testbed.discovery.Module import Module
 from dent_os_testbed.lib.ip.ip_link import IpLink
+
+
 class IpLinkMod(Module):
     """
     """

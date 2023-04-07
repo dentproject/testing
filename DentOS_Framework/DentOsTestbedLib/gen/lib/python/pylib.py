@@ -42,6 +42,7 @@ class PyMethod(PyLines):
             self._lines.append('    ' + l)
         self.indent(indent)
 
+
 class PyClass(PyLines):
     def __init__(self, name, parent='object', desc=[], static=[], methods=[], indent=0):
         self._lines = ['class %s(%s):' % (name, parent)]

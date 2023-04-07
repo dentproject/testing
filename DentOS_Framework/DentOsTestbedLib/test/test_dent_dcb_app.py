@@ -7,6 +7,8 @@
 import asyncio
 from .utils import TestDevice
 from dent_os_testbed.lib.dcb.dcb_app import DcbApp
+
+
 def test_that_dcb_app_show(capfd):
 
     dv1 = TestDevice(platform='dentos')

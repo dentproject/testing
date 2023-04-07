@@ -23,6 +23,7 @@ pytestmark = [
     pytest.mark.usefixtures('cleanup_bridges', 'cleanup_tgen')
 ]
 
+
 async def get_port_stats(device_host_name, ports):
     stats = {}
     for port in ports:

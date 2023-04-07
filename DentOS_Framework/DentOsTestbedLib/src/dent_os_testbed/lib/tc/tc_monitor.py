@@ -7,6 +7,8 @@
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
 from dent_os_testbed.lib.tc.linux.linux_tc_monitor_impl import LinuxTcMonitorImpl
+
+
 class TcMonitor(TestLibObject):
     """
         tc [ OPTIONS ] monitor [ file FILENAME ]

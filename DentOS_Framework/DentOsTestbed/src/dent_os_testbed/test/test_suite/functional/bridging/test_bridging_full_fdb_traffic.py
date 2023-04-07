@@ -21,6 +21,7 @@ pytestmark = [
     pytest.mark.usefixtures('cleanup_bridges', 'cleanup_tgen')
 ]
 
+
 async def test_bridging_full_fdb_traffic(testbed):
     """
     Test Name: test_bridging_full_fdb_traffic

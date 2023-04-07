@@ -7,6 +7,8 @@
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
 from dent_os_testbed.lib.ip.linux.linux_ip_address_impl import LinuxIpAddressImpl
+
+
 class IpAddress(TestLibObject):
     """
         ip [ OPTIONS ] address { COMMAND | help }

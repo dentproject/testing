@@ -7,6 +7,8 @@
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
 from dent_os_testbed.lib.dcb.linux.linux_dcb_app_impl import LinuxDcbAppImpl
+
+
 class DcbApp(TestLibObject):
     """
         dcb [ OPTIONS ] app { COMMAND | help }

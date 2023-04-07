@@ -22,6 +22,7 @@ pytestmark = [
     pytest.mark.usefixtures('cleanup_bridges', 'cleanup_tgen')
 ]
 
+
 async def test_bridging_admin_state_down_up(testbed):
     """
     Test Name: test_bridging_admin_state_down_up

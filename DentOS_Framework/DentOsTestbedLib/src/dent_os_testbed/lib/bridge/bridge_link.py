@@ -7,6 +7,8 @@
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
 from dent_os_testbed.lib.bridge.linux.linux_bridge_link_impl import LinuxBridgeLinkImpl
+
+
 class BridgeLink(TestLibObject):
     """
         - bridge [ OPTIONS ] OBJECT { COMMAND | help }

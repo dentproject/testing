@@ -7,6 +7,8 @@
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
 from dent_os_testbed.lib.os.linux.linux_process_impl import LinuxProcessImpl
+
+
 class Process(TestLibObject):
     """
         Process details by reading /proc/[pid]/status

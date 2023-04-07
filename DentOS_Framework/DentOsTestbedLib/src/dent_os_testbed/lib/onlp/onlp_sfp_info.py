@@ -7,6 +7,8 @@
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
 from dent_os_testbed.lib.onlp.linux.linux_onlp_sfp_info_impl import LinuxOnlpSfpInfoImpl
+
+
 class OnlpSfpInfo(TestLibObject):
     """
         ONLP SFP Information
