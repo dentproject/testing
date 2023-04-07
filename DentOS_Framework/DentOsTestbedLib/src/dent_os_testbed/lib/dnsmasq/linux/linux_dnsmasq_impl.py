@@ -17,7 +17,7 @@ class LinuxDnsmasqImpl(LinuxDnsmasq):
         """
         params = kwarg['params']
         cmd = 'dnsmasq {} '.format(command)
-        ############# Implement me ################
+        # TODO: Implement me
 
         return cmd
 
@@ -29,6 +29,6 @@ class LinuxDnsmasqImpl(LinuxDnsmasq):
         """
         params = kwarg['params']
         cmd = 'dnsmasq {} '.format(command)
-        ############# Implement me ################
+        # TODO: Implement me
 
         return cmd

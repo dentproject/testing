@@ -40,7 +40,7 @@ class LinuxPoectlImpl(LinuxPoectl):
         """
         params = kwarg['params']
         cmd = 'poectl {} --{}-ports '.format(params.get('cmd_options', ''), command)
-        ############# Implement me ################
+        # TODO: Implement me
         if 'port' not in kwarg['params']:
             return cmd + ' 2> /dev/null'
         cmd += ' {} '.format(kwarg['params']['port'])
@@ -58,7 +58,7 @@ class LinuxPoectlImpl(LinuxPoectl):
         """
         params = kwarg['params']
         cmd = 'poectl  {} '.format(command)
-        ############# Implement me ################
+        # TODO: Implement me
 
         return cmd
 

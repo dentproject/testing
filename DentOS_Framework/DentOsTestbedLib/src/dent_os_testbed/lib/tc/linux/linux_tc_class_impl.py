@@ -12,7 +12,7 @@ class LinuxTcClassImpl(LinuxTcClass):
         """
         params = kwarg['params']
         cmd = 'tc class {} '.format(command)
-        ############# Implement me ################
+        # TODO: Implement me
 
         return cmd
 
@@ -23,6 +23,6 @@ class LinuxTcClassImpl(LinuxTcClass):
         """
         params = kwarg['params']
         cmd = 'tc class {} '.format(command)
-        ############# Implement me ################
+        # TODO: Implement me
 
         return cmd

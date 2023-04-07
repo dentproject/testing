@@ -16,7 +16,7 @@ class LinuxBridgeMdbImpl(LinuxBridgeMdb):
         """
         params = kwarg['params']
         cmd = 'bridge mdb {} '.format(command)
-        ############# Implement me ################
+        # TODO: Implement me
         mdb_entry_type = params.get('permanent', 'temp')
         if 'dev' in params:
             cmd += 'dev {} '.format(params['dev'])
@@ -36,7 +36,7 @@ class LinuxBridgeMdbImpl(LinuxBridgeMdb):
         """
         params = kwarg['params']
         cmd = 'bridge {} mdb {} '.format(params.get('options', ''), command)
-        ############# Implement me ################
+        # TODO: Implement me
 
         return cmd
 

@@ -42,7 +42,7 @@ class LinuxInterfaceImpl(LinuxInterface):
         """
         params = kwarg['params']
         cmd = 'if{} '.format(command)
-        ############# Implement me ################
+        # TODO: Implement me
         if 'options' in params:
             cmd += '{} '.format(params['options'])
         if 'exclude_iface' in params:
@@ -87,7 +87,7 @@ class LinuxInterfaceImpl(LinuxInterface):
         """
         params = kwarg['params']
         cmd = 'ifquery '
-        ############# Implement me ################
+        # TODO: Implement me
         if 'options' in params:
             cmd += '{} '.format(params['options'])
         if 'iface' in params:
@@ -114,7 +114,7 @@ class LinuxInterfaceImpl(LinuxInterface):
         """
         params = kwarg['params']
         cmd = 'ifreload '
-        ############# Implement me ################
+        # TODO: Implement me
         if 'options' in params:
             cmd += '{} '.format(params['options'])
         if 'exclude_iface' in params:

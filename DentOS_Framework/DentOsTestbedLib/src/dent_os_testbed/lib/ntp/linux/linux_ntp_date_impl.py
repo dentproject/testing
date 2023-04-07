@@ -44,7 +44,7 @@ class LinuxNtpDateImpl(LinuxNtpDate):
         """
         params = kwarg['params']
         cmd = 'ntpdate {} '.format(command)
-        ############# Implement me ################
+        # TODO: Implement me
 
         if 'command_options' in params:
             cmd += '{} '.format(params['command_options'])
