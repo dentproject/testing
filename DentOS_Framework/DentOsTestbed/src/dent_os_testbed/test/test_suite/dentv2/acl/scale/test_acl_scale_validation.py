@@ -1,16 +1,13 @@
 # Copyright 2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 #
 
-import ipaddress
 import time
-from itertools import islice
 
 import pytest
 
 from dent_os_testbed.Device import DeviceType
 from dent_os_testbed.lib.tc.tc_chain import TcChain
 from dent_os_testbed.lib.tc.tc_filter import TcFilter
-from dent_os_testbed.lib.tc.tc_qdisc import TcQdisc
 from dent_os_testbed.utils.test_utils.tb_utils import (
     tb_reload_nw_and_flush_firewall,
     tb_reset_qdisc,
@@ -19,12 +16,10 @@ from dent_os_testbed.utils.test_utils.tb_utils import (
 from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_create_devices_and_connect,
     tgen_utils_get_dent_devices_with_tgen,
-    tgen_utils_get_swp_info,
     tgen_utils_get_traffic_stats,
     tgen_utils_setup_streams,
     tgen_utils_start_traffic,
     tgen_utils_stop_protocols,
-    tgen_utils_stop_traffic,
 )
 
 pytestmark = pytest.mark.suite_acl_scale

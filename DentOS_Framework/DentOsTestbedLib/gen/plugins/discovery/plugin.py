@@ -5,8 +5,6 @@ Discovery plugin generates the ReportSchema.py with all schema and setand get me
 
 import os
 
-import random
-import string
 
 from gen.lib.database import camelcase
 from gen.lib.python.pylib import PyClass, PyFile, PyImport, PyLines, PyMethod

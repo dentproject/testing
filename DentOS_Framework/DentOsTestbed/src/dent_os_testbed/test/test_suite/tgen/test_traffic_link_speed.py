@@ -1,13 +1,9 @@
-import json
-import os
 import time
 
 import pytest
 
 from dent_os_testbed.Device import DeviceType
 from dent_os_testbed.lib.ethtool.ethtool import Ethtool
-from dent_os_testbed.lib.interfaces.interface import Interface
-from dent_os_testbed.lib.ip.ip_link import IpLink
 from dent_os_testbed.utils.test_utils.tb_utils import tb_reload_nw_and_flush_firewall
 from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_create_devices_and_connect,

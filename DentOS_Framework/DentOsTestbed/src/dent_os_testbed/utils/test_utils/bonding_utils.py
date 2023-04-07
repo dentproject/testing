@@ -1,5 +1,4 @@
 from dent_os_testbed.Device import DeviceType
-from dent_os_testbed.lib.ip.ip_link import IpLink
 from dent_os_testbed.utils.test_utils.tb_utils import tb_reload_nw_and_flush_firewall
 
 

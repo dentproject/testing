@@ -6,7 +6,6 @@
 
 import io
 import json
-import copy
 from dent_os_testbed.discovery.Report import (LeafSchemaDict, SchemaList, SchemaDict, Report)
 
 

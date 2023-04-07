@@ -11,8 +11,6 @@ from dent_os_testbed.lib.ip.ip_link import IpLink
 from dent_os_testbed.lib.iptables.ip_tables import IpTables
 from dent_os_testbed.utils.test_utils.tb_utils import tb_reload_nw_and_flush_firewall
 from dent_os_testbed.utils.test_utils.tc_flower_utils import (
-    tcutil_cleanup_tc_rules,
-    tcutil_get_iptables_rule_stats,
     tcutil_get_tc_rule_stats,
     tcutil_iptable_to_tc,
 )
@@ -20,12 +18,10 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_clear_traffic_stats,
     tgen_utils_connect_to_tgen,
     tgen_utils_get_dent_devices_with_tgen,
-    tgen_utils_get_swp_info,
     tgen_utils_get_traffic_stats,
     tgen_utils_setup_streams,
     tgen_utils_start_traffic,
     tgen_utils_stop_protocols,
-    tgen_utils_stop_traffic,
 )
 
 pytestmark = pytest.mark.suite_vlan_port_isolation

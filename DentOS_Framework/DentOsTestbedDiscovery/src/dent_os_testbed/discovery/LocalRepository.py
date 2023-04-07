@@ -7,7 +7,6 @@ on a single testbed server.
 import logging
 import sys
 import os
-import shutil
 import time
 import tempfile
 import io

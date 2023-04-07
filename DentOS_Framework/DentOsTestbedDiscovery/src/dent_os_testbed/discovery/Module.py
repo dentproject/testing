@@ -7,10 +7,8 @@ import sys
 import os
 import logging
 import copy
-import io
 import importlib
 import importlib.util
-import operator
 import asyncio
 
 from dent_os_testbed.discovery.Report import Report

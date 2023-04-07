@@ -5,13 +5,11 @@ import time
 
 import pytest
 
-from dent_os_testbed.Device import DeviceType
 from dent_os_testbed.lib.frr.frr_ip_route import FrrIpRoute
 from dent_os_testbed.lib.ip.ip_link import IpLink
 from dent_os_testbed.utils.test_utils.tb_utils import tb_reload_nw_and_flush_firewall
 from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_connect_to_tgen,
-    tgen_utils_create_devices_and_connect,
     tgen_utils_get_dent_devices_with_tgen,
     tgen_utils_get_swp_info,
     tgen_utils_get_traffic_stats,
