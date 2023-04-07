@@ -525,10 +525,10 @@ class OspfSchemaDict(SchemaDict):
 
 class L3SchemaDict(SchemaDict):
     __schema_slots__ = {'management_ip' : str,
-                      'routes' : UnknownSchemaList,
-                      'acls' : UnknownSchemaDict,
-                      'bgp' : BgpSchemaDict,
-                      'ospf' : OspfSchemaDict,}
+                        'routes' : UnknownSchemaList,
+                        'acls' : UnknownSchemaDict,
+                        'bgp' : BgpSchemaDict,
+                        'ospf' : OspfSchemaDict,}
 
 
 class DeviceNetworkSchemaDict(SchemaDict):
