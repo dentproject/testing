@@ -41,7 +41,7 @@ class DocsMdObject(object):
         self._body.append(MdLines(lines=tokenize(md_mod_hdr)))
         for mname, mod in self._pkg.modules.items():
             margs = mod.to_dict()
-            margs['mod_desc'] = margs['mod_desc'].replace('|','\|').replace('\n','')
+            margs['mod_desc'] = margs['mod_desc'].replace('|', '\|').replace('\n', '')
             classes = ''
             for c in mod.classes:
                 if not c.implemented_by:
@@ -93,7 +93,7 @@ class DocMdObject(object):
         self._body.append(MdLines(lines=tokenize(md_mbr_hdr)))
         for mbr in self._cls.members:
             margs = mbr.to_dict()
-            margs['cmbr_desc'] = margs['cmbr_desc'].replace('|','\|').replace('\n','')
+            margs['cmbr_desc'] = margs['cmbr_desc'].replace('|', '\|').replace('\n', '')
             self._body.append(MdLines(lines=tokenize(md_mbr_entry % margs)))
         for api in self._cls.apis:
             args['api'] = api

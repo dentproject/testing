@@ -16,7 +16,7 @@ setup(
     version='1.0',
     # declare your packages
     packages=find_namespace_packages(where='src',
-                                     exclude=['test',],
+                                     exclude=['test', ],
                                      include=['dent_os_testbed.*']),
     package_dir={'': 'src'},
     # include data files

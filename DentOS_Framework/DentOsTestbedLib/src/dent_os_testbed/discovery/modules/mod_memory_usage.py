@@ -14,7 +14,7 @@ class MemoryUsageMod(Module):
 
     def set_memory_usage(self, src, dst):
 
-        for i,memory_usage in enumerate([src]):
+        for i, memory_usage in enumerate([src]):
             if 'mem_total' in memory_usage: dst.mem_total = memory_usage.get('mem_total')
             if 'mem_free' in memory_usage: dst.mem_free = memory_usage.get('mem_free')
             if 'mem_available' in memory_usage: dst.mem_available = memory_usage.get('mem_available')
@@ -35,7 +35,7 @@ class MemoryUsageMod(Module):
                 continue
             print('Running memory_usage Discovery on ' + dev.host_name)
             out = await MemoryUsage.show(
-                input_data=[{dev.host_name: [{'dut_discovery':True}]}],
+                input_data=[{dev.host_name: [{'dut_discovery': True}]}],
                 device_obj={dev.host_name: dev},
                 parse_output=True
             )

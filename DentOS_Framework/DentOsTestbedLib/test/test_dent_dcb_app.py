@@ -17,7 +17,7 @@ def test_that_dcb_app_show(capfd):
     out = loop.run_until_complete(DcbApp.show(input_data=[{
         # device 1
         'test_dev' : [{}],
-    }], device_obj={'test_dev':dv1}))
+    }], device_obj={'test_dev': dv1}))
     print(out)
     assert 'command' in out[0]['test_dev'].keys()
     assert 'result' in out[0]['test_dev'].keys()
@@ -29,26 +29,26 @@ def test_that_dcb_app_show(capfd):
         # device 1
         'test_dev1' : [{
             # command 1
-            'dev':'grjvikgf',
-            'default-prio':'',
-            'dscp-prio':'',
-            'ethtype-prio':'',
-            'port-prio':'',
-            'stream-port-prio':'',
-            'dgram-port-prio':'',
+            'dev': 'grjvikgf',
+            'default-prio': '',
+            'dscp-prio': '',
+            'ethtype-prio': '',
+            'port-prio': '',
+            'stream-port-prio': '',
+            'dgram-port-prio': '',
 
-        },{
+        }, {
             # command 2
-            'dev':'vaoohlzo',
-            'default-prio':'',
-            'dscp-prio':'',
-            'ethtype-prio':'',
-            'port-prio':'',
-            'stream-port-prio':'',
-            'dgram-port-prio':'',
+            'dev': 'vaoohlzo',
+            'default-prio': '',
+            'dscp-prio': '',
+            'ethtype-prio': '',
+            'port-prio': '',
+            'stream-port-prio': '',
+            'dgram-port-prio': '',
 
         }],
-    }], device_obj={'test_dev1':dv1, 'test_dev2':dv2}))
+    }], device_obj={'test_dev1': dv1, 'test_dev2': dv2}))
     print(out)
     # check if the command was formed
     assert 'command' in out[0]['test_dev1'].keys()
@@ -61,27 +61,27 @@ def test_that_dcb_app_show(capfd):
     out = loop.run_until_complete(DcbApp.show(input_data=[{
         # device 1
         'test_dev1' : [{
-            'dev':'grjvikgf',
-            'default-prio':'',
-            'dscp-prio':'',
-            'ethtype-prio':'',
-            'port-prio':'',
-            'stream-port-prio':'',
-            'dgram-port-prio':'',
+            'dev': 'grjvikgf',
+            'default-prio': '',
+            'dscp-prio': '',
+            'ethtype-prio': '',
+            'port-prio': '',
+            'stream-port-prio': '',
+            'dgram-port-prio': '',
 
          }],
         # device 2
         'test_dev2' : [{
-            'dev':'vaoohlzo',
-            'default-prio':'',
-            'dscp-prio':'',
-            'ethtype-prio':'',
-            'port-prio':'',
-            'stream-port-prio':'',
-            'dgram-port-prio':'',
+            'dev': 'vaoohlzo',
+            'default-prio': '',
+            'dscp-prio': '',
+            'ethtype-prio': '',
+            'port-prio': '',
+            'stream-port-prio': '',
+            'dgram-port-prio': '',
 
         }],
-    }], device_obj={'test_dev1':dv1, 'test_dev2':dv2}))
+    }], device_obj={'test_dev1': dv1, 'test_dev2': dv2}))
     print(out)
     # check if the command was formed
     assert 'command' in out[0]['test_dev1'].keys()
@@ -102,7 +102,7 @@ def test_that_dcb_app_flush(capfd):
     out = loop.run_until_complete(DcbApp.flush(input_data=[{
         # device 1
         'test_dev' : [{}],
-    }], device_obj={'test_dev':dv1}))
+    }], device_obj={'test_dev': dv1}))
     print(out)
     assert 'command' in out[0]['test_dev'].keys()
     assert 'result' in out[0]['test_dev'].keys()
@@ -114,26 +114,26 @@ def test_that_dcb_app_flush(capfd):
         # device 1
         'test_dev1' : [{
             # command 1
-            'dev':'slvrkgyg',
-            'default-prio':'',
-            'dscp-prio':'',
-            'ethtype-prio':'',
-            'port-prio':'',
-            'stream-port-prio':'',
-            'dgram-port-prio':'',
+            'dev': 'slvrkgyg',
+            'default-prio': '',
+            'dscp-prio': '',
+            'ethtype-prio': '',
+            'port-prio': '',
+            'stream-port-prio': '',
+            'dgram-port-prio': '',
 
-        },{
+        }, {
             # command 2
-            'dev':'sxlqptce',
-            'default-prio':'',
-            'dscp-prio':'',
-            'ethtype-prio':'',
-            'port-prio':'',
-            'stream-port-prio':'',
-            'dgram-port-prio':'',
+            'dev': 'sxlqptce',
+            'default-prio': '',
+            'dscp-prio': '',
+            'ethtype-prio': '',
+            'port-prio': '',
+            'stream-port-prio': '',
+            'dgram-port-prio': '',
 
         }],
-    }], device_obj={'test_dev1':dv1, 'test_dev2':dv2}))
+    }], device_obj={'test_dev1': dv1, 'test_dev2': dv2}))
     print(out)
     # check if the command was formed
     assert 'command' in out[0]['test_dev1'].keys()
@@ -146,27 +146,27 @@ def test_that_dcb_app_flush(capfd):
     out = loop.run_until_complete(DcbApp.flush(input_data=[{
         # device 1
         'test_dev1' : [{
-            'dev':'slvrkgyg',
-            'default-prio':'',
-            'dscp-prio':'',
-            'ethtype-prio':'',
-            'port-prio':'',
-            'stream-port-prio':'',
-            'dgram-port-prio':'',
+            'dev': 'slvrkgyg',
+            'default-prio': '',
+            'dscp-prio': '',
+            'ethtype-prio': '',
+            'port-prio': '',
+            'stream-port-prio': '',
+            'dgram-port-prio': '',
 
          }],
         # device 2
         'test_dev2' : [{
-            'dev':'sxlqptce',
-            'default-prio':'',
-            'dscp-prio':'',
-            'ethtype-prio':'',
-            'port-prio':'',
-            'stream-port-prio':'',
-            'dgram-port-prio':'',
+            'dev': 'sxlqptce',
+            'default-prio': '',
+            'dscp-prio': '',
+            'ethtype-prio': '',
+            'port-prio': '',
+            'stream-port-prio': '',
+            'dgram-port-prio': '',
 
         }],
-    }], device_obj={'test_dev1':dv1, 'test_dev2':dv2}))
+    }], device_obj={'test_dev1': dv1, 'test_dev2': dv2}))
     print(out)
     # check if the command was formed
     assert 'command' in out[0]['test_dev1'].keys()
@@ -187,7 +187,7 @@ def test_that_dcb_app_add(capfd):
     out = loop.run_until_complete(DcbApp.add(input_data=[{
         # device 1
         'test_dev' : [{}],
-    }], device_obj={'test_dev':dv1}))
+    }], device_obj={'test_dev': dv1}))
     print(out)
     assert 'command' in out[0]['test_dev'].keys()
     assert 'result' in out[0]['test_dev'].keys()
@@ -199,26 +199,26 @@ def test_that_dcb_app_add(capfd):
         # device 1
         'test_dev1' : [{
             # command 1
-            'dev':'zsewizgk',
-            'default-prio':'',
-            'dscp-prio':'',
-            'ethtype-prio':'',
-            'port-prio':'',
-            'stream-port-prio':'',
-            'dgram-port-prio':'',
+            'dev': 'zsewizgk',
+            'default-prio': '',
+            'dscp-prio': '',
+            'ethtype-prio': '',
+            'port-prio': '',
+            'stream-port-prio': '',
+            'dgram-port-prio': '',
 
-        },{
+        }, {
             # command 2
-            'dev':'apzgccxw',
-            'default-prio':'',
-            'dscp-prio':'',
-            'ethtype-prio':'',
-            'port-prio':'',
-            'stream-port-prio':'',
-            'dgram-port-prio':'',
+            'dev': 'apzgccxw',
+            'default-prio': '',
+            'dscp-prio': '',
+            'ethtype-prio': '',
+            'port-prio': '',
+            'stream-port-prio': '',
+            'dgram-port-prio': '',
 
         }],
-    }], device_obj={'test_dev1':dv1, 'test_dev2':dv2}))
+    }], device_obj={'test_dev1': dv1, 'test_dev2': dv2}))
     print(out)
     # check if the command was formed
     assert 'command' in out[0]['test_dev1'].keys()
@@ -231,27 +231,27 @@ def test_that_dcb_app_add(capfd):
     out = loop.run_until_complete(DcbApp.add(input_data=[{
         # device 1
         'test_dev1' : [{
-            'dev':'zsewizgk',
-            'default-prio':'',
-            'dscp-prio':'',
-            'ethtype-prio':'',
-            'port-prio':'',
-            'stream-port-prio':'',
-            'dgram-port-prio':'',
+            'dev': 'zsewizgk',
+            'default-prio': '',
+            'dscp-prio': '',
+            'ethtype-prio': '',
+            'port-prio': '',
+            'stream-port-prio': '',
+            'dgram-port-prio': '',
 
          }],
         # device 2
         'test_dev2' : [{
-            'dev':'apzgccxw',
-            'default-prio':'',
-            'dscp-prio':'',
-            'ethtype-prio':'',
-            'port-prio':'',
-            'stream-port-prio':'',
-            'dgram-port-prio':'',
+            'dev': 'apzgccxw',
+            'default-prio': '',
+            'dscp-prio': '',
+            'ethtype-prio': '',
+            'port-prio': '',
+            'stream-port-prio': '',
+            'dgram-port-prio': '',
 
         }],
-    }], device_obj={'test_dev1':dv1, 'test_dev2':dv2}))
+    }], device_obj={'test_dev1': dv1, 'test_dev2': dv2}))
     print(out)
     # check if the command was formed
     assert 'command' in out[0]['test_dev1'].keys()
@@ -272,7 +272,7 @@ def test_that_dcb_app_delete(capfd):
     out = loop.run_until_complete(DcbApp.delete(input_data=[{
         # device 1
         'test_dev' : [{}],
-    }], device_obj={'test_dev':dv1}))
+    }], device_obj={'test_dev': dv1}))
     print(out)
     assert 'command' in out[0]['test_dev'].keys()
     assert 'result' in out[0]['test_dev'].keys()
@@ -284,26 +284,26 @@ def test_that_dcb_app_delete(capfd):
         # device 1
         'test_dev1' : [{
             # command 1
-            'dev':'qmhrjard',
-            'default-prio':'',
-            'dscp-prio':'',
-            'ethtype-prio':'',
-            'port-prio':'',
-            'stream-port-prio':'',
-            'dgram-port-prio':'',
+            'dev': 'qmhrjard',
+            'default-prio': '',
+            'dscp-prio': '',
+            'ethtype-prio': '',
+            'port-prio': '',
+            'stream-port-prio': '',
+            'dgram-port-prio': '',
 
-        },{
+        }, {
             # command 2
-            'dev':'pzcioafr',
-            'default-prio':'',
-            'dscp-prio':'',
-            'ethtype-prio':'',
-            'port-prio':'',
-            'stream-port-prio':'',
-            'dgram-port-prio':'',
+            'dev': 'pzcioafr',
+            'default-prio': '',
+            'dscp-prio': '',
+            'ethtype-prio': '',
+            'port-prio': '',
+            'stream-port-prio': '',
+            'dgram-port-prio': '',
 
         }],
-    }], device_obj={'test_dev1':dv1, 'test_dev2':dv2}))
+    }], device_obj={'test_dev1': dv1, 'test_dev2': dv2}))
     print(out)
     # check if the command was formed
     assert 'command' in out[0]['test_dev1'].keys()
@@ -316,27 +316,27 @@ def test_that_dcb_app_delete(capfd):
     out = loop.run_until_complete(DcbApp.delete(input_data=[{
         # device 1
         'test_dev1' : [{
-            'dev':'qmhrjard',
-            'default-prio':'',
-            'dscp-prio':'',
-            'ethtype-prio':'',
-            'port-prio':'',
-            'stream-port-prio':'',
-            'dgram-port-prio':'',
+            'dev': 'qmhrjard',
+            'default-prio': '',
+            'dscp-prio': '',
+            'ethtype-prio': '',
+            'port-prio': '',
+            'stream-port-prio': '',
+            'dgram-port-prio': '',
 
          }],
         # device 2
         'test_dev2' : [{
-            'dev':'pzcioafr',
-            'default-prio':'',
-            'dscp-prio':'',
-            'ethtype-prio':'',
-            'port-prio':'',
-            'stream-port-prio':'',
-            'dgram-port-prio':'',
+            'dev': 'pzcioafr',
+            'default-prio': '',
+            'dscp-prio': '',
+            'ethtype-prio': '',
+            'port-prio': '',
+            'stream-port-prio': '',
+            'dgram-port-prio': '',
 
         }],
-    }], device_obj={'test_dev1':dv1, 'test_dev2':dv2}))
+    }], device_obj={'test_dev1': dv1, 'test_dev2': dv2}))
     print(out)
     # check if the command was formed
     assert 'command' in out[0]['test_dev1'].keys()
@@ -357,7 +357,7 @@ def test_that_dcb_app_replace(capfd):
     out = loop.run_until_complete(DcbApp.replace(input_data=[{
         # device 1
         'test_dev' : [{}],
-    }], device_obj={'test_dev':dv1}))
+    }], device_obj={'test_dev': dv1}))
     print(out)
     assert 'command' in out[0]['test_dev'].keys()
     assert 'result' in out[0]['test_dev'].keys()
@@ -369,26 +369,26 @@ def test_that_dcb_app_replace(capfd):
         # device 1
         'test_dev1' : [{
             # command 1
-            'dev':'jkdlzioq',
-            'default-prio':'',
-            'dscp-prio':'',
-            'ethtype-prio':'',
-            'port-prio':'',
-            'stream-port-prio':'',
-            'dgram-port-prio':'',
+            'dev': 'jkdlzioq',
+            'default-prio': '',
+            'dscp-prio': '',
+            'ethtype-prio': '',
+            'port-prio': '',
+            'stream-port-prio': '',
+            'dgram-port-prio': '',
 
-        },{
+        }, {
             # command 2
-            'dev':'ckdmewks',
-            'default-prio':'',
-            'dscp-prio':'',
-            'ethtype-prio':'',
-            'port-prio':'',
-            'stream-port-prio':'',
-            'dgram-port-prio':'',
+            'dev': 'ckdmewks',
+            'default-prio': '',
+            'dscp-prio': '',
+            'ethtype-prio': '',
+            'port-prio': '',
+            'stream-port-prio': '',
+            'dgram-port-prio': '',
 
         }],
-    }], device_obj={'test_dev1':dv1, 'test_dev2':dv2}))
+    }], device_obj={'test_dev1': dv1, 'test_dev2': dv2}))
     print(out)
     # check if the command was formed
     assert 'command' in out[0]['test_dev1'].keys()
@@ -401,27 +401,27 @@ def test_that_dcb_app_replace(capfd):
     out = loop.run_until_complete(DcbApp.replace(input_data=[{
         # device 1
         'test_dev1' : [{
-            'dev':'jkdlzioq',
-            'default-prio':'',
-            'dscp-prio':'',
-            'ethtype-prio':'',
-            'port-prio':'',
-            'stream-port-prio':'',
-            'dgram-port-prio':'',
+            'dev': 'jkdlzioq',
+            'default-prio': '',
+            'dscp-prio': '',
+            'ethtype-prio': '',
+            'port-prio': '',
+            'stream-port-prio': '',
+            'dgram-port-prio': '',
 
          }],
         # device 2
         'test_dev2' : [{
-            'dev':'ckdmewks',
-            'default-prio':'',
-            'dscp-prio':'',
-            'ethtype-prio':'',
-            'port-prio':'',
-            'stream-port-prio':'',
-            'dgram-port-prio':'',
+            'dev': 'ckdmewks',
+            'default-prio': '',
+            'dscp-prio': '',
+            'ethtype-prio': '',
+            'port-prio': '',
+            'stream-port-prio': '',
+            'dgram-port-prio': '',
 
         }],
-    }], device_obj={'test_dev1':dv1, 'test_dev2':dv2}))
+    }], device_obj={'test_dev1': dv1, 'test_dev2': dv2}))
     print(out)
     # check if the command was formed
     assert 'command' in out[0]['test_dev1'].keys()

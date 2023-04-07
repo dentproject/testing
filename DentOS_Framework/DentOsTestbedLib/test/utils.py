@@ -34,8 +34,8 @@ class TestDevice:
                     'address':'00:00:00:00:00:00',
                     'broadcast':'00:00:00:00:00:00',
                     'addr_info':[
-                        {'family': 'inet', 'local': '127.0.0.1', 'prefixlen': 8, 'scope': 'host','label': 'lo', 'valid_life_time': 4294967295, 'preferred_life_time': 4294967295},
-                        {'family': 'inet', 'local': '10.1.0.1', 'prefixlen': 32, 'scope': 'global','label': 'lo', 'valid_life_time': 4294967295, 'preferred_life_time': 4294967295},
+                        {'family': 'inet', 'local': '127.0.0.1', 'prefixlen': 8, 'scope': 'host', 'label': 'lo', 'valid_life_time': 4294967295, 'preferred_life_time': 4294967295},
+                        {'family': 'inet', 'local': '10.1.0.1', 'prefixlen': 32, 'scope': 'global', 'label': 'lo', 'valid_life_time': 4294967295, 'preferred_life_time': 4294967295},
                         {'family': 'inet6', 'local': '::1', 'prefixlen': 128, 'scope': 'host', 'valid_life_time': 4294967295, 'preferred_life_time': 4294967295}
                     ]
                 },

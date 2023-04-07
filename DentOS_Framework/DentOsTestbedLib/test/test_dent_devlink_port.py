@@ -17,7 +17,7 @@ def test_that_devlink_port_set(capfd):
     out = loop.run_until_complete(DevlinkPort.set(input_data=[{
         # device 1
         'test_dev' : [{}],
-    }], device_obj={'test_dev':dv1}))
+    }], device_obj={'test_dev': dv1}))
     print(out)
     assert 'command' in out[0]['test_dev'].keys()
     assert 'result' in out[0]['test_dev'].keys()
@@ -29,20 +29,20 @@ def test_that_devlink_port_set(capfd):
         # device 1
         'test_dev1' : [{
             # command 1
-            'dev':'jfonwshm',
-            'name':'nxriflun',
-            'value':'zbxvysfk',
-            'cmode':'nwvidlmi',
+            'dev': 'jfonwshm',
+            'name': 'nxriflun',
+            'value': 'zbxvysfk',
+            'cmode': 'nwvidlmi',
 
-        },{
+        }, {
             # command 2
-            'dev':'qvemwewh',
-            'name':'iraczgpc',
-            'value':'mdlmwisc',
-            'cmode':'euflgsrp',
+            'dev': 'qvemwewh',
+            'name': 'iraczgpc',
+            'value': 'mdlmwisc',
+            'cmode': 'euflgsrp',
 
         }],
-    }], device_obj={'test_dev1':dv1, 'test_dev2':dv2}))
+    }], device_obj={'test_dev1': dv1, 'test_dev2': dv2}))
     print(out)
     # check if the command was formed
     assert 'command' in out[0]['test_dev1'].keys()
@@ -55,21 +55,21 @@ def test_that_devlink_port_set(capfd):
     out = loop.run_until_complete(DevlinkPort.set(input_data=[{
         # device 1
         'test_dev1' : [{
-            'dev':'jfonwshm',
-            'name':'nxriflun',
-            'value':'zbxvysfk',
-            'cmode':'nwvidlmi',
+            'dev': 'jfonwshm',
+            'name': 'nxriflun',
+            'value': 'zbxvysfk',
+            'cmode': 'nwvidlmi',
 
          }],
         # device 2
         'test_dev2' : [{
-            'dev':'qvemwewh',
-            'name':'iraczgpc',
-            'value':'mdlmwisc',
-            'cmode':'euflgsrp',
+            'dev': 'qvemwewh',
+            'name': 'iraczgpc',
+            'value': 'mdlmwisc',
+            'cmode': 'euflgsrp',
 
         }],
-    }], device_obj={'test_dev1':dv1, 'test_dev2':dv2}))
+    }], device_obj={'test_dev1': dv1, 'test_dev2': dv2}))
     print(out)
     # check if the command was formed
     assert 'command' in out[0]['test_dev1'].keys()
@@ -90,7 +90,7 @@ def test_that_devlink_port_split(capfd):
     out = loop.run_until_complete(DevlinkPort.split(input_data=[{
         # device 1
         'test_dev' : [{}],
-    }], device_obj={'test_dev':dv1}))
+    }], device_obj={'test_dev': dv1}))
     print(out)
     assert 'command' in out[0]['test_dev'].keys()
     assert 'result' in out[0]['test_dev'].keys()
@@ -106,7 +106,7 @@ def test_that_devlink_port_unsplit(capfd):
     out = loop.run_until_complete(DevlinkPort.unsplit(input_data=[{
         # device 1
         'test_dev' : [{}],
-    }], device_obj={'test_dev':dv1}))
+    }], device_obj={'test_dev': dv1}))
     print(out)
     assert 'command' in out[0]['test_dev'].keys()
     assert 'result' in out[0]['test_dev'].keys()
@@ -122,7 +122,7 @@ def test_that_devlink_port_show(capfd):
     out = loop.run_until_complete(DevlinkPort.show(input_data=[{
         # device 1
         'test_dev' : [{}],
-    }], device_obj={'test_dev':dv1}))
+    }], device_obj={'test_dev': dv1}))
     print(out)
     assert 'command' in out[0]['test_dev'].keys()
     assert 'result' in out[0]['test_dev'].keys()
@@ -134,16 +134,16 @@ def test_that_devlink_port_show(capfd):
         # device 1
         'test_dev1' : [{
             # command 1
-            'dev':'zdeyrtrt',
-            'name':'uaelyfuw',
+            'dev': 'zdeyrtrt',
+            'name': 'uaelyfuw',
 
-        },{
+        }, {
             # command 2
-            'dev':'yrqcphwy',
-            'name':'vaqopkht',
+            'dev': 'yrqcphwy',
+            'name': 'vaqopkht',
 
         }],
-    }], device_obj={'test_dev1':dv1, 'test_dev2':dv2}))
+    }], device_obj={'test_dev1': dv1, 'test_dev2': dv2}))
     print(out)
     # check if the command was formed
     assert 'command' in out[0]['test_dev1'].keys()
@@ -156,17 +156,17 @@ def test_that_devlink_port_show(capfd):
     out = loop.run_until_complete(DevlinkPort.show(input_data=[{
         # device 1
         'test_dev1' : [{
-            'dev':'zdeyrtrt',
-            'name':'uaelyfuw',
+            'dev': 'zdeyrtrt',
+            'name': 'uaelyfuw',
 
          }],
         # device 2
         'test_dev2' : [{
-            'dev':'yrqcphwy',
-            'name':'vaqopkht',
+            'dev': 'yrqcphwy',
+            'name': 'vaqopkht',
 
         }],
-    }], device_obj={'test_dev1':dv1, 'test_dev2':dv2}))
+    }], device_obj={'test_dev1': dv1, 'test_dev2': dv2}))
     print(out)
     # check if the command was formed
     assert 'command' in out[0]['test_dev1'].keys()
@@ -187,7 +187,7 @@ def test_that_devlink_port_health(capfd):
     out = loop.run_until_complete(DevlinkPort.health(input_data=[{
         # device 1
         'test_dev' : [{}],
-    }], device_obj={'test_dev':dv1}))
+    }], device_obj={'test_dev': dv1}))
     print(out)
     assert 'command' in out[0]['test_dev'].keys()
     assert 'result' in out[0]['test_dev'].keys()
@@ -203,7 +203,7 @@ def test_that_devlink_port_add(capfd):
     out = loop.run_until_complete(DevlinkPort.add(input_data=[{
         # device 1
         'test_dev' : [{}],
-    }], device_obj={'test_dev':dv1}))
+    }], device_obj={'test_dev': dv1}))
     print(out)
     assert 'command' in out[0]['test_dev'].keys()
     assert 'result' in out[0]['test_dev'].keys()
@@ -219,7 +219,7 @@ def test_that_devlink_port_delete(capfd):
     out = loop.run_until_complete(DevlinkPort.delete(input_data=[{
         # device 1
         'test_dev' : [{}],
-    }], device_obj={'test_dev':dv1}))
+    }], device_obj={'test_dev': dv1}))
     print(out)
     assert 'command' in out[0]['test_dev'].keys()
     assert 'result' in out[0]['test_dev'].keys()
@@ -235,7 +235,7 @@ def test_that_devlink_port_function(capfd):
     out = loop.run_until_complete(DevlinkPort.function(input_data=[{
         # device 1
         'test_dev' : [{}],
-    }], device_obj={'test_dev':dv1}))
+    }], device_obj={'test_dev': dv1}))
     print(out)
     assert 'command' in out[0]['test_dev'].keys()
     assert 'result' in out[0]['test_dev'].keys()
@@ -251,7 +251,7 @@ def test_that_devlink_port_param(capfd):
     out = loop.run_until_complete(DevlinkPort.param(input_data=[{
         # device 1
         'test_dev' : [{}],
-    }], device_obj={'test_dev':dv1}))
+    }], device_obj={'test_dev': dv1}))
     print(out)
     assert 'command' in out[0]['test_dev'].keys()
     assert 'result' in out[0]['test_dev'].keys()

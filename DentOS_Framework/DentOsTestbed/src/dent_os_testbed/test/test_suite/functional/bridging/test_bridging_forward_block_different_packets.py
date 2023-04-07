@@ -87,7 +87,7 @@ async def test_bridging_forward_block_different_packets(testbed):
             'dstMac': 'FF:FF:FF:FF:FF:FF',
             'frameSize': 96,
             'protocol': '0x0800',
-            'type' :'raw'
+            'type' : 'raw'
         },
         'IPv4_Reserved_MC': {
             'ip_source': dev_groups[tg_ports[0]][0]['name'],
@@ -101,7 +101,7 @@ async def test_bridging_forward_block_different_packets(testbed):
             'dstMac': '01:00:5E:00:00:45',
             'frameSize': 96,
             'protocol': '0x0800',
-            'type' :'raw'
+            'type' : 'raw'
         },
         'IPv4_All_Systems_on_this_Subnet': {
             'ip_source': dev_groups[tg_ports[0]][0]['name'],
@@ -112,7 +112,7 @@ async def test_bridging_forward_block_different_packets(testbed):
             'dstMac': '01:00:5E:00:00:01',
             'frameSize': 96,
             'protocol': '0x0800',
-            'type' :'raw'
+            'type' : 'raw'
         },
         'IPv4_All_Routers_on_this_Subnet': {
             'ip_source': dev_groups[tg_ports[0]][0]['name'],
@@ -123,7 +123,7 @@ async def test_bridging_forward_block_different_packets(testbed):
             'dstMac': '01:00:5E:00:00:02',
             'frameSize': 96,
             'protocol': '0x0800',
-            'type' :'raw'
+            'type' : 'raw'
         },
         'IPv4_OSPFIGP': {
             'ip_source': dev_groups[tg_ports[0]][0]['name'],
@@ -137,7 +137,7 @@ async def test_bridging_forward_block_different_packets(testbed):
             'dstMac': '01:00:5E:00:00:05',
             'frameSize': 96,
             'protocol': '0x0800',
-            'type' :'raw'
+            'type' : 'raw'
         },
         'IPv4_RIP2_Routers': {
             'ip_source': dev_groups[tg_ports[0]][0]['name'],
@@ -148,7 +148,7 @@ async def test_bridging_forward_block_different_packets(testbed):
             'dstMac': '01:00:5E:00:00:09',
             'frameSize': 96,
             'protocol': '0x0800',
-            'type' :'raw'
+            'type' : 'raw'
         },
         'IPv4_EIGRP_Routers': {
             'ip_source': dev_groups[tg_ports[0]][0]['name'],
@@ -159,7 +159,7 @@ async def test_bridging_forward_block_different_packets(testbed):
             'dstMac': '01:00:5E:00:00:0A',
             'frameSize': 96,
             'protocol': '0x0800',
-            'type' :'raw'
+            'type' : 'raw'
         },
         'IPv4_DHCP_Server/Relay_Agent': {
             'ip_source': dev_groups[tg_ports[0]][0]['name'],
@@ -173,7 +173,7 @@ async def test_bridging_forward_block_different_packets(testbed):
             'dstPort': '67',
             'frameSize': 96,
             'protocol': '0x0800',
-            'type' :'raw'
+            'type' : 'raw'
         },
         'IPv4_VRRP': {
             'ip_source': dev_groups[tg_ports[0]][0]['name'],
@@ -185,7 +185,7 @@ async def test_bridging_forward_block_different_packets(testbed):
             # "packet.ipv4.protocol": 112,
             'frameSize': 96,
             'protocol': '0x0800',
-            'type' :'raw'
+            'type' : 'raw'
         },
         'IPv4_IGMP' : {
             'ip_source': dev_groups[tg_ports[0]][0]['name'],
@@ -196,7 +196,7 @@ async def test_bridging_forward_block_different_packets(testbed):
             'dstMac': '01:00:5E:00:00:16',
             'frameSize': 96,
             'protocol': '0x0800',
-            'type' :'raw'
+            'type' : 'raw'
         },
     }
 

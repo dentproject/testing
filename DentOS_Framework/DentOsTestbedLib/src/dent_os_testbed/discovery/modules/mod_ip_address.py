@@ -14,7 +14,7 @@ class IpAddressMod(Module):
 
     def set_ip_address_info(self, src, dst):
 
-        for i,ip_address_info in enumerate(src):
+        for i, ip_address_info in enumerate(src):
             if 'family' in ip_address_info: dst[i].family = ip_address_info.get('family')
             if 'local' in ip_address_info: dst[i].local = ip_address_info.get('local')
             if 'prefixlen' in ip_address_info: dst[i].prefixlen = ip_address_info.get('prefixlen')
@@ -25,7 +25,7 @@ class IpAddressMod(Module):
 
     def set_ip_address(self, src, dst):
 
-        for i,ip_address in enumerate(src):
+        for i, ip_address in enumerate(src):
             if 'ifindex' in ip_address: dst[i].ifindex = ip_address.get('ifindex')
             if 'ifname' in ip_address: dst[i].ifname = ip_address.get('ifname')
             if 'mtu' in ip_address: dst[i].mtu = ip_address.get('mtu')
@@ -63,7 +63,7 @@ class IpAddressMod(Module):
                 continue
             print('Running ip_address Discovery on ' + dev.host_name)
             out = await IpAddress.show(
-                input_data=[{dev.host_name: [{'dut_discovery':True}]}],
+                input_data=[{dev.host_name: [{'dut_discovery': True}]}],
                 device_obj={dev.host_name: dev},
                 parse_output=True
             )

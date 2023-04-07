@@ -99,7 +99,7 @@ class IpLinkDeleteAndAdd(DeleteAndAddBase):
     meta = IpLinkDeleteAndAddMeta
 
 
-@pytest.fixture(params=[IpRouteDeleteAndAdd,IpAddressDeleteAndAdd,IpLinkDeleteAndAdd,])
+@pytest.fixture(params=[IpRouteDeleteAndAdd, IpAddressDeleteAndAdd, IpLinkDeleteAndAdd, ])
 def delete_add_ip_class(request):
     return request.param
 

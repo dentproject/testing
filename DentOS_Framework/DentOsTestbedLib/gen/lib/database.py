@@ -207,7 +207,7 @@ class Class(object):
             if 'members' in ydata
             else []
         )
-        self.members_dct = {m.name:m for m in self.members}
+        self.members_dct = {m.name: m for m in self.members}
         self.apis = ydata['apis'] if 'apis' in ydata else ['add', 'del', 'get', 'dump']
         self.implements = ydata['implements'] if 'implements' in ydata else None
         # indicates how many instances the object can have

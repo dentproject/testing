@@ -90,7 +90,7 @@ async def test_bridging_robustness_macs(testbed):
         for x in range(3):
             streams = {
                     f'bridge_{x + 1}': {
-                        'ip_source': dev_groups[tg_ports[random.randint(0,2)]][0]['name'],
+                        'ip_source': dev_groups[tg_ports[random.randint(0, 2)]][0]['name'],
                         'ip_destination': dev_groups[tg_ports[3]][0]['name'],
                         'srcMac': {'type': 'increment',
                                    'start': '00:00:00:00:00:35',

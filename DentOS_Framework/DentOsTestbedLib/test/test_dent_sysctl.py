@@ -17,7 +17,7 @@ def test_that_sysctl_get(capfd):
     out = loop.run_until_complete(Sysctl.get(input_data=[{
         # device 1
         'test_dev' : [{}],
-    }], device_obj={'test_dev':dv1}))
+    }], device_obj={'test_dev': dv1}))
     print(out)
     assert 'command' in out[0]['test_dev'].keys()
     assert 'result' in out[0]['test_dev'].keys()
@@ -29,14 +29,14 @@ def test_that_sysctl_get(capfd):
         # device 1
         'test_dev1' : [{
             # command 1
-            'variable':'wlmoznsp',
+            'variable': 'wlmoznsp',
 
-        },{
+        }, {
             # command 2
-            'variable':'dfxoranx',
+            'variable': 'dfxoranx',
 
         }],
-    }], device_obj={'test_dev1':dv1, 'test_dev2':dv2}))
+    }], device_obj={'test_dev1': dv1, 'test_dev2': dv2}))
     print(out)
     # check if the command was formed
     assert 'command' in out[0]['test_dev1'].keys()
@@ -49,15 +49,15 @@ def test_that_sysctl_get(capfd):
     out = loop.run_until_complete(Sysctl.get(input_data=[{
         # device 1
         'test_dev1' : [{
-            'variable':'wlmoznsp',
+            'variable': 'wlmoznsp',
 
          }],
         # device 2
         'test_dev2' : [{
-            'variable':'dfxoranx',
+            'variable': 'dfxoranx',
 
         }],
-    }], device_obj={'test_dev1':dv1, 'test_dev2':dv2}))
+    }], device_obj={'test_dev1': dv1, 'test_dev2': dv2}))
     print(out)
     # check if the command was formed
     assert 'command' in out[0]['test_dev1'].keys()
@@ -78,7 +78,7 @@ def test_that_sysctl_set(capfd):
     out = loop.run_until_complete(Sysctl.set(input_data=[{
         # device 1
         'test_dev' : [{}],
-    }], device_obj={'test_dev':dv1}))
+    }], device_obj={'test_dev': dv1}))
     print(out)
     assert 'command' in out[0]['test_dev'].keys()
     assert 'result' in out[0]['test_dev'].keys()
@@ -90,16 +90,16 @@ def test_that_sysctl_set(capfd):
         # device 1
         'test_dev1' : [{
             # command 1
-            'variable':'eysjejvo',
-            'value':'xttiqmtm',
+            'variable': 'eysjejvo',
+            'value': 'xttiqmtm',
 
-        },{
+        }, {
             # command 2
-            'variable':'frknxnkx',
-            'value':'hpizjqed',
+            'variable': 'frknxnkx',
+            'value': 'hpizjqed',
 
         }],
-    }], device_obj={'test_dev1':dv1, 'test_dev2':dv2}))
+    }], device_obj={'test_dev1': dv1, 'test_dev2': dv2}))
     print(out)
     # check if the command was formed
     assert 'command' in out[0]['test_dev1'].keys()
@@ -112,17 +112,17 @@ def test_that_sysctl_set(capfd):
     out = loop.run_until_complete(Sysctl.set(input_data=[{
         # device 1
         'test_dev1' : [{
-            'variable':'eysjejvo',
-            'value':'xttiqmtm',
+            'variable': 'eysjejvo',
+            'value': 'xttiqmtm',
 
          }],
         # device 2
         'test_dev2' : [{
-            'variable':'frknxnkx',
-            'value':'hpizjqed',
+            'variable': 'frknxnkx',
+            'value': 'hpizjqed',
 
         }],
-    }], device_obj={'test_dev1':dv1, 'test_dev2':dv2}))
+    }], device_obj={'test_dev1': dv1, 'test_dev2': dv2}))
     print(out)
     # check if the command was formed
     assert 'command' in out[0]['test_dev1'].keys()

@@ -14,7 +14,7 @@ class CpuUsageMod(Module):
 
     def set_cpu_usage(self, src, dst):
 
-        for i,cpu_usage in enumerate(src):
+        for i, cpu_usage in enumerate(src):
             if 'cpu' in cpu_usage: dst[i].cpu = cpu_usage.get('cpu')
             if 'usr' in cpu_usage: dst[i].usr = cpu_usage.get('usr')
             if 'nice' in cpu_usage: dst[i].nice = cpu_usage.get('nice')
@@ -37,7 +37,7 @@ class CpuUsageMod(Module):
                 continue
             print('Running cpu_usage Discovery on ' + dev.host_name)
             out = await CpuUsage.show(
-                input_data=[{dev.host_name: [{'dut_discovery':True}]}],
+                input_data=[{dev.host_name: [{'dut_discovery': True}]}],
                 device_obj={dev.host_name: dev},
                 parse_output=True
             )
