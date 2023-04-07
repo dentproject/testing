@@ -101,7 +101,7 @@ class DiscoveryManager:
             operator = self.args.discovery_operator
         elif 'operator' in self.config:
             operator = self.config['operator']
-        if 'operator' is not None:
+        if operator is not None:
             rptData.setdefault('attributes', {})
             rptData['attributes']['operator'] = operator
 
@@ -110,7 +110,7 @@ class DiscoveryManager:
             topology = self.args.discovery_topology
         elif 'topology' in self.config:
             topology = self.config['topology']
-        if 'topology' is not None:
+        if topology is not None:
             rptData.setdefault('attributes', {})
             rptData['attributes']['topology'] = topology
 
