@@ -148,6 +148,8 @@ class LinuxIpRouteImpl(LinuxIpRoute):
             params['cmd_options'] = '-j -d'
         cmd = 'ip {} route {} '.format(params.get('cmd_options', ''), command)
         cmd += params.get('dst', '') + ' '
+        if 'dev' in params:
+            cmd += 'dev {} '.format(params['dev'])
         if 'root' in params:
             cmd += 'root {} '.format(params.get('root'))
         if 'match' in params:
