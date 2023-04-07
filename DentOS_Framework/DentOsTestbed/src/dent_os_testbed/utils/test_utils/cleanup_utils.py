@@ -114,3 +114,21 @@ async def cleanup_sysctl():
     logger = AppLogger(DEFAULT_LOGGER)
     logger.info('Restoring sysctl values')
     await RecoverableSysctl.recover()
+
+
+async def cleanup_bonds(dev):
+    """
+    Removes all bonds created during test.
+    Can be used separately or by using `cleanup_bonds` fixture.
+    """
+    logger = AppLogger(DEFAULT_LOGGER)
+    logger.info('Deleting bonds')
+    out = await IpLink.show(
+        input_data=[{dev.host_name: [{'cmd_options': '-j -d'}]}],
+        parse_output=True
+    )
+    bonds_info = out[0][dev.host_name]['parsed_output']
+    for name in bonds_info:
+        if name.get('linkinfo', {}).get('info_kind') == 'bond':
+            await IpLink.delete(input_data=[{dev.host_name: [
+                 {'device': f"{name['ifname']}"}]}])
