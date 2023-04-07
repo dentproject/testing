@@ -50,7 +50,7 @@ async def test_bridging_robustness_macs(testbed):
     # packages do not have enough time to all be sent
     traffic_duration = 10
     ixia_vhost_mac_count = 4
-    #define base on test stability
+    # define base on test stability
     mac_count = 16000
     pps_value = 15000
     tolerance = 0.8

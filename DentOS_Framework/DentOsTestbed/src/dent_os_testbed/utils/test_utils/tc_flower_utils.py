@@ -41,7 +41,7 @@ async def tcutil_iptable_to_tc(dent_dev, swp_tgen_ports, iptable_rules, extra_ar
             dent_dev.applog.info(str(e))
             raise e
 
-    ## delete the IP rules.
+    # delete the IP rules.
     dent_dev.applog.info('Deleting iptable rule for FORWARD')
     out = await IpTables.flush(
         input_data=[

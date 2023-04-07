@@ -360,7 +360,7 @@ async def test_tc_flower_persistency_w_traffic(testbed):
     swp_tc_rules = {}
     await tcutil_get_tc_rule_stats(dent_dev, swp_tgen_ports, swp_tc_rules)
 
-    ## verify the rules stats
+    # verify the rules stats
     # for swp, data in swp_tc_rules.items():
     #    for r in data[1:]:
     #        assert r["options"]["actions"][0]["stats"]["hw_packets"], f"Rules not hit on {swp} {r}"

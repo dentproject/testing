@@ -314,8 +314,8 @@ class TestPlugin(SamplePlugin):
         tdir = os.path.join(odir, 'src/dent_os_testbed/lib/')
         if not os.path.exists(tdir):
             os.makedirs(tdir)
-        #gi = os.path.join(tdir, ".gitignore")
-        #gd = open(gi, "w")
+        # gi = os.path.join(tdir, ".gitignore")
+        # gd = open(gi, "w")
         for mname, m in dbs['dent'].modules.items():
             mdir = os.path.join(tdir, mname)
             for c in m.classes:
@@ -332,7 +332,7 @@ class TestPlugin(SamplePlugin):
                 o = TestPyObject(c, fname)
                 o.generate_code()
                 o.write_file()
-                #gd.write(f"{mname}/{c.name}.py\n")
+                # gd.write(f"{mname}/{c.name}.py\n")
         for mname, m in dbs['linux'].modules.items():
             mdir = os.path.join(tdir, mname)
             mdir = os.path.join(mdir, 'linux')
@@ -346,7 +346,7 @@ class TestPlugin(SamplePlugin):
                 o = TestCmdPyObject(c, fname)
                 o.generate_code()
                 o.write_file()
-                #gd.write(f"{mname}/linux/{c.name}.py\n")
+                # gd.write(f"{mname}/linux/{c.name}.py\n")
                 fname = os.path.join(mdir, c.name + '_impl.py')
                 if os.path.exists(fname):
                     fname += '.gen'
@@ -367,7 +367,7 @@ class TestPlugin(SamplePlugin):
                 o = TestCmdPyObject(c, fname)
                 o.generate_code()
                 o.write_file()
-                #gd.write(f"{mname}/ixnetwork/{c.name}.py\n")
+                # gd.write(f"{mname}/ixnetwork/{c.name}.py\n")
                 fname = os.path.join(mdir, c.name + '_impl.py')
                 if os.path.exists(fname):
                     fname += '.gen'
@@ -388,14 +388,14 @@ class TestPlugin(SamplePlugin):
                 o = TestCmdPyObject(c, fname)
                 o.generate_code()
                 o.write_file()
-                #gd.write(f"{mname}/ixnetwork/{c.name}.py\n")
+                # gd.write(f"{mname}/ixnetwork/{c.name}.py\n")
                 fname = os.path.join(mdir, c.name + '_impl.py')
                 if os.path.exists(fname):
                     fname += '.gen'
                 o = TestCmdImplPyObject(c, fname, 'dni')
                 o.generate_code()
                 o.write_file()
-        #gd.close()
+        # gd.close()
 
 
 class TestCodePyObject(object):
@@ -492,8 +492,8 @@ class TestCodePlugin(SamplePlugin):
         tdir = os.path.join(odir, 'test/')
         if not os.path.exists(tdir):
             os.makedirs(tdir)
-        #gi = os.path.join(tdir, ".gitignore")
-        #gd = open(gi, "w")
+        # gi = os.path.join(tdir, ".gitignore")
+        # gd = open(gi, "w")
         for mname, m in dbs['dent'].modules.items():
             for c in m.classes:
                 # don't bother generating the py file if there is not event single platform this
@@ -501,10 +501,10 @@ class TestCodePlugin(SamplePlugin):
                 if not c.implemented_by:
                     continue
                 fname = os.path.join(tdir, dent_test_prefix + c.name + '.py')
-                #gd.write(dent_test_prefix + c.name + ".py\n")
+                # gd.write(dent_test_prefix + c.name + ".py\n")
                 if os.path.exists(fname):
                     continue
                 o = TestCodePyObject(c, fname)
                 o.generate_code()
                 o.write_file()
-        #gd.close()
+        # gd.close()

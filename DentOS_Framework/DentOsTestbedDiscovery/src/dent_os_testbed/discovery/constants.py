@@ -9,8 +9,8 @@ REPORTS_SAVE_MIN = 3
 # save at least three of each report
 
 REPORTS_SAVE_MAX = 10
-##import sys
-##REPORTS_SAVE_MAX = sys.maxsize
+# import sys
+# REPORTS_SAVE_MAX = sys.maxsize
 # save at most 10 of each report
 
 REPORTS_HORIZON = 30 * 24 * 3600

@@ -24,8 +24,8 @@ discover_py_code_set_func="""
 for i,%(cls_name)s in enumerate(%(src)s):
 %(set_mbr)s
 """
-#discover_py_code_set_attr="""    %(dst)s.%(mbr)s = %(cls_name)s.get('%(mbr)s', %(mbr_default)s)
-#"""
+# discover_py_code_set_attr="""    %(dst)s.%(mbr)s = %(cls_name)s.get('%(mbr)s', %(mbr_default)s)
+# """
 discover_py_code_set_attr="""    if '%(mbr)s' in %(cls_name)s: %(dst)s.%(mbr)s = %(cls_name)s.get('%(mbr)s')
 """
 
