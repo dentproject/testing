@@ -36,7 +36,7 @@ async def test_switch_reload_all(testbed):
     bgp_state = {}
 
     assert (
-        await tb_check_all_devices_are_connected(testbed.devices) == True
+        await tb_check_all_devices_are_connected(testbed.devices) is True
     ), 'All devices are not connected'
 
     devices = await tb_get_all_devices(testbed)

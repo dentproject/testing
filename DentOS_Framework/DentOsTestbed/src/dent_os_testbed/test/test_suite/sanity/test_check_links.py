@@ -95,7 +95,7 @@ async def check_and_validate_switch_links(testbed):
                 print(f'{dev:>10}:{link:<10}<-->{other:>20} {CRED}[DOWN!!]{CEND}')
                 all_links_up = False
 
-    assert all_links_up == True, 'One or more links down'
+    assert all_links_up is True, 'One or more links down'
 
 
 @pytest.mark.asyncio
