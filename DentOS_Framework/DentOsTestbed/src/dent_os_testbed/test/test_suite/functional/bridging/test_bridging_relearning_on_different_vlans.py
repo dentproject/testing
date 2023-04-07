@@ -76,7 +76,7 @@ async def test_bridging_relearning_on_different_vlans(testbed):
 
     out = await BridgeVlan.add(
         input_data=[{device_host_name: [
-            {'device': ports[x], 'vid': 2, 'vid': 3 } for x in range(3)]}])
+            {'device': ports[x], 'vid': 2, 'vid': 3} for x in range(3)]}])
     assert out[0][device_host_name]['rc'] == 0, f"Verify that interfaces added to vlans '2' and '3'.\n{out}"
 
     address_map = (

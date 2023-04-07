@@ -219,7 +219,7 @@ class Class(object):
             else []
         )
         self.implemented_by = []
-        self.classes = [ Class(mod, s['name'], s, fname) for s in ydata['classes'] ] if 'classes' in ydata else []
+        self.classes = [Class(mod, s['name'], s, fname) for s in ydata['classes']] if 'classes' in ydata else []
 
     def to_dict(self):
         return {

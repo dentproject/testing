@@ -26,7 +26,7 @@ def tokenize(str, by='\n', indent=0):
     """
     if indent == 0:
         return str.split(by)
-    return [ (' '*indent + s) for s in str.split(by) ]
+    return [(' '*indent + s) for s in str.split(by)]
 
 
 class DocsMdObject(object):
