@@ -16,7 +16,7 @@ def test_that_dcb_app_show(capfd):
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DcbApp.show(input_data=[{
         # device 1
-        'test_dev' : [{}],
+        'test_dev': [{}],
     }], device_obj={'test_dev': dv1}))
     print(out)
     assert 'command' in out[0]['test_dev'].keys()
@@ -27,7 +27,7 @@ def test_that_dcb_app_show(capfd):
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DcbApp.show(input_data=[{
         # device 1
-        'test_dev1' : [{
+        'test_dev1': [{
             # command 1
             'dev': 'grjvikgf',
             'default-prio': '',
@@ -60,7 +60,7 @@ def test_that_dcb_app_show(capfd):
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DcbApp.show(input_data=[{
         # device 1
-        'test_dev1' : [{
+        'test_dev1': [{
             'dev': 'grjvikgf',
             'default-prio': '',
             'dscp-prio': '',
@@ -71,7 +71,7 @@ def test_that_dcb_app_show(capfd):
 
          }],
         # device 2
-        'test_dev2' : [{
+        'test_dev2': [{
             'dev': 'vaoohlzo',
             'default-prio': '',
             'dscp-prio': '',
@@ -101,7 +101,7 @@ def test_that_dcb_app_flush(capfd):
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DcbApp.flush(input_data=[{
         # device 1
-        'test_dev' : [{}],
+        'test_dev': [{}],
     }], device_obj={'test_dev': dv1}))
     print(out)
     assert 'command' in out[0]['test_dev'].keys()
@@ -112,7 +112,7 @@ def test_that_dcb_app_flush(capfd):
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DcbApp.flush(input_data=[{
         # device 1
-        'test_dev1' : [{
+        'test_dev1': [{
             # command 1
             'dev': 'slvrkgyg',
             'default-prio': '',
@@ -145,7 +145,7 @@ def test_that_dcb_app_flush(capfd):
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DcbApp.flush(input_data=[{
         # device 1
-        'test_dev1' : [{
+        'test_dev1': [{
             'dev': 'slvrkgyg',
             'default-prio': '',
             'dscp-prio': '',
@@ -156,7 +156,7 @@ def test_that_dcb_app_flush(capfd):
 
          }],
         # device 2
-        'test_dev2' : [{
+        'test_dev2': [{
             'dev': 'sxlqptce',
             'default-prio': '',
             'dscp-prio': '',
@@ -186,7 +186,7 @@ def test_that_dcb_app_add(capfd):
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DcbApp.add(input_data=[{
         # device 1
-        'test_dev' : [{}],
+        'test_dev': [{}],
     }], device_obj={'test_dev': dv1}))
     print(out)
     assert 'command' in out[0]['test_dev'].keys()
@@ -197,7 +197,7 @@ def test_that_dcb_app_add(capfd):
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DcbApp.add(input_data=[{
         # device 1
-        'test_dev1' : [{
+        'test_dev1': [{
             # command 1
             'dev': 'zsewizgk',
             'default-prio': '',
@@ -230,7 +230,7 @@ def test_that_dcb_app_add(capfd):
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DcbApp.add(input_data=[{
         # device 1
-        'test_dev1' : [{
+        'test_dev1': [{
             'dev': 'zsewizgk',
             'default-prio': '',
             'dscp-prio': '',
@@ -241,7 +241,7 @@ def test_that_dcb_app_add(capfd):
 
          }],
         # device 2
-        'test_dev2' : [{
+        'test_dev2': [{
             'dev': 'apzgccxw',
             'default-prio': '',
             'dscp-prio': '',
@@ -271,7 +271,7 @@ def test_that_dcb_app_delete(capfd):
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DcbApp.delete(input_data=[{
         # device 1
-        'test_dev' : [{}],
+        'test_dev': [{}],
     }], device_obj={'test_dev': dv1}))
     print(out)
     assert 'command' in out[0]['test_dev'].keys()
@@ -282,7 +282,7 @@ def test_that_dcb_app_delete(capfd):
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DcbApp.delete(input_data=[{
         # device 1
-        'test_dev1' : [{
+        'test_dev1': [{
             # command 1
             'dev': 'qmhrjard',
             'default-prio': '',
@@ -315,7 +315,7 @@ def test_that_dcb_app_delete(capfd):
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DcbApp.delete(input_data=[{
         # device 1
-        'test_dev1' : [{
+        'test_dev1': [{
             'dev': 'qmhrjard',
             'default-prio': '',
             'dscp-prio': '',
@@ -326,7 +326,7 @@ def test_that_dcb_app_delete(capfd):
 
          }],
         # device 2
-        'test_dev2' : [{
+        'test_dev2': [{
             'dev': 'pzcioafr',
             'default-prio': '',
             'dscp-prio': '',
@@ -356,7 +356,7 @@ def test_that_dcb_app_replace(capfd):
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DcbApp.replace(input_data=[{
         # device 1
-        'test_dev' : [{}],
+        'test_dev': [{}],
     }], device_obj={'test_dev': dv1}))
     print(out)
     assert 'command' in out[0]['test_dev'].keys()
@@ -367,7 +367,7 @@ def test_that_dcb_app_replace(capfd):
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DcbApp.replace(input_data=[{
         # device 1
-        'test_dev1' : [{
+        'test_dev1': [{
             # command 1
             'dev': 'jkdlzioq',
             'default-prio': '',
@@ -400,7 +400,7 @@ def test_that_dcb_app_replace(capfd):
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DcbApp.replace(input_data=[{
         # device 1
-        'test_dev1' : [{
+        'test_dev1': [{
             'dev': 'jkdlzioq',
             'default-prio': '',
             'dscp-prio': '',
@@ -411,7 +411,7 @@ def test_that_dcb_app_replace(capfd):
 
          }],
         # device 2
-        'test_dev2' : [{
+        'test_dev2': [{
             'dev': 'ckdmewks',
             'default-prio': '',
             'dscp-prio': '',

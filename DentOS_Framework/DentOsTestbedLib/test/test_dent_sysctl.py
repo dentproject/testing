@@ -16,7 +16,7 @@ def test_that_sysctl_get(capfd):
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(Sysctl.get(input_data=[{
         # device 1
-        'test_dev' : [{}],
+        'test_dev': [{}],
     }], device_obj={'test_dev': dv1}))
     print(out)
     assert 'command' in out[0]['test_dev'].keys()
@@ -27,7 +27,7 @@ def test_that_sysctl_get(capfd):
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(Sysctl.get(input_data=[{
         # device 1
-        'test_dev1' : [{
+        'test_dev1': [{
             # command 1
             'variable': 'wlmoznsp',
 
@@ -48,12 +48,12 @@ def test_that_sysctl_get(capfd):
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(Sysctl.get(input_data=[{
         # device 1
-        'test_dev1' : [{
+        'test_dev1': [{
             'variable': 'wlmoznsp',
 
          }],
         # device 2
-        'test_dev2' : [{
+        'test_dev2': [{
             'variable': 'dfxoranx',
 
         }],
@@ -77,7 +77,7 @@ def test_that_sysctl_set(capfd):
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(Sysctl.set(input_data=[{
         # device 1
-        'test_dev' : [{}],
+        'test_dev': [{}],
     }], device_obj={'test_dev': dv1}))
     print(out)
     assert 'command' in out[0]['test_dev'].keys()
@@ -88,7 +88,7 @@ def test_that_sysctl_set(capfd):
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(Sysctl.set(input_data=[{
         # device 1
-        'test_dev1' : [{
+        'test_dev1': [{
             # command 1
             'variable': 'eysjejvo',
             'value': 'xttiqmtm',
@@ -111,13 +111,13 @@ def test_that_sysctl_set(capfd):
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(Sysctl.set(input_data=[{
         # device 1
-        'test_dev1' : [{
+        'test_dev1': [{
             'variable': 'eysjejvo',
             'value': 'xttiqmtm',
 
          }],
         # device 2
-        'test_dev2' : [{
+        'test_dev2': [{
             'variable': 'frknxnkx',
             'value': 'hpizjqed',
 

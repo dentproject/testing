@@ -34,7 +34,7 @@ class RecoverableSysctl(Sysctl):
     async def recover():
         for device_name, config in RecoverableSysctl.saved_values.items():
             await Sysctl.set(input_data=[{
-                device_name : [{
+                device_name: [{
                     'variable': variable,
                     'value': value,
                 } for variable, value in config.items()],

@@ -26,7 +26,7 @@ class IpRoute(TestLibObject):
         for device in devices:
             for device_name in device:
                 device_result = {
-                    device_name : dict()
+                    device_name: dict()
                 }
                 # device lookup
                 if 'device_obj' in kwarg:
