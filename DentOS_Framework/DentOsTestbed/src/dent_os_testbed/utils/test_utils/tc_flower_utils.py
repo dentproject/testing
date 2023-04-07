@@ -18,7 +18,7 @@ async def tcutil_iptable_to_tc(dent_dev, swp_tgen_ports, iptable_rules, extra_ar
     #  - tc-flower-load --scoreboard  --shared-block /tmp/iptables-scoreboarded.rules FORWARD swp+
     #  - delete the rules from iptables
     # check if there is a path else check if there is petunia
-    PREFIX=''
+    PREFIX = ''
     rc, out = await dent_dev.run_cmd('ls /sputnik/env/IhmDentTcFlower/', sudo=True)
     if rc == 0:
         PREFIX = '/sputnik/env/IhmDentTcFlower/bin/execute_in_env /sputnik/env/IhmDentTcFlower/bin/'

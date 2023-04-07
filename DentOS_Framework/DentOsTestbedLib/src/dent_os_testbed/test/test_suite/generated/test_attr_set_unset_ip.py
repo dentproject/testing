@@ -44,7 +44,7 @@ class IpLinkAttrSetAndUnsetMeta(AttrSetAndUnsetMeta):
 class IpLinkAttrSetAndUnset(AttrSetAndUnsetBase):
     """
     """
-    meta=IpLinkAttrSetAndUnsetMeta
+    meta = IpLinkAttrSetAndUnsetMeta
 
 
 @pytest.fixture(params=[IpLinkAttrSetAndUnset,])

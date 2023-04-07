@@ -40,7 +40,7 @@ class IpRouteDeleteAndAddMeta(DeleteAndAddMeta):
 class IpRouteDeleteAndAdd(DeleteAndAddBase):
     """
     """
-    meta=IpRouteDeleteAndAddMeta
+    meta = IpRouteDeleteAndAddMeta
 
 
 class IpAddressDeleteAndAddMeta(DeleteAndAddMeta):
@@ -68,7 +68,7 @@ class IpAddressDeleteAndAddMeta(DeleteAndAddMeta):
 class IpAddressDeleteAndAdd(DeleteAndAddBase):
     """
     """
-    meta=IpAddressDeleteAndAddMeta
+    meta = IpAddressDeleteAndAddMeta
 
 
 class IpLinkDeleteAndAddMeta(DeleteAndAddMeta):
@@ -96,7 +96,7 @@ class IpLinkDeleteAndAddMeta(DeleteAndAddMeta):
 class IpLinkDeleteAndAdd(DeleteAndAddBase):
     """
     """
-    meta=IpLinkDeleteAndAddMeta
+    meta = IpLinkDeleteAndAddMeta
 
 
 @pytest.fixture(params=[IpRouteDeleteAndAdd,IpAddressDeleteAndAdd,IpLinkDeleteAndAdd,])

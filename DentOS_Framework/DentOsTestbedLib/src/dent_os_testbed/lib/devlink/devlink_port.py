@@ -47,7 +47,7 @@ class DevlinkPort(TestLibObject):
                     device_obj = kwarg.get('device_obj', None)[device_name]
                 else:
                     if device_name not in pytest.testbed.devices_dict:
-                        device_result[device_name] = 'No matching device '+ device_name
+                        device_result[device_name] = 'No matching device ' + device_name
                         result.append(device_result)
                         return result
                     device_obj = pytest.testbed.devices_dict[device_name]
@@ -61,7 +61,7 @@ class DevlinkPort(TestLibObject):
 
                 else:
                     device_result[device_name]['rc'] = -1
-                    device_result[device_name]['result'] = 'No matching device OS '+ device_obj.os
+                    device_result[device_name]['result'] = 'No matching device OS ' + device_obj.os
                     result.append(device_result)
                     return result
                 device_result[device_name]['command'] = commands

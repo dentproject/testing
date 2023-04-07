@@ -49,7 +49,7 @@ class ReportPyObject(object):
         """
         classes = []
         visited = {}
-        queue=[(parent, name)]
+        queue = [(parent, name)]
         while queue:
             node,name = queue.pop(0)
             if node in visited:
@@ -219,7 +219,7 @@ class DiscoveryPlugin(SamplePlugin):
         # BFS from base class and create discovery for each class that has implemented by
         visited = {}
         # queue=[(dbs["dent"].modules['base'].classes_dct['duts'],'data["duts"][i]')]
-        queue=[(dbs['dent'].modules['base'].classes_dct['duts'],'self.report.duts[i]')]
+        queue = [(dbs['dent'].modules['base'].classes_dct['duts'],'self.report.duts[i]')]
         while queue:
             (node, parent) = queue.pop(0)
             if node in visited:
