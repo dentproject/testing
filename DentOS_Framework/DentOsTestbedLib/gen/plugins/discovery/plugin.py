@@ -26,7 +26,7 @@ class ReportPyObject(object):
     def __init__(self, pkg, fname):
         self._pkg = pkg
         self._fname = fname
-        self._header = [PyLines(lines=tokenize(discovery_py_header%pkg.name))]
+        self._header = [PyLines(lines=tokenize(discovery_py_header % pkg.name))]
         self._imports = []
         self._classes = []
         self._methods = []
@@ -71,14 +71,14 @@ class ReportPyObject(object):
                         mname = 'LeafSchemaDict'
                 elif m.type:
                     mname = self.get_python_type(m.type)
-                members += '        "%s":%s,\n'%(m.name, mname)
+                members += '        "%s":%s,\n' % (m.name, mname)
             if not node.singleton:
-                methods = [PyLines(lines=tokenize(discovery_py_list_schema_body%name))]
+                methods = [PyLines(lines=tokenize(discovery_py_list_schema_body % name))]
                 classes.append(PyClass(name+'SchemaList',
                                        parent='SchemaList',
                                        methods=methods))
             args['members'] = members
-            methods = [PyLines(lines=tokenize(discovery_py_dict_schema_body%args))]
+            methods = [PyLines(lines=tokenize(discovery_py_dict_schema_body % args))]
             classes.append(PyClass(name+'SchemaDict',
                                    desc=[PyLines(lines=['    Refer '+node._yfile+' '+node.name])],
                                    parent='SchemaDict',
@@ -114,7 +114,7 @@ class DiscoveryModulePyObject(object):
         self._cls = cls
         self._parent = parent
         self._fname = fname
-        self._header = [PyLines(lines=tokenize(discovery_py_header%self._cls._yfile))]
+        self._header = [PyLines(lines=tokenize(discovery_py_header % self._cls._yfile))]
         self._imports = []
         self._classes = []
         self._methods = []
@@ -142,20 +142,19 @@ class DiscoveryModulePyObject(object):
             if m.cls:
                 methods.extend(self.generate_mbr_set_attr(m.cls))
                 args['mbr_cls_name'] = m.cls.name
-                set_mbr += '    self.set_%(mbr_cls_name)s(%(cls_name)s.get(\'%(mbr)s\', []), %(dst)s.%(mbr)s)\n'%args
+                set_mbr += '    self.set_%(mbr_cls_name)s(%(cls_name)s.get(\'%(mbr)s\', []), %(dst)s.%(mbr)s)\n' % args
                 continue
             if m.type not in ['str', 'string', 'int', 'ip_addr_t', 'mac_t', 'float']:
                 continue
             args['mbr_default'] = self.get_mbr_default(m)
-            set_mbr += discover_py_code_set_attr%args
+            set_mbr += discover_py_code_set_attr % args
         args['set_mbr'] = set_mbr
-        set_attr_body = tokenize(discover_py_code_set_func%args)
+        set_attr_body = tokenize(discover_py_code_set_func % args)
         methods.append(PyMethod('set_'+cls.name, 'self, src, dst', set_attr_body, indent=4))
         return methods
 
     def generate_code(self):
-        self._imports.append(PyImport('Module',
-                                      _from='dent_os_testbed.discovery.Module '))
+        self._imports.append(PyImport('Module', _from='dent_os_testbed.discovery.Module '))
         self._imports.append(
             PyImport(
                 camelcase(self._cls.name),
@@ -170,7 +169,7 @@ class DiscoveryModulePyObject(object):
         args = self._cls.to_dict()
         args['cname_cc'] = camelcase(self._cls.name)
         args['parent'] = self._parent
-        discover_body = tokenize(discover_py_code_template%args)
+        discover_body = tokenize(discover_py_code_template % args)
         methods.append(PyMethod('discover', 'self', discover_body, indent=4, coroutine=True))
         self._classes.append(
             PyClass(camelcase(self._cls.name)+'Mod',

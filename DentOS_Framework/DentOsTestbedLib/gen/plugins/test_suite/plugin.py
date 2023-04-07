@@ -23,7 +23,7 @@ class TestSuitePyObject(object):
     def __init__(self, test, fname):
         self._test = test
         self._fname = fname
-        self._header = [PyLines(lines=tokenize(py_ts_header%self._test._yfile))]
+        self._header = [PyLines(lines=tokenize(py_ts_header % self._test._yfile))]
         self._imports = []
         self._classes = []
         self._methods = []
@@ -55,8 +55,8 @@ class TestSuitePyObject(object):
             if tc.template not in imported:
                 self._imports.append(
                     PyImport(
-                        '%sBase, %sMeta '%(tc.template, tc.template),
-                        _from='dent_os_testbed.test.lib.%s ' %(tc.template)
+                        '%sBase, %sMeta ' % (tc.template, tc.template),
+                        _from='dent_os_testbed.test.lib.%s ' % (tc.template)
                     )
                 )
                 imported[tc.template] = True
@@ -71,13 +71,13 @@ class TestSuitePyObject(object):
                 self._classes.append(
                     PyClass(cls,
                             desc=[PyLines(lines=[])],
-                            parent=('%sMeta'%tc.template),
+                            parent=('%sMeta' % tc.template),
                             methods=methods)
                 )
                 self._classes.append(
                     PyClass(camelcase(tc.cls.name)+tc.template,
                             desc=[PyLines(lines=[])],
-                            parent=('%sBase'%tc.template),
+                            parent=('%sBase' % tc.template),
                             methods=[PyLines(
                                 lines=['    meta='+
                                        camelcase(tc.cls.name)+
@@ -87,7 +87,7 @@ class TestSuitePyObject(object):
                 )
                 classes += camelcase(tc.cls.name)+tc.template + ','
             #self._methods.append(PyLines(lines=tokenize(self._templates[tc.template]._data%targs)))
-        self._methods.append(PyLines(lines=['@pytest.fixture(params=[%s])'%classes]))
+        self._methods.append(PyLines(lines=['@pytest.fixture(params=[%s])' % classes]))
         self._methods.append(PyMethod(self._test.name+'_class', 'request',  ['return request.param']))
         self._methods.append(PyLines(lines=['@pytest.mark.asyncio']))
         self._methods.append(PyMethod('test_'+self._test.name, 'testbed, '+self._test.name+'_class', ['await ' + self._test.name+'_class'+'().run_test(testbed)'], coroutine=True))
