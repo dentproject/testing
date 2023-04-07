@@ -30,7 +30,7 @@ async def test_stress_exhause_disk_space(testbed):
     """
     if not testbed.discovery_report:
         testbed.applog.info(
-            f'Discovery report not present, +'
+            'Discovery report not present, +'
             'skipping run_test in {test_stress_exhause_disk_space.__func__}'
         )
         return

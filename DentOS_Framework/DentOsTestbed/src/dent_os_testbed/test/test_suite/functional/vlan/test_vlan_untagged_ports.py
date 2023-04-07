@@ -66,7 +66,7 @@ async def test_vlan_untagged_ports_with_(testbed, traffic_type):
 
     # 4. Setup packet stream(s).
     if traffic_type == 'multicast':
-        streams = {f'Untagged multicast traffic': {
+        streams = {'Untagged multicast traffic': {
             'type': 'raw',
             'protocol': '802.1Q',
             'rate': 50,

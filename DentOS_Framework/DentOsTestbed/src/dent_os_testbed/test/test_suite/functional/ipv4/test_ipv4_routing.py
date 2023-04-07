@@ -308,7 +308,7 @@ async def test_ipv4_route_between_vlan_devs(testbed):
                 f"Route {route['dst']} for dev {route['dev']} should be offloaded"
 
     # 6. Prepare streams from one VLAN-device`s neighbor to the other
-    streams = {f'traffic': {
+    streams = {'traffic': {
         'type': 'ipv4',
         'protocol': 'ip',
         'rate': '1000',  # pps

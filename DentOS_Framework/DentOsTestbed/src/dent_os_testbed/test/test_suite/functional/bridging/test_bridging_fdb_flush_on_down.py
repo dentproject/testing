@@ -112,11 +112,11 @@ async def test_bridging_fdb_flush_on_down(testbed):
 
     out = await BridgeFdb.show(input_data=[{device_host_name: [{'options': '-j'}]}],
                                parse_output=True)
-    assert out[0][device_host_name]['rc'] == 0, f'Failed to get fdb entry.\n'
+    assert out[0][device_host_name]['rc'] == 0, 'Failed to get fdb entry.\n'
 
     fdb_entries = out[0][device_host_name]['parsed_output']
     learned_macs = [en['mac'] for en in fdb_entries if 'mac' in en]
-    err_msg = f'Verify that entry exist in mac table.\n'
+    err_msg = 'Verify that entry exist in mac table.\n'
     assert streams['bridge']['srcMac'] in learned_macs, err_msg
 
     out = await IpLink.set(
@@ -127,9 +127,9 @@ async def test_bridging_fdb_flush_on_down(testbed):
 
     out = await BridgeFdb.show(input_data=[{device_host_name: [{'options': '-j'}]}],
                                parse_output=True)
-    assert out[0][device_host_name]['rc'] == 0, f'Failed to get fdb entry.\n'
+    assert out[0][device_host_name]['rc'] == 0, 'Failed to get fdb entry.\n'
 
     fdb_entries = out[0][device_host_name]['parsed_output']
     learned_macs = [en['mac'] for en in fdb_entries if 'mac' in en]
-    err_msg = f'Verify that entry does not exist in mac table.\n'
+    err_msg = 'Verify that entry does not exist in mac table.\n'
     assert streams['bridge']['srcMac'] not in learned_macs, err_msg

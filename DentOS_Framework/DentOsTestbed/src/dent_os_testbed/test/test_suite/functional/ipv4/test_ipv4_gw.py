@@ -172,7 +172,7 @@ async def test_ipv4_default_gw(testbed):
             assert 'rt_offload' in route['flags'], 'Route without metric should be offloaded'
             assert 'metric' not in route, f"Route {route['gateway']} should no have any metric"
         else:
-            assert 'rt_offload' not in route['flags'], f'Route with metric should not be offloaded'
+            assert 'rt_offload' not in route['flags'], 'Route with metric should not be offloaded'
             assert 'metric' in route and route['metric'] == route_map[dev]['metric'], \
                 f"Route {route['gateway']} should have metric {route_map[dev]['metric']}"
 

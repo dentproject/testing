@@ -96,7 +96,7 @@ async def test_link_up_down(testbed):
     """
 
     if testbed.args.is_provisioned:
-        testbed.applog.info(f'Skipping test since on provisioned setup')
+        testbed.applog.info('Skipping test since on provisioned setup')
         return
 
     for dev in testbed.discovery_report.duts:

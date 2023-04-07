@@ -65,10 +65,10 @@ async def test_l1_autodetect(testbed, speed, duplex):
 
     # 1. Create bridge entity
     out = await IpLink.add(input_data=[{device_host_name: [{'device': 'br0', 'type': 'bridge'}]}])
-    assert out[0][device_host_name]['rc'] == 0, f'Failed creating bridge.'
+    assert out[0][device_host_name]['rc'] == 0, 'Failed creating bridge.'
 
     out = await IpLink.set(input_data=[{device_host_name: [{'device': 'br0', 'operstate': 'up'}]}])
-    assert out[0][device_host_name]['rc'] == 0, f"Verify that bridge set to 'UP' state."
+    assert out[0][device_host_name]['rc'] == 0, "Verify that bridge set to 'UP' state."
 
     # 2. Enslave ports to the created bridge entity
     out = await IpLink.set(input_data=[{device_host_name: [{
@@ -76,7 +76,7 @@ async def test_l1_autodetect(testbed, speed, duplex):
         'operstate': 'up',
         'master': 'br0'
     } for port in ports]}])
-    assert out[0][device_host_name]['rc'] == 0, f'Failed setting link to state up.'
+    assert out[0][device_host_name]['rc'] == 0, 'Failed setting link to state up.'
 
     # 3. Configure dut ports:
     out = await Ethtool.set(input_data=[{device_host_name: [{
@@ -84,7 +84,7 @@ async def test_l1_autodetect(testbed, speed, duplex):
         'speed': speed,
         'autoneg': 'off',
         'duplex': duplex} for port in ports]}])
-    assert out[0][device_host_name]['rc'] == 0, f'Failed setting port duplex, speed.'
+    assert out[0][device_host_name]['rc'] == 0, 'Failed setting port duplex, speed.'
 
     dev_groups = tgen_utils_dev_groups_from_config(
         [{'ixp': tg_ports[0], 'ip': '100.1.1.2', 'gw': '100.1.1.6', 'plen': 24, },

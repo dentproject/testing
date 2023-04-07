@@ -139,7 +139,7 @@ async def test_bridging_bum_traffic_bridge_with_rif(testbed):
     }
     for row in stats.Rows:
         assert tgen_utils_get_loss(row) == expected_loss[row['Traffic Item']], \
-            f'Verify that traffic from swp1 to swp2 forwarded/not forwarded in accordance.\n'
+            'Verify that traffic from swp1 to swp2 forwarded/not forwarded in accordance.\n'
 
     await tcpdump
     print(f'TCPDUMP: packets={tcpdump.result()}')
@@ -148,9 +148,9 @@ async def test_bridging_bum_traffic_bridge_with_rif(testbed):
     count_of_packets = re.findall(r'(\d+) packets (captured|received|dropped)', data)
     for count, type in count_of_packets:
         if type == 'received':
-            assert int(count) > 0, f'Verify that packets are received by filter.\n'
+            assert int(count) > 0, 'Verify that packets are received by filter.\n'
         if type == 'captured' or type == 'dropped':
-            assert int(count) == 0, f'Verify that packets are captured and dropped by kernel.\n'
+            assert int(count) == 0, 'Verify that packets are captured and dropped by kernel.\n'
 
 
 async def test_bridging_bum_traffic_bridge_without_rif(testbed):
@@ -258,7 +258,7 @@ async def test_bridging_bum_traffic_bridge_without_rif(testbed):
     }
     for row in stats.Rows:
         assert tgen_utils_get_loss(row) == expected_loss[row['Traffic Item']], \
-            f'Verify that traffic from swp1 to swp2 forwarded/not forwarded in accordance.\n'
+            'Verify that traffic from swp1 to swp2 forwarded/not forwarded in accordance.\n'
 
     await tcpdump
     print(f'TCPDUMP: packets={tcpdump.result()}')
@@ -267,6 +267,6 @@ async def test_bridging_bum_traffic_bridge_without_rif(testbed):
     count_of_packets = re.findall(r'(\d+) packets (captured|received|dropped)', data)
     for count, type in count_of_packets:
         if type == 'received':
-            assert int(count) > 0, f'Verify that packets are received by filter.\n'
+            assert int(count) > 0, 'Verify that packets are received by filter.\n'
         if type == 'captured' or type == 'dropped':
-            assert int(count) == 0, f'Verify that packets are captured and dropped by kernel.\n'
+            assert int(count) == 0, 'Verify that packets are captured and dropped by kernel.\n'

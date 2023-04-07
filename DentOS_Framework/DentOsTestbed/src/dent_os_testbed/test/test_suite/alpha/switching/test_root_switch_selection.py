@@ -58,10 +58,10 @@ async def test_alpha_lab_switching_root_switch_selection(testbed):
                     rc, out = await dd.run_cmd(cmd, sudo=True)
                     assert rc == 0, f'failed to run {cmd} rc {rc} out {out}'
         for cmd in [
-            f'brctl setportprio test_br port prio 256',
-            f'brctl show test_br',
-            f'brctl showstp test_br',
-            f'brctl delbr test_br',
+            'brctl setportprio test_br port prio 256',
+            'brctl show test_br',
+            'brctl showstp test_br',
+            'brctl delbr test_br',
         ]:
             rc, out = await dd.run_cmd(cmd, sudo=True)
             dd.applog.info(f'Ran command {cmd} rc {rc} out {out}')

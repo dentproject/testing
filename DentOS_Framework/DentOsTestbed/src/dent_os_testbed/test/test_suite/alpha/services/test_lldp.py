@@ -21,7 +21,7 @@ async def test_alpha_lab_services_lldp(testbed):
     1. check for lldp on infra devices
     """
     if not testbed.args.is_provisioned:
-        testbed.applog.info(f'Skipping test since not on provisioned setup')
+        testbed.applog.info('Skipping test since not on provisioned setup')
         return
     # Device should see LLDP advertisements, and display data in a properly formatted output
     # Connect LLDP devices, including cumulus devices

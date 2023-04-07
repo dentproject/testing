@@ -27,7 +27,7 @@ async def test_alpha_lab_provisioning_install_os_over_usb(testbed):
     3. check for provisioning
     """
     if testbed.args.os_image_download_url is None:
-        testbed.applog.info(f'OS Image Not provided')
+        testbed.applog.info('OS Image Not provided')
         return
     os_image_download_url = testbed.args.os_image_download_url
     devices = await tb_get_all_devices(testbed)
@@ -42,13 +42,13 @@ async def test_alpha_lab_provisioning_install_os_over_usb(testbed):
         #  do a onie-select install
         staging_path = '/media/INSTALLER/onie-installer-arm64'
         cmds = [
-            f'sudo -u root iptables -F',
-            f'sudo -u root tc filter delete block 1',
-            f'sudo -u root fsck -y /dev/sdb1',
-            f'sudo -u root mkdir /media/INSTALLER',
-            f'sudo -u root mount /dev/sdb1 /media/INSTALLER',
+            'sudo -u root iptables -F',
+            'sudo -u root tc filter delete block 1',
+            'sudo -u root fsck -y /dev/sdb1',
+            'sudo -u root mkdir /media/INSTALLER',
+            'sudo -u root mount /dev/sdb1 /media/INSTALLER',
             f'sudo -u root rm -rf {staging_path}',
-            f'sudo -u root sync',
+            'sudo -u root sync',
             f'sudo -u root wget {os_image_download_url} -O {staging_path}',
         ]
         for cmd in cmds:
@@ -74,7 +74,7 @@ async def test_alpha_lab_provisioning_install_os_over_nw(testbed):
     """
     #
     if not testbed.args.is_provisioned:
-        testbed.applog.info(f'Skipping test since not on provisioned setup')
+        testbed.applog.info('Skipping test since not on provisioned setup')
         return
     # pick a infra switch then run onie-select this should trigger the network based boot
     devices = await tb_get_all_devices(testbed)

@@ -20,7 +20,7 @@ async def test_alpha_lab_services_dhcp(testbed):
     1. check for dhcp services on OOB and infra devices
     """
     if not testbed.args.is_provisioned:
-        testbed.applog.info(f'Skipping test since not on provisioned setup')
+        testbed.applog.info('Skipping test since not on provisioned setup')
         return
     # Several devices need to be DHCP servers (OOBs and RSWs), validate service
     #   can be run on the devices (see also ECU tests and provisioning tests for additional tests on this)

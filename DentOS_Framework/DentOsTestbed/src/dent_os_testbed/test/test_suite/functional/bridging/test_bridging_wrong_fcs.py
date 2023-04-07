@@ -112,11 +112,11 @@ async def test_bridging_wrong_fcs(testbed):
 
     out = await BridgeFdb.show(input_data=[{device_host_name: [{'options': '-j'}]}],
                                parse_output=True)
-    assert out[0][device_host_name]['rc'] == 0, f'Failed to get fdb entry.\n'
+    assert out[0][device_host_name]['rc'] == 0, 'Failed to get fdb entry.\n'
 
     fdb_entries = out[0][device_host_name]['parsed_output']
     learned_macs = [en['mac'] for en in fdb_entries if 'mac' in en]
     list_macs = ['aa:bb:cc:dd:ee:11', 'aa:bb:cc:dd:ee:12']
     for mac in list_macs:
-        err_msg = f'Verify that source macs have not been learned due to wrong frame check sequence.\n'
+        err_msg = 'Verify that source macs have not been learned due to wrong frame check sequence.\n'
         assert mac not in learned_macs, err_msg

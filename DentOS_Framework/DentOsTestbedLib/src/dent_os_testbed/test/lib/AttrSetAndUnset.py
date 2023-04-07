@@ -47,7 +47,7 @@ class AttrSetAndUnsetBase(object):
     async def run_test(self, testbed):
 
         if testbed.args.is_provisioned:
-            testbed.applog.info(f'Skipping test since on provisioned setup')
+            testbed.applog.info('Skipping test since on provisioned setup')
             return
 
         if not testbed.discovery_report:

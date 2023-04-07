@@ -115,7 +115,7 @@ async def test_bridging_mac_table_size(testbed):
         assert loss == 0, f'Expected loss: 0%, actual: {loss}%'
 
     rc, out = await dent_dev.run_cmd("bridge fdb show br br0   |  grep 'extern_learn.*offload'  |  wc -l")
-    assert rc == 0, f"Failed to grep 'extern_learn.*offload'.\n"
+    assert rc == 0, "Failed to grep 'extern_learn.*offload'.\n"
 
     amount = int(out) - ixia_vhost_mac_count
     err_msg = f'Expected count of extern_learn offload entities: 4000, Actual count: {amount}'

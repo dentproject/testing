@@ -51,7 +51,7 @@ async def do_trigger(testbed, trigger_obj):
             ), f' service didnt come up {s} {out} on {device.host_name}'
     elif trigger == TRIGGER_IFRELOAD:
         out = await Interface.reload(input_data=[{device.host_name: [{'options': '-a'}]}])
-        assert out[0][device.host_name]['rc'] == 0, f'Failed to ifreload -a '
+        assert out[0][device.host_name]['rc'] == 0, 'Failed to ifreload -a '
         device.applog.info(out)
     else:
         device.applog.info(f'unknown trigger {trigger} on {device.host_name}')
@@ -82,7 +82,7 @@ async def test_system_wide_restart_and_service_reloads(testbed):
         devices.append(dev)
 
     if not devices:
-        testbed.applog.info(f'No devices to run the test')
+        testbed.applog.info('No devices to run the test')
         return
 
     # after traffic is stopped

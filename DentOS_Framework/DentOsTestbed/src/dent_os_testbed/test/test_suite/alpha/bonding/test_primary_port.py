@@ -61,9 +61,9 @@ async def test_alpha_lab_bonding_primary_port(testbed):
                     rc, out = await dd.run_cmd(cmd, sudo=True)
                     dd.applog.info(f'Ran {cmd} with rc {rc} {out}')
         for cmd in [
-            f'ip link set bond0 up',
-            f'brctl addif bridge bond0',
-            f'bridge vlan add dev bond0 vid 100',
+            'ip link set bond0 up',
+            'brctl addif bridge bond0',
+            'bridge vlan add dev bond0 vid 100',
         ]:
             rc, out = await dd.run_cmd(cmd, sudo=True)
             dd.applog.info(f'Ran {cmd} with rc {rc} {out}')

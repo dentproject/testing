@@ -88,7 +88,7 @@ class PoeTesterClient:
         self.handler.return_to_main_menu()
         self.handler.send_cmd_and_expect('P', 'Command>\s*')
         self._set_port_config(
-            port, 'S', f'\(\d~\d\)>\s*', f'{self.pair_types_dict[power_pair_type]}'
+            port, 'S', '\(\d~\d\)>\s*', f'{self.pair_types_dict[power_pair_type]}'
         )
         self.handler.send_cmd_and_expect('A', 'Command>\s*')
 
