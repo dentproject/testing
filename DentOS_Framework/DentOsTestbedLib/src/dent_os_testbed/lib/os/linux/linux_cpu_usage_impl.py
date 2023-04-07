@@ -7,7 +7,6 @@ RE_SPACES = re.compile('\s+')
 
 class LinuxCpuUsageImpl(LinuxCpuUsage):
     def format_show(self, command, *argv, **kwarg):
-
         """
         mpstat [ -A ] [ -I { SUM | CPU | ALL } ] [ -u ] [ -P { cpu [,...] | ALL } ] [ -V ] [ interval [ count ] ]
         """
@@ -21,7 +20,6 @@ class LinuxCpuUsageImpl(LinuxCpuUsage):
         return cmd
 
     def parse_show(self, command, output, *argv, **kwarg):
-
         """
         # 06:56:44 AM  CPU    %usr   %nice    %sys %iowait    %irq   %soft  %steal  %guest   %idle
         # 06:56:44 AM  all    0.50    0.05    0.07    0.02    0.00    0.00    0.00    0.00   99.36

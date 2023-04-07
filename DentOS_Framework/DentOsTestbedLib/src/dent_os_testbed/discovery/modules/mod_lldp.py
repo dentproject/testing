@@ -17,7 +17,6 @@ class LldpMod(Module):
             if 'remote_host' in lldp: dst[i].remote_host = lldp.get('remote_host')
             if 'remote_interface' in lldp: dst[i].remote_interface = lldp.get('remote_interface')
 
-
     async def discover(self):
         # need to get device instance to get the data from
         #

@@ -21,7 +21,6 @@ class MemoryUsageMod(Module):
             if 'active' in memory_usage: dst.active = memory_usage.get('active')
             if 'inactive' in memory_usage: dst.inactive = memory_usage.get('inactive')
 
-
     async def discover(self):
         # need to get device instance to get the data from
         #

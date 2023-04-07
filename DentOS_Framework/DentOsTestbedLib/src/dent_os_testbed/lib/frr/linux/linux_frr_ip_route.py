@@ -29,7 +29,6 @@ class LinuxFrrIpRoute(TestLibObject):
         if command in ['add']:
             return self.format_add(command, *argv, **kwarg)
 
-
         raise NameError('Cannot find command '+command)
 
     def parse_output(self, command, output, *argv, **kwarg):
@@ -38,6 +37,5 @@ class LinuxFrrIpRoute(TestLibObject):
 
         if command in ['add']:
             return self.parse_add(command, output, *argv, **kwarg)
-
 
         raise NameError('Cannot find command '+command)

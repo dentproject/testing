@@ -29,7 +29,6 @@ class LinuxBgp(TestLibObject):
         if command in ['configure']:
             return self.format_configure(command, *argv, **kwarg)
 
-
         raise NameError('Cannot find command '+command)
 
     def parse_output(self, command, output, *argv, **kwarg):
@@ -38,6 +37,5 @@ class LinuxBgp(TestLibObject):
 
         if command in ['configure']:
             return self.parse_configure(command, output, *argv, **kwarg)
-
 
         raise NameError('Cannot find command '+command)

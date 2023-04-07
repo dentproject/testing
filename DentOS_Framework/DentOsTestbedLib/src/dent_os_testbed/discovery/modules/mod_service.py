@@ -18,7 +18,6 @@ class ServiceMod(Module):
             if 'status' in service: dst[i].status = service.get('status')
             if 'description' in service: dst[i].description = service.get('description')
 
-
     async def discover(self):
         # need to get device instance to get the data from
         #

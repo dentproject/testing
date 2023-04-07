@@ -39,7 +39,6 @@ pytestmark = [
 ]
 
 
-
 @pytest.mark.parametrize('trust_mode', ['L2', 'L3'])
 async def test_qos_shaper(testbed, trust_mode):
     """

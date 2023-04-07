@@ -20,7 +20,6 @@ class IpAddressMod(Module):
             if 'valid_life_time' in ip_address_info: dst[i].valid_life_time = ip_address_info.get('valid_life_time')
             if 'preferred_life_time' in ip_address_info: dst[i].preferred_life_time = ip_address_info.get('preferred_life_time')
 
-
     def set_ip_address(self, src, dst):
 
         for i,ip_address in enumerate(src):
@@ -49,7 +48,6 @@ class IpAddressMod(Module):
             if 'scope' in ip_address: dst[i].scope = ip_address.get('scope')
             if 'dev' in ip_address: dst[i].dev = ip_address.get('dev')
             if 'options' in ip_address: dst[i].options = ip_address.get('options')
-
 
     async def discover(self):
         # need to get device instance to get the data from

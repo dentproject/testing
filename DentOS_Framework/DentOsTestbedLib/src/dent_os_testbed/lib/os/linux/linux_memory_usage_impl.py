@@ -32,7 +32,6 @@ class LinuxMemoryUsageImpl(LinuxMemoryUsage):
     """
 
     def format_show(self, command, *argv, **kwarg):
-
         """
         MemTotal:       15844588 kB
         MemFree:         1314612 kB
@@ -52,7 +51,6 @@ class LinuxMemoryUsageImpl(LinuxMemoryUsage):
         return cmd
 
     def parse_show(self, command, output, *argv, **kwarg):
-
         """
         MemTotal:       15844588 kB
         MemFree:         1314612 kB

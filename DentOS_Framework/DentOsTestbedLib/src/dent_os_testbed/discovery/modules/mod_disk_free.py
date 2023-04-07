@@ -19,7 +19,6 @@ class DiskFreeMod(Module):
             if 'use_percentage' in disk_free: dst[i].use_percentage = disk_free.get('use_percentage')
             if 'mounted_on' in disk_free: dst[i].mounted_on = disk_free.get('mounted_on')
 
-
     async def discover(self):
         # need to get device instance to get the data from
         #

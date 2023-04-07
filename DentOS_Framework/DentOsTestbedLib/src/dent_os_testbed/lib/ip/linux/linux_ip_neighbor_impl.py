@@ -5,7 +5,6 @@ from dent_os_testbed.lib.ip.linux.linux_ip_neighbor import LinuxIpNeighbor
 
 class LinuxIpNeighborImpl(LinuxIpNeighbor):
     def format_modify(self, command, *argv, **kwarg):
-
         """
         ip neigh { add | del | change | replace } { ADDR [ lladdr LLADDR ]
                  [ nud { permanent | noarp | stale | reachable } ] | proxy ADDR } [ dev DEV ]
@@ -28,7 +27,6 @@ class LinuxIpNeighborImpl(LinuxIpNeighbor):
         return cmd
 
     def format_show(self, command, *argv, **kwarg):
-
         """
         ip neigh { show | flush } [ proxy ] [ to PREFIX ] [ dev DEV ] [ nud STATE ]
 

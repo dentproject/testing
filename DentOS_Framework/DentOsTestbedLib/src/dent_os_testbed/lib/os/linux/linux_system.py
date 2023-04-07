@@ -28,7 +28,6 @@ class LinuxSystem(TestLibObject):
         if command in ['shutdown']:
             return self.format_shutdown(command, *argv, **kwarg)
 
-
         raise NameError('Cannot find command '+command)
 
     def parse_output(self, command, output, *argv, **kwarg):
@@ -37,6 +36,5 @@ class LinuxSystem(TestLibObject):
 
         if command in ['shutdown']:
             return self.parse_shutdown(command, output, *argv, **kwarg)
-
 
         raise NameError('Cannot find command '+command)

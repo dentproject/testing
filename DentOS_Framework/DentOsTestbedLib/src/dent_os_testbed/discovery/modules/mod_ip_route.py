@@ -16,7 +16,6 @@ class IpRouteMod(Module):
             if 'dev' in nexthop: dst[i].dev = nexthop.get('dev')
             if 'weight' in nexthop: dst[i].weight = nexthop.get('weight')
 
-
     def set_ip_route(self, src, dst):
 
         for i,ip_route in enumerate(src):
@@ -47,7 +46,6 @@ class IpRouteMod(Module):
             if 'gateway' in ip_route: dst[i].gateway = ip_route.get('gateway')
             if 'src' in ip_route: dst[i].src = ip_route.get('src')
             if 'options' in ip_route: dst[i].options = ip_route.get('options')
-
 
     async def discover(self):
         # need to get device instance to get the data from

@@ -118,7 +118,6 @@ async def test_qos_trust_mode(testbed, trust_mode, scheduler_type):
         ]}])
         assert out[0][dent]['rc'] == 0, f'Failed to add ports {ports} to vlan {vlan}'
 
-
     # 5. Configure ets qdisc on egress port: 8 bands - SP or WRR
     # 6. Configure tbf (shaper) qdisc for each band with max limit, burst and rate
     if scheduler_type == 'wrr':

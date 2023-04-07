@@ -27,7 +27,6 @@ class OnlpSystemInfoMod(Module):
             if 'service_tag' in onlp_system_info: dst.service_tag = onlp_system_info.get('service_tag')
             if 'onie_version' in onlp_system_info: dst.onie_version = onlp_system_info.get('onie_version')
 
-
     async def discover(self):
         # need to get device instance to get the data from
         #

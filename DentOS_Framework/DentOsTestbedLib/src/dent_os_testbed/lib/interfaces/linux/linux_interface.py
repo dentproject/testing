@@ -42,7 +42,6 @@ class LinuxInterface(TestLibObject):
         if command in ['reload']:
             return self.format_reload(command, *argv, **kwarg)
 
-
         raise NameError('Cannot find command '+command)
 
     def parse_output(self, command, output, *argv, **kwarg):
@@ -54,6 +53,5 @@ class LinuxInterface(TestLibObject):
 
         if command in ['reload']:
             return self.parse_reload(command, output, *argv, **kwarg)
-
 
         raise NameError('Cannot find command '+command)

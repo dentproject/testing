@@ -11,7 +11,6 @@ class LinuxProcessImpl(LinuxProcess):
     """
 
     def format_show(self, command, *argv, **kwarg):
-
         """
         Name:    sshd
         Umask:    0022
@@ -47,7 +46,6 @@ class LinuxProcessImpl(LinuxProcess):
         return cmd
 
     def parse_show(self, command, output, *argv, **kwarg):
-
         """
         Name:    ksoftirqd/0
         Umask:    0022

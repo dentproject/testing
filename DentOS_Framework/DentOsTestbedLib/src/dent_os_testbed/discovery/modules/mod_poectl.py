@@ -25,7 +25,6 @@ class PoectlMod(Module):
             if 'allocated_power' in poectl: dst[i].allocated_power = poectl.get('allocated_power')
             if 'error_str' in poectl: dst[i].error_str = poectl.get('error_str')
 
-
     async def discover(self):
         # need to get device instance to get the data from
         #

@@ -21,7 +21,6 @@ class OnlpSfpInfoMod(Module):
             if 'model' in onlp_sfp_info: dst[i].model = onlp_sfp_info.get('model')
             if 'serial_number' in onlp_sfp_info: dst[i].serial_number = onlp_sfp_info.get('serial_number')
 
-
     async def discover(self):
         # need to get device instance to get the data from
         #

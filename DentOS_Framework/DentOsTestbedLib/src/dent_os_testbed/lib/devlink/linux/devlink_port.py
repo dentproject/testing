@@ -30,7 +30,6 @@ class DevlinkPort(TestLibObject):
         if command in ['show']:
             return self.format_show(command, *argv, **kwarg)
 
-
         raise NameError('Cannot find command '+command)
 
     def parse_output(self, command, output, *argv, **kwarg):
@@ -39,6 +38,5 @@ class DevlinkPort(TestLibObject):
 
         if command in ['show']:
             return self.parse_show(command, output, *argv, **kwarg)
-
 
         raise NameError('Cannot find command '+command)
