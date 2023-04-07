@@ -4,7 +4,6 @@ import re
 
 from dent_os_testbed.lib.traffic.ixnetwork.ixnetwork_ixia_client import IxnetworkIxiaClient
 from ixnetwork_restpy.assistants.statistics.statviewassistant import StatViewAssistant as SVA
-from ixnetwork_restpy.files import Files
 from ixnetwork_restpy.testplatform.testplatform import TestPlatform
 from ixnetwork_restpy import SessionAssistant, Files
 
