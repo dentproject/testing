@@ -68,7 +68,7 @@ async def port_state(testbed, counter, software_reboot=False):
         if software_reboot:
             await dent_dev.reboot()
             device_up = await dent_dev.is_connected()
-            assert device_up == True, f'Verify that device: {dent_dev} is up!\n'
+            assert device_up is True, f'Verify that device: {dent_dev} is up!\n'
 
 
 async def test_l1_port_state_status(testbed):
