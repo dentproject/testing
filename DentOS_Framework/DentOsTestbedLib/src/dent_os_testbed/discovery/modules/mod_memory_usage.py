@@ -15,20 +15,29 @@ class MemoryUsageMod(Module):
     def set_memory_usage(self, src, dst):
 
         for i, memory_usage in enumerate([src]):
-            if 'mem_total' in memory_usage: dst.mem_total = memory_usage.get('mem_total')
-            if 'mem_free' in memory_usage: dst.mem_free = memory_usage.get('mem_free')
-            if 'mem_available' in memory_usage: dst.mem_available = memory_usage.get('mem_available')
-            if 'buffers' in memory_usage: dst.buffers = memory_usage.get('buffers')
-            if 'cached' in memory_usage: dst.cached = memory_usage.get('cached')
-            if 'swap_cached' in memory_usage: dst.swap_cached = memory_usage.get('swap_cached')
-            if 'active' in memory_usage: dst.active = memory_usage.get('active')
-            if 'inactive' in memory_usage: dst.inactive = memory_usage.get('inactive')
+            if 'mem_total' in memory_usage:
+                dst.mem_total = memory_usage.get('mem_total')
+            if 'mem_free' in memory_usage:
+                dst.mem_free = memory_usage.get('mem_free')
+            if 'mem_available' in memory_usage:
+                dst.mem_available = memory_usage.get('mem_available')
+            if 'buffers' in memory_usage:
+                dst.buffers = memory_usage.get('buffers')
+            if 'cached' in memory_usage:
+                dst.cached = memory_usage.get('cached')
+            if 'swap_cached' in memory_usage:
+                dst.swap_cached = memory_usage.get('swap_cached')
+            if 'active' in memory_usage:
+                dst.active = memory_usage.get('active')
+            if 'inactive' in memory_usage:
+                dst.inactive = memory_usage.get('inactive')
 
     async def discover(self):
         # need to get device instance to get the data from
         #
         for i, dut in enumerate(self.report.duts):
-            if not dut.device_id: continue
+            if not dut.device_id:
+                continue
             dev = self.ctx.devices_dict[dut.device_id]
             if dev.os == 'ixnetwork' or not await dev.is_connected():
                 print('Device not connected skipping memory_usage discovery')

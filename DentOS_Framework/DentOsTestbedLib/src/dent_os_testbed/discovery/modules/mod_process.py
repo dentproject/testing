@@ -15,23 +15,35 @@ class ProcessMod(Module):
     def set_process(self, src, dst):
 
         for i, process in enumerate(src):
-            if 'pid' in process: dst[i].pid = process.get('pid')
-            if 'command' in process: dst[i].command = process.get('command')
-            if 'elapsed' in process: dst[i].elapsed = process.get('elapsed')
-            if 'vsz' in process: dst[i].vsz = process.get('vsz')
-            if 'mem' in process: dst[i].mem = process.get('mem')
-            if 'time' in process: dst[i].time = process.get('time')
-            if 'cpu_usage_user' in process: dst[i].cpu_usage_user = process.get('cpu_usage_user')
-            if 'cpu_usage_system' in process: dst[i].cpu_usage_system = process.get('cpu_usage_system')
-            if 'cpu_utilization' in process: dst[i].cpu_utilization = process.get('cpu_utilization')
-            if 'memory_usage' in process: dst[i].memory_usage = process.get('memory_usage')
-            if 'memory_utilization' in process: dst[i].memory_utilization = process.get('memory_utilization')
+            if 'pid' in process:
+                dst[i].pid = process.get('pid')
+            if 'command' in process:
+                dst[i].command = process.get('command')
+            if 'elapsed' in process:
+                dst[i].elapsed = process.get('elapsed')
+            if 'vsz' in process:
+                dst[i].vsz = process.get('vsz')
+            if 'mem' in process:
+                dst[i].mem = process.get('mem')
+            if 'time' in process:
+                dst[i].time = process.get('time')
+            if 'cpu_usage_user' in process:
+                dst[i].cpu_usage_user = process.get('cpu_usage_user')
+            if 'cpu_usage_system' in process:
+                dst[i].cpu_usage_system = process.get('cpu_usage_system')
+            if 'cpu_utilization' in process:
+                dst[i].cpu_utilization = process.get('cpu_utilization')
+            if 'memory_usage' in process:
+                dst[i].memory_usage = process.get('memory_usage')
+            if 'memory_utilization' in process:
+                dst[i].memory_utilization = process.get('memory_utilization')
 
     async def discover(self):
         # need to get device instance to get the data from
         #
         for i, dut in enumerate(self.report.duts):
-            if not dut.device_id: continue
+            if not dut.device_id:
+                continue
             dev = self.ctx.devices_dict[dut.device_id]
             if dev.os == 'ixnetwork' or not await dev.is_connected():
                 print('Device not connected skipping process discovery')

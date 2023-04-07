@@ -15,24 +15,37 @@ class PoectlMod(Module):
     def set_poectl(self, src, dst):
 
         for i, poectl in enumerate(src):
-            if 'port' in poectl: dst[i].port = poectl.get('port')
-            if 'cmd_options' in poectl: dst[i].cmd_options = poectl.get('cmd_options')
-            if 'status' in poectl: dst[i].status = poectl.get('status')
-            if 'priority' in poectl: dst[i].priority = poectl.get('priority')
-            if 'power' in poectl: dst[i].power = poectl.get('power')
-            if 'pd_type' in poectl: dst[i].pd_type = poectl.get('pd_type')
-            if 'current' in poectl: dst[i].current = poectl.get('current')
-            if 'state' in poectl: dst[i].state = poectl.get('state')
-            if 'voltage' in poectl: dst[i].voltage = poectl.get('voltage')
-            if 'pd_class' in poectl: dst[i].pd_class = poectl.get('pd_class')
-            if 'allocated_power' in poectl: dst[i].allocated_power = poectl.get('allocated_power')
-            if 'error_str' in poectl: dst[i].error_str = poectl.get('error_str')
+            if 'port' in poectl:
+                dst[i].port = poectl.get('port')
+            if 'cmd_options' in poectl:
+                dst[i].cmd_options = poectl.get('cmd_options')
+            if 'status' in poectl:
+                dst[i].status = poectl.get('status')
+            if 'priority' in poectl:
+                dst[i].priority = poectl.get('priority')
+            if 'power' in poectl:
+                dst[i].power = poectl.get('power')
+            if 'pd_type' in poectl:
+                dst[i].pd_type = poectl.get('pd_type')
+            if 'current' in poectl:
+                dst[i].current = poectl.get('current')
+            if 'state' in poectl:
+                dst[i].state = poectl.get('state')
+            if 'voltage' in poectl:
+                dst[i].voltage = poectl.get('voltage')
+            if 'pd_class' in poectl:
+                dst[i].pd_class = poectl.get('pd_class')
+            if 'allocated_power' in poectl:
+                dst[i].allocated_power = poectl.get('allocated_power')
+            if 'error_str' in poectl:
+                dst[i].error_str = poectl.get('error_str')
 
     async def discover(self):
         # need to get device instance to get the data from
         #
         for i, dut in enumerate(self.report.duts):
-            if not dut.device_id: continue
+            if not dut.device_id:
+                continue
             dev = self.ctx.devices_dict[dut.device_id]
             if dev.os == 'ixnetwork' or not await dev.is_connected():
                 print('Device not connected skipping poectl discovery')

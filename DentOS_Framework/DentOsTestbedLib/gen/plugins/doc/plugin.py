@@ -48,7 +48,8 @@ class DocsMdObject(object):
                     continue
                 cargs = c.to_dict()
                 classes += f'[{c.name}]({c.name}.md) <br/>'
-            if not classes: continue
+            if not classes:
+                continue
             margs['classes'] = classes
             self._body.append(MdLines(lines=tokenize(md_mod_entry % margs)))
 
@@ -99,13 +100,16 @@ class DocMdObject(object):
             args['api'] = api
             for impl in self._cls.implemented_by:
                 # document dentos for now
-                if 'dentos' not in impl.platforms: continue
+                if 'dentos' not in impl.platforms:
+                    continue
                 for cmd in impl.commands:
-                    if api not in cmd.apis: continue
+                    if api not in cmd.apis:
+                        continue
                     args['api_desc'] = cmd.desc
                     args['params'] = ''
                     for m in cmd.params:
-                        if isinstance(m, str): continue
+                        if isinstance(m, str):
+                            continue
                         args['params'] += "                '%s':%s,\n" % (m.name, self.get_random_value(m))
                     args['api_name'] = api
                     args['api_usage'] = md_sample_call % args
