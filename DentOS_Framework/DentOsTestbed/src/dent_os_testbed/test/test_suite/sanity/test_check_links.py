@@ -65,16 +65,16 @@ async def check_and_validate_switch_links(testbed):
             # this can be done on system which is not provisiond since there might be links that
             # cannot be brought down.
             if not testbed.args.is_provisioned and operstate == 'UP' and other_end[0] in devices:
-               out = await IpLink.set(
-                   input_data=[{dev.host_name: [{'device': link, 'operstate': 'down'}]}],
-               )
-               assert out[0][dev.host_name]['rc'] == 0
-               time.sleep(5)
-               other_operstate = await get_link_operstate(other_end[0], other_end[1])
-               verified = 'YES' if other_operstate != 'UP' else 'NO'
-               out = await IpLink.set(
-                   input_data=[{dev.host_name: [{'device': link, 'operstate': 'up'}]}],
-               )
+                out = await IpLink.set(
+                    input_data=[{dev.host_name: [{'device': link, 'operstate': 'down'}]}],
+                )
+                assert out[0][dev.host_name]['rc'] == 0
+                time.sleep(5)
+                other_operstate = await get_link_operstate(other_end[0], other_end[1])
+                verified = 'YES' if other_operstate != 'UP' else 'NO'
+                out = await IpLink.set(
+                    input_data=[{dev.host_name: [{'device': link, 'operstate': 'up'}]}],
+                )
             links_dict[dev.host_name][link] = [links[1], operstate, verified]
 
     # try to generate a visual version of the network
