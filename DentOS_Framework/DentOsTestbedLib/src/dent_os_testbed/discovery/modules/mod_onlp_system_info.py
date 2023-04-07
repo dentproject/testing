@@ -51,7 +51,7 @@ class OnlpSystemInfoMod(Module):
                 continue
             if 'parsed_output' not in out[0][dev.host_name]:
                 print('Failed to get parsed_output onlp_system_info')
-                print (out)
+                print(out)
                 continue
             self.set_onlp_system_info(out[0][dev.host_name]['parsed_output'], self.report.duts[i].platform.onlp.system_information)
             print('Finished onlp_system_info Discovery on {} with {} entries'.format(dev.host_name, len(self.report.duts[i].platform.onlp.system_information)))

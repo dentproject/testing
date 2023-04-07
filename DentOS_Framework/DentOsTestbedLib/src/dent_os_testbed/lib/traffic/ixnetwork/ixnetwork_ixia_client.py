@@ -157,7 +157,7 @@ class IxnetworkIxiaClient(TestLibObject):
         if command in ['switch_min_frame_size']:
             return self.run_switch_min_frame_size(device_obj, command, *argv, **kwarg)
 
-        print (len(command))
+        print(len(command))
         raise NameError('Cannot find command '+command)
 
     def parse_output(self, command, output, *argv, **kwarg):

@@ -44,7 +44,7 @@ async def test_route_add_del(testbed):
         default_route = out[0][dev.host_name]['parsed_output']
 
         if not default_route or 'gateway' not in default_route[0]:
-            print (f'Could not get the default route {out}')
+            print(f'Could not get the default route {out}')
             continue
 
         # delete any old route.
