@@ -5,7 +5,6 @@ from dent_os_testbed.lib.ip.linux.linux_ip_link import LinuxIpLink
 
 class LinuxIpLinkImpl(LinuxIpLink):
     def format_add(self, command, *argv, **kwarg):
-
         """
         ip link add [ link DEVICE ] [ name ] NAME [ ageing_time AGEING_TIME ] [ txqueuelen PACKETS ] [ address LLADDR ]
                     [ broadcast LLADDR ] [ mtu MTU ] [ index IDX ] [ numtxqueues QUEUE_COUNT ]
@@ -48,7 +47,6 @@ class LinuxIpLinkImpl(LinuxIpLink):
         return cmd
 
     def format_delete(self, command, *argv, **kwarg):
-
         """
         ip link delete DEVICE type TYPE [ ARGS ]
         TYPE := [ bridge | bond ] can | dummy | hsr | ifb | ipoib | macvlan | macvtap | vcan |
@@ -65,7 +63,6 @@ class LinuxIpLinkImpl(LinuxIpLink):
         return cmd
 
     def format_set(self, command, *argv, **kwarg):
-
         """
         ip link set { DEVICE | group GROUP } { up | down | arp { on | off } | promisc { on | off } |
                       allmulticast { on | off } | dynamic { on | off } | multicast { on | off } |
@@ -146,7 +143,6 @@ class LinuxIpLinkImpl(LinuxIpLink):
         return cmd
 
     def format_show(self, command, *argv, **kwarg):
-
         """
         ip link show [ DEVICE | group GROUP ]
         """

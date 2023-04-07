@@ -20,12 +20,10 @@ class LinuxFrrIp(TestLibObject):
         if command in ['set']:
             return self.format_set(command, *argv, **kwarg)
 
-
         raise NameError('Cannot find command '+command)
 
     def parse_output(self, command, output, *argv, **kwarg):
         if command in ['set']:
             return self.parse_set(command, output, *argv, **kwarg)
-
 
         raise NameError('Cannot find command '+command)

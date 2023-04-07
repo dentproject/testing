@@ -23,7 +23,6 @@ class CpuUsageMod(Module):
             if 'guest' in cpu_usage: dst[i].guest = cpu_usage.get('guest')
             if 'idle' in cpu_usage: dst[i].idle = cpu_usage.get('idle')
 
-
     async def discover(self):
         # need to get device instance to get the data from
         #

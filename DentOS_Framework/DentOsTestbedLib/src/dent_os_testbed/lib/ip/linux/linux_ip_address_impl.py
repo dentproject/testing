@@ -5,7 +5,6 @@ from dent_os_testbed.lib.ip.linux.linux_ip_address import LinuxIpAddress
 
 class LinuxIpAddressImpl(LinuxIpAddress):
     def format_modify(self, command, *argv, **kwarg):
-
         """
         Usage: ip address {add|change|replace} IFADDR dev IFNAME [ LIFETIME ]
                                                               [ CONFFLAG-LIST ]
@@ -48,7 +47,6 @@ class LinuxIpAddressImpl(LinuxIpAddress):
         return cmd
 
     def format_delete(self, command, *argv, **kwarg):
-
         """
         ip address del IFADDR dev IFNAME [mngtmpaddr]
         IFADDR := PREFIX | ADDR peer PREFIX
@@ -78,7 +76,6 @@ class LinuxIpAddressImpl(LinuxIpAddress):
         return cmd
 
     def format_save(self, command, *argv, **kwarg):
-
         """
         ip address {save|flush} [ dev IFNAME ] [ scope SCOPE-ID ]
                                  [ to PREFIX ] [ FLAG-LIST ] [ label LABEL ] [up]
@@ -109,7 +106,6 @@ class LinuxIpAddressImpl(LinuxIpAddress):
         return cmd
 
     def format_show(self, command, *argv, **kwarg):
-
         """
         ip address [ show [ dev IFNAME ] [ scope SCOPE-ID ] [ master DEVICE ]
                               [ type TYPE ] [ to PREFIX ] [ FLAG-LIST ]
@@ -154,7 +150,6 @@ class LinuxIpAddressImpl(LinuxIpAddress):
         return cmd
 
     def format_restore(self, command, *argv, **kwarg):
-
         """
         Restore the config
         """

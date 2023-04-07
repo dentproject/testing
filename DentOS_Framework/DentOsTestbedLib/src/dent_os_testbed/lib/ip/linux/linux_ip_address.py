@@ -75,7 +75,6 @@ class LinuxIpAddress(TestLibObject):
         if command in ['showdump', 'restore']:
             return self.format_restore(command, *argv, **kwarg)
 
-
         raise NameError('Cannot find command '+command)
 
     def parse_output(self, command, output, *argv, **kwarg):
@@ -93,6 +92,5 @@ class LinuxIpAddress(TestLibObject):
 
         if command in ['showdump', 'restore']:
             return self.parse_restore(command, output, *argv, **kwarg)
-
 
         raise NameError('Cannot find command '+command)

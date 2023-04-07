@@ -28,7 +28,6 @@ class LinuxService(TestLibObject):
         if command in ['start', 'stop', 'restart', 'enable', 'disable']:
             return self.format_operation(command, *argv, **kwarg)
 
-
         raise NameError('Cannot find command '+command)
 
     def parse_output(self, command, output, *argv, **kwarg):
@@ -37,6 +36,5 @@ class LinuxService(TestLibObject):
 
         if command in ['start', 'stop', 'restart', 'enable', 'disable']:
             return self.parse_operation(command, output, *argv, **kwarg)
-
 
         raise NameError('Cannot find command '+command)

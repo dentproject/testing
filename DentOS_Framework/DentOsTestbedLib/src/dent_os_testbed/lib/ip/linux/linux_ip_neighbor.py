@@ -32,7 +32,6 @@ class LinuxIpNeighbor(TestLibObject):
         if command in ['show', 'flush']:
             return self.format_show(command, *argv, **kwarg)
 
-
         raise NameError('Cannot find command '+command)
 
     def parse_output(self, command, output, *argv, **kwarg):
@@ -41,6 +40,5 @@ class LinuxIpNeighbor(TestLibObject):
 
         if command in ['show', 'flush']:
             return self.parse_show(command, output, *argv, **kwarg)
-
 
         raise NameError('Cannot find command '+command)

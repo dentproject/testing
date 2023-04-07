@@ -24,7 +24,6 @@ class ProcessMod(Module):
             if 'memory_usage' in process: dst[i].memory_usage = process.get('memory_usage')
             if 'memory_utilization' in process: dst[i].memory_utilization = process.get('memory_utilization')
 
-
     async def discover(self):
         # need to get device instance to get the data from
         #

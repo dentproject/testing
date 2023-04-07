@@ -51,7 +51,6 @@ class IpLinkMod(Module):
             if 'master' in ip_link: dst[i].master = ip_link.get('master')
             if 'options' in ip_link: dst[i].options = ip_link.get('options')
 
-
     async def discover(self):
         # need to get device instance to get the data from
         #
