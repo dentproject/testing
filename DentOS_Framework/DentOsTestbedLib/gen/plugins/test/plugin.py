@@ -215,7 +215,7 @@ class TestCmdPyObject(object):
             run_cmd_body = tokenize(py_class_common_run_cmds % args)
             methods.append(
                 PyMethod('run_command', 'self, device_obj, command, *argv, **kwarg', run_cmd_body, indent=4)
-        )
+            )
 
         parse_cmd_body = tokenize(py_class_common_parse_cmds % args)
         methods.append(

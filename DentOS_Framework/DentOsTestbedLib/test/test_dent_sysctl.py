@@ -28,11 +28,11 @@ def test_that_sysctl_get(capfd):
     out = loop.run_until_complete(Sysctl.get(input_data=[{
         # device 1
         'test_dev1' : [{
-        # command 1
+            # command 1
             'variable':'wlmoznsp',
 
         },{
-        # command 2
+            # command 2
             'variable':'dfxoranx',
 
         }],
@@ -89,12 +89,12 @@ def test_that_sysctl_set(capfd):
     out = loop.run_until_complete(Sysctl.set(input_data=[{
         # device 1
         'test_dev1' : [{
-        # command 1
+            # command 1
             'variable':'eysjejvo',
             'value':'xttiqmtm',
 
         },{
-        # command 2
+            # command 2
             'variable':'frknxnkx',
             'value':'hpizjqed',
 

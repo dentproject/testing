@@ -28,7 +28,7 @@ def test_that_dcb_app_show(capfd):
     out = loop.run_until_complete(DcbApp.show(input_data=[{
         # device 1
         'test_dev1' : [{
-        # command 1
+            # command 1
             'dev':'grjvikgf',
             'default-prio':'',
             'dscp-prio':'',
@@ -38,7 +38,7 @@ def test_that_dcb_app_show(capfd):
             'dgram-port-prio':'',
 
         },{
-        # command 2
+            # command 2
             'dev':'vaoohlzo',
             'default-prio':'',
             'dscp-prio':'',
@@ -113,7 +113,7 @@ def test_that_dcb_app_flush(capfd):
     out = loop.run_until_complete(DcbApp.flush(input_data=[{
         # device 1
         'test_dev1' : [{
-        # command 1
+            # command 1
             'dev':'slvrkgyg',
             'default-prio':'',
             'dscp-prio':'',
@@ -123,7 +123,7 @@ def test_that_dcb_app_flush(capfd):
             'dgram-port-prio':'',
 
         },{
-        # command 2
+            # command 2
             'dev':'sxlqptce',
             'default-prio':'',
             'dscp-prio':'',
@@ -198,7 +198,7 @@ def test_that_dcb_app_add(capfd):
     out = loop.run_until_complete(DcbApp.add(input_data=[{
         # device 1
         'test_dev1' : [{
-        # command 1
+            # command 1
             'dev':'zsewizgk',
             'default-prio':'',
             'dscp-prio':'',
@@ -208,7 +208,7 @@ def test_that_dcb_app_add(capfd):
             'dgram-port-prio':'',
 
         },{
-        # command 2
+            # command 2
             'dev':'apzgccxw',
             'default-prio':'',
             'dscp-prio':'',
@@ -283,7 +283,7 @@ def test_that_dcb_app_delete(capfd):
     out = loop.run_until_complete(DcbApp.delete(input_data=[{
         # device 1
         'test_dev1' : [{
-        # command 1
+            # command 1
             'dev':'qmhrjard',
             'default-prio':'',
             'dscp-prio':'',
@@ -293,7 +293,7 @@ def test_that_dcb_app_delete(capfd):
             'dgram-port-prio':'',
 
         },{
-        # command 2
+            # command 2
             'dev':'pzcioafr',
             'default-prio':'',
             'dscp-prio':'',
@@ -368,7 +368,7 @@ def test_that_dcb_app_replace(capfd):
     out = loop.run_until_complete(DcbApp.replace(input_data=[{
         # device 1
         'test_dev1' : [{
-        # command 1
+            # command 1
             'dev':'jkdlzioq',
             'default-prio':'',
             'dscp-prio':'',
@@ -378,7 +378,7 @@ def test_that_dcb_app_replace(capfd):
             'dgram-port-prio':'',
 
         },{
-        # command 2
+            # command 2
             'dev':'ckdmewks',
             'default-prio':'',
             'dscp-prio':'',

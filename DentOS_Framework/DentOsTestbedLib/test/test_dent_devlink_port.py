@@ -28,14 +28,14 @@ def test_that_devlink_port_set(capfd):
     out = loop.run_until_complete(DevlinkPort.set(input_data=[{
         # device 1
         'test_dev1' : [{
-        # command 1
+            # command 1
             'dev':'jfonwshm',
             'name':'nxriflun',
             'value':'zbxvysfk',
             'cmode':'nwvidlmi',
 
         },{
-        # command 2
+            # command 2
             'dev':'qvemwewh',
             'name':'iraczgpc',
             'value':'mdlmwisc',
@@ -133,12 +133,12 @@ def test_that_devlink_port_show(capfd):
     out = loop.run_until_complete(DevlinkPort.show(input_data=[{
         # device 1
         'test_dev1' : [{
-        # command 1
+            # command 1
             'dev':'zdeyrtrt',
             'name':'uaelyfuw',
 
         },{
-        # command 2
+            # command 2
             'dev':'yrqcphwy',
             'name':'vaqopkht',
 
