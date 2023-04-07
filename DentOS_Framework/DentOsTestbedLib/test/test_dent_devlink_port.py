@@ -16,7 +16,7 @@ def test_that_devlink_port_set(capfd):
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DevlinkPort.set(input_data=[{
         # device 1
-        'test_dev' : [{}],
+        'test_dev': [{}],
     }], device_obj={'test_dev': dv1}))
     print(out)
     assert 'command' in out[0]['test_dev'].keys()
@@ -27,7 +27,7 @@ def test_that_devlink_port_set(capfd):
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DevlinkPort.set(input_data=[{
         # device 1
-        'test_dev1' : [{
+        'test_dev1': [{
             # command 1
             'dev': 'jfonwshm',
             'name': 'nxriflun',
@@ -54,7 +54,7 @@ def test_that_devlink_port_set(capfd):
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DevlinkPort.set(input_data=[{
         # device 1
-        'test_dev1' : [{
+        'test_dev1': [{
             'dev': 'jfonwshm',
             'name': 'nxriflun',
             'value': 'zbxvysfk',
@@ -62,7 +62,7 @@ def test_that_devlink_port_set(capfd):
 
          }],
         # device 2
-        'test_dev2' : [{
+        'test_dev2': [{
             'dev': 'qvemwewh',
             'name': 'iraczgpc',
             'value': 'mdlmwisc',
@@ -89,7 +89,7 @@ def test_that_devlink_port_split(capfd):
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DevlinkPort.split(input_data=[{
         # device 1
-        'test_dev' : [{}],
+        'test_dev': [{}],
     }], device_obj={'test_dev': dv1}))
     print(out)
     assert 'command' in out[0]['test_dev'].keys()
@@ -105,7 +105,7 @@ def test_that_devlink_port_unsplit(capfd):
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DevlinkPort.unsplit(input_data=[{
         # device 1
-        'test_dev' : [{}],
+        'test_dev': [{}],
     }], device_obj={'test_dev': dv1}))
     print(out)
     assert 'command' in out[0]['test_dev'].keys()
@@ -121,7 +121,7 @@ def test_that_devlink_port_show(capfd):
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DevlinkPort.show(input_data=[{
         # device 1
-        'test_dev' : [{}],
+        'test_dev': [{}],
     }], device_obj={'test_dev': dv1}))
     print(out)
     assert 'command' in out[0]['test_dev'].keys()
@@ -132,7 +132,7 @@ def test_that_devlink_port_show(capfd):
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DevlinkPort.show(input_data=[{
         # device 1
-        'test_dev1' : [{
+        'test_dev1': [{
             # command 1
             'dev': 'zdeyrtrt',
             'name': 'uaelyfuw',
@@ -155,13 +155,13 @@ def test_that_devlink_port_show(capfd):
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DevlinkPort.show(input_data=[{
         # device 1
-        'test_dev1' : [{
+        'test_dev1': [{
             'dev': 'zdeyrtrt',
             'name': 'uaelyfuw',
 
          }],
         # device 2
-        'test_dev2' : [{
+        'test_dev2': [{
             'dev': 'yrqcphwy',
             'name': 'vaqopkht',
 
@@ -186,7 +186,7 @@ def test_that_devlink_port_health(capfd):
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DevlinkPort.health(input_data=[{
         # device 1
-        'test_dev' : [{}],
+        'test_dev': [{}],
     }], device_obj={'test_dev': dv1}))
     print(out)
     assert 'command' in out[0]['test_dev'].keys()
@@ -202,7 +202,7 @@ def test_that_devlink_port_add(capfd):
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DevlinkPort.add(input_data=[{
         # device 1
-        'test_dev' : [{}],
+        'test_dev': [{}],
     }], device_obj={'test_dev': dv1}))
     print(out)
     assert 'command' in out[0]['test_dev'].keys()
@@ -218,7 +218,7 @@ def test_that_devlink_port_delete(capfd):
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DevlinkPort.delete(input_data=[{
         # device 1
-        'test_dev' : [{}],
+        'test_dev': [{}],
     }], device_obj={'test_dev': dv1}))
     print(out)
     assert 'command' in out[0]['test_dev'].keys()
@@ -234,7 +234,7 @@ def test_that_devlink_port_function(capfd):
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DevlinkPort.function(input_data=[{
         # device 1
-        'test_dev' : [{}],
+        'test_dev': [{}],
     }], device_obj={'test_dev': dv1}))
     print(out)
     assert 'command' in out[0]['test_dev'].keys()
@@ -250,7 +250,7 @@ def test_that_devlink_port_param(capfd):
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DevlinkPort.param(input_data=[{
         # device 1
-        'test_dev' : [{}],
+        'test_dev': [{}],
     }], device_obj={'test_dev': dv1}))
     print(out)
     assert 'command' in out[0]['test_dev'].keys()

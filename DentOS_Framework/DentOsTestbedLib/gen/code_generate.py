@@ -38,7 +38,7 @@ def load_yaml(yaml_dir):
             except PyKwalifyException as e:
                 raise e
 
-            pname = root[len(yaml_dir) :].split('/')[0]
+            pname = root[len(yaml_dir):].split('/')[0]
             print(fname)
             if pname not in content:
                 content[pname] = Package(pname, ydata, fname, content)

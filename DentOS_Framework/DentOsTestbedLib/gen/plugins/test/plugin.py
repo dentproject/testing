@@ -105,7 +105,7 @@ class TestPyObject(object):
         impl_form_cmd = ''
         for obj in self._cls.implemented_by:
             iargs = {
-                'cname_cc' : camelcase(obj.name),
+                'cname_cc': camelcase(obj.name),
                 'platforms': obj.platforms,
                 }
             impl_form_cmd += py_class_common_impl_form_command % iargs

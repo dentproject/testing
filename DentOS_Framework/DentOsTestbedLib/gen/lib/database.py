@@ -99,8 +99,8 @@ class TestCase(object):
         return {
             'tc_name': self.name,
             'tc_template': self.template,
-            'tc_class' : self.cls.to_dict() if self.cls else '',
-            'tc_args' : self.args,
+            'tc_class': self.cls.to_dict() if self.cls else '',
+            'tc_args': self.args,
         }
 
     def validate(self):
@@ -224,10 +224,10 @@ class Class(object):
 
     def to_dict(self):
         return {
-            'cls_mod_name' : self._mod.name,
+            'cls_mod_name': self._mod.name,
             'cls_name': self.name,
             'cls_cc_name': camelcase(self.name),
-            'cls_desc' : self.desc,
+            'cls_desc': self.desc,
             'cls_members': {m.name: m.to_dict() for m in self.members},
             'cls_apis': self.apis,
         }
