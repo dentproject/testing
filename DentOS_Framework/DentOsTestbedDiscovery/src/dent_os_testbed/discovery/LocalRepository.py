@@ -202,9 +202,8 @@ class LocalRepository(object):
                   maxReports=1,
                   before=None, after=None):
         """Get the latest report for the given specifiers."""
-        l = self.getReports(topology=topology, operator=operator,
-                            before=before, after=after)
-        return l[0][0] if l else None
+        line = self.getReports(topology=topology, operator=operator, before=before, after=after)
+        return line[0][0] if line else None
 
     def expireReports(self):
         """Expire out old reports.
