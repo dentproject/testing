@@ -14,7 +14,7 @@ def test_that_dcb_app_show(capfd):
     dv1 = TestDevice(platform='dentos')
     dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
-    out = loop.run_until_complete(DcbApp.show(input_data = [{
+    out = loop.run_until_complete(DcbApp.show(input_data=[{
         # device 1
         'test_dev' : [{}],
     }], device_obj={'test_dev':dv1}))
@@ -25,7 +25,7 @@ def test_that_dcb_app_show(capfd):
     assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
-    out = loop.run_until_complete(DcbApp.show(input_data = [{
+    out = loop.run_until_complete(DcbApp.show(input_data=[{
         # device 1
         'test_dev1' : [{
         # command 1
@@ -58,7 +58,7 @@ def test_that_dcb_app_show(capfd):
     assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
-    out = loop.run_until_complete(DcbApp.show(input_data = [{
+    out = loop.run_until_complete(DcbApp.show(input_data=[{
         # device 1
         'test_dev1' : [{
             'dev':'grjvikgf',
@@ -99,7 +99,7 @@ def test_that_dcb_app_flush(capfd):
     dv1 = TestDevice(platform='dentos')
     dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
-    out = loop.run_until_complete(DcbApp.flush(input_data = [{
+    out = loop.run_until_complete(DcbApp.flush(input_data=[{
         # device 1
         'test_dev' : [{}],
     }], device_obj={'test_dev':dv1}))
@@ -110,7 +110,7 @@ def test_that_dcb_app_flush(capfd):
     assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
-    out = loop.run_until_complete(DcbApp.flush(input_data = [{
+    out = loop.run_until_complete(DcbApp.flush(input_data=[{
         # device 1
         'test_dev1' : [{
         # command 1
@@ -143,7 +143,7 @@ def test_that_dcb_app_flush(capfd):
     assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
-    out = loop.run_until_complete(DcbApp.flush(input_data = [{
+    out = loop.run_until_complete(DcbApp.flush(input_data=[{
         # device 1
         'test_dev1' : [{
             'dev':'slvrkgyg',
@@ -184,7 +184,7 @@ def test_that_dcb_app_add(capfd):
     dv1 = TestDevice(platform='dentos')
     dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
-    out = loop.run_until_complete(DcbApp.add(input_data = [{
+    out = loop.run_until_complete(DcbApp.add(input_data=[{
         # device 1
         'test_dev' : [{}],
     }], device_obj={'test_dev':dv1}))
@@ -195,7 +195,7 @@ def test_that_dcb_app_add(capfd):
     assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
-    out = loop.run_until_complete(DcbApp.add(input_data = [{
+    out = loop.run_until_complete(DcbApp.add(input_data=[{
         # device 1
         'test_dev1' : [{
         # command 1
@@ -228,7 +228,7 @@ def test_that_dcb_app_add(capfd):
     assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
-    out = loop.run_until_complete(DcbApp.add(input_data = [{
+    out = loop.run_until_complete(DcbApp.add(input_data=[{
         # device 1
         'test_dev1' : [{
             'dev':'zsewizgk',
@@ -269,7 +269,7 @@ def test_that_dcb_app_delete(capfd):
     dv1 = TestDevice(platform='dentos')
     dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
-    out = loop.run_until_complete(DcbApp.delete(input_data = [{
+    out = loop.run_until_complete(DcbApp.delete(input_data=[{
         # device 1
         'test_dev' : [{}],
     }], device_obj={'test_dev':dv1}))
@@ -280,7 +280,7 @@ def test_that_dcb_app_delete(capfd):
     assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
-    out = loop.run_until_complete(DcbApp.delete(input_data = [{
+    out = loop.run_until_complete(DcbApp.delete(input_data=[{
         # device 1
         'test_dev1' : [{
         # command 1
@@ -313,7 +313,7 @@ def test_that_dcb_app_delete(capfd):
     assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
-    out = loop.run_until_complete(DcbApp.delete(input_data = [{
+    out = loop.run_until_complete(DcbApp.delete(input_data=[{
         # device 1
         'test_dev1' : [{
             'dev':'qmhrjard',
@@ -354,7 +354,7 @@ def test_that_dcb_app_replace(capfd):
     dv1 = TestDevice(platform='dentos')
     dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
-    out = loop.run_until_complete(DcbApp.replace(input_data = [{
+    out = loop.run_until_complete(DcbApp.replace(input_data=[{
         # device 1
         'test_dev' : [{}],
     }], device_obj={'test_dev':dv1}))
@@ -365,7 +365,7 @@ def test_that_dcb_app_replace(capfd):
     assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
-    out = loop.run_until_complete(DcbApp.replace(input_data = [{
+    out = loop.run_until_complete(DcbApp.replace(input_data=[{
         # device 1
         'test_dev1' : [{
         # command 1
@@ -398,7 +398,7 @@ def test_that_dcb_app_replace(capfd):
     assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
-    out = loop.run_until_complete(DcbApp.replace(input_data = [{
+    out = loop.run_until_complete(DcbApp.replace(input_data=[{
         # device 1
         'test_dev1' : [{
             'dev':'jkdlzioq',
