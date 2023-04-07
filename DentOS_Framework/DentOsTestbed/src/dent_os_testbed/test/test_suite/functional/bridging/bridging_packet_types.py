@@ -1,7 +1,7 @@
 from random import randrange
 
 def get_streams(srcMac, self_mac, prefix, dev_groups, tg_ports):
-    return{
+    return {
     'Bridged_UnknownL2UC': {
         'ip_source': dev_groups[tg_ports[0]][0]['name'],
         'ip_destination': dev_groups[tg_ports[1]][0]['name'],
