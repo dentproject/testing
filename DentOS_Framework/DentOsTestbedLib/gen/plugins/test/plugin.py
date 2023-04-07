@@ -461,7 +461,7 @@ class TestCodePyObject(object):
                     test_body_call += py_test_code_two_cmd_template_call % args
                     test_body_call += py_test_code_two_dev_template_call % args
                     break
-            args['platform']  = self._cls.implemented_by[0].platforms[0]
+            args['platform'] = self._cls.implemented_by[0].platforms[0]
             args['cases'] = test_body_call
             test_body = tokenize(py_test_code_template % args)
             self._methods.append(

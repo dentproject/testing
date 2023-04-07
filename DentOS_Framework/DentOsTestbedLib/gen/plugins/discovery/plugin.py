@@ -64,7 +64,7 @@ class ReportPyObject(object):
                 if m.cls:
                     # if there are no members in this member then use the correct schema
                     if len(m.cls.members):
-                        mname  = camelcase(m.cls.name)+('SchemaDict' if m.cls.singleton else 'SchemaList')
+                        mname = camelcase(m.cls.name)+('SchemaDict' if m.cls.singleton else 'SchemaList')
                         # need to visit the node
                         queue.append((m.cls, camelcase(m.cls.name)))
                     else:

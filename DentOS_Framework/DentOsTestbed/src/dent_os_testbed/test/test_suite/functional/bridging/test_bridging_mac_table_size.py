@@ -117,4 +117,4 @@ async def test_bridging_mac_table_size(testbed):
 
     amount = int(out) - ixia_vhost_mac_count
     err_msg = f'Expected count of extern_learn offload entities: 4000, Actual count: {amount}'
-    assert amount  == pps_value, err_msg
+    assert amount == pps_value, err_msg
