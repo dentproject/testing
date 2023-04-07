@@ -52,8 +52,8 @@ def test_that_sysctl_get(capfd):
             'variable':'wlmoznsp',
 
          }],
-         # device 2
-         'test_dev2' : [{
+        # device 2
+        'test_dev2' : [{
             'variable':'dfxoranx',
 
         }],
@@ -116,8 +116,8 @@ def test_that_sysctl_set(capfd):
             'value':'xttiqmtm',
 
          }],
-         # device 2
-         'test_dev2' : [{
+        # device 2
+        'test_dev2' : [{
             'variable':'frknxnkx',
             'value':'hpizjqed',
 

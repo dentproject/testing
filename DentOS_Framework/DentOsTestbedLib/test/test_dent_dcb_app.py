@@ -70,8 +70,8 @@ def test_that_dcb_app_show(capfd):
             'dgram-port-prio':'',
 
          }],
-         # device 2
-         'test_dev2' : [{
+        # device 2
+        'test_dev2' : [{
             'dev':'vaoohlzo',
             'default-prio':'',
             'dscp-prio':'',
@@ -155,8 +155,8 @@ def test_that_dcb_app_flush(capfd):
             'dgram-port-prio':'',
 
          }],
-         # device 2
-         'test_dev2' : [{
+        # device 2
+        'test_dev2' : [{
             'dev':'sxlqptce',
             'default-prio':'',
             'dscp-prio':'',
@@ -240,8 +240,8 @@ def test_that_dcb_app_add(capfd):
             'dgram-port-prio':'',
 
          }],
-         # device 2
-         'test_dev2' : [{
+        # device 2
+        'test_dev2' : [{
             'dev':'apzgccxw',
             'default-prio':'',
             'dscp-prio':'',
@@ -325,8 +325,8 @@ def test_that_dcb_app_delete(capfd):
             'dgram-port-prio':'',
 
          }],
-         # device 2
-         'test_dev2' : [{
+        # device 2
+        'test_dev2' : [{
             'dev':'pzcioafr',
             'default-prio':'',
             'dscp-prio':'',
@@ -410,8 +410,8 @@ def test_that_dcb_app_replace(capfd):
             'dgram-port-prio':'',
 
          }],
-         # device 2
-         'test_dev2' : [{
+        # device 2
+        'test_dev2' : [{
             'dev':'ckdmewks',
             'default-prio':'',
             'dscp-prio':'',
