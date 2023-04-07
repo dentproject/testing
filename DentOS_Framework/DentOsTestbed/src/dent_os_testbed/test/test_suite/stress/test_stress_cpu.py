@@ -1,10 +1,6 @@
-import json
-import os
-import time
 
 import pytest
 
-from dent_os_testbed.Device import DeviceType
 from dent_os_testbed.utils.test_utils.tb_utils import (
     tb_check_and_install_pkg,
     tb_device_check_health,

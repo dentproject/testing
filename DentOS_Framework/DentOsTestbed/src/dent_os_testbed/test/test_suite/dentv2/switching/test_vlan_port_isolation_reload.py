@@ -4,7 +4,6 @@ import pytest
 
 from dent_os_testbed.Device import DeviceType
 from dent_os_testbed.lib.bridge.bridge_link import BridgeLink
-from dent_os_testbed.lib.bridge.bridge_vlan import BridgeVlan
 from dent_os_testbed.lib.interfaces.interface import Interface
 from dent_os_testbed.lib.ip.ip_link import IpLink
 from dent_os_testbed.lib.os.service import Service
@@ -17,7 +16,6 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_setup_streams,
     tgen_utils_start_traffic,
     tgen_utils_stop_protocols,
-    tgen_utils_stop_traffic,
 )
 
 pytestmark = pytest.mark.suite_vlan_port_isolation

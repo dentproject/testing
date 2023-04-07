@@ -10,7 +10,6 @@ import pytest
 
 from dent_os_testbed.constants import (
     LOGDIR,
-    OS_IMAGE_DOWNLOAD_URL,
     PYTEST_SUITE_GROUPS,
     TEST_OUTPUT_FOLDER,
     TESTBED_CONFIG_FILE_NAME,

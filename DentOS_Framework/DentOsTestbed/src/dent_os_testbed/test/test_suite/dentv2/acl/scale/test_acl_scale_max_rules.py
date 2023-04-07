@@ -11,7 +11,6 @@ import pytest
 from dent_os_testbed.Device import DeviceType
 from dent_os_testbed.lib.tc.tc_chain import TcChain
 from dent_os_testbed.lib.tc.tc_filter import TcFilter
-from dent_os_testbed.lib.tc.tc_qdisc import TcQdisc
 from dent_os_testbed.utils.test_utils.tb_utils import (
     tb_reload_nw_and_flush_firewall,
     tb_reset_qdisc,
@@ -25,7 +24,6 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_setup_streams,
     tgen_utils_start_traffic,
     tgen_utils_stop_protocols,
-    tgen_utils_stop_traffic,
 )
 
 pytestmark = pytest.mark.suite_acl_scale

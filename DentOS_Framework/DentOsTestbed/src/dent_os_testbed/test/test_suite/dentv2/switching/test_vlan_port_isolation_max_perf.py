@@ -15,7 +15,6 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_setup_streams,
     tgen_utils_start_traffic,
     tgen_utils_stop_protocols,
-    tgen_utils_stop_traffic,
 )
 
 pytestmark = pytest.mark.suite_vlan_port_isolation

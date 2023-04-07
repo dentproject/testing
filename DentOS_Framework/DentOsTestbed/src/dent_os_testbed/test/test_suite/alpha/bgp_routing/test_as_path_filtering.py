@@ -13,9 +13,7 @@ from dent_os_testbed.lib.frr.route_map import RouteMap
 from dent_os_testbed.utils.test_utils.bgp_routing_utils import bgp_routing_get_local_as
 from dent_os_testbed.utils.test_utils.tb_utils import tb_reload_nw_and_flush_firewall
 from dent_os_testbed.utils.test_utils.tgen_utils import (
-    tgen_util_flap_bgp_peer,
     tgen_utils_create_bgp_devices_and_connect,
-    tgen_utils_create_devices_and_connect,
     tgen_utils_get_dent_devices_with_tgen,
     tgen_utils_get_loss,
     tgen_utils_get_traffic_stats,

@@ -1,17 +1,13 @@
 import asyncio
-import json
 import os
-import time
 
 import pytest
 
-from dent_os_testbed.Device import DeviceType
 from dent_os_testbed.lib.os.service import Service
 from dent_os_testbed.utils.test_utils.tb_utils import (
     check_asyncio_results,
     tb_clean_config,
     tb_get_all_devices,
-    tb_reset_ssh_connections,
 )
 
 pytestmark = pytest.mark.suite_clean_config
