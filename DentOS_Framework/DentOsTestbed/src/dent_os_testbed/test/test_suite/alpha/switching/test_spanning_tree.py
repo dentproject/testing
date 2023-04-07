@@ -66,9 +66,9 @@ async def test_alpha_lab_switching_spanning_tree(testbed):
                     dd.applog.info(f'Ran command {cmd} rc {rc} out {out}')
                     assert rc == 0, f'failed to run {cmd} rc {rc} out {out}'
         for cmd in [
-            f'brctl show test_br',
-            f'brctl showstp test_br',
-            f'brctl delbr test_br',
+            'brctl show test_br',
+            'brctl showstp test_br',
+            'brctl delbr test_br',
         ]:
             rc, out = await dd.run_cmd(cmd, sudo=True)
             dd.applog.info(f'Ran command {cmd} rc {rc} out {out}')

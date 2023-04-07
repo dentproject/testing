@@ -133,24 +133,24 @@ async def test_bridging_learning_illegal_address(testbed):
     for row in stats.Rows:
         if row['Traffic Item'] == 'all_zeros' and row['Rx Port'] == tg_ports[0]:
             assert tgen_utils_get_loss(row) == 0.000, \
-                f'Verify that traffic from swp4 to swp1 forwarded.\n'
+                'Verify that traffic from swp4 to swp1 forwarded.\n'
         if row['Traffic Item'] == 'broadcast' and row['Rx Port'] == tg_ports[2]:
             assert tgen_utils_get_loss(row) == 100.000, \
-                f'Verify that traffic from swp2 to swp3 not forwarded.\n'
+                'Verify that traffic from swp2 to swp3 not forwarded.\n'
         if row['Traffic Item'] == 'multicast_1' and row['Rx Port'] == tg_ports[1]:
             assert tgen_utils_get_loss(row) == 100.000, \
-                f'Verify that traffic from swp3 to swp2 not forwarded.\n'
+                'Verify that traffic from swp3 to swp2 not forwarded.\n'
         if row['Traffic Item'] == 'multicast_2' and row['Rx Port'] == tg_ports[3]:
             assert tgen_utils_get_loss(row) == 100.000, \
-                f'Verify that traffic from swp1 to swp4 not forwarded.\n'
+                'Verify that traffic from swp1 to swp4 not forwarded.\n'
 
     out = await BridgeFdb.show(input_data=[{device_host_name: [{'options': '-j'}]}],
                                parse_output=True)
-    assert out[0][device_host_name]['rc'] == 0, f'Failed to get fdb entry.\n'
+    assert out[0][device_host_name]['rc'] == 0, 'Failed to get fdb entry.\n'
 
     fdb_entries = out[0][device_host_name]['parsed_output']
     learned_macs = [en['mac'] for en in fdb_entries if 'mac' in en]
     illegal_address = ['00:00:00:00:00:00', 'ff:ff:ff:ff:ff:ff', '01:00:00:00:00:00']
     for mac in illegal_address:
-        err_msg = f'Verify that source macs have not been learned due to illegal address.\n'
+        err_msg = 'Verify that source macs have not been learned due to illegal address.\n'
         assert mac not in learned_macs, err_msg

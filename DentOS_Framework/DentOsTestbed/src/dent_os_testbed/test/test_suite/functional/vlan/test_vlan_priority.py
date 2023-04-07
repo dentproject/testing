@@ -62,7 +62,7 @@ async def test_vlan_priority_tag(testbed):
     tx_ports = dev_groups[tg_ports[0]][0]['name']
     rx_ports = dev_groups[tg_ports[1]][0]['name']
 
-    streams = {f'Traffic with VLAN priority': {
+    streams = {'Traffic with VLAN priority': {
         'type': 'raw',
         'protocol': '802.1Q',
         'ip_source': tx_ports,

@@ -29,7 +29,7 @@ async def test_reload_interface(testbed):
     5. copy back the original interfaces and reload the interfaces
     """
     if testbed.args.is_provisioned:
-        testbed.applog.info(f'Skipping test since on provisioned setup')
+        testbed.applog.info('Skipping test since on provisioned setup')
         return
 
     if not testbed.discovery_report:

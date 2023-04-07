@@ -56,7 +56,7 @@ class OsInstallerOnieSelect:
             await self._reboot(device)
             self.applog.debug('Successfully installed image')
         except Exception as e:
-            self.applog.exception(f'OsInstallerOnie.install_os', exc_info=e)
+            self.applog.exception('OsInstallerOnie.install_os', exc_info=e)
             raise
 
     async def verify_os(self, device, os_image_download_url, staging_device, staging_path):
@@ -81,7 +81,7 @@ class OsInstallerOnieSelect:
             await self._validate_installation(device, os_image_name)
             self.applog.debug('Successfully validated image')
         except Exception as e:
-            self.applog.exception(f'OsInstallerOnie.validate_os', exc_info=e)
+            self.applog.exception('OsInstallerOnie.validate_os', exc_info=e)
             raise
 
     async def _run_onie_select(self, device):
@@ -116,7 +116,7 @@ class OsInstallerOnieSelect:
                     self.applog.error(err_str)
                     raise Exception(err_str)
                 total_time += time.time() - start_time
-            raise TimeoutError(f'Installation timeout')
+            raise TimeoutError('Installation timeout')
         except Exception as e:
             self.applog.exception('Exception occured in retrieving OS information', exc_info=e)
             raise
@@ -128,7 +128,7 @@ class OsInstallerOnieSelect:
             await staging_device.run_cmd(
                 f'wget {os_image_download_url} -O {staging_path}', sudo=True
             )
-            self.applog.debug(f'Staging complete')
+            self.applog.debug('Staging complete')
         except Exception as e:
             self.applog.exception('Exception occured --> stage_os_image', exc_info=e)
             raise

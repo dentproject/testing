@@ -418,7 +418,7 @@ class SerialConsole:
         """
         try:
             if not await self.logged_in():
-                self.applog.info(f'Logging in to console')
+                self.applog.info('Logging in to console')
                 await self._login()
             self.applog.info(f'Executing command {cmd}')
             return await self._run_cmd(cmd, timeout)

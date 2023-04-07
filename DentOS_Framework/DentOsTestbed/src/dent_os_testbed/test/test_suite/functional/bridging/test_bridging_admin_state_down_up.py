@@ -137,12 +137,12 @@ async def test_bridging_admin_state_down_up(testbed):
 
     out = await BridgeFdb.show(input_data=[{device_host_name: [{'options': '-j'}]}],
                                parse_output=True)
-    assert out[0][device_host_name]['rc'] == 0, f'Failed to get fdb entry.\n'
+    assert out[0][device_host_name]['rc'] == 0, 'Failed to get fdb entry.\n'
 
     fdb_entries = out[0][device_host_name]['parsed_output']
     learned_macs = [en['mac'] for en in fdb_entries if 'mac' in en]
     for mac in list_macs:
-        err_msg = f'Verify that source macs have not been learned.\n'
+        err_msg = 'Verify that source macs have not been learned.\n'
         assert mac not in learned_macs, err_msg
 
     out = await IpLink.set(
@@ -161,10 +161,10 @@ async def test_bridging_admin_state_down_up(testbed):
 
     out = await BridgeFdb.show(input_data=[{device_host_name: [{'options': '-j'}]}],
                                parse_output=True)
-    assert out[0][device_host_name]['rc'] == 0, f'Failed to get fdb entry.\n'
+    assert out[0][device_host_name]['rc'] == 0, 'Failed to get fdb entry.\n'
 
     fdb_entries = out[0][device_host_name]['parsed_output']
     learned_macs = [en['mac'] for en in fdb_entries if 'mac' in en]
     for mac in list_macs:
-        err_msg = f'Verify that source macs have been learned.\n'
+        err_msg = 'Verify that source macs have been learned.\n'
         assert mac in learned_macs, err_msg

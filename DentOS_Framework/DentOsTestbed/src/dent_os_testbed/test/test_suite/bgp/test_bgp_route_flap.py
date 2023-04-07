@@ -49,7 +49,7 @@ async def do_trigger(tgen_dev, src, devices, trigger):
                 ), f'Failed to restart the service {s} {out}'
         elif trigger == TRIGGER_IFRELOAD:
             out = await Interface.reload(input_data=[{device.host_name: [{'options': '-a'}]}])
-            assert out[0][device.host_name]['rc'] == 0, f'Failed to ifreload -a '
+            assert out[0][device.host_name]['rc'] == 0, 'Failed to ifreload -a '
             device.applog.info(out)
         else:
             tgen_dev.applog.info(f'unknown trigger {trigger} on {device.host_name}')

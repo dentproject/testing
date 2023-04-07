@@ -210,7 +210,7 @@ async def get_link_operstate(host_name, link):
 async def _test_switch_reload_disr1_switch(testbed):
     dev_name = 'dis_r1'
     if dev_name not in testbed.devices_dict:
-        msg = f'SJC DISR2 could not be found cannot proceed '
+        msg = 'SJC DISR2 could not be found cannot proceed '
         testbed.applog.info(msg)
         return
     dev = testbed.devices_dict[dev_name]

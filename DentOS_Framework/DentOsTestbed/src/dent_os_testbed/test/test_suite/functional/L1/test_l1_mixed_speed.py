@@ -61,17 +61,17 @@ async def test_l1_mixed_speed(testbed):
 
     # 1. Init bridge entity br0.
     out = await IpLink.add(input_data=[{device_host_name: [{'device': bridge, 'type': 'bridge'}]}])
-    assert out[0][device_host_name]['rc'] == 0, f'Verify that bridge created.'
+    assert out[0][device_host_name]['rc'] == 0, 'Verify that bridge created.'
 
     out = await IpLink.set(input_data=[{device_host_name: [{'device': bridge, 'operstate': 'up'}]}])
-    assert out[0][device_host_name]['rc'] == 0, f"Verify that bridge set to 'UP' state."
+    assert out[0][device_host_name]['rc'] == 0, "Verify that bridge set to 'UP' state."
 
     # 2. Enslave ports to bridge br0
     out = await IpLink.set(input_data=[{device_host_name: [
         {'device': port,
          'operstate': 'up',
          'master': bridge} for port in ports]}])
-    err_msg = f"Verify that bridge entities set to 'UP' state and links enslaved to bridge."
+    err_msg = "Verify that bridge entities set to 'UP' state and links enslaved to bridge."
     assert out[0][device_host_name]['rc'] == 0, err_msg
 
     # 3. Configure dut ports
@@ -80,27 +80,27 @@ async def test_l1_mixed_speed(testbed):
          'speed': 1000,
          'autoneg': 'off',
          'duplex': 'full'}]}])
-    assert out[0][device_host_name]['rc'] == 0, f'Verify port settings has been changed '
+    assert out[0][device_host_name]['rc'] == 0, 'Verify port settings has been changed '
 
     out = await Ethtool.set(input_data=[{device_host_name: [{
         'devname': ports[1],
         'speed': 100,
         'autoneg': 'on',
         'duplex': 'half'}]}])
-    assert out[0][device_host_name]['rc'] == 0, f'Verify port settings has been changed '
+    assert out[0][device_host_name]['rc'] == 0, 'Verify port settings has been changed '
 
     out = await Ethtool.set(input_data=[{device_host_name: [{
         'devname': ports[2],
         'speed': 10,
         'autoneg': 'off',
         'duplex': 'full'}]}])
-    assert out[0][device_host_name]['rc'] == 0, f'Verify port settings has been changed '
+    assert out[0][device_host_name]['rc'] == 0, 'Verify port settings has been changed '
 
     out = await Ethtool.set(input_data=[{device_host_name: [{
         'devname': ports[3],
         'autoneg': 'off',
         'advertise': '0x004'}]}])
-    assert out[0][device_host_name]['rc'] == 0, f'Verify port settings has been changed '
+    assert out[0][device_host_name]['rc'] == 0, 'Verify port settings has been changed '
 
     dev_groups = tgen_utils_dev_groups_from_config(
         [{'ixp': tg_ports[0], 'ip': '100.1.1.2', 'gw': '100.1.1.6', 'plen': 24},

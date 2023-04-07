@@ -110,7 +110,7 @@ async def test_qos_class_precedence(testbed, trust_mode):
 
     # 6. Configure 2 streams (with high and low priority) on 2 ingress ports (>100% utilization)
     dev_groups = tgen_utils_dev_groups_from_config((
-        {'ixp': tg, 'ip': f'1.1.1.{idx}', 'gw': f'1.1.1.10', 'plen': 24, 'vlan': vlan}
+        {'ixp': tg, 'ip': f'1.1.1.{idx}', 'gw': '1.1.1.10', 'plen': 24, 'vlan': vlan}
         for idx, tg in enumerate(tg_ports, start=1)
     ))
     await tgen_utils_traffic_generator_connect(tgen_dev, tg_ports, ports, dev_groups)

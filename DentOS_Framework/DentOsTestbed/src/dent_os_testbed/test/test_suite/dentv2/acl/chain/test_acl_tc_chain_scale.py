@@ -28,7 +28,7 @@ async def test_iptables_tc_scale(testbed):
     """
     devices = await tb_get_all_devices(testbed, include_devices=[DeviceType.INFRA_SWITCH])
     if not devices:
-        testbed.applog.info(f'No Infra devices reachable... Skipping test!!!')
+        testbed.applog.info('No Infra devices reachable... Skipping test!!!')
         assert 0
         return
     dent_dev = devices[0]
