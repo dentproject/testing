@@ -14,7 +14,7 @@ def test_that_sysctl_get(capfd):
     dv1 = TestDevice(platform='dentos')
     dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
-    out = loop.run_until_complete(Sysctl.get(input_data = [{
+    out = loop.run_until_complete(Sysctl.get(input_data=[{
         # device 1
         'test_dev' : [{}],
     }], device_obj={'test_dev':dv1}))
@@ -25,7 +25,7 @@ def test_that_sysctl_get(capfd):
     assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
-    out = loop.run_until_complete(Sysctl.get(input_data = [{
+    out = loop.run_until_complete(Sysctl.get(input_data=[{
         # device 1
         'test_dev1' : [{
         # command 1
@@ -46,7 +46,7 @@ def test_that_sysctl_get(capfd):
     assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
-    out = loop.run_until_complete(Sysctl.get(input_data = [{
+    out = loop.run_until_complete(Sysctl.get(input_data=[{
         # device 1
         'test_dev1' : [{
             'variable':'wlmoznsp',
@@ -75,7 +75,7 @@ def test_that_sysctl_set(capfd):
     dv1 = TestDevice(platform='dentos')
     dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
-    out = loop.run_until_complete(Sysctl.set(input_data = [{
+    out = loop.run_until_complete(Sysctl.set(input_data=[{
         # device 1
         'test_dev' : [{}],
     }], device_obj={'test_dev':dv1}))
@@ -86,7 +86,7 @@ def test_that_sysctl_set(capfd):
     assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
-    out = loop.run_until_complete(Sysctl.set(input_data = [{
+    out = loop.run_until_complete(Sysctl.set(input_data=[{
         # device 1
         'test_dev1' : [{
         # command 1
@@ -109,7 +109,7 @@ def test_that_sysctl_set(capfd):
     assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
-    out = loop.run_until_complete(Sysctl.set(input_data = [{
+    out = loop.run_until_complete(Sysctl.set(input_data=[{
         # device 1
         'test_dev1' : [{
             'variable':'eysjejvo',
