@@ -80,8 +80,8 @@ class PerfCpu(PerfBase):
 
     def analyze(self, thresholds):
         threshold = thresholds.get('CPU', self._threshold)
-        for time, record in self._data:
-            self.analyze_data(time, record, threshold)
+        for cpu_time, record in self._data:
+            self.analyze_data(cpu_time, record, threshold)
 
 
 class PerfMemory(PerfBase):
@@ -120,8 +120,8 @@ class PerfMemory(PerfBase):
 
     def analyze(self, thresholds):
         threshold = thresholds.get('Memory', self._threshold)
-        for time, record in self._data:
-            self.analyze_data(time, record, threshold)
+        for memory_time, record in self._data:
+            self.analyze_data(memory_time, record, threshold)
 
 
 class PerfProcesses(PerfBase):
@@ -210,8 +210,8 @@ class PerfProcesses(PerfBase):
                     continue
             else:
                 threshold = threshold[name]
-            for time, record in proc['data']:
-                self.analyze_data(name, time, record, threshold)
+            for x_time, record in proc['data']:
+                self.analyze_data(name, x_time, record, threshold)
 
 
 class PerfRunner(threading.Thread):
