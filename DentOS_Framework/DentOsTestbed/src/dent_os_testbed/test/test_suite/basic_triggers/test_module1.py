@@ -109,41 +109,41 @@ async def test_link_up_down(testbed):
         assert out[0][dev.host_name]['rc'] == 0
         links = json.loads(out[0][dev.host_name]['result'])
         # Get a swp port that is up
-        link = ''
-        for l in links:
-            if 'sw' in l['ifname'] and l['operstate'] == 'UP':
-                link = l['ifname']
+        link_name = ''
+        for link in links:
+            if 'sw' in link['ifname'] and link['operstate'] == 'UP':
+                link_name = l['ifname']
                 break
-        if link == '':
+        if link_name == '':
             print('Not even single swp is UP')
             return
 
         out = await IpLink.show(
-            input_data=[{dev.host_name: [{'device': link, 'cmd_options': '-j'}]}],
+            input_data=[{dev.host_name: [{'device': link_name, 'cmd_options': '-j'}]}],
         )
         assert out[0][dev.host_name]['rc'] == 0
         print(out)
         out = await IpLink.set(
-            input_data=[{dev.host_name: [{'device': link, 'operstate': 'down'}]}],
+            input_data=[{dev.host_name: [{'device': link_name, 'operstate': 'down'}]}],
         )
         assert out[0][dev.host_name]['rc'] == 0
         print(out)
         # wait for it to come down
         time.sleep(5)
         out = await IpLink.show(
-            input_data=[{dev.host_name: [{'device': link, 'cmd_options': '-j'}]}],
+            input_data=[{dev.host_name: [{'device': link_name, 'cmd_options': '-j'}]}],
         )
         assert out[0][dev.host_name]['rc'] == 0
         print(out)
         out = await IpLink.set(
-            input_data=[{dev.host_name: [{'device': link, 'operstate': 'up'}]}],
+            input_data=[{dev.host_name: [{'device': link_name, 'operstate': 'up'}]}],
         )
         assert out[0][dev.host_name]['rc'] == 0
         print(out)
         # wait for it to come up
         time.sleep(5)
         out = await IpLink.show(
-            input_data=[{dev.host_name: [{'device': link, 'cmd_options': '-j'}]}],
+            input_data=[{dev.host_name: [{'device': link_name, 'cmd_options': '-j'}]}],
         )
         assert out[0][dev.host_name]['rc'] == 0
         print(out)

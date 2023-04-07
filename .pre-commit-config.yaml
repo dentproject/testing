@@ -16,4 +16,4 @@ repos:
   rev: 6.0.0
   hooks:
   - id: flake8
-    args: ["--max-line-length=201", "--extend-ignore=W605,F541,F601,F821,F841,E722,E741"]
+    args: ["--max-line-length=201", "--extend-ignore=W605,F541,F601,F821,F841,E722"]
