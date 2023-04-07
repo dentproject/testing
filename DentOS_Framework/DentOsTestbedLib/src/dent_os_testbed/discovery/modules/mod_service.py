@@ -15,17 +15,23 @@ class ServiceMod(Module):
     def set_service(self, src, dst):
 
         for i, service in enumerate(src):
-            if 'name' in service: dst[i].name = service.get('name')
-            if 'loaded' in service: dst[i].loaded = service.get('loaded')
-            if 'active' in service: dst[i].active = service.get('active')
-            if 'status' in service: dst[i].status = service.get('status')
-            if 'description' in service: dst[i].description = service.get('description')
+            if 'name' in service:
+                dst[i].name = service.get('name')
+            if 'loaded' in service:
+                dst[i].loaded = service.get('loaded')
+            if 'active' in service:
+                dst[i].active = service.get('active')
+            if 'status' in service:
+                dst[i].status = service.get('status')
+            if 'description' in service:
+                dst[i].description = service.get('description')
 
     async def discover(self):
         # need to get device instance to get the data from
         #
         for i, dut in enumerate(self.report.duts):
-            if not dut.device_id: continue
+            if not dut.device_id:
+                continue
             dev = self.ctx.devices_dict[dut.device_id]
             if dev.os == 'ixnetwork' or not await dev.is_connected():
                 print('Device not connected skipping service discovery')

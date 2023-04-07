@@ -69,8 +69,10 @@ class DiscoveryRunner(object):
 
         dcl = []
         for e in os.listdir(self.modulesDir):
-            if e == '__init__.py': continue
-            if not e.endswith('.py'): continue
+            if e == '__init__.py':
+                continue
+            if not e.endswith('.py'):
+                continue
 
             b = os.path.splitext(e)[0]
             n = 'dent_os_testbed.discovery.%s' % b
@@ -89,9 +91,12 @@ class DiscoveryRunner(object):
 
             for k, v in module.__dict__.items():
 
-                if not isinstance(v, type): continue
-                if Module is v: continue
-                if Module not in v.mro(): continue
+                if not isinstance(v, type):
+                    continue
+                if Module is v:
+                    continue
+                if Module not in v.mro():
+                    continue
 
                 dcl.append((k, v,))
 

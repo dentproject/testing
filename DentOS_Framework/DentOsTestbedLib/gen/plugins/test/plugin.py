@@ -448,7 +448,8 @@ class TestCodePyObject(object):
             test_body_call = ''
             for impl in self._cls.implemented_by:
                 for cmd in impl.commands:
-                    if api not in cmd.apis: continue
+                    if api not in cmd.apis:
+                        continue
                     args['params1'] = ''
                     args['params2'] = ''
                     for m in cmd.params:

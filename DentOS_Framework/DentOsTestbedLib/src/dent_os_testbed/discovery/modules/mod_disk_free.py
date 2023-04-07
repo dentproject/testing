@@ -15,18 +15,25 @@ class DiskFreeMod(Module):
     def set_disk_free(self, src, dst):
 
         for i, disk_free in enumerate(src):
-            if 'filesystem' in disk_free: dst[i].filesystem = disk_free.get('filesystem')
-            if 'size' in disk_free: dst[i].size = disk_free.get('size')
-            if 'used' in disk_free: dst[i].used = disk_free.get('used')
-            if 'available' in disk_free: dst[i].available = disk_free.get('available')
-            if 'use_percentage' in disk_free: dst[i].use_percentage = disk_free.get('use_percentage')
-            if 'mounted_on' in disk_free: dst[i].mounted_on = disk_free.get('mounted_on')
+            if 'filesystem' in disk_free:
+                dst[i].filesystem = disk_free.get('filesystem')
+            if 'size' in disk_free:
+                dst[i].size = disk_free.get('size')
+            if 'used' in disk_free:
+                dst[i].used = disk_free.get('used')
+            if 'available' in disk_free:
+                dst[i].available = disk_free.get('available')
+            if 'use_percentage' in disk_free:
+                dst[i].use_percentage = disk_free.get('use_percentage')
+            if 'mounted_on' in disk_free:
+                dst[i].mounted_on = disk_free.get('mounted_on')
 
     async def discover(self):
         # need to get device instance to get the data from
         #
         for i, dut in enumerate(self.report.duts):
-            if not dut.device_id: continue
+            if not dut.device_id:
+                continue
             dev = self.ctx.devices_dict[dut.device_id]
             if dev.os == 'ixnetwork' or not await dev.is_connected():
                 print('Device not connected skipping disk_free discovery')

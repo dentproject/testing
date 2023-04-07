@@ -32,11 +32,16 @@ class ReportPyObject(object):
     def get_python_type(self, mbr):
         if not isinstance(mbr, str):
             mbr = mbr.type
-        if mbr == 'string': return 'str'
-        if mbr == 'string_list': return 'str'
-        if mbr == 'time_t': return 'str'
-        if mbr == 'ip_addr_t': return 'str'
-        if mbr == 'mac_t': return 'str'
+        if mbr == 'string':
+            return 'str'
+        if mbr == 'string_list':
+            return 'str'
+        if mbr == 'time_t':
+            return 'str'
+        if mbr == 'ip_addr_t':
+            return 'str'
+        if mbr == 'mac_t':
+            return 'str'
         return mbr
 
     def generate_schema_classes(self, parent, name):
@@ -120,13 +125,20 @@ class DiscoveryModulePyObject(object):
     def get_mbr_default(self, mbr):
         if not isinstance(mbr, str):
             mbr = mbr.type
-        if mbr == 'string': return "''"
-        if mbr == 'string_list': return "''"
-        if mbr == 'time_t': return "''"
-        if mbr == 'ip_addr_t': return "''"
-        if mbr == 'mac_t': return "''"
-        if mbr == 'int': return 0
-        if mbr == 'float': return 0.0
+        if mbr == 'string':
+            return "''"
+        if mbr == 'string_list':
+            return "''"
+        if mbr == 'time_t':
+            return "''"
+        if mbr == 'ip_addr_t':
+            return "''"
+        if mbr == 'mac_t':
+            return "''"
+        if mbr == 'int':
+            return 0
+        if mbr == 'float':
+            return 0.0
         return mbr
 
     def generate_mbr_set_attr(self, cls):
@@ -224,10 +236,13 @@ class DiscoveryPlugin(SamplePlugin):
                 continue
             visited[node] = True
             for m in node.members:
-                if not m.cls: continue
+                if not m.cls:
+                    continue
                 queue.append((m.cls, parent+'.'+m.name))
-            if not node.implemented_by: continue
-            if 'show' not in node.apis: continue
+            if not node.implemented_by:
+                continue
+            if 'show' not in node.apis:
+                continue
             # now need to create discovery module
             fname = os.path.join(tdir, 'mod_' + node.name + '.py')
             # gd.write(f"modules/mod_{node.name}.py\n")
