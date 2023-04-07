@@ -198,7 +198,7 @@ class SerialConsole:
         try:
             self.applog.info('Login done. %s' % ('Succeeded' if result.result() else 'Failed'))
             self.login_successful = result.result()
-        except:
+        except Exception as e:
             self.applog.exception('Login to console %s failed' % self.dev)
             self.login_successful = False
         self.login_done = True

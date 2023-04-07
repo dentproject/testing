@@ -37,7 +37,7 @@ class LinuxLldpImpl(LinuxLldp):
                     for chassis in data['chassis']:
                         item['remote_host'] = chassis
                     interfaces.append(item)
-        except:
+        except Exception as e:
             return []
         return interfaces
 

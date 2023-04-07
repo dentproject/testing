@@ -103,6 +103,6 @@ class LocalFileHandler(FileHandler):
         try:
             shutil.copy2(src_path, dst_path, follow_symlinks=follow_symlinks)
             self.applog.info('Copy file succeeded src:%s dst:%s' % (src_path, dst_path))
-        except:
+        except Exception as e:
             self.applog.error('Copy file failed src:%s dst:%s' % (src_path, dst_path))
             raise
