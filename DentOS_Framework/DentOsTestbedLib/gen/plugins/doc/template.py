@@ -27,7 +27,7 @@ print (out[0]['test_dev1']["output"])
 """
 
 
-md_apis="""
+md_apis = """
 ## %(api_name)s API
 Description
 ```
@@ -42,15 +42,15 @@ Sample Usage
 """
 
 
-md_mbr_hdr="""
+md_mbr_hdr = """
 ## Properties
 Name | Type | Description
 ------------ | ------------- |  -------------"""
-md_mbr_entry="""%(cmbr_name)s|%(cmbr_type)s|%(cmbr_desc)s"""
+md_mbr_entry = """%(cmbr_name)s|%(cmbr_type)s|%(cmbr_desc)s"""
 
 
-md_mod_hdr="""
+md_mod_hdr = """
 ## Modules
 Name | Classes | Description
 ---------------------- | -------------------------- |  ------------------------"""
-md_mod_entry="""%(mod_name)s|%(classes)s|%(mod_desc)s"""
+md_mod_entry = """%(mod_name)s|%(classes)s|%(mod_desc)s"""

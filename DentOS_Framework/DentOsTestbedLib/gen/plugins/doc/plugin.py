@@ -83,7 +83,7 @@ class DocMdObject(object):
         if mbr.type == 'ip_addr_t':
             return '\''+'.'.join(map(str, (random.randint(0, 255) for _ in range(4)))) + '\''
         if mbr.type == 'mac_t':
-            return '\''+ ':'.join(map(str, ('%02x' % random.randint(0, 255) for _ in range(6)))) + '\''
+            return '\'' + ':'.join(map(str, ('%02x' % random.randint(0, 255) for _ in range(6)))) + '\''
         return '\'\''
 
     def generate_code(self):
