@@ -13,7 +13,7 @@ class LinuxOnieImpl(LinuxOnie):
         """
         params = kwarg['params']
         cmd = 'onie-select '
-        ############# Implement me ################
+        # TODO: Implement me
         if 'options' in params:
             cmd += params['options']
 

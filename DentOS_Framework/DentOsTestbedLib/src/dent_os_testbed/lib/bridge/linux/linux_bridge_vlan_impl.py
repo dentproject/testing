@@ -14,7 +14,7 @@ class LinuxBridgeVlanImpl(LinuxBridgeVlan):
         bridge vlan { add | del } dev DEV vid VID [ tunnel_info TUNNEL_ID ] [ pvid ] [ untagged ] [ self ] [ master ]
 
         """
-        ############# Implement me ################
+        # TODO: Implement me
         params = kwarg['params']
         cmd = 'bridge {} vlan {} '.format(params.get('cmd_options', ''), command)
         # custom code here
@@ -34,7 +34,7 @@ class LinuxBridgeVlanImpl(LinuxBridgeVlan):
 
     def format_show(self, command, *argv, **kwarg):
         """"""
-        ############# Implement me ################
+        # TODO: Implement me
         params = kwarg['params']
         if params.get('dut_discovery', False):
             params['cmd_options'] = '-j'

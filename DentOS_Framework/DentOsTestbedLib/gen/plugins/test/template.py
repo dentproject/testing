@@ -106,7 +106,7 @@ py_impl_class_common_format_cmd = """\"\"\"
 \"\"\"
 params = kwarg["params"]
 cmd = '%(cmd)s {} '.format(command)
-############# Implement me ################
+# TODO: Implement me
 
 return cmd
 """
@@ -114,7 +114,7 @@ return cmd
 py_impl_class_common_run_cmd = """\"\"\"
 %(cmd_desc)s
 \"\"\"
-############# Implement me ################
+# TODO: Implement me
 
 return 0,""
 """
@@ -123,7 +123,7 @@ py_impl_class_common_parse_cmd = """\"\"\"
 %(cmd_desc)s
 \"\"\"
 parse_out = output.split(" ")
-############# Implement me ################
+# TODO: Implement me
 
 return parse_out
 """

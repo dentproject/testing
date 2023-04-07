@@ -17,7 +17,7 @@ class LinuxSysctlImpl(LinuxSysctl):
             cmd += params['options']
 
         cmd += ' {}'.format(params['variable'])
-        ############# Implement me ################
+        # TODO: Implement me
 
         return cmd
 
@@ -52,7 +52,7 @@ class LinuxSysctlImpl(LinuxSysctl):
             cmd += params['options']
 
         cmd += ' {}={}'.format(params['variable'], params['value'])
-        ############# Implement me ################
+        # TODO: Implement me
 
         return cmd
 

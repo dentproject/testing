@@ -25,7 +25,7 @@ class DniPoeTesterImpl(DniPoeTester):
         """
         params = kwarg['params']
         cmd = ' {} '.format(command)
-        ############# Implement me ################
+        # TODO: Implement me
 
         return cmd
 
@@ -66,7 +66,7 @@ class DniPoeTesterImpl(DniPoeTester):
         """
         params = kwarg['params']
         cmd = ' {} '.format(command)
-        ############# Implement me ################
+        # TODO: Implement me
 
         return cmd
 
@@ -78,7 +78,7 @@ class DniPoeTesterImpl(DniPoeTester):
         """
         params = kwarg['params']
         cmd = ' {} '.format(command)
-        ############# Implement me ################
+        # TODO: Implement me
 
         return cmd
 
@@ -121,7 +121,7 @@ class DniPoeTesterImpl(DniPoeTester):
         """
         params = kwarg['params']
         cmd = ' {} '.format(command)
-        ############# Implement me ################
+        # TODO: Implement me
 
         return cmd
 
@@ -132,7 +132,7 @@ class DniPoeTesterImpl(DniPoeTester):
         """
         params = kwarg['params']
         cmd = ' {} '.format(command)
-        ############# Implement me ################
+        # TODO: Implement me
 
         return cmd
 
@@ -177,6 +177,6 @@ class DniPoeTesterImpl(DniPoeTester):
         """
         params = kwarg['params']
         cmd = ' {} '.format(command)
-        ############# Implement me ################
+        # TODO: Implement me
 
         return cmd

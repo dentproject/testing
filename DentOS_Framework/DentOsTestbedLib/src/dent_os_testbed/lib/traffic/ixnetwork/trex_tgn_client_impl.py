@@ -37,7 +37,7 @@ class TrexTgnClientImpl(TrexTgnClient):
           disconnect -
 
         """
-        ############# Implement me ################
+        # TODO: Implement me
         if command == 'disconnect':
             if TrexTgnClientImpl.session is not None:
                 device.applog.info(
@@ -78,7 +78,7 @@ class TrexTgnClientImpl(TrexTgnClient):
         """
         params = kwarg['params']
         cmd = ' {} '.format(command)
-        ############# Implement me ################
+        # TODO: Implement me
 
         return cmd
 
@@ -91,7 +91,7 @@ class TrexTgnClientImpl(TrexTgnClient):
         """
         params = kwarg['params']
         cmd = ' {} '.format(command)
-        ############# Implement me ################
+        # TODO: Implement me
 
         return cmd
 
@@ -102,7 +102,7 @@ class TrexTgnClientImpl(TrexTgnClient):
            save_config - config_file_name
 
         """
-        ############# Implement me ################
+        # TODO: Implement me
 
         return 0, ''
 
@@ -115,7 +115,7 @@ class TrexTgnClientImpl(TrexTgnClient):
         """
         params = kwarg['params']
         cmd = ' {} '.format(command)
-        ############# Implement me ################
+        # TODO: Implement me
 
         return cmd
 
@@ -131,7 +131,7 @@ class TrexTgnClientImpl(TrexTgnClient):
         """
         params = kwarg['params']
         cmd = ' {} '.format(command)
-        ############# Implement me ################
+        # TODO: Implement me
 
         return cmd
 
@@ -145,7 +145,7 @@ class TrexTgnClientImpl(TrexTgnClient):
            clear_stats - [traffic_names]
 
         """
-        ############# Implement me ################
+        # TODO: Implement me
 
         return 0, ''
 
@@ -161,7 +161,7 @@ class TrexTgnClientImpl(TrexTgnClient):
         """
         params = kwarg['params']
         cmd = ' {} '.format(command)
-        ############# Implement me ################
+        # TODO: Implement me
 
         return cmd
 
@@ -177,7 +177,7 @@ class TrexTgnClientImpl(TrexTgnClient):
         """
         params = kwarg['params']
         cmd = ' {} '.format(command)
-        ############# Implement me ################
+        # TODO: Implement me
 
         return cmd
 
@@ -191,7 +191,7 @@ class TrexTgnClientImpl(TrexTgnClient):
            clear_protocol_stats - [protocols]
 
         """
-        ############# Implement me ################
+        # TODO: Implement me
 
         return 0, ''
 
@@ -207,6 +207,6 @@ class TrexTgnClientImpl(TrexTgnClient):
         """
         params = kwarg['params']
         cmd = ' {} '.format(command)
-        ############# Implement me ################
+        # TODO: Implement me
 
         return cmd

@@ -24,7 +24,7 @@ class LinuxFrrIpRouteImpl(LinuxFrrIpRoute):
         """"""
         params = kwarg['params']
         cmd = 'vtysh {} '.format(command)
-        ############# Implement me ################
+        # TODO: Implement me
 
         return cmd
 
@@ -50,6 +50,6 @@ class LinuxFrrIpRouteImpl(LinuxFrrIpRoute):
         """"""
         params = kwarg['params']
         cmd = 'vtysh {} '.format(command)
-        ############# Implement me ################
+        # TODO: Implement me
 
         return cmd

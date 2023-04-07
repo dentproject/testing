@@ -36,7 +36,7 @@ class LinuxBgpImpl(LinuxBgp):
         """"""
         params = kwarg['params']
         cmd = 'vtysh {} '.format(command)
-        ############# Implement me ################
+        # TODO: Implement me
 
         return cmd
 
@@ -77,6 +77,6 @@ class LinuxBgpImpl(LinuxBgp):
         """"""
         params = kwarg['params']
         cmd = 'vtysh {} '.format(command)
-        ############# Implement me ################
+        # TODO: Implement me
 
         return cmd

@@ -53,7 +53,7 @@ class LinuxLldpImpl(LinuxLldp):
         """
         params = kwarg['params']
         cmd = 'lldpcli {} '.format(command)
-        ############# Implement me ################
+        # TODO: Implement me
 
         return cmd
 
@@ -69,6 +69,6 @@ class LinuxLldpImpl(LinuxLldp):
         """
         params = kwarg['params']
         cmd = 'lldpcli {} '.format(command)
-        ############# Implement me ################
+        # TODO: Implement me
 
         return cmd

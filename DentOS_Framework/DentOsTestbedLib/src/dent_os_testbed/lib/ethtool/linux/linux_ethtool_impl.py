@@ -54,7 +54,7 @@ class LinuxEthtoolImpl(LinuxEthtool):
 
         """
         params = kwarg['params']
-        ############# Implement me ################
+        # TODO: Implement me
         cmd = 'ethtool {} '.format(params.get('options', ''), command)
         if params.get('query_driver', False):
             cmd += '-i '
@@ -217,7 +217,7 @@ class LinuxEthtoolImpl(LinuxEthtool):
         """
         params = kwarg['params']
         cmd = 'ethtool {} '.format(command)
-        ############# Implement me ################
+        # TODO: Implement me
 
         return cmd
 
@@ -276,7 +276,7 @@ class LinuxEthtoolImpl(LinuxEthtool):
         """
         params = kwarg['params']
         cmd = 'ethtool {} '.format(command)
-        ############# Implement me ################
+        # TODO: Implement me
 
         return cmd
 
@@ -335,7 +335,7 @@ class LinuxEthtoolImpl(LinuxEthtool):
         """
         params = kwarg['params']
         cmd = 'ethtool {} '.format(command)
-        ############# Implement me ################
+        # TODO: Implement me
 
         return cmd
 
@@ -350,7 +350,7 @@ class LinuxEthtoolImpl(LinuxEthtool):
         """
         params = kwarg['params']
         cmd = 'ethtool {} '.format(command)
-        ############# Implement me ################
+        # TODO: Implement me
 
         return cmd
 
@@ -365,7 +365,7 @@ class LinuxEthtoolImpl(LinuxEthtool):
         """
         params = kwarg['params']
         cmd = 'ethtool {} '.format(command)
-        ############# Implement me ################
+        # TODO: Implement me
 
         return cmd
 
@@ -379,7 +379,7 @@ class LinuxEthtoolImpl(LinuxEthtool):
         """
         params = kwarg['params']
         cmd = 'ethtool {} '.format(command)
-        ############# Implement me ################
+        # TODO: Implement me
 
         return cmd
 
@@ -393,7 +393,7 @@ class LinuxEthtoolImpl(LinuxEthtool):
         """
         params = kwarg['params']
         cmd = 'ethtool {} '.format(command)
-        ############# Implement me ################
+        # TODO: Implement me
 
         return cmd
 
@@ -409,7 +409,7 @@ class LinuxEthtoolImpl(LinuxEthtool):
         """
         params = kwarg['params']
         cmd = 'ethtool {} '.format(command)
-        ############# Implement me ################
+        # TODO: Implement me
 
         return cmd
 
@@ -425,7 +425,7 @@ class LinuxEthtoolImpl(LinuxEthtool):
         """
         params = kwarg['params']
         cmd = 'ethtool {} '.format(command)
-        ############# Implement me ################
+        # TODO: Implement me
 
         return cmd
 
@@ -476,7 +476,7 @@ class LinuxEthtoolImpl(LinuxEthtool):
         """
         params = kwarg['params']
         cmd = 'ethtool {} '.format(command)
-        ############# Implement me ################
+        # TODO: Implement me
 
         return cmd
 
@@ -527,7 +527,7 @@ class LinuxEthtoolImpl(LinuxEthtool):
         """
         params = kwarg['params']
         cmd = 'ethtool {} '.format(command)
-        ############# Implement me ################
+        # TODO: Implement me
 
         return cmd
 
@@ -549,7 +549,7 @@ class LinuxEthtoolImpl(LinuxEthtool):
         """
         params = kwarg['params']
         cmd = 'ethtool {} '.format(command)
-        ############# Implement me ################
+        # TODO: Implement me
 
         return cmd
 
@@ -571,6 +571,6 @@ class LinuxEthtoolImpl(LinuxEthtool):
         """
         params = kwarg['params']
         cmd = 'ethtool {} '.format(command)
-        ############# Implement me ################
+        # TODO: Implement me
 
         return cmd
