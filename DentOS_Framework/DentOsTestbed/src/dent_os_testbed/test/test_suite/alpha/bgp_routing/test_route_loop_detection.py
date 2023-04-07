@@ -18,9 +18,7 @@ from dent_os_testbed.utils.test_utils.tb_utils import (
     tb_reset_ssh_connections,
 )
 from dent_os_testbed.utils.test_utils.tgen_utils import (
-    tgen_util_flap_bgp_peer,
     tgen_utils_create_bgp_devices_and_connect,
-    tgen_utils_create_devices_and_connect,
     tgen_utils_get_dent_devices_with_tgen,
     tgen_utils_get_loss,
     tgen_utils_get_traffic_stats,

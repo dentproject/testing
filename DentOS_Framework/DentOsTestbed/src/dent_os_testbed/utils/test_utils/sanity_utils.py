@@ -1,18 +1,10 @@
 # Copyright 2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 #
-import json
-import time
 
 from dent_os_testbed.Device import DeviceType
-from dent_os_testbed.lib.frr.bgp import Bgp
-from dent_os_testbed.lib.ip.ip_address import IpAddress
-from dent_os_testbed.lib.ip.ip_link import IpLink
-from dent_os_testbed.lib.ip.ip_route import IpRoute
 from dent_os_testbed.lib.poe.poectl import Poectl
 from dent_os_testbed.utils.test_utils.tb_utils import (
     tb_device_check_services,
-    tb_ping_device,
-    tb_reset_ssh_connections,
 )
 
 

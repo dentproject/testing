@@ -2,7 +2,6 @@ import time
 
 import pytest
 
-from dent_os_testbed.lib.iptables.ip_tables import IpTables
 from dent_os_testbed.utils.test_utils.tb_utils import tb_reload_nw_and_flush_firewall
 from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_connect_to_tgen,

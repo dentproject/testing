@@ -1,30 +1,15 @@
 # Copyright 2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 #
 
-import ipaddress
 import json
-import time
-from itertools import islice
 from json.decoder import JSONDecodeError
 
 import pytest
 
 from dent_os_testbed.Device import DeviceType
-from dent_os_testbed.lib.tc.tc_chain import TcChain
 from dent_os_testbed.lib.tc.tc_filter import TcFilter
 from dent_os_testbed.utils.test_utils.tb_utils import (
     tb_get_all_devices,
-    tb_reload_nw_and_flush_firewall,
-)
-from dent_os_testbed.utils.test_utils.tgen_utils import (
-    tgen_utils_create_devices_and_connect,
-    tgen_utils_get_dent_devices_with_tgen,
-    tgen_utils_get_swp_info,
-    tgen_utils_get_traffic_stats,
-    tgen_utils_setup_streams,
-    tgen_utils_start_traffic,
-    tgen_utils_stop_protocols,
-    tgen_utils_stop_traffic,
 )
 
 pytestmark = pytest.mark.suite_acl_performance
