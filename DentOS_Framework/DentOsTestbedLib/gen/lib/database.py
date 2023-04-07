@@ -238,7 +238,7 @@ class Class(object):
         for c in self.commands:
             c.validate()
         if self.implements:
-            pkg, mod, cls =  self.implements.split(':')
+            pkg, mod, cls = self.implements.split(':')
             self.implements = self._mod._pkg._db[pkg].lookup_class(mod, cls)
             if self not in self.implements.implemented_by:
                 self.implements.implemented_by.append(self)
