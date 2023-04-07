@@ -61,8 +61,8 @@ def test_that_devlink_port_set(capfd):
             'cmode':'nwvidlmi',
 
          }],
-         # device 2
-         'test_dev2' : [{
+        # device 2
+        'test_dev2' : [{
             'dev':'qvemwewh',
             'name':'iraczgpc',
             'value':'mdlmwisc',
@@ -160,8 +160,8 @@ def test_that_devlink_port_show(capfd):
             'name':'uaelyfuw',
 
          }],
-         # device 2
-         'test_dev2' : [{
+        # device 2
+        'test_dev2' : [{
             'dev':'yrqcphwy',
             'name':'vaqopkht',
 

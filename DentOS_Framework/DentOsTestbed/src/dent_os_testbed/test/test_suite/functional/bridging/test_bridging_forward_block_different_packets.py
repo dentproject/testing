@@ -90,7 +90,7 @@ async def test_bridging_forward_block_different_packets(testbed):
             'type' :'raw'
         },
         'IPv4_Reserved_MC': {
-             'ip_source': dev_groups[tg_ports[0]][0]['name'],
+            'ip_source': dev_groups[tg_ports[0]][0]['name'],
             'ip_destination': dev_groups[tg_ports[1]][0]['name'],
             'srcIp': '1.1.1.2',
             'dstIp': '224.0.0.69',
@@ -103,7 +103,7 @@ async def test_bridging_forward_block_different_packets(testbed):
             'protocol': '0x0800',
             'type' :'raw'
         },
-         'IPv4_All_Systems_on_this_Subnet': {
+        'IPv4_All_Systems_on_this_Subnet': {
             'ip_source': dev_groups[tg_ports[0]][0]['name'],
             'ip_destination': dev_groups[tg_ports[1]][0]['name'],
             'srcIp': '1.1.1.2',
@@ -114,7 +114,7 @@ async def test_bridging_forward_block_different_packets(testbed):
             'protocol': '0x0800',
             'type' :'raw'
         },
-       'IPv4_All_Routers_on_this_Subnet': {
+        'IPv4_All_Routers_on_this_Subnet': {
             'ip_source': dev_groups[tg_ports[0]][0]['name'],
             'ip_destination': dev_groups[tg_ports[1]][0]['name'],
             'srcIp': '1.1.1.2',
@@ -125,7 +125,7 @@ async def test_bridging_forward_block_different_packets(testbed):
             'protocol': '0x0800',
             'type' :'raw'
         },
-       'IPv4_OSPFIGP': {
+        'IPv4_OSPFIGP': {
             'ip_source': dev_groups[tg_ports[0]][0]['name'],
             'ip_destination': dev_groups[tg_ports[1]][0]['name'],
             'srcIp': '1.1.1.2',
@@ -150,7 +150,7 @@ async def test_bridging_forward_block_different_packets(testbed):
             'protocol': '0x0800',
             'type' :'raw'
         },
-         'IPv4_EIGRP_Routers': {
+        'IPv4_EIGRP_Routers': {
             'ip_source': dev_groups[tg_ports[0]][0]['name'],
             'ip_destination': dev_groups[tg_ports[1]][0]['name'],
             'srcIp': '1.1.1.2',
@@ -175,7 +175,7 @@ async def test_bridging_forward_block_different_packets(testbed):
             'protocol': '0x0800',
             'type' :'raw'
         },
-       'IPv4_VRRP': {
+        'IPv4_VRRP': {
             'ip_source': dev_groups[tg_ports[0]][0]['name'],
             'ip_destination': dev_groups[tg_ports[1]][0]['name'],
             'srcIp': '1.1.1.2',
