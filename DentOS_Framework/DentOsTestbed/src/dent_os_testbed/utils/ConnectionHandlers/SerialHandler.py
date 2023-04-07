@@ -228,7 +228,7 @@ class SerialConsole:
         try:
             self._flush_buffer()
             exit_status, result = await self._run_cmd('who')
-            if exit_status is not 0:
+            if exit_status != 0:
                 return False
             if result:
                 fields = [line for line in result.splitlines()][0].split()
