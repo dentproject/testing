@@ -25,7 +25,7 @@ class LinuxPoectlImpl(LinuxPoectl):
     def parse_show(self, command, output, *argv, **kwarg):
         try:
             parsed_out = json.loads(output)
-        except:
+        except Exception as e:
             return []
         ports = [p for _, p in parsed_out.get('ports', parsed_out).items()]
         for port in ports:

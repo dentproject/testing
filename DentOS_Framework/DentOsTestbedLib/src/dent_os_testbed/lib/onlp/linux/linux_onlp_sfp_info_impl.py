@@ -50,6 +50,6 @@ class LinuxOnlpSfpInfoImpl(LinuxOnlpSfpInfo):
             try:
                 port = int(sfp['port'])
                 sfps_info.append(sfp)
-            except:
+            except Exception as e:
                 pass
         return sfps_info
