@@ -46,7 +46,7 @@ class Module(object):
         rpt, self.report = self.report, self.report.clone(copy.deepcopy(self.report.asDict()))
         try:
             await self.discover()
-        except:
+        except Exception as e:
             self.report = rpt
             raise
 
