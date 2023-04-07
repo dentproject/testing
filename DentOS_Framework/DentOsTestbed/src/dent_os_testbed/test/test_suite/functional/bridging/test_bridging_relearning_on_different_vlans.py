@@ -128,8 +128,7 @@ async def test_bridging_relearning_on_different_vlans(testbed):
             loss = tgen_utils_get_loss(row)
             assert loss == 0, f'Expected loss: 0%, actual: {loss}%'
 
-        out = await BridgeFdb.show(input_data=[{device_host_name: [{'options': '-j'}]}],
-                                parse_output=True)
+        out = await BridgeFdb.show(input_data=[{device_host_name: [{'options': '-j'}]}], parse_output=True)
         assert out[0][device_host_name]['rc'] == 0, f'Failed to get fdb entry.\n'
 
         fdb_entries = out[0][device_host_name]['parsed_output']
@@ -139,8 +138,7 @@ async def test_bridging_relearning_on_different_vlans(testbed):
         if x != 2:
             await tgen_utils_clear_traffic_items(tgen_dev)
 
-    out = await BridgeFdb.show(input_data=[{device_host_name: [{'device': ports[0], 'options': '-j'}]}],
-                            parse_output=True)
+    out = await BridgeFdb.show(input_data=[{device_host_name: [{'device': ports[0], 'options': '-j'}]}], parse_output=True)
     assert out[0][device_host_name]['rc'] == 0, f'Failed to get fdb entry.\n'
 
     fdb_entries = out[0][device_host_name]['parsed_output']

@@ -89,10 +89,12 @@ async def test_bridging_mac_table_size(testbed):
         'streamA': {
             'ip_source': dev_groups[tg_ports[0]][0]['name'],
             'ip_destination': dev_groups[tg_ports[1]][0]['name'],
-            'srcMac': {'type': 'increment',
-                   'start': '00:00:00:00:00:35',
-                   'step': '00:00:00:00:10:00',
-                   'count': pps_value},
+            'srcMac': {
+                'type': 'increment',
+                'start': '00:00:00:00:00:35',
+                'step': '00:00:00:00:10:00',
+                'count': pps_value
+            },
             'dstMac': 'aa:bb:cc:dd:ee:11',
             'type': 'raw',
             'protocol': '802.1Q',
