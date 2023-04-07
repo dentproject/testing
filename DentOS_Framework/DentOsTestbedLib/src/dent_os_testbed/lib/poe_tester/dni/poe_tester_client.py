@@ -55,7 +55,7 @@ class PoeTesterClient:
             next((s for s in stats if s[0:2] == '<<' and s[-2:] == '>>'), None)
         )
         end_index = stats.index(next((s for s in stats if '<COMMAND>' in s), None))
-        for line in stats[title_index + 1 : end_index]:
+        for line in stats[title_index + 1: end_index]:
             if '=' in line:
                 continue
             tokens = line.split()

@@ -46,7 +46,7 @@ class LinuxOnlpSfpInfoImpl(LinuxOnlpSfpInfo):
             for k, s in zip(keys, spaces):
                 s = len(s)
                 sfp[k] = RE_SPACES.sub(' ', line[:s]).strip()
-                line = line[s + 2 :]
+                line = line[s + 2:]
             try:
                 port = int(sfp['port'])
                 sfps_info.append(sfp)

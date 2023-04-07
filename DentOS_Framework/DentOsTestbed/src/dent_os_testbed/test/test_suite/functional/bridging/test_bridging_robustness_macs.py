@@ -121,5 +121,5 @@ async def test_bridging_robustness_macs(testbed):
         amount = int(out) - ixia_vhost_mac_count
         err_msg = f'Expected count of extern_learn offload entities: >{mac_count}*{tolerance}, Actual count: {amount}'
         assert amount > mac_count*tolerance, err_msg
-        if x != 2 :
+        if x != 2:
             await tgen_utils_clear_traffic_items(tgen_dev)
