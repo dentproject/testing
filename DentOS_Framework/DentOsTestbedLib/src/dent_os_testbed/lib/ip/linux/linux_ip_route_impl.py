@@ -123,7 +123,7 @@ class LinuxIpRouteImpl(LinuxIpRoute):
         cmd = 'ip route {} '.format(command)
         cmd += params.get('dst', '') + ' '
         if 'from' in params:
-            cmd += 'from {} iif {} '.format((params.get('from'), params.get('iif')))
+            cmd += 'from {} iif {} '.format(params.get('from'), params.get('iif'))
         if 'oif' in params:
             cmd += 'oif {} '.format(params.get('oif'))
         if 'tos' in params:
