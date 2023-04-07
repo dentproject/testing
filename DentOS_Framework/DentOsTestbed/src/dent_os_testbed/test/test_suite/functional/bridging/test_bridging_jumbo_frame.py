@@ -7,13 +7,13 @@ from dent_os_testbed.lib.ip.ip_link import IpLink
 
 from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_get_dent_devices_with_tgen,
+    tgen_utils_traffic_generator_connect,
+    tgen_utils_dev_groups_from_config,
     tgen_utils_get_traffic_stats,
     tgen_utils_setup_streams,
     tgen_utils_start_traffic,
     tgen_utils_stop_traffic,
-    tgen_utils_get_loss,
-    tgen_utils_dev_groups_from_config,
-    tgen_utils_traffic_generator_connect
+    tgen_utils_get_loss
 )
 
 pytestmark = [
@@ -49,8 +49,7 @@ async def test_bridging_frame_max_size(testbed):
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 4)
     if not tgen_dev or not dent_devices:
         pytest.skip('The testbed does not have enough dent with tgen connections')
-    dent_dev = dent_devices[0]
-    device_host_name = dent_dev.host_name
+    device_host_name = dent_devices[0].host_name
     tg_ports = tgen_dev.links_dict[device_host_name][0]
     ports = tgen_dev.links_dict[device_host_name][1]
     traffic_duration = 5
@@ -85,11 +84,8 @@ async def test_bridging_frame_max_size(testbed):
 
     out = await BridgeFdb.add(
         input_data=[{device_host_name: [
-            {'device': ports[0], 'lladdr': 'aa:bb:cc:dd:ee:11', 'master': True, 'static': True},
-            {'device': ports[1], 'lladdr': 'aa:bb:cc:dd:ee:12', 'master': True, 'static': True},
-            {'device': ports[2], 'lladdr': 'aa:bb:cc:dd:ee:13', 'master': True, 'static': True},
-            {'device': ports[3], 'lladdr': 'aa:bb:cc:dd:ee:14', 'master': True, 'static': True},
-            ]}])
+            {'device': ports[x], 'lladdr': f'aa:bb:cc:dd:ee:1{x+1}', 'master': True, 'static': True}
+            for x in range(4)]}])
     assert out[0][device_host_name]['rc'] == 0, f'Verify that FDB static entries added.\n{out}'
 
     address_map = (
@@ -136,12 +132,12 @@ async def test_bridging_frame_max_size(testbed):
 
     out = await BridgeFdb.show(input_data=[{device_host_name: [{'options': '-j'}]}],
                                parse_output=True)
-    assert out[0][device_host_name]['rc'] == 0, f'Failed to get fdb entry.\n'
+    assert out[0][device_host_name]['rc'] == 0, 'Failed to get fdb entry.'
 
     fdb_entries = out[0][device_host_name]['parsed_output']
     learned_macs = [en['mac'] for en in fdb_entries if 'mac' in en]
     for mac in list_macs:
-        err_msg = f'Verify that source macs have been learned.\n'
+        err_msg = 'Verify that source macs have been learned.'
         assert mac in learned_macs, err_msg
 
 
@@ -170,8 +166,7 @@ async def test_bridging_jumbo_frame_min_size(testbed):
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 4)
     if not tgen_dev or not dent_devices:
         pytest.skip('The testbed does not have enough dent with tgen connections')
-    dent_dev = dent_devices[0]
-    device_host_name = dent_dev.host_name
+    device_host_name = dent_devices[0].host_name
     tg_ports = tgen_dev.links_dict[device_host_name][0]
     ports = tgen_dev.links_dict[device_host_name][1]
     traffic_duration = 5
@@ -247,12 +242,12 @@ async def test_bridging_jumbo_frame_min_size(testbed):
 
     out = await BridgeFdb.show(input_data=[{device_host_name: [{'options': '-j'}]}],
                                parse_output=True)
-    assert out[0][device_host_name]['rc'] == 0, f'Failed to get fdb entry.\n'
+    assert out[0][device_host_name]['rc'] == 0, 'Failed to get fdb entry.'
 
     fdb_entries = out[0][device_host_name]['parsed_output']
     learned_macs = [en['mac'] for en in fdb_entries if 'mac' in en]
     for mac in list_macs:
-        err_msg = f'Verify that source macs have been learned.\n'
+        err_msg = 'Verify that source macs have been learned.'
         assert mac in learned_macs, err_msg
 
 
@@ -281,8 +276,7 @@ async def test_bridging_jumbo_frame_value_out_of_bounds(testbed):
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 4)
     if not tgen_dev or not dent_devices:
         pytest.skip('The testbed does not have enough dent with tgen connections')
-    dent_dev = dent_devices[0]
-    device_host_name = dent_dev.host_name
+    device_host_name = dent_devices[0].host_name
     tg_ports = tgen_dev.links_dict[device_host_name][0]
     ports = tgen_dev.links_dict[device_host_name][1]
     traffic_duration = 5
@@ -359,10 +353,10 @@ async def test_bridging_jumbo_frame_value_out_of_bounds(testbed):
 
     out = await BridgeFdb.show(input_data=[{device_host_name: [{'options': '-j'}]}],
                                parse_output=True)
-    assert out[0][device_host_name]['rc'] == 0, f'Failed to get fdb entry.\n'
+    assert out[0][device_host_name]['rc'] == 0, 'Failed to get fdb entry.'
 
     fdb_entries = out[0][device_host_name]['parsed_output']
     unlearned_macs = [en['mac'] for en in fdb_entries if 'mac' in en]
     for mac in list_macs:
-        err_msg = f'Verify that source macs have been not learned.\n'
+        err_msg = 'Verify that source macs have been not learned.'
         assert mac not in unlearned_macs, err_msg

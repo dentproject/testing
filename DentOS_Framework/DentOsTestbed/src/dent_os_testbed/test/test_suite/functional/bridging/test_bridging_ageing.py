@@ -7,13 +7,13 @@ from dent_os_testbed.lib.ip.ip_link import IpLink
 
 from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_get_dent_devices_with_tgen,
+    tgen_utils_traffic_generator_connect,
+    tgen_utils_dev_groups_from_config,
     tgen_utils_get_traffic_stats,
     tgen_utils_setup_streams,
     tgen_utils_start_traffic,
     tgen_utils_stop_traffic,
-    tgen_utils_get_loss,
-    tgen_utils_dev_groups_from_config,
-    tgen_utils_traffic_generator_connect,
+    tgen_utils_get_loss
 )
 
 pytestmark = [
@@ -47,8 +47,7 @@ async def test_bridging_ageing_refresh(testbed):
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 2)
     if not tgen_dev or not dent_devices:
         pytest.skip('The testbed does not have enough dent with tgen connections')
-    dent_dev = dent_devices[0]
-    device_host_name = dent_dev.host_name
+    device_host_name = dent_devices[0].host_name
     tg_ports = tgen_dev.links_dict[device_host_name][0]
     ports = tgen_dev.links_dict[device_host_name][1]
     traffic_duration = 5
@@ -121,11 +120,11 @@ async def test_bridging_ageing_refresh(testbed):
 
     out = await BridgeFdb.show(input_data=[{device_host_name: [{'options': '-j'}]}],
                                parse_output=True)
-    assert out[0][device_host_name]['rc'] == 0, f'Failed to get fdb entry.\n'
+    assert out[0][device_host_name]['rc'] == 0, 'Failed to get fdb entry.'
 
     fdb_entries = out[0][device_host_name]['parsed_output']
     learned_macs = [en['mac'] for en in fdb_entries if 'mac' in en]
-    err_msg = f'Verify that entry exist in mac table.\n'
+    err_msg = 'Verify that entry exist in mac table.'
     assert streams['bridge']['srcMac'] in learned_macs, err_msg
 
     await tgen_utils_start_traffic(tgen_dev)
@@ -140,11 +139,11 @@ async def test_bridging_ageing_refresh(testbed):
 
     out = await BridgeFdb.show(input_data=[{device_host_name: [{'options': '-j'}]}],
                                parse_output=True)
-    assert out[0][device_host_name]['rc'] == 0, f'Failed to get fdb entry.\n'
+    assert out[0][device_host_name]['rc'] == 0, 'Failed to get fdb entry.'
 
     fdb_entries = out[0][device_host_name]['parsed_output']
     learned_macs = [en['mac'] for en in fdb_entries if 'mac' in en]
-    err_msg = f'Verify that entry exist in mac table.\n'
+    err_msg = 'Verify that entry exist in mac table.'
     assert streams['bridge']['srcMac'] in learned_macs, err_msg
 
     await tgen_utils_stop_traffic(tgen_dev)
@@ -159,11 +158,11 @@ async def test_bridging_ageing_refresh(testbed):
 
     out = await BridgeFdb.show(input_data=[{device_host_name: [{'options': '-j'}]}],
                                parse_output=True)
-    assert out[0][device_host_name]['rc'] == 0, f'Failed to get fdb entry.\n'
+    assert out[0][device_host_name]['rc'] == 0, 'Failed to get fdb entry.'
 
     fdb_entries = out[0][device_host_name]['parsed_output']
     learned_macs = [en['mac'] for en in fdb_entries if 'mac' in en]
-    err_msg = f"Verify that entry doesn't exist due to expired ageing time for that entry.\n"
+    err_msg = "Verify that entry doesn't exist due to expired ageing time for that entry."
     assert streams['bridge']['srcMac'] not in learned_macs, err_msg
 
 
@@ -192,8 +191,7 @@ async def test_bridging_ageing_under_continue(testbed):
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 4)
     if not tgen_dev or not dent_devices:
         pytest.skip('The testbed does not have enough dent with tgen connections')
-    dent_dev = dent_devices[0]
-    device_host_name = dent_dev.host_name
+    device_host_name = dent_devices[0].host_name
     tg_ports = tgen_dev.links_dict[device_host_name][0]
     ports = tgen_dev.links_dict[device_host_name][1]
     ageing_time = 10
@@ -266,10 +264,10 @@ async def test_bridging_ageing_under_continue(testbed):
 
     out = await BridgeFdb.show(input_data=[{device_host_name: [{'options': '-j'}]}],
                                parse_output=True)
-    assert out[0][device_host_name]['rc'] == 0, f'Failed to get fdb entry.\n'
+    assert out[0][device_host_name]['rc'] == 0, 'Failed to get fdb entry.'
 
     fdb_entries = out[0][device_host_name]['parsed_output']
     learned_macs = [en['mac'] for en in fdb_entries if 'mac' in en]
     for mac in list_macs:
-        err_msg = f'Verify that entries exist due to continues traffic.\n'
+        err_msg = 'Verify that entries exist due to continues traffic.'
         assert mac in learned_macs, err_msg
