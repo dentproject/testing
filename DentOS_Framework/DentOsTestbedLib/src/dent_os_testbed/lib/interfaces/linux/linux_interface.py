@@ -16,6 +16,7 @@ class LinuxInterface(TestLibObject):
         ifreload - reload network interface configuration
 
     """
+
     def format_up_down(self, command, *argv, **kwarg):
         raise NotImplementedError
 

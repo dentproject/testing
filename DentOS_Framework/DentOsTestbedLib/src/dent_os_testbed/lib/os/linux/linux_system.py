@@ -11,6 +11,7 @@ class LinuxSystem(TestLibObject):
     """
         system information
     """
+
     def format_reboot(self, command, *argv, **kwarg):
         raise NotImplementedError
 

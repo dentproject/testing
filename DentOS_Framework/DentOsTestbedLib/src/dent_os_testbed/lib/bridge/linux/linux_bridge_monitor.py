@@ -11,6 +11,7 @@ class LinuxBridgeMonitor(TestLibObject):
     """
 
     """
+
     def format_monitor(self, command, *argv, **kwarg):
         raise NotImplementedError
 

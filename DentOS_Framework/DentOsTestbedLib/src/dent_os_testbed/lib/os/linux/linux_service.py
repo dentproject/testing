@@ -11,6 +11,7 @@ class LinuxService(TestLibObject):
     """
         Service details by runnin systemctl list-units --type=service
     """
+
     def format_show(self, command, *argv, **kwarg):
         raise NotImplementedError
 

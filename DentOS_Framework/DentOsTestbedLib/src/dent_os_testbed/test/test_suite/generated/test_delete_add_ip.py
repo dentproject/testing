@@ -20,14 +20,19 @@ class IpRouteDeleteAndAddMeta(DeleteAndAddMeta):
     """
     def cls_name(obj=None):
         return 'IpRoute'
+
     def delete_fn(obj=None):
         return IpRoute.delete
+
     def show_fn(obj=None):
         return IpRoute.show
+
     def add_fn(obj=None):
         return IpRoute.add
+
     def device_object_filter(obj=None):
         return obj.dev and re.compile('swp*').match(obj.dev)
+
     def device_objects(obj=None):
         return obj.network.layer3.routes
 
@@ -43,14 +48,19 @@ class IpAddressDeleteAndAddMeta(DeleteAndAddMeta):
     """
     def cls_name(obj=None):
         return 'IpAddress'
+
     def delete_fn(obj=None):
         return IpAddress.delete
+
     def show_fn(obj=None):
         return IpAddress.show
+
     def add_fn(obj=None):
         return IpAddress.add
+
     def device_object_filter(obj=None):
         return re.compile('swp*').match(obj.ifname)
+
     def device_objects(obj=None):
         return obj.network.layer3.addresses
 
@@ -66,14 +76,19 @@ class IpLinkDeleteAndAddMeta(DeleteAndAddMeta):
     """
     def cls_name(obj=None):
         return 'IpLink'
+
     def delete_fn(obj=None):
         return IpLink.delete
+
     def show_fn(obj=None):
         return IpLink.show
+
     def add_fn(obj=None):
         return IpLink.add
+
     def device_object_filter(obj=None):
         return re.compile('swp*').match(obj.ifname)
+
     def device_objects(obj=None):
         return obj.network.layer1.links
 

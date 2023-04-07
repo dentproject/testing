@@ -18,18 +18,25 @@ class IpLinkAttrSetAndUnsetMeta(AttrSetAndUnsetMeta):
     """
     def cls_name(obj=None):
         return 'ip_link'
+
     def set_fn(obj=None):
         return IpLink.set
+
     def show_fn(obj=None):
         return IpLink.show
+
     def dev_objects(obj=None):
         return obj.network.layer1.links
+
     def dev_object_filter(obj=None):
         return re.compile('swp*').match(obj.ifname) and obj.operstate == 'UP'
+
     def dev_object_set_params(obj=None):
         return {'device': obj.ifname, 'operstate':'down'}
+
     def dev_object_show_params(obj=None):
         return {'device': obj.ifname}
+
     def dev_object_reset_params(obj=None):
         return {'device': obj.ifname, 'operstate':'up'}
 

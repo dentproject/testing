@@ -9,6 +9,7 @@ class DevlinkPortImpl(DevlinkPort):
         devlink [ -force ] -batch filename
 
     """
+
     def format_set(self, command, *argv, **kwarg):
         """
         devlink port param set DEV/PORT_INDEX name PARAMETER value VALUE

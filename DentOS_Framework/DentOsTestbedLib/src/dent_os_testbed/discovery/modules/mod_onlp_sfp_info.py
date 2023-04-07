@@ -11,6 +11,7 @@ from dent_os_testbed.lib.onlp.onlp_sfp_info import OnlpSfpInfo
 class OnlpSfpInfoMod(Module):
     """
     """
+
     def set_onlp_sfp_info(self, src, dst):
 
         for i,onlp_sfp_info in enumerate(src):

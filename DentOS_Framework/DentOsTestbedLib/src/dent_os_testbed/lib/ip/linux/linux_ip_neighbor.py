@@ -15,6 +15,7 @@ class LinuxIpNeighbor(TestLibObject):
         ip neigh { show | flush } [ proxy ] [ to PREFIX ] [ dev DEV ] [ nud STATE ]
 
     """
+
     def format_modify(self, command, *argv, **kwarg):
         raise NotImplementedError
 

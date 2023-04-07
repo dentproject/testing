@@ -11,6 +11,7 @@ from dent_os_testbed.lib.lldp.lldp import Lldp
 class LldpMod(Module):
     """
     """
+
     def set_lldp(self, src, dst):
 
         for i,lldp in enumerate(src):

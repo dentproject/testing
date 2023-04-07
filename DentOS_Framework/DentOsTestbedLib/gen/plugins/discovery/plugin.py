@@ -187,6 +187,7 @@ class DiscoveryPlugin(SamplePlugin):
     2. walk all the members and its types untill we reach the leaf node
     3. keep generating the report.py that can handle set and get operations.
     """
+
     def __init__(self, name):
         self.name = name
 

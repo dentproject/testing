@@ -14,6 +14,7 @@ class LinuxDcbApp(TestLibObject):
         dcb [ OPTIONS ] help
 
     """
+
     def format_set(self, command, *argv, **kwarg):
         raise NotImplementedError
 

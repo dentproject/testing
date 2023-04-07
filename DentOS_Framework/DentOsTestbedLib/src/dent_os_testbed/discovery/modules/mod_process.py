@@ -11,6 +11,7 @@ from dent_os_testbed.lib.os.process import Process
 class ProcessMod(Module):
     """
     """
+
     def set_process(self, src, dst):
 
         for i,process in enumerate(src):

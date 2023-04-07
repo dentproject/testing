@@ -31,6 +31,7 @@ class LinuxIpAddress(TestLibObject):
           ip6gretap | ip6erspan | vti | vrf | nlmon | ipvlan | lowpan | geneve | macsec ]
 
     """
+
     def format_modify(self, command, *argv, **kwarg):
         raise NotImplementedError
 

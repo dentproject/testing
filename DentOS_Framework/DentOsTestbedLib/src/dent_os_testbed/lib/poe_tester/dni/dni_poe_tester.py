@@ -16,6 +16,7 @@ class DniPoeTester(TestLibObject):
             get_port_stats -
 
     """
+
     def format_attach(self, command, *argv, **kwarg):
         raise NotImplementedError
 

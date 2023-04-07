@@ -9,6 +9,7 @@ class LinuxDcbAppImpl(LinuxDcbApp):
         dcb [ OPTIONS ] help
 
     """
+
     def format_set(self, command, *argv, **kwarg):
         """
         dcb app {  add  |  del  |  replace  }  dev DEV [ default-prio

@@ -11,6 +11,7 @@ class LinuxOnie(TestLibObject):
     """
         To run onie-select
     """
+
     def format_select(self, command, *argv, **kwarg):
         raise NotImplementedError
 

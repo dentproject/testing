@@ -16,6 +16,7 @@ class LinuxTcQdisc(TestLibObject):
         tc [ OPTIONS ] [ FORMAT ] qdisc show [ dev DEV ]
 
     """
+
     def format_modify(self, command, *argv, **kwarg):
         raise NotImplementedError
 

@@ -36,6 +36,7 @@ class LinuxIpLink(TestLibObject):
         VFVLAN := [ vlan VLANID [ qos VLAN-QOS ] [ proto VLAN-PROTO ] ]
 
     """
+
     def format_add(self, command, *argv, **kwarg):
         raise NotImplementedError
 

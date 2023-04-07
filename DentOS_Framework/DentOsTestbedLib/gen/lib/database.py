@@ -35,6 +35,7 @@ class TypeMember(object):
         self.name = name
         self.desc = ydata['desc'] if 'desc' in ydata else ''
         self.type = ydata['type'] if 'type' in ydata else None
+
     def to_dict(self):
         return {
             'tmbr_name': self.name,

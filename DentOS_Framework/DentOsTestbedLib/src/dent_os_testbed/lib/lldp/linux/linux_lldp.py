@@ -12,6 +12,7 @@ class LinuxLldp(TestLibObject):
         LLDP module
 
     """
+
     def format_show(self, command, *argv, **kwarg):
         raise NotImplementedError
 

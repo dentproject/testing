@@ -11,6 +11,7 @@ from dent_os_testbed.lib.onlp.onlp_system_info import OnlpSystemInfo
 class OnlpSystemInfoMod(Module):
     """
     """
+
     def set_onlp_system_info(self, src, dst):
 
         for i,onlp_system_info in enumerate([src]):

@@ -11,6 +11,7 @@ class LinuxProcess(TestLibObject):
     """
         Process details by reading /proc/[pid]/status
     """
+
     def format_show(self, command, *argv, **kwarg):
         raise NotImplementedError
 

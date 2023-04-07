@@ -32,6 +32,7 @@ class IxnetworkIxiaClient(TestLibObject):
             switch_min_frame_size - [enable_min_size]
 
     """
+
     def format_connect(self, command, *argv, **kwarg):
         raise NotImplementedError
 

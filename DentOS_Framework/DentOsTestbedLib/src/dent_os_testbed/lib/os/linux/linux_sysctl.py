@@ -11,6 +11,7 @@ class LinuxSysctl(TestLibObject):
     """
         system kernel attributes manager
     """
+
     def format_get(self, command, *argv, **kwarg):
         raise NotImplementedError
 

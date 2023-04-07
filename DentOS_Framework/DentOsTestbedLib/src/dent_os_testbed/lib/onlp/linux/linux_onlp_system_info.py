@@ -11,6 +11,7 @@ class LinuxOnlpSystemInfo(TestLibObject):
     """
         ONLP system details by running onlpdump -s
     """
+
     def format_show(self, command, *argv, **kwarg):
         raise NotImplementedError
 

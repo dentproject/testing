@@ -5,6 +5,7 @@ class LinuxSysctlImpl(LinuxSysctl):
     """
         system kernel attributes manager
     """
+
     def format_get(self, command, *argv, **kwarg):
         """
         Get the attribute value

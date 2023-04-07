@@ -12,6 +12,7 @@ class LinuxRouteMap(TestLibObject):
         vtysh
 
     """
+
     def format_configure(self, command, *argv, **kwarg):
         raise NotImplementedError
 

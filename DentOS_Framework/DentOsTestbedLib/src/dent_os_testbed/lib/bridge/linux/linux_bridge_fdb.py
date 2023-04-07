@@ -12,6 +12,7 @@ class LinuxBridgeFdb(TestLibObject):
         The corresponding commands display fdb entries, add new entries, append entries, and delete old ones.
 
     """
+
     def format_update(self, command, *argv, **kwarg):
         raise NotImplementedError
 
