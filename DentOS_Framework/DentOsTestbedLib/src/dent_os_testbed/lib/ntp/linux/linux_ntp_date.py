@@ -12,6 +12,7 @@ class LinuxNtpDate(TestLibObject):
         ntpdate [-46bBdqsuv] [-a key] [-e authdelay] [-k keyfile] [-o version] [-p samples] [-t timeout] server [...]
 
     """
+
     def format_set(self, command, *argv, **kwarg):
         raise NotImplementedError
 

@@ -12,6 +12,7 @@ class LinuxFrrIpRoute(TestLibObject):
         vtysh
 
     """
+
     def format_show(self, command, *argv, **kwarg):
         raise NotImplementedError
 

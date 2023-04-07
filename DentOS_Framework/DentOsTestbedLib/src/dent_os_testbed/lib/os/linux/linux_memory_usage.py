@@ -20,6 +20,7 @@ class LinuxMemoryUsage(TestLibObject):
         Inactive:        3306968 kB
 
     """
+
     def format_show(self, command, *argv, **kwarg):
         raise NotImplementedError
 

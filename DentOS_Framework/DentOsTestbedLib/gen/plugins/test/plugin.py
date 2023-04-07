@@ -64,6 +64,7 @@ class TestPyObject(object):
     generates the dent PI python files for each class under dent package
     that has a command implementation in atleast one of the platform
     """
+
     def __init__(self, cls, fname):
         self._cls = cls
         self._fname = fname

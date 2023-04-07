@@ -13,6 +13,7 @@ class DevlinkPort(TestLibObject):
         devlink [ -force ] -batch filename
 
     """
+
     def format_set(self, command, *argv, **kwarg):
         raise NotImplementedError
 

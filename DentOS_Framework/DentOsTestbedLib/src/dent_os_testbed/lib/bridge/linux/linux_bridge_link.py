@@ -18,6 +18,7 @@ class LinuxBridgeLink(TestLibObject):
         bridge link [ show ] [ dev DEV ]
 
     """
+
     def format_set(self, command, *argv, **kwarg):
         raise NotImplementedError
 

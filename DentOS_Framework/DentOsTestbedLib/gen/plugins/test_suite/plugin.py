@@ -20,6 +20,7 @@ class TestSuitePyObject(object):
     """
     Generates the Test suite file contianing all the tests.
     """
+
     def __init__(self, test, fname):
         self._test = test
         self._fname = fname
@@ -91,6 +92,7 @@ class TestSuitePyObject(object):
         self._methods.append(PyLines(lines=['@pytest.mark.asyncio']))
         self._methods.append(PyMethod('test_'+self._test.name, 'testbed, '+self._test.name+'_class', ['await ' + self._test.name+'_class'+'().run_test(testbed)'], coroutine=True))
         self._imports.append(PyLines(lines=['pytestmark = pytest.mark.suite_basic_trigger']))
+
     def write_file(self):
         p = PyFile(self._header, self._imports, self._classes, self._methods)
         p.write(self._fname)

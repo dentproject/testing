@@ -35,6 +35,7 @@ class DocsMdObject(object):
         self._pkg = pkg
         self._body = []
         self._tailer = []
+
     def generate_code(self):
         self._header = [MdLines(lines=tokenize('# DENT API Documentation'))]
         self._body.append(MdLines(lines=tokenize(md_mod_hdr)))
@@ -50,6 +51,7 @@ class DocsMdObject(object):
             if not classes: continue
             margs['classes'] = classes
             self._body.append(MdLines(lines=tokenize(md_mod_entry % margs)))
+
     def write_file(self):
         p = MdFile(self._header, self._body, self._tailer)
         p.write(self._fname)
@@ -61,6 +63,7 @@ class DocMdObject(object):
         self._cls = cls
         self._body = []
         self._tailer = []
+
     def get_random_value(self, mbr):
         if isinstance(mbr, str):
             return ''
@@ -82,6 +85,7 @@ class DocMdObject(object):
         if mbr.type == 'mac_t':
             return '\''+ ':'.join(map(str, ('%02x' % random.randint(0, 255) for _ in range(6)))) + '\''
         return '\'\''
+
     def generate_code(self):
         args = self._cls.to_dict()
         args['cname_cc'] = camelcase(self._cls.name)
@@ -106,6 +110,7 @@ class DocMdObject(object):
                     args['api_name'] = api
                     args['api_usage'] = md_sample_call % args
                     self._body.append(MdLines(lines=tokenize(md_apis % args)))
+
     def write_file(self):
         p = MdFile(self._header, self._body, self._tailer)
         p.write(self._fname)
@@ -116,6 +121,7 @@ class DocPlugin(SamplePlugin):
     1. generate the document for the modules from top level
     2.
     """
+
     def __init__(self, name):
         self.name = name
 

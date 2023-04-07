@@ -14,6 +14,7 @@ class LinuxDnsmasq(TestLibObject):
         dnsmasq [OPTION]...
 
     """
+
     def format_test(self, command, *argv, **kwarg):
         raise NotImplementedError
 

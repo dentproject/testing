@@ -11,6 +11,7 @@ class LinuxDiskFree(TestLibObject):
     """
         Disk free inforamtion
     """
+
     def format_show(self, command, *argv, **kwarg):
         raise NotImplementedError
 

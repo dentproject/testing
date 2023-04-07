@@ -11,6 +11,7 @@ class LinuxOnlpSfpInfo(TestLibObject):
     """
         ONLP SFP details by running onlpdump -S
     """
+
     def format_show(self, command, *argv, **kwarg):
         raise NotImplementedError
 

@@ -12,6 +12,7 @@ class LinuxEthtool(TestLibObject):
         ethtool - query or control network driver and hardware settings
 
     """
+
     def format_show(self, command, *argv, **kwarg):
         raise NotImplementedError
 

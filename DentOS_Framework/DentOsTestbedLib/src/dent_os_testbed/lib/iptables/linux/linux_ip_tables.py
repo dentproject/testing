@@ -25,6 +25,7 @@ class LinuxIpTables(TestLibObject):
         target = -j targetname [per-target-options]
 
     """
+
     def format_update_rules(self, command, *argv, **kwarg):
         raise NotImplementedError
 

@@ -44,6 +44,7 @@ class LinuxIpRoute(TestLibObject):
         ROUTE_GET_FLAGS := [ fibmatch ]
 
     """
+
     def format_update(self, command, *argv, **kwarg):
         raise NotImplementedError
 

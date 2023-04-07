@@ -15,6 +15,7 @@ class LinuxCpuUsage(TestLibObject):
           04:47:43 AM  all    0.49    0.04    0.07    0.02    0.00    0.00    0.00    0.00   99.37
 
     """
+
     def format_show(self, command, *argv, **kwarg):
         raise NotImplementedError
 

@@ -12,6 +12,7 @@ class LinuxBridgeMdb(TestLibObject):
         The corresponding commands display mdb entries, add new entries, and delete old ones.
 
     """
+
     def format_update(self, command, *argv, **kwarg):
         raise NotImplementedError
 

@@ -12,6 +12,7 @@ class LinuxFrrIp(TestLibObject):
         vtysh
 
     """
+
     def format_set(self, command, *argv, **kwarg):
         raise NotImplementedError
 

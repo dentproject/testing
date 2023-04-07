@@ -11,6 +11,7 @@ class LinuxPoectl(TestLibObject):
     """
         POE details by running poectl
     """
+
     def format_show(self, command, *argv, **kwarg):
         raise NotImplementedError
 

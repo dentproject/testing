@@ -11,6 +11,7 @@ class LinuxTcFilter(TestLibObject):
     """
 
     """
+
     def format_modify(self, command, *argv, **kwarg):
         raise NotImplementedError
 

@@ -300,9 +300,11 @@ def tcutil_generate_rule_with_random_selectors(
     """
     def random_mac():
         return ':'.join(['02'] + [f'{random.randint(0, 255):02x}' for _ in range(5)])
+
     def random_ip():
         return '.'.join(map(str, [random.randint(11, 126), random.randint(0, 255),
                                   random.randint(0, 255), random.randint(1, 250)]))
+
     def random_icmp_type():
         return random.choice((0, 3, 4, 5, 8, 11, 12, 13, 14, 15, 16, 17, 18))
     ip_protocols = ('ip', 'ipv4', '0x0800')
