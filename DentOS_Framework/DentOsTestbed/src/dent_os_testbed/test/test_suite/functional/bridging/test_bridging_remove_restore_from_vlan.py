@@ -95,11 +95,11 @@ async def test_bridging_remove_restore_from_vlan(testbed):
 
     out = await BridgeFdb.show(input_data=[{device_host_name: [{'options': '-j'}]}],
                                parse_output=True)
-    assert out[0][device_host_name]['rc'] == 0, f'Failed to get fdb entry.\n'
+    assert out[0][device_host_name]['rc'] == 0, 'Failed to get fdb entry.\n'
 
     fdb_entries = out[0][device_host_name]['parsed_output']
     learned_macs = [en['mac'] for en in fdb_entries if 'mac' in en]
-    err_msg = f'Verify that entry has not been removed from the address table.\n'
+    err_msg = 'Verify that entry has not been removed from the address table.\n'
     assert 'aa:bb:cc:dd:ee:11' in learned_macs, err_msg
 
     out = await BridgeVlan.add(
@@ -143,7 +143,7 @@ async def test_bridging_remove_restore_from_vlan(testbed):
     for row in stats.Rows:
         if row['Traffic Item'] == 'bridge_1' and row['Rx Port'] == tg_ports[0]:
             assert tgen_utils_get_loss(row) == 000.000, \
-                f'Verify that traffic from swp3 to swp1 forwarded.\n'
+                'Verify that traffic from swp3 to swp1 forwarded.\n'
         if row['Traffic Item'] == 'bridge_1' and row['Rx Port'] == tg_ports[1]:
             assert tgen_utils_get_loss(row) == 100.000, \
-                f'Verify that traffic from swp3 to swp2 not forwarded.\n'
+                'Verify that traffic from swp3 to swp2 not forwarded.\n'

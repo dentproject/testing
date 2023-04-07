@@ -135,15 +135,15 @@ async def test_bridging_packets_oversize(testbed):
     # check quantity of oversized packets
     for row, port in zip(stats.Rows, old_stats.keys()):
         oversized = int(new_stats[port]['oversize']) - int(old_stats[port]['oversize'])
-        err_msg = f'Verify that quantity of oversized packets is correct.\n'
+        err_msg = 'Verify that quantity of oversized packets is correct.\n'
         assert int(row['Tx Frames']) == oversized, err_msg
 
     out = await BridgeFdb.show(input_data=[{device_host_name: [{'options': '-j'}]}],
                                parse_output=True)
-    assert out[0][device_host_name]['rc'] == 0, f'Failed to get fdb entry.\n'
+    assert out[0][device_host_name]['rc'] == 0, 'Failed to get fdb entry.\n'
 
     fdb_entries = out[0][device_host_name]['parsed_output']
     learned_macs = [en['mac'] for en in fdb_entries if 'mac' in en]
     for mac in list_macs:
-        err_msg = f'Verify that source macs have not been learned due to oversized packet.\n'
+        err_msg = 'Verify that source macs have not been learned due to oversized packet.\n'
         assert mac not in learned_macs, err_msg

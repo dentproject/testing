@@ -18,17 +18,17 @@ async def configure_bridge_setup(device, dut_ports, default_pvid=0):
         'vlan_filtering': 1,
         'vlan_default_pvid': default_pvid}]
     }])
-    assert out[0][device]['rc'] == 0, f'Failed creating bridge.'
+    assert out[0][device]['rc'] == 0, 'Failed creating bridge.'
 
     await IpLink.set(input_data=[{device: [{'device': 'br0', 'operstate': 'up'}]}])
-    assert out[0][device]['rc'] == 0, f'Failed setting bridge to state UP.'
+    assert out[0][device]['rc'] == 0, 'Failed setting bridge to state UP.'
 
     out = await IpLink.set(input_data=[{device: [{
         'device': port,
         'operstate': 'up',
         'master': 'br0'
     } for port in dut_ports]}])
-    assert out[0][device]['rc'] == 0, f'Failed setting link to state UP.'
+    assert out[0][device]['rc'] == 0, 'Failed setting link to state UP.'
 
 
 async def configure_vlan_setup(device, port_vlan_map, dut_ports):

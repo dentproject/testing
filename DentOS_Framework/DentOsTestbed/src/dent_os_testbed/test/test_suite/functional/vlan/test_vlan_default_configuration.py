@@ -123,10 +123,10 @@ async def test_vlan_default_configuration_with_(testbed, traffic_type):
         'vlan_filtering': 1
         }]
     }])
-    assert out[0][device]['rc'] == 0, f'Failed creating bridge.'
+    assert out[0][device]['rc'] == 0, 'Failed creating bridge.'
 
     await IpLink.set(input_data=[{device: [{'device': bridge, 'operstate': 'up'}]}])
-    assert out[0][device]['rc'] == 0, f'Failed setting bridge to state UP.'
+    assert out[0][device]['rc'] == 0, 'Failed setting bridge to state UP.'
 
     # 2. Enslave links to bridge and set to 'up' state
     out = await IpLink.set(input_data=[{device: [{
@@ -134,7 +134,7 @@ async def test_vlan_default_configuration_with_(testbed, traffic_type):
         'operstate': 'up',
         'master': bridge
     } for port in dut_ports]}])
-    assert out[0][device]['rc'] == 0, f'Failed setting link to state UP.'
+    assert out[0][device]['rc'] == 0, 'Failed setting link to state UP.'
 
     # Configure ixia ports
     dev_groups = tgen_utils_dev_groups_from_config([
@@ -221,7 +221,7 @@ async def test_vlan_basic_functionality(testbed):
                 dev_groups[tg_ports[3]][0]['name']]
 
     # 3. Setup broadcast packet stream(s) without VLAN tag.
-    streams = {f'Untagged traffic': {
+    streams = {'Untagged traffic': {
         'type': 'raw',
         'ip_source': tx_ports,
         'ip_destination': rx_ports,

@@ -238,17 +238,17 @@ async def test_dentv2_acl_scale_max_rules_alt_store(testbed):
             # 'count' is the number of endpoints
             {
                 'vlan': 100,
-                'name': f'CHAIN0',
+                'name': 'CHAIN0',
                 'count': 1,
             },
             {
                 'vlan': 400,
-                'name': f'CHAIN1',
+                'name': 'CHAIN1',
                 'count': 1,
             },
             {
                 'vlan': 300,
-                'name': f'CHAIN2',
+                'name': 'CHAIN2',
                 'count': 1,
             },
         ]

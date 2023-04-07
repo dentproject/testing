@@ -56,7 +56,7 @@ class SSHConnection:
             self._validate_and_update_params(logger, loop, connection_params)
             self.conn = None
         except Exception as e:
-            self.applog.exception(f'Error initializing SSH connection', exc_info=e)
+            self.applog.exception('Error initializing SSH connection', exc_info=e)
             raise
 
     async def run_cmd(self, cmd, bufsize=io.DEFAULT_BUFFER_SIZE, input=None):
@@ -191,7 +191,7 @@ class SSHConnection:
             return result
         except Exception as e:
             print(e)
-            self.applog.debug(f'Currently no connection exists to device')
+            self.applog.debug('Currently no connection exists to device')
             return False
 
     async def _connect(self):

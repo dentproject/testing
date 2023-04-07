@@ -110,9 +110,9 @@ async def test_bridging_bum_traffic_port_with_rif(testbed):
     count_of_packets = re.findall(r'(\d+) packets (captured|received|dropped)', data)
     for count, type in count_of_packets:
         if type == 'received':
-            assert int(count) > 0, f'Verify that packets are received by filter.\n'
+            assert int(count) > 0, 'Verify that packets are received by filter.\n'
         if type == 'captured' or type == 'dropped':
-            assert int(count) == 0, f'Verify that packets are captured and dropped by kernel.\n'
+            assert int(count) == 0, 'Verify that packets are captured and dropped by kernel.\n'
 
 
 async def test_bridging_bum_traffic_port_without_rif(testbed):
@@ -191,6 +191,6 @@ async def test_bridging_bum_traffic_port_without_rif(testbed):
     count_of_packets = re.findall(r'(\d+) packets (captured|received|dropped)', data)
     for count, type in count_of_packets:
         if type == 'received':
-            assert int(count) > 0, f'Verify that packets are received by filter.\n'
+            assert int(count) > 0, 'Verify that packets are received by filter.\n'
         if type == 'captured' or type == 'dropped':
-            assert int(count) == 0, f'Verify that packets are captured and dropped by kernel.\n'
+            assert int(count) == 0, 'Verify that packets are captured and dropped by kernel.\n'

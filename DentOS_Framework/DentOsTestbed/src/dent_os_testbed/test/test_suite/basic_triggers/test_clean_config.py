@@ -14,7 +14,7 @@ pytestmark = pytest.mark.suite_clean_config
 
 
 async def disable_ztp(device):
-    await device.run_cmd(f'rm -f /etc/network/if-up.d/ntpdate || true')
+    await device.run_cmd('rm -f /etc/network/if-up.d/ntpdate || true')
     for s in ['snmpd']:
         input_data = [{device.host_name: [{'name': s}]}]
         out = await Service.stop(
@@ -29,13 +29,13 @@ async def setup_dent_tools(device, package):
     # copy on to the device.
     await device.scp(package, '~/staging.tar.gz')
     # extract the artifacts
-    await device.run_cmd(f'tar xvf staging.tar.gz')
+    await device.run_cmd('tar xvf staging.tar.gz')
     # install the tc tool chain
-    await device.run_cmd(f'./tc_install.sh &> /dev/null')
+    await device.run_cmd('./tc_install.sh &> /dev/null')
     # install the poe tool chain
-    await device.run_cmd(f'./poe_install.sh &> /dev/null')
+    await device.run_cmd('./poe_install.sh &> /dev/null')
     # install the stress package tool chain
-    await device.run_cmd(f'./stress_install.sh &> /dev/null')
+    await device.run_cmd('./stress_install.sh &> /dev/null')
 
 
 @pytest.mark.asyncio

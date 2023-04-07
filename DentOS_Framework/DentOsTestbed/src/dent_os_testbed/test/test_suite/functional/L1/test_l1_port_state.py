@@ -50,7 +50,7 @@ async def port_state(testbed, counter, software_reboot=False):
         for _ in range(20):
             out = await IpLink.show(input_data=[{device_host_name: [{'cmd_options': '-j'}]}],
                                     parse_output=True)
-            assert out[0][device_host_name]['rc'] == 0, f'Failed to get links.\n'
+            assert out[0][device_host_name]['rc'] == 0, 'Failed to get links.\n'
 
             links = out[0][device_host_name]['parsed_output']
             links_up = []

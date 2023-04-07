@@ -62,7 +62,7 @@ class Device(object):
             self.loop = loop
             self.friendly_name = params['friendlyName']
             self.applog = logger.tag_logs(self.friendly_name)
-            self.applog.debug(f'Initializing device')
+            self.applog.debug('Initializing device')
             self.os = params['os']
             self.host_name = params['hostName']
             self.ip = params['ip']
@@ -130,7 +130,7 @@ class Device(object):
             self.conn_mgr = ConnectionManager(
                 logger, loop, self.ssh_conn_params, self.serial_conn_params
             )
-            self.applog.debug(f'Device successfully initialized')
+            self.applog.debug('Device successfully initialized')
 
         except Exception as e:
             self._handle_exception(e, 'Error in device initialization')
@@ -150,7 +150,7 @@ class Device(object):
             Exception: For generic failures
         """
         try:
-            self.applog.debug(f'Testing reachability through ping..')
+            self.applog.debug('Testing reachability through ping..')
             exec_time = 0
             while exec_time <= timeout:
                 ping_chk_stime = time.time()
@@ -159,7 +159,7 @@ class Device(object):
                 )
                 ping_chk_etime = time.time()
                 if reachable:
-                    self.applog.debug(f'Device is reachable through ping')
+                    self.applog.debug('Device is reachable through ping')
                     return
                 exec_time += int(ping_chk_etime - ping_chk_stime)
                 self.applog.debug(
@@ -267,7 +267,7 @@ class Device(object):
         except Exception as e:
             self.applog.exception('Exception while closing connections', exc_info=e)
         try:
-            self.applog.debug(f'Triggering reboot')
+            self.applog.debug('Triggering reboot')
             reboot_cmd = self._get_sudo_cmd('reboot')
             await self.conn_mgr.get_ssh_connection().run_cmd(reboot_cmd)
             self.applog.debug('Successfully triggered reboot')

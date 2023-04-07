@@ -88,9 +88,9 @@ async def test_dentv2_vlan_port_isolation_bonding(testbed):
             mgmt_src.append(f'{dd.host_name}_MGMT_{swp}')
             mgmt_dst.append(f'{dd.host_name}_MGMT_{swp}')
         for cmd in [
-            f'ip link set bond0 up',
-            f'brctl addif br0 bond0',
-            f'bridge vlan add dev bond0 vid 100',
+            'ip link set bond0 up',
+            'brctl addif br0 bond0',
+            'bridge vlan add dev bond0 vid 100',
         ]:
             rc, out = await dd.run_cmd(cmd, sudo=True)
             dd.applog.info(f'Ran {cmd} with rc {rc} {out}')

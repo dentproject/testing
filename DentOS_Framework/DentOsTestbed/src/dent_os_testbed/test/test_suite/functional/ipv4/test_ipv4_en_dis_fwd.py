@@ -105,7 +105,7 @@ async def test_ipv4_en_dis_fwd(testbed):
         assert loss == 0, f'Expected loss: 0%, actual: {loss}%'
 
     # 5. Disable IPv4 forwarding
-    rc, out = await dent_dev.run_cmd(f'sysctl -n net.ipv4.ip_forward=0')
+    rc, out = await dent_dev.run_cmd('sysctl -n net.ipv4.ip_forward=0')
     assert rc == 0, 'Failed to disable ip forwarding'
 
     # 6. Flush neighbor (ARP) table

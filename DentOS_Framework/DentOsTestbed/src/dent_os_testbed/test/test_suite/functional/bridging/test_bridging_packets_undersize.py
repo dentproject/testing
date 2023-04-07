@@ -135,15 +135,15 @@ async def test_bridging_packets_undersize(testbed):
     # check quantity of undersized packets
     for row, port in zip(stats.Rows, old_stats.keys()):
         undersized = int(new_stats[port]['undersize']) - int(old_stats[port]['undersize'])
-        err_msg = f'Verify that quantity of undersized packets is correct.\n'
+        err_msg = 'Verify that quantity of undersized packets is correct.\n'
         assert int(row['Tx Frames']) == undersized, err_msg
 
     out = await BridgeFdb.show(input_data=[{device_host_name: [{'options': '-j'}]}],
                                parse_output=True)
-    assert out[0][device_host_name]['rc'] == 0, f'Failed to get fdb entry.\n'
+    assert out[0][device_host_name]['rc'] == 0, 'Failed to get fdb entry.\n'
 
     fdb_entries = out[0][device_host_name]['parsed_output']
     learned_macs = [en['mac'] for en in fdb_entries if 'mac' in en]
     for mac in list_macs:
-        err_msg = f'Verify that source macs have not been learned due to undersized packet.\n'
+        err_msg = 'Verify that source macs have not been learned due to undersized packet.\n'
         assert mac not in learned_macs, err_msg

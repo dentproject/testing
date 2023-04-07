@@ -119,10 +119,10 @@ async def test_bridging_learning_address_rate(testbed):
     for row in stats.Rows:
         if row['Traffic Item'] == 'streamA' and row['Rx Port'] == tg_ports[0]:
             assert tgen_utils_get_loss(row) == 0.000, \
-                f'Verify that traffic from swp2 to swp1 forwarded.\n'
+                'Verify that traffic from swp2 to swp1 forwarded.\n'
         if row['Traffic Item'] == 'streamB' and row['Rx Port'] == tg_ports[1]:
             assert tgen_utils_get_loss(row) == 0.000, \
-                f'Verify that traffic from swp3 to swp2 forwarded.\n'
+                'Verify that traffic from swp3 to swp2 forwarded.\n'
         if row['Rx Port'] == tg_ports[2]:
             assert tgen_utils_get_loss(row) == 100.000, \
-                f'Verify that traffic to swp3 not forwarded.\n'
+                'Verify that traffic to swp3 not forwarded.\n'

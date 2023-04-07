@@ -124,7 +124,7 @@ async def test_bridging_backward_forwarding(testbed):
 
     out = await BridgeFdb.show(input_data=[{device_host_name: [{'options': '-j'}]}],
                                parse_output=True)
-    assert out[0][device_host_name]['rc'] == 0, f'Failed to get fdb entry.\n'
+    assert out[0][device_host_name]['rc'] == 0, 'Failed to get fdb entry.\n'
 
     fdb_entries = out[0][device_host_name]['parsed_output']
     learned_macs = [en['mac'] for en in fdb_entries if 'mac' in en]

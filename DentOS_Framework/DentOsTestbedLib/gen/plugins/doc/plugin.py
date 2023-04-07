@@ -137,7 +137,7 @@ class DocPlugin(SamplePlugin):
             os.makedirs(tdir)
         gi = os.path.join(tdir, '.gitignore')
         gd = open(gi, 'w')
-        gd.write(f'sdk.md\n')
+        gd.write('sdk.md\n')
         fname = os.path.join(tdir, 'sdk.md')
         o = DocsMdObject(dbs['dent'], fname)
         o.generate_code()

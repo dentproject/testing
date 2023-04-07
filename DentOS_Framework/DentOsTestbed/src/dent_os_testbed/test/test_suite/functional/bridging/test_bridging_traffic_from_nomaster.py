@@ -127,13 +127,13 @@ async def test_bridging_traffic_from_nomaster(testbed):
     for row in stats.Rows:
         if row['Traffic Item'] == 'bridge_1' and row['Rx Port'] == tg_ports[0]:
             assert tgen_utils_get_loss(row) == 100.000, \
-                f'Verify that traffic from swp4 to swp1 not forwarded.\n'
+                'Verify that traffic from swp4 to swp1 not forwarded.\n'
         if row['Traffic Item'] == 'bridge_2' and row['Rx Port'] == tg_ports[1]:
             assert tgen_utils_get_loss(row) == 0.000, \
-                f'Verify that traffic from swp3 to swp2 forwarded.\n'
+                'Verify that traffic from swp3 to swp2 forwarded.\n'
         if row['Traffic Item'] == 'bridge_3' and row['Rx Port'] == tg_ports[2]:
             assert tgen_utils_get_loss(row) == 0.000, \
-                f'Verify that traffic from swp2 to swp3 forwarded.\n'
+                'Verify that traffic from swp2 to swp3 forwarded.\n'
         if row['Traffic Item'] == 'bridge_4' and row['Rx Port'] == tg_ports[3]:
             assert tgen_utils_get_loss(row) == 100.000, \
-                f'Verify that traffic from swp1 to swp4 not forwarded.\n'
+                'Verify that traffic from swp1 to swp4 not forwarded.\n'

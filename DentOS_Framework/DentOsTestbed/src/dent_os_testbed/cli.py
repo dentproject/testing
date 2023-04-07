@@ -212,7 +212,7 @@ def validate_args(args):
             or args.store_type is None
             or args.store_id is None
         ):
-            msg = f'Need to specify --aws-region --store-domain --store-type --store-id'
+            msg = 'Need to specify --aws-region --store-domain --store-type --store-id'
             raise argparse.ArgumentTypeError(msg)
     pytest._args = args
 
