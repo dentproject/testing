@@ -20,7 +20,8 @@ class CommitMixin(object):
         while True:
 
             parent = ob.__dict__['__parent__']
-            if parent is None: break
+            if parent is None:
+                break
             # stop once we reach the parent
 
             # get the underlying dict or list for this sub-tree
@@ -354,7 +355,8 @@ class SchemaList(CommitMixin):
         res = []
         for idx, item in enumerate(self.__lizt__):
             ob = self.__item_klass__(item)
-            if fn is not None and not fn(ob): continue
+            if fn is not None and not fn(ob):
+                continue
             unmatched = False
             for k, v in kwargs.items():
                 if getattr(ob, k) != v:

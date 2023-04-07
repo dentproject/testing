@@ -163,8 +163,10 @@ class LocalRepository(object):
 
         reports = []
         while True:
-            if not coll: break
-            if len(reports) >= maxReports: break
+            if not coll:
+                break
+            if len(reports) >= maxReports:
+                break
 
             p, rpt = coll.pop(-1)
             if not os.path.exists(p):

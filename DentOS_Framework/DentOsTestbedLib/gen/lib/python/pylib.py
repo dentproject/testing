@@ -37,7 +37,8 @@ class PyImport(PyLines):
 class PyMethod(PyLines):
     def __init__(self, name, params, body, indent=0, coroutine=False):
         self._lines = ['def %s(%s):' % (name, params)]
-        if coroutine: self._lines[0] = 'async ' + self._lines[0]
+        if coroutine:
+            self._lines[0] = 'async ' + self._lines[0]
         for l in body:
             self._lines.append('    ' + l)
         self.indent(indent)

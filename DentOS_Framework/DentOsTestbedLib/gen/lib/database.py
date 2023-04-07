@@ -242,14 +242,16 @@ class Class(object):
             self.implements = self._mod._pkg._db[pkg].lookup_class(mod, cls)
             if self not in self.implements.implemented_by:
                 self.implements.implemented_by.append(self)
-        for s in self.classes: s.validate()
+        for s in self.classes:
+            s.validate()
 
     def post_validate(self):
         for m in self.members:
             m.post_validate()
         for c in self.commands:
             c.post_validate()
-        for s in self.classes: s.post_validate()
+        for s in self.classes:
+            s.post_validate()
 
 
 class Module(object):

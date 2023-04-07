@@ -15,16 +15,21 @@ class LldpMod(Module):
     def set_lldp(self, src, dst):
 
         for i, lldp in enumerate(src):
-            if 'interface' in lldp: dst[i].interface = lldp.get('interface')
-            if 'options' in lldp: dst[i].options = lldp.get('options')
-            if 'remote_host' in lldp: dst[i].remote_host = lldp.get('remote_host')
-            if 'remote_interface' in lldp: dst[i].remote_interface = lldp.get('remote_interface')
+            if 'interface' in lldp:
+                dst[i].interface = lldp.get('interface')
+            if 'options' in lldp:
+                dst[i].options = lldp.get('options')
+            if 'remote_host' in lldp:
+                dst[i].remote_host = lldp.get('remote_host')
+            if 'remote_interface' in lldp:
+                dst[i].remote_interface = lldp.get('remote_interface')
 
     async def discover(self):
         # need to get device instance to get the data from
         #
         for i, dut in enumerate(self.report.duts):
-            if not dut.device_id: continue
+            if not dut.device_id:
+                continue
             dev = self.ctx.devices_dict[dut.device_id]
             if dev.os == 'ixnetwork' or not await dev.is_connected():
                 print('Device not connected skipping lldp discovery')
