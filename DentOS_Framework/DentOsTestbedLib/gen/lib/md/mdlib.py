@@ -17,11 +17,11 @@ class MdLines(MdLine):
         self._lines = lines
 
     def indent(self, _indent):
-        self._lines = [(' ' * _indent + l) for l in self._lines]
+        self._lines = [(' ' * _indent + line) for line in self._lines]
 
     def write(self, f):
-        for l in self._lines:
-            self.write_line(f, l)
+        for line in self._lines:
+            self.write_line(f, line)
 
 
 class MdFile(object):

@@ -86,25 +86,25 @@ async def tb_flap_links(dev, ports):
     )
     assert out[0][dev.host_name]['rc'] == 0, f'Failed to get Links on {dev.host_name} {out}'
     links = json.loads(out[0][dev.host_name]['result'])
-    link = ''
-    for l in links:
-        link = l['ifname']
-        if not link or l['operstate'] == 'UP':
+    link_name = ''
+    for link in links:
+        link_name = link['ifname']
+        if not link_name or link['operstate'] == 'UP':
             continue
-        if ports and not l['ifname'].startswith(ports):
+        if ports and not link['ifname'].startswith(ports):
             continue
-        if link == '':
+        if link_name == '':
             print('Not even single swp is UP')
             return
         out = await IpLink.set(
-            input_data=[{dev.host_name: [{'device': link, 'operstate': 'down'}]}],
+            input_data=[{dev.host_name: [{'device': link_name, 'operstate': 'down'}]}],
         )
-        assert out[0][dev.host_name]['rc'] == 0, f'Failed to down the link {link} {out}'
+        assert out[0][dev.host_name]['rc'] == 0, f'Failed to down the link {link_name} {out}'
         time.sleep(2)
         out = await IpLink.set(
-            input_data=[{dev.host_name: [{'device': link, 'operstate': 'up'}]}],
+            input_data=[{dev.host_name: [{'device': link_name, 'operstate': 'up'}]}],
         )
-        assert out[0][dev.host_name]['rc'] == 0, f'Failed to down the link {link}'
+        assert out[0][dev.host_name]['rc'] == 0, f'Failed to down the link {link_name}'
 
 
 async def tb_device_check_services(dev, prev_state, check, healthy_services=None):

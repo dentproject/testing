@@ -57,7 +57,7 @@ async def test_switch_reload_all(testbed):
         )
         assert out[0][dev.host_name]['rc'] == 0, f'Failed to get Links on {dev.host_name}'
         links = json.loads(out[0][dev.host_name]['result'])
-        links = {l['ifname']: l for l in links}
+        links = {link['ifname']: link for link in links}
         host = dev.host_name
         dut_state[host] = links
         # check to see if the ports are up
@@ -80,7 +80,7 @@ async def test_switch_reload_all(testbed):
             )
             assert out[0][dev.host_name]['rc'] == 0, f'Failed to get Links on {dev.host_name}'
             links = json.loads(out[0][dev.host_name]['result'])
-            links = {l['ifname']: l for l in links}
+            links = {link['ifname']: link for link in links}
             host = dev.host_name
 
             cmd = "sudo vtysh -c 'show ip bgp summ json'"
@@ -145,7 +145,7 @@ async def test_switch_reload_one_switch(testbed):
         )
         assert out[0][dev.host_name]['rc'] == 0, f'Failed to get Links on {dev.host_name}'
         links = json.loads(out[0][dev.host_name]['result'])
-        links = {l['ifname']: l for l in links}
+        links = {link['ifname']: link for link in links}
         host = dev.host_name
         dut_state[host] = links
         # check to see if the ports are up
@@ -172,7 +172,7 @@ async def test_switch_reload_one_switch(testbed):
                 )
                 assert out[0][dev1.host_name]['rc'] == 0, f'Failed to get Links on {dev1.host_name}'
                 links = json.loads(out[0][dev1.host_name]['result'])
-                links = {l['ifname']: l for l in links}
+                links = {link['ifname']: link for link in links}
                 host = dev1.host_name
 
                 # compare here
@@ -223,7 +223,7 @@ async def _test_switch_reload_disr1_switch(testbed):
     )
     assert out[0][dev.host_name]['rc'] == 0, f'Failed to get Links on {dev.host_name}'
     prev_links = json.loads(out[0][dev.host_name]['result'])
-    prev_links = {l['ifname']: l for l in prev_links}
+    prev_links = {link['ifname']: link for link in prev_links}
 
     cmd = "sudo vtysh -c 'show ip bgp summ json'"
     rc, out = await dev.run_cmd(cmd)
@@ -259,7 +259,7 @@ async def _test_switch_reload_disr1_switch(testbed):
         )
         assert out[0][dev.host_name]['rc'] == 0, f'Failed to get Links on {dev.host_name}'
         cur_links = json.loads(out[0][dev.host_name]['result'])
-        cur_links = {l['ifname']: l for l in cur_links}
+        cur_links = {link['ifname']: link for link in cur_links}
         for k, v in prev_links.items():
             dev.applog.info(
                 '{} Link {} state prev {} current {}'.format(
