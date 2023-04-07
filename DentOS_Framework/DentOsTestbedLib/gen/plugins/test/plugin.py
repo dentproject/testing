@@ -67,7 +67,7 @@ class TestPyObject(object):
     def __init__(self, cls, fname):
         self._cls = cls
         self._fname = fname
-        self._header = [PyLines(lines=tokenize(py_header%self._cls._yfile))]
+        self._header = [PyLines(lines=tokenize(py_header % self._cls._yfile))]
         self._imports = []
         self._classes = []
         self._methods = []
@@ -107,7 +107,7 @@ class TestPyObject(object):
                 'cname_cc' : camelcase(obj.name),
                 'platforms': obj.platforms,
                 }
-            impl_form_cmd += py_class_common_impl_form_command%iargs
+            impl_form_cmd += py_class_common_impl_form_command % iargs
         args['impl_form_cmd'] = impl_form_cmd
         if self._cls.local:
             args['invoke_command'] = 'rc, output = impl_obj.run_command(device_obj, command=api, params=device[device_name])'
@@ -160,7 +160,7 @@ class TestCmdPyObject(object):
     def __init__(self, cls, fname):
         self._cls = cls
         self._fname = fname
-        self._header = [PyLines(lines=tokenize(py_header%self._cls._yfile))]
+        self._header = [PyLines(lines=tokenize(py_header % self._cls._yfile))]
         self._imports = []
         self._classes = []
         self._methods = []
@@ -401,7 +401,7 @@ class TestCodePyObject(object):
     def __init__(self, cls, fname):
         self._cls = cls
         self._fname = fname
-        self._header = [PyLines(lines=tokenize(py_header%self._cls._yfile))]
+        self._header = [PyLines(lines=tokenize(py_header % self._cls._yfile))]
         self._imports = []
         self._classes = []
         self._methods = []
@@ -425,7 +425,7 @@ class TestCodePyObject(object):
         if mbr.type == 'ip_addr_t':
             return '\''+'.'.join(map(str, (random.randint(0, 255) for _ in range(4)))) + '\''
         if mbr.type == 'mac_t':
-            return '\''+ ':'.join(map(str, ('%02x'%random.randint(0, 255) for _ in range(6)))) + '\''
+            return '\''+ ':'.join(map(str, ('%02x' % random.randint(0, 255) for _ in range(6)))) + '\''
         return '\'\''
 
     def generate_code(self):

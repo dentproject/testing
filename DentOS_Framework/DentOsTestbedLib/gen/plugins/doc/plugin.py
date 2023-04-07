@@ -49,7 +49,7 @@ class DocsMdObject(object):
                 classes += f'[{c.name}]({c.name}.md) <br/>'
             if not classes: continue
             margs['classes'] = classes
-            self._body.append(MdLines(lines=tokenize(md_mod_entry%margs)))
+            self._body.append(MdLines(lines=tokenize(md_mod_entry % margs)))
     def write_file(self):
         p = MdFile(self._header, self._body, self._tailer)
         p.write(self._fname)
@@ -80,17 +80,17 @@ class DocMdObject(object):
         if mbr.type == 'ip_addr_t':
             return '\''+'.'.join(map(str, (random.randint(0, 255) for _ in range(4)))) + '\''
         if mbr.type == 'mac_t':
-            return '\''+ ':'.join(map(str, ('%02x'%random.randint(0, 255) for _ in range(6)))) + '\''
+            return '\''+ ':'.join(map(str, ('%02x' % random.randint(0, 255) for _ in range(6)))) + '\''
         return '\'\''
     def generate_code(self):
         args = self._cls.to_dict()
         args['cname_cc'] = camelcase(self._cls.name)
-        self._header = [MdLines(lines=tokenize(md_header%(args)))]
+        self._header = [MdLines(lines=tokenize(md_header % (args)))]
         self._body.append(MdLines(lines=tokenize(md_mbr_hdr)))
         for mbr in self._cls.members:
             margs = mbr.to_dict()
             margs['cmbr_desc'] = margs['cmbr_desc'].replace('|','\|').replace('\n','')
-            self._body.append(MdLines(lines=tokenize(md_mbr_entry%margs)))
+            self._body.append(MdLines(lines=tokenize(md_mbr_entry % margs)))
         for api in self._cls.apis:
             args['api'] = api
             for impl in self._cls.implemented_by:
@@ -104,8 +104,8 @@ class DocMdObject(object):
                         if isinstance(m, str): continue
                         args['params'] += "                '%s':%s,\n" % (m.name, self.get_random_value(m))
                     args['api_name'] = api
-                    args['api_usage'] = md_sample_call%args
-                    self._body.append(MdLines(lines=tokenize(md_apis%args)))
+                    args['api_usage'] = md_sample_call % args
+                    self._body.append(MdLines(lines=tokenize(md_apis % args)))
     def write_file(self):
         p = MdFile(self._header, self._body, self._tailer)
         p.write(self._fname)
