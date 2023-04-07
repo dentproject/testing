@@ -73,7 +73,7 @@ class IpAddressMod(Module):
                 continue
             if 'parsed_output' not in out[0][dev.host_name]:
                 print('Failed to get parsed_output ip_address')
-                print (out)
+                print(out)
                 continue
             self.set_ip_address(out[0][dev.host_name]['parsed_output'], self.report.duts[i].network.layer3.addresses)
             print('Finished ip_address Discovery on {} with {} entries'.format(dev.host_name, len(self.report.duts[i].network.layer3.addresses)))

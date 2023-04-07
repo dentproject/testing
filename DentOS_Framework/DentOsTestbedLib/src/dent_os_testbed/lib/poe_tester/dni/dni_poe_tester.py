@@ -66,7 +66,7 @@ class DniPoeTester(TestLibObject):
         if command in ['get_port_stats']:
             return self.run_get_port_stats(device_obj, command, *argv, **kwarg)
 
-        print (len(command))
+        print(len(command))
         raise NameError('Cannot find command '+command)
 
     def parse_output(self, command, output, *argv, **kwarg):

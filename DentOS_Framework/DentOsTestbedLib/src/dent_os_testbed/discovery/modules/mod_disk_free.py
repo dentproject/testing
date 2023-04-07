@@ -43,7 +43,7 @@ class DiskFreeMod(Module):
                 continue
             if 'parsed_output' not in out[0][dev.host_name]:
                 print('Failed to get parsed_output disk_free')
-                print (out)
+                print(out)
                 continue
             self.set_disk_free(out[0][dev.host_name]['parsed_output'], self.report.duts[i].system.os.disk)
             print('Finished disk_free Discovery on {} with {} entries'.format(dev.host_name, len(self.report.duts[i].system.os.disk)))

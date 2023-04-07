@@ -39,7 +39,7 @@ def load_yaml(yaml_dir):
                 raise e
 
             pname = root[len(yaml_dir) :].split('/')[0]
-            print (fname)
+            print(fname)
             if pname not in content:
                 content[pname] = Package(pname, ydata, fname, content)
             else:
