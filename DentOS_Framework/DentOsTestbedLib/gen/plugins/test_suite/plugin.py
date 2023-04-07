@@ -69,20 +69,19 @@ class TestSuitePyObject(object):
                     )
                 cls = camelcase(tc.cls.name)+tc.template+'Meta'
                 self._classes.append(
-                    PyClass(cls,
-                            desc=[PyLines(lines=[])],
-                            parent=('%sMeta' % tc.template),
-                            methods=methods)
+                    PyClass(
+                        cls,
+                        desc=[PyLines(lines=[])],
+                        parent=('%sMeta' % tc.template),
+                        methods=methods
+                    )
                 )
                 self._classes.append(
-                    PyClass(camelcase(tc.cls.name)+tc.template,
-                            desc=[PyLines(lines=[])],
-                            parent=('%sBase' % tc.template),
-                            methods=[PyLines(
-                                lines=['    meta='+
-                                       camelcase(tc.cls.name)+
-                                       tc.template+
-                                       'Meta'])]
+                    PyClass(
+                        camelcase(tc.cls.name)+tc.template,
+                        desc=[PyLines(lines=[])],
+                        parent=('%sBase' % tc.template),
+                        methods=[PyLines(lines=['    meta='+camelcase(tc.cls.name)+tc.template+'Meta'])]
                     )
                 )
                 classes += camelcase(tc.cls.name)+tc.template + ','
