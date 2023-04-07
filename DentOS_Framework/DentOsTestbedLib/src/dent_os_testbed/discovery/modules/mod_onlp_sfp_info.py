@@ -14,7 +14,7 @@ class OnlpSfpInfoMod(Module):
 
     def set_onlp_sfp_info(self, src, dst):
 
-        for i,onlp_sfp_info in enumerate(src):
+        for i, onlp_sfp_info in enumerate(src):
             if 'port' in onlp_sfp_info: dst[i].port = onlp_sfp_info.get('port')
             if 'type' in onlp_sfp_info: dst[i].type = onlp_sfp_info.get('type')
             if 'media' in onlp_sfp_info: dst[i].media = onlp_sfp_info.get('media')
@@ -35,7 +35,7 @@ class OnlpSfpInfoMod(Module):
                 continue
             print('Running onlp_sfp_info Discovery on ' + dev.host_name)
             out = await OnlpSfpInfo.show(
-                input_data=[{dev.host_name: [{'dut_discovery':True}]}],
+                input_data=[{dev.host_name: [{'dut_discovery': True}]}],
                 device_obj={dev.host_name: dev},
                 parse_output=True
             )

@@ -14,7 +14,7 @@ class LldpMod(Module):
 
     def set_lldp(self, src, dst):
 
-        for i,lldp in enumerate(src):
+        for i, lldp in enumerate(src):
             if 'interface' in lldp: dst[i].interface = lldp.get('interface')
             if 'options' in lldp: dst[i].options = lldp.get('options')
             if 'remote_host' in lldp: dst[i].remote_host = lldp.get('remote_host')
@@ -31,7 +31,7 @@ class LldpMod(Module):
                 continue
             print('Running lldp Discovery on ' + dev.host_name)
             out = await Lldp.show(
-                input_data=[{dev.host_name: [{'dut_discovery':True}]}],
+                input_data=[{dev.host_name: [{'dut_discovery': True}]}],
                 device_obj={dev.host_name: dev},
                 parse_output=True
             )

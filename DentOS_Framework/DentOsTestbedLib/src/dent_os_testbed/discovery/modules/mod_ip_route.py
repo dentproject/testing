@@ -14,14 +14,14 @@ class IpRouteMod(Module):
 
     def set_nexthop(self, src, dst):
 
-        for i,nexthop in enumerate(src):
+        for i, nexthop in enumerate(src):
             if 'via' in nexthop: dst[i].via = nexthop.get('via')
             if 'dev' in nexthop: dst[i].dev = nexthop.get('dev')
             if 'weight' in nexthop: dst[i].weight = nexthop.get('weight')
 
     def set_ip_route(self, src, dst):
 
-        for i,ip_route in enumerate(src):
+        for i, ip_route in enumerate(src):
             if 'type' in ip_route: dst[i].type = ip_route.get('type')
             if 'dst' in ip_route: dst[i].dst = ip_route.get('dst')
             if 'dev' in ip_route: dst[i].dev = ip_route.get('dev')
@@ -61,7 +61,7 @@ class IpRouteMod(Module):
                 continue
             print('Running ip_route Discovery on ' + dev.host_name)
             out = await IpRoute.show(
-                input_data=[{dev.host_name: [{'dut_discovery':True}]}],
+                input_data=[{dev.host_name: [{'dut_discovery': True}]}],
                 device_obj={dev.host_name: dev},
                 parse_output=True
             )

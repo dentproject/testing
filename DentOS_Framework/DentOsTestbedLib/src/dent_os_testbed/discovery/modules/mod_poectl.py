@@ -14,7 +14,7 @@ class PoectlMod(Module):
 
     def set_poectl(self, src, dst):
 
-        for i,poectl in enumerate(src):
+        for i, poectl in enumerate(src):
             if 'port' in poectl: dst[i].port = poectl.get('port')
             if 'cmd_options' in poectl: dst[i].cmd_options = poectl.get('cmd_options')
             if 'status' in poectl: dst[i].status = poectl.get('status')
@@ -39,7 +39,7 @@ class PoectlMod(Module):
                 continue
             print('Running poectl Discovery on ' + dev.host_name)
             out = await Poectl.show(
-                input_data=[{dev.host_name: [{'dut_discovery':True}]}],
+                input_data=[{dev.host_name: [{'dut_discovery': True}]}],
                 device_obj={dev.host_name: dev},
                 parse_output=True
             )

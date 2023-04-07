@@ -14,7 +14,7 @@ class ProcessMod(Module):
 
     def set_process(self, src, dst):
 
-        for i,process in enumerate(src):
+        for i, process in enumerate(src):
             if 'pid' in process: dst[i].pid = process.get('pid')
             if 'command' in process: dst[i].command = process.get('command')
             if 'elapsed' in process: dst[i].elapsed = process.get('elapsed')
@@ -38,7 +38,7 @@ class ProcessMod(Module):
                 continue
             print('Running process Discovery on ' + dev.host_name)
             out = await Process.show(
-                input_data=[{dev.host_name: [{'dut_discovery':True}]}],
+                input_data=[{dev.host_name: [{'dut_discovery': True}]}],
                 device_obj={dev.host_name: dev},
                 parse_output=True
             )

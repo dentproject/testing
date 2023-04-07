@@ -51,7 +51,7 @@ class ReportPyObject(object):
         visited = {}
         queue = [(parent, name)]
         while queue:
-            node,name = queue.pop(0)
+            node, name = queue.pop(0)
             if node in visited:
                 continue
             visited[node] = True
@@ -102,7 +102,7 @@ class ReportPyObject(object):
             )
         )
 
-        self._classes.append(PyClass('ReportSchema', parent='Report',methods=methods))
+        self._classes.append(PyClass('ReportSchema', parent='Report', methods=methods))
 
     def write_file(self):
         p = PyFile(self._header, self._imports, self._classes, self._methods)
@@ -219,7 +219,7 @@ class DiscoveryPlugin(SamplePlugin):
         # BFS from base class and create discovery for each class that has implemented by
         visited = {}
         # queue=[(dbs["dent"].modules['base'].classes_dct['duts'],'data["duts"][i]')]
-        queue = [(dbs['dent'].modules['base'].classes_dct['duts'],'self.report.duts[i]')]
+        queue = [(dbs['dent'].modules['base'].classes_dct['duts'], 'self.report.duts[i]')]
         while queue:
             (node, parent) = queue.pop(0)
             if node in visited:

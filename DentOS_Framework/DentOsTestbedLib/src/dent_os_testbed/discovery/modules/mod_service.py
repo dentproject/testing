@@ -14,7 +14,7 @@ class ServiceMod(Module):
 
     def set_service(self, src, dst):
 
-        for i,service in enumerate(src):
+        for i, service in enumerate(src):
             if 'name' in service: dst[i].name = service.get('name')
             if 'loaded' in service: dst[i].loaded = service.get('loaded')
             if 'active' in service: dst[i].active = service.get('active')
@@ -32,7 +32,7 @@ class ServiceMod(Module):
                 continue
             print('Running service Discovery on ' + dev.host_name)
             out = await Service.show(
-                input_data=[{dev.host_name: [{'dut_discovery':True}]}],
+                input_data=[{dev.host_name: [{'dut_discovery': True}]}],
                 device_obj={dev.host_name: dev},
                 parse_output=True
             )

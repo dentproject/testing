@@ -143,7 +143,7 @@ class TestPyObject(object):
             methods.append(PyMethod(api.lower(),
                                     '*argv, **kwarg',
                                     run_body[0],
-                                    indent=4,coroutine=True))
+                                    indent=4, coroutine=True))
         # discard other accessors
         self._classes = [
             PyClass(camelcase(self._cls.name),

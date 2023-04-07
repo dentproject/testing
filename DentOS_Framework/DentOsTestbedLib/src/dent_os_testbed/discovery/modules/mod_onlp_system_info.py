@@ -14,7 +14,7 @@ class OnlpSystemInfoMod(Module):
 
     def set_onlp_system_info(self, src, dst):
 
-        for i,onlp_system_info in enumerate([src]):
+        for i, onlp_system_info in enumerate([src]):
             if 'product_name' in onlp_system_info: dst.product_name = onlp_system_info.get('product_name')
             if 'serial_number' in onlp_system_info: dst.serial_number = onlp_system_info.get('serial_number')
             if 'mac' in onlp_system_info: dst.mac = onlp_system_info.get('mac')
@@ -41,7 +41,7 @@ class OnlpSystemInfoMod(Module):
                 continue
             print('Running onlp_system_info Discovery on ' + dev.host_name)
             out = await OnlpSystemInfo.show(
-                input_data=[{dev.host_name: [{'dut_discovery':True}]}],
+                input_data=[{dev.host_name: [{'dut_discovery': True}]}],
                 device_obj={dev.host_name: dev},
                 parse_output=True
             )

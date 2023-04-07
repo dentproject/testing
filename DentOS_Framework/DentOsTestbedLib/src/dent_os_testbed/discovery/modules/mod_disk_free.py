@@ -14,7 +14,7 @@ class DiskFreeMod(Module):
 
     def set_disk_free(self, src, dst):
 
-        for i,disk_free in enumerate(src):
+        for i, disk_free in enumerate(src):
             if 'filesystem' in disk_free: dst[i].filesystem = disk_free.get('filesystem')
             if 'size' in disk_free: dst[i].size = disk_free.get('size')
             if 'used' in disk_free: dst[i].used = disk_free.get('used')
@@ -33,7 +33,7 @@ class DiskFreeMod(Module):
                 continue
             print('Running disk_free Discovery on ' + dev.host_name)
             out = await DiskFree.show(
-                input_data=[{dev.host_name: [{'dut_discovery':True}]}],
+                input_data=[{dev.host_name: [{'dut_discovery': True}]}],
                 device_obj={dev.host_name: dev},
                 parse_output=True
             )

@@ -14,7 +14,7 @@ class IpLinkMod(Module):
 
     def set_ip_link(self, src, dst):
 
-        for i,ip_link in enumerate(src):
+        for i, ip_link in enumerate(src):
             if 'ageing_time' in ip_link: dst[i].ageing_time = ip_link.get('ageing_time')
             if 'ifindex' in ip_link: dst[i].ifindex = ip_link.get('ifindex')
             if 'ifname' in ip_link: dst[i].ifname = ip_link.get('ifname')
@@ -65,7 +65,7 @@ class IpLinkMod(Module):
                 continue
             print('Running ip_link Discovery on ' + dev.host_name)
             out = await IpLink.show(
-                input_data=[{dev.host_name: [{'dut_discovery':True}]}],
+                input_data=[{dev.host_name: [{'dut_discovery': True}]}],
                 device_obj={dev.host_name: dev},
                 parse_output=True
             )

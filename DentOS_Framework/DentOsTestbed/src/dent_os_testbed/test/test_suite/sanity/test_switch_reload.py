@@ -88,7 +88,7 @@ async def test_switch_reload_all(testbed):
             assert rc == 0, f'Could not run the {cmd}'
             data = json.loads(out)
             peers = data['ipv4Unicast']['peers']
-            for k,v in bgp_state[host]['ipv4Unicast']['peers'].items():
+            for k, v in bgp_state[host]['ipv4Unicast']['peers'].items():
                 if v['state'] in ['Connect', 'Active']:
                     # no need to check these out.
                     continue
@@ -286,7 +286,7 @@ async def _test_switch_reload_disr1_switch(testbed):
         #   if peers[ip]["state"] != "Established":
         #       assert 0, f"peer {i} has no BGP established"
 
-        for k,v in prev_bgp['ipv4Unicast']['peers'].items():
+        for k, v in prev_bgp['ipv4Unicast']['peers'].items():
             if v['state'] in ['Connect', 'Active']:
                 # no need to check these out.
                 continue
