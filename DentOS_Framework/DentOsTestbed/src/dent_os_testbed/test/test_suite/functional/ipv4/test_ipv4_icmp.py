@@ -26,6 +26,7 @@ pytestmark = [
     pytest.mark.asyncio,
 ]
 
+
 async def do_ping(dev, port, dst, count=1, interval=0.1, size=0, timeout=120):
     cmd = f'ping -I {port} -c {count} -i {interval} -s {size} -w {timeout} {dst}'
     cmd += ' | grep "ping statistics" -A 2'  # filter ouptut

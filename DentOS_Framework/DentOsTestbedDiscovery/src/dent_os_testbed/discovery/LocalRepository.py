@@ -21,6 +21,7 @@ from dent_os_testbed.discovery.constants import (
 
 from dent_os_testbed.discovery.Report import Report
 
+
 class LocalRepository(object):
 
     def __init__(self,

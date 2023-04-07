@@ -7,6 +7,8 @@
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
 from dent_os_testbed.lib.bridge.linux.linux_bridge_monitor_impl import LinuxBridgeMonitorImpl
+
+
 class BridgeMonitor(TestLibObject):
     """
         The bridge utility can monitor the state of devices and addresses continuously.

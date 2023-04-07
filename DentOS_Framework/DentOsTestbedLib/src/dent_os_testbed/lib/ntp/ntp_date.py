@@ -7,6 +7,8 @@
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
 from dent_os_testbed.lib.ntp.linux.linux_ntp_date_impl import LinuxNtpDateImpl
+
+
 class NtpDate(TestLibObject):
     """
         ntpdate - set the date and time via NTP

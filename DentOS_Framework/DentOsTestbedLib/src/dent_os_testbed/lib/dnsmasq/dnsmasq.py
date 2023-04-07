@@ -7,6 +7,8 @@
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
 from dent_os_testbed.lib.dnsmasq.linux.linux_dnsmasq_impl import LinuxDnsmasqImpl
+
+
 class Dnsmasq(TestLibObject):
     """
         dnsmasq is a lightweight DNS, TFTP, PXE, router advertisement and DHCP server.

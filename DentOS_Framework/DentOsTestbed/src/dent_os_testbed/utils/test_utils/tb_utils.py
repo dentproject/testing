@@ -20,6 +20,7 @@ from dent_os_testbed.lib.ethtool.ethtool import Ethtool
 
 from pyvis.network import Network
 
+
 async def tb_clean_config_device(d):
     config_file_list = [
         ['NTP', '/etc/ntp.conf'],
@@ -434,6 +435,7 @@ def console_log_analyzer(dev, file):
             return -1
     return 0
 
+
 async def tb_collect_logs_from_device(device):
     files = [
         '/etc/network/interfaces',
@@ -476,6 +478,7 @@ async def tb_collect_logs_from_device(device):
                 assert ret == 0, f'Found Errors in {f} on {device.host_name}'
         except Exception as e:
             device.applog.error(str(e))
+
 
 async def tb_collect_logs_from_devices(devices,
                                        exclude_devices=[DeviceType.TRAFFIC_GENERATOR],

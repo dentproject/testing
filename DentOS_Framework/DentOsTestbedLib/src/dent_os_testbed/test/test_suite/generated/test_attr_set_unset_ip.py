@@ -11,6 +11,8 @@ from dent_os_testbed.utils.decorators import TestCaseSetup
 from dent_os_testbed.lib.ip.ip_link import IpLink
 from dent_os_testbed.test.lib.AttrSetAndUnset import AttrSetAndUnsetBase, AttrSetAndUnsetMeta
 pytestmark = pytest.mark.suite_basic_trigger
+
+
 class IpLinkAttrSetAndUnsetMeta(AttrSetAndUnsetMeta):
     """
     """
@@ -30,13 +32,19 @@ class IpLinkAttrSetAndUnsetMeta(AttrSetAndUnsetMeta):
         return {'device': obj.ifname}
     def dev_object_reset_params(obj=None):
         return {'device': obj.ifname, 'operstate':'up'}
+
+
 class IpLinkAttrSetAndUnset(AttrSetAndUnsetBase):
     """
     """
     meta=IpLinkAttrSetAndUnsetMeta
+
+
 @pytest.fixture(params=[IpLinkAttrSetAndUnset,])
 def attr_set_unset_ip_class(request):
     return request.param
+
+
 @pytest.mark.asyncio
 async def test_attr_set_unset_ip(testbed, attr_set_unset_ip_class):
     await attr_set_unset_ip_class().run_test(testbed)

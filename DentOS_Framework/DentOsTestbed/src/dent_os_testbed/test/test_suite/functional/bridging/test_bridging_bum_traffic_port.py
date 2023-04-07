@@ -27,6 +27,7 @@ pytestmark = [
     pytest.mark.usefixtures('cleanup_bridges', 'cleanup_tgen', 'cleanup_ip_addrs')
 ]
 
+
 async def test_bridging_bum_traffic_port_with_rif(testbed):
     """
     Test Name: test_bridging_bum_traffic_port_with_rif

@@ -7,6 +7,8 @@
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
 from dent_os_testbed.lib.frr.linux.linux_bgp_impl import LinuxBgpImpl
+
+
 class Bgp(TestLibObject):
     """
         - router bgp 65534

@@ -7,6 +7,8 @@
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
 from dent_os_testbed.lib.poe.linux.linux_poectl_impl import LinuxPoectlImpl
+
+
 class Poectl(TestLibObject):
     """
         -h, --help                           Show this help message and exit

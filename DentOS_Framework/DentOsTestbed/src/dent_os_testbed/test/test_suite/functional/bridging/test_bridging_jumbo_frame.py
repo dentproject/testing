@@ -22,6 +22,7 @@ pytestmark = [
     pytest.mark.usefixtures('cleanup_bridges', 'cleanup_tgen')
 ]
 
+
 async def test_bridging_frame_max_size(testbed):
     """
     Test Name: test_bridging_frame_max_size

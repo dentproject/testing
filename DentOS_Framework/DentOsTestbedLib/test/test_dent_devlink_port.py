@@ -7,6 +7,8 @@
 import asyncio
 from .utils import TestDevice
 from dent_os_testbed.lib.devlink.devlink_port import DevlinkPort
+
+
 def test_that_devlink_port_set(capfd):
 
     dv1 = TestDevice(platform='dentos')

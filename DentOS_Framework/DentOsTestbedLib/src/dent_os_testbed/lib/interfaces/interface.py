@@ -7,6 +7,8 @@
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
 from dent_os_testbed.lib.interfaces.linux.linux_interface_impl import LinuxInterfaceImpl
+
+
 class Interface(TestLibObject):
     """
         ifupdown/ifreload - network interface management commands

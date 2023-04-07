@@ -22,6 +22,7 @@ pytestmark = [
     pytest.mark.usefixtures('cleanup_bridges', 'cleanup_tgen')
 ]
 
+
 async def test_bridging_robustness_macs(testbed):
     """
     Test Name: test_bridging_robustness_macs

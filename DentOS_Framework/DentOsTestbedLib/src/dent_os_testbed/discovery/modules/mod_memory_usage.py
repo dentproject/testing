@@ -6,6 +6,8 @@
 
 from dent_os_testbed.discovery.Module import Module
 from dent_os_testbed.lib.os.memory_usage import MemoryUsage
+
+
 class MemoryUsageMod(Module):
     """
     """

@@ -7,6 +7,8 @@
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
 from dent_os_testbed.lib.tc.linux.linux_tc_class_impl import LinuxTcClassImpl
+
+
 class TcClass(TestLibObject):
     """
         - tc [ OPTIONS ] [ FORMAT ] class show dev DEV

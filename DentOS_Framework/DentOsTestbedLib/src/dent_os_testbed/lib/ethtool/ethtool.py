@@ -7,6 +7,8 @@
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
 from dent_os_testbed.lib.ethtool.linux.linux_ethtool_impl import LinuxEthtoolImpl
+
+
 class Ethtool(TestLibObject):
     """
         ethtool is used to query and control network device driver and hardware settings,

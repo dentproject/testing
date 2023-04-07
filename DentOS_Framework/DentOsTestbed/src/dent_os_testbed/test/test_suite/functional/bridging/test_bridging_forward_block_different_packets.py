@@ -20,6 +20,7 @@ pytestmark = [
     pytest.mark.usefixtures('cleanup_bridges', 'cleanup_tgen')
 ]
 
+
 async def test_bridging_forward_block_different_packets(testbed):
     """
     Test Name: test_bridging_forward_block_different_packets

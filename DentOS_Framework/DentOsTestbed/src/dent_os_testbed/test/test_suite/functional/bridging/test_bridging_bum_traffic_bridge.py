@@ -27,6 +27,7 @@ pytestmark = [
     pytest.mark.usefixtures('cleanup_bridges', 'cleanup_tgen', 'cleanup_ip_addrs')
 ]
 
+
 async def test_bridging_bum_traffic_bridge_with_rif(testbed):
     """
     Test Name: test_bridging_bum_traffic_bridge_with_rif
@@ -150,6 +151,7 @@ async def test_bridging_bum_traffic_bridge_with_rif(testbed):
             assert int(count) > 0, f'Verify that packets are received by filter.\n'
         if type == 'captured' or type == 'dropped':
             assert int(count) == 0, f'Verify that packets are captured and dropped by kernel.\n'
+
 
 async def test_bridging_bum_traffic_bridge_without_rif(testbed):
     """

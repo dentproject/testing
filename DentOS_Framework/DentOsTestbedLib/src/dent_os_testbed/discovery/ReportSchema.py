@@ -8,6 +8,8 @@ import io
 import json
 import copy
 from dent_os_testbed.discovery.Report import (LeafSchemaDict, SchemaList, SchemaDict, Report)
+
+
 class OspfNeighSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/network/network.yaml ospf_neigh
@@ -20,10 +22,14 @@ class OspfNeighSchemaDict(SchemaDict):
         'interface':str,
 
     }
+
+
 class OspfNeighSchemaList(SchemaList):
     """
     """
     __item_klass__ = OspfNeighSchemaDict
+
+
 class BgpNeighSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/network/network.yaml bgp_neigh
@@ -35,10 +41,14 @@ class BgpNeighSchemaDict(SchemaDict):
         'state':str,
 
     }
+
+
 class BgpNeighSchemaList(SchemaList):
     """
     """
     __item_klass__ = BgpNeighSchemaDict
+
+
 class NexthopSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/network/ip/route.yaml nexthop
@@ -49,10 +59,14 @@ class NexthopSchemaDict(SchemaDict):
         'weight':int,
 
     }
+
+
 class NexthopSchemaList(SchemaList):
     """
     """
     __item_klass__ = NexthopSchemaDict
+
+
 class IpAddressInfoSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/network/ip/address.yaml ip_address_info
@@ -67,10 +81,14 @@ class IpAddressInfoSchemaDict(SchemaDict):
         'preferred_life_time':int,
 
     }
+
+
 class IpAddressInfoSchemaList(SchemaList):
     """
     """
     __item_klass__ = IpAddressInfoSchemaDict
+
+
 class InterfaceNamesSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/network/network.yaml interface_names
@@ -79,10 +97,14 @@ class InterfaceNamesSchemaDict(SchemaDict):
         'name':str,
 
     }
+
+
 class InterfaceNamesSchemaList(SchemaList):
     """
     """
     __item_klass__ = InterfaceNamesSchemaDict
+
+
 class InterfaceAddrSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/network/network.yaml interface_addr
@@ -95,10 +117,14 @@ class InterfaceAddrSchemaDict(SchemaDict):
         'label':str,
 
     }
+
+
 class InterfaceAddrSchemaList(SchemaList):
     """
     """
     __item_klass__ = InterfaceAddrSchemaDict
+
+
 class SfpSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/network/network.yaml sfp
@@ -109,6 +135,8 @@ class SfpSchemaDict(SchemaDict):
         'serial':str,
 
     }
+
+
 class TestbedOspfRoutersSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/testbed/testbed.yaml testbed_ospf_routers
@@ -119,10 +147,14 @@ class TestbedOspfRoutersSchemaDict(SchemaDict):
         'device_id':str,
 
     }
+
+
 class TestbedOspfRoutersSchemaList(SchemaList):
     """
     """
     __item_klass__ = TestbedOspfRoutersSchemaDict
+
+
 class TestbedBgpRoutersSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/testbed/testbed.yaml testbed_bgp_routers
@@ -132,10 +164,14 @@ class TestbedBgpRoutersSchemaDict(SchemaDict):
         'device_id':str,
 
     }
+
+
 class TestbedBgpRoutersSchemaList(SchemaList):
     """
     """
     __item_klass__ = TestbedBgpRoutersSchemaDict
+
+
 class TestbedInterfacesSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/testbed/testbed.yaml testbed_interfaces
@@ -145,10 +181,14 @@ class TestbedInterfacesSchemaDict(SchemaDict):
         'interface':str,
 
     }
+
+
 class TestbedInterfacesSchemaList(SchemaList):
     """
     """
     __item_klass__ = TestbedInterfacesSchemaDict
+
+
 class DiskFreeSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/system/os/disk.yaml disk_free
@@ -162,10 +202,14 @@ class DiskFreeSchemaDict(SchemaDict):
         'mounted_on':str,
 
     }
+
+
 class DiskFreeSchemaList(SchemaList):
     """
     """
     __item_klass__ = DiskFreeSchemaDict
+
+
 class ServiceSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/system/os/service.yaml service
@@ -178,10 +222,14 @@ class ServiceSchemaDict(SchemaDict):
         'description':str,
 
     }
+
+
 class ServiceSchemaList(SchemaList):
     """
     """
     __item_klass__ = ServiceSchemaDict
+
+
 class ProcessSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/system/os/process.yaml process
@@ -202,10 +250,14 @@ class ProcessSchemaDict(SchemaDict):
         'memory_utilization':float,
 
     }
+
+
 class ProcessSchemaList(SchemaList):
     """
     """
     __item_klass__ = ProcessSchemaDict
+
+
 class MemoryUsageSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/system/os/memory.yaml memory_usage
@@ -221,6 +273,8 @@ class MemoryUsageSchemaDict(SchemaDict):
         'inactive':int,
 
     }
+
+
 class CpuUsageSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/system/os/cpu.yaml cpu_usage
@@ -238,10 +292,14 @@ class CpuUsageSchemaDict(SchemaDict):
         'idle':float,
 
     }
+
+
 class CpuUsageSchemaList(SchemaList):
     """
     """
     __item_klass__ = CpuUsageSchemaDict
+
+
 class OspfSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/network/network.yaml ospf
@@ -251,10 +309,14 @@ class OspfSchemaDict(SchemaDict):
         'neighbors':OspfNeighSchemaList,
 
     }
+
+
 class OspfSchemaList(SchemaList):
     """
     """
     __item_klass__ = OspfSchemaDict
+
+
 class BgpSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/network/network.yaml bgp
@@ -265,10 +327,14 @@ class BgpSchemaDict(SchemaDict):
         'neighbors':BgpNeighSchemaList,
 
     }
+
+
 class BgpSchemaList(SchemaList):
     """
     """
     __item_klass__ = BgpSchemaDict
+
+
 class IpTablesSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/network/iptables/iptables.yaml ip_tables
@@ -288,10 +354,14 @@ class IpTablesSchemaDict(SchemaDict):
         'fragment':bool,
 
     }
+
+
 class IpTablesSchemaList(SchemaList):
     """
     """
     __item_klass__ = IpTablesSchemaDict
+
+
 class IpRouteSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/network/ip/route.yaml ip_route
@@ -329,10 +399,14 @@ class IpRouteSchemaDict(SchemaDict):
         'options':str,
 
     }
+
+
 class IpRouteSchemaList(SchemaList):
     """
     """
     __item_klass__ = IpRouteSchemaDict
+
+
 class IpAddressSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/network/ip/address.yaml ip_address
@@ -366,10 +440,14 @@ class IpAddressSchemaDict(SchemaDict):
         'options':str,
 
     }
+
+
 class IpAddressSchemaList(SchemaList):
     """
     """
     __item_klass__ = IpAddressSchemaDict
+
+
 class BridgeSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/network/network.yaml bridge
@@ -380,10 +458,14 @@ class BridgeSchemaDict(SchemaDict):
         'stp':bool,
 
     }
+
+
 class BridgeSchemaList(SchemaList):
     """
     """
     __item_klass__ = BridgeSchemaDict
+
+
 class VlansSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/network/network.yaml vlans
@@ -394,10 +476,14 @@ class VlansSchemaDict(SchemaDict):
         'trunk_ports':InterfaceNamesSchemaList,
 
     }
+
+
 class VlansSchemaList(SchemaList):
     """
     """
     __item_klass__ = VlansSchemaDict
+
+
 class LagsSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/network/network.yaml lags
@@ -407,10 +493,14 @@ class LagsSchemaDict(SchemaDict):
         'interfaces':InterfaceNamesSchemaList,
 
     }
+
+
 class LagsSchemaList(SchemaList):
     """
     """
     __item_klass__ = LagsSchemaDict
+
+
 class IpLinkSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/network/ip/link.yaml ip_link
@@ -462,10 +552,14 @@ class IpLinkSchemaDict(SchemaDict):
         'options':str,
 
     }
+
+
 class IpLinkSchemaList(SchemaList):
     """
     """
     __item_klass__ = IpLinkSchemaDict
+
+
 class InterfacesSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/network/network.yaml interfaces
@@ -491,10 +585,14 @@ class InterfacesSchemaDict(SchemaDict):
         'addr_info':InterfaceAddrSchemaList,
 
     }
+
+
 class InterfacesSchemaList(SchemaList):
     """
     """
     __item_klass__ = InterfacesSchemaDict
+
+
 class LldpSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/platform/lldp/lldp.yaml lldp
@@ -506,10 +604,14 @@ class LldpSchemaDict(SchemaDict):
         'remote_interface':str,
 
     }
+
+
 class LldpSchemaList(SchemaList):
     """
     """
     __item_klass__ = LldpSchemaDict
+
+
 class OnlpSfpInfoSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/platform/onlp/onlpdump.yaml onlp_sfp_info
@@ -525,10 +627,14 @@ class OnlpSfpInfoSchemaDict(SchemaDict):
         'serial_number':str,
 
     }
+
+
 class OnlpSfpInfoSchemaList(SchemaList):
     """
     """
     __item_klass__ = OnlpSfpInfoSchemaDict
+
+
 class OnlpSystemInfoSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/platform/onlp/onlpdump.yaml onlp_system_info
@@ -550,6 +656,8 @@ class OnlpSystemInfoSchemaDict(SchemaDict):
         'onie_version':str,
 
     }
+
+
 class PoectlSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/platform/poe/peoctl.yaml poectl
@@ -569,10 +677,14 @@ class PoectlSchemaDict(SchemaDict):
         'error_str':str,
 
     }
+
+
 class PoectlSchemaList(SchemaList):
     """
     """
     __item_klass__ = PoectlSchemaDict
+
+
 class FruItemSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/platform/platform.yaml fru_item
@@ -583,10 +695,14 @@ class FruItemSchemaDict(SchemaDict):
         'serial':str,
 
     }
+
+
 class FruItemSchemaList(SchemaList):
     """
     """
     __item_klass__ = FruItemSchemaDict
+
+
 class PartitionItemSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/platform/platform.yaml partition_item
@@ -599,10 +715,14 @@ class PartitionItemSchemaDict(SchemaDict):
         'opts':str,
 
     }
+
+
 class PartitionItemSchemaList(SchemaList):
     """
     """
     __item_klass__ = PartitionItemSchemaDict
+
+
 class TestbedOspfSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/testbed/testbed.yaml testbed_ospf
@@ -611,6 +731,8 @@ class TestbedOspfSchemaDict(SchemaDict):
         'routers':TestbedOspfRoutersSchemaList,
 
     }
+
+
 class TestbedBgpSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/testbed/testbed.yaml testbed_bgp
@@ -619,6 +741,8 @@ class TestbedBgpSchemaDict(SchemaDict):
         'routers':TestbedBgpRoutersSchemaList,
 
     }
+
+
 class TestbedVlansSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/testbed/testbed.yaml testbed_vlans
@@ -629,10 +753,14 @@ class TestbedVlansSchemaDict(SchemaDict):
         'trunk_port':TestbedInterfacesSchemaList,
 
     }
+
+
 class TestbedVlansSchemaList(SchemaList):
     """
     """
     __item_klass__ = TestbedVlansSchemaDict
+
+
 class OperatingSystemSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/system/system.yaml operating_system
@@ -645,6 +773,8 @@ class OperatingSystemSchemaDict(SchemaDict):
         'disk':DiskFreeSchemaList,
 
     }
+
+
 class L3SchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/network/network.yaml l3
@@ -659,6 +789,8 @@ class L3SchemaDict(SchemaDict):
         'ospf':OspfSchemaList,
 
     }
+
+
 class L2SchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/network/network.yaml l2
@@ -668,6 +800,8 @@ class L2SchemaDict(SchemaDict):
         'bridges':BridgeSchemaList,
 
     }
+
+
 class L1SchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/network/network.yaml l1
@@ -679,6 +813,8 @@ class L1SchemaDict(SchemaDict):
         'lags':LagsSchemaList,
 
     }
+
+
 class LldpSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/platform/platform.yaml lldp
@@ -687,6 +823,8 @@ class LldpSchemaDict(SchemaDict):
         'interfaces':LldpSchemaList,
 
     }
+
+
 class OnlpSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/platform/platform.yaml onlp
@@ -696,6 +834,8 @@ class OnlpSchemaDict(SchemaDict):
         'sfps':OnlpSfpInfoSchemaList,
 
     }
+
+
 class PoeSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/platform/platform.yaml poe
@@ -704,6 +844,8 @@ class PoeSchemaDict(SchemaDict):
         'ports':PoectlSchemaList,
 
     }
+
+
 class FruSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/platform/platform.yaml fru
@@ -714,6 +856,8 @@ class FruSchemaDict(SchemaDict):
         'serial':FruItemSchemaList,
 
     }
+
+
 class BaseboardSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/platform/platform.yaml baseboard
@@ -729,6 +873,8 @@ class BaseboardSchemaDict(SchemaDict):
         'partitions':PartitionItemSchemaList,
 
     }
+
+
 class TrafficGenSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/traffic/traffic.yaml traffic_gen
@@ -743,6 +889,8 @@ class TrafficGenSchemaDict(SchemaDict):
         'dst_ip':str,
 
     }
+
+
 class TestbedL3SchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/testbed/testbed.yaml testbed_l3
@@ -752,6 +900,8 @@ class TestbedL3SchemaDict(SchemaDict):
         'ospf':TestbedOspfSchemaDict,
 
     }
+
+
 class TestbedL2SchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/testbed/testbed.yaml testbed_l2
@@ -760,6 +910,8 @@ class TestbedL2SchemaDict(SchemaDict):
         'vlans':TestbedVlansSchemaList,
 
     }
+
+
 class DeviceSystemSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/system/system.yaml device_system
@@ -768,6 +920,8 @@ class DeviceSystemSchemaDict(SchemaDict):
         'os':OperatingSystemSchemaDict,
 
     }
+
+
 class DeviceNetworkSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/network/network.yaml device_network
@@ -778,6 +932,8 @@ class DeviceNetworkSchemaDict(SchemaDict):
         'layer3':L3SchemaDict,
 
     }
+
+
 class PlatformSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/platform/platform.yaml platform
@@ -791,6 +947,8 @@ class PlatformSchemaDict(SchemaDict):
         'lldp':LldpSchemaDict,
 
     }
+
+
 class TrafficGeneratorsSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/traffic/traffic.yaml traffic_generators
@@ -799,6 +957,8 @@ class TrafficGeneratorsSchemaDict(SchemaDict):
         'generator':TrafficGenSchemaDict,
 
     }
+
+
 class TestbedNetworkSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/testbed/testbed.yaml testbed_network
@@ -808,6 +968,8 @@ class TestbedNetworkSchemaDict(SchemaDict):
         'layer3':TestbedL3SchemaDict,
 
     }
+
+
 class InfrastructureSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/base/base.yaml infrastructure
@@ -817,10 +979,14 @@ class InfrastructureSchemaDict(SchemaDict):
         'network':DeviceNetworkSchemaDict,
 
     }
+
+
 class InfrastructureSchemaList(SchemaList):
     """
     """
     __item_klass__ = InfrastructureSchemaDict
+
+
 class DutsSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/base/base.yaml duts
@@ -832,10 +998,14 @@ class DutsSchemaDict(SchemaDict):
         'system':DeviceSystemSchemaDict,
 
     }
+
+
 class DutsSchemaList(SchemaList):
     """
     """
     __item_klass__ = DutsSchemaDict
+
+
 class ReportSchemaDict(SchemaDict):
     """
     Refer ./gen/model/dent/base/base.yaml base
@@ -848,6 +1018,8 @@ class ReportSchemaDict(SchemaDict):
         'traffic_genertors':TrafficGeneratorsSchemaDict,
 
     }
+
+
 class ReportSchema(Report):
     """
     """

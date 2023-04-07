@@ -13,6 +13,8 @@ from dent_os_testbed.test.lib.DeleteAndAdd import DeleteAndAddBase, DeleteAndAdd
 from dent_os_testbed.lib.ip.ip_address import IpAddress
 from dent_os_testbed.lib.ip.ip_link import IpLink
 pytestmark = pytest.mark.suite_basic_trigger
+
+
 class IpRouteDeleteAndAddMeta(DeleteAndAddMeta):
     """
     """
@@ -28,10 +30,14 @@ class IpRouteDeleteAndAddMeta(DeleteAndAddMeta):
         return obj.dev and re.compile('swp*').match(obj.dev)
     def device_objects(obj=None):
         return obj.network.layer3.routes
+
+
 class IpRouteDeleteAndAdd(DeleteAndAddBase):
     """
     """
     meta=IpRouteDeleteAndAddMeta
+
+
 class IpAddressDeleteAndAddMeta(DeleteAndAddMeta):
     """
     """
@@ -47,10 +53,14 @@ class IpAddressDeleteAndAddMeta(DeleteAndAddMeta):
         return re.compile('swp*').match(obj.ifname)
     def device_objects(obj=None):
         return obj.network.layer3.addresses
+
+
 class IpAddressDeleteAndAdd(DeleteAndAddBase):
     """
     """
     meta=IpAddressDeleteAndAddMeta
+
+
 class IpLinkDeleteAndAddMeta(DeleteAndAddMeta):
     """
     """
@@ -66,13 +76,19 @@ class IpLinkDeleteAndAddMeta(DeleteAndAddMeta):
         return re.compile('swp*').match(obj.ifname)
     def device_objects(obj=None):
         return obj.network.layer1.links
+
+
 class IpLinkDeleteAndAdd(DeleteAndAddBase):
     """
     """
     meta=IpLinkDeleteAndAddMeta
+
+
 @pytest.fixture(params=[IpRouteDeleteAndAdd,IpAddressDeleteAndAdd,IpLinkDeleteAndAdd,])
 def delete_add_ip_class(request):
     return request.param
+
+
 @pytest.mark.asyncio
 async def test_delete_add_ip(testbed, delete_add_ip_class):
     await delete_add_ip_class().run_test(testbed)

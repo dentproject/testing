@@ -21,6 +21,7 @@ from gen.plugins.discovery.template import (
     discover_py_code_set_attr
 )
 
+
 class ReportPyObject(object):
     def __init__(self, pkg, fname):
         self._pkg = pkg

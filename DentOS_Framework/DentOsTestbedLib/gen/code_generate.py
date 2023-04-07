@@ -15,6 +15,7 @@ from pykwalify.errors import PyKwalifyException
 from gen.lib.database import Package
 from gen.lib.sample_plugin import SamplePlugin
 
+
 def load_yaml(yaml_dir):
     """
     1. recursively walk the directories looking for yaml files.

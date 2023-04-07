@@ -1,5 +1,6 @@
 from random import randrange
 
+
 def get_streams(srcMac, self_mac, prefix, dev_groups, tg_ports):
     return {
     'Bridged_UnknownL2UC': {

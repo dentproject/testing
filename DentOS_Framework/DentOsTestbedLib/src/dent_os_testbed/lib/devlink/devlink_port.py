@@ -7,6 +7,8 @@
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
 from dent_os_testbed.lib.devlink.linux.devlink_port_impl import DevlinkPortImpl
+
+
 class DevlinkPort(TestLibObject):
     """
         devlink [ OPTIONS ] port  { COMMAND | help }

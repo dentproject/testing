@@ -6,6 +6,8 @@
 
 from dent_os_testbed.discovery.Module import Module
 from dent_os_testbed.lib.onlp.onlp_system_info import OnlpSystemInfo
+
+
 class OnlpSystemInfoMod(Module):
     """
     """

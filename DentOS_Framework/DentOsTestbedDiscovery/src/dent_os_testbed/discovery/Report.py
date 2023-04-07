@@ -7,6 +7,7 @@ import io
 import json
 import copy
 
+
 class CommitMixin(object):
 
     def commit(self):
@@ -56,6 +57,7 @@ class CommitMixin(object):
             ob = parent
             # keep iterating up to the top
 
+
 class LeafSchemaDict(CommitMixin):
 
     def __init__(self, dikt):
@@ -95,9 +97,11 @@ class LeafSchemaDict(CommitMixin):
         data_.update(data)
         self.commit()
 
+
 class UnknownSchemaDict(LeafSchemaDict):
     pass
 # un-expanded schema, TBD
+
 
 class SchemaDict(CommitMixin):
 
@@ -188,6 +192,7 @@ class SchemaDict(CommitMixin):
         data_.update(data)
         self.commit()
 
+
 class LeafSchemaList(CommitMixin):
     __item_klass__ = UnknownSchemaDict
 
@@ -263,9 +268,11 @@ class LeafSchemaList(CommitMixin):
         data_.extend(data)
         self.commit()
 
+
 class UnknownSchemaList(LeafSchemaList):
     pass
 # list of unresolved items, yet to be spec'd out
+
 
 class SchemaList(CommitMixin):
 
@@ -372,6 +379,7 @@ class SchemaList(CommitMixin):
         data_.extend(data)
         self.commit()
 
+
 class PartitionSchemaDict(SchemaDict):
     __schema_slots__ = {'mount' : str,
                         'device' : str,
@@ -379,8 +387,10 @@ class PartitionSchemaDict(SchemaDict):
                         'free' : int,
                         'opts' : str,}
 
+
 class PartitionItemList(SchemaList):
     __item_klass__ = PartitionSchemaDict
+
 
 class BaseboardSchemaDict(SchemaDict):
     __schema_slots__ = {'platform' : str,
@@ -392,28 +402,34 @@ class BaseboardSchemaDict(SchemaDict):
                         'memory_free' : int,
                         'partitions' : PartitionItemList,}
 
+
 class FruItemSchemaDict(SchemaDict):
     __schema_slots__ = {'name' : str,
                         'model' : str,
                         'serial' : str,}
 
+
 class FruItemList(SchemaList):
     __item_klass__ = FruItemSchemaDict
+
 
 class FruSchemaDict(SchemaDict):
     __schema_slots__ = {'fans' : FruItemList,
                         'psus' : FruItemList,
                         'serial' : FruItemList,}
 
+
 class PlatformSchemaDict(SchemaDict):
     __schema_slots__ = {'baseboard' : BaseboardSchemaDict,
                         'software' : LeafSchemaDict,
                         'fru' : FruSchemaDict,}
 
+
 class SfpSchemaDict(SchemaDict):
     __schema_slots__ = {'vendor' : str,
                         'model' : str,
                         'serial' : str,}
+
 
 class InterfaceSchemaDict(SchemaDict):
     __schema_slots__ = {'name' : str,
@@ -424,43 +440,54 @@ class InterfaceSchemaDict(SchemaDict):
                         'peer_interface' : str,
                         'sfp' : SfpSchemaDict,}
 
+
 class InterfacesSchemaList(SchemaList):
     __item_klass__ = InterfaceSchemaDict
 
+
 class InterfaceNamesSchemaList(SchemaList):
     __item_klass__ = str
+
 
 class LagsSchemaDict(SchemaDict):
     __schema_slots__ = {'name' : str,
                         'interfaces' : InterfaceNamesSchemaList,}
 
+
 class LagsSchemaList(SchemaList):
     __item_klass__ = LagsSchemaDict
+
 
 class L1SchemaDict(SchemaDict):
     __schema_slots__ = {'management_mac' : str,
                         'interfaces' : InterfacesSchemaList,
                         'lags' : LagsSchemaList,}
 
+
 class VlanSchemaDict(SchemaDict):
     __schema_slots__ = {'vlan_id' : int,
                         'access_ports' : InterfaceNamesSchemaList,
                         'trunk_ports' : InterfaceNamesSchemaList,}
 
+
 class VlansSchemaList(SchemaList):
     __item_klass__ = VlanSchemaDict
+
 
 class BridgeSchemaDict(SchemaDict):
     ___schema_slots__ = {'name' : str,
                          'interfaces' : InterfaceNamesSchemaList,
                          'stp' : bool,}
 
+
 class BridgesSchemaList(SchemaList):
     __item_klass__ = BridgeSchemaDict
+
 
 class L2SchemaDict(SchemaDict):
     __schema_slots__ = {'vlans' : VlansSchemaList,
                         'bridges' : BridgesSchemaList,}
+
 
 class BgpNeighSchemaDict(SchemaDict):
     __schema_slots__ = {'neighbor' : str,
@@ -468,13 +495,16 @@ class BgpNeighSchemaDict(SchemaDict):
                         'up' : str,
                         'state' : str,}
 
+
 class BgpNeighSchemaList(SchemaList):
     __item_klass__ = BgpNeighSchemaDict
+
 
 class BgpSchemaDict(SchemaDict):
     __schema_slots__ = {'as_' : int,
                         'router' : str,
                         'neighbors' : BgpNeighSchemaList,}
+
 
 class OspfNeighSchemaDict(SchemaDict):
     __schema_slots__ = {'address' : str,
@@ -483,12 +513,15 @@ class OspfNeighSchemaDict(SchemaDict):
                         'state' : str,
                         'interface' : str,}
 
+
 class OspfNeighSchemaList(SchemaList):
     __item_klass__ = OspfNeighSchemaDict
+
 
 class OspfSchemaDict(SchemaDict):
     __schema_slots__ = {'router_id' : str,
                         'neighbors' : OspfNeighSchemaList,}
+
 
 class L3SchemaDict(SchemaDict):
     __schema_slots__ = {'management_ip' : str,
@@ -497,78 +530,98 @@ class L3SchemaDict(SchemaDict):
                       'bgp' : BgpSchemaDict,
                       'ospf' : OspfSchemaDict,}
 
+
 class DeviceNetworkSchemaDict(SchemaDict):
     __schema_slots__ = {'layer1' : L1SchemaDict,
                         'layer2' : L2SchemaDict,
                         'layer3' : L3SchemaDict,}
+
 
 class DutSchemaDict(SchemaDict):
     __schema_slots__ = {'device_id' : str,
                         'platform' : PlatformSchemaDict,
                         'network' : DeviceNetworkSchemaDict,}
 
+
 class DutsSchemaList(SchemaList):
     __item_klass__ = DutSchemaDict
+
 
 class InfrastructureSchemaDict(SchemaDict):
     __schema_slots__ = {'device_id' : str,
                         'network' : DeviceNetworkSchemaDict,}
 
+
 class InfrastructureSchemaList(SchemaList):
     __item_klass__ = InfrastructureSchemaDict
+
 
 class TestbedInterfaceSchemaDict(SchemaDict):
     __schema_slots__ = {'device_id' : str,
                         'interface' : str,}
 
+
 class TestbedInterfacesSchemaList(SchemaList):
     __item_klass__ = TestbedInterfaceSchemaDict
+
 
 class TestbedVlanSchemaDict(SchemaDict):
     __schema_slots__ = {'vlan_id' : int,
                         'access_ports' : TestbedInterfacesSchemaList,
                         'trunk_ports' : TestbedInterfacesSchemaList,}
 
+
 class TestbedVlansSchemaList(SchemaList):
     __item_klass__ = TestbedVlanSchemaDict
 
+
 class TestbedL2SchemaDict(SchemaDict):
     __schema_slots__ = {'vlans' : TestbedVlansSchemaList,}
+
 
 class TestbedBgpRouterSchemaDict(SchemaDict):
     __schema_slots__ = {'router' : str,
                         'device_id' : str,}
 
+
 class TestbedBgpRoutersSchemaList(SchemaList):
     __item_klass__ = TestbedBgpRouterSchemaDict
 
+
 class TestbedBgpSchemaDict(SchemaDict):
     __schema_slots__ = {'routers' : TestbedBgpRoutersSchemaList,}
+
 
 class TestbedOspfRouterSchemaDict(SchemaDict):
     __schema_slots__ = {'address' : str,
                         'router_id' : str,
                         'device_id' : str,}
 
+
 class TestbedOspfRoutersSchemaList(SchemaList):
     __item_klass__ = TestbedOspfRouterSchemaDict
 
+
 class TestbedOspfSchemaDict(SchemaDict):
     __schema_slots__ = {'routers' : TestbedOspfRoutersSchemaList,}
+
 
 class TestbedL3SchemaDict(SchemaDict):
     __schema_slots__ = {'bgp' : TestbedBgpSchemaDict,
                         'ospf' : TestbedOspfSchemaDict,}
 
+
 class TestbedNetworkSchemaDict(SchemaDict):
     __schema_slots__ = {'layer2' : TestbedL2SchemaDict,
                         'layer3' : TestbedL3SchemaDict,}
+
 
 class ReportSchemaDict(SchemaDict):
     __schema_slots__ = {'attributes' : LeafSchemaDict,
                         'duts' : DutsSchemaList,
                         'infrastructure' : InfrastructureSchemaList,
                         'network' : TestbedNetworkSchemaDict,}
+
 
 class Report(object):
 
