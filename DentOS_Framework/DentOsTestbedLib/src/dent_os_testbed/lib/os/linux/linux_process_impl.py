@@ -2,7 +2,7 @@ import re
 
 from dent_os_testbed.lib.os.linux.linux_process import LinuxProcess
 
-RE_SPACES = re.compile('\s+')
+RE_SPACES = re.compile(r'\s+')
 
 
 class LinuxProcessImpl(LinuxProcess):

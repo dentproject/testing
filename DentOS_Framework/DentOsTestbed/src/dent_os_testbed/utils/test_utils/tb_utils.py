@@ -545,7 +545,7 @@ async def tb_device_tcpdump(device, interface, options, count_only=False, timeou
         device.applog.info(f'Ran {cmd} on {device.host_name} with rc {rc} and out {out}')
 
     if count_only:
-        rr = re.findall('\n(\d+) packet[s]* captured\n', out, re.MULTILINE)
+        rr = re.findall(r'\n(\d+) packet[s]* captured\n', out, re.MULTILINE)
         if rr:
             return int(rr[0])
         else:

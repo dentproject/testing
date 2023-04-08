@@ -23,13 +23,13 @@ class PoeTesterClient:
             'dis-connect': 'D',
         }
         self.lldp_options_dict = {
-            'load level': {'field_input': 'S', 'field_prompt': 'Enter load level>\s*'},
-            'classification': {'field_input': 'C', 'field_prompt': 'Enter Classification>\s*'},
-            'Pair Status': {'field_input': '4', 'field_prompt': '\(\w/\w\)>\s*'},
-            'Power Pair': {'field_input': 'P', 'field_prompt': '\(\d~\d\)>\s*'},
-            'LLDP Status': {'field_input': 'L', 'field_prompt': '\(\w/\w\)>\s*'},
-            'CDP Status': {'field_input': 'D', 'field_prompt': '\(\w/\w\)>\s*'},
-            'Priority level': {'field_input': 'r', 'field_prompt': '\(\w/\w/\w\)>\s*'},
+            'load level': {'field_input': 'S', 'field_prompt': r'Enter load level>\s*'},
+            'classification': {'field_input': 'C', 'field_prompt': r'Enter Classification>\s*'},
+            'Pair Status': {'field_input': '4', 'field_prompt': r'\(\w/\w\)>\s*'},
+            'Power Pair': {'field_input': 'P', 'field_prompt': r'\(\d~\d\)>\s*'},
+            'LLDP Status': {'field_input': 'L', 'field_prompt': r'\(\w/\w\)>\s*'},
+            'CDP Status': {'field_input': 'D', 'field_prompt': r'\(\w/\w\)>\s*'},
+            'Priority level': {'field_input': 'r', 'field_prompt': r'\(\w/\w/\w\)>\s*'},
         }
         self.toggle_dict = {
             'Enable': 'E',
@@ -39,13 +39,13 @@ class PoeTesterClient:
 
     def get_general_info(self):
         self.handler.return_to_main_menu()
-        general_info = self.handler.send_cmd_and_expect('G', 'Press any key to continue\s*')
+        general_info = self.handler.send_cmd_and_expect('G', r'Press any key to continue\s*')
         return general_info
 
     def get_status(self):
         self.handler.return_to_main_menu()
-        status_info = self.handler.send_cmd_and_expect('S', 'Command>\s*')
-        self.handler.send_cmd_and_expect('Q', 'Command>\s*')
+        status_info = self.handler.send_cmd_and_expect('S', r'Command>\s*')
+        self.handler.send_cmd_and_expect('Q', r'Command>\s*')
         return status_info
 
     def parse_status(self):
@@ -78,43 +78,43 @@ class PoeTesterClient:
         field_prompt: regex string that matches expected prompt string
         field_data: Value to put the setting at
         """
-        self.handler.send_cmd_and_expect(field_input, 'changed>\s*')
+        self.handler.send_cmd_and_expect(field_input, r'changed>\s*')
         self.handler.send_cmd_and_expect(f'{port}\r\n', field_prompt)
-        self.handler.send_cmd_and_expect(f'{field_data}', 'Command>\s*')
+        self.handler.send_cmd_and_expect(f'{field_data}', r'Command>\s*')
 
     def set_power_pair_config(self, input_data):
         port = input_data['port']
         power_pair_type = input_data['power pair type']
         self.handler.return_to_main_menu()
-        self.handler.send_cmd_and_expect('P', 'Command>\s*')
+        self.handler.send_cmd_and_expect('P', r'Command>\s*')
         self._set_port_config(
-            port, 'S', '\(\d~\d\)>\s*', f'{self.pair_types_dict[power_pair_type]}'
+            port, 'S', r'\(\d~\d\)>\s*', f'{self.pair_types_dict[power_pair_type]}'
         )
-        self.handler.send_cmd_and_expect('A', 'Command>\s*')
+        self.handler.send_cmd_and_expect('A', r'Command>\s*')
 
     def set_loading_config(self, input_data):
         port = input_data['port']
         load_level = input_data['load level']
         self.handler.return_to_main_menu()
-        self.handler.send_cmd_and_expect('L', 'Command>\s*')
-        self._set_port_config(port, 'S', 'Enter load level>\s*', f'{load_level}\r\n')
-        self.handler.send_cmd_and_expect('A', 'Command>\s*')
+        self.handler.send_cmd_and_expect('L', r'Command>\s*')
+        self._set_port_config(port, 'S', r'Enter load level>\s*', f'{load_level}\r\n')
+        self.handler.send_cmd_and_expect('A', r'Command>\s*')
 
     def set_classification_config(self, input_data):
         port = input_data['port']
         classification = input_data['classification']
         self.handler.return_to_main_menu()
-        self.handler.send_cmd_and_expect('C', 'Command>\s*')
-        self._set_port_config(port, 'S', 'Enter Classification>\s*', f'{classification}\r\n')
-        self.handler.send_cmd_and_expect('Q', 'Command>\s*')
+        self.handler.send_cmd_and_expect('C', r'Command>\s*')
+        self._set_port_config(port, 'S', r'Enter Classification>\s*', f'{classification}\r\n')
+        self.handler.send_cmd_and_expect('Q', r'Command>\s*')
 
     def set_test_connection(self, input_data):
         port = input_data['port']
         connection_option = input_data['connection option']
         self.handler.return_to_main_menu()
-        self.handler.send_cmd_and_expect('D', 'Command>\s*')
-        self._set_port_config(port, 'S', '\(\w/\w\)>\s*', f'{connection_option[0]}')
-        self.handler.send_cmd_and_expect('Q', 'Command>\s*')
+        self.handler.send_cmd_and_expect('D', r'Command>\s*')
+        self._set_port_config(port, 'S', r'\(\w/\w\)>\s*', f'{connection_option[0]}')
+        self.handler.send_cmd_and_expect('Q', r'Command>\s*')
 
     def set_lldp_options(self, input_data):
         port = input_data['port']
@@ -124,16 +124,16 @@ class PoeTesterClient:
         value = self.pair_types_dict.get(value, value)
         value = self.priority_dict.get(value, value)
         self.handler.return_to_main_menu()
-        self.handler.send_cmd_and_expect('E', 'Command>\s*')
+        self.handler.send_cmd_and_expect('E', r'Command>\s*')
         self._set_port_config(
             port, lldp_option['field_input'], lldp_option['field_prompt'], f'{value}\r\n'
         )
-        self.handler.send_cmd_and_expect('Q', 'Command>\s*')
+        self.handler.send_cmd_and_expect('Q', r'Command>\s*')
 
     def reset_default(self, input_data):
         self.handler.return_to_main_menu()
-        self.handler.send_cmd_and_expect('R', '\(\w/\w\)>\s*')
+        self.handler.send_cmd_and_expect('R', r'\(\w/\w\)>\s*')
         self.handler.send_cmd_and_expect(
-            input_data['reset'][0], ['Command>\s*', '\w*\s\w*\s\w*\s\w*\s\w*\s*']
+            input_data['reset'][0], [r'Command>\s*', r'\w*\s\w*\s\w*\s\w*\s\w*\s*']
         )
-        self.handler.send_cmd_and_expect('\r\n', 'Command>\s*')
+        self.handler.send_cmd_and_expect('\r\n', r'Command>\s*')

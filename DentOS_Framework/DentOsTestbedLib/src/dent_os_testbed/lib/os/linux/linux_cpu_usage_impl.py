@@ -2,7 +2,7 @@ import re
 
 from dent_os_testbed.lib.os.linux.linux_cpu_usage import LinuxCpuUsage
 
-RE_SPACES = re.compile('\s+')
+RE_SPACES = re.compile(r'\s+')
 
 
 class LinuxCpuUsageImpl(LinuxCpuUsage):
