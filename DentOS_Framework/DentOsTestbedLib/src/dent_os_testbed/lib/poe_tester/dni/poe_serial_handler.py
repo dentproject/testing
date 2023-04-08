@@ -7,11 +7,11 @@ class PoeSerialHandler:
     def __init__(self, hostname, serial_dev, baudrate):
         self.ansi_escape = re.compile(r'(\x9B|\x1B\[)[0-?]*[ -\/]*[@-~]')
         self.generic_prompts = [
-            '(?<!<)[A-Z]*[a-z]+>\s*',
-            '\(\d~\d\)>\s*',
-            '\(\w/\w\)>\s*',
-            '\(\w/\w/\w\)>\s*',
-            '.*\.\.\.',
+            r'(?<!<)[A-Z]*[a-z]+>\s*',
+            r'\(\d~\d\)>\s*',
+            r'\(\w/\w\)>\s*',
+            r'\(\w/\w/\w\)>\s*',
+            r'.*\.\.\.',
         ]  # Add more generic input indicators
         self.child = pexpect.spawn(f'screen -S {hostname} {serial_dev} {baudrate}', maxread=4000)
         self.logfile = open('poe_tester_screen_log.txt', 'ab+')
@@ -21,8 +21,8 @@ class PoeSerialHandler:
         self.child.expect(self.generic_prompts)
         self.child.send('\r\n')
         self.child.send('\r\n')
-        self.child.expect('Command>\s*')
-        self.child.expect('Command>\s*')
+        self.child.expect(r'Command>\s*')
+        self.child.expect(r'Command>\s*')
 
     def check_connection(self):
         return self.child.isalive()
@@ -40,10 +40,10 @@ class PoeSerialHandler:
         self.child.expect(self.generic_prompts)
         while self.get_current_menu() != '<< Main Menu >>':
             self.child.send('Q')
-            self.child.expect('Command>\s*')
+            self.child.expect(r'Command>\s*')
         return True
 
-    def send_cmd_and_expect(self, cmd, expect='Command>\s*'):
+    def send_cmd_and_expect(self, cmd, expect=r'Command>\s*'):
         """Expectation is that the method starts off at a correct
         place on the command line, and also ends at a correct plane on the
         command line
@@ -58,7 +58,7 @@ class PoeSerialHandler:
         self.child.expect(pattern)
         data = self.child.match
         self.child.send('\r\n')
-        self.child.expect(['Command>\s*', 'changed>\s*'])
+        self.child.expect([r'Command>\s*', r'changed>\s*'])
         return self.ansi_escape.sub('', data.decode('utf-8'))
 
     def close(self):

@@ -2,7 +2,7 @@ import re
 
 from dent_os_testbed.lib.os.linux.linux_memory_usage import LinuxMemoryUsage
 
-RE_SPACES = re.compile('\s+')
+RE_SPACES = re.compile(r'\s+')
 
 
 def camel_to_snake_case(str):

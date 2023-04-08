@@ -46,7 +46,7 @@ class DniPoeTesterImpl(DniPoeTester):
             device.applog.info('Removing existing attached POE Tester Session')
             DniPoeTesterImpl.client.handler.close()
         subprocess.run(
-            f"for session in $(screen -ls | grep -o '[0-9]*\.{device.host_name}'); do screen -XS ${{session}} quit;  done",
+            f"for session in $(screen -ls | grep -o '[0-9]*\\.{device.host_name}'); do screen -XS ${{session}} quit;  done",
             shell=True,
         )
         DniPoeTesterImpl.client = None

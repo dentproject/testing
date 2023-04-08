@@ -2,7 +2,7 @@ import re
 
 from dent_os_testbed.lib.ethtool.linux.linux_ethtool import LinuxEthtool
 
-RE_SPACES = re.compile('\s+')
+RE_SPACES = re.compile(r'\s+')
 
 
 class LinuxEthtoolImpl(LinuxEthtool):
@@ -430,7 +430,7 @@ class LinuxEthtoolImpl(LinuxEthtool):
         return cmd
 
     def format_config(self, command, *argv, **kwarg):
-        """
+        r"""
         -N -U --config-nfc --config-ntuple - Configures receive network flow classification options or rules.
            rx-flow-hash tcp4|udp4|ah4|esp4|sctp4|tcp6|udp6|ah6|esp6|sctp6m|v|t|s|d|f|n|r...
             Configures the hash options for the specified flow type. <refer man page>
@@ -481,7 +481,7 @@ class LinuxEthtoolImpl(LinuxEthtool):
         return cmd
 
     def parse_config(self, command, output, *argv, **kwarg):
-        """
+        r"""
         -N -U --config-nfc --config-ntuple - Configures receive network flow classification options or rules.
            rx-flow-hash tcp4|udp4|ah4|esp4|sctp4|tcp6|udp6|ah6|esp6|sctp6m|v|t|s|d|f|n|r...
             Configures the hash options for the specified flow type. <refer man page>
