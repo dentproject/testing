@@ -367,7 +367,7 @@ class Ethtool(TestLibObject):
         return await Ethtool._run_command('flash', *argv, **kwarg)
 
     async def config(*argv, **kwarg):
-        """
+        r"""
         Platforms: ['dentos', 'cumulus']
         Usage:
         Ethtool.config(

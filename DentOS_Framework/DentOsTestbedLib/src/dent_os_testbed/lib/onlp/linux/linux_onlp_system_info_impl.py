@@ -2,7 +2,7 @@ import re
 
 from dent_os_testbed.lib.onlp.linux.linux_onlp_system_info import LinuxOnlpSystemInfo
 
-RE_SPACES = re.compile('\s+')
+RE_SPACES = re.compile(r'\s+')
 
 
 class LinuxOnlpSystemInfoImpl(LinuxOnlpSystemInfo):
