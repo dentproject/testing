@@ -80,7 +80,7 @@ async def test_alpha_lab_static_routing_basic_static_route(testbed):
     await tgen_utils_start_traffic(tgen_dev)
     time.sleep(10)
     await tgen_utils_stop_traffic(tgen_dev)
-    stats = await tgen_utils_get_traffic_stats(tgen_dev)
+    await tgen_utils_get_traffic_stats(tgen_dev)
 
     # add validation here.
     await tgen_utils_stop_protocols(tgen_dev)

@@ -51,7 +51,6 @@ async def test_alpha_lab_bgp_routing_allow_as_in(testbed):
     if not tgen_dev or not devices or len(devices) < 2:
         print('The testbed does not have enough dent with tgen connections')
         return
-    devices_info = {}
     bgp_neighbors = {}
     br_ip = 30
     tgen_as = 200
@@ -111,7 +110,6 @@ async def test_alpha_lab_bgp_routing_allow_as_in(testbed):
     # install a route filter on the first device and block all ips on it
     d1 = devices[0]
     d1_as = await bgp_routing_get_local_as(d1)
-    test_local_pref = 1000
     inputs = bgp_routing_get_prefix_list(num_routes, d1.host_name)
     inputs.extend(
         [

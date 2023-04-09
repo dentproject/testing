@@ -212,7 +212,6 @@ class LocalRepository(object):
         """
 
         past = time.time() - self.maxAge
-        cnt = 0
 
         def _trim(coll):
             """Trim unneeded items.

@@ -9,7 +9,6 @@ class LinuxBridgeMonitorImpl(LinuxBridgeMonitor):
         bridge monitor [ all | neigh | link | mdb ]
 
         """
-        params = kwarg['params']
         cmd = 'bridge monitor {} '.format(command)
         # TODO: Implement me
 

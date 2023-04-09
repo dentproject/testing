@@ -68,7 +68,7 @@ class LinuxProcessImpl(LinuxProcess):
                     k = k[1:] if k[0] == '%' else k
                     try:
                         usage[k] = int(line[i])
-                    except Exception as e:
+                    except Exception:
                         usage[k] = line[i]
                 proc_usage.append(usage)
         else:
@@ -80,7 +80,7 @@ class LinuxProcessImpl(LinuxProcess):
                 )
                 try:
                     val = int(line[1])
-                except Exception as e:
+                except Exception:
                     # only look for integer
                     continue
                 usage[key] = val

@@ -41,7 +41,7 @@ class LinuxCpuUsageImpl(LinuxCpuUsage):
                 name = name[1:] if name[0] == '%' else name
                 try:
                     k, v = name.lower(), float(values[i])
-                except Exception as e:
+                except Exception:
                     k, v = name.lower(), 0
                 cpu_usage[k] = v
             ret.append(cpu_usage)

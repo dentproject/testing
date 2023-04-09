@@ -138,7 +138,7 @@ async def test_alpha_lab_bonding_static_trunk(testbed):
     tgen_dev.applog.info(f'zzZZZZZ({sleep_time})s')
     time.sleep(sleep_time)
     # await tgen_utils_stop_traffic(tgen_dev)
-    stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
+    await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
 
     # TODO add verification here
 

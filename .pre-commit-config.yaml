@@ -18,5 +18,5 @@ repos:
   - id: flake8
     args: ["--max-line-length=201", "--extend-ignore=F601,F821,F841"]
 
-# F821 - https://github.com/dentproject/testing/issues/278
 # F601 - https://github.com/dentproject/testing/issues/284
+# F821 - https://github.com/dentproject/testing/issues/278

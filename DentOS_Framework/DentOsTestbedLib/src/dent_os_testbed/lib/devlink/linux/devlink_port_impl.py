@@ -36,7 +36,6 @@ class DevlinkPortImpl(DevlinkPort):
                 cmode { runtime | driverinit | permanent }
 
         """
-        params = kwarg['params']
         cmd = 'devlink port param {} '.format(command)
         # TODO: Implement me
 

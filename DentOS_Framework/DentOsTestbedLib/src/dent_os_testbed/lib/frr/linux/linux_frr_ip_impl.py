@@ -28,7 +28,6 @@ class LinuxFrrIpImpl(LinuxFrrIp):
 
     def parse_set(self, command, output, *argv, **kwarg):
         """"""
-        params = kwarg['params']
         cmd = 'vtysh {} '.format(command)
         # TODO: Implement me
 

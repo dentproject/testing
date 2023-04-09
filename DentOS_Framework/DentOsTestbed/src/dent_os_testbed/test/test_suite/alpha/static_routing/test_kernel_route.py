@@ -40,10 +40,9 @@ async def test_alpha_lab_static_routing_kernel_route_on_table(testbed):
         return
     dent_dev = dent_devices[0]
     dent = dent_dev.host_name
-    swp_tgen_ports = tgen_dev.links_dict[dent][1]
     swp = 'ma1'
 
-    out = await IpLink.show(
+    await IpLink.show(
         input_data=[{dent: [{'device': swp, 'cmd_options': '-j'}]}],
     )
 
@@ -80,7 +79,7 @@ async def test_alpha_lab_static_routing_kernel_route_on_table(testbed):
     await tgen_utils_start_traffic(tgen_dev)
     time.sleep(10)
     await tgen_utils_stop_traffic(tgen_dev)
-    stats = await tgen_utils_get_traffic_stats(tgen_dev)
+    await tgen_utils_get_traffic_stats(tgen_dev)
 
     # add validation here. No psckets should come to iXIA check iptables to get the stats.
     #

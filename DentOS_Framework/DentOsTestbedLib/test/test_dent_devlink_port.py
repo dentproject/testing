@@ -85,7 +85,6 @@ def test_that_devlink_port_set(capfd):
 def test_that_devlink_port_split(capfd):
 
     dv1 = TestDevice(platform='dentos')
-    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DevlinkPort.split(input_data=[{
         # device 1
@@ -101,7 +100,6 @@ def test_that_devlink_port_split(capfd):
 def test_that_devlink_port_unsplit(capfd):
 
     dv1 = TestDevice(platform='dentos')
-    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DevlinkPort.unsplit(input_data=[{
         # device 1
@@ -182,7 +180,6 @@ def test_that_devlink_port_show(capfd):
 def test_that_devlink_port_health(capfd):
 
     dv1 = TestDevice(platform='dentos')
-    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DevlinkPort.health(input_data=[{
         # device 1
@@ -198,7 +195,6 @@ def test_that_devlink_port_health(capfd):
 def test_that_devlink_port_add(capfd):
 
     dv1 = TestDevice(platform='dentos')
-    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DevlinkPort.add(input_data=[{
         # device 1
@@ -214,7 +210,6 @@ def test_that_devlink_port_add(capfd):
 def test_that_devlink_port_delete(capfd):
 
     dv1 = TestDevice(platform='dentos')
-    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DevlinkPort.delete(input_data=[{
         # device 1
@@ -230,7 +225,6 @@ def test_that_devlink_port_delete(capfd):
 def test_that_devlink_port_function(capfd):
 
     dv1 = TestDevice(platform='dentos')
-    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DevlinkPort.function(input_data=[{
         # device 1
@@ -246,7 +240,6 @@ def test_that_devlink_port_function(capfd):
 def test_that_devlink_port_param(capfd):
 
     dv1 = TestDevice(platform='dentos')
-    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(DevlinkPort.param(input_data=[{
         # device 1

@@ -112,7 +112,7 @@ async def tcutil_get_tc_rule_stats(dent_dev, swp_tgen_ports, swp_tc_rules):
 
 async def tcutil_cleanup_tc_rules(dent_dev, swp_tgen_ports, swp_tc_rules):
     dent = dent_dev.host_name
-    out = await TcFilter.delete(
+    await TcFilter.delete(
         input_data=[
             {
                 dent: [
@@ -245,7 +245,6 @@ async def tcutil_iptables_rules_to_tgen_streams(
             await tgen_utils_get_swp_info(dent_dev, swp, swp_info)
             swp_mac = swp_info['mac']
             dev_gw = swp_info['ip']
-            dev_plen = swp_info['plen']
             st = {
                 'ep_source': [swp],
                 'type': 'raw',
