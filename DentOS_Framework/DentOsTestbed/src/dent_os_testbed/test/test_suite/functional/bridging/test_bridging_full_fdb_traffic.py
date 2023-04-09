@@ -12,7 +12,7 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_setup_streams,
     tgen_utils_start_traffic,
     tgen_utils_stop_traffic,
-    tgen_utils_get_loss,
+    tgen_utils_get_loss
 )
 
 pytestmark = [
@@ -115,7 +115,7 @@ async def test_bridging_full_fdb_traffic(testbed):
             assert loss == 0, f'Expected loss: 0%, actual: {loss}%'
 
         rc, out = await dent_dev.run_cmd("bridge fdb show br br0 | grep 'extern_learn.*offload' | wc -l")
-        assert rc == 0, "Failed to grep 'extern_learn.*offload'.\n"
+        assert rc == 0, "Failed to grep 'extern_learn.*offload'."
 
         amount = int(out) - ixia_vhost_mac_count
         err_msg = f'Expected count of extern_learn offload entities: >{mac_count}*{tolerance}, Actual count: {amount}'
