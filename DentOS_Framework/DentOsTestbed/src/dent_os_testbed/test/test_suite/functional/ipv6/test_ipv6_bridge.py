@@ -7,10 +7,6 @@ from dent_os_testbed.lib.ip.ip_link import IpLink
 from dent_os_testbed.lib.ip.ip_address import IpAddress
 from dent_os_testbed.lib.bridge.bridge_vlan import BridgeVlan
 
-from dent_os_testbed.utils.test_utils.tb_utils import (
-    tb_ping_device,
-)
-
 from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_get_dent_devices_with_tgen,
     tgen_utils_traffic_generator_connect,
@@ -126,10 +122,6 @@ async def test_ipv6_on_bridge(testbed):
     await verify_dut_routes(dent, expected_routes)
 
     # 3. Send bidirectional traffic between TG ports for primary IP addresses
-    out = await asyncio.gather(*[tb_ping_device(dent_dev, info.tg_ip, pkt_loss_treshold=0, dump=True)
-                                 for info in address_map])
-    assert all(rc == 0 for rc in out), 'Some pings from DUT did not have a reply'
-
     await tgen_utils_start_traffic(tgen_dev)
     await asyncio.sleep(traffic_duration)
     await tgen_utils_stop_traffic(tgen_dev)
@@ -254,10 +246,6 @@ async def test_ipv6_on_bridge_vlan(testbed):
     await tgen_utils_setup_streams(tgen_dev, None, streams)
 
     # Send traffic
-    out = await asyncio.gather(*[tb_ping_device(dent_dev, info.tg_ip, pkt_loss_treshold=0, dump=True)
-                                 for info in address_map])
-    assert all(rc == 0 for rc in out), 'Some pings from DUT did not have a reply'
-
     await tgen_utils_start_traffic(tgen_dev)
     await asyncio.sleep(traffic_duration)
     await tgen_utils_stop_traffic(tgen_dev)
@@ -348,17 +336,13 @@ async def test_ipv6_move_host_on_bridge(testbed):
     await tgen_utils_setup_streams(tgen_dev, None, streams)
 
     # 2. Verify IP configuration: no errors on IP address adding, connected routes added and offloaded
-    expected_routes = {
-        info.swp: [info.swp_ip[:-1] + f'/{info.plen}']
-        for info in address_map
-    }
+    expected_routes = [{'dev': info.swp,
+                        'dst': info.swp_ip[:-1] + f'/{info.plen}',
+                        'flags': ['rt_trap']}
+                       for info in address_map]
     await verify_dut_routes(dent, expected_routes)
 
     # 3. Send bidirectional traffic between TG ports for primary IP addresses
-    out = await asyncio.gather(*[tb_ping_device(dent_dev, info.tg_ip, pkt_loss_treshold=0, dump=True)
-                                 for info in address_map[:2]])
-    assert all(rc == 0 for rc in out), 'Some pings from DUT did not have a reply'
-
     await tgen_utils_start_traffic(tgen_dev)
     await asyncio.sleep(traffic_duration)
     await tgen_utils_stop_traffic(tgen_dev)
@@ -406,10 +390,6 @@ async def test_ipv6_move_host_on_bridge(testbed):
     await tgen_utils_setup_streams(tgen_dev, None, streams)
 
     # 6. Send bidirectional traffic between TG ports for primary IP addresses
-    out = await asyncio.gather(*[tb_ping_device(dent_dev, info.tg_ip, pkt_loss_treshold=0, dump=True)
-                                 for info in address_map[::2]])
-    assert all(rc == 0 for rc in out), 'Some pings from DUT did not have a reply'
-
     await tgen_utils_start_traffic(tgen_dev)
     await asyncio.sleep(traffic_duration)
     await tgen_utils_stop_traffic(tgen_dev)

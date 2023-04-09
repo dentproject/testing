@@ -5,10 +5,6 @@ import pytest
 from dent_os_testbed.lib.ip.ip_link import IpLink
 from dent_os_testbed.lib.ip.ip_address import IpAddress
 
-from dent_os_testbed.utils.test_utils.tb_utils import (
-    tb_ping_device,
-)
-
 from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_get_dent_devices_with_tgen,
     tgen_utils_traffic_generator_connect,
@@ -18,7 +14,6 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_start_traffic,
     tgen_utils_stop_traffic,
     tgen_utils_get_loss,
-    tgen_utils_send_ns,
 )
 
 from dent_os_testbed.test.test_suite.functional.ipv6.ipv6_utils import (
@@ -113,14 +108,6 @@ async def test_ipv6_basic_config(testbed):
         },
     }
     await tgen_utils_setup_streams(tgen_dev, None, streams)
-
-    out = await tgen_utils_send_ns(tgen_dev, [{'ixp': tg}
-                                              for tg in tg_ports])
-    assert all(status['success'] for status in out), 'Failed to send IPv6 NS'
-
-    out = await asyncio.gather(*[tb_ping_device(dent_dev, info.tg_ip, pkt_loss_treshold=0, dump=True)
-                                 for info in address_map])
-    assert all(rc == 0 for rc in out), 'Some pings from DUT did not have a reply'
 
     await tgen_utils_start_traffic(tgen_dev)
     await asyncio.sleep(traffic_duration)

@@ -69,13 +69,35 @@ async def cleanup_vrfs(dev):
 
 async def cleanup_ip_addrs(dev, tgen_dev):
     """
-    Removes all IP addresses configured during test.
+    Removes all IPv4 and IPv6 addresses configured during test.
+    Restores IPv6 link local address after `ip address flush`.
     Can be used separately or by using `cleanup_addrs` fixture.
     """
     logger = AppLogger(DEFAULT_LOGGER)
     logger.info('Deleting IP addresses from interfaces')
     ports = tgen_dev.links_dict[dev.host_name][1]
-    await IpAddress.flush(input_data=[{dev.host_name: [{'dev': port} for port in ports]}])
+
+    out = await IpAddress.flush(input_data=[{dev.host_name: [{'dev': port} for port in ports]}])
+    if out[0][dev.host_name]['rc'] != 0:
+        return
+
+    out = await IpLink.show(input_data=[{dev.host_name: [
+        {'cmd_options': '-j'}
+    ]}], parse_output=True)
+    if out[0][dev.host_name]['rc'] != 0:
+        return
+
+    cur_state = [(link['ifname'], link['operstate'].lower())
+                 for link in out[0][dev.host_name]['parsed_output']
+                 if link['ifname'] in ports]
+
+    await IpLink.set(input_data=[{dev.host_name: [
+        # setting ports down will also clear their neighbors
+        {'device': port, 'operstate': 'down'} for port in ports
+    ] + [
+        # restore previous port operstate and restore ipv6 link local addr (fe80::/64)
+        {'device': port, 'operstate': state} for port, state in cur_state
+    ]}])
 
 
 async def get_initial_routes(dev):
