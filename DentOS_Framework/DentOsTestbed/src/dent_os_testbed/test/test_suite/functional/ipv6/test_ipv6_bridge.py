@@ -113,12 +113,10 @@ async def test_ipv6_on_bridge(testbed):
 
     # 2. Verify IP configuration: no errors on IP address adding,
     #    connected routes added and offloaded
-    expected_routes = {}
-    for info in address_map:
-        if info.swp not in expected_routes:
-            expected_routes[info.swp] = []
-        expected_routes[info.swp].append(info.swp_ip[:-1] + f'/{info.plen}')
-
+    expected_routes = [{'dev': info.swp,
+                        'dst': info.swp_ip[:-1] + f'/{info.plen}',
+                        'flags': ['rt_trap']}
+                       for info in address_map]
     await verify_dut_routes(dent, expected_routes)
 
     # 3. Send bidirectional traffic between TG ports for primary IP addresses
@@ -134,12 +132,10 @@ async def test_ipv6_on_bridge(testbed):
         assert loss == 0, f'Expected loss: 0%, actual: {loss}%'
 
     # 5. Verify neighbors resolved
-    expected_neis = {}
-    for info in address_map:
-        if info.swp not in expected_neis:
-            expected_neis[info.swp] = []
-        expected_neis[info.swp].append(info.tg_ip)
-
+    expected_neis = [{'dev': info.swp,
+                      'dst': info.tg_ip,
+                      'states': ['REACHABLE', 'PROBE', 'STALE', 'DELAY']}
+                     for info in address_map]
     await verify_dut_neighbors(dent, expected_neis)
 
 
@@ -355,10 +351,10 @@ async def test_ipv6_move_host_on_bridge(testbed):
         assert loss == 0, f'Expected loss: 0%, actual: {loss}%'
 
     # 4. Verify neighbors resolved
-    expected_neis = {
-        info.swp: [info.tg_ip]
-        for info in address_map
-    }
+    expected_neis = [{'dev': info.swp,
+                      'dst': info.tg_ip,
+                      'states': ['REACHABLE', 'PROBE', 'STALE', 'DELAY']}
+                     for info in address_map]
     learned_macs = await verify_dut_neighbors(dent, expected_neis)
 
     # 5. Delete host from TG port#2. Add host to TG port#3

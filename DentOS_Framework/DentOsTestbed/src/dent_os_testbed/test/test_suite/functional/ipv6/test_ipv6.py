@@ -85,16 +85,13 @@ async def test_ipv6_basic_config(testbed):
     await tgen_utils_traffic_generator_connect(tgen_dev, tg_ports, ports, dev_groups)
 
     # 2. Verify IP configuration: no errors on IP address adding, connected routes added and offloaded
-    expected_addrs = {
-        ports[0]: [address_map[0].swp_ip, address_map[1].swp_ip],
-        ports[1]: [address_map[2].swp_ip],
-    }
-    await verify_dut_addrs(dent, expected_addrs, plen)
+    expected_addrs = [(info.swp, info.swp_ip, info.plen) for info in address_map]
+    await verify_dut_addrs(dent, expected_addrs, expect_family=('inet6',))
 
-    expected_routes = {
-        ports[0]: [address_map[0].swp_ip[:-1] + f'/{plen}', address_map[1].swp_ip[:-1] + f'/{plen}'],
-        ports[1]: [address_map[2].swp_ip[:-1] + f'/{plen}'],
-    }
+    expected_routes = [{'dev': info.swp,
+                        'dst': info.swp_ip[:-1] + f'/{info.plen}',
+                        'flags': ['rt_trap']}
+                       for info in address_map]
     await verify_dut_routes(dent, expected_routes)
 
     # 3. Send bidirectional traffic between TG ports. Verify clear traffic
@@ -120,17 +117,18 @@ async def test_ipv6_basic_config(testbed):
         assert loss == 0, f'Expected loss: 0%, actual: {loss}%'
 
     # 4. Verify neighbors on DUT
-    expected_neis = {
-        ports[0]: [address_map[0].tg_ip, address_map[1].tg_ip],
-        ports[1]: [address_map[2].tg_ip],
-    }
+    expected_neis = [{'dev': info.swp,
+                      'dst': info.tg_ip,
+                      'states': ['REACHABLE', 'PROBE', 'STALE', 'DELAY']}
+                     for info in address_map]
     await verify_dut_neighbors(dent, expected_neis)
 
     # 5. Delete IP addresses on DUT and send traffic
-    out = await IpAddress.flush(input_data=[{dent: [
-        {'dev': port} for port in ports
+    out = await IpAddress.delete(input_data=[{dent: [
+        {'dev': info.swp, 'prefix': f'{info.swp_ip}/{info.plen}'}
+        for info in address_map
     ]}])
-    assert out[0][dent]['rc'] == 0, 'Failed to flush ipv6 addr'
+    assert out[0][dent]['rc'] == 0, 'Failed to del IP addr from port'
 
     await tgen_utils_start_traffic(tgen_dev)
     await asyncio.sleep(traffic_duration)
