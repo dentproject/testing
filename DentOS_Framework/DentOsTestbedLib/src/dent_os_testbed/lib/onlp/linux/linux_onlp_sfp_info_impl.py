@@ -18,7 +18,6 @@ class LinuxOnlpSfpInfoImpl(LinuxOnlpSfpInfo):
         50  10GBASE-CR      Copper          1m     FCI Electronics   10110818-2010LF               0009
 
         """
-        params = kwarg['params']
         cmd = '/lib/platform-config/current/onl/bin/onlpdump -S'
         return cmd
 
@@ -48,8 +47,7 @@ class LinuxOnlpSfpInfoImpl(LinuxOnlpSfpInfo):
                 sfp[k] = RE_SPACES.sub(' ', line[:s]).strip()
                 line = line[s + 2:]
             try:
-                port = int(sfp['port'])
                 sfps_info.append(sfp)
-            except Exception as e:
+            except Exception:
                 pass
         return sfps_info

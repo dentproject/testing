@@ -70,7 +70,7 @@ class SerialAsyncLoop:
                 loop = SerialAsyncLoop._loop
                 loop.call_soon_threadsafe(loop.stop)
                 SerialAsyncLoop._thread.join(SerialAsyncLoop.THREAD_JOIN_TIMEOUT_SECS)
-        except Exception as e:
+        except Exception:
             raise
         finally:
             SerialAsyncLoop.mutex.release()
@@ -91,7 +91,7 @@ class SerialAsyncLoop:
             if logger:
                 logger.info(f'SerialAsyncLoop instance count: {SerialAsyncLoop.count}')
             return SerialAsyncLoop._loop
-        except Exception as e:
+        except Exception:
             raise
         finally:
             SerialAsyncLoop.mutex.release()
@@ -198,7 +198,7 @@ class SerialConsole:
         try:
             self.applog.info('Login done. %s' % ('Succeeded' if result.result() else 'Failed'))
             self.login_successful = result.result()
-        except Exception as e:
+        except Exception:
             self.applog.exception('Login to console %s failed' % self.dev)
             self.login_successful = False
         self.login_done = True

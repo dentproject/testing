@@ -17,10 +17,10 @@ async def disable_ztp(device):
     await device.run_cmd('rm -f /etc/network/if-up.d/ntpdate || true')
     for s in ['snmpd']:
         input_data = [{device.host_name: [{'name': s}]}]
-        out = await Service.stop(
+        await Service.stop(
             input_data=input_data,
         )
-        out = await Service.disable(
+        await Service.disable(
             input_data=input_data,
         )
 

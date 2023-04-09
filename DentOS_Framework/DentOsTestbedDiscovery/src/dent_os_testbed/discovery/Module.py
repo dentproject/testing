@@ -46,7 +46,7 @@ class Module(object):
         rpt, self.report = self.report, self.report.clone(copy.deepcopy(self.report.asDict()))
         try:
             await self.discover()
-        except Exception as e:
+        except Exception:
             self.report = rpt
             raise
 
@@ -85,7 +85,7 @@ class DiscoveryRunner(object):
             module = importlib.util.module_from_spec(spec)
             try:
                 spec.loader.exec_module(module)
-            except Exception as ex:
+            except Exception:
                 self.log.exception('import failed')
                 return report
 
@@ -110,7 +110,7 @@ class DiscoveryRunner(object):
             dinst = dc(self.ctx, report, log=self.log.getChild(k))
             try:
                 await dinst.do_discovery()
-            except Exception as ex:
+            except Exception:
                 if force:
                     msg = 'discovery failed for %s' % self.__class__.__name__
                     raise DiscoveryFailed(msg,

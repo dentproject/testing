@@ -10,7 +10,6 @@ class LinuxTcClassImpl(LinuxTcClass):
         classid class-id ] qdisc [ qdisc specific parameters ]
 
         """
-        params = kwarg['params']
         cmd = 'tc class {} '.format(command)
         # TODO: Implement me
 
@@ -21,7 +20,6 @@ class LinuxTcClassImpl(LinuxTcClass):
         tc [ OPTIONS ] [ FORMAT ] class show dev DEV
 
         """
-        params = kwarg['params']
         cmd = 'tc class {} '.format(command)
         # TODO: Implement me
 

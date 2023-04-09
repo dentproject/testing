@@ -56,7 +56,7 @@ def ssh_cleanup():
     logger = SSHTester.get_logger()
     try:
         os.unlink(SSHTester.local_file)
-    except Exception as e:
+    except Exception:
         logger.exception()
         assert False
 
@@ -67,7 +67,7 @@ def ssh_setup(request):
     try:
         with open(SSHTester.local_file, 'w') as fh:
             fh.write(SSHTester.local_file_content)
-    except Exception as e:
+    except Exception:
         logger.exception()
         assert False
     request.addfinalizer(ssh_cleanup)

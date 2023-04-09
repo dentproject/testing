@@ -25,7 +25,7 @@ class LinuxPoectlImpl(LinuxPoectl):
     def parse_show(self, command, output, *argv, **kwarg):
         try:
             parsed_out = json.loads(output)
-        except Exception as e:
+        except Exception:
             return []
         ports = [p for _, p in parsed_out.get('ports', parsed_out).items()]
         for port in ports:
@@ -56,7 +56,6 @@ class LinuxPoectlImpl(LinuxPoectl):
         --load                               Load and apply the saved configuration.
 
         """
-        params = kwarg['params']
         cmd = 'poectl  {} '.format(command)
         # TODO: Implement me
 

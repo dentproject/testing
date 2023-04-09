@@ -23,7 +23,6 @@ class DniPoeTesterImpl(DniPoeTester):
           detach -
 
         """
-        params = kwarg['params']
         cmd = ' {} '.format(command)
         # TODO: Implement me
 
@@ -64,7 +63,6 @@ class DniPoeTesterImpl(DniPoeTester):
           detach -
 
         """
-        params = kwarg['params']
         cmd = ' {} '.format(command)
         # TODO: Implement me
 
@@ -76,7 +74,6 @@ class DniPoeTesterImpl(DniPoeTester):
           configure_port -
 
         """
-        params = kwarg['params']
         cmd = ' {} '.format(command)
         # TODO: Implement me
 
@@ -119,7 +116,6 @@ class DniPoeTesterImpl(DniPoeTester):
           configure_port -
 
         """
-        params = kwarg['params']
         cmd = ' {} '.format(command)
         # TODO: Implement me
 
@@ -130,7 +126,6 @@ class DniPoeTesterImpl(DniPoeTester):
         - PoeTester
           get_port_stats
         """
-        params = kwarg['params']
         cmd = ' {} '.format(command)
         # TODO: Implement me
 
@@ -175,7 +170,6 @@ class DniPoeTesterImpl(DniPoeTester):
         - PoeTester
           get_port_stats
         """
-        params = kwarg['params']
         cmd = ' {} '.format(command)
         # TODO: Implement me
 

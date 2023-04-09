@@ -43,7 +43,6 @@ class LinuxBridgeLinkImpl(LinuxBridgeLink):
         bridge link [ show ] [ dev DEV ]
 
         """
-        params = kwarg['params']
         cmd = 'bridge link {} '.format(command)
         # TODO: Implement me
 

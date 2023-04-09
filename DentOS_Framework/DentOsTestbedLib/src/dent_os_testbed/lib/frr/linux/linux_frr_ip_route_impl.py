@@ -22,7 +22,6 @@ class LinuxFrrIpRouteImpl(LinuxFrrIpRoute):
 
     def parse_show(self, command, output, *argv, **kwarg):
         """"""
-        params = kwarg['params']
         cmd = 'vtysh {} '.format(command)
         # TODO: Implement me
 
@@ -48,7 +47,6 @@ class LinuxFrrIpRouteImpl(LinuxFrrIpRoute):
 
     def parse_add(self, command, output, *argv, **kwarg):
         """"""
-        params = kwarg['params']
         cmd = 'vtysh {} '.format(command)
         # TODO: Implement me
 

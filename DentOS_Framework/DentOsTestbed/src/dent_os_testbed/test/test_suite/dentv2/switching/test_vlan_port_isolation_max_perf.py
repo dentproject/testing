@@ -79,8 +79,7 @@ async def test_dentv2_vlan_port_isolation_max_scale(testbed):
                         }
                     ]
                 )
-    ep_src = list(map(lambda x: f"{x.split('_')[0]}:{x.split('_')[2]}", mgmt_src))
-    ep_dst = list(map(lambda x: f"{x.split('_')[0]}:{x.split('_')[2]}", mgmt_dst))
+
     streams = {}
     for i in range(max_vlan_count):  # vlan id = i+1
         streams[f'tcp_ssh_vlan{i+1}_flow'] = {

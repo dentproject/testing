@@ -48,7 +48,6 @@ class LinuxRouteMapImpl(LinuxRouteMap):
 
     def parse_configure(self, command, output, *argv, **kwarg):
         """"""
-        params = kwarg['params']
         cmd = 'vtysh {} '.format(command)
         # TODO: Implement me
 

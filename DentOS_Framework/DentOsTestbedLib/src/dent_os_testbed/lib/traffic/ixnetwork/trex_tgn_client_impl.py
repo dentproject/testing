@@ -62,9 +62,6 @@ class TrexTgnClientImpl(TrexTgnClient):
                 'Connection to TREX API Server Established %d'
                 % (TrexTgnClientImpl.session.ctx.session_id)
             )
-            ixia_ports = param['ixia_ports']
-            swp_ports = param['swp_ports']
-            dev_groups = param['dev_groups']
         except Exception as e:
             return -1, str(e)
         return 0, ''
@@ -76,7 +73,6 @@ class TrexTgnClientImpl(TrexTgnClient):
           disconnect -
 
         """
-        params = kwarg['params']
         cmd = ' {} '.format(command)
         # TODO: Implement me
 
@@ -89,7 +85,6 @@ class TrexTgnClientImpl(TrexTgnClient):
            save_config - config_file_name
 
         """
-        params = kwarg['params']
         cmd = ' {} '.format(command)
         # TODO: Implement me
 
@@ -113,7 +108,6 @@ class TrexTgnClientImpl(TrexTgnClient):
            save_config - config_file_name
 
         """
-        params = kwarg['params']
         cmd = ' {} '.format(command)
         # TODO: Implement me
 
@@ -129,7 +123,6 @@ class TrexTgnClientImpl(TrexTgnClient):
            clear_stats - [traffic_names]
 
         """
-        params = kwarg['params']
         cmd = ' {} '.format(command)
         # TODO: Implement me
 
@@ -159,7 +152,6 @@ class TrexTgnClientImpl(TrexTgnClient):
            clear_stats - [traffic_names]
 
         """
-        params = kwarg['params']
         cmd = ' {} '.format(command)
         # TODO: Implement me
 
@@ -175,7 +167,6 @@ class TrexTgnClientImpl(TrexTgnClient):
            clear_protocol_stats - [protocols]
 
         """
-        params = kwarg['params']
         cmd = ' {} '.format(command)
         # TODO: Implement me
 
@@ -205,7 +196,6 @@ class TrexTgnClientImpl(TrexTgnClient):
            clear_protocol_stats - [protocols]
 
         """
-        params = kwarg['params']
         cmd = ' {} '.format(command)
         # TODO: Implement me
 

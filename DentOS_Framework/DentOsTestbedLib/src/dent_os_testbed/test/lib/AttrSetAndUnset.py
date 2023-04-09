@@ -78,18 +78,18 @@ class AttrSetAndUnsetBase(object):
             for obj in dev_objects.filter(fn=self.meta.dev_object_filter):
                 device.applog.info('Settting %s', self.meta.cls_name())
                 params = self.meta.dev_object_set_params(obj)
-                out = await self.meta.set_fn()(input_data=[{dev.device_id: [params]}])
+                await self.meta.set_fn()(input_data=[{dev.device_id: [params]}])
 
                 time.sleep(4)
                 device.applog.info('Show %s', self.meta.cls_name())
                 params = self.meta.dev_object_show_params(obj)
-                out = await self.meta.show_fn()(input_data=[{dev.device_id: [params]}])
+                await self.meta.show_fn()(input_data=[{dev.device_id: [params]}])
 
                 device.applog.info('Reseting %s', self.meta.cls_name())
                 params = self.meta.dev_object_reset_params(obj)
-                out = await self.meta.set_fn()(input_data=[{dev.device_id: [params]}])
+                await self.meta.set_fn()(input_data=[{dev.device_id: [params]}])
 
                 time.sleep(4)
                 device.applog.info('Show %s', self.meta.cls_name())
                 params = self.meta.dev_object_show_params(obj)
-                out = await self.meta.show_fn()(input_data=[{dev.device_id: [params]}])
+                await self.meta.show_fn()(input_data=[{dev.device_id: [params]}])

@@ -38,7 +38,6 @@ class LinuxTcChainImpl(LinuxTcChain):
         tc [ OPTIONS ] chain show block BLOCK_INDEX
 
         """
-        params = kwarg['params']
         cmd = 'tc chain {} '.format(command)
         # TODO: Implement me
 

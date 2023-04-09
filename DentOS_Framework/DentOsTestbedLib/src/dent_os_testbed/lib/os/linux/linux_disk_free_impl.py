@@ -22,7 +22,6 @@ class LinuxDiskFreeImpl(LinuxDiskFree):
         ....
 
         """
-        params = kwarg['params']
         cmd = 'df '
         # TODO: Implement me
 

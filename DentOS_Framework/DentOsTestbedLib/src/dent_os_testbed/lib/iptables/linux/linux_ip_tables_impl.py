@@ -174,7 +174,6 @@ class LinuxIpTablesImpl(LinuxIpTables):
          on the structure of the table.
 
         """
-        params = kwarg['params']
         cmd = 'iptables {} '.format(command)
         # TODO: Implement me
 
