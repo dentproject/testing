@@ -8,13 +8,13 @@ from dent_os_testbed.lib.ip.ip_link import IpLink
 
 from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_get_dent_devices_with_tgen,
+    tgen_utils_traffic_generator_connect,
+    tgen_utils_dev_groups_from_config,
     tgen_utils_get_traffic_stats,
     tgen_utils_setup_streams,
     tgen_utils_start_traffic,
     tgen_utils_stop_traffic,
-    tgen_utils_get_loss,
-    tgen_utils_dev_groups_from_config,
-    tgen_utils_traffic_generator_connect,
+    tgen_utils_get_loss
 )
 
 pytestmark = [
@@ -50,8 +50,7 @@ async def test_bridging_remove_restore_from_vlan(testbed):
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 3)
     if not tgen_dev or not dent_devices:
         pytest.skip('The testbed does not have enough dent with tgen connections')
-    dent_dev = dent_devices[0]
-    device_host_name = dent_dev.host_name
+    device_host_name = dent_devices[0].host_name
     tg_ports = tgen_dev.links_dict[device_host_name][0]
     ports = tgen_dev.links_dict[device_host_name][1]
     traffic_duration = 5
@@ -91,20 +90,20 @@ async def test_bridging_remove_restore_from_vlan(testbed):
 
     out = await BridgeVlan.delete(
         input_data=[{device_host_name: [{'device': ports[0], 'vid': 2}]}])
-    assert out[0][device_host_name]['rc'] == 0, f" Verify that interface deleted from vlan '2'.\n{out}"
+    assert out[0][device_host_name]['rc'] == 0, f"Verify that interface deleted from vlan '2'.\n{out}"
 
     out = await BridgeFdb.show(input_data=[{device_host_name: [{'options': '-j'}]}],
                                parse_output=True)
-    assert out[0][device_host_name]['rc'] == 0, 'Failed to get fdb entry.\n'
+    assert out[0][device_host_name]['rc'] == 0, 'Failed to get fdb entry.'
 
     fdb_entries = out[0][device_host_name]['parsed_output']
     learned_macs = [en['mac'] for en in fdb_entries if 'mac' in en]
-    err_msg = 'Verify that entry has not been removed from the address table.\n'
+    err_msg = 'Verify that entry has not been removed from the address table.'
     assert 'aa:bb:cc:dd:ee:11' in learned_macs, err_msg
 
     out = await BridgeVlan.add(
         input_data=[{device_host_name: [{'device': ports[0], 'vid': 2}]}])
-    assert out[0][device_host_name]['rc'] == 0, f"Verify that interfaces added to vlans '2'.\n {out}"
+    assert out[0][device_host_name]['rc'] == 0, f"Verify that interfaces added to vlans '2'.\n{out}"
 
     address_map = (
         # swp port, tg port,    tg ip,     gw,        plen
@@ -129,7 +128,7 @@ async def test_bridging_remove_restore_from_vlan(testbed):
             'type': 'raw',
             'protocol': '802.1Q',
             'vlanID': 2,
-        },
+        }
     }
 
     await tgen_utils_setup_streams(tgen_dev, config_file_name=None, streams=streams)
@@ -143,7 +142,7 @@ async def test_bridging_remove_restore_from_vlan(testbed):
     for row in stats.Rows:
         if row['Traffic Item'] == 'bridge_1' and row['Rx Port'] == tg_ports[0]:
             assert tgen_utils_get_loss(row) == 000.000, \
-                'Verify that traffic from swp3 to swp1 forwarded.\n'
+                'Verify that traffic from swp3 to swp1 forwarded.'
         if row['Traffic Item'] == 'bridge_1' and row['Rx Port'] == tg_ports[1]:
             assert tgen_utils_get_loss(row) == 100.000, \
-                'Verify that traffic from swp3 to swp2 not forwarded.\n'
+                'Verify that traffic from swp3 to swp2 not forwarded.'
