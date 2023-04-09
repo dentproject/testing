@@ -55,7 +55,7 @@ class LinuxEthtoolImpl(LinuxEthtool):
         """
         params = kwarg['params']
         # TODO: Implement me
-        cmd = 'ethtool {} {}'.format(params.get('options', ''), command)
+        cmd = 'ethtool {} '.format(params.get('options', ''))
         if params.get('query_driver', False):
             cmd += '-i '
         if params.get('statistics', False):
@@ -158,7 +158,7 @@ class LinuxEthtoolImpl(LinuxEthtool):
 
         """
         params = kwarg['params']
-        cmd = 'ethtool -s {} {}'.format(params.get('options', ''), command)
+        cmd = 'ethtool -s {} '.format(params.get('options', ''))
         if 'devname' in params:
             cmd += '{} '.format(params['devname'])
         if 'speed' in params:
