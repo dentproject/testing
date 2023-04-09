@@ -226,7 +226,7 @@ async def test_tc_flower_persistency_atomic_update_w_traffic(testbed):
     time.sleep(20)
 
     await tgen_utils_stop_traffic(tgen_dev)
-    stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
+    await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
     swp_tc_rules = {}
     await tcutil_get_tc_rule_stats(dent_dev, swp_tgen_ports, swp_tc_rules)
     # verify the rules stats

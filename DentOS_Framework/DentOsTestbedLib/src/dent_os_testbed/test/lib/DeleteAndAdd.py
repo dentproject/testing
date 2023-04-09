@@ -62,13 +62,13 @@ class DeleteAndAddBase(object):
                 continue
             for obj in dev_objects.filter(fn=self.meta.device_object_filter):
                 device.applog.info('Deleting/Adding ' + self.meta.cls_name())
-                out = await self.meta.delete_fn()(input_data=[{dev.device_id: [obj.__dikt__]}])
+                await self.meta.delete_fn()(input_data=[{dev.device_id: [obj.__dikt__]}])
 
                 device.applog.info('Show ' + self.meta.cls_name())
-                out = await self.meta.show_fn()(input_data=[{dev.device_id: [obj.__dikt__]}])
+                await self.meta.show_fn()(input_data=[{dev.device_id: [obj.__dikt__]}])
 
                 device.applog.info('Add ' + self.meta.cls_name())
-                out = await self.meta.add_fn()(input_data=[{dev.device_id: [obj.__dikt__]}])
+                await self.meta.add_fn()(input_data=[{dev.device_id: [obj.__dikt__]}])
 
                 device.applog.info('Show ' + self.meta.cls_name())
-                out = await self.meta.show_fn()(input_data=[{dev.device_id: [obj.__dikt__]}])
+                await self.meta.show_fn()(input_data=[{dev.device_id: [obj.__dikt__]}])

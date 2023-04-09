@@ -72,7 +72,7 @@ class TestBed:
         try:
             # self.perf_monitor.stop()
             await self.device_group.cleanup()
-        except Exception as e:
+        except Exception:
             self.applog.exception('Error occurred in stopping asyncio loop')
 
     async def install_os(self):

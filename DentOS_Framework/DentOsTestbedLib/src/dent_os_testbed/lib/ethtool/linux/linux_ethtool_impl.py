@@ -215,7 +215,6 @@ class LinuxEthtoolImpl(LinuxEthtool):
              specified as e.g. encoding auto rs ; the semantics of such combinations vary between drivers.
 
         """
-        params = kwarg['params']
         cmd = 'ethtool {} '.format(command)
         # TODO: Implement me
 
@@ -274,7 +273,6 @@ class LinuxEthtoolImpl(LinuxEthtool):
             rxhash on|off-Specifies whether receive hashing offload should be enabled
 
         """
-        params = kwarg['params']
         cmd = 'ethtool {} '.format(command)
         # TODO: Implement me
 
@@ -333,7 +331,6 @@ class LinuxEthtoolImpl(LinuxEthtool):
             rxhash on|off-Specifies whether receive hashing offload should be enabled
 
         """
-        params = kwarg['params']
         cmd = 'ethtool {} '.format(command)
         # TODO: Implement me
 
@@ -348,7 +345,6 @@ class LinuxEthtoolImpl(LinuxEthtool):
         -r --negotiate - Restarts auto-negotiation on the specified Ethernet device, if auto-negotiation is enabled.
 
         """
-        params = kwarg['params']
         cmd = 'ethtool {} '.format(command)
         # TODO: Implement me
 
@@ -363,7 +359,6 @@ class LinuxEthtoolImpl(LinuxEthtool):
         -r --negotiate - Restarts auto-negotiation on the specified Ethernet device, if auto-negotiation is enabled.
 
         """
-        params = kwarg['params']
         cmd = 'ethtool {} '.format(command)
         # TODO: Implement me
 
@@ -377,7 +372,6 @@ class LinuxEthtoolImpl(LinuxEthtool):
             external_lb - Perform full set of tests, as for offline, and additionally an external-loopback test.
 
         """
-        params = kwarg['params']
         cmd = 'ethtool {} '.format(command)
         # TODO: Implement me
 
@@ -391,7 +385,6 @@ class LinuxEthtoolImpl(LinuxEthtool):
             external_lb - Perform full set of tests, as for offline, and additionally an external-loopback test.
 
         """
-        params = kwarg['params']
         cmd = 'ethtool {} '.format(command)
         # TODO: Implement me
 
@@ -407,7 +400,6 @@ class LinuxEthtoolImpl(LinuxEthtool):
              regions are written. All other values are driver-dependent.
 
         """
-        params = kwarg['params']
         cmd = 'ethtool {} '.format(command)
         # TODO: Implement me
 
@@ -423,7 +415,6 @@ class LinuxEthtoolImpl(LinuxEthtool):
              regions are written. All other values are driver-dependent.
 
         """
-        params = kwarg['params']
         cmd = 'ethtool {} '.format(command)
         # TODO: Implement me
 
@@ -474,7 +465,6 @@ class LinuxEthtoolImpl(LinuxEthtool):
            delete N - Deletes the RX classification rule with the given ID.
 
         """
-        params = kwarg['params']
         cmd = 'ethtool {} '.format(command)
         # TODO: Implement me
 
@@ -525,7 +515,6 @@ class LinuxEthtoolImpl(LinuxEthtool):
            delete N - Deletes the RX classification rule with the given ID.
 
         """
-        params = kwarg['params']
         cmd = 'ethtool {} '.format(command)
         # TODO: Implement me
 
@@ -547,7 +536,6 @@ class LinuxEthtoolImpl(LinuxEthtool):
             all - All components used by this interface, even if shared
 
         """
-        params = kwarg['params']
         cmd = 'ethtool {} '.format(command)
         # TODO: Implement me
 
@@ -569,7 +557,6 @@ class LinuxEthtoolImpl(LinuxEthtool):
             all - All components used by this interface, even if shared
 
         """
-        params = kwarg['params']
         cmd = 'ethtool {} '.format(command)
         # TODO: Implement me
 

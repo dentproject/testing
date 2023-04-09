@@ -161,7 +161,7 @@ async def test_tc_flower_persistency_w_traffic(testbed):
     await tgen_utils_start_traffic(tgen_dev)
     time.sleep(10)
     await tgen_utils_stop_traffic(tgen_dev)
-    stats = await tgen_utils_get_traffic_stats(tgen_dev)
+    await tgen_utils_get_traffic_stats(tgen_dev)
     # check for no packet loss
     # - install iptables rules in filter table at FORWARD stage
     #   to drop the packet matching SIP and DIP
@@ -344,7 +344,7 @@ async def test_tc_flower_persistency_w_traffic(testbed):
     #  - there shouldnt be any loss
     time.sleep(10)
     await tgen_utils_stop_traffic(tgen_dev)
-    stats = await tgen_utils_get_traffic_stats(tgen_dev)
+    await tgen_utils_get_traffic_stats(tgen_dev)
     # TODO no drop should be seen
 
     # perform the rule translation
@@ -355,7 +355,7 @@ async def test_tc_flower_persistency_w_traffic(testbed):
     #  - all the packets matching the SIP and DIP should be dropped.
     time.sleep(30)
     await tgen_utils_stop_traffic(tgen_dev)
-    stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
+    await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
     # TODO verify stats should drop all packets now.
     swp_tc_rules = {}
     await tcutil_get_tc_rule_stats(dent_dev, swp_tgen_ports, swp_tc_rules)

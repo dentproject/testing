@@ -70,7 +70,6 @@ async def test_arp_flush_w_traffic(testbed):
         return
     dent_dev = dent_devices[0]
     dent = dent_dev.host_name
-    swp_tgen_ports = tgen_dev.links_dict[dent][1]
 
     # start from a clean state
     await tb_reload_nw_and_flush_firewall([dent_dev])
@@ -92,7 +91,7 @@ async def test_arp_flush_w_traffic(testbed):
     dent_dev.applog.info('zzzZZZ!! (10s)')
     time.sleep(10)
     await tgen_utils_stop_traffic(tgen_dev)
-    stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
+    await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
 
     rc, out = await dent_dev.run_cmd('arp -n')
     dent_dev.applog.info(f'arp on {dent} rc {rc} out {out}')

@@ -42,7 +42,6 @@ async def test_basic_tgen_w_traffic(testbed):
         return
     dent_dev = dent_devices[0]
     dent = dent_dev.host_name
-    swp_tgen_ports = tgen_dev.links_dict[dent][1]
 
     # start from a clean state
     await tb_reload_nw_and_flush_firewall([dent_dev])

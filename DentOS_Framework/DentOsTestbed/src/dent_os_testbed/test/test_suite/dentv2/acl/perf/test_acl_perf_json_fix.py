@@ -70,6 +70,6 @@ async def test_dentv2_acl_perf_json_fix(testbed):
                 input_data=[{dd.host_name: [{'block': 1, 'options': '-json'}]}]
             )
             try:
-                json_output = json.loads(out[0][dd.host_name]['result'])
-            except JSONDecodeError as e:
+                json.loads(out[0][dd.host_name]['result'])
+            except JSONDecodeError:
                 pytest.fail(f"json format error: {out[0][dd.host_name]['result']}")

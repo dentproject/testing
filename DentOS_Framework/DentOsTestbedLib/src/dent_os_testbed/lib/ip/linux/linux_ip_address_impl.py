@@ -153,7 +153,6 @@ class LinuxIpAddressImpl(LinuxIpAddress):
         """
         Restore the config
         """
-        params = kwarg['params']
         cmd = 'ip address {} '.format(command)
         # custom code here
 

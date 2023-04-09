@@ -44,7 +44,7 @@ async def download_file(http_url, out_file):
                         break
                     await f.write(chunk)
                     await f.flush()
-    except Exception as e:
+    except Exception:
         raise
 
 

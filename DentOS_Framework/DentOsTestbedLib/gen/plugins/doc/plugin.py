@@ -46,7 +46,6 @@ class DocsMdObject(object):
             for c in mod.classes:
                 if not c.implemented_by:
                     continue
-                cargs = c.to_dict()
                 classes += f'[{c.name}]({c.name}.md) <br/>'
             if not classes:
                 continue

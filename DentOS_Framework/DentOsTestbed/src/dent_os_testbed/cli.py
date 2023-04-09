@@ -324,7 +324,7 @@ async def testbed_update_login_banner(devices, args, applog, add):
     results = await asyncio.gather(*cos, return_exceptions=False)
     try:
         check_asyncio_results(results, '_update_device_login_banner')
-    except Exception as e:
+    except Exception:
         applog.info('Done updating banner')
 
 

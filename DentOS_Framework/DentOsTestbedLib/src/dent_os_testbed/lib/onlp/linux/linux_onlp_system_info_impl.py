@@ -29,7 +29,6 @@ class LinuxOnlpSystemInfoImpl(LinuxOnlpSystemInfo):
          ONIE Version: 2019.08-V02
 
         """
-        params = kwarg['params']
         cmd = '/lib/platform-config/current/onl/bin/onlpdump -s'
         return cmd
 

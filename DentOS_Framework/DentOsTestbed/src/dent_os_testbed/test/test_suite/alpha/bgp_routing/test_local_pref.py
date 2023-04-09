@@ -55,7 +55,6 @@ async def test_alpha_lab_bgp_routing_local_pref(testbed):
     if not tgen_dev or not devices or len(devices) < 2:
         print('The testbed does not have enough dent with tgen connections')
         return
-    devices_info = {}
     bgp_neighbors = {}
     br_ip = 30
     num_routes = 5

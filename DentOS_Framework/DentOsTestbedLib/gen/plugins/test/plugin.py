@@ -79,7 +79,6 @@ class TestPyObject(object):
         self._imports.append(PyImport('pytest'))
         self._imports.append(PyImport('TestLibObject', _from='dent_os_testbed.lib.test_lib_object '))
         for impl in self._cls.implemented_by:
-            pd_impl = ''
             if 'dentos' in impl.platforms:
                 args['pd_impl_cc'] = '%sImpl' % camelcase(impl.name)
                 args['pd_impl'] = 'linux'
@@ -257,7 +256,6 @@ class TestCmdImplPyObject(object):
         )
         methods = []
         # add format_cmd method
-        entries = ''
         for cmd in self._cls.commands:
             # add the methods to handle the generation
             cargs = cmd.to_dict()

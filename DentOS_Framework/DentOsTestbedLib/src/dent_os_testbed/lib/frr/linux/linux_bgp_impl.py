@@ -34,7 +34,6 @@ class LinuxBgpImpl(LinuxBgp):
 
     def parse_show(self, command, output, *argv, **kwarg):
         """"""
-        params = kwarg['params']
         cmd = 'vtysh {} '.format(command)
         # TODO: Implement me
 
@@ -75,7 +74,6 @@ class LinuxBgpImpl(LinuxBgp):
 
     def parse_configure(self, command, output, *argv, **kwarg):
         """"""
-        params = kwarg['params']
         cmd = 'vtysh {} '.format(command)
         # TODO: Implement me
 

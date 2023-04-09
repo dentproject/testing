@@ -109,7 +109,6 @@ async def test_bgp_route_and_interface_flap(testbed):
     if not tgen_dev or not devices:
         print('The testbed does not have enough dent with tgen connections')
         return
-    devices_info = {}
     bgp_neighbors = {}
     br_ip = 30
     await tb_reload_nw_and_flush_firewall(devices)

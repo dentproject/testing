@@ -2,7 +2,6 @@
 #
 
 import copy
-import ipaddress
 import time
 from itertools import islice
 
@@ -53,7 +52,6 @@ async def test_dentv2_acl_scale_max_rules_20B(testbed):
     swp = swp_tgen_ports[0]
     swp_info = {}
     await tgen_utils_get_swp_info(infra_dev, swp, swp_info)
-    sip = ipaddress.ip_address('.'.join(swp_info['ip'][:-1] + [str(int(swp[3:]) * 2)]))
 
     await tb_reload_nw_and_flush_firewall(infra_devices)
 
@@ -124,7 +122,6 @@ async def test_dentv2_acl_scale_max_rules_40B(testbed):
     swp = swp_tgen_ports[1]
     swp_info = {}
     await tgen_utils_get_swp_info(infra_dev, swp, swp_info)
-    sip = ipaddress.ip_address('.'.join(swp_info['ip'][:-1] + [str(int(swp[3:]) * 2)]))
 
     await tb_reload_nw_and_flush_firewall(infra_devices)
 
@@ -198,7 +195,6 @@ async def test_dentv2_acl_scale_max_rules_60B(testbed):
     swp = swp_tgen_ports[1]
     swp_info = {}
     await tgen_utils_get_swp_info(infra_dev, swp, swp_info)
-    sip = ipaddress.ip_address('.'.join(swp_info['ip'][:-1] + [str(int(swp[3:]) * 2)]))
 
     await tb_reload_nw_and_flush_firewall(infra_devices)
 
