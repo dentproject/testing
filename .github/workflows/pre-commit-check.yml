@@ -15,7 +15,9 @@ jobs:
     - run: pre-commit install
     - run: git fetch origin
     - run: |
-        OUTPUT=$(pre-commit run --color never --from-ref HEAD^ --to-ref HEAD)
+        set -x
+        set +e
+        OUTPUT=$(pre-commit run --color never --from-ref HEAD^ --to-ref HEAD 2>&1)
         EXIT_CODE=$?
         echo $OUTPUT
         echo $EXIT_CODE
@@ -23,6 +25,7 @@ jobs:
         echo $OUTPUT >> $GITHUB_ENV
         echo "EOF" >> $GITHUB_ENV
         echo "exit_code=$EXIT_CODE" >> $GITHUB_ENV
+      continue-on-error: true
 
     - name: Prepare comment
       if: ${{ env.exit_code  != 0 }}
