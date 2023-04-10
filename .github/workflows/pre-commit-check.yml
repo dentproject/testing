@@ -15,6 +15,7 @@ jobs:
     - run: pre-commit install
     - run: git fetch origin
     - run: |
+        set -x
         OUTPUT=$(pre-commit run --color never --from-ref HEAD^ --to-ref HEAD)
         EXIT_CODE=$?
         echo $OUTPUT
