@@ -9,6 +9,7 @@ from dent_os_testbed.utils.test_utils.tb_utils import (
 
 pytestmark = pytest.mark.suite_stress
 
+
 @pytest.mark.skip(reason="hangs https://github.com/dentproject/testing/issues/199")
 @pytest.mark.asyncio
 async def test_stress_exhause_disk_space(testbed):
