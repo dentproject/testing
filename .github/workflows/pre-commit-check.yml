@@ -16,7 +16,7 @@ jobs:
     - run: git fetch origin
     - run: |
         set -x
-        OUTPUT=`pre-commit run --color never --from-ref HEAD^ --to-ref HEAD 2>&1`
+        OUTPUT=`pre-commit run --color never --from-ref HEAD^ --to-ref HEAD 2>>&1`
         EXIT_CODE=$?
         echo $OUTPUT
         echo $EXIT_CODE
