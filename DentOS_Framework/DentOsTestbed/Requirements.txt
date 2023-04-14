@@ -6,5 +6,6 @@ pexpect
 pytest
 pytest-asyncio
 pytest-html
+pytest-repeat
 ixnetwork_restpy
 pyvis == 0.1.9
