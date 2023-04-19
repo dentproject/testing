@@ -1,5 +1,0 @@
-{
-  "cut here": {"regex": "\\[ cut here \\]"},
-  "call trace:": {"regex": "Call trace:"},
-  "hw routing offloading disabled:": {"regex": "Abort. HW routing offloading disabled"}
-}

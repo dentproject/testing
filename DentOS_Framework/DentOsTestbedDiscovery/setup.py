@@ -6,19 +6,19 @@ from setuptools import find_namespace_packages, setup
 # Files underneath configuration/ will be copied into the build preserving the
 # subdirectory structure if they exist.
 data_files = []
-for root, dirs, files in os.walk("configuration"):
+for root, dirs, files in os.walk('configuration'):
     data_files.append(
-        (os.path.relpath(root, "configuration"), [os.path.join(root, f) for f in files])
+        (os.path.relpath(root, 'configuration'), [os.path.join(root, f) for f in files])
     )
 
 setup(
-    name="DentOsTestbedDiscovery",
-    version="1.0",
+    name='DentOsTestbedDiscovery',
+    version='1.0',
     # declare your packages
-    packages=find_namespace_packages(where="src",
-                                     exclude=["test",],
-                                     include=["dent_os_testbed.*"]),
-    package_dir={"": "src"},
+    packages=find_namespace_packages(where='src',
+                                     exclude=['test', ],
+                                     include=['dent_os_testbed.*']),
+    package_dir={'': 'src'},
     # include data files
     data_files=data_files,
     # declare your scripts
@@ -54,7 +54,7 @@ setup(
     #   attempt to install root scripts for the specific interpreter version. If
     #   this package is in a version set where that interpreter is not enabled,
     #   you won't get root scripts. You almost certainly don't want this.
-    root_script_source_version="default-only",
+    root_script_source_version='default-only',
 
     # Enable build-time format checking
     check_format=False,

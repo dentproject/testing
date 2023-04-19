@@ -17,7 +17,9 @@ from dent_os_testbed.utils.test_utils.cleanup_utils import (
     cleanup_bridges as _cleanup_bridges,
     cleanup_qdiscs as _cleanup_qdiscs,
     cleanup_routes as _cleanup_routes,
+    cleanup_bonds as _cleanup_bonds,
     cleanup_vrfs as _cleanup_vrfs,
+    cleanup_sysctl as _cleanup_sysctl,
     get_initial_routes,
 )
 from dent_os_testbed.utils.test_utils.tgen_utils import (
@@ -28,7 +30,7 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
 # Add python files for defining per folder fixtures here
 # And depending on the scope of fixtures, they can be used
 # in other modules if scope is session
-pytest_plugins = ["dent_os_testbed.test.connection.fixtures"]
+pytest_plugins = ['dent_os_testbed.test.connection.fixtures']
 
 
 # pytest_sessionstart and pytest_sessionfinish
@@ -40,11 +42,11 @@ def pytest_configure(config):
 
     # dynamically add custom markers defined in dent_os_testbed.__init__
     for suite_name, suite_desc in PYTEST_SUITES.items():
-        config.addinivalue_line("markers", "%s: %s" % (suite_name, suite_desc))
+        config.addinivalue_line('markers', '%s: %s' % (suite_name, suite_desc))
 
-    tr = config.pluginmanager.getplugin("terminalreporter")
+    tr = config.pluginmanager.getplugin('terminalreporter')
     if tr:
-        config._pytestsessionfile = tempfile.TemporaryFile("w+")
+        config._pytestsessionfile = tempfile.TemporaryFile('w+')
         oldwrite = tr._tw.write
 
         def tee_write(s, **kwargs):
@@ -61,13 +63,13 @@ def pytest_configure(config):
 def pytest_unconfigure(config):
     # Log all the output from pytest to test_summary.log
     logger = AppLogger(DEFAULT_LOGGER)
-    if hasattr(config, "_pytestsessionfile"):
+    if hasattr(config, '_pytestsessionfile'):
         # get terminal contents and delete file
         config._pytestsessionfile.seek(0)
         sessionlog = config._pytestsessionfile.read()
         config._pytestsessionfile.close()
         # write summary
-        test_summary_file = os.path.join(LOGDIR, "test_summary.log")
+        test_summary_file = os.path.join(LOGDIR, 'test_summary.log')
         lfh = FileHandlerFactory.get_file_handler(FileHandlerTypes.LOCAL, logger)
         lfh.write(test_summary_file, sessionlog)
 
@@ -77,25 +79,25 @@ def pytest_unconfigure(config):
 def pytest_runtest_setup(item):
     logger = AppLogger(DEFAULT_LOGGER)
     if logger:
-        logger = logger.getChild("conftest")
-        logger.info("=================================================================")
+        logger = logger.getChild('conftest')
+        logger.info('=================================================================')
         logger.info(
             '<a href="#%s">Starting testcase:%s from file:%s </a>'
             % (item.name, item.name, item.fspath)
         )
-        logger.info("=================================================================")
+        logger.info('=================================================================')
 
 
 def pytest_runtest_teardown(item, nextitem):
     logger = AppLogger(DEFAULT_LOGGER)
     if logger:
-        logger = logger.getChild("conftest")
-        logger.info("Finished testcase:%s from file:%s" % (item.name, item.fspath))
+        logger = logger.getChild('conftest')
+        logger.info('Finished testcase:%s from file:%s' % (item.name, item.fspath))
 
 
 def pytest_sessionstart(session):
-    if hasattr(pytest, "testbed"):
-        pytest.stdout_logger = AppLogger("test_stdout")
+    if hasattr(pytest, 'testbed'):
+        pytest.stdout_logger = AppLogger('test_stdout')
     else:
         pytest.stdout_logger = None
 
@@ -109,24 +111,24 @@ def pytest_terminal_summary(terminalreporter, exitstatus, config):
 
 
 def pytest_runtest_logreport(report):
-    report_str = "Test: %s stdout:%s\n\n" % (report.nodeid, report.capstdout)
-    if hasattr(pytest, "stdout_logger") and pytest.stdout_logger:
+    report_str = 'Test: %s stdout:%s\n\n' % (report.nodeid, report.capstdout)
+    if hasattr(pytest, 'stdout_logger') and pytest.stdout_logger:
         pytest.stdout_logger.info(report_str)
 
 
 def pytest_collection_modifyitems(session, config, items):
     logger = AppLogger(DEFAULT_LOGGER)
     if logger:
-        logger = logger.getChild("conftest")
+        logger = logger.getChild('conftest')
     for item in items:
         for mark in item.own_markers:
-            if mark and mark.name.startswith("feature"):
+            if mark and mark.name.startswith('feature'):
                 if logger:
-                    logger.info("pytest %s has feature markers:%s" % (item.name, item.own_markers))
+                    logger.info('pytest %s has feature markers:%s' % (item.name, item.own_markers))
     return False
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope='session')
 def testbed():
     return pytest.testbed
 
@@ -134,9 +136,9 @@ def testbed():
 @pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_makereport(item, call):
     outcome = yield
-    report = outcome.get_result()
+    outcome.get_result()
     test_fn = item.obj
-    docstring = getattr(test_fn, "__doc__")
+    docstring = getattr(test_fn, '__doc__')
     if docstring:
         print(docstring)
 
@@ -194,3 +196,17 @@ async def cleanup_routes(testbed):
     yield
     routes_cleanups = [_cleanup_routes(dev, initial_routes[dev.host_name]) for dev in devices]
     await asyncio.gather(*routes_cleanups)
+
+
+@pytest_asyncio.fixture
+async def cleanup_sysctl():
+    yield
+    await _cleanup_sysctl()
+
+
+@pytest_asyncio.fixture
+async def cleanup_bonds(testbed):
+    yield
+    _, devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 4)
+    bonds_cleanup = [_cleanup_bonds(dev) for dev in devices]
+    await asyncio.gather(*bonds_cleanup)

@@ -24,24 +24,24 @@ class PingUtil(object):
 
         """
         proc = await asyncio.create_subprocess_exec(
-            "ping", "-c", "10", target, stdout=asyncio.subprocess.PIPE
+            'ping', '-c', '10', target, stdout=asyncio.subprocess.PIPE
         )
-        pkt_stats = ""
+        pkt_stats = ''
         while True:
             line = await proc.stdout.readline()
-            if line == b"":
+            if line == b'':
                 return False
-            line = line.decode("utf8").rstrip()
+            line = line.decode('utf8').rstrip()
             if dump:
                 print(line)
-            if "transmitted" in line:
+            if 'transmitted' in line:
                 pkt_stats = line
         pkt_loss = next(
-            (pkt_stat for pkt_stat in pkt_stats.split(",") if "packet loss" in pkt_stat), None
+            (pkt_stat for pkt_stat in pkt_stats.split(',') if 'packet loss' in pkt_stat), None
         )
         if pkt_loss:
-            pkt_loss_percent = pkt_loss.strip().split(" ")[0].split(".")[0]
-            pkt_loss_percent = int(pkt_loss_percent[: pkt_loss_percent.find("%")])
+            pkt_loss_percent = pkt_loss.strip().split(' ')[0].split('.')[0]
+            pkt_loss_percent = int(pkt_loss_percent[: pkt_loss_percent.find('%')])
         else:
             pkt_loss_percent = -1
         return True if pkt_loss_percent <= pkt_loss_treshold else False

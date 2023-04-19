@@ -39,20 +39,20 @@ class Builder:
         """
         ConnectionParams.Builder Initializliation
         """
-        self._username = ""
-        self._ip = ""
-        self._hostname = ""
-        self._password = ""
-        self._public_key = ""
+        self._username = ''
+        self._ip = ''
+        self._hostname = ''
+        self._password = ''
+        self._public_key = ''
         self._baudrate = -1
-        self._serial_dev = ""
+        self._serial_dev = ''
         self._logger = None
-        self._log_file_path = ""
+        self._log_file_path = ''
         self._pssh = False
-        self._aws_region = ""
-        self._store_domain = ""
-        self._store_type = ""
-        self._store_id = ""
+        self._aws_region = ''
+        self._store_domain = ''
+        self._store_type = ''
+        self._store_id = ''
 
     def username(self, username):
         """

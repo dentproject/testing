@@ -26,7 +26,7 @@
             "type" : "INFRA_SWITCH",
             "hostName": "infra2",
             "model": "arm64-delta-tn48m-poe-dn-r0",
-            "ip": "10.36.118.23",   
+            "ip": "10.36.118.23",
             "login":{
                 "userName":"root",
                 "password":"onl"
@@ -112,10 +112,15 @@
             "mediaMode":"mixed",
             "links" : [
                 ["10.36.118.199:1:1",  "dist1:swp1",   "fiber"],
+                ["10.36.118.199:1:2",  "dist1:swp2",   "fiber"],
                 ["10.36.118.199:1:5",  "agg1:swp1",    "fiber"],
+                ["10.36.118.199:1:6",  "agg1:swp2",    "fiber"],
                 ["10.36.118.199:1:9",  "agg2:swp1",    "fiber"],
+                ["10.36.118.199:1:10", "agg2:swp2",    "fiber"],
                 ["10.36.118.199:1:11", "infra1:swp3",  "copper"],
-                ["10.36.118.199:1:13", "infra2:swp1",  "copper"]
+                ["10.36.118.199:1:12", "infra1:swp4",  "copper"],
+                ["10.36.118.199:1:13", "infra2:swp1",  "copper"],
+                ["10.36.118.199:1:14", "infra2:swp2",  "copper"]
             ]
         }
     ],

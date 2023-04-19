@@ -13,25 +13,25 @@ from .utils import TestDevice
 
 def test_that_ip_tables_append(capfd):
 
-    dv1 = TestDevice(platform="dentos")
-    dv2 = TestDevice(platform="dentos")
+    dv1 = TestDevice(platform='dentos')
+    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         IpTables.append(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -39,48 +39,48 @@ def test_that_ip_tables_append(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
-                            "table": "wtrrdwxp",
-                            "rulenum": 9040,
-                            "protocol": "xwvpsnhf",
-                            "source": "103.88.217.150",
-                            "destination": "67.100.103.55",
-                            "match": "syiqceoz",
-                            "target": "vsqcotnu",
-                            "goto": "mwgcvhsk",
-                            "iif": "mygqckol",
-                            "oif": "pyuzzkzq",
-                            "fragment": True,
+                            'table': 'wtrrdwxp',
+                            'rulenum': 9040,
+                            'protocol': 'xwvpsnhf',
+                            'source': '103.88.217.150',
+                            'destination': '67.100.103.55',
+                            'match': 'syiqceoz',
+                            'target': 'vsqcotnu',
+                            'goto': 'mwgcvhsk',
+                            'iif': 'mygqckol',
+                            'oif': 'pyuzzkzq',
+                            'fragment': True,
                         },
                         {
                             # command 2
-                            "table": "uoxuuvfq",
-                            "rulenum": 2082,
-                            "protocol": "stcktaio",
-                            "source": "43.231.170.227",
-                            "destination": "129.213.249.245",
-                            "match": "pgqmjrbw",
-                            "target": "bahcrlaj",
-                            "goto": "sijkouwl",
-                            "iif": "cvrmkgqv",
-                            "oif": "tdztvgwr",
-                            "fragment": False,
+                            'table': 'uoxuuvfq',
+                            'rulenum': 2082,
+                            'protocol': 'stcktaio',
+                            'source': '43.231.170.227',
+                            'destination': '129.213.249.245',
+                            'match': 'pgqmjrbw',
+                            'target': 'bahcrlaj',
+                            'goto': 'sijkouwl',
+                            'iif': 'cvrmkgqv',
+                            'oif': 'tdztvgwr',
+                            'fragment': False,
                         },
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -88,75 +88,75 @@ def test_that_ip_tables_append(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
-                            "table": "wtrrdwxp",
-                            "rulenum": 9040,
-                            "protocol": "xwvpsnhf",
-                            "source": "103.88.217.150",
-                            "destination": "67.100.103.55",
-                            "match": "syiqceoz",
-                            "target": "vsqcotnu",
-                            "goto": "mwgcvhsk",
-                            "iif": "mygqckol",
-                            "oif": "pyuzzkzq",
-                            "fragment": True,
+                            'table': 'wtrrdwxp',
+                            'rulenum': 9040,
+                            'protocol': 'xwvpsnhf',
+                            'source': '103.88.217.150',
+                            'destination': '67.100.103.55',
+                            'match': 'syiqceoz',
+                            'target': 'vsqcotnu',
+                            'goto': 'mwgcvhsk',
+                            'iif': 'mygqckol',
+                            'oif': 'pyuzzkzq',
+                            'fragment': True,
                         }
                     ],
                     # device 2
-                    "test_dev2": [
+                    'test_dev2': [
                         {
-                            "table": "uoxuuvfq",
-                            "rulenum": 2082,
-                            "protocol": "stcktaio",
-                            "source": "43.231.170.227",
-                            "destination": "129.213.249.245",
-                            "match": "pgqmjrbw",
-                            "target": "bahcrlaj",
-                            "goto": "sijkouwl",
-                            "iif": "cvrmkgqv",
-                            "oif": "tdztvgwr",
-                            "fragment": False,
+                            'table': 'uoxuuvfq',
+                            'rulenum': 2082,
+                            'protocol': 'stcktaio',
+                            'source': '43.231.170.227',
+                            'destination': '129.213.249.245',
+                            'match': 'pgqmjrbw',
+                            'target': 'bahcrlaj',
+                            'goto': 'sijkouwl',
+                            'iif': 'cvrmkgqv',
+                            'oif': 'tdztvgwr',
+                            'fragment': False,
                         }
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0
 
 
 def test_that_ip_tables_check(capfd):
 
-    dv1 = TestDevice(platform="dentos")
-    dv2 = TestDevice(platform="dentos")
+    dv1 = TestDevice(platform='dentos')
+    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         IpTables.check(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -164,48 +164,48 @@ def test_that_ip_tables_check(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
-                            "table": "qzuhwqmf",
-                            "rulenum": 9965,
-                            "protocol": "qmbbgfve",
-                            "source": "102.136.78.207",
-                            "destination": "183.117.117.78",
-                            "match": "xxyhltsq",
-                            "target": "kfzzmxhz",
-                            "goto": "pgrnyrdx",
-                            "iif": "xpbaosmx",
-                            "oif": "myvsvadb",
-                            "fragment": True,
+                            'table': 'qzuhwqmf',
+                            'rulenum': 9965,
+                            'protocol': 'qmbbgfve',
+                            'source': '102.136.78.207',
+                            'destination': '183.117.117.78',
+                            'match': 'xxyhltsq',
+                            'target': 'kfzzmxhz',
+                            'goto': 'pgrnyrdx',
+                            'iif': 'xpbaosmx',
+                            'oif': 'myvsvadb',
+                            'fragment': True,
                         },
                         {
                             # command 2
-                            "table": "tvkervrx",
-                            "rulenum": 2276,
-                            "protocol": "uqyxdeqr",
-                            "source": "87.130.137.218",
-                            "destination": "169.92.90.173",
-                            "match": "kiwxtzui",
-                            "target": "mywmosxh",
-                            "goto": "tknbhecj",
-                            "iif": "pshhlaxt",
-                            "oif": "zwpzfamk",
-                            "fragment": False,
+                            'table': 'tvkervrx',
+                            'rulenum': 2276,
+                            'protocol': 'uqyxdeqr',
+                            'source': '87.130.137.218',
+                            'destination': '169.92.90.173',
+                            'match': 'kiwxtzui',
+                            'target': 'mywmosxh',
+                            'goto': 'tknbhecj',
+                            'iif': 'pshhlaxt',
+                            'oif': 'zwpzfamk',
+                            'fragment': False,
                         },
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -213,75 +213,75 @@ def test_that_ip_tables_check(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
-                            "table": "qzuhwqmf",
-                            "rulenum": 9965,
-                            "protocol": "qmbbgfve",
-                            "source": "102.136.78.207",
-                            "destination": "183.117.117.78",
-                            "match": "xxyhltsq",
-                            "target": "kfzzmxhz",
-                            "goto": "pgrnyrdx",
-                            "iif": "xpbaosmx",
-                            "oif": "myvsvadb",
-                            "fragment": True,
+                            'table': 'qzuhwqmf',
+                            'rulenum': 9965,
+                            'protocol': 'qmbbgfve',
+                            'source': '102.136.78.207',
+                            'destination': '183.117.117.78',
+                            'match': 'xxyhltsq',
+                            'target': 'kfzzmxhz',
+                            'goto': 'pgrnyrdx',
+                            'iif': 'xpbaosmx',
+                            'oif': 'myvsvadb',
+                            'fragment': True,
                         }
                     ],
                     # device 2
-                    "test_dev2": [
+                    'test_dev2': [
                         {
-                            "table": "tvkervrx",
-                            "rulenum": 2276,
-                            "protocol": "uqyxdeqr",
-                            "source": "87.130.137.218",
-                            "destination": "169.92.90.173",
-                            "match": "kiwxtzui",
-                            "target": "mywmosxh",
-                            "goto": "tknbhecj",
-                            "iif": "pshhlaxt",
-                            "oif": "zwpzfamk",
-                            "fragment": False,
+                            'table': 'tvkervrx',
+                            'rulenum': 2276,
+                            'protocol': 'uqyxdeqr',
+                            'source': '87.130.137.218',
+                            'destination': '169.92.90.173',
+                            'match': 'kiwxtzui',
+                            'target': 'mywmosxh',
+                            'goto': 'tknbhecj',
+                            'iif': 'pshhlaxt',
+                            'oif': 'zwpzfamk',
+                            'fragment': False,
                         }
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0
 
 
 def test_that_ip_tables_delete(capfd):
 
-    dv1 = TestDevice(platform="dentos")
-    dv2 = TestDevice(platform="dentos")
+    dv1 = TestDevice(platform='dentos')
+    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         IpTables.delete(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -289,48 +289,48 @@ def test_that_ip_tables_delete(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
-                            "table": "gckbmexz",
-                            "rulenum": 8303,
-                            "protocol": "qglpriwk",
-                            "source": "201.203.34.188",
-                            "destination": "102.77.119.15",
-                            "match": "yeyeabel",
-                            "target": "elqoviis",
-                            "goto": "nbmbkcce",
-                            "iif": "blvvqkmg",
-                            "oif": "mtqhafpf",
-                            "fragment": False,
+                            'table': 'gckbmexz',
+                            'rulenum': 8303,
+                            'protocol': 'qglpriwk',
+                            'source': '201.203.34.188',
+                            'destination': '102.77.119.15',
+                            'match': 'yeyeabel',
+                            'target': 'elqoviis',
+                            'goto': 'nbmbkcce',
+                            'iif': 'blvvqkmg',
+                            'oif': 'mtqhafpf',
+                            'fragment': False,
                         },
                         {
                             # command 2
-                            "table": "jexkifkw",
-                            "rulenum": 4265,
-                            "protocol": "nnmbdisb",
-                            "source": "83.185.63.250",
-                            "destination": "200.226.174.135",
-                            "match": "cnuqwmus",
-                            "target": "veyvtgqh",
-                            "goto": "elzzdyit",
-                            "iif": "pybasqot",
-                            "oif": "xxfkgqak",
-                            "fragment": True,
+                            'table': 'jexkifkw',
+                            'rulenum': 4265,
+                            'protocol': 'nnmbdisb',
+                            'source': '83.185.63.250',
+                            'destination': '200.226.174.135',
+                            'match': 'cnuqwmus',
+                            'target': 'veyvtgqh',
+                            'goto': 'elzzdyit',
+                            'iif': 'pybasqot',
+                            'oif': 'xxfkgqak',
+                            'fragment': True,
                         },
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -338,75 +338,75 @@ def test_that_ip_tables_delete(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
-                            "table": "gckbmexz",
-                            "rulenum": 8303,
-                            "protocol": "qglpriwk",
-                            "source": "201.203.34.188",
-                            "destination": "102.77.119.15",
-                            "match": "yeyeabel",
-                            "target": "elqoviis",
-                            "goto": "nbmbkcce",
-                            "iif": "blvvqkmg",
-                            "oif": "mtqhafpf",
-                            "fragment": False,
+                            'table': 'gckbmexz',
+                            'rulenum': 8303,
+                            'protocol': 'qglpriwk',
+                            'source': '201.203.34.188',
+                            'destination': '102.77.119.15',
+                            'match': 'yeyeabel',
+                            'target': 'elqoviis',
+                            'goto': 'nbmbkcce',
+                            'iif': 'blvvqkmg',
+                            'oif': 'mtqhafpf',
+                            'fragment': False,
                         }
                     ],
                     # device 2
-                    "test_dev2": [
+                    'test_dev2': [
                         {
-                            "table": "jexkifkw",
-                            "rulenum": 4265,
-                            "protocol": "nnmbdisb",
-                            "source": "83.185.63.250",
-                            "destination": "200.226.174.135",
-                            "match": "cnuqwmus",
-                            "target": "veyvtgqh",
-                            "goto": "elzzdyit",
-                            "iif": "pybasqot",
-                            "oif": "xxfkgqak",
-                            "fragment": True,
+                            'table': 'jexkifkw',
+                            'rulenum': 4265,
+                            'protocol': 'nnmbdisb',
+                            'source': '83.185.63.250',
+                            'destination': '200.226.174.135',
+                            'match': 'cnuqwmus',
+                            'target': 'veyvtgqh',
+                            'goto': 'elzzdyit',
+                            'iif': 'pybasqot',
+                            'oif': 'xxfkgqak',
+                            'fragment': True,
                         }
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0
 
 
 def test_that_ip_tables_insert(capfd):
 
-    dv1 = TestDevice(platform="dentos")
-    dv2 = TestDevice(platform="dentos")
+    dv1 = TestDevice(platform='dentos')
+    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         IpTables.insert(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -414,48 +414,48 @@ def test_that_ip_tables_insert(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
-                            "table": "lypilnij",
-                            "rulenum": 5005,
-                            "protocol": "qbpiaaab",
-                            "source": "25.14.94.89",
-                            "destination": "211.30.51.63",
-                            "match": "snuwnbjt",
-                            "target": "ufkrfglu",
-                            "goto": "mnhxvges",
-                            "iif": "katsxiqz",
-                            "oif": "miloqmqr",
-                            "fragment": False,
+                            'table': 'lypilnij',
+                            'rulenum': 5005,
+                            'protocol': 'qbpiaaab',
+                            'source': '25.14.94.89',
+                            'destination': '211.30.51.63',
+                            'match': 'snuwnbjt',
+                            'target': 'ufkrfglu',
+                            'goto': 'mnhxvges',
+                            'iif': 'katsxiqz',
+                            'oif': 'miloqmqr',
+                            'fragment': False,
                         },
                         {
                             # command 2
-                            "table": "mebydien",
-                            "rulenum": 3083,
-                            "protocol": "edaoynfq",
-                            "source": "163.231.0.104",
-                            "destination": "210.154.10.52",
-                            "match": "fylhcyex",
-                            "target": "jjygwjvi",
-                            "goto": "huskbccu",
-                            "iif": "grcjvlej",
-                            "oif": "vunkmane",
-                            "fragment": False,
+                            'table': 'mebydien',
+                            'rulenum': 3083,
+                            'protocol': 'edaoynfq',
+                            'source': '163.231.0.104',
+                            'destination': '210.154.10.52',
+                            'match': 'fylhcyex',
+                            'target': 'jjygwjvi',
+                            'goto': 'huskbccu',
+                            'iif': 'grcjvlej',
+                            'oif': 'vunkmane',
+                            'fragment': False,
                         },
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -463,75 +463,75 @@ def test_that_ip_tables_insert(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
-                            "table": "lypilnij",
-                            "rulenum": 5005,
-                            "protocol": "qbpiaaab",
-                            "source": "25.14.94.89",
-                            "destination": "211.30.51.63",
-                            "match": "snuwnbjt",
-                            "target": "ufkrfglu",
-                            "goto": "mnhxvges",
-                            "iif": "katsxiqz",
-                            "oif": "miloqmqr",
-                            "fragment": False,
+                            'table': 'lypilnij',
+                            'rulenum': 5005,
+                            'protocol': 'qbpiaaab',
+                            'source': '25.14.94.89',
+                            'destination': '211.30.51.63',
+                            'match': 'snuwnbjt',
+                            'target': 'ufkrfglu',
+                            'goto': 'mnhxvges',
+                            'iif': 'katsxiqz',
+                            'oif': 'miloqmqr',
+                            'fragment': False,
                         }
                     ],
                     # device 2
-                    "test_dev2": [
+                    'test_dev2': [
                         {
-                            "table": "mebydien",
-                            "rulenum": 3083,
-                            "protocol": "edaoynfq",
-                            "source": "163.231.0.104",
-                            "destination": "210.154.10.52",
-                            "match": "fylhcyex",
-                            "target": "jjygwjvi",
-                            "goto": "huskbccu",
-                            "iif": "grcjvlej",
-                            "oif": "vunkmane",
-                            "fragment": False,
+                            'table': 'mebydien',
+                            'rulenum': 3083,
+                            'protocol': 'edaoynfq',
+                            'source': '163.231.0.104',
+                            'destination': '210.154.10.52',
+                            'match': 'fylhcyex',
+                            'target': 'jjygwjvi',
+                            'goto': 'huskbccu',
+                            'iif': 'grcjvlej',
+                            'oif': 'vunkmane',
+                            'fragment': False,
                         }
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0
 
 
 def test_that_ip_tables_replace(capfd):
 
-    dv1 = TestDevice(platform="dentos")
-    dv2 = TestDevice(platform="dentos")
+    dv1 = TestDevice(platform='dentos')
+    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         IpTables.replace(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -539,48 +539,48 @@ def test_that_ip_tables_replace(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
-                            "table": "dcnczvql",
-                            "rulenum": 2464,
-                            "protocol": "wcscmtvo",
-                            "source": "237.200.117.8",
-                            "destination": "141.81.195.84",
-                            "match": "utbioqtf",
-                            "target": "gageeyav",
-                            "goto": "qfedazyw",
-                            "iif": "esmocutj",
-                            "oif": "xrnpnxfm",
-                            "fragment": False,
+                            'table': 'dcnczvql',
+                            'rulenum': 2464,
+                            'protocol': 'wcscmtvo',
+                            'source': '237.200.117.8',
+                            'destination': '141.81.195.84',
+                            'match': 'utbioqtf',
+                            'target': 'gageeyav',
+                            'goto': 'qfedazyw',
+                            'iif': 'esmocutj',
+                            'oif': 'xrnpnxfm',
+                            'fragment': False,
                         },
                         {
                             # command 2
-                            "table": "faewsagc",
-                            "rulenum": 2868,
-                            "protocol": "qssxagmn",
-                            "source": "2.168.194.10",
-                            "destination": "219.150.214.239",
-                            "match": "zihdpzqk",
-                            "target": "jdyrczoe",
-                            "goto": "rjwpgcvi",
-                            "iif": "ubjnxhzf",
-                            "oif": "ishhfxcn",
-                            "fragment": True,
+                            'table': 'faewsagc',
+                            'rulenum': 2868,
+                            'protocol': 'qssxagmn',
+                            'source': '2.168.194.10',
+                            'destination': '219.150.214.239',
+                            'match': 'zihdpzqk',
+                            'target': 'jdyrczoe',
+                            'goto': 'rjwpgcvi',
+                            'iif': 'ubjnxhzf',
+                            'oif': 'ishhfxcn',
+                            'fragment': True,
                         },
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -588,75 +588,75 @@ def test_that_ip_tables_replace(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
-                            "table": "dcnczvql",
-                            "rulenum": 2464,
-                            "protocol": "wcscmtvo",
-                            "source": "237.200.117.8",
-                            "destination": "141.81.195.84",
-                            "match": "utbioqtf",
-                            "target": "gageeyav",
-                            "goto": "qfedazyw",
-                            "iif": "esmocutj",
-                            "oif": "xrnpnxfm",
-                            "fragment": False,
+                            'table': 'dcnczvql',
+                            'rulenum': 2464,
+                            'protocol': 'wcscmtvo',
+                            'source': '237.200.117.8',
+                            'destination': '141.81.195.84',
+                            'match': 'utbioqtf',
+                            'target': 'gageeyav',
+                            'goto': 'qfedazyw',
+                            'iif': 'esmocutj',
+                            'oif': 'xrnpnxfm',
+                            'fragment': False,
                         }
                     ],
                     # device 2
-                    "test_dev2": [
+                    'test_dev2': [
                         {
-                            "table": "faewsagc",
-                            "rulenum": 2868,
-                            "protocol": "qssxagmn",
-                            "source": "2.168.194.10",
-                            "destination": "219.150.214.239",
-                            "match": "zihdpzqk",
-                            "target": "jdyrczoe",
-                            "goto": "rjwpgcvi",
-                            "iif": "ubjnxhzf",
-                            "oif": "ishhfxcn",
-                            "fragment": True,
+                            'table': 'faewsagc',
+                            'rulenum': 2868,
+                            'protocol': 'qssxagmn',
+                            'source': '2.168.194.10',
+                            'destination': '219.150.214.239',
+                            'match': 'zihdpzqk',
+                            'target': 'jdyrczoe',
+                            'goto': 'rjwpgcvi',
+                            'iif': 'ubjnxhzf',
+                            'oif': 'ishhfxcn',
+                            'fragment': True,
                         }
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0
 
 
 def test_that_ip_tables_list(capfd):
 
-    dv1 = TestDevice(platform="dentos")
-    dv2 = TestDevice(platform="dentos")
+    dv1 = TestDevice(platform='dentos')
+    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         IpTables.list(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -664,32 +664,32 @@ def test_that_ip_tables_list(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
-                            "table": "bpydcclt",
-                            "chain": "eoudvpwg",
-                            "rulenum": 9833,
+                            'table': 'bpydcclt',
+                            'chain': 'eoudvpwg',
+                            'rulenum': 9833,
                         },
                         {
                             # command 2
-                            "table": "fmzwjbmf",
-                            "chain": "pnikyanh",
-                            "rulenum": 8897,
+                            'table': 'fmzwjbmf',
+                            'chain': 'pnikyanh',
+                            'rulenum': 8897,
                         },
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -697,59 +697,59 @@ def test_that_ip_tables_list(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
-                            "table": "bpydcclt",
-                            "chain": "eoudvpwg",
-                            "rulenum": 9833,
+                            'table': 'bpydcclt',
+                            'chain': 'eoudvpwg',
+                            'rulenum': 9833,
                         }
                     ],
                     # device 2
-                    "test_dev2": [
+                    'test_dev2': [
                         {
-                            "table": "fmzwjbmf",
-                            "chain": "pnikyanh",
-                            "rulenum": 8897,
+                            'table': 'fmzwjbmf',
+                            'chain': 'pnikyanh',
+                            'rulenum': 8897,
                         }
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0
 
 
 def test_that_ip_tables_list_rules(capfd):
 
-    dv1 = TestDevice(platform="dentos")
-    dv2 = TestDevice(platform="dentos")
+    dv1 = TestDevice(platform='dentos')
+    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         IpTables.list_rules(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -757,32 +757,32 @@ def test_that_ip_tables_list_rules(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
-                            "table": "anelnrdq",
-                            "chain": "xaejcotc",
-                            "rulenum": 3113,
+                            'table': 'anelnrdq',
+                            'chain': 'xaejcotc',
+                            'rulenum': 3113,
                         },
                         {
                             # command 2
-                            "table": "dxfeangy",
-                            "chain": "hbxqxnxy",
-                            "rulenum": 5988,
+                            'table': 'dxfeangy',
+                            'chain': 'hbxqxnxy',
+                            'rulenum': 5988,
                         },
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -790,59 +790,59 @@ def test_that_ip_tables_list_rules(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
-                            "table": "anelnrdq",
-                            "chain": "xaejcotc",
-                            "rulenum": 3113,
+                            'table': 'anelnrdq',
+                            'chain': 'xaejcotc',
+                            'rulenum': 3113,
                         }
                     ],
                     # device 2
-                    "test_dev2": [
+                    'test_dev2': [
                         {
-                            "table": "dxfeangy",
-                            "chain": "hbxqxnxy",
-                            "rulenum": 5988,
+                            'table': 'dxfeangy',
+                            'chain': 'hbxqxnxy',
+                            'rulenum': 5988,
                         }
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0
 
 
 def test_that_ip_tables_flush(capfd):
 
-    dv1 = TestDevice(platform="dentos")
-    dv2 = TestDevice(platform="dentos")
+    dv1 = TestDevice(platform='dentos')
+    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         IpTables.flush(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -850,32 +850,32 @@ def test_that_ip_tables_flush(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
-                            "table": "rsryrqnq",
-                            "chain": "ozmikapb",
-                            "rulenum": 3967,
+                            'table': 'rsryrqnq',
+                            'chain': 'ozmikapb',
+                            'rulenum': 3967,
                         },
                         {
                             # command 2
-                            "table": "wjtfqnke",
-                            "chain": "vdeiubzt",
-                            "rulenum": 8566,
+                            'table': 'wjtfqnke',
+                            'chain': 'vdeiubzt',
+                            'rulenum': 8566,
                         },
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -883,59 +883,59 @@ def test_that_ip_tables_flush(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
-                            "table": "rsryrqnq",
-                            "chain": "ozmikapb",
-                            "rulenum": 3967,
+                            'table': 'rsryrqnq',
+                            'chain': 'ozmikapb',
+                            'rulenum': 3967,
                         }
                     ],
                     # device 2
-                    "test_dev2": [
+                    'test_dev2': [
                         {
-                            "table": "wjtfqnke",
-                            "chain": "vdeiubzt",
-                            "rulenum": 8566,
+                            'table': 'wjtfqnke',
+                            'chain': 'vdeiubzt',
+                            'rulenum': 8566,
                         }
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0
 
 
 def test_that_ip_tables_zero(capfd):
 
-    dv1 = TestDevice(platform="dentos")
-    dv2 = TestDevice(platform="dentos")
+    dv1 = TestDevice(platform='dentos')
+    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         IpTables.zero(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -943,32 +943,32 @@ def test_that_ip_tables_zero(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
-                            "table": "bjyjhnll",
-                            "chain": "ucpnnjod",
-                            "rulenum": 3598,
+                            'table': 'bjyjhnll',
+                            'chain': 'ucpnnjod',
+                            'rulenum': 3598,
                         },
                         {
                             # command 2
-                            "table": "kqxkabee",
-                            "chain": "gfufsroi",
-                            "rulenum": 5722,
+                            'table': 'kqxkabee',
+                            'chain': 'gfufsroi',
+                            'rulenum': 5722,
                         },
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -976,59 +976,59 @@ def test_that_ip_tables_zero(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
-                            "table": "bjyjhnll",
-                            "chain": "ucpnnjod",
-                            "rulenum": 3598,
+                            'table': 'bjyjhnll',
+                            'chain': 'ucpnnjod',
+                            'rulenum': 3598,
                         }
                     ],
                     # device 2
-                    "test_dev2": [
+                    'test_dev2': [
                         {
-                            "table": "kqxkabee",
-                            "chain": "gfufsroi",
-                            "rulenum": 5722,
+                            'table': 'kqxkabee',
+                            'chain': 'gfufsroi',
+                            'rulenum': 5722,
                         }
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0
 
 
 def test_that_ip_tables_new_chain(capfd):
 
-    dv1 = TestDevice(platform="dentos")
-    dv2 = TestDevice(platform="dentos")
+    dv1 = TestDevice(platform='dentos')
+    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         IpTables.new_chain(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -1036,32 +1036,32 @@ def test_that_ip_tables_new_chain(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
-                            "table": "lcuadocz",
-                            "chain": "agwbwasq",
-                            "target": "cbhoboup",
+                            'table': 'lcuadocz',
+                            'chain': 'agwbwasq',
+                            'target': 'cbhoboup',
                         },
                         {
                             # command 2
-                            "table": "ywufydft",
-                            "chain": "aulfgwmx",
-                            "target": "nbdtugpe",
+                            'table': 'ywufydft',
+                            'chain': 'aulfgwmx',
+                            'target': 'nbdtugpe',
                         },
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -1069,59 +1069,59 @@ def test_that_ip_tables_new_chain(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
-                            "table": "lcuadocz",
-                            "chain": "agwbwasq",
-                            "target": "cbhoboup",
+                            'table': 'lcuadocz',
+                            'chain': 'agwbwasq',
+                            'target': 'cbhoboup',
                         }
                     ],
                     # device 2
-                    "test_dev2": [
+                    'test_dev2': [
                         {
-                            "table": "ywufydft",
-                            "chain": "aulfgwmx",
-                            "target": "nbdtugpe",
+                            'table': 'ywufydft',
+                            'chain': 'aulfgwmx',
+                            'target': 'nbdtugpe',
                         }
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0
 
 
 def test_that_ip_tables_policy(capfd):
 
-    dv1 = TestDevice(platform="dentos")
-    dv2 = TestDevice(platform="dentos")
+    dv1 = TestDevice(platform='dentos')
+    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         IpTables.policy(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -1129,32 +1129,32 @@ def test_that_ip_tables_policy(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
-                            "table": "qoqzcbku",
-                            "chain": "gldceqxe",
-                            "target": "qrenmhec",
+                            'table': 'qoqzcbku',
+                            'chain': 'gldceqxe',
+                            'target': 'qrenmhec',
                         },
                         {
                             # command 2
-                            "table": "tcogaotd",
-                            "chain": "tdsblwhu",
-                            "target": "xrznnffc",
+                            'table': 'tcogaotd',
+                            'chain': 'tdsblwhu',
+                            'target': 'xrznnffc',
                         },
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -1162,59 +1162,59 @@ def test_that_ip_tables_policy(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
-                            "table": "qoqzcbku",
-                            "chain": "gldceqxe",
-                            "target": "qrenmhec",
+                            'table': 'qoqzcbku',
+                            'chain': 'gldceqxe',
+                            'target': 'qrenmhec',
                         }
                     ],
                     # device 2
-                    "test_dev2": [
+                    'test_dev2': [
                         {
-                            "table": "tcogaotd",
-                            "chain": "tdsblwhu",
-                            "target": "xrznnffc",
+                            'table': 'tcogaotd',
+                            'chain': 'tdsblwhu',
+                            'target': 'xrznnffc',
                         }
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0
 
 
 def test_that_ip_tables_rename_chain(capfd):
 
-    dv1 = TestDevice(platform="dentos")
-    dv2 = TestDevice(platform="dentos")
+    dv1 = TestDevice(platform='dentos')
+    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         IpTables.rename_chain(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -1222,32 +1222,32 @@ def test_that_ip_tables_rename_chain(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
-                            "table": "leohamtx",
-                            "chain": "frhvcroa",
-                            "target": "safwljpt",
+                            'table': 'leohamtx',
+                            'chain': 'frhvcroa',
+                            'target': 'safwljpt',
                         },
                         {
                             # command 2
-                            "table": "qctgrqdp",
-                            "chain": "gtlcknma",
-                            "target": "fcrhxacb",
+                            'table': 'qctgrqdp',
+                            'chain': 'gtlcknma',
+                            'target': 'fcrhxacb',
                         },
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -1255,33 +1255,33 @@ def test_that_ip_tables_rename_chain(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
-                            "table": "leohamtx",
-                            "chain": "frhvcroa",
-                            "target": "safwljpt",
+                            'table': 'leohamtx',
+                            'chain': 'frhvcroa',
+                            'target': 'safwljpt',
                         }
                     ],
                     # device 2
-                    "test_dev2": [
+                    'test_dev2': [
                         {
-                            "table": "qctgrqdp",
-                            "chain": "gtlcknma",
-                            "target": "fcrhxacb",
+                            'table': 'qctgrqdp',
+                            'chain': 'gtlcknma',
+                            'target': 'fcrhxacb',
                         }
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0

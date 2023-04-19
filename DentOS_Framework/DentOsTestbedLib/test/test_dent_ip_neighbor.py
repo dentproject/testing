@@ -13,25 +13,25 @@ from .utils import TestDevice
 
 def test_that_ip_neighbor_add(capfd):
 
-    dv1 = TestDevice(platform="dentos")
-    dv2 = TestDevice(platform="dentos")
+    dv1 = TestDevice(platform='dentos')
+    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         IpNeighbor.add(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -39,28 +39,28 @@ def test_that_ip_neighbor_add(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
-                            "options": "mxlckmna",
+                            'options': 'mxlckmna',
                         },
                         {
                             # command 2
-                            "options": "unqzenae",
+                            'options': 'unqzenae',
                         },
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -68,55 +68,55 @@ def test_that_ip_neighbor_add(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
-                            "options": "mxlckmna",
+                            'options': 'mxlckmna',
                         }
                     ],
                     # device 2
-                    "test_dev2": [
+                    'test_dev2': [
                         {
-                            "options": "unqzenae",
+                            'options': 'unqzenae',
                         }
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0
 
 
 def test_that_ip_neighbor_change(capfd):
 
-    dv1 = TestDevice(platform="dentos")
-    dv2 = TestDevice(platform="dentos")
+    dv1 = TestDevice(platform='dentos')
+    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         IpNeighbor.change(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -124,28 +124,28 @@ def test_that_ip_neighbor_change(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
-                            "options": "aymdorlo",
+                            'options': 'aymdorlo',
                         },
                         {
                             # command 2
-                            "options": "hbwhpbve",
+                            'options': 'hbwhpbve',
                         },
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -153,55 +153,55 @@ def test_that_ip_neighbor_change(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
-                            "options": "aymdorlo",
+                            'options': 'aymdorlo',
                         }
                     ],
                     # device 2
-                    "test_dev2": [
+                    'test_dev2': [
                         {
-                            "options": "hbwhpbve",
+                            'options': 'hbwhpbve',
                         }
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0
 
 
 def test_that_ip_neighbor_replace(capfd):
 
-    dv1 = TestDevice(platform="dentos")
-    dv2 = TestDevice(platform="dentos")
+    dv1 = TestDevice(platform='dentos')
+    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         IpNeighbor.replace(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -209,28 +209,28 @@ def test_that_ip_neighbor_replace(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
-                            "options": "ilaxjidj",
+                            'options': 'ilaxjidj',
                         },
                         {
                             # command 2
-                            "options": "mlniclvd",
+                            'options': 'mlniclvd',
                         },
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -238,55 +238,55 @@ def test_that_ip_neighbor_replace(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
-                            "options": "ilaxjidj",
+                            'options': 'ilaxjidj',
                         }
                     ],
                     # device 2
-                    "test_dev2": [
+                    'test_dev2': [
                         {
-                            "options": "mlniclvd",
+                            'options': 'mlniclvd',
                         }
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0
 
 
 def test_that_ip_neighbor_delete(capfd):
 
-    dv1 = TestDevice(platform="dentos")
-    dv2 = TestDevice(platform="dentos")
+    dv1 = TestDevice(platform='dentos')
+    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         IpNeighbor.delete(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -294,28 +294,28 @@ def test_that_ip_neighbor_delete(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
-                            "options": "ocxlfvgi",
+                            'options': 'ocxlfvgi',
                         },
                         {
                             # command 2
-                            "options": "anqkurgc",
+                            'options': 'anqkurgc',
                         },
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -323,55 +323,55 @@ def test_that_ip_neighbor_delete(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
-                            "options": "ocxlfvgi",
+                            'options': 'ocxlfvgi',
                         }
                     ],
                     # device 2
-                    "test_dev2": [
+                    'test_dev2': [
                         {
-                            "options": "anqkurgc",
+                            'options': 'anqkurgc',
                         }
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0
 
 
 def test_that_ip_neighbor_show(capfd):
 
-    dv1 = TestDevice(platform="dentos")
-    dv2 = TestDevice(platform="dentos")
+    dv1 = TestDevice(platform='dentos')
+    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         IpNeighbor.show(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -379,28 +379,28 @@ def test_that_ip_neighbor_show(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
-                            "options": "kzwivlig",
+                            'options': 'kzwivlig',
                         },
                         {
                             # command 2
-                            "options": "zureqqnc",
+                            'options': 'zureqqnc',
                         },
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -408,55 +408,55 @@ def test_that_ip_neighbor_show(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
-                            "options": "kzwivlig",
+                            'options': 'kzwivlig',
                         }
                     ],
                     # device 2
-                    "test_dev2": [
+                    'test_dev2': [
                         {
-                            "options": "zureqqnc",
+                            'options': 'zureqqnc',
                         }
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0
 
 
 def test_that_ip_neighbor_flush(capfd):
 
-    dv1 = TestDevice(platform="dentos")
-    dv2 = TestDevice(platform="dentos")
+    dv1 = TestDevice(platform='dentos')
+    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         IpNeighbor.flush(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -464,28 +464,28 @@ def test_that_ip_neighbor_flush(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
-                            "options": "eejmpzrh",
+                            'options': 'eejmpzrh',
                         },
                         {
                             # command 2
-                            "options": "xjdmtvrv",
+                            'options': 'xjdmtvrv',
                         },
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -493,29 +493,29 @@ def test_that_ip_neighbor_flush(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
-                            "options": "eejmpzrh",
+                            'options': 'eejmpzrh',
                         }
                     ],
                     # device 2
-                    "test_dev2": [
+                    'test_dev2': [
                         {
-                            "options": "xjdmtvrv",
+                            'options': 'xjdmtvrv',
                         }
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0

@@ -22,9 +22,8 @@ class LinuxDiskFreeImpl(LinuxDiskFree):
         ....
 
         """
-        params = kwarg["params"]
-        cmd = "df "
-        ############# Implement me ################
+        cmd = 'df '
+        # TODO: Implement me
 
         return cmd
 
@@ -45,7 +44,7 @@ class LinuxDiskFreeImpl(LinuxDiskFree):
 
         """
         disk = []
-        records = output.split("\n")[1:]
+        records = output.split('\n')[1:]
         for r in records:
             r = r.strip()
             if not r:
@@ -59,12 +58,12 @@ class LinuxDiskFreeImpl(LinuxDiskFree):
             mounted_on = tokens.pop(0)
             disk.append(
                 {
-                    "filesystem": filesystem,
-                    "size": size,
-                    "used": used,
-                    "available": available,
-                    "use_percentage": use_percentage,
-                    "mounted_on": mounted_on,
+                    'filesystem': filesystem,
+                    'size': size,
+                    'used': used,
+                    'available': available,
+                    'use_percentage': use_percentage,
+                    'mounted_on': mounted_on,
                 }
             )
 

@@ -13,25 +13,25 @@ from .utils import TestDevice
 
 def test_that_traffic_gen_connect(capfd):
 
-    dv1 = TestDevice(platform="ixnetwork")
-    dv2 = TestDevice(platform="ixnetwork")
+    dv1 = TestDevice(platform='ixnetwork')
+    dv2 = TestDevice(platform='ixnetwork')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         TrafficGen.connect(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -39,37 +39,37 @@ def test_that_traffic_gen_connect(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
-                            "client_addr": "171.79.33.163",
-                            "ports": ["lncslgtj"],
+                            'client_addr': '171.79.33.163',
+                            'ports': ['lncslgtj'],
                         },
                         {
                             # command 2
-                            "client_addr": "132.222.24.200",
-                            "ports": [
-                                "ftoaegnm",
-                                "fcywhksh",
-                                "hsltgwok",
-                                "adfvoqaz",
-                                "okyxhdif",
-                                "nazfpqpi",
+                            'client_addr': '132.222.24.200',
+                            'ports': [
+                                'ftoaegnm',
+                                'fcywhksh',
+                                'hsltgwok',
+                                'adfvoqaz',
+                                'okyxhdif',
+                                'nazfpqpi',
                             ],
                         },
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -77,64 +77,64 @@ def test_that_traffic_gen_connect(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
-                            "client_addr": "171.79.33.163",
-                            "ports": ["lncslgtj"],
+                            'client_addr': '171.79.33.163',
+                            'ports': ['lncslgtj'],
                         }
                     ],
                     # device 2
-                    "test_dev2": [
+                    'test_dev2': [
                         {
-                            "client_addr": "132.222.24.200",
-                            "ports": [
-                                "ftoaegnm",
-                                "fcywhksh",
-                                "hsltgwok",
-                                "adfvoqaz",
-                                "okyxhdif",
-                                "nazfpqpi",
+                            'client_addr': '132.222.24.200',
+                            'ports': [
+                                'ftoaegnm',
+                                'fcywhksh',
+                                'hsltgwok',
+                                'adfvoqaz',
+                                'okyxhdif',
+                                'nazfpqpi',
                             ],
                         }
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0
 
 
 def test_that_traffic_gen_disconnect(capfd):
 
-    dv1 = TestDevice(platform="ixnetwork")
-    dv2 = TestDevice(platform="ixnetwork")
+    dv1 = TestDevice(platform='ixnetwork')
+    dv2 = TestDevice(platform='ixnetwork')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         TrafficGen.disconnect(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -142,41 +142,41 @@ def test_that_traffic_gen_disconnect(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
-                            "client_addr": "26.151.204.214",
-                            "ports": ["ucuqwtvq", "bnrifsvh", "midaeipl", "isrvssjo"],
+                            'client_addr': '26.151.204.214',
+                            'ports': ['ucuqwtvq', 'bnrifsvh', 'midaeipl', 'isrvssjo'],
                         },
                         {
                             # command 2
-                            "client_addr": "200.184.74.193",
-                            "ports": [
-                                "xakwsekl",
-                                "lcywtlqs",
-                                "migtzcyu",
-                                "zsulxyhz",
-                                "ggueypdh",
-                                "losozpeg",
-                                "rezxtbdd",
-                                "bwtcfjvl",
-                                "wgpykapj",
-                                "eeqfemnx",
+                            'client_addr': '200.184.74.193',
+                            'ports': [
+                                'xakwsekl',
+                                'lcywtlqs',
+                                'migtzcyu',
+                                'zsulxyhz',
+                                'ggueypdh',
+                                'losozpeg',
+                                'rezxtbdd',
+                                'bwtcfjvl',
+                                'wgpykapj',
+                                'eeqfemnx',
                             ],
                         },
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -184,68 +184,68 @@ def test_that_traffic_gen_disconnect(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
-                            "client_addr": "26.151.204.214",
-                            "ports": ["ucuqwtvq", "bnrifsvh", "midaeipl", "isrvssjo"],
+                            'client_addr': '26.151.204.214',
+                            'ports': ['ucuqwtvq', 'bnrifsvh', 'midaeipl', 'isrvssjo'],
                         }
                     ],
                     # device 2
-                    "test_dev2": [
+                    'test_dev2': [
                         {
-                            "client_addr": "200.184.74.193",
-                            "ports": [
-                                "xakwsekl",
-                                "lcywtlqs",
-                                "migtzcyu",
-                                "zsulxyhz",
-                                "ggueypdh",
-                                "losozpeg",
-                                "rezxtbdd",
-                                "bwtcfjvl",
-                                "wgpykapj",
-                                "eeqfemnx",
+                            'client_addr': '200.184.74.193',
+                            'ports': [
+                                'xakwsekl',
+                                'lcywtlqs',
+                                'migtzcyu',
+                                'zsulxyhz',
+                                'ggueypdh',
+                                'losozpeg',
+                                'rezxtbdd',
+                                'bwtcfjvl',
+                                'wgpykapj',
+                                'eeqfemnx',
                             ],
                         }
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0
 
 
 def test_that_traffic_gen_load_config(capfd):
 
-    dv1 = TestDevice(platform="ixnetwork")
-    dv2 = TestDevice(platform="ixnetwork")
+    dv1 = TestDevice(platform='ixnetwork')
+    dv2 = TestDevice(platform='ixnetwork')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         TrafficGen.load_config(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -253,28 +253,28 @@ def test_that_traffic_gen_load_config(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
-                            "config_file_name": "qwlmrlxc",
+                            'config_file_name': 'qwlmrlxc',
                         },
                         {
                             # command 2
-                            "config_file_name": "fnmssxno",
+                            'config_file_name': 'fnmssxno',
                         },
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -282,55 +282,55 @@ def test_that_traffic_gen_load_config(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
-                            "config_file_name": "qwlmrlxc",
+                            'config_file_name': 'qwlmrlxc',
                         }
                     ],
                     # device 2
-                    "test_dev2": [
+                    'test_dev2': [
                         {
-                            "config_file_name": "fnmssxno",
+                            'config_file_name': 'fnmssxno',
                         }
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0
 
 
 def test_that_traffic_gen_save_config(capfd):
 
-    dv1 = TestDevice(platform="ixnetwork")
-    dv2 = TestDevice(platform="ixnetwork")
+    dv1 = TestDevice(platform='ixnetwork')
+    dv2 = TestDevice(platform='ixnetwork')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         TrafficGen.save_config(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -338,28 +338,28 @@ def test_that_traffic_gen_save_config(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
-                            "config_file_name": "nfvvintd",
+                            'config_file_name': 'nfvvintd',
                         },
                         {
                             # command 2
-                            "config_file_name": "edmxdpno",
+                            'config_file_name': 'edmxdpno',
                         },
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -367,55 +367,55 @@ def test_that_traffic_gen_save_config(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
-                            "config_file_name": "nfvvintd",
+                            'config_file_name': 'nfvvintd',
                         }
                     ],
                     # device 2
-                    "test_dev2": [
+                    'test_dev2': [
                         {
-                            "config_file_name": "edmxdpno",
+                            'config_file_name': 'edmxdpno',
                         }
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0
 
 
 def test_that_traffic_gen_set_traffic(capfd):
 
-    dv1 = TestDevice(platform="ixnetwork")
-    dv2 = TestDevice(platform="ixnetwork")
+    dv1 = TestDevice(platform='ixnetwork')
+    dv2 = TestDevice(platform='ixnetwork')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         TrafficGen.set_traffic(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -423,55 +423,55 @@ def test_that_traffic_gen_set_traffic(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
-                            "traffic_names": [
-                                "hkflsbfc",
-                                "zrfnfspj",
-                                "ceaoxmuq",
-                                "ubhdndlm",
-                                "itgklylk",
-                                "amvwcfba",
-                                "pjetwolm",
-                                "ehuliexk",
-                                "ilgmqatr",
-                                "pgmhhttu",
+                            'traffic_names': [
+                                'hkflsbfc',
+                                'zrfnfspj',
+                                'ceaoxmuq',
+                                'ubhdndlm',
+                                'itgklylk',
+                                'amvwcfba',
+                                'pjetwolm',
+                                'ehuliexk',
+                                'ilgmqatr',
+                                'pgmhhttu',
                             ],
-                            "ports": ["exqemwyj", "qucldvdo", "suscrmat"],
+                            'ports': ['exqemwyj', 'qucldvdo', 'suscrmat'],
                         },
                         {
                             # command 2
-                            "traffic_names": [
-                                "ctiwwydl",
-                                "sgmgylqt",
-                                "zohbtbkb",
-                                "ntzqxfdb",
-                                "ykmghjdp",
-                                "acxpfemo",
+                            'traffic_names': [
+                                'ctiwwydl',
+                                'sgmgylqt',
+                                'zohbtbkb',
+                                'ntzqxfdb',
+                                'ykmghjdp',
+                                'acxpfemo',
                             ],
-                            "ports": [
-                                "peupfbgw",
-                                "rdqzjono",
-                                "oenhxvii",
-                                "vtpsmiby",
-                                "wdyvcajo",
-                                "oyeuhwol",
+                            'ports': [
+                                'peupfbgw',
+                                'rdqzjono',
+                                'oenhxvii',
+                                'vtpsmiby',
+                                'wdyvcajo',
+                                'oyeuhwol',
                             ],
                         },
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -479,82 +479,82 @@ def test_that_traffic_gen_set_traffic(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
-                            "traffic_names": [
-                                "hkflsbfc",
-                                "zrfnfspj",
-                                "ceaoxmuq",
-                                "ubhdndlm",
-                                "itgklylk",
-                                "amvwcfba",
-                                "pjetwolm",
-                                "ehuliexk",
-                                "ilgmqatr",
-                                "pgmhhttu",
+                            'traffic_names': [
+                                'hkflsbfc',
+                                'zrfnfspj',
+                                'ceaoxmuq',
+                                'ubhdndlm',
+                                'itgklylk',
+                                'amvwcfba',
+                                'pjetwolm',
+                                'ehuliexk',
+                                'ilgmqatr',
+                                'pgmhhttu',
                             ],
-                            "ports": ["exqemwyj", "qucldvdo", "suscrmat"],
+                            'ports': ['exqemwyj', 'qucldvdo', 'suscrmat'],
                         }
                     ],
                     # device 2
-                    "test_dev2": [
+                    'test_dev2': [
                         {
-                            "traffic_names": [
-                                "ctiwwydl",
-                                "sgmgylqt",
-                                "zohbtbkb",
-                                "ntzqxfdb",
-                                "ykmghjdp",
-                                "acxpfemo",
+                            'traffic_names': [
+                                'ctiwwydl',
+                                'sgmgylqt',
+                                'zohbtbkb',
+                                'ntzqxfdb',
+                                'ykmghjdp',
+                                'acxpfemo',
                             ],
-                            "ports": [
-                                "peupfbgw",
-                                "rdqzjono",
-                                "oenhxvii",
-                                "vtpsmiby",
-                                "wdyvcajo",
-                                "oyeuhwol",
+                            'ports': [
+                                'peupfbgw',
+                                'rdqzjono',
+                                'oenhxvii',
+                                'vtpsmiby',
+                                'wdyvcajo',
+                                'oyeuhwol',
                             ],
                         }
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0
 
 
 def test_that_traffic_gen_start_traffic(capfd):
 
-    dv1 = TestDevice(platform="ixnetwork")
-    dv2 = TestDevice(platform="ixnetwork")
+    dv1 = TestDevice(platform='ixnetwork')
+    dv2 = TestDevice(platform='ixnetwork')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         TrafficGen.start_traffic(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -562,44 +562,44 @@ def test_that_traffic_gen_start_traffic(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
-                            "traffic_names": ["ikjyhqbf"],
-                            "ports": ["ttfwpgia", "kpzpzdkz", "waxkpbls", "gcgsjihs", "riqyplju"],
+                            'traffic_names': ['ikjyhqbf'],
+                            'ports': ['ttfwpgia', 'kpzpzdkz', 'waxkpbls', 'gcgsjihs', 'riqyplju'],
                         },
                         {
                             # command 2
-                            "traffic_names": [
-                                "fgqrjfby",
-                                "crleyzdm",
-                                "xwremako",
-                                "hkjywkxx",
-                                "igqfmohu",
+                            'traffic_names': [
+                                'fgqrjfby',
+                                'crleyzdm',
+                                'xwremako',
+                                'hkjywkxx',
+                                'igqfmohu',
                             ],
-                            "ports": [
-                                "oipztjqc",
-                                "nlwugnpw",
-                                "dffwpmkc",
-                                "oyvloqhr",
-                                "okwlaekn",
-                                "qcjwxprr",
-                                "oosjsdgx",
+                            'ports': [
+                                'oipztjqc',
+                                'nlwugnpw',
+                                'dffwpmkc',
+                                'oyvloqhr',
+                                'okwlaekn',
+                                'qcjwxprr',
+                                'oosjsdgx',
                             ],
                         },
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -607,71 +607,71 @@ def test_that_traffic_gen_start_traffic(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
-                            "traffic_names": ["ikjyhqbf"],
-                            "ports": ["ttfwpgia", "kpzpzdkz", "waxkpbls", "gcgsjihs", "riqyplju"],
+                            'traffic_names': ['ikjyhqbf'],
+                            'ports': ['ttfwpgia', 'kpzpzdkz', 'waxkpbls', 'gcgsjihs', 'riqyplju'],
                         }
                     ],
                     # device 2
-                    "test_dev2": [
+                    'test_dev2': [
                         {
-                            "traffic_names": [
-                                "fgqrjfby",
-                                "crleyzdm",
-                                "xwremako",
-                                "hkjywkxx",
-                                "igqfmohu",
+                            'traffic_names': [
+                                'fgqrjfby',
+                                'crleyzdm',
+                                'xwremako',
+                                'hkjywkxx',
+                                'igqfmohu',
                             ],
-                            "ports": [
-                                "oipztjqc",
-                                "nlwugnpw",
-                                "dffwpmkc",
-                                "oyvloqhr",
-                                "okwlaekn",
-                                "qcjwxprr",
-                                "oosjsdgx",
+                            'ports': [
+                                'oipztjqc',
+                                'nlwugnpw',
+                                'dffwpmkc',
+                                'oyvloqhr',
+                                'okwlaekn',
+                                'qcjwxprr',
+                                'oosjsdgx',
                             ],
                         }
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0
 
 
 def test_that_traffic_gen_stop_traffic(capfd):
 
-    dv1 = TestDevice(platform="ixnetwork")
-    dv2 = TestDevice(platform="ixnetwork")
+    dv1 = TestDevice(platform='ixnetwork')
+    dv2 = TestDevice(platform='ixnetwork')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         TrafficGen.stop_traffic(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -679,55 +679,55 @@ def test_that_traffic_gen_stop_traffic(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
-                            "traffic_names": [
-                                "cnxowlxi",
-                                "amggqwlj",
-                                "zbustlgt",
-                                "jhwunyhw",
-                                "eyeeizsq",
-                                "jaqeurln",
+                            'traffic_names': [
+                                'cnxowlxi',
+                                'amggqwlj',
+                                'zbustlgt',
+                                'jhwunyhw',
+                                'eyeeizsq',
+                                'jaqeurln',
                             ],
-                            "ports": [
-                                "lszssclo",
-                                "sbunzxvu",
-                                "ufggaqvk",
-                                "xeotdxll",
-                                "tnnvxmwc",
-                                "atrqevkg",
+                            'ports': [
+                                'lszssclo',
+                                'sbunzxvu',
+                                'ufggaqvk',
+                                'xeotdxll',
+                                'tnnvxmwc',
+                                'atrqevkg',
                             ],
                         },
                         {
                             # command 2
-                            "traffic_names": ["kngwtran", "zjgrrmhl", "hxejsvnt"],
-                            "ports": [
-                                "qnukekwg",
-                                "bbystame",
-                                "djrqomxo",
-                                "uzozpnva",
-                                "ewbrrobh",
-                                "oumckkln",
-                                "utjfbadm",
-                                "orzwdobu",
-                                "rbytcgqv",
-                                "oehavcdo",
+                            'traffic_names': ['kngwtran', 'zjgrrmhl', 'hxejsvnt'],
+                            'ports': [
+                                'qnukekwg',
+                                'bbystame',
+                                'djrqomxo',
+                                'uzozpnva',
+                                'ewbrrobh',
+                                'oumckkln',
+                                'utjfbadm',
+                                'orzwdobu',
+                                'rbytcgqv',
+                                'oehavcdo',
                             ],
                         },
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -735,82 +735,82 @@ def test_that_traffic_gen_stop_traffic(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
-                            "traffic_names": [
-                                "cnxowlxi",
-                                "amggqwlj",
-                                "zbustlgt",
-                                "jhwunyhw",
-                                "eyeeizsq",
-                                "jaqeurln",
+                            'traffic_names': [
+                                'cnxowlxi',
+                                'amggqwlj',
+                                'zbustlgt',
+                                'jhwunyhw',
+                                'eyeeizsq',
+                                'jaqeurln',
                             ],
-                            "ports": [
-                                "lszssclo",
-                                "sbunzxvu",
-                                "ufggaqvk",
-                                "xeotdxll",
-                                "tnnvxmwc",
-                                "atrqevkg",
+                            'ports': [
+                                'lszssclo',
+                                'sbunzxvu',
+                                'ufggaqvk',
+                                'xeotdxll',
+                                'tnnvxmwc',
+                                'atrqevkg',
                             ],
                         }
                     ],
                     # device 2
-                    "test_dev2": [
+                    'test_dev2': [
                         {
-                            "traffic_names": ["kngwtran", "zjgrrmhl", "hxejsvnt"],
-                            "ports": [
-                                "qnukekwg",
-                                "bbystame",
-                                "djrqomxo",
-                                "uzozpnva",
-                                "ewbrrobh",
-                                "oumckkln",
-                                "utjfbadm",
-                                "orzwdobu",
-                                "rbytcgqv",
-                                "oehavcdo",
+                            'traffic_names': ['kngwtran', 'zjgrrmhl', 'hxejsvnt'],
+                            'ports': [
+                                'qnukekwg',
+                                'bbystame',
+                                'djrqomxo',
+                                'uzozpnva',
+                                'ewbrrobh',
+                                'oumckkln',
+                                'utjfbadm',
+                                'orzwdobu',
+                                'rbytcgqv',
+                                'oehavcdo',
                             ],
                         }
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0
 
 
 def test_that_traffic_gen_get_stats(capfd):
 
-    dv1 = TestDevice(platform="ixnetwork")
-    dv2 = TestDevice(platform="ixnetwork")
+    dv1 = TestDevice(platform='ixnetwork')
+    dv2 = TestDevice(platform='ixnetwork')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         TrafficGen.get_stats(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -818,39 +818,39 @@ def test_that_traffic_gen_get_stats(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
-                            "traffic_names": ["duydohcz", "yzgiepli", "pfwflhqt"],
-                            "ports": [
-                                "wduvyaox",
-                                "pvuzelol",
-                                "ertdoksj",
-                                "vnxsykpx",
-                                "rkhrarfl",
-                                "lubdrwcw",
-                                "quwynymt",
-                                "yaxechlt",
+                            'traffic_names': ['duydohcz', 'yzgiepli', 'pfwflhqt'],
+                            'ports': [
+                                'wduvyaox',
+                                'pvuzelol',
+                                'ertdoksj',
+                                'vnxsykpx',
+                                'rkhrarfl',
+                                'lubdrwcw',
+                                'quwynymt',
+                                'yaxechlt',
                             ],
                         },
                         {
                             # command 2
-                            "traffic_names": ["jrunktfe", "ikcntizn", "wrrwypfo"],
-                            "ports": ["eisalhpa", "fhxivukf", "sedchzgn", "ajctkfdt"],
+                            'traffic_names': ['jrunktfe', 'ikcntizn', 'wrrwypfo'],
+                            'ports': ['eisalhpa', 'fhxivukf', 'sedchzgn', 'ajctkfdt'],
                         },
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -858,66 +858,66 @@ def test_that_traffic_gen_get_stats(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
-                            "traffic_names": ["duydohcz", "yzgiepli", "pfwflhqt"],
-                            "ports": [
-                                "wduvyaox",
-                                "pvuzelol",
-                                "ertdoksj",
-                                "vnxsykpx",
-                                "rkhrarfl",
-                                "lubdrwcw",
-                                "quwynymt",
-                                "yaxechlt",
+                            'traffic_names': ['duydohcz', 'yzgiepli', 'pfwflhqt'],
+                            'ports': [
+                                'wduvyaox',
+                                'pvuzelol',
+                                'ertdoksj',
+                                'vnxsykpx',
+                                'rkhrarfl',
+                                'lubdrwcw',
+                                'quwynymt',
+                                'yaxechlt',
                             ],
                         }
                     ],
                     # device 2
-                    "test_dev2": [
+                    'test_dev2': [
                         {
-                            "traffic_names": ["jrunktfe", "ikcntizn", "wrrwypfo"],
-                            "ports": ["eisalhpa", "fhxivukf", "sedchzgn", "ajctkfdt"],
+                            'traffic_names': ['jrunktfe', 'ikcntizn', 'wrrwypfo'],
+                            'ports': ['eisalhpa', 'fhxivukf', 'sedchzgn', 'ajctkfdt'],
                         }
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0
 
 
 def test_that_traffic_gen_clear_stats(capfd):
 
-    dv1 = TestDevice(platform="ixnetwork")
-    dv2 = TestDevice(platform="ixnetwork")
+    dv1 = TestDevice(platform='ixnetwork')
+    dv2 = TestDevice(platform='ixnetwork')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         TrafficGen.clear_stats(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -925,59 +925,59 @@ def test_that_traffic_gen_clear_stats(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
-                            "traffic_names": [
-                                "hlngtliw",
-                                "hkekrayz",
-                                "oigyjkfq",
-                                "dirptfwh",
-                                "fbohcgds",
-                                "ilrbgawb",
+                            'traffic_names': [
+                                'hlngtliw',
+                                'hkekrayz',
+                                'oigyjkfq',
+                                'dirptfwh',
+                                'fbohcgds',
+                                'ilrbgawb',
                             ],
-                            "ports": [
-                                "vdrsshmp",
-                                "ikhkentb",
-                                "ydguurth",
-                                "jriwcnhm",
-                                "trsnmlzr",
-                                "rtribcgj",
-                                "rkjtvput",
-                                "xnnbfibh",
-                                "bdnbhsxb",
-                                "qljvcwde",
+                            'ports': [
+                                'vdrsshmp',
+                                'ikhkentb',
+                                'ydguurth',
+                                'jriwcnhm',
+                                'trsnmlzr',
+                                'rtribcgj',
+                                'rkjtvput',
+                                'xnnbfibh',
+                                'bdnbhsxb',
+                                'qljvcwde',
                             ],
                         },
                         {
                             # command 2
-                            "traffic_names": ["qeytqjjj", "wbrgjirr", "taeorpyg"],
-                            "ports": [
-                                "bgcapdhn",
-                                "owxahvbc",
-                                "ouvhegft",
-                                "rvjssmpj",
-                                "wsjhtknt",
-                                "yktdslpc",
-                                "xiotgqgx",
-                                "qdbcohpk",
-                                "ujlnkmol",
-                                "zrnukfaz",
+                            'traffic_names': ['qeytqjjj', 'wbrgjirr', 'taeorpyg'],
+                            'ports': [
+                                'bgcapdhn',
+                                'owxahvbc',
+                                'ouvhegft',
+                                'rvjssmpj',
+                                'wsjhtknt',
+                                'yktdslpc',
+                                'xiotgqgx',
+                                'qdbcohpk',
+                                'ujlnkmol',
+                                'zrnukfaz',
                             ],
                         },
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -985,86 +985,86 @@ def test_that_traffic_gen_clear_stats(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
-                            "traffic_names": [
-                                "hlngtliw",
-                                "hkekrayz",
-                                "oigyjkfq",
-                                "dirptfwh",
-                                "fbohcgds",
-                                "ilrbgawb",
+                            'traffic_names': [
+                                'hlngtliw',
+                                'hkekrayz',
+                                'oigyjkfq',
+                                'dirptfwh',
+                                'fbohcgds',
+                                'ilrbgawb',
                             ],
-                            "ports": [
-                                "vdrsshmp",
-                                "ikhkentb",
-                                "ydguurth",
-                                "jriwcnhm",
-                                "trsnmlzr",
-                                "rtribcgj",
-                                "rkjtvput",
-                                "xnnbfibh",
-                                "bdnbhsxb",
-                                "qljvcwde",
+                            'ports': [
+                                'vdrsshmp',
+                                'ikhkentb',
+                                'ydguurth',
+                                'jriwcnhm',
+                                'trsnmlzr',
+                                'rtribcgj',
+                                'rkjtvput',
+                                'xnnbfibh',
+                                'bdnbhsxb',
+                                'qljvcwde',
                             ],
                         }
                     ],
                     # device 2
-                    "test_dev2": [
+                    'test_dev2': [
                         {
-                            "traffic_names": ["qeytqjjj", "wbrgjirr", "taeorpyg"],
-                            "ports": [
-                                "bgcapdhn",
-                                "owxahvbc",
-                                "ouvhegft",
-                                "rvjssmpj",
-                                "wsjhtknt",
-                                "yktdslpc",
-                                "xiotgqgx",
-                                "qdbcohpk",
-                                "ujlnkmol",
-                                "zrnukfaz",
+                            'traffic_names': ['qeytqjjj', 'wbrgjirr', 'taeorpyg'],
+                            'ports': [
+                                'bgcapdhn',
+                                'owxahvbc',
+                                'ouvhegft',
+                                'rvjssmpj',
+                                'wsjhtknt',
+                                'yktdslpc',
+                                'xiotgqgx',
+                                'qdbcohpk',
+                                'ujlnkmol',
+                                'zrnukfaz',
                             ],
                         }
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0
 
 
 def test_that_traffic_gen_start_protocols(capfd):
 
-    dv1 = TestDevice(platform="ixnetwork")
-    dv2 = TestDevice(platform="ixnetwork")
+    dv1 = TestDevice(platform='ixnetwork')
+    dv2 = TestDevice(platform='ixnetwork')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         TrafficGen.start_protocols(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -1072,7 +1072,7 @@ def test_that_traffic_gen_start_protocols(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
                         },
@@ -1082,16 +1082,16 @@ def test_that_traffic_gen_start_protocols(capfd):
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -1099,47 +1099,47 @@ def test_that_traffic_gen_start_protocols(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [{}],
+                    'test_dev1': [{}],
                     # device 2
-                    "test_dev2": [{}],
+                    'test_dev2': [{}],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0
 
 
 def test_that_traffic_gen_stop_protocols(capfd):
 
-    dv1 = TestDevice(platform="ixnetwork")
-    dv2 = TestDevice(platform="ixnetwork")
+    dv1 = TestDevice(platform='ixnetwork')
+    dv2 = TestDevice(platform='ixnetwork')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         TrafficGen.stop_protocols(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -1147,7 +1147,7 @@ def test_that_traffic_gen_stop_protocols(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
                         },
@@ -1157,16 +1157,16 @@ def test_that_traffic_gen_stop_protocols(capfd):
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -1174,47 +1174,47 @@ def test_that_traffic_gen_stop_protocols(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [{}],
+                    'test_dev1': [{}],
                     # device 2
-                    "test_dev2": [{}],
+                    'test_dev2': [{}],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0
 
 
 def test_that_traffic_gen_set_protocol(capfd):
 
-    dv1 = TestDevice(platform="ixnetwork")
-    dv2 = TestDevice(platform="ixnetwork")
+    dv1 = TestDevice(platform='ixnetwork')
+    dv2 = TestDevice(platform='ixnetwork')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         TrafficGen.set_protocol(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -1222,7 +1222,7 @@ def test_that_traffic_gen_set_protocol(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
                         },
@@ -1232,16 +1232,16 @@ def test_that_traffic_gen_set_protocol(capfd):
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -1249,47 +1249,47 @@ def test_that_traffic_gen_set_protocol(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [{}],
+                    'test_dev1': [{}],
                     # device 2
-                    "test_dev2": [{}],
+                    'test_dev2': [{}],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0
 
 
 def test_that_traffic_gen_get_protocol_stats(capfd):
 
-    dv1 = TestDevice(platform="ixnetwork")
-    dv2 = TestDevice(platform="ixnetwork")
+    dv1 = TestDevice(platform='ixnetwork')
+    dv2 = TestDevice(platform='ixnetwork')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         TrafficGen.get_protocol_stats(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -1297,7 +1297,7 @@ def test_that_traffic_gen_get_protocol_stats(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
                         },
@@ -1307,16 +1307,16 @@ def test_that_traffic_gen_get_protocol_stats(capfd):
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -1324,47 +1324,47 @@ def test_that_traffic_gen_get_protocol_stats(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [{}],
+                    'test_dev1': [{}],
                     # device 2
-                    "test_dev2": [{}],
+                    'test_dev2': [{}],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0
 
 
 def test_that_traffic_gen_clear_protocol_stats(capfd):
 
-    dv1 = TestDevice(platform="ixnetwork")
-    dv2 = TestDevice(platform="ixnetwork")
+    dv1 = TestDevice(platform='ixnetwork')
+    dv2 = TestDevice(platform='ixnetwork')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         TrafficGen.clear_protocol_stats(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -1372,7 +1372,7 @@ def test_that_traffic_gen_clear_protocol_stats(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
                         },
@@ -1382,16 +1382,16 @@ def test_that_traffic_gen_clear_protocol_stats(capfd):
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -1399,21 +1399,21 @@ def test_that_traffic_gen_clear_protocol_stats(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [{}],
+                    'test_dev1': [{}],
                     # device 2
-                    "test_dev2": [{}],
+                    'test_dev2': [{}],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0

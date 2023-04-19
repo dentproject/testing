@@ -6,7 +6,9 @@
 
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
-from dent_os_testbed.lib.os.linux.linux_service_impl import LinuxServiceImpl 
+from dent_os_testbed.lib.os.linux.linux_service_impl import LinuxServiceImpl
+
+
 class Service(TestLibObject):
     """
         service related inforamtion
@@ -17,33 +19,33 @@ class Service(TestLibObject):
         for device in devices:
             for device_name in device:
                 device_result = {
-                    device_name : dict()
+                    device_name: dict()
                 }
                 # device lookup
                 if 'device_obj' in kwarg:
                     device_obj = kwarg.get('device_obj', None)[device_name]
                 else:
                     if device_name not in pytest.testbed.devices_dict:
-                        device_result[device_name] =  "No matching device "+ device_name
+                        device_result[device_name] = 'No matching device ' + device_name
                         result.append(device_result)
                         return result
                     device_obj = pytest.testbed.devices_dict[device_name]
-                commands = ""
+                commands = ''
                 if device_obj.os in ['dentos', 'cumulus']:
                     impl_obj = LinuxServiceImpl()
                     for command in device[device_name]:
                         commands += impl_obj.format_command(command=api, params=command)
                         commands += '&& '
                     commands = commands[:-3]
-        
+
                 else:
                     device_result[device_name]['rc'] = -1
-                    device_result[device_name]['result'] = "No matching device OS "+ device_obj.os
+                    device_result[device_name]['result'] = 'No matching device OS ' + device_obj.os
                     result.append(device_result)
                     return result
                 device_result[device_name]['command'] = commands
                 try:
-                    rc, output = await device_obj.run_cmd(("sudo " if device_obj.ssh_conn_params.pssh else "") + commands)
+                    rc, output = await device_obj.run_cmd(('sudo ' if device_obj.ssh_conn_params.pssh else '') + commands)
                     device_result[device_name]['rc'] = rc
                     device_result[device_name]['result'] = output
                     if 'parse_output' in kwarg:
@@ -54,7 +56,7 @@ class Service(TestLibObject):
                     device_result[device_name]['result'] = str(e)
                 result.append(device_result)
         return result
-        
+
     async def show(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -78,10 +80,10 @@ class Service(TestLibObject):
         faultd.service                     loaded active running LSB: Start Faultd Agent
         frr.service                        loaded active running FRRouting
         ....
-        
+
         """
-        return await Service._run_command("show", *argv, **kwarg)
-        
+        return await Service._run_command('show', *argv, **kwarg)
+
     async def start(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -97,10 +99,10 @@ class Service(TestLibObject):
         )
         Description:
         > systemctl <operation> <name>
-        
+
         """
-        return await Service._run_command("start", *argv, **kwarg)
-        
+        return await Service._run_command('start', *argv, **kwarg)
+
     async def restart(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -116,10 +118,10 @@ class Service(TestLibObject):
         )
         Description:
         > systemctl <operation> <name>
-        
+
         """
-        return await Service._run_command("restart", *argv, **kwarg)
-        
+        return await Service._run_command('restart', *argv, **kwarg)
+
     async def stop(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -135,10 +137,10 @@ class Service(TestLibObject):
         )
         Description:
         > systemctl <operation> <name>
-        
+
         """
-        return await Service._run_command("stop", *argv, **kwarg)
-        
+        return await Service._run_command('stop', *argv, **kwarg)
+
     async def enable(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -154,10 +156,10 @@ class Service(TestLibObject):
         )
         Description:
         > systemctl <operation> <name>
-        
+
         """
-        return await Service._run_command("enable", *argv, **kwarg)
-        
+        return await Service._run_command('enable', *argv, **kwarg)
+
     async def disable(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -173,7 +175,6 @@ class Service(TestLibObject):
         )
         Description:
         > systemctl <operation> <name>
-        
+
         """
-        return await Service._run_command("disable", *argv, **kwarg)
-        
+        return await Service._run_command('disable', *argv, **kwarg)

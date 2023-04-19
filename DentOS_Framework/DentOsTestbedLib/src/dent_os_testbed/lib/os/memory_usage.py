@@ -6,7 +6,9 @@
 
 import pytest
 from dent_os_testbed.lib.test_lib_object import TestLibObject
-from dent_os_testbed.lib.os.linux.linux_memory_usage_impl import LinuxMemoryUsageImpl 
+from dent_os_testbed.lib.os.linux.linux_memory_usage_impl import LinuxMemoryUsageImpl
+
+
 class MemoryUsage(TestLibObject):
     """
         cat /proc/meminfo
@@ -18,7 +20,7 @@ class MemoryUsage(TestLibObject):
         SwapCached:            0 kB
         Active:          8455648 kB
         Inactive:        3306968 kB
-        
+
     """
     async def _run_command(api, *argv, **kwarg):
         devices = kwarg['input_data']
@@ -26,33 +28,33 @@ class MemoryUsage(TestLibObject):
         for device in devices:
             for device_name in device:
                 device_result = {
-                    device_name : dict()
+                    device_name: dict()
                 }
                 # device lookup
                 if 'device_obj' in kwarg:
                     device_obj = kwarg.get('device_obj', None)[device_name]
                 else:
                     if device_name not in pytest.testbed.devices_dict:
-                        device_result[device_name] =  "No matching device "+ device_name
+                        device_result[device_name] = 'No matching device ' + device_name
                         result.append(device_result)
                         return result
                     device_obj = pytest.testbed.devices_dict[device_name]
-                commands = ""
+                commands = ''
                 if device_obj.os in ['dentos', 'cumulus']:
                     impl_obj = LinuxMemoryUsageImpl()
                     for command in device[device_name]:
                         commands += impl_obj.format_command(command=api, params=command)
                         commands += '&& '
                     commands = commands[:-3]
-        
+
                 else:
                     device_result[device_name]['rc'] = -1
-                    device_result[device_name]['result'] = "No matching device OS "+ device_obj.os
+                    device_result[device_name]['result'] = 'No matching device OS ' + device_obj.os
                     result.append(device_result)
                     return result
                 device_result[device_name]['command'] = commands
                 try:
-                    rc, output = await device_obj.run_cmd(("sudo " if device_obj.ssh_conn_params.pssh else "") + commands)
+                    rc, output = await device_obj.run_cmd(('sudo ' if device_obj.ssh_conn_params.pssh else '') + commands)
                     device_result[device_name]['rc'] = rc
                     device_result[device_name]['result'] = output
                     if 'parse_output' in kwarg:
@@ -63,7 +65,7 @@ class MemoryUsage(TestLibObject):
                     device_result[device_name]['result'] = str(e)
                 result.append(device_result)
         return result
-        
+
     async def show(*argv, **kwarg):
         """
         Platforms: ['dentos', 'cumulus']
@@ -73,7 +75,7 @@ class MemoryUsage(TestLibObject):
                 # device 1
                 'dev1' : [{
                     # command 1
-        
+
                 }],
             }],
         )
@@ -88,7 +90,6 @@ class MemoryUsage(TestLibObject):
         Inactive:        2537912 kB
         Active(anon):    1080196 kB
         Inactive(anon):    99792 kB
-        
+
         """
-        return await MemoryUsage._run_command("show", *argv, **kwarg)
-        
+        return await MemoryUsage._run_command('show', *argv, **kwarg)

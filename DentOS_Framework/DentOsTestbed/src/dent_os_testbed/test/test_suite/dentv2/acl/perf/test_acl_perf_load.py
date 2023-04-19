@@ -3,29 +3,17 @@
 
 import ipaddress
 import time
-from itertools import islice
 
 import pytest
 
 from dent_os_testbed.Device import DeviceType
 from dent_os_testbed.lib.tc.tc_chain import TcChain
 from dent_os_testbed.lib.tc.tc_filter import TcFilter
-from dent_os_testbed.lib.tc.tc_qdisc import TcQdisc
 from dent_os_testbed.utils.test_utils.tb_utils import (
     tb_get_all_devices,
     tb_reload_nw_and_flush_firewall,
     tb_reset_qdisc,
     tb_restore_qdisc,
-)
-from dent_os_testbed.utils.test_utils.tgen_utils import (
-    tgen_utils_create_devices_and_connect,
-    tgen_utils_get_dent_devices_with_tgen,
-    tgen_utils_get_swp_info,
-    tgen_utils_get_traffic_stats,
-    tgen_utils_setup_streams,
-    tgen_utils_start_traffic,
-    tgen_utils_stop_protocols,
-    tgen_utils_stop_traffic,
 )
 
 pytestmark = pytest.mark.suite_acl_performance
@@ -47,29 +35,29 @@ async def test_dentv2_acl_perf_load_default(testbed):
         if dd.type in [DeviceType.INFRA_SWITCH]:
             infra_devices.append(dd)
     if not infra_devices:
-        print("The testbed does not have enough dent")
+        print('The testbed does not have enough dent')
         return
     infra_dev = infra_devices[0]
     swp = infra_dev.links[0][0]
-    sip = ipaddress.ip_address("10.0.0.1")
+    sip = ipaddress.ip_address('10.0.0.1')
 
     await tb_reload_nw_and_flush_firewall(infra_devices)
 
     filter_input = [
         {
-            "dev": swp,
+            'dev': swp,
             # "chain": f"FORWARD",
-            "direction": "ingress",
-            "protocol": "802.1q",
-            "pref": 1,
-            "action": "drop",
-            "filtertype": {
-                "skip_sw": "",
-                "vlan_id": 100,
-                "vlan_ethtype": "ipv4",
-                "src_ip": sip,
-                "ip_proto": "tcp",
-                "dst_port": 17,
+            'direction': 'ingress',
+            'protocol': '802.1q',
+            'pref': 1,
+            'action': 'drop',
+            'filtertype': {
+                'skip_sw': '',
+                'vlan_id': 100,
+                'vlan_ethtype': 'ipv4',
+                'src_ip': sip,
+                'ip_proto': 'tcp',
+                'dst_port': 17,
             },
         }
     ]
@@ -92,45 +80,45 @@ async def test_dentv2_acl_perf_load_chains(testbed):
         if dd.type in [DeviceType.INFRA_SWITCH]:
             infra_devices.append(dd)
     if not infra_devices:
-        print("The testbed does not have enough dent")
+        print('The testbed does not have enough dent')
         return
     infra_dev = infra_devices[0]
     swp = infra_dev.links[0][0]
-    sip = ipaddress.ip_address("10.0.0.1")
+    sip = ipaddress.ip_address('10.0.0.1')
 
     await tb_reload_nw_and_flush_firewall(infra_devices)
 
     for chain_num in range(3):
         chain_input = [
             {
-                "dev": swp,
-                "chain": f"{chain_num}",
-                "direction": "ingress",
-                "proto": "802.1q",
-                "filtertype": {
-                    "vlan_id": 4095,
-                    "vlan_ethtype": "ipv4",
-                    "src_ip": "0.0.0.0/32",
-                    "ip_proto": "tcp",
-                    "dst_port": 65535,
+                'dev': swp,
+                'chain': f'{chain_num}',
+                'direction': 'ingress',
+                'proto': '802.1q',
+                'filtertype': {
+                    'vlan_id': 4095,
+                    'vlan_ethtype': 'ipv4',
+                    'src_ip': '0.0.0.0/32',
+                    'ip_proto': 'tcp',
+                    'dst_port': 65535,
                 },
             }
         ]
         filter_input = [
             {
-                "dev": swp,
-                "chain": f"{chain_num}",
-                "direction": "ingress",
-                "protocol": "802.1q",
-                "pref": 1,
-                "action": "drop",
-                "filtertype": {
-                    "skip_sw": "",
-                    "vlan_id": 100,
-                    "vlan_ethtype": "ipv4",
-                    "src_ip": sip,
-                    "ip_proto": "tcp",
-                    "dst_port": 17,
+                'dev': swp,
+                'chain': f'{chain_num}',
+                'direction': 'ingress',
+                'protocol': '802.1q',
+                'pref': 1,
+                'action': 'drop',
+                'filtertype': {
+                    'skip_sw': '',
+                    'vlan_id': 100,
+                    'vlan_ethtype': 'ipv4',
+                    'src_ip': sip,
+                    'ip_proto': 'tcp',
+                    'dst_port': 17,
                 },
             }
         ]
@@ -143,14 +131,14 @@ async def _test_dentv2_acl_perf_load_helper(infra_devices, chain_input, filter_i
 
     for dd in infra_devices:
         for swp in [link[0] for link in dd.links]:
-            await tb_reset_qdisc(dd, swp, "ingress")
-            filter_input[0]["dev"] = swp
-            filter_input[0]["pref"] = 1
+            await tb_reset_qdisc(dd, swp, 'ingress')
+            filter_input[0]['dev'] = swp
+            filter_input[0]['pref'] = 1
 
             if chain_input:
-                chain_input[0]["dev"] = swp
+                chain_input[0]['dev'] = swp
                 out = await TcChain.add(input_data=[{dd.host_name: chain_input}])
-                assert out[0][dd.host_name]["rc"] == 0, out
+                assert out[0][dd.host_name]['rc'] == 0, out
 
             loadtime = 0
             num_rules = 0
@@ -158,11 +146,11 @@ async def _test_dentv2_acl_perf_load_helper(infra_devices, chain_input, filter_i
                 starttime = time.time()
                 out = await TcFilter.add(input_data=[{dd.host_name: filter_input}])
                 endtime = time.time()
-                if out[0][dd.host_name]["rc"] != 0:
+                if out[0][dd.host_name]['rc'] != 0:
                     break
                 loadtime += endtime - starttime  # Capture load time for each rule
-                filter_input[0]["pref"] += 1
-                filter_input[0]["filtertype"]["src_ip"] += 1
+                filter_input[0]['pref'] += 1
+                filter_input[0]['filtertype']['src_ip'] += 1
                 num_rules += 1
 
             # Delete the chain and all the rules it holds
@@ -174,9 +162,9 @@ async def _test_dentv2_acl_perf_load_helper(infra_devices, chain_input, filter_i
                         {
                             dd.host_name: [
                                 {
-                                    "dev": swp,
-                                    "chain": chain_input[0]["chain"],
-                                    "direction": "ingress",
+                                    'dev': swp,
+                                    'chain': chain_input[0]['chain'],
+                                    'direction': 'ingress',
                                 }
                             ]
                         }
@@ -189,8 +177,8 @@ async def _test_dentv2_acl_perf_load_helper(infra_devices, chain_input, filter_i
                         {
                             dd.host_name: [
                                 {
-                                    "dev": swp,
-                                    "direction": "ingress",
+                                    'dev': swp,
+                                    'direction': 'ingress',
                                 }
                             ]
                         }
@@ -198,6 +186,6 @@ async def _test_dentv2_acl_perf_load_helper(infra_devices, chain_input, filter_i
                 )
             endtime = time.time()
             unloadtime += endtime - starttime
-            tb_restore_qdisc(dd, swp, "ingress")
-            assert loadtime < 166, f"Load time: {loadtime}s, num rules: {num_rules}"
-            assert unloadtime < 20, f"Unload time: {unloadtime}s"
+            tb_restore_qdisc(dd, swp, 'ingress')
+            assert loadtime < 166, f'Load time: {loadtime}s, num rules: {num_rules}'
+            assert unloadtime < 20, f'Unload time: {unloadtime}s'

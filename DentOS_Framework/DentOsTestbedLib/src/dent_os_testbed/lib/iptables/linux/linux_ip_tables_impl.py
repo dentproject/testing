@@ -44,31 +44,31 @@ class LinuxIpTablesImpl(LinuxIpTables):
              addresses, the command will fail.  Rules are numbered starting at 1.
 
         """
-        params = kwarg["params"]
-        cmd = "iptables "
-        cmd += "-t {} ".format(params["table"]) if "table" in params else ""
-        cmd += "--{} ".format(command)
-        cmd += "{} ".format(params["chain"]) if "chain" in params else ""
-        if "in-interface" in params:
-            cmd += "-i {} ".format(params["in-interface"])
-        if "source" in params:
-            cmd += "-s {} ".format(params["source"])
-        if "destination" in params:
-            cmd += "-d {} ".format(params["destination"])
-        if "protocol" in params:
-            cmd += "-p {} ".format(params["protocol"])
-        if "dport" in params:
-            cmd += "--dport {} ".format(params["dport"])
-        if "sport" in params:
-            cmd += "--sport {} ".format(params["sport"])
-        if "icmp-type" in params:
-            cmd += "--icmp-type {} ".format(params["icmp-type"])
-        if "icmp-code" in params:
-            cmd += "--icmp-code {} ".format(params["icmp-code"])
-        if "mac-source" in params:
-            cmd += "-m mac --mac-source {} ".format(params["mac-source"])
-        if "target" in params:
-            cmd += "-j {} ".format(params["target"])
+        params = kwarg['params']
+        cmd = 'iptables '
+        cmd += '-t {} '.format(params['table']) if 'table' in params else ''
+        cmd += '--{} '.format(command)
+        cmd += '{} '.format(params['chain']) if 'chain' in params else ''
+        if 'in-interface' in params:
+            cmd += '-i {} '.format(params['in-interface'])
+        if 'source' in params:
+            cmd += '-s {} '.format(params['source'])
+        if 'destination' in params:
+            cmd += '-d {} '.format(params['destination'])
+        if 'protocol' in params:
+            cmd += '-p {} '.format(params['protocol'])
+        if 'dport' in params:
+            cmd += '--dport {} '.format(params['dport'])
+        if 'sport' in params:
+            cmd += '--sport {} '.format(params['sport'])
+        if 'icmp-type' in params:
+            cmd += '--icmp-type {} '.format(params['icmp-type'])
+        if 'icmp-code' in params:
+            cmd += '--icmp-code {} '.format(params['icmp-code'])
+        if 'mac-source' in params:
+            cmd += '-m mac --mac-source {} '.format(params['mac-source'])
+        if 'target' in params:
+            cmd += '-j {} '.format(params['target'])
         return cmd
 
     def format_show_rules(self, command, *argv, **kwarg):
@@ -96,30 +96,30 @@ class LinuxIpTablesImpl(LinuxIpTables):
          cleared. (See above.)
 
         """
-        params = kwarg["params"]
-        ############# Implement me ################
-        cmd = "iptables "
-        cmd += "-t {} ".format(params["table"]) if "table" in params else ""
-        cmd += "{} ".format(params["cmd_options"]) if "cmd_options" in params else ""
-        cmd += "--{} ".format(command)
-        if "chain" in params:
-            cmd += "{} ".format(params["chain"])
+        params = kwarg['params']
+        # TODO: Implement me
+        cmd = 'iptables '
+        cmd += '-t {} '.format(params['table']) if 'table' in params else ''
+        cmd += '{} '.format(params['cmd_options']) if 'cmd_options' in params else ''
+        cmd += '--{} '.format(command)
+        if 'chain' in params:
+            cmd += '{} '.format(params['chain'])
 
         return cmd
 
     def parse_show_rules(self, command, output, *argv, **kwarg):
-        lines = output.split("\n")
+        lines = output.split('\n')
         chain = None
         chains = {}
         rules = []
         for line in lines:
-            if line.startswith("Chain"):
+            if line.startswith('Chain'):
                 if chain is not None:
                     chains[chain] = rules
                     rules = []
-                chain = line.split(" ")[1]
+                chain = line.split(' ')[1]
                 continue
-            if line.startswith("num"):
+            if line.startswith('num'):
                 continue
             r = {}
             t = line.split()
@@ -130,26 +130,26 @@ class LinuxIpTablesImpl(LinuxIpTables):
             1     6432  353K ACCEPT     all  --  *      *       127.0.0.1            127.0.0.1
             2        0     0 ACCEPT     tcp  --  swp+   *       0.0.0.0/0            10.2.96.0/19         tcp spt:8883
             """
-            r["num"] = t.pop(0)
-            r["packets"] = t.pop(0)
-            r["bytes"] = t.pop(0)
-            r["target"] = t.pop(0)
-            r["keys"] = {}
-            r["keys"]["ipproto"] = t.pop(0)
-            r["keys"]["opt"] = t.pop(0)
-            r["keys"]["in"] = t.pop(0)
-            r["keys"]["out"] = t.pop(0)
-            r["keys"]["srcIp"] = t.pop(0)
-            r["keys"]["dstIp"] = t.pop(0)
+            r['num'] = t.pop(0)
+            r['packets'] = t.pop(0)
+            r['bytes'] = t.pop(0)
+            r['target'] = t.pop(0)
+            r['keys'] = {}
+            r['keys']['ipproto'] = t.pop(0)
+            r['keys']['opt'] = t.pop(0)
+            r['keys']['in'] = t.pop(0)
+            r['keys']['out'] = t.pop(0)
+            r['keys']['srcIp'] = t.pop(0)
+            r['keys']['dstIp'] = t.pop(0)
             if t:
                 more = t.pop(0)
-                if more in ["tcp", "udp"]:
+                if more in ['tcp', 'udp']:
                     while t:
                         l4port = t.pop(0)
-                        if l4port.startswith("dpt"):
-                            r["keys"]["dstPort"] = l4port.split(":")[1]
-                        if l4port.startswith("spt"):
-                            r["keys"]["srcPort"] = l4port.split(":")[1]
+                        if l4port.startswith('dpt'):
+                            r['keys']['dstPort'] = l4port.split(':')[1]
+                        if l4port.startswith('spt'):
+                            r['keys']['srcPort'] = l4port.split(':')[1]
             rules.append(r)
         if chain is not None:
             chains[chain] = rules
@@ -174,8 +174,7 @@ class LinuxIpTablesImpl(LinuxIpTables):
          on the structure of the table.
 
         """
-        params = kwarg["params"]
-        cmd = "iptables {} ".format(command)
-        ############# Implement me ################
+        cmd = 'iptables {} '.format(command)
+        # TODO: Implement me
 
         return cmd

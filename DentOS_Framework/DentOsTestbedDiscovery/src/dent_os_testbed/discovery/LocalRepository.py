@@ -5,8 +5,8 @@ on a single testbed server.
 """
 
 import logging
-import sys, os
-import shutil
+import sys
+import os
 import time
 import tempfile
 import io
@@ -20,6 +20,7 @@ from dent_os_testbed.discovery.constants import (
 
 from dent_os_testbed.discovery.Report import Report
 
+
 class LocalRepository(object):
 
     def __init__(self,
@@ -32,7 +33,7 @@ class LocalRepository(object):
 
         self.reportsDir = reportsDir or self.getReportsDir()
         if not os.path.isdir(reportsDir):
-            self.log.debug("+ /bin/mkdir -p %s", self.reportsDir)
+            self.log.debug('+ /bin/mkdir -p %s', self.reportsDir)
             os.makedirs(self.reportsDir)
             # Whee, moved from 'shutil' to 'os' in PY3
 
@@ -76,12 +77,12 @@ class LocalRepository(object):
             return REPORTS_DIR
 
         if sys.platform == 'darwin':
-            return os.path.expanduser("~/Library/Caches/com.amazon.netprod/testbed/reports")
+            return os.path.expanduser('~/Library/Caches/com.amazon.netprod/testbed/reports')
 
         # assume linux
-        dataDir = os.path.expanduser("~/.local/share")
+        dataDir = os.path.expanduser('~/.local/share')
         dataDir = os.environ.get('XDG_DATA_HOME', dataDir)
-        return os.path.join(dataDir, "com.amazon.netprod/testbed/reports")
+        return os.path.join(dataDir, 'com.amazon.netprod/testbed/reports')
 
     def collectReports(self):
         """Gather all of the reports in the local store.
@@ -98,14 +99,14 @@ class LocalRepository(object):
 
         for el in os.listdir(self.reportsDir):
             p = os.path.join(self.reportsDir, el)
-            if not p.endswith(".json"):
-                self.log.warning("unrecognized file %s", el)
+            if not p.endswith('.json'):
+                self.log.warning('unrecognized file %s', el)
                 continue
 
             try:
                 rpt = self.reportFromPath(p)
             except ValueError as ex:
-                self.log.warning("invalid JSON in %s: %s",
+                self.log.warning('invalid JSON in %s: %s',
                                  p, str(ex))
                 continue
 
@@ -127,7 +128,7 @@ class LocalRepository(object):
                 perTopoOper.setdefault(k, [])
                 perTopoOper[k].append((ts, p, rpt,))
 
-        self.log.info("collected %d reports", len(perAll))
+        self.log.info('collected %d reports', len(perAll))
 
         # collate the reports
         self.reports = [x[1:3] for x in sorted(perAll)]
@@ -162,12 +163,14 @@ class LocalRepository(object):
 
         reports = []
         while True:
-            if not coll: break
-            if len(reports) >= maxReports: break
+            if not coll:
+                break
+            if len(reports) >= maxReports:
+                break
 
             p, rpt = coll.pop(-1)
             if not os.path.exists(p):
-                self.log.warning("missing report %s", p)
+                self.log.warning('missing report %s', p)
                 continue
             ts = os.path.getmtime(p)
 
@@ -184,12 +187,12 @@ class LocalRepository(object):
             reports.insert(0, (rpt, ts,))
 
         if not reports:
-            self.log.warning("no reports available for the query"
-                             " topology=%s"
-                             " operator=%s"
-                             " before=%s"
-                             " after=%s"
-                             " maxReports=%d",
+            self.log.warning('no reports available for the query'
+                             ' topology=%s'
+                             ' operator=%s'
+                             ' before=%s'
+                             ' after=%s'
+                             ' maxReports=%d',
                              topology, operator, before, after, maxReports)
 
         return reports
@@ -199,9 +202,8 @@ class LocalRepository(object):
                   maxReports=1,
                   before=None, after=None):
         """Get the latest report for the given specifiers."""
-        l = self.getReports(topology=topology, operator=operator,
-                            before=before, after=after)
-        return l[0][0] if l else None
+        line = self.getReports(topology=topology, operator=operator, before=before, after=after)
+        return line[0][0] if line else None
 
     def expireReports(self):
         """Expire out old reports.
@@ -210,7 +212,6 @@ class LocalRepository(object):
         """
 
         past = time.time() - self.maxAge
-        cnt = 0
 
         def _trim(coll):
             """Trim unneeded items.
@@ -231,7 +232,7 @@ class LocalRepository(object):
 
                 ts = os.path.getmtime(p)
                 if ts < past or len(coll) > self.maxSave:
-                    self.log.debug("+ /bin/rm %s", p)
+                    self.log.debug('+ /bin/rm %s', p)
                     os.unlink(p)
                 else:
                     break
@@ -267,16 +268,16 @@ class LocalRepository(object):
         ts = int(time.time())
 
         if rpt.topology and rpt.operator:
-            base = ("r-%d-t-%s-o-%s-%s.json" % (ts, rpt.topology, rpt.operator, salt,))
+            base = ('r-%d-t-%s-o-%s-%s.json' % (ts, rpt.topology, rpt.operator, salt,))
         elif rpt.topology:
-            base = ("r-%d-t-%s-%s.json" % (ts, rpt.topology, salt,))
+            base = ('r-%d-t-%s-%s.json' % (ts, rpt.topology, salt,))
         elif rpt.operator:
-            base = ("r-%d-o-%s-%s.json" % (ts, rpt.operator, salt,))
+            base = ('r-%d-o-%s-%s.json' % (ts, rpt.operator, salt,))
         else:
-            base = ("r-%d-%s.json" % (ts, salt,))
+            base = ('r-%d-%s.json' % (ts, salt,))
 
         path = os.path.join(self.reportsDir, base)
-        with io.open(path, "wt") as fd:
+        with io.open(path, 'wt') as fd:
             json.dump(rpt.asDict(), fd)
         os.utime(path, (ts, ts,))
 

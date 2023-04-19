@@ -1,0 +1,23 @@
+- module: devlink
+  description: devlink - Devlink tool
+  classes:
+  - name: devlink_port
+    desc: |
+      devlink [ OPTIONS ] {dev|port|monitor|sb|resource|region|health|trap } {COMMAND | help }
+      devlink [ -force ] -batch filename
+    implements: 'dent:devlink:devlink_port'
+    platforms: ['dentos']
+    commands:
+    - name: set
+      apis: ['set']
+      cmd: ['devlink port param']
+      params: ['dev', 'name', 'value', 'cmode']
+      desc: |
+        devlink port param set DEV/PORT_INDEX name PARAMETER value VALUE
+                cmode { runtime | driverinit | permanent }
+    - name: show
+      apis: ['show']
+      cmd: ['devlink port param']
+      params: ['dev', 'name']
+      desc: |
+        devlink port param show [ DEV/PORT_INDEX name PARAMETER ]

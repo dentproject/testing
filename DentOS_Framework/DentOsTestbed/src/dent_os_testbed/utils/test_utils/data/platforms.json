@@ -1,0 +1,11 @@
+{
+    "arm64-delta-tn48m-poe-dn-r0": {
+      "fdb_size": 32000
+    },
+    "arm64-accton-as5114-48x-r0": {
+      "fdb_size": 32000
+    },
+    "arm64-accton-as4224-52p-r0": {
+      "fdb_size": 32000
+    }
+  }

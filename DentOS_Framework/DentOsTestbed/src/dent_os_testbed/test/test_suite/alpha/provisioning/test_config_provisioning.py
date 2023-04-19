@@ -27,7 +27,7 @@ async def test_alpha_lab_provisioning_config_install_over_nw(testbed):
     3. check for config files
     """
     if not testbed.args.is_provisioned:
-        testbed.applog.info(f"Skipping test since not on provisioned setup")
+        testbed.applog.info('Skipping test since not on provisioned setup')
         return
     # pick a infra switch then run onie-select this should trigger the network based boot
     devices = await tb_get_all_devices(testbed)
@@ -41,21 +41,21 @@ async def test_alpha_lab_provisioning_config_install_over_nw(testbed):
         await tb_reset_ssh_connections(devices)
         # now check if we can make some connection to it.
         if not await dev.is_connected():
-            assert 0, f"Device {dev.host_name} didnt boot up with new image from USB"
+            assert 0, f'Device {dev.host_name} didnt boot up with new image from USB'
         # check for configs downloaded here
         config_file_list = [
-            "/etc/ntp.conf",
-            "/etc/frr/frr.conf",
-            "/etc/dhcp/dhcpd.conf",
-            "/etc/frr/daemons",
-            "/etc/hostname",
-            "/etc/frr/vtysh.conf",
-            "/etc/hosts",
-            "/etc/resolv.conf",
-            "/etc/network/interfaces",
-            "/etc/ssh/sshd_config",
+            '/etc/ntp.conf',
+            '/etc/frr/frr.conf',
+            '/etc/dhcp/dhcpd.conf',
+            '/etc/frr/daemons',
+            '/etc/hostname',
+            '/etc/frr/vtysh.conf',
+            '/etc/hosts',
+            '/etc/resolv.conf',
+            '/etc/network/interfaces',
+            '/etc/ssh/sshd_config',
         ]
         for cfg in config_file_list:
-            rc, out = await dev.run_cmd(f"sudo -u root ls {cfg}")
-            assert rc == 0, f"Could not find the config file {cfg} on {dev.host_name}"
+            rc, out = await dev.run_cmd(f'sudo -u root ls {cfg}')
+            assert rc == 0, f'Could not find the config file {cfg} on {dev.host_name}'
         return

@@ -2,19 +2,19 @@ import re
 
 from dent_os_testbed.lib.os.linux.linux_memory_usage import LinuxMemoryUsage
 
-RE_SPACES = re.compile("\s+")
+RE_SPACES = re.compile(r'\s+')
 
 
 def camel_to_snake_case(str):
     res = [str[0].lower()]
     for c in str[1:]:
-        if c in ("ABCDEFGHIJKLMNOPQRSTUVWXYZ"):
-            res.append("_")
+        if c in ('ABCDEFGHIJKLMNOPQRSTUVWXYZ'):
+            res.append('_')
             res.append(c.lower())
         else:
             res.append(c)
 
-    return "".join(res)
+    return ''.join(res)
 
 
 class LinuxMemoryUsageImpl(LinuxMemoryUsage):
@@ -32,7 +32,6 @@ class LinuxMemoryUsageImpl(LinuxMemoryUsage):
     """
 
     def format_show(self, command, *argv, **kwarg):
-
         """
         MemTotal:       15844588 kB
         MemFree:         1314612 kB
@@ -46,29 +45,28 @@ class LinuxMemoryUsageImpl(LinuxMemoryUsage):
         Inactive(anon):    99792 kB
 
         """
-        cmd = "cat /proc/meminfo"
+        cmd = 'cat /proc/meminfo'
         # custom code here
 
         return cmd
 
     def parse_show(self, command, output, *argv, **kwarg):
-
         """
         MemTotal:       15844588 kB
         MemFree:         1314612 kB
         ...
         """
-        if output[0] == "b":
+        if output[0] == 'b':
             output = output[2:]
         mem_usage = {}
         record = output
-        if "\\n" in record:
-            records = record.split("\\n")[:-1]
+        if '\\n' in record:
+            records = record.split('\\n')[:-1]
         else:
-            records = record.split("\n")[:-1]
+            records = record.split('\n')[:-1]
         for line in records:
-            line = RE_SPACES.sub(" ", line).strip().split(" ")
-            key = line[0].replace("(", "_").replace(")", "_").replace(":", "")
+            line = RE_SPACES.sub(' ', line).strip().split(' ')
+            key = line[0].replace('(', '_').replace(')', '_').replace(':', '')
             key = camel_to_snake_case(key)
             val = int(line[1])
             mem_usage[key] = val

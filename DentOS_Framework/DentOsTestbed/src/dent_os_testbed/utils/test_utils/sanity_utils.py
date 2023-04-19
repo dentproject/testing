@@ -1,18 +1,10 @@
 # Copyright 2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 #
-import json
-import time
 
 from dent_os_testbed.Device import DeviceType
-from dent_os_testbed.lib.frr.bgp import Bgp
-from dent_os_testbed.lib.ip.ip_address import IpAddress
-from dent_os_testbed.lib.ip.ip_link import IpLink
-from dent_os_testbed.lib.ip.ip_route import IpRoute
 from dent_os_testbed.lib.poe.poectl import Poectl
 from dent_os_testbed.utils.test_utils.tb_utils import (
     tb_device_check_services,
-    tb_ping_device,
-    tb_reset_ssh_connections,
 )
 
 
@@ -24,22 +16,22 @@ async def check_services(dev, devices_dict):
      3. DHCPD (on OOBs its onie-dhcp, one infra its isc-dhcp-server)
     """
     services = []
-    services.append("auditd.service")
-    services.append("awslogs.service")
-    services.append("frr.service")
-    services.append("inetd.service")
-    services.append("lldpd.service")
-    services.append("lm-sensors.service")
-    services.append("networking.service")
-    services.append("ntp.service")
-    services.append("onlpd.service")
-    services.append("resolvconf.service")
-    services.append("ssh.service")
+    services.append('auditd.service')
+    services.append('awslogs.service')
+    services.append('frr.service')
+    services.append('inetd.service')
+    services.append('lldpd.service')
+    services.append('lm-sensors.service')
+    services.append('networking.service')
+    services.append('ntp.service')
+    services.append('onlpd.service')
+    services.append('resolvconf.service')
+    services.append('ssh.service')
     if dev.type == DeviceType.INFRA_SWITCH:
-        services.append("keepalived.service")
-        services.append("isc-dhcp-server.service")
+        services.append('keepalived.service')
+        services.append('isc-dhcp-server.service')
     if dev.type == DeviceType.OUT_OF_BOUND_SWITCH:
-        services.append("onie-dhcp.service")
+        services.append('onie-dhcp.service')
     try:
         await tb_device_check_services(dev, None, True, services)
     except Exception:
@@ -63,9 +55,9 @@ async def check_ntp_sync(dev, devices_dict):
     """
     cmd = "ntpq -np | grep '^\\*'"
     rc, out = await dev.run_cmd(cmd, sudo=True)
-    dev.applog.info(f"Ran {cmd} rc {rc} out {out}")
+    dev.applog.info(f'Ran {cmd} rc {rc} out {out}')
     if rc != 0:
-        dev.applog.info(f"NTP not synced {rc} {out}")
+        dev.applog.info(f'NTP not synced {rc} {out}')
         return False
     return True
 
@@ -76,24 +68,24 @@ async def check_poe_devices(dev, devices_dict):
     """
     if dev.type is not DeviceType.INFRA_SWITCH:
         return True
-    rc, out = await dev.run_cmd("which poecli")
+    rc, out = await dev.run_cmd('which poecli')
     if rc != 0:
         return True
-    dev.applog.info("Checking for poectl Health")
+    dev.applog.info('Checking for poectl Health')
     out = await Poectl.show(
-        input_data=[{dev.host_name: [{"cmd_options": "-j -a"}]}],
+        input_data=[{dev.host_name: [{'cmd_options': '-j -a'}]}],
         parse_output=True,
     )
-    if out[0][dev.host_name]["rc"] != 0:
-        dev.applog.info(f"{dev.host_name} poectl command returned failure {rc} {out}")
+    if out[0][dev.host_name]['rc'] != 0:
+        dev.applog.info(f'{dev.host_name} poectl command returned failure {rc} {out}')
         return False
-    ports = out[0][dev.host_name]["parsed_output"]
+    ports = out[0][dev.host_name]['parsed_output']
     if len(ports) < 48:
         n = len(ports)
-        dev.applog.info(f"{dev.host_name} has fewer ports --> {n}")
+        dev.applog.info(f'{dev.host_name} has fewer ports --> {n}')
         return False
     for data in ports:
-        port = data["swp"]
-        if not port.startswith("swp"):
+        port = data['swp']
+        if not port.startswith('swp'):
             return False
     return True

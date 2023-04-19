@@ -35,7 +35,7 @@ async def download_file(http_url, out_file):
         Exception: Generic errors
     """
     try:
-        async with aiofiles.open(out_file, "ab") as f, aiohttp.ClientSession() as session:
+        async with aiofiles.open(out_file, 'ab') as f, aiohttp.ClientSession() as session:
             async with session.get(http_url) as response:
                 print(out_file)
                 while True:
@@ -44,7 +44,7 @@ async def download_file(http_url, out_file):
                         break
                     await f.write(chunk)
                     await f.flush()
-    except Exception as e:
+    except Exception:
         raise
 
 
@@ -54,9 +54,9 @@ def check_asyncio_results(results, op):
     for r in results:
         if isinstance(r, Exception):
             exception_occured = True
-            if "extra_info" in dir(r):
+            if 'extra_info' in dir(r):
                 failed_devices.append(r.extra_info)
     if exception_occured:
-        e = Exception(f"Failure in {op} for one more devices")
+        e = Exception(f'Failure in {op} for one more devices')
         e.extra_info = failed_devices
         raise e

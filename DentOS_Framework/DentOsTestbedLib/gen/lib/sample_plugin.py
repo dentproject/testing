@@ -3,5 +3,6 @@
 Base class of the code generation plugin
 """
 
+
 class SamplePlugin(object):
     pass

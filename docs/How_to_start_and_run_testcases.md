@@ -2,6 +2,13 @@
 
 This is the directory to document how to start/run the tests from the scratch.
 
+## Table of content
+
+1. [Hardware Requirements](#hardware-requirements)
+1. [Prepare Testbed Server](#prepare-testbed-server)
+1. [Running DentOS SIT tests](#running-dentos-sit-tests)
+1. [Running DentOS Functional tests](#running-dentos-functional-tests)
+
 ## Hardware Requirements
 
 * 7 Dentos Devices.
@@ -11,6 +18,8 @@ This is the directory to document how to start/run the tests from the scratch.
 TODO: create a lab BOM
 
 ## Prepare Testbed Server
+
+### Install OS
 
 * Install Ubuntu[^1] 22.04 x64 on the server. ([ubuntu-22.04.1-live-server-amd64.iso](https://releases.ubuntu.com/22.04/))
   * select all default options (unless otherwise noted bellow)
@@ -30,8 +39,18 @@ TODO: create a lab BOM
       curl \
       git \
       make
-    sudo apt -y install ubuntu-desktop (TODO: remove this depedency)
+    sudo apt -y install ubuntu-desktop (TODO: remove this dependency)
 ```
+
+* enable root (optional)
+
+```Shell
+    sudo sed -i "s/#PermitRootLogin prohibit-password/PermitRootLogin yes/g" /etc/ssh/sshd_config
+    echo 'root:YOUR_PASSWORD' | sudo chpasswd
+    sudo systemctl restart sshd
+```
+
+### Install docker
 
 * install Docker (all credits to [Docker manual](https://docs.docker.com/engine/install/ubuntu/) )
 
@@ -62,6 +81,8 @@ TODO: create a lab BOM
     sudo usermod -aG docker $USER
 ```
 
+### Install KVM
+
 * install KVM (required by IxNetwork API server)
 
 ```Shell
@@ -74,17 +95,11 @@ TODO: create a lab BOM
     sudo systemctl start libvirtd
 ```
 
-* enable root (optional)
-
-```Shell
-    sudo sed -i "s/#PermitRootLogin prohibit-password/PermitRootLogin yes/g" /etc/ssh/sshd_config
-    echo 'root:YOUR_PASSWORD' | sudo chpasswd
-    sudo systemctl restart sshd
-```
+### Setup network
 
 * setup management port configuration using this sample `/etc/netplan/00-installer-config.yaml`:
 
-```code
+```Yaml
   ---
   network:
     ethernets:
@@ -121,22 +136,7 @@ yamllint /etc/netplan/00-installer-config.yaml
   * ensure networking is ok
   * this is needed also for the permissions to be update, otherwise next step will fail
 
-* clone the `dentproject/testing` repository into your working directory:
-
-```Shell
-git clone https://github.com/dentproject/testing
-
-# optional change to a different branch
-# cd ./testing
-# git checkout <branch name>
-```
-
-* build container
-
-```Shell
-docker build --no-cache --tag dent/test-framework:latest ./testing/DentOS_Framework
-docker tag dent/test-framework:latest dent/test-framework:1.0.0
-```
+### Install IxNetwork VE
 
 * VMs
   * create vms folder
@@ -167,7 +167,7 @@ virsh autostart IxNetwork-930
     virsh console IxNetwork-930 --safe
 ```
 
-  if a dhcp server is present we can obseve the IP assigned
+  if a dhcp server is present we can observe the IP assigned
 
 ```code
   dent@dent:~$ virsh console IxNetwork-930 --safe
@@ -187,40 +187,62 @@ virsh autostart IxNetwork-930
   To change the IP address, log in as admin (password: admin) below
 ```
 
-## To run the test cases below are the steps
+### Prepare test running environment
 
-  1. Create the Linux [we used CentOS8 VM] testbed where you will run/debug the cases.
-  2. Create the DentOS cloud with DENT-Aggregator, DENT-Distributor & DENT-Infrastructure DUTs.
+* clone the `dentproject/testing` repository into your working directory:
+
+```Shell
+git clone https://github.com/dentproject/testing
+
+# optional change to a different branch
+# cd ./testing
+# git checkout <branch name>
+```
+
+* build container (optional)
+
+To save the time during the actual test run and to validate the environment it's recommended to build a container now.
+
+```Shell
+cd DentOS_Framework
+./run.sh dentos_testbed_runtests -h
+```
+
+You should see the help message from the DentOS framework.
+
+## Running DentOS SIT tests
+
+Overall steps:
+
+  1. Setup Testbed Server
+  2. Setup the DentOS [SIT topology](./System_integration_test_bed/README.md) with DENT-Aggregator, DENT-Distributor & DENT-Infrastructure DUTs
   3. Install DentOS on DUTs
-  4. Run the tests.
-  5. Check Logs locally at `./testing/Amazon_Framework/DentOsTestbed/logs`
+  4. Run the tests
+  5. Check Logs locally at `./DentOS_Framework/DentOsTestbed/logs`
 
-we will go through the process/steps in details below -
+We will go through the process/steps in details below -
 
-### 1. Create the linux [we used centos8 vm] testbed
+### System Integration Testbed preparation
 
-* a. [Installing all packages](https://github.com/dentproject/testing/DentOS_Framework/README.md)
-* b. Copy all test files to the linux. copy/forge the directory `https://github.com/dentproject/testing/DentOS_Framework` to your local Linux
-* c. change the testbed settings change the `testbed.json` as per your current testbed at `./testing/Amazon_Framework/DentOsTestbed/configuration/testbed_config/sit`
+As per the testbed diagram connect all required cables among DUTs (DENT devices) and Keysight devices.
 
-### 2. As per the testbed diagram we will connect all required cables among DUTs[DENT devices] and Keysight devices
+[System Integration Testbed](https://github.com/dentproject/testing/docs/System_integration_test_bed)
 
-[System integration test bed](https://github.com/dentproject/testing/docs/System_integration_test_bed)
+Change the testbed settings in the `testbed.json` as per your current testbed at `./DentOS_Framework/DentOsTestbed/configuration/testbed_config/sit`
 
-### 3. install DentOS on the DUTs
+### Install DentOS on the DUTs in SIT
 
 To install DentOS follow the instructions here `TODO: add link here`
 
-### 4. Run the tests
+### Run the tests
 
-After you finish steps 1, 2 & 3 and make sure all boxes are up with proper IP address that you gave on the settings file.
-
+Make sure all boxes are up with proper IP address that you gave on the settings file.
 Also make sure they are pinging each other.
 
-Now go to directory /root/testing/Amazon_Framework/DentOsTestbed/ and run below commands
+Go to directory `DentOS_Framework/` and run below commands:
 
 ```Shell
-dentos_testbed_runtests -d --stdout \
+./run.sh dentos_testbed_runtests -d --stdout \
   --config configuration/testbed_config/sit/testbed.json \
   --config-dir configuration/testbed_config/sit/ \
   --suite-groups suite_group_clean_config \
@@ -231,10 +253,10 @@ dentos_testbed_runtests -d --stdout \
 
 This will check the connectivity and basically make the environment.
 
-### How to Run all cases
+### Run all SIT test cases
 
 ```Shell
-dentos_testbed_runtests -d --stdout \
+./run.sh dentos_testbed_runtests -d --stdout \
   --config configuration/testbed_config/sit/testbed.json \
   --config-dir configuration/testbed_config/sit/ \
   --suite-groups suite_group_test suite_group_l3_tests suite_group_basic_trigger_tests suite_group_traffic_tests suite_group_tc_tests suite_group_bgp_tests \
@@ -245,16 +267,99 @@ dentos_testbed_runtests -d --stdout \
   --discovery-path ../DentOsTestbedLib/src/dent_os_testbed/discovery/modules/
 ```
 
-### How to run a single test case
+### Run a single test case
 
 ```Shell
-dentos_testbed_runtests -d --stdout \
+./run.sh dentos_testbed_runtests -d --stdout \
   --config configuration/testbed_config/sit/testbed.json \
   --config-dir configuration/testbed_config/sit/ \
   --suite-groups <suite group name> \
   --discovery-reports-dir DISCOVERY_REPORTS_DIR \
   --discovery-reports-dir ./reports \
-  --discovery-path ../DentOsTestbedLib/src/dent_os_testbed/discovery/modules/ <testcase from the suit>
+  --discovery-path ../DentOsTestbedLib/src/dent_os_testbed/discovery/modules/ <test case from the suit>
 ```
 
- [^1]: it can be also centos archlinux .... but the example commands shown are for ubuntu
+## Running DentOS Functional tests
+
+Overall steps:
+
+  1. Setup Testbed Server (previous step)
+  2. Setup the DentOS **Functional topology**
+  3. Install DentOS on DUT or cleanup configuration if it was used by SIT before
+  4. Run the tests
+  5. Check Logs locally at `./DentOS_Framework/DentOsTestbed/logs`
+
+### Functional Testbed preparation
+
+Functional testbed consists of a single DentOS device connected to the IxNetwork using 4 links.
+If you have already assembled SIT testbed according to the diagram, you can use any device out of it separately.
+
+Change the testbed settings in the `testbed.json` as per your current testbed at `./DentOS_Framework/DentOsTestbed/configuration/testbed_config/basic_*` (NOTE: `basic_` prefix in subfolder names)
+
+### Install DentOS on the DUT
+
+To install DentOS follow the instructions here `TODO: add link here`
+
+### Cleanup DUT configuration
+
+After the running SIT regression DUTs are usually contains specific persistent network configuration which interferes with the functional test cases.
+
+In the following example INFRA2 functional topology is used. Note the path to the configuration - `configuration/testbed_config/basic_infra2`.
+
+Run the following commands to cleanup the device:
+
+```Shell
+./run.sh dentos_testbed_runtests --stdout \
+  --config configuration/testbed_config/basic_infra2/testbed.json \
+  --config-dir configuration/testbed_config/basic_infra2/ \
+  --discovery-reports-dir /tmp \
+  --suite-groups suite_group_clean_config
+```
+
+The test should pass and DUT should not contain any network configuration except the management port IP address.
+
+### Run functional regression
+
+```Shell
+./run.sh dentos_testbed_runtests --stdout \
+  --config configuration/testbed_config/basic_infra2/testbed.json \
+  --config-dir configuration/testbed_config/basic_infra2/ \
+  --discovery-reports-dir /tmp \
+  --suite-groups suite_group_functional
+```
+
+### Run specific functional tests/suites
+
+Use `-k` option to select any specific test function or test suite from the selected test group.
+
+Here are an example of how to run the VLAN test suite:
+
+```Shell
+./run.sh dentos_testbed_runtests --stdout \
+  --config configuration/testbed_config/basic_infra2/testbed.json \
+  --config-dir configuration/testbed_config/basic_infra2/ \
+  --discovery-reports-dir /tmp \
+  --suite-groups suite_group_functional \
+  -k suite_functional_vlan
+```
+
+**NOTE:**
+
+1. To avoid re-installing of the DentOS framework on each run command just enter the docker container and run multiple commands from inside.
+2. You can use all supported pytest CLI arguments. dentos_testbed_runtests passes all unrecognized by arguments directly to the pytest.
+
+```Shell
+./run.sh
+dentos_testbed_runtests -h
+dentos_testbed_runtests --stdout \
+  --config configuration/testbed_config/basic_infra2/testbed.json \
+  --config-dir configuration/testbed_config/basic_infra2/ \
+  --discovery-reports-dir /tmp \
+  --suite-groups suite_group_functional \
+  -k suite_functional_vlan \
+  --collectonly --pdb
+```
+
+---
+
+ [^1]: it can be also CentOS Archlinux .... but the example commands shown are for Ubuntu.

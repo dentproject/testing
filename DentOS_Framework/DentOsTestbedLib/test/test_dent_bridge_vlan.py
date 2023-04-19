@@ -13,25 +13,25 @@ from .utils import TestDevice
 
 def test_that_bridge_vlan_add(capfd):
 
-    dv1 = TestDevice(platform="dentos")
-    dv2 = TestDevice(platform="dentos")
+    dv1 = TestDevice(platform='dentos')
+    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         BridgeVlan.add(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -39,42 +39,42 @@ def test_that_bridge_vlan_add(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
-                            "dev": "yhxpeujp",
-                            "vid": 6738,
-                            "tunnel_info": 8913,
-                            "pvid": False,
-                            "untagged": True,
-                            "self": True,
-                            "master": True,
-                            "options": "ihwqrybn",
+                            'dev': 'yhxpeujp',
+                            'vid': 6738,
+                            'tunnel_info': 8913,
+                            'pvid': False,
+                            'untagged': True,
+                            'self': True,
+                            'master': True,
+                            'options': 'ihwqrybn',
                         },
                         {
                             # command 2
-                            "dev": "soesrzxy",
-                            "vid": 790,
-                            "tunnel_info": 4499,
-                            "pvid": True,
-                            "untagged": False,
-                            "self": True,
-                            "master": True,
-                            "options": "sszufuyf",
+                            'dev': 'soesrzxy',
+                            'vid': 790,
+                            'tunnel_info': 4499,
+                            'pvid': True,
+                            'untagged': False,
+                            'self': True,
+                            'master': True,
+                            'options': 'sszufuyf',
                         },
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -82,69 +82,69 @@ def test_that_bridge_vlan_add(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
-                            "dev": "yhxpeujp",
-                            "vid": 6738,
-                            "tunnel_info": 8913,
-                            "pvid": False,
-                            "untagged": True,
-                            "self": True,
-                            "master": True,
-                            "options": "ihwqrybn",
+                            'dev': 'yhxpeujp',
+                            'vid': 6738,
+                            'tunnel_info': 8913,
+                            'pvid': False,
+                            'untagged': True,
+                            'self': True,
+                            'master': True,
+                            'options': 'ihwqrybn',
                         }
                     ],
                     # device 2
-                    "test_dev2": [
+                    'test_dev2': [
                         {
-                            "dev": "soesrzxy",
-                            "vid": 790,
-                            "tunnel_info": 4499,
-                            "pvid": True,
-                            "untagged": False,
-                            "self": True,
-                            "master": True,
-                            "options": "sszufuyf",
+                            'dev': 'soesrzxy',
+                            'vid': 790,
+                            'tunnel_info': 4499,
+                            'pvid': True,
+                            'untagged': False,
+                            'self': True,
+                            'master': True,
+                            'options': 'sszufuyf',
                         }
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0
 
 
 def test_that_bridge_vlan_delete(capfd):
 
-    dv1 = TestDevice(platform="dentos")
-    dv2 = TestDevice(platform="dentos")
+    dv1 = TestDevice(platform='dentos')
+    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         BridgeVlan.delete(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -152,42 +152,42 @@ def test_that_bridge_vlan_delete(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
-                            "dev": "fjqztmpg",
-                            "vid": 5430,
-                            "tunnel_info": 7889,
-                            "pvid": True,
-                            "untagged": True,
-                            "self": True,
-                            "master": False,
-                            "options": "wmhxhtew",
+                            'dev': 'fjqztmpg',
+                            'vid': 5430,
+                            'tunnel_info': 7889,
+                            'pvid': True,
+                            'untagged': True,
+                            'self': True,
+                            'master': False,
+                            'options': 'wmhxhtew',
                         },
                         {
                             # command 2
-                            "dev": "yyqnndtu",
-                            "vid": 8516,
-                            "tunnel_info": 9836,
-                            "pvid": False,
-                            "untagged": False,
-                            "self": True,
-                            "master": True,
-                            "options": "gzohonsx",
+                            'dev': 'yyqnndtu',
+                            'vid': 8516,
+                            'tunnel_info': 9836,
+                            'pvid': False,
+                            'untagged': False,
+                            'self': True,
+                            'master': True,
+                            'options': 'gzohonsx',
                         },
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -195,69 +195,69 @@ def test_that_bridge_vlan_delete(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
-                            "dev": "fjqztmpg",
-                            "vid": 5430,
-                            "tunnel_info": 7889,
-                            "pvid": True,
-                            "untagged": True,
-                            "self": True,
-                            "master": False,
-                            "options": "wmhxhtew",
+                            'dev': 'fjqztmpg',
+                            'vid': 5430,
+                            'tunnel_info': 7889,
+                            'pvid': True,
+                            'untagged': True,
+                            'self': True,
+                            'master': False,
+                            'options': 'wmhxhtew',
                         }
                     ],
                     # device 2
-                    "test_dev2": [
+                    'test_dev2': [
                         {
-                            "dev": "yyqnndtu",
-                            "vid": 8516,
-                            "tunnel_info": 9836,
-                            "pvid": False,
-                            "untagged": False,
-                            "self": True,
-                            "master": True,
-                            "options": "gzohonsx",
+                            'dev': 'yyqnndtu',
+                            'vid': 8516,
+                            'tunnel_info': 9836,
+                            'pvid': False,
+                            'untagged': False,
+                            'self': True,
+                            'master': True,
+                            'options': 'gzohonsx',
                         }
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0
 
 
 def test_that_bridge_vlan_show(capfd):
 
-    dv1 = TestDevice(platform="dentos")
-    dv2 = TestDevice(platform="dentos")
+    dv1 = TestDevice(platform='dentos')
+    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         BridgeVlan.show(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -265,30 +265,30 @@ def test_that_bridge_vlan_show(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
-                            "dev": "mbaaifec",
-                            "master": True,
+                            'dev': 'mbaaifec',
+                            'master': True,
                         },
                         {
                             # command 2
-                            "dev": "bustfvfl",
-                            "master": False,
+                            'dev': 'bustfvfl',
+                            'master': False,
                         },
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -296,57 +296,57 @@ def test_that_bridge_vlan_show(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
-                            "dev": "mbaaifec",
-                            "master": True,
+                            'dev': 'mbaaifec',
+                            'master': True,
                         }
                     ],
                     # device 2
-                    "test_dev2": [
+                    'test_dev2': [
                         {
-                            "dev": "bustfvfl",
-                            "master": False,
+                            'dev': 'bustfvfl',
+                            'master': False,
                         }
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0
 
 
 def test_that_bridge_vlan_tunnelshow(capfd):
 
-    dv1 = TestDevice(platform="dentos")
-    dv2 = TestDevice(platform="dentos")
+    dv1 = TestDevice(platform='dentos')
+    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         BridgeVlan.tunnelshow(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -354,30 +354,30 @@ def test_that_bridge_vlan_tunnelshow(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
-                            "dev": "eyoehddq",
-                            "master": False,
+                            'dev': 'eyoehddq',
+                            'master': False,
                         },
                         {
                             # command 2
-                            "dev": "tmtxpqfv",
-                            "master": False,
+                            'dev': 'tmtxpqfv',
+                            'master': False,
                         },
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -385,31 +385,31 @@ def test_that_bridge_vlan_tunnelshow(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
-                            "dev": "eyoehddq",
-                            "master": False,
+                            'dev': 'eyoehddq',
+                            'master': False,
                         }
                     ],
                     # device 2
-                    "test_dev2": [
+                    'test_dev2': [
                         {
-                            "dev": "tmtxpqfv",
-                            "master": False,
+                            'dev': 'tmtxpqfv',
+                            'master': False,
                         }
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0

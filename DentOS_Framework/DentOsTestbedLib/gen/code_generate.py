@@ -15,6 +15,7 @@ from pykwalify.errors import PyKwalifyException
 from gen.lib.database import Package
 from gen.lib.sample_plugin import SamplePlugin
 
+
 def load_yaml(yaml_dir):
     """
     1. recursively walk the directories looking for yaml files.
@@ -22,13 +23,13 @@ def load_yaml(yaml_dir):
     3. Keep constructing pkg->module->classes,types,commands etc
     """
     content = dict()
-    schema_file = os.path.join(yaml_dir, "schema.yaml")
+    schema_file = os.path.join(yaml_dir, 'schema.yaml')
     for root, dirnames, filenames in os.walk(yaml_dir):
-        for filename in fnmatch.filter(filenames, "*.yaml"):
-            if filename == "schema.yaml":
+        for filename in fnmatch.filter(filenames, '*.yaml'):
+            if filename == 'schema.yaml':
                 continue
             fname = os.path.join(root, filename)
-            with open(fname, "r", encoding="utf-8") as fp:
+            with open(fname, 'r', encoding='utf-8') as fp:
                 ydata = yaml.safe_load(fp)
 
             try:
@@ -37,8 +38,8 @@ def load_yaml(yaml_dir):
             except PyKwalifyException as e:
                 raise e
 
-            pname = root[len(yaml_dir) :].split("/")[0]
-            print (fname)
+            pname = root[len(yaml_dir):].split('/')[0]
+            print(fname)
             if pname not in content:
                 content[pname] = Package(pname, ydata, fname, content)
             else:
@@ -60,27 +61,27 @@ def load_plugins(plugin_dir):
     """
     content = {}
     for root, dirnames, filenames in os.walk(plugin_dir):
-        for filename in fnmatch.filter(filenames, "plugin.py"):
+        for filename in fnmatch.filter(filenames, 'plugin.py'):
             fname = os.path.join(root, filename)
-            module = imp.load_source("plugin", fname)
+            module = imp.load_source('plugin', fname)
             for name, cls in inspect.getmembers(module):
-                if name == "SamplePlugin":
+                if name == 'SamplePlugin':
                     continue
                 if (
                     inspect.isclass(cls)
                     and issubclass(cls, SamplePlugin)
                     and name not in content.keys()
                 ):
-                    print("Loading Plugin " + name)
+                    print('Loading Plugin ' + name)
                     content[name] = cls(name)
     return content
 
 
 def main(
-    plugin_dir="./plugins/",
-    yaml_dir="./model/",
-    yang_dir="./model/",
-    output_dir="/tmp/codegen/",
+    plugin_dir='./plugins/',
+    yaml_dir='./model/',
+    yang_dir='./model/',
+    output_dir='/tmp/codegen/',
 ):
     """
     1. Load the plugins.
@@ -93,5 +94,5 @@ def main(
         p.generate_code(dbs, output_dir)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

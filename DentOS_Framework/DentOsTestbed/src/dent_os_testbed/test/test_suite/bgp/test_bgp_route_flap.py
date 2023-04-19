@@ -1,5 +1,3 @@
-import json
-import os
 import time
 
 import pytest
@@ -8,13 +6,11 @@ from dent_os_testbed.Device import DeviceType
 from dent_os_testbed.lib.interfaces.interface import Interface
 from dent_os_testbed.lib.os.service import Service
 from dent_os_testbed.utils.test_utils.tb_utils import (
-    tb_clean_config,
     tb_flap_links,
     tb_reload_nw_and_flush_firewall,
 )
 from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_util_flap_bgp_peer,
-    tgen_utils_clear_traffic_stats,
     tgen_utils_create_bgp_devices_and_connect,
     tgen_utils_get_dent_devices_with_tgen,
     tgen_utils_get_traffic_stats,
@@ -26,43 +22,43 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
 
 pytestmark = pytest.mark.suite_bgp_routes
 
-TRIGGER_FLAP_LINK = "FLAP_LINK"
-TRIGGER_FLAP_BGP_ROUTE = "FLAP_BGP_ROUTE"
-TRIGGER_RESTART_NETWORKING = "RESTART_NETWORKING"
-TRIGGER_IFRELOAD = "IFRELOAD"
+TRIGGER_FLAP_LINK = 'FLAP_LINK'
+TRIGGER_FLAP_BGP_ROUTE = 'FLAP_BGP_ROUTE'
+TRIGGER_RESTART_NETWORKING = 'RESTART_NETWORKING'
+TRIGGER_IFRELOAD = 'IFRELOAD'
 
 
 async def do_trigger(tgen_dev, src, devices, trigger):
     if trigger in [TRIGGER_FLAP_LINK, TRIGGER_RESTART_NETWORKING, TRIGGER_IFRELOAD]:
         device = devices.pop(0)
-        tgen_dev.applog.info(f"Triggering Device trigger {trigger} on {device.host_name}")
+        tgen_dev.applog.info(f'Triggering Device trigger {trigger} on {device.host_name}')
         if trigger == TRIGGER_FLAP_LINK:
-            tgen_dev.applog.info(f"Triggering Port Flap in {device.host_name}")
-            await tb_flap_links(device, "swp")
+            tgen_dev.applog.info(f'Triggering Port Flap in {device.host_name}')
+            await tb_flap_links(device, 'swp')
         elif trigger == TRIGGER_RESTART_NETWORKING:
             services = [
                 # "networking",
-                "frr.service",
+                'frr.service',
             ]
             for s in services:
                 out = await Service.restart(
-                    input_data=[{device.host_name: [{"name": s}]}],
+                    input_data=[{device.host_name: [{'name': s}]}],
                 )
                 assert (
-                    out[0][device.host_name]["rc"] == 0
-                ), f"Failed to restart the service {s} {out}"
+                    out[0][device.host_name]['rc'] == 0
+                ), f'Failed to restart the service {s} {out}'
         elif trigger == TRIGGER_IFRELOAD:
-            out = await Interface.reload(input_data=[{device.host_name: [{"options": "-a"}]}])
-            assert out[0][device.host_name]["rc"] == 0, f"Failed to ifreload -a "
+            out = await Interface.reload(input_data=[{device.host_name: [{'options': '-a'}]}])
+            assert out[0][device.host_name]['rc'] == 0, 'Failed to ifreload -a '
             device.applog.info(out)
         else:
-            tgen_dev.applog.info(f"unknown trigger {trigger} on {device.host_name}")
+            tgen_dev.applog.info(f'unknown trigger {trigger} on {device.host_name}')
         # put the device back to the end
         devices.append(device)
     elif trigger == TRIGGER_FLAP_BGP_ROUTE:
         port = src.pop(0)
         await tgen_util_flap_bgp_peer(tgen_dev, port)
-        tgen_dev.applog.info(f"Triggering {trigger} on {tgen_dev.host_name}")
+        tgen_dev.applog.info(f'Triggering {trigger} on {tgen_dev.host_name}')
         src.append(port)
 
 
@@ -111,9 +107,8 @@ async def test_bgp_route_and_interface_flap(testbed):
         1,
     )
     if not tgen_dev or not devices:
-        print("The testbed does not have enough dent with tgen connections")
+        print('The testbed does not have enough dent with tgen connections')
         return
-    devices_info = {}
     bgp_neighbors = {}
     br_ip = 30
     await tb_reload_nw_and_flush_firewall(devices)
@@ -121,14 +116,14 @@ async def test_bgp_route_and_interface_flap(testbed):
         bgp_neighbors[dd.host_name] = {}
         for swp in tgen_dev.links_dict[dd.host_name][1]:
             bgp_neighbors[dd.host_name][swp] = {
-                "num_route_ranges": 1,
-                "local_as": 200,
-                "hold_timer": 10,
-                "update_interval": 3,
-                "route_ranges": [
+                'num_route_ranges': 1,
+                'local_as': 200,
+                'hold_timer': 10,
+                'update_interval': 3,
+                'route_ranges': [
                     {
-                        "number_of_routes": 100,
-                        "first_route": f"{br_ip}.0.0.1",
+                        'number_of_routes': 100,
+                        'first_route': f'{br_ip}.0.0.1',
                     },
                 ],
             }
@@ -139,23 +134,23 @@ async def test_bgp_route_and_interface_flap(testbed):
     dst = []
     for dd in devices:
         for swp in tgen_dev.links_dict[dd.host_name][1]:
-            src.append(f"{dd.host_name}_{swp}")
-            dst.append(f"{dd.host_name}_{swp}")
+            src.append(f'{dd.host_name}_{swp}')
+            dst.append(f'{dd.host_name}_{swp}')
 
     # create mesh stream.
     streams = {
-        "stream1": {
-            "type": "bgp",
-            "bgp_source": src,
-            "bgp_destination": dst,
-            "protocol": "ip",
-            "ipproto": "tcp",
+        'stream1': {
+            'type': 'bgp',
+            'bgp_source': src,
+            'bgp_destination': dst,
+            'protocol': 'ip',
+            'ipproto': 'tcp',
         },
     }
 
     await tgen_utils_setup_streams(
         tgen_dev,
-        pytest._args.config_dir + f"/{tgen_dev.host_name}/tgen_bgp_route_flap_config.ixncfg",
+        pytest._args.config_dir + f'/{tgen_dev.host_name}/tgen_bgp_route_flap_config.ixncfg',
         streams,
         force_update=True,
     )
@@ -183,14 +178,14 @@ async def test_bgp_route_and_interface_flap(testbed):
             ttriggers.append(trigger)
         time.sleep(60)
         await tgen_utils_stop_traffic(tgen_dev)
-        stats = await tgen_utils_get_traffic_stats(tgen_dev, "Port Statistics")
+        stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Port Statistics')
         # verify here.
         for row in stats.Rows:
             # if the loss is more than 10% then fail the test
-            diff = int(row["Frames Tx."]) - int(row["Valid Frames Rx."])
-            loss = diff / (int(row["Frames Tx."]) * 1.0) * 100.0
+            diff = int(row['Frames Tx.']) - int(row['Valid Frames Rx.'])
+            loss = diff / (int(row['Frames Tx.']) * 1.0) * 100.0
             if loss > 10.0:
-                assert 0, f"Loss {loss} > threshold 10.0%"
+                assert 0, f'Loss {loss} > threshold 10.0%'
         # analyze logs
         trigger = triggers.pop(0)
         await do_trigger(tgen_dev, src, devices, trigger)

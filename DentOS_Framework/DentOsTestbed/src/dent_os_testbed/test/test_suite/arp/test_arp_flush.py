@@ -33,14 +33,14 @@ async def check_ping_to_tgen_link(testbed, dev_groups, dent_dev):
         ):
             continue
         for ep in dev_groups.values():
-            ip = ep[0]["ip"]
+            ip = ep[0]['ip']
             out = await IpRoute.get(
-                input_data=[{dev.host_name: [{"dst": f"{ip}", "cmd_options": "-j"}]}]
+                input_data=[{dev.host_name: [{'dst': f'{ip}', 'cmd_options': '-j'}]}]
             )
-            dev.applog.info(f"Ran IpRoute.get {ip} out {out}")
-            rc = await tb_ping_device(dev, f"{ip}", dump=True)
+            dev.applog.info(f'Ran IpRoute.get {ip} out {out}')
+            rc = await tb_ping_device(dev, f'{ip}', dump=True)
             if rc != 0:
-                dev.applog.info(f"Failed to reach {ip} on {peer} {rc}")
+                dev.applog.info(f'Failed to reach {ip} on {peer} {rc}')
                 # assert 0, f"Failed to ping the tgen {ip} from {peer}"
 
 
@@ -66,51 +66,50 @@ async def test_arp_flush_w_traffic(testbed):
     """
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 2)
     if not tgen_dev or not dent_devices:
-        print("The testbed does not have enough dent with tgen connections")
+        print('The testbed does not have enough dent with tgen connections')
         return
     dent_dev = dent_devices[0]
     dent = dent_dev.host_name
-    swp_tgen_ports = tgen_dev.links_dict[dent][1]
 
     # start from a clean state
     await tb_reload_nw_and_flush_firewall([dent_dev])
 
     dev_groups = await tgen_utils_connect_to_tgen(tgen_dev, dent_dev)
     streams = {
-        "bgp": {
-            "protocol": "ip",
-            "ipproto": "tcp",
-            "dstPort": "179",
+        'bgp': {
+            'protocol': 'ip',
+            'ipproto': 'tcp',
+            'dstPort': '179',
         },
     }
     await tgen_utils_setup_streams(
-        tgen_dev, pytest._args.config_dir + f"/{dent}/tgen_basic_config.ixncfg", streams
+        tgen_dev, pytest._args.config_dir + f'/{dent}/tgen_basic_config.ixncfg', streams
     )
     await tgen_utils_start_traffic(tgen_dev)
     # - check the traffic stats
     #  -- all the packets matching the SIP and DIP should be dropped.
-    dent_dev.applog.info("zzzZZZ!! (10s)")
+    dent_dev.applog.info('zzzZZZ!! (10s)')
     time.sleep(10)
     await tgen_utils_stop_traffic(tgen_dev)
-    stats = await tgen_utils_get_traffic_stats(tgen_dev, "Flow Statistics")
+    await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
 
-    rc, out = await dent_dev.run_cmd("arp -n")
-    dent_dev.applog.info(f"arp on {dent} rc {rc} out {out}")
+    rc, out = await dent_dev.run_cmd('arp -n')
+    dent_dev.applog.info(f'arp on {dent} rc {rc} out {out}')
 
     await check_ping_to_tgen_link(testbed, dev_groups, dent_dev)
 
     for _ in range(5):
-        rc, out = await dent_dev.run_cmd("ip -s -s neig flush all")
-        dent_dev.applog.info(f"Flushed the arp on {dent} rc {rc} out {out}")
+        rc, out = await dent_dev.run_cmd('ip -s -s neig flush all')
+        dent_dev.applog.info(f'Flushed the arp on {dent} rc {rc} out {out}')
 
     time.sleep(10)
 
-    rc, out = await dent_dev.run_cmd("arp -n")
-    dent_dev.applog.info(f"arp on {dent} rc {rc} out {out}")
+    rc, out = await dent_dev.run_cmd('arp -n')
+    dent_dev.applog.info(f'arp on {dent} rc {rc} out {out}')
     await check_ping_to_tgen_link(testbed, dev_groups, dent_dev)
 
-    rc, out = await dent_dev.run_cmd("arp -n")
-    dent_dev.applog.info(f"arp on {dent} rc {rc} out {out}")
+    rc, out = await dent_dev.run_cmd('arp -n')
+    dent_dev.applog.info(f'arp on {dent} rc {rc} out {out}')
 
     # end of Test
     await tgen_utils_stop_protocols(tgen_dev)

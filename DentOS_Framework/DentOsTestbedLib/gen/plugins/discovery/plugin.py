@@ -5,8 +5,6 @@ Discovery plugin generates the ReportSchema.py with all schema and setand get me
 
 import os
 
-import random
-import string
 
 from gen.lib.database import camelcase
 from gen.lib.python.pylib import PyClass, PyFile, PyImport, PyLines, PyMethod
@@ -21,11 +19,12 @@ from gen.plugins.discovery.template import (
     discover_py_code_set_attr
 )
 
+
 class ReportPyObject(object):
     def __init__(self, pkg, fname):
         self._pkg = pkg
         self._fname = fname
-        self._header = [PyLines(lines=tokenize(discovery_py_header%pkg.name))]
+        self._header = [PyLines(lines=tokenize(discovery_py_header % pkg.name))]
         self._imports = []
         self._classes = []
         self._methods = []
@@ -33,11 +32,16 @@ class ReportPyObject(object):
     def get_python_type(self, mbr):
         if not isinstance(mbr, str):
             mbr = mbr.type
-        if mbr == 'string': return 'str'
-        if mbr == 'string_list': return 'str'
-        if mbr == 'time_t': return 'str'
-        if mbr == 'ip_addr_t': return 'str'
-        if mbr == 'mac_t': return 'str'
+        if mbr == 'string':
+            return 'str'
+        if mbr == 'string_list':
+            return 'str'
+        if mbr == 'time_t':
+            return 'str'
+        if mbr == 'ip_addr_t':
+            return 'str'
+        if mbr == 'mac_t':
+            return 'str'
         return mbr
 
     def generate_schema_classes(self, parent, name):
@@ -48,9 +52,9 @@ class ReportPyObject(object):
         """
         classes = []
         visited = {}
-        queue=[(parent, name)]
+        queue = [(parent, name)]
         while queue:
-            node,name = queue.pop(0)
+            node, name = queue.pop(0)
             if node in visited:
                 continue
             visited[node] = True
@@ -63,32 +67,32 @@ class ReportPyObject(object):
                 if m.cls:
                     # if there are no members in this member then use the correct schema
                     if len(m.cls.members):
-                        mname  = camelcase(m.cls.name)+('SchemaDict' if m.cls.singleton else 'SchemaList')
+                        mname = camelcase(m.cls.name)+('SchemaDict' if m.cls.singleton else 'SchemaList')
                         # need to visit the node
                         queue.append((m.cls, camelcase(m.cls.name)))
                     else:
                         mname = 'LeafSchemaDict'
                 elif m.type:
                     mname = self.get_python_type(m.type)
-                members += '        "%s":%s,\n'%(m.name, mname)
+                members += '        "%s":%s,\n' % (m.name, mname)
             if not node.singleton:
-                methods = [PyLines(lines=tokenize(discovery_py_list_schema_body%name))]
-                classes.append(PyClass(name+"SchemaList",
-                                       parent="SchemaList",
+                methods = [PyLines(lines=tokenize(discovery_py_list_schema_body % name))]
+                classes.append(PyClass(name+'SchemaList',
+                                       parent='SchemaList',
                                        methods=methods))
             args['members'] = members
-            methods = [PyLines(lines=tokenize(discovery_py_dict_schema_body%args))]
-            classes.append(PyClass(name+"SchemaDict",
+            methods = [PyLines(lines=tokenize(discovery_py_dict_schema_body % args))]
+            classes.append(PyClass(name+'SchemaDict',
                                    desc=[PyLines(lines=['    Refer '+node._yfile+' '+node.name])],
-                                   parent="SchemaDict",
+                                   parent='SchemaDict',
                                    methods=methods))
         return classes[::-1]
 
     def generate_code(self):
-        self._imports.append(PyImport("io"))
-        self._imports.append(PyImport("json"))
-        self._imports.append(PyImport("copy"))
-        self._imports.append(PyImport("(LeafSchemaDict, SchemaList, SchemaDict, Report)", _from="dent_os_testbed.discovery.Report "))
+        self._imports.append(PyImport('io'))
+        self._imports.append(PyImport('json'))
+        self._imports.append(PyImport('copy'))
+        self._imports.append(PyImport('(LeafSchemaDict, SchemaList, SchemaDict, Report)', _from='dent_os_testbed.discovery.Report '))
 
         # recurse the level from base.
 
@@ -97,11 +101,11 @@ class ReportPyObject(object):
         self._classes.extend(
             self.generate_schema_classes(
                 self._pkg.modules['base'].classes_dct['base'],
-                "Report"
+                'Report'
             )
         )
 
-        self._classes.append(PyClass("ReportSchema", parent="Report",methods=methods))
+        self._classes.append(PyClass('ReportSchema', parent='Report', methods=methods))
 
     def write_file(self):
         p = PyFile(self._header, self._imports, self._classes, self._methods)
@@ -113,7 +117,7 @@ class DiscoveryModulePyObject(object):
         self._cls = cls
         self._parent = parent
         self._fname = fname
-        self._header = [PyLines(lines=tokenize(discovery_py_header%self._cls._yfile))]
+        self._header = [PyLines(lines=tokenize(discovery_py_header % self._cls._yfile))]
         self._imports = []
         self._classes = []
         self._methods = []
@@ -121,13 +125,20 @@ class DiscoveryModulePyObject(object):
     def get_mbr_default(self, mbr):
         if not isinstance(mbr, str):
             mbr = mbr.type
-        if mbr == 'string': return "''"
-        if mbr == 'string_list': return "''"
-        if mbr == 'time_t': return "''"
-        if mbr == 'ip_addr_t': return "''"
-        if mbr == 'mac_t': return "''"
-        if mbr == 'int': return 0
-        if mbr == 'float': return 0.0
+        if mbr == 'string':
+            return "''"
+        if mbr == 'string_list':
+            return "''"
+        if mbr == 'time_t':
+            return "''"
+        if mbr == 'ip_addr_t':
+            return "''"
+        if mbr == 'mac_t':
+            return "''"
+        if mbr == 'int':
+            return 0
+        if mbr == 'float':
+            return 0.0
         return mbr
 
     def generate_mbr_set_attr(self, cls):
@@ -141,27 +152,26 @@ class DiscoveryModulePyObject(object):
             if m.cls:
                 methods.extend(self.generate_mbr_set_attr(m.cls))
                 args['mbr_cls_name'] = m.cls.name
-                set_mbr += '    self.set_%(mbr_cls_name)s(%(cls_name)s.get(\'%(mbr)s\', []), %(dst)s.%(mbr)s)\n'%args
+                set_mbr += '    self.set_%(mbr_cls_name)s(%(cls_name)s.get(\'%(mbr)s\', []), %(dst)s.%(mbr)s)\n' % args
                 continue
             if m.type not in ['str', 'string', 'int', 'ip_addr_t', 'mac_t', 'float']:
                 continue
             args['mbr_default'] = self.get_mbr_default(m)
-            set_mbr += discover_py_code_set_attr%args
+            set_mbr += discover_py_code_set_attr % args
         args['set_mbr'] = set_mbr
-        set_attr_body = tokenize(discover_py_code_set_func%args)
-        methods.append(PyMethod("set_"+cls.name, "self, src, dst", set_attr_body, indent=4))
+        set_attr_body = tokenize(discover_py_code_set_func % args)
+        methods.append(PyMethod('set_'+cls.name, 'self, src, dst', set_attr_body, indent=4))
         return methods
 
     def generate_code(self):
-        self._imports.append(PyImport("Module",
-                                      _from="dent_os_testbed.discovery.Module "))
+        self._imports.append(PyImport('Module', _from='dent_os_testbed.discovery.Module '))
         self._imports.append(
             PyImport(
                 camelcase(self._cls.name),
-                _from="dent_os_testbed.lib.%s."
+                _from='dent_os_testbed.lib.%s.'
                 % (self._cls._mod.name)
                 + self._cls.name
-                + " ",
+                + ' ',
             )
         )
         methods = []
@@ -169,11 +179,11 @@ class DiscoveryModulePyObject(object):
         args = self._cls.to_dict()
         args['cname_cc'] = camelcase(self._cls.name)
         args['parent'] = self._parent
-        discover_body = tokenize(discover_py_code_template%args)
-        methods.append(PyMethod("discover", "self", discover_body, indent=4, coroutine=True))
+        discover_body = tokenize(discover_py_code_template % args)
+        methods.append(PyMethod('discover', 'self', discover_body, indent=4, coroutine=True))
         self._classes.append(
-            PyClass(camelcase(self._cls.name)+"Mod",
-                    parent="Module",
+            PyClass(camelcase(self._cls.name)+'Mod',
+                    parent='Module',
                     methods=methods))
 
     def write_file(self):
@@ -187,52 +197,56 @@ class DiscoveryPlugin(SamplePlugin):
     2. walk all the members and its types untill we reach the leaf node
     3. keep generating the report.py that can handle set and get operations.
     """
+
     def __init__(self, name):
         self.name = name
 
     def generate_code(self, dbs, odir):
-        print("Generating Discovery")
+        print('Generating Discovery')
         # create the directory
-        tdir = os.path.join(odir, "src/dent_os_testbed/discovery/")
-        #gi = os.path.join(tdir, ".gitignore")
-        #gd = open(gi, "w")
+        tdir = os.path.join(odir, 'src/dent_os_testbed/discovery/')
+        # gi = os.path.join(tdir, ".gitignore")
+        # gd = open(gi, "w")
         if not os.path.exists(tdir):
             os.makedirs(tdir)
-            fname = os.path.join(tdir, "__init__.py")
-            f = open(fname, "w")
+            fname = os.path.join(tdir, '__init__.py')
+            f = open(fname, 'w')
             f.write("__import__(\"pkg_resources\").declare_namespace(__name__)")
             f.close()
-        fname = os.path.join(tdir, "ReportSchema.py")
-        #gd.write("ReportSchema.py\n")
-        o = ReportPyObject(dbs["dent"], fname)
+        fname = os.path.join(tdir, 'ReportSchema.py')
+        # gd.write("ReportSchema.py\n")
+        o = ReportPyObject(dbs['dent'], fname)
         o.generate_code()
         o.write_file()
 
-        tdir = os.path.join(odir, "src/dent_os_testbed/discovery/modules")
+        tdir = os.path.join(odir, 'src/dent_os_testbed/discovery/modules')
         if not os.path.exists(tdir):
             os.makedirs(tdir)
-            fname = os.path.join(tdir, "__init__.py")
-            f = open(fname, "w")
+            fname = os.path.join(tdir, '__init__.py')
+            f = open(fname, 'w')
             f.write("__import__(\"pkg_resources\").declare_namespace(__name__)")
             f.close()
         # BFS from base class and create discovery for each class that has implemented by
         visited = {}
-        #queue=[(dbs["dent"].modules['base'].classes_dct['duts'],'data["duts"][i]')]
-        queue=[(dbs["dent"].modules['base'].classes_dct['duts'],'self.report.duts[i]')]
+        # queue=[(dbs["dent"].modules['base'].classes_dct['duts'],'data["duts"][i]')]
+        queue = [(dbs['dent'].modules['base'].classes_dct['duts'], 'self.report.duts[i]')]
         while queue:
             (node, parent) = queue.pop(0)
             if node in visited:
                 continue
             visited[node] = True
             for m in node.members:
-                if not m.cls: continue
+                if not m.cls:
+                    continue
                 queue.append((m.cls, parent+'.'+m.name))
-            if not node.implemented_by: continue
-            if 'show' not in node.apis: continue
+            if not node.implemented_by:
+                continue
+            if 'show' not in node.apis:
+                continue
             # now need to create discovery module
-            fname = os.path.join(tdir, "mod_" + node.name + ".py")
-            #gd.write(f"modules/mod_{node.name}.py\n")
+            fname = os.path.join(tdir, 'mod_' + node.name + '.py')
+            # gd.write(f"modules/mod_{node.name}.py\n")
             o = DiscoveryModulePyObject(node, parent, fname)
             o.generate_code()
             o.write_file()
-        #gd.close()
+        # gd.close()

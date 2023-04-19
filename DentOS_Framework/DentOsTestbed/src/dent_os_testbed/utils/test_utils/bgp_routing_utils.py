@@ -5,11 +5,11 @@ from dent_os_testbed.lib.frr.frr_ip import FrrIp
 
 
 async def bgp_routing_get_local_as(d1):
-    out = await Bgp.show(input_data=[{d1.host_name: [{"options": "json"}]}])
-    d1.applog.info(f"Ran command Bgp.show out {out}")
-    assert out[0][d1.host_name]["rc"] == 0, f"Failed to determine the bgp summary on d1.host_name"
-    bgp_summary = json.loads(out[0][d1.host_name]["result"])
-    return bgp_summary["ipv4Unicast"]["as"]
+    out = await Bgp.show(input_data=[{d1.host_name: [{'options': 'json'}]}])
+    d1.applog.info(f'Ran command Bgp.show out {out}')
+    assert out[0][d1.host_name]['rc'] == 0, 'Failed to determine the bgp summary on d1.host_name'
+    bgp_summary = json.loads(out[0][d1.host_name]['result'])
+    return bgp_summary['ipv4Unicast']['as']
 
 
 def bgp_routing_get_prefix_list(num_routes, host_name):
@@ -23,9 +23,9 @@ def bgp_routing_get_prefix_list(num_routes, host_name):
                     {
                         host_name: [
                             {
-                                "prefix-list": "IXIA-ROUTES",
-                                "sequence": seq,
-                                "options": {"permit": f"30.0.{i}.0/24"},
+                                'prefix-list': 'IXIA-ROUTES',
+                                'sequence': seq,
+                                'options': {'permit': f'30.0.{i}.0/24'},
                             }
                         ]
                     }

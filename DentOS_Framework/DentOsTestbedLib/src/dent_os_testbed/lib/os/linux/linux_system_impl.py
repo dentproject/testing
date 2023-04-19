@@ -3,12 +3,11 @@ from dent_os_testbed.lib.os.linux.linux_system import LinuxSystem
 
 class LinuxSystemImpl(LinuxSystem):
     def format_reboot(self, command, *argv, **kwarg):
-
         """
         Reboot the system
 
         """
-        cmd = "#reboot"
+        cmd = '#reboot'
         # custom code here
 
         return cmd
@@ -18,10 +17,10 @@ class LinuxSystemImpl(LinuxSystem):
         Shutdown the system
 
         """
-        params = kwarg["params"]
-        cmd = "shutdown "
-        ############# Implement me ################
-        if "options" in params:
-            cmd += params["options"]
+        params = kwarg['params']
+        cmd = 'shutdown '
+        # TODO: Implement me
+        if 'options' in params:
+            cmd += params['options']
 
         return cmd

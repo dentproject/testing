@@ -33,10 +33,10 @@
             "baudrate": 115200,
             "mediaMode":"mixed",
             "links" : [
-                ["10.36.118.199:1:9", "infra1:swp1", "copper"],
-                ["10.36.118.199:1:10", "infra1:swp2", "copper"],
-                ["10.36.118.199:1:11", "infra1:swp3", "copper"],
-                ["10.36.118.199:1:12", "infra1:swp4", "copper"]
+                ["10.36.118.199:2:1", "infra1:swp33", "copper"],
+                ["10.36.118.199:2:2", "infra1:swp34", "copper"],
+                ["10.36.118.199:2:3", "infra1:swp35", "copper"],
+                ["10.36.118.199:2:4", "infra1:swp36", "copper"]
             ]
         }
     ],

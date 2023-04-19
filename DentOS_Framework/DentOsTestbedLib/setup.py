@@ -9,25 +9,25 @@ from gen import code_generate
 # Files underneath configuration/ will be copied into the build preserving the
 # subdirectory structure if they exist.
 data_files = []
-for root, dirs, files in os.walk("configuration"):
+for root, dirs, files in os.walk('configuration'):
     data_files.append(
-        (os.path.relpath(root, "configuration"), [os.path.join(root, f) for f in files])
+        (os.path.relpath(root, 'configuration'), [os.path.join(root, f) for f in files])
     )
 
 setup(
-    name="DentOsTestbedLib",
-    version="1.0",
+    name='DentOsTestbedLib',
+    version='1.0',
     # declare your packages
-    packages=find_packages(where="src", exclude=("test")),
+    packages=find_packages(where='src', exclude=('test')),
     namespace_packages=[
-        "dent_os_testbed",
-        "dent_os_testbed.utils",
-        "dent_os_testbed.discovery",
-        "dent_os_testbed.discovery.modules",
-        "dent_os_testbed.test",
-        "dent_os_testbed.test.test_suite",
+        'dent_os_testbed',
+        'dent_os_testbed.utils',
+        'dent_os_testbed.discovery',
+        'dent_os_testbed.discovery.modules',
+        'dent_os_testbed.test',
+        'dent_os_testbed.test.test_suite',
     ],
-    package_dir={"": "src"},
+    package_dir={'': 'src'},
     # include data files
     data_files=data_files,
     # declare your scripts
@@ -63,7 +63,7 @@ setup(
     #   attempt to install root scripts for the specific interpreter version. If
     #   this package is in a version set where that interpreter is not enabled,
     #   you won't get root scripts. You almost certainly don't want this.
-    root_script_source_version="default-only",
+    root_script_source_version='default-only',
     # Enable build-time format checking
     check_format=False,
     # Enable type checking
@@ -74,10 +74,10 @@ setup(
 
 build = sys.argv[-1]
 
-if build == "release" or build == "build":
+if build == 'release' or build == 'build':
     code_generate.main(
-        plugin_dir="./gen/plugins/",
-        yaml_dir="./gen/model/",
-        yang_dir=".",
-        output_dir=".",
+        plugin_dir='./gen/plugins/',
+        yaml_dir='./gen/model/',
+        yang_dir='.',
+        output_dir='.',
     )

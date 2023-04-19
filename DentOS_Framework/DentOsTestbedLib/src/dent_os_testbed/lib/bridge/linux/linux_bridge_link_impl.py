@@ -23,16 +23,18 @@ class LinuxBridgeLinkImpl(LinuxBridgeLink):
           [ backup_port DEVICE ] [ nobackup_port ] [ self ] [ master ]
 
         """
-        params = kwarg["params"]
-        cmd = "bridge link {} ".format(command)
-        ############# Implement me ################
-        cmd += "dev {} ".format(params.get("device", ""))
-        if "isolated" in params:
-            cmd += "isolated {} ".format("on" if params["isolated"] else "off")
-        if "learning" in params:
-            cmd += "learning {} ".format("on" if params["learning"] else "off")
-        if "flood" in params:
-            cmd += "flood {} ".format("on" if params["flood"] else "off")
+        params = kwarg['params']
+        cmd = 'bridge link {} '.format(command)
+        # TODO: Implement me
+        cmd += 'dev {} '.format(params.get('device', ''))
+        if 'isolated' in params:
+            cmd += 'isolated {} '.format('on' if params['isolated'] else 'off')
+        if 'learning' in params:
+            cmd += 'learning {} '.format('on' if params['learning'] else 'off')
+        if 'flood' in params:
+            cmd += 'flood {} '.format('on' if params['flood'] else 'off')
+        if 'fastleave' in params:
+            cmd += 'fastleave {} '.format('on' if params['fastleave'] else 'off')
 
         return cmd
 
@@ -41,8 +43,7 @@ class LinuxBridgeLinkImpl(LinuxBridgeLink):
         bridge link [ show ] [ dev DEV ]
 
         """
-        params = kwarg["params"]
-        cmd = "bridge link {} ".format(command)
-        ############# Implement me ################
+        cmd = 'bridge link {} '.format(command)
+        # TODO: Implement me
 
         return cmd

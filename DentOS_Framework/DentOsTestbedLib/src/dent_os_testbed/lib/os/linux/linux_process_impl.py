@@ -2,7 +2,7 @@ import re
 
 from dent_os_testbed.lib.os.linux.linux_process import LinuxProcess
 
-RE_SPACES = re.compile("\s+")
+RE_SPACES = re.compile(r'\s+')
 
 
 class LinuxProcessImpl(LinuxProcess):
@@ -11,7 +11,6 @@ class LinuxProcessImpl(LinuxProcess):
     """
 
     def format_show(self, command, *argv, **kwarg):
-
         """
         Name:    sshd
         Umask:    0022
@@ -37,17 +36,16 @@ class LinuxProcessImpl(LinuxProcess):
         VmRSS:        2972 kB
 
         """
-        if "dut_discovery" in kwarg["params"]:
-            return "ps -eo pid,comm,etime,vsize,time,pmem,bsdtime"
-        if "pid" not in kwarg["params"]:
-            return "cat /proc/stat"
-        cmd = "cat /proc/%s/status" % (kwarg["params"]["pid"])
+        if 'dut_discovery' in kwarg['params']:
+            return 'ps -eo pid,comm,etime,vsize,time,pmem,bsdtime'
+        if 'pid' not in kwarg['params']:
+            return 'cat /proc/stat'
+        cmd = 'cat /proc/%s/status' % (kwarg['params']['pid'])
         # custom code here
 
         return cmd
 
     def parse_show(self, command, output, *argv, **kwarg):
-
         """
         Name:    ksoftirqd/0
         Umask:    0022
@@ -56,33 +54,33 @@ class LinuxProcessImpl(LinuxProcess):
         """
         proc_usage = []
         record = output[2:]
-        if "\\n" in record:
-            records = record.split("\\n")[:-1]
+        if '\\n' in record:
+            records = record.split('\\n')[:-1]
         else:
-            records = record.split("\n")[:-1]
-        if "PID" in records[0]:
+            records = record.split('\n')[:-1]
+        if 'PID' in records[0]:
             # got ps for all the process
-            keys = RE_SPACES.sub(" ", records[0].lower()).strip().split(" ")
+            keys = RE_SPACES.sub(' ', records[0].lower()).strip().split(' ')
             for line in records[1:]:
                 usage = {}
-                line = RE_SPACES.sub(" ", line.lower()).strip().split(" ")
+                line = RE_SPACES.sub(' ', line.lower()).strip().split(' ')
                 for i, k in enumerate(keys):
-                    k = k[1:] if k[0] == "%" else k
+                    k = k[1:] if k[0] == '%' else k
                     try:
                         usage[k] = int(line[i])
-                    except:
+                    except Exception:
                         usage[k] = line[i]
                 proc_usage.append(usage)
         else:
             usage = {}
             for line in records:
-                line = RE_SPACES.sub(" ", line).strip().split(" ")
+                line = RE_SPACES.sub(' ', line).strip().split(' ')
                 key = (
-                    line[0].replace("(", "_").replace(")", "_").replace(":", "").replace("\\t", "")
+                    line[0].replace('(', '_').replace(')', '_').replace(':', '').replace('\\t', '')
                 )
                 try:
                     val = int(line[1])
-                except:
+                except Exception:
                     # only look for integer
                     continue
                 usage[key] = val

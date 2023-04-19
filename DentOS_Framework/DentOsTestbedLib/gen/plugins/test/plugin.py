@@ -46,17 +46,17 @@ from gen.plugins.test.template import (
     py_test_code_two_dev_template_call
 )
 
-dent_prefix = "dent_"
-dent_test_prefix = "test_dent_"
+dent_prefix = 'dent_'
+dent_test_prefix = 'test_dent_'
 
 
-def tokenize(str, by="\n", indent=0):
+def tokenize(str, by='\n', indent=0):
     """
     split the lines based on by and return a list of lines by indenting with spaces
     """
     if indent == 0:
         return str.split(by)
-    return [ (" "*indent + s) for s in str.split(by) ]
+    return [(' '*indent + s) for s in str.split(by)]
 
 
 class TestPyObject(object):
@@ -64,39 +64,39 @@ class TestPyObject(object):
     generates the dent PI python files for each class under dent package
     that has a command implementation in atleast one of the platform
     """
+
     def __init__(self, cls, fname):
         self._cls = cls
         self._fname = fname
-        self._header = [PyLines(lines=tokenize(py_header%self._cls._yfile))]
+        self._header = [PyLines(lines=tokenize(py_header % self._cls._yfile))]
         self._imports = []
         self._classes = []
         self._methods = []
 
     def generate_code(self):
         args = self._cls.to_dict()
-        args["cname_cc"] = camelcase(self._cls.name)
-        self._imports.append(PyImport("pytest"))
-        self._imports.append(PyImport("TestLibObject", _from="dent_os_testbed.lib.test_lib_object "))
+        args['cname_cc'] = camelcase(self._cls.name)
+        self._imports.append(PyImport('pytest'))
+        self._imports.append(PyImport('TestLibObject', _from='dent_os_testbed.lib.test_lib_object '))
         for impl in self._cls.implemented_by:
-            pd_impl = ""
-            if "dentos" in impl.platforms:
+            if 'dentos' in impl.platforms:
                 args['pd_impl_cc'] = '%sImpl' % camelcase(impl.name)
                 args['pd_impl'] = 'linux'
-            elif "ixnetwork" in impl.platforms:
+            elif 'ixnetwork' in impl.platforms:
                 args['pd_impl_cc'] = '%sImpl' % camelcase(impl.name)
                 args['pd_impl'] = 'ixnetwork'
-            elif "dni" in impl.platforms:
+            elif 'dni' in impl.platforms:
                 args['pd_impl_cc'] = '%sImpl' % camelcase(impl.name)
                 args['pd_impl'] = 'dni'
             else:
                 continue
             self._imports.append(
                 PyImport(
-                    "%(pd_impl_cc)s " % args,
-                    _from="dent_os_testbed.lib.%(cls_mod_name)s.%(pd_impl)s."
+                    '%(pd_impl_cc)s ' % args,
+                    _from='dent_os_testbed.lib.%(cls_mod_name)s.%(pd_impl)s.'
                     % (args)
                     + impl.name
-                    + "_impl ",
+                    + '_impl ',
                 )
             )
         # generate the init routine
@@ -104,10 +104,10 @@ class TestPyObject(object):
         impl_form_cmd = ''
         for obj in self._cls.implemented_by:
             iargs = {
-                'cname_cc' : camelcase(obj.name),
+                'cname_cc': camelcase(obj.name),
                 'platforms': obj.platforms,
                 }
-            impl_form_cmd += py_class_common_impl_form_command%iargs
+            impl_form_cmd += py_class_common_impl_form_command % iargs
         args['impl_form_cmd'] = impl_form_cmd
         if self._cls.local:
             args['invoke_command'] = 'rc, output = impl_obj.run_command(device_obj, command=api, params=device[device_name])'
@@ -115,8 +115,8 @@ class TestPyObject(object):
             args['invoke_command'] = 'rc, output = await device_obj.run_cmd(("sudo " if device_obj.ssh_conn_params.pssh else "") + commands)'
         args['local'] = 'impl' if self._cls.local else 'device'
         run_body = tokenize(py_class_common_run % args),
-        methods.append(PyMethod("_run_command",
-                                "api, *argv, **kwarg",
+        methods.append(PyMethod('_run_command',
+                                'api, *argv, **kwarg',
                                 run_body[0],
                                 indent=4, coroutine=True))
         for api in self._cls.apis:
@@ -140,14 +140,14 @@ class TestPyObject(object):
             args['cmd_desc'] = cmd_desc
             run_body = tokenize(py_class_common_run_api % args),
             methods.append(PyMethod(api.lower(),
-                                    "*argv, **kwarg",
+                                    '*argv, **kwarg',
                                     run_body[0],
-                                    indent=4,coroutine=True))
+                                    indent=4, coroutine=True))
         # discard other accessors
         self._classes = [
             PyClass(camelcase(self._cls.name),
                     desc=[PyLines(lines=tokenize(self._cls.desc, indent=8))],
-                    parent="TestLibObject",
+                    parent='TestLibObject',
                     methods=methods)
         ]
 
@@ -160,20 +160,20 @@ class TestCmdPyObject(object):
     def __init__(self, cls, fname):
         self._cls = cls
         self._fname = fname
-        self._header = [PyLines(lines=tokenize(py_header%self._cls._yfile))]
+        self._header = [PyLines(lines=tokenize(py_header % self._cls._yfile))]
         self._imports = []
         self._classes = []
         self._methods = []
 
     def generate_code(self):
-        self._imports.append(PyImport("TestLibObject", _from="dent_os_testbed.lib.test_lib_object "))
+        self._imports.append(PyImport('TestLibObject', _from='dent_os_testbed.lib.test_lib_object '))
         args = self._cls.to_dict()
-        args["cname_cc"] = camelcase(self._cls.name)
+        args['cname_cc'] = camelcase(self._cls.name)
         methods = []
         # add format_cmd method
-        format_entries = ""
-        run_entries = ""
-        parse_entries = ""
+        format_entries = ''
+        run_entries = ''
+        parse_entries = ''
         need_run = False
         for cmd in self._cls.commands:
             # add the methods to handle the generation
@@ -181,7 +181,7 @@ class TestCmdPyObject(object):
             format_cmd_body = tokenize(py_class_common_format_cmd % cargs)
             methods.append(
                 PyMethod(
-                    "format_%s" % cmd.name, "self, command, *argv, **kwarg", format_cmd_body, indent=4,
+                    'format_%s' % cmd.name, 'self, command, *argv, **kwarg', format_cmd_body, indent=4,
                 )
             )
             if self._cls.implements.local:
@@ -189,13 +189,13 @@ class TestCmdPyObject(object):
                 run_cmd_body = tokenize(py_class_common_run_cmd % cargs)
                 methods.append(
                     PyMethod(
-                        "run_%s" % cmd.name, "self, device, command, *argv, **kwarg", run_cmd_body, indent=4,
+                        'run_%s' % cmd.name, 'self, device, command, *argv, **kwarg', run_cmd_body, indent=4,
                     )
                 )
             parse_cmd_body = tokenize(py_class_common_parse_cmd % cargs)
             methods.append(
                 PyMethod(
-                    "parse_%s" % cmd.name, "self, command, output, *argv, **kwarg", parse_cmd_body, indent=4,
+                    'parse_%s' % cmd.name, 'self, command, output, *argv, **kwarg', parse_cmd_body, indent=4,
                 )
             )
             args['cmds'] = cmd.apis
@@ -203,27 +203,27 @@ class TestCmdPyObject(object):
             format_entries += py_class_common_format_cmd_case % (args)
             run_entries += py_class_common_run_cmd_case % (args)
             parse_entries += py_class_common_parse_cmd_case % (args)
-        args["format_entries"] = format_entries
-        args["run_entries"] = run_entries if need_run else ""
-        args["parse_entries"] = parse_entries
+        args['format_entries'] = format_entries
+        args['run_entries'] = run_entries if need_run else ''
+        args['parse_entries'] = parse_entries
         format_cmd_body = tokenize(py_class_common_format_cmds % args)
         methods.append(
-            PyMethod("format_command", "self, command, *argv, **kwarg", format_cmd_body, indent=4)
+            PyMethod('format_command', 'self, command, *argv, **kwarg', format_cmd_body, indent=4)
         )
         if need_run:
             run_cmd_body = tokenize(py_class_common_run_cmds % args)
             methods.append(
-                PyMethod("run_command", "self, device_obj, command, *argv, **kwarg", run_cmd_body, indent=4)
-        )
+                PyMethod('run_command', 'self, device_obj, command, *argv, **kwarg', run_cmd_body, indent=4)
+            )
 
         parse_cmd_body = tokenize(py_class_common_parse_cmds % args)
         methods.append(
-            PyMethod("parse_output", "self, command, output, *argv, **kwarg", parse_cmd_body, indent=4)
+            PyMethod('parse_output', 'self, command, output, *argv, **kwarg', parse_cmd_body, indent=4)
         )
         self._classes.append(
             PyClass(camelcase(self._cls.name),
                     desc=[PyLines(lines=tokenize(self._cls.desc, indent=8))],
-                    parent="TestLibObject",
+                    parent='TestLibObject',
                     methods=methods)
         )
 
@@ -244,45 +244,44 @@ class TestCmdImplPyObject(object):
 
     def generate_code(self):
         args = self._cls.to_dict()
-        args["cname_cc"] = camelcase(self._cls.name)
+        args['cname_cc'] = camelcase(self._cls.name)
         self._imports.append(
             PyImport(
-                "%(cname_cc)s " % args,
-                _from="dent_os_testbed.lib.%s.%s."
+                '%(cname_cc)s ' % args,
+                _from='dent_os_testbed.lib.%s.%s.'
                 % (self._cls._mod.name, self._platform)
                 + self._cls.name
-                + " ",
+                + ' ',
             )
         )
         methods = []
         # add format_cmd method
-        entries = ""
         for cmd in self._cls.commands:
             # add the methods to handle the generation
             cargs = cmd.to_dict()
             format_cmd_body = tokenize(py_impl_class_common_format_cmd % cargs)
             methods.append(
                 PyMethod(
-                    "format_%s" % cmd.name, "self, command, *argv, **kwarg", format_cmd_body, indent=4,
+                    'format_%s' % cmd.name, 'self, command, *argv, **kwarg', format_cmd_body, indent=4,
                 )
             )
             if self._cls.implements.local:
                 run_cmd_body = tokenize(py_impl_class_common_run_cmd % cargs)
                 methods.append(
                     PyMethod(
-                        "run_%s" % cmd.name, "self, device, command, *argv, **kwarg", run_cmd_body, indent=4,
+                        'run_%s' % cmd.name, 'self, device, command, *argv, **kwarg', run_cmd_body, indent=4,
                     )
                 )
 
             parse_cmd_body = tokenize(py_impl_class_common_parse_cmd % cargs)
             methods.append(
                 PyMethod(
-                    "parse_%s" % cmd.name, "self, command, output, *argv, **kwarg", format_cmd_body, indent=4,
+                    'parse_%s' % cmd.name, 'self, command, output, *argv, **kwarg', format_cmd_body, indent=4,
                 )
             )
         self._classes.append(
             PyClass(
-                camelcase(self._cls.name + "Impl"),
+                camelcase(self._cls.name + 'Impl'),
                 desc=[PyLines(lines=tokenize(self._cls.desc, indent=8))],
                 parent=camelcase(self._cls.name),
                 methods=methods,
@@ -308,14 +307,14 @@ class TestPlugin(SamplePlugin):
         6. generate the routine to handle format command and parse output calls from dent py files.
         7. generate the impl.py.gen template file
         """
-        print("Generating Test")
+        print('Generating Test')
         # create the directory
-        tdir = os.path.join(odir, "src/dent_os_testbed/lib/")
+        tdir = os.path.join(odir, 'src/dent_os_testbed/lib/')
         if not os.path.exists(tdir):
             os.makedirs(tdir)
-        #gi = os.path.join(tdir, ".gitignore")
-        #gd = open(gi, "w")
-        for mname, m in dbs["dent"].modules.items():
+        # gi = os.path.join(tdir, ".gitignore")
+        # gd = open(gi, "w")
+        for mname, m in dbs['dent'].modules.items():
             mdir = os.path.join(tdir, mname)
             for c in m.classes:
                 # don't bother generating the py file if there is not event single platform this
@@ -324,83 +323,84 @@ class TestPlugin(SamplePlugin):
                     continue
                 if not os.path.exists(mdir):
                     os.mkdir(mdir)
-                    fname = os.path.join(mdir, "__init__.py")
-                    f = open(fname, "w")
+                    fname = os.path.join(mdir, '__init__.py')
+                    f = open(fname, 'w')
                     f.close()
-                fname = os.path.join(mdir, c.name + ".py")
+                fname = os.path.join(mdir, c.name + '.py')
                 o = TestPyObject(c, fname)
                 o.generate_code()
                 o.write_file()
-                #gd.write(f"{mname}/{c.name}.py\n")
-        for mname, m in dbs["linux"].modules.items():
+                # gd.write(f"{mname}/{c.name}.py\n")
+        for mname, m in dbs['linux'].modules.items():
             mdir = os.path.join(tdir, mname)
-            mdir = os.path.join(mdir, "linux")
+            mdir = os.path.join(mdir, 'linux')
             if not os.path.exists(mdir):
                 os.mkdir(mdir)
-                fname = os.path.join(mdir, "__init__.py")
-                f = open(fname, "w")
+                fname = os.path.join(mdir, '__init__.py')
+                f = open(fname, 'w')
                 f.close()
             for c in m.classes:
-                fname = os.path.join(mdir, c.name + ".py")
+                fname = os.path.join(mdir, c.name + '.py')
                 o = TestCmdPyObject(c, fname)
                 o.generate_code()
                 o.write_file()
-                #gd.write(f"{mname}/linux/{c.name}.py\n")
-                fname = os.path.join(mdir, c.name + "_impl.py")
+                # gd.write(f"{mname}/linux/{c.name}.py\n")
+                fname = os.path.join(mdir, c.name + '_impl.py')
                 if os.path.exists(fname):
                     fname += '.gen'
-                o = TestCmdImplPyObject(c, fname, "linux")
+                o = TestCmdImplPyObject(c, fname, 'linux')
                 o.generate_code()
                 o.write_file()
 
-        for mname, m in dbs["traffic"].modules.items():
+        for mname, m in dbs['traffic'].modules.items():
             mdir = os.path.join(tdir, mname)
-            mdir = os.path.join(mdir, "ixnetwork")
+            mdir = os.path.join(mdir, 'ixnetwork')
             if not os.path.exists(mdir):
                 os.mkdir(mdir)
-                fname = os.path.join(mdir, "__init__.py")
-                f = open(fname, "w")
+                fname = os.path.join(mdir, '__init__.py')
+                f = open(fname, 'w')
                 f.close()
             for c in m.classes:
-                fname = os.path.join(mdir, c.name + ".py")
+                fname = os.path.join(mdir, c.name + '.py')
                 o = TestCmdPyObject(c, fname)
                 o.generate_code()
                 o.write_file()
-                #gd.write(f"{mname}/ixnetwork/{c.name}.py\n")
-                fname = os.path.join(mdir, c.name + "_impl.py")
+                # gd.write(f"{mname}/ixnetwork/{c.name}.py\n")
+                fname = os.path.join(mdir, c.name + '_impl.py')
                 if os.path.exists(fname):
                     fname += '.gen'
-                o = TestCmdImplPyObject(c, fname, "ixnetwork")
+                o = TestCmdImplPyObject(c, fname, 'ixnetwork')
                 o.generate_code()
                 o.write_file()
-                
-        for mname, m in dbs["poe_tester"].modules.items():
+
+        for mname, m in dbs['poe_tester'].modules.items():
             mdir = os.path.join(tdir, mname)
-            mdir = os.path.join(mdir, "dni")
+            mdir = os.path.join(mdir, 'dni')
             if not os.path.exists(mdir):
                 os.mkdir(mdir)
-                fname = os.path.join(mdir, "__init__.py")
-                f = open(fname, "w")
+                fname = os.path.join(mdir, '__init__.py')
+                f = open(fname, 'w')
                 f.close()
             for c in m.classes:
-                fname = os.path.join(mdir, c.name + ".py")
+                fname = os.path.join(mdir, c.name + '.py')
                 o = TestCmdPyObject(c, fname)
                 o.generate_code()
                 o.write_file()
-                #gd.write(f"{mname}/ixnetwork/{c.name}.py\n")
-                fname = os.path.join(mdir, c.name + "_impl.py")
+                # gd.write(f"{mname}/ixnetwork/{c.name}.py\n")
+                fname = os.path.join(mdir, c.name + '_impl.py')
                 if os.path.exists(fname):
                     fname += '.gen'
-                o = TestCmdImplPyObject(c, fname, "dni")
+                o = TestCmdImplPyObject(c, fname, 'dni')
                 o.generate_code()
                 o.write_file()
-        #gd.close()
+        # gd.close()
+
 
 class TestCodePyObject(object):
     def __init__(self, cls, fname):
         self._cls = cls
         self._fname = fname
-        self._header = [PyLines(lines=tokenize(py_header%self._cls._yfile))]
+        self._header = [PyLines(lines=tokenize(py_header % self._cls._yfile))]
         self._imports = []
         self._classes = []
         self._methods = []
@@ -422,49 +422,50 @@ class TestCodePyObject(object):
         if mbr.type == 'bool':
             return 'True' if random.randint(0, 1) else 'False'
         if mbr.type == 'ip_addr_t':
-            return '\''+".".join(map(str, (random.randint(0, 255) for _ in range(4)))) + '\''
+            return '\''+'.'.join(map(str, (random.randint(0, 255) for _ in range(4)))) + '\''
         if mbr.type == 'mac_t':
-            return '\''+ ":".join(map(str, ('%02x'%random.randint(0, 255) for _ in range(6)))) + '\''
+            return '\'' + ':'.join(map(str, ('%02x' % random.randint(0, 255) for _ in range(6)))) + '\''
         return '\'\''
 
     def generate_code(self):
         args = self._cls.to_dict()
-        args["cname_cc"] = camelcase(self._cls.name)
-        self._imports.append(PyImport("asyncio"))
-        self._imports.append(PyImport("TestDevice", _from=".utils "))
+        args['cname_cc'] = camelcase(self._cls.name)
+        self._imports.append(PyImport('asyncio'))
+        self._imports.append(PyImport('TestDevice', _from='.utils '))
         self._imports.append(
             PyImport(
-                "%(cname_cc)s " % args,
-                _from="dent_os_testbed.lib.%s."
+                '%(cname_cc)s ' % args,
+                _from='dent_os_testbed.lib.%s.'
                 % (self._cls._mod.name)
                 + self._cls.name
-                + " ",
+                + ' ',
             )
         )
         for api in self._cls.apis:
-            args["api"] = api
-            test_body_call = ""
+            args['api'] = api
+            test_body_call = ''
             for impl in self._cls.implemented_by:
                 for cmd in impl.commands:
-                    if api not in cmd.apis: continue
-                    args["params1"] = ''
-                    args["params2"] = ''
+                    if api not in cmd.apis:
+                        continue
+                    args['params1'] = ''
+                    args['params2'] = ''
                     for m in cmd.params:
                         if isinstance(m, str):
                             continue
                         # ignore if its readonly
                         if m.readonly:
                             continue
-                        args["params1"] += "        '%s':%s,\n" % (m.name, self.get_random_value(m))
-                        args["params2"] += "        '%s':%s,\n" % (m.name, self.get_random_value(m))
+                        args['params1'] += "        '%s':%s,\n" % (m.name, self.get_random_value(m))
+                        args['params2'] += "        '%s':%s,\n" % (m.name, self.get_random_value(m))
                     test_body_call += py_test_code_two_cmd_template_call % args
                     test_body_call += py_test_code_two_dev_template_call % args
                     break
-            args["platform"]  = self._cls.implemented_by[0].platforms[0]
-            args["cases"] = test_body_call
+            args['platform'] = self._cls.implemented_by[0].platforms[0]
+            args['cases'] = test_body_call
             test_body = tokenize(py_test_code_template % args)
             self._methods.append(
-                PyMethod("test_that_%(cls_name)s_%(api)s" % args, "capfd", test_body)
+                PyMethod('test_that_%(cls_name)s_%(api)s' % args, 'capfd', test_body)
             )
 
     def write_file(self):
@@ -485,24 +486,24 @@ class TestCodePlugin(SamplePlugin):
           2.3 invoke the api with one call on two devices.
         3. expect the command to be formed and the return code alteast.
         """
-        print("Generating Test Code")
+        print('Generating Test Code')
         # create the directory
-        tdir = os.path.join(odir, "test/")
+        tdir = os.path.join(odir, 'test/')
         if not os.path.exists(tdir):
             os.makedirs(tdir)
-        #gi = os.path.join(tdir, ".gitignore")
-        #gd = open(gi, "w")
-        for mname, m in dbs["dent"].modules.items():
+        # gi = os.path.join(tdir, ".gitignore")
+        # gd = open(gi, "w")
+        for mname, m in dbs['dent'].modules.items():
             for c in m.classes:
                 # don't bother generating the py file if there is not event single platform this
                 # class is implemented in
                 if not c.implemented_by:
                     continue
-                fname = os.path.join(tdir, dent_test_prefix + c.name + ".py")
-                #gd.write(dent_test_prefix + c.name + ".py\n")
+                fname = os.path.join(tdir, dent_test_prefix + c.name + '.py')
+                # gd.write(dent_test_prefix + c.name + ".py\n")
                 if os.path.exists(fname):
                     continue
                 o = TestCodePyObject(c, fname)
                 o.generate_code()
                 o.write_file()
-        #gd.close()
+        # gd.close()

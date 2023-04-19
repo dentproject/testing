@@ -42,33 +42,33 @@ class LinuxNtpDateImpl(LinuxNtpDate):
          -v     - Be verbose. This option will cause ntpdate's version identification string to be logged.
 
         """
-        params = kwarg["params"]
-        cmd = "ntpdate {} ".format(command)
-        ############# Implement me ################
+        params = kwarg['params']
+        cmd = 'ntpdate {} '.format(command)
+        # TODO: Implement me
 
-        if "command_options" in params:
-            cmd += "{} ".format(params["command_options"])
+        if 'command_options' in params:
+            cmd += '{} '.format(params['command_options'])
 
-        if "key" in params:
-            cmd += "-a {} ".format(params["key"])
+        if 'key' in params:
+            cmd += '-a {} '.format(params['key'])
 
-        if "authdelay" in params:
-            cmd += "-e {} ".format(params["authdelay"])
+        if 'authdelay' in params:
+            cmd += '-e {} '.format(params['authdelay'])
 
-        if "keyfile" in params:
-            cmd += "-k {} ".format(params["keyfile"])
+        if 'keyfile' in params:
+            cmd += '-k {} '.format(params['keyfile'])
 
-        if "version" in params:
-            cmd += "-o {} ".format(params["version"])
+        if 'version' in params:
+            cmd += '-o {} '.format(params['version'])
 
-        if "samples" in params:
-            cmd += "-p {} ".format(params["samples"])
+        if 'samples' in params:
+            cmd += '-p {} '.format(params['samples'])
 
-        if "timeout" in params:
-            cmd += "-t {} ".format(params["timeout"])
+        if 'timeout' in params:
+            cmd += '-t {} '.format(params['timeout'])
 
-        if "servers" in params:
-            for server in params["servers"]:
-                cmd += "{} ".format(server)
+        if 'servers' in params:
+            for server in params['servers']:
+                cmd += '{} '.format(server)
 
         return cmd

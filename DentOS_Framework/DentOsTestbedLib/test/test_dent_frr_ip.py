@@ -13,25 +13,25 @@ from .utils import TestDevice
 
 def test_that_frr_ip_set(capfd):
 
-    dv1 = TestDevice(platform="dentos")
-    dv2 = TestDevice(platform="dentos")
+    dv1 = TestDevice(platform='dentos')
+    dv2 = TestDevice(platform='dentos')
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
         FrrIp.set(
             input_data=[
                 {
                     # device 1
-                    "test_dev": [{}],
+                    'test_dev': [{}],
                 }
             ],
-            device_obj={"test_dev": dv1},
+            device_obj={'test_dev': dv1},
         )
     )
     print(out)
-    assert "command" in out[0]["test_dev"].keys()
-    assert "result" in out[0]["test_dev"].keys()
+    assert 'command' in out[0]['test_dev'].keys()
+    assert 'result' in out[0]['test_dev'].keys()
     # check the rc
-    assert out[0]["test_dev"]["rc"] == 0
+    assert out[0]['test_dev']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -39,36 +39,36 @@ def test_that_frr_ip_set(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
                             # command 1
-                            "prefix-list": "rhsztebd",
-                            "access-list": "dqalygyx",
-                            "sequence": "lbrytwpe",
-                            "as-path": False,
-                            "options": "bskwjzeu",
+                            'prefix-list': 'rhsztebd',
+                            'access-list': 'dqalygyx',
+                            'sequence': 'lbrytwpe',
+                            'as-path': False,
+                            'options': 'bskwjzeu',
                         },
                         {
                             # command 2
-                            "prefix-list": "cvniacyb",
-                            "access-list": "fqngarrl",
-                            "sequence": "xxpxlgxx",
-                            "as-path": False,
-                            "options": "kjpvmlzz",
+                            'prefix-list': 'cvniacyb',
+                            'access-list': 'fqngarrl',
+                            'sequence': 'xxpxlgxx',
+                            'as-path': False,
+                            'options': 'kjpvmlzz',
                         },
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
 
     loop = asyncio.get_event_loop()
     out = loop.run_until_complete(
@@ -76,37 +76,37 @@ def test_that_frr_ip_set(capfd):
             input_data=[
                 {
                     # device 1
-                    "test_dev1": [
+                    'test_dev1': [
                         {
-                            "prefix-list": "rhsztebd",
-                            "access-list": "dqalygyx",
-                            "sequence": "lbrytwpe",
-                            "as-path": False,
-                            "options": "bskwjzeu",
+                            'prefix-list': 'rhsztebd',
+                            'access-list': 'dqalygyx',
+                            'sequence': 'lbrytwpe',
+                            'as-path': False,
+                            'options': 'bskwjzeu',
                         }
                     ],
                     # device 2
-                    "test_dev2": [
+                    'test_dev2': [
                         {
-                            "prefix-list": "cvniacyb",
-                            "access-list": "fqngarrl",
-                            "sequence": "xxpxlgxx",
-                            "as-path": False,
-                            "options": "kjpvmlzz",
+                            'prefix-list': 'cvniacyb',
+                            'access-list': 'fqngarrl',
+                            'sequence': 'xxpxlgxx',
+                            'as-path': False,
+                            'options': 'kjpvmlzz',
                         }
                     ],
                 }
             ],
-            device_obj={"test_dev1": dv1, "test_dev2": dv2},
+            device_obj={'test_dev1': dv1, 'test_dev2': dv2},
         )
     )
     print(out)
     # check if the command was formed
-    assert "command" in out[0]["test_dev1"].keys()
-    assert "command" in out[1]["test_dev2"].keys()
+    assert 'command' in out[0]['test_dev1'].keys()
+    assert 'command' in out[1]['test_dev2'].keys()
     # check if the result was formed
-    assert "result" in out[0]["test_dev1"].keys()
-    assert "result" in out[1]["test_dev2"].keys()
+    assert 'result' in out[0]['test_dev1'].keys()
+    assert 'result' in out[1]['test_dev2'].keys()
     # check the rc
-    assert out[0]["test_dev1"]["rc"] == 0
-    assert out[1]["test_dev2"]["rc"] == 0
+    assert out[0]['test_dev1']['rc'] == 0
+    assert out[1]['test_dev2']['rc'] == 0

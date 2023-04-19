@@ -3,7 +3,6 @@ import time
 import pytest
 
 from dent_os_testbed.Device import DeviceType
-from dent_os_testbed.lib.iptables.ip_tables import IpTables
 from dent_os_testbed.utils.test_utils.tb_utils import tb_reload_nw_and_flush_firewall
 from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_create_devices_and_connect,
@@ -41,7 +40,7 @@ async def test_all_ports_tgen_w_traffic(testbed):
         1,
     )
     if not tgen_dev or not devices:
-        print("The testbed does not have enough dent with tgen connections")
+        print('The testbed does not have enough dent with tgen connections')
         return
     await tb_reload_nw_and_flush_firewall(devices)
 
@@ -50,13 +49,13 @@ async def test_all_ports_tgen_w_traffic(testbed):
         devices_info[dd.host_name] = [
             # 'count' is the number of endpoints
             {
-                "name": "Pos",
-                "count": 1,
+                'name': 'Pos',
+                'count': 1,
             },
         ]
         # add vlan for infra devices
         if dd.type == DeviceType.INFRA_SWITCH:
-            devices_info[dd.host_name][0]["vlan"] = 100
+            devices_info[dd.host_name][0]['vlan'] = 100
 
     await tgen_utils_create_devices_and_connect(tgen_dev, devices, devices_info, need_vlan=False)
 
@@ -64,32 +63,32 @@ async def test_all_ports_tgen_w_traffic(testbed):
     pos_dst = []
     for dd in devices:
         for swp in tgen_dev.links_dict[dd.host_name][1]:
-            pos_src.append(f"{dd.host_name}_Pos_{swp}")
-            pos_dst.append(f"{dd.host_name}_Pos_{swp}")
+            pos_src.append(f'{dd.host_name}_Pos_{swp}')
+            pos_dst.append(f'{dd.host_name}_Pos_{swp}')
 
     streams = {
-        "tcp_https_pos_flow": {
-            "ip_source": pos_src,
-            "ip_destination": pos_dst,
-            "protocol": "ip",
-            "ipproto": "tcp",
-            "dstPort": "443",
+        'tcp_https_pos_flow': {
+            'ip_source': pos_src,
+            'ip_destination': pos_dst,
+            'protocol': 'ip',
+            'ipproto': 'tcp',
+            'dstPort': '443',
         },
     }
 
     await tgen_utils_setup_streams(
         tgen_dev,
-        pytest._args.config_dir + f"/{tgen_dev.host_name}/tgen_all_ports",
+        pytest._args.config_dir + f'/{tgen_dev.host_name}/tgen_all_ports',
         streams,
         force_update=True,
     )
 
     await tgen_utils_start_traffic(tgen_dev)
     sleep_time = 60 * 2
-    tgen_dev.applog.info(f"zzZZZZZ({sleep_time})s")
+    tgen_dev.applog.info(f'zzZZZZZ({sleep_time})s')
     time.sleep(sleep_time)
     await tgen_utils_stop_traffic(tgen_dev)
-    stats = await tgen_utils_get_traffic_stats(tgen_dev, "Flow Statistics")
+    stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
 
     # Traffic Verification
     for row in stats.Rows:

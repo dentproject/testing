@@ -1,7 +1,6 @@
 # Copyright 2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 #
 
-import time
 
 import pytest
 
@@ -22,7 +21,7 @@ async def test_alpha_lab_services_lldp(testbed):
     1. check for lldp on infra devices
     """
     if not testbed.args.is_provisioned:
-        testbed.applog.info(f"Skipping test since not on provisioned setup")
+        testbed.applog.info('Skipping test since not on provisioned setup')
         return
     # Device should see LLDP advertisements, and display data in a properly formatted output
     # Connect LLDP devices, including cumulus devices
@@ -32,11 +31,11 @@ async def test_alpha_lab_services_lldp(testbed):
         if dev.type not in [DeviceType.INFRA_SWITCH]:
             continue
         out = await Lldp.show(
-            input_data=[{dev.host_name: [{"cmd_options": "-f json"}]}],
+            input_data=[{dev.host_name: [{'cmd_options': '-f json'}]}],
             parse_output=True,
         )
         dev.applog.info(out)
-        assert out[0][dev.host_name]["rc"] == 0, f"Failed to get Lldp on {dev.host_name} {out}"
+        assert out[0][dev.host_name]['rc'] == 0, f'Failed to get Lldp on {dev.host_name} {out}'
         assert len(
-            out[0][dev.host_name]["parsed_output"]
-        ), f"No LLDP members on this device {dev.host_name}"
+            out[0][dev.host_name]['parsed_output']
+        ), f'No LLDP members on this device {dev.host_name}'
