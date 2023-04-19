@@ -1,5 +1,7 @@
+import asyncio
 import pytest
 import time
+
 from dent_os_testbed.lib.ip.ip_link import IpLink
 
 from dent_os_testbed.utils.test_utils.tgen_utils import (
@@ -67,8 +69,13 @@ async def port_state(testbed, counter, software_reboot=False):
         print(f"It took {datetime.now() - start_time} to set entities to 'UP' state.\n")
         if software_reboot:
             await dent_dev.reboot()
-            device_up = await dent_dev.is_connected()
-            assert device_up is True, f'Verify that device: {dent_dev} is up!\n'
+            start = time.time()
+            while time.time() < start + 300:
+                await asyncio.sleep(15)
+                device_up = await dent_dev.is_connected()
+                if device_up:
+                    break
+            assert device_up, f'Verify that device: {dent_dev} is up!\n'
 
 
 async def test_l1_port_state_status(testbed):
