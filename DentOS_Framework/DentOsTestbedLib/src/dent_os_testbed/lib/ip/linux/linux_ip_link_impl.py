@@ -140,6 +140,8 @@ class LinuxIpLinkImpl(LinuxIpLink):
             cmd += 'mcast_querier {} '.format((params['mcast_querier']))
         if 'mcast_querier_interval' in params:
             cmd += 'mcast_querier_interval {} '.format((params['mcast_querier_interval']))
+        if 'vlan_default_pvid' in params:
+            cmd += 'vlan_default_pvid {} '.format((params['vlan_default_pvid']))
         return cmd
 
     def format_show(self, command, *argv, **kwarg):

@@ -70,13 +70,35 @@ async def cleanup_vrfs(dev):
 
 async def cleanup_ip_addrs(dev, tgen_dev):
     """
-    Removes all IP addresses configured during test.
+    Removes all IPv4 and IPv6 addresses configured during test.
+    Restores IPv6 link local address after `ip address flush`.
     Can be used separately or by using `cleanup_addrs` fixture.
     """
     logger = AppLogger(DEFAULT_LOGGER)
     logger.info('Deleting IP addresses from interfaces')
     ports = tgen_dev.links_dict[dev.host_name][1]
-    await IpAddress.flush(input_data=[{dev.host_name: [{'dev': port} for port in ports]}])
+
+    out = await IpAddress.flush(input_data=[{dev.host_name: [{'dev': port} for port in ports]}])
+    if out[0][dev.host_name]['rc'] != 0:
+        return
+
+    out = await IpLink.show(input_data=[{dev.host_name: [
+        {'cmd_options': '-j'}
+    ]}], parse_output=True)
+    if out[0][dev.host_name]['rc'] != 0:
+        return
+
+    cur_state = [(link['ifname'], link['operstate'].lower())
+                 for link in out[0][dev.host_name]['parsed_output']
+                 if link['ifname'] in ports]
+
+    await IpLink.set(input_data=[{dev.host_name: [
+        # setting ports down will also clear their neighbors
+        {'device': port, 'operstate': 'down'} for port in ports
+    ] + [
+        # restore previous port operstate and restore ipv6 link local addr (fe80::/64)
+        {'device': port, 'operstate': state} for port, state in cur_state
+    ]}])
 
 
 async def get_initial_routes(dev):
@@ -165,3 +187,21 @@ async def cleanup_kbyte_per_sec_rate_value(dev, all_values=False, bc=False, unk_
             for device in devlink_entries['param']
         )
         await DevlinkPort.set(input_data=input_data)
+
+
+async def cleanup_bonds(dev):
+    """
+    Removes all bonds created during test.
+    Can be used separately or by using `cleanup_bonds` fixture.
+    """
+    logger = AppLogger(DEFAULT_LOGGER)
+    logger.info('Deleting bonds')
+    out = await IpLink.show(
+        input_data=[{dev.host_name: [{'cmd_options': '-j -d'}]}],
+        parse_output=True
+    )
+    bonds_info = out[0][dev.host_name]['parsed_output']
+    for name in bonds_info:
+        if name.get('linkinfo', {}).get('info_kind') == 'bond':
+            await IpLink.delete(input_data=[{dev.host_name: [
+                 {'device': f"{name['ifname']}"}]}])

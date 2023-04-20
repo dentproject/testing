@@ -5,10 +5,6 @@ import pytest
 from dent_os_testbed.lib.ip.ip_link import IpLink
 from dent_os_testbed.lib.ip.ip_address import IpAddress
 
-from dent_os_testbed.utils.test_utils.tb_utils import (
-    tb_ping_device,
-)
-
 from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_get_dent_devices_with_tgen,
     tgen_utils_traffic_generator_connect,
@@ -18,7 +14,6 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_start_traffic,
     tgen_utils_stop_traffic,
     tgen_utils_get_loss,
-    tgen_utils_send_ns,
 )
 
 from dent_os_testbed.test.test_suite.functional.ipv6.ipv6_utils import (
@@ -90,16 +85,13 @@ async def test_ipv6_basic_config(testbed):
     await tgen_utils_traffic_generator_connect(tgen_dev, tg_ports, ports, dev_groups)
 
     # 2. Verify IP configuration: no errors on IP address adding, connected routes added and offloaded
-    expected_addrs = {
-        ports[0]: [address_map[0].swp_ip, address_map[1].swp_ip],
-        ports[1]: [address_map[2].swp_ip],
-    }
-    await verify_dut_addrs(dent, expected_addrs, plen)
+    expected_addrs = [(info.swp, info.swp_ip, info.plen) for info in address_map]
+    await verify_dut_addrs(dent, expected_addrs, expect_family=('inet6',))
 
-    expected_routes = {
-        ports[0]: [address_map[0].swp_ip[:-1] + f'/{plen}', address_map[1].swp_ip[:-1] + f'/{plen}'],
-        ports[1]: [address_map[2].swp_ip[:-1] + f'/{plen}'],
-    }
+    expected_routes = [{'dev': info.swp,
+                        'dst': info.swp_ip[:-1] + f'/{info.plen}',
+                        'flags': ['rt_trap']}
+                       for info in address_map]
     await verify_dut_routes(dent, expected_routes)
 
     # 3. Send bidirectional traffic between TG ports. Verify clear traffic
@@ -114,14 +106,6 @@ async def test_ipv6_basic_config(testbed):
     }
     await tgen_utils_setup_streams(tgen_dev, None, streams)
 
-    out = await tgen_utils_send_ns(tgen_dev, [{'ixp': tg}
-                                              for tg in tg_ports])
-    assert all(status['success'] for status in out), 'Failed to send IPv6 NS'
-
-    out = await asyncio.gather(*[tb_ping_device(dent_dev, info.tg_ip, pkt_loss_treshold=0, dump=True)
-                                 for info in address_map])
-    assert all(rc == 0 for rc in out), 'Some pings from DUT did not have a reply'
-
     await tgen_utils_start_traffic(tgen_dev)
     await asyncio.sleep(traffic_duration)
     await tgen_utils_stop_traffic(tgen_dev)
@@ -133,17 +117,18 @@ async def test_ipv6_basic_config(testbed):
         assert loss == 0, f'Expected loss: 0%, actual: {loss}%'
 
     # 4. Verify neighbors on DUT
-    expected_neis = {
-        ports[0]: [address_map[0].tg_ip, address_map[1].tg_ip],
-        ports[1]: [address_map[2].tg_ip],
-    }
+    expected_neis = [{'dev': info.swp,
+                      'dst': info.tg_ip,
+                      'states': ['REACHABLE', 'PROBE', 'STALE', 'DELAY']}
+                     for info in address_map]
     await verify_dut_neighbors(dent, expected_neis)
 
     # 5. Delete IP addresses on DUT and send traffic
-    out = await IpAddress.flush(input_data=[{dent: [
-        {'dev': port} for port in ports
+    out = await IpAddress.delete(input_data=[{dent: [
+        {'dev': info.swp, 'prefix': f'{info.swp_ip}/{info.plen}'}
+        for info in address_map
     ]}])
-    assert out[0][dent]['rc'] == 0, 'Failed to flush ipv6 addr'
+    assert out[0][dent]['rc'] == 0, 'Failed to del IP addr from port'
 
     await tgen_utils_start_traffic(tgen_dev)
     await asyncio.sleep(traffic_duration)

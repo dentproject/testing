@@ -85,6 +85,7 @@ async def test_vlan_priority_tag(testbed):
 
     # 5. Verify no traffic loss on receiving ports.
     # 6. Verify priority was not stripped from the packet.
+    await asyncio.sleep(10)  # waiting for traffic to stop on TG
     stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
     for row in stats.Rows:
         assert tgen_utils_get_loss(row) == 0.000, \
