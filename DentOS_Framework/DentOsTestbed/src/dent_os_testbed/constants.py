@@ -78,6 +78,7 @@ PYTEST_SUITES = {
     'suite_functional_l1': 'Functional L1 tests',
     'suite_functional_port_isolation': 'Functional Port Isolation tests',
     'suite_functional_igmp': 'IGMP snooping functional tests',
+    'suite_functional_storm_control': 'Functional Storm Control tests',
 }
 
 PYTEST_SUITE_GROUPS = {
@@ -121,5 +122,6 @@ PYTEST_SUITE_GROUPS = {
         'suite_functional_l1',
         'suite_functional_port_isolation',
         'suite_functional_igmp',
+        'suite_functional_storm_control',
     ]
 }
