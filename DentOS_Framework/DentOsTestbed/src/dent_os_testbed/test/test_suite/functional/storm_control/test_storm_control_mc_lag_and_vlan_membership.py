@@ -1,11 +1,12 @@
 import pytest
-import random
 import asyncio
 
+from dent_os_testbed.test.test_suite.functional.storm_control.storm_control_utils import verify_expected_rx_rate
 from dent_os_testbed.test.test_suite.functional.storm_control.storm_control_utils import devlink_rate_value
 from dent_os_testbed.utils.test_utils.cleanup_utils import cleanup_kbyte_per_sec_rate_value
 from dent_os_testbed.lib.bridge.bridge_vlan import BridgeVlan
 from dent_os_testbed.lib.ip.ip_link import IpLink
+from random import randrange
 
 from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_get_dent_devices_with_tgen,
@@ -14,7 +15,7 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_get_traffic_stats,
     tgen_utils_setup_streams,
     tgen_utils_start_traffic,
-    tgen_utils_get_loss
+    tgen_utils_stop_traffic
 )
 
 pytestmark = [
@@ -38,10 +39,11 @@ async def test_storm_control_mc_lag_and_vlan_membership(testbed):
     5.  Set bridge br0 admin state UP.
     6.  Set ports swp2, swp4 master br0.
     7.  Set bonds bond1, bond2 master br0.
-    8.  Set up the following streams:
+    8.  Set storm control rate limit rule for all TG port.
+    9.  Set up the following streams:
         - Ixia port 4: multicast streams with random generated size of packet.
-    9.  Transmit continues traffic by TG.
-    10. Verify the RX rate on the RX port is as expected - the rate is limited by storm control.
+    10. Transmit continues traffic by TG.
+    11. Verify the RX rate on the RX port is as expected - the rate is limited by storm control.
     """
 
     bridge = 'br0'
@@ -53,7 +55,7 @@ async def test_storm_control_mc_lag_and_vlan_membership(testbed):
     tg_ports = tgen_dev.links_dict[device_host_name][0]
     ports = tgen_dev.links_dict[device_host_name][1]
     traffic_duration = 15
-    pps_value = 1000
+    kbyte_value = 83511
 
     for x in range(2):
         out = await IpLink.add(
@@ -117,27 +119,19 @@ async def test_storm_control_mc_lag_and_vlan_membership(testbed):
             for x in range(2)]}])
     assert out[0][device_host_name]['rc'] == 0, f"Verify that entities added to vid '1' and '2'.\n{out}"
 
-    await devlink_rate_value(dev=f'pci/0000:01:00.0/{ports[0].replace("swp","")}',
-                             name='unk_uc_kbyte_per_sec_rate', value=94404,
-                             cmode='runtime', device_host_name=device_host_name, set=True, verify=True)
-    await devlink_rate_value(dev=f'pci/0000:01:00.0/{ports[1].replace("swp","")}',
-                             name='bc_kbyte_per_sec_rate', value=1210,
-                             cmode='runtime', device_host_name=device_host_name, set=True, verify=True)
-    await devlink_rate_value(dev=f'pci/0000:01:00.0/{ports[1].replace("swp","")}',
-                             name='unreg_mc_kbyte_per_sec_rate', value=35099,
-                             cmode='runtime', device_host_name=device_host_name, set=True, verify=True)
-    await devlink_rate_value(dev=f'pci/0000:01:00.0/{ports[1].replace("swp","")}',
-                             name='unk_uc_kbyte_per_sec_rate', value=37519,
-                             cmode='runtime', device_host_name=device_host_name, set=True, verify=True)
-    await devlink_rate_value(dev=f'pci/0000:01:00.0/{ports[2].replace("swp","")}',
-                             name='bc_kbyte_per_sec_rate', value=32678,
-                             cmode='runtime', device_host_name=device_host_name, set=True, verify=True)
-    await devlink_rate_value(dev=f'pci/0000:01:00.0/{ports[2].replace("swp","")}',
-                             name='unk_uc_kbyte_per_sec_rate', value=36309,
-                             cmode='runtime', device_host_name=device_host_name, set=True, verify=True)
-    await devlink_rate_value(dev=f'pci/0000:01:00.0/{ports[3].replace("swp","")}',
-                             name='unreg_mc_kbyte_per_sec_rate', value=83511,
-                             cmode='runtime', device_host_name=device_host_name, set=True, verify=True)
+    params = [
+        {'port': ports[0], 'name': 'unk_uc_kbyte_per_sec_rate', 'value': 94404},
+        {'port': ports[1], 'name': 'bc_kbyte_per_sec_rate', 'value': 1210},
+        {'port': ports[1], 'name': 'unreg_mc_kbyte_per_sec_rate', 'value': 35099},
+        {'port': ports[1], 'name': 'unk_uc_kbyte_per_sec_rate', 'value': 37519},
+        {'port': ports[2], 'name': 'bc_kbyte_per_sec_rate', 'value': 32678},
+        {'port': ports[2], 'name': 'unk_uc_kbyte_per_sec_rate', 'value': 36309},
+        {'port': ports[3], 'name': 'unreg_mc_kbyte_per_sec_rate', 'value': kbyte_value}
+    ]
+    for value in params:
+        await devlink_rate_value(dev=f'pci/0000:01:00.0/{value["port"].replace("swp","")}',
+                                 name=value['name'], value=value['value'],
+                                 cmode='runtime', device_host_name=device_host_name, set=True, verify=True)
 
     try:
         address_map = (
@@ -158,36 +152,32 @@ async def test_storm_control_mc_lag_and_vlan_membership(testbed):
         """
         Set up the following streams:
         — stream_1 —   |  — stream_2 —  |  — stream_3 —
-        swp4 -> swp1   |  swp4 -> swp2  |  swp1 -> swp3
+        swp4 -> swp1   |  swp4 -> swp2  |  swp4 -> swp3
         """
 
-        for x in range(3):
-            streams = {
-                f'stream_{x+1}_mc_swp4->swp{x+1}': {
-                    'ip_source': dev_groups[tg_ports[3]][0]['name'],
-                    'ip_destination': dev_groups[tg_ports[x]][0]['name'],
-                    'srcMac': f'74:c9:fe:eb:d5:8{x+1}',
-                    'dstMac': f'01:00:5E:3{x+1}:2e:7f',
-                    'frameSize': random.randint(128, 512),
-                    'rate': pps_value,
-                    'protocol': '0x0800',
-                    'type': 'raw'
-                }
-            }
+        streams = {
+            f'stream_{x+1}_mc_swp4->swp{x+1}': {
+                'ip_source': dev_groups[tg_ports[3]][0]['name'],
+                'ip_destination': dev_groups[tg_ports[x]][0]['name'],
+                'srcMac': f'74:c9:fe:eb:d5:8{x+1}',
+                'dstMac': f'01:00:5E:3{x+1}:2e:7f',
+                'frameSize': randrange(100, 1500),
+                'frame_rate_type': 'line_rate',
+                'rate': 30,
+                'protocol': '0x0800',
+                'type': 'raw'
+            } for x in range(3)
+        }
 
-            await tgen_utils_setup_streams(tgen_dev, config_file_name=None, streams=streams)
-            await tgen_utils_start_traffic(tgen_dev)
-            await asyncio.sleep(traffic_duration)
+        await tgen_utils_setup_streams(tgen_dev, config_file_name=None, streams=streams)
+        await tgen_utils_start_traffic(tgen_dev)
+        await asyncio.sleep(traffic_duration)
 
         # check the traffic stats
-        stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
-        expected_loss = {
-            'stream_1_mc_swp4->swp1': 100,
-            'stream_2_mc_swp4->swp2': 100,
-            'stream_3_mc_swp4->swp3': 0
-        }
-        for row in stats.Rows:
-            assert tgen_utils_get_loss(row) == expected_loss[row['Traffic Item']], \
-                'Verify that traffic forwarded/not forwarded in accordance.'
+        stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Port Statistics')
+        await verify_expected_rx_rate(kbyte_value, stats,
+                                      rx_ports=[streams['stream_3_mc_swp4->swp3']['ip_destination']],
+                                      deviation=0.10)
     finally:
-        await cleanup_kbyte_per_sec_rate_value(dent_dev, all_values=True)
+        await tgen_utils_stop_traffic(tgen_dev)
+        await cleanup_kbyte_per_sec_rate_value(dent_dev, tgen_dev, all_values=True)
