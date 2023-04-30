@@ -3,7 +3,6 @@ import re
 from dent_os_testbed.lib.ethtool.linux.linux_ethtool import LinuxEthtool
 
 RE_SPACES = re.compile(r'\s+')
-RE_SPEEDS = re.compile(r'(10\d*baseT/(Half|Full))')
 
 
 class LinuxEthtoolImpl(LinuxEthtool):
@@ -107,16 +106,16 @@ class LinuxEthtoolImpl(LinuxEthtool):
             records = record.split('\\n')[:-1]
         else:
             records = record.split('\n')[:-1]
-        speeds = []
+        previous_key = None
         for line in records:
+            if ':' not in line and previous_key:
+                ethtool_info[previous_key] += ' ' + line.strip()
+                continue
             line = RE_SPACES.sub(' ', line).strip().split(':')
-            key = line[0].replace(' ', '_').lower()
+            key = line[0].replace(' ', '_').lower().strip()
             val = ' '.join(line[1:])
-            supp_speeds = RE_SPEEDS.findall(val)
-            if supp_speeds:
-                speeds.extend(supp_speed[0] for supp_speed in supp_speeds)
-            ethtool_info[key.strip()] = val.strip()
-        ethtool_info['supported_speeds'] = speeds
+            ethtool_info[key] = val.strip()
+            previous_key = key
         return ethtool_info
 
     def format_set(self, command, *argv, **kwarg):
