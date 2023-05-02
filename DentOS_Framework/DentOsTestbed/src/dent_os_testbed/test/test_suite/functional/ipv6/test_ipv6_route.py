@@ -125,6 +125,7 @@ async def test_ipv6_route_default_offload(testbed):
                         'dst': 'default',
                         'gateway': route['gw'],
                         'metric': route['metric'],
+                        'should_exist': True,
                         'flags': ['rt_offload'] if route['should_offload'] else []}
                        for route in route_map]
     await verify_dut_routes(dent, expected_routes)
@@ -156,6 +157,7 @@ async def test_ipv6_route_default_offload(testbed):
                         'dst': 'default',
                         'gateway': route['gw'],
                         'metric': route['metric'],
+                        'should_exist': True,
                         'flags': ['rt_offload'] if route['should_offload'] else []}
                        for route in route_map]
     await verify_dut_routes(dent, expected_routes)
@@ -275,10 +277,12 @@ async def test_ipv6_route_hosts_offload(testbed):
     # 3. Verify routes offloaded
     expected_routes = [{'dev': info.swp,
                         'dst': info.swp_ip[:-1] + f'/{info.plen}',
+                        'should_exist': True,
                         'flags': ['rt_trap']}
                        for info in address_map]
     expected_routes += [{'dev': link.swp,
                          'dst': dst + (f'/{plen}' if plen != 128 else ''),
+                         'should_exist': True,
                          'flags': ['offload', 'rt_offload']}
                         for dst, plen, link in routes]
     await verify_dut_routes(dent, expected_routes)
@@ -336,6 +340,7 @@ async def test_ipv6_route_hosts_offload(testbed):
     routes.pop()
     expected_routes += [{'dev': link.swp,
                          'dst': f'{dst}/{plen}',
+                         'should_exist': True,
                          'flags': ['offload', 'rt_offload']}
                         for dst, plen, link in routes]
     await verify_dut_routes(dent, expected_routes)

@@ -115,6 +115,7 @@ async def test_ipv6_on_bridge(testbed):
     #    connected routes added and offloaded
     expected_routes = [{'dev': info.swp,
                         'dst': info.swp_ip[:-1] + f'/{info.plen}',
+                        'should_exist': True,
                         'flags': ['rt_trap']}
                        for info in address_map]
     await verify_dut_routes(dent, expected_routes)
@@ -334,6 +335,7 @@ async def test_ipv6_move_host_on_bridge(testbed):
     # 2. Verify IP configuration: no errors on IP address adding, connected routes added and offloaded
     expected_routes = [{'dev': info.swp,
                         'dst': info.swp_ip[:-1] + f'/{info.plen}',
+                        'should_exist': True,
                         'flags': ['rt_trap']}
                        for info in address_map]
     await verify_dut_routes(dent, expected_routes)
