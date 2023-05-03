@@ -12,6 +12,7 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_get_traffic_stats,
     tgen_utils_setup_streams,
     tgen_utils_start_traffic,
+    tgen_utils_stop_traffic,
     tgen_utils_get_loss
 )
 
@@ -160,3 +161,5 @@ async def test_port_isolation_enable_disable_feature_under_ws_traffic(testbed):
 
             await tgen_utils_clear_traffic_stats(tgen_dev)
             await asyncio.sleep(traffic_duration/2)
+
+    await tgen_utils_stop_traffic(tgen_dev)

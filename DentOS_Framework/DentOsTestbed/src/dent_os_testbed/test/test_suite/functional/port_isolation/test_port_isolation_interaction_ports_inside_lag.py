@@ -50,7 +50,7 @@ async def test_port_isolation_interaction_ports_inside_lag(testbed):
     device_host_name = dent_devices[0].host_name
     tg_ports = tgen_dev.links_dict[device_host_name][0]
     ports = tgen_dev.links_dict[device_host_name][1]
-    traffic_duration = 10
+    traffic_duration = 15
     pps_value = 1000
 
     for x in range(2):
