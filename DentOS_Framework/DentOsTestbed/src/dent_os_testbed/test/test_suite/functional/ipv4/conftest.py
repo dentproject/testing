@@ -94,14 +94,13 @@ async def remove_default_gateway(testbed):
 
 
 @pytest_asyncio.fixture()
-async def change_port_mtu(testbed):
+async def cleanup_mtu(testbed):
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 4)
     if not tgen_dev or not dent_devices:
         print('The testbed does not have enough dent with tgen connections')
         return
     dent = dent_devices[0].host_name
     ports = tgen_dev.links_dict[dent][1]
-    mtu = 1000
 
     # Get current mtu to restore it later
     out = await IpLink.show(input_data=[{dent: [
@@ -110,12 +109,6 @@ async def change_port_mtu(testbed):
     assert out[0][dent]['rc'] == 0, 'Failed to get ports'
 
     def_mtu_map = [link for link in out[0][dent]['parsed_output'] if link['ifname'] in ports]
-
-    # Configure new mtu
-    out = await IpLink.set(input_data=[{dent: [
-        {'device': port, 'mtu': mtu} for port in ports
-    ]}])
-    assert out[0][dent]['rc'] == 0, 'Failed to set port mtu'
 
     yield  # Run the test
 

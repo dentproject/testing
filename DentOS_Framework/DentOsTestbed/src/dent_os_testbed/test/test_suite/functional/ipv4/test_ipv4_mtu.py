@@ -34,7 +34,7 @@ async def get_port_stats(dent, ports):
     return stats
 
 
-@pytest.mark.usefixtures('change_port_mtu')
+@pytest.mark.usefixtures('cleanup_mtu')
 async def test_ipv4_oversized_mtu(testbed):
     """
     Test Name: test_ipv4_oversized_mtu
@@ -57,6 +57,8 @@ async def test_ipv4_oversized_mtu(testbed):
     ports = tgen_dev.links_dict[dent][1]
     traffic_duration = 10
     delayed_stats_update_time = 10
+    mtu = 1000
+
     address_map = (
         # swp port, tg port,    swp ip,    tg ip,     plen
         (ports[0], tg_ports[0], '1.1.1.1', '1.1.1.2', 24),
@@ -101,7 +103,11 @@ async def test_ipv4_oversized_mtu(testbed):
 
     await tgen_utils_setup_streams(tgen_dev, None, streams)
 
-    # 4. Port mtu should be configured in the change_port_mtu fixture
+    # 4. Configure interfaces MTU to 1000
+    out = await IpLink.set(input_data=[{dent: [
+        {'device': port, 'mtu': mtu} for port in ports
+    ]}])
+    assert out[0][dent]['rc'] == 0, 'Failed to set port mtu'
 
     # 5. Generate traffic with packet size 1200
     old_stats = await get_port_stats(dent, (port for port, *_ in address_map))
