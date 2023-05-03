@@ -85,8 +85,16 @@ async def test_ipv6_basic_config(testbed):
     await tgen_utils_traffic_generator_connect(tgen_dev, tg_ports, ports, dev_groups)
 
     # 2. Verify IP configuration: no errors on IP address adding, connected routes added and offloaded
-    expected_addrs = [(info.swp, info.swp_ip, info.plen) for info in address_map]
-    await verify_dut_addrs(dent, expected_addrs, expect_family=('inet6',))
+    expected_addrs = [
+        {'ifname': info.swp,
+         'should_exist': True,
+         'addr_info': {
+            'family': 'inet6',
+            'local': info.swp_ip,
+            'prefixlen': info.plen}}
+        for info in address_map
+    ]
+    await verify_dut_addrs(dent, expected_addrs)
 
     expected_routes = [{'dev': info.swp,
                         'dst': info.swp_ip[:-1] + f'/{info.plen}',

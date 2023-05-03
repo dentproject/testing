@@ -69,35 +69,26 @@ async def verify_dut_neighbors(dent, expected_neis):
     return learned_macs
 
 
-async def verify_dut_addrs(dent, expected_addrs, expect_family=('inet', 'inet6')):
+async def verify_dut_addrs(dent, expected_addrs):
     out = await IpAddress.show(input_data=[{dent: [
-        {'cmd_options': '-j -4'}
+        {'cmd_options': '-j'}
     ]}], parse_output=True)
     assert out[0][dent]['rc'] == 0, 'Failed to get IPv4 addr'
-    links = out[0][dent]['parsed_output']
 
-    out = await IpAddress.show(input_data=[{dent: [
-        {'cmd_options': '-j -6'}
-    ]}], parse_output=True)
-    assert out[0][dent]['rc'] == 0, 'Failed to get IPv6 addr'
-    links += out[0][dent]['parsed_output']
-
-    for swp, ip, plen in expected_addrs:
-        for link in links:
-            if swp != link['ifname']:
+    for expected_addr in expected_addrs:
+        for link in out[0][dent]['parsed_output']:
+            if not all(expected_addr[key] == link.get(key)
+                       for key in expected_addr
+                       if key not in ['addr_info', 'should_exist']):
+                # if some keys do not match go to the next link
                 continue
             # link found
-            for addr in link['addr_info']:
-                if ip != addr['local']:
-                    continue
-                # IP addr found
-                assert addr['family'] in expect_family, f'Expected {addr} to be {expect_family}'
-                assert addr['prefixlen'] == plen, f'Expected {addr} prefix length to be {plen}'
+            if any(all(expected_addr['addr_info'][key] == addr.get(key)
+                       for key in expected_addr['addr_info'])
+                   for addr in link['addr_info']):
+                # addr in link found
+                assert expected_addr['should_exist'], f'Link {link} found, but not expected'
                 break
-            else:  # IP addr not found
-                # `links` list might have duplicate entries (for ipv4 and ipv6),
-                # thus we need to look through all of the entries.
-                continue
-            break
-        else:  # `swp` with `ip` addr not found
-            raise LookupError(f'IP addr {swp, addr} expected, but not found')
+        else:  # link with addr not found
+            if expected_addr['should_exist']:
+                raise LookupError(f'IP addr {expected_addr} expected, but not found')
