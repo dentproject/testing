@@ -585,7 +585,8 @@ async def tb_get_qualified_ports(device, ports, speed, duplex, required_ports=2)
             speed_ports[port] = {'speed': speed,
                                  'duplex': duplex}
     err_msg = f'Need {required_ports} ports with the same speed of {speed} and duplex {duplex}'
-    assert len(speed_ports) >= required_ports, err_msg
+    if len(speed_ports) < required_ports:
+        raise ValueError(err_msg)
     return speed_ports
 
 

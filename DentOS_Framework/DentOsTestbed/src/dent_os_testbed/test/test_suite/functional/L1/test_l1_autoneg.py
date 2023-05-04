@@ -69,7 +69,10 @@ async def test_l1_autoneg(testbed, speed, duplex):
         '1000_full': '0x020',
         '10000_full': '0x1000'
     }
-    speed_ports = await tb_get_qualified_ports(dent_dev, ports, speed, duplex)
+    try:
+        speed_ports = await tb_get_qualified_ports(dent_dev, ports, speed, duplex)
+    except ValueError as e:
+        pytest.skip(str(e))
 
     # 1. Create bridge entity
     out = await IpLink.add(input_data=[{device_host_name: [{'device': 'br0', 'type': 'bridge'}]}])
