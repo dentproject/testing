@@ -48,24 +48,30 @@ async def verify_dut_neighbors(dent, expected_neis):
 
     for expected_nei in expected_neis:
         for nei in neighbors:
-            for key in expected_nei:  # find matching neighbor
-                if key == 'states':
-                    continue
-                if expected_nei[key] != nei[key]:
-                    break
-            else:  # neighbor found
-                assert 'offload' in nei, f'Neighbor {nei} should be offloaded'
-                assert nei['state'][0] in expected_nei['states'], \
-                    f'Neighbor {nei} should have one of {expected_nei["states"]} states'
-                break
+            if not all(expected_nei[key] == nei.get(key)
+                       for key in expected_nei
+                       if key not in ['states', 'offload', 'should_exist']):
+                # if some keys do not match go to the next neighbor
+                continue
+            # neighbor found
+            assert expected_nei['should_exist'], f'Neighbor {nei} found, but not expected'
+            assert nei['state'][0] in expected_nei['states'], \
+                f'Neighbor {nei} should have one of {expected_nei["states"]} states'
+            if 'offload' in expected_nei:
+                # neighbor is offloaded when the entry has the 'offload' key (the value does not matter)
+                assert ('offload' in nei) == expected_nei['offload'], \
+                    f'Expected offload state {expected_nei["offload"]}, but neighbor has {nei}'
+            break
         else:  # neighbor not found
-            raise LookupError(f'Neighbor {expected_nei} expected, but not found')
+            if expected_nei['should_exist']:
+                raise LookupError(f'Neighbor {expected_nei} expected, but not found')
 
     learned_macs = {}
     for nei in neighbors:
         if nei['dev'] not in learned_macs:
             learned_macs[nei['dev']] = []
-        learned_macs[nei['dev']].append(nei['lladdr'])
+        if 'lladdr' in nei:
+            learned_macs[nei['dev']].append(nei['lladdr'])
     return learned_macs
 
 

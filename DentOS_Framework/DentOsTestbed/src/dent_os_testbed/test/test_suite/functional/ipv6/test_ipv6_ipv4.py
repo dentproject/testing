@@ -190,10 +190,14 @@ async def test_ipv64_nh_reconfig(testbed):
 
         expected_neis = [{'dev': info.swp,
                           'dst': info.tg_ip,
+                          'should_exist': True,
+                          'offload': True,
                           'states': ['REACHABLE', 'PROBE', 'STALE', 'DELAY']}
                          for info in address_map[version]]
         expected_neis += [{'dev': nh_route[version].swp,
                            'dst': nh_route[version].via,
+                           'should_exist': True,
+                           'offload': True,
                            'states': ['PERMANENT']}]
         await verify_dut_neighbors(dent, expected_neis)
 
@@ -368,10 +372,14 @@ async def test_ipv64_nh_routes(testbed):
     # 6. Verify neighbors resolved
     expected_neis = [{'dev': info.swp,
                       'dst': info.tg_ip,
+                      'should_exist': True,
+                      'offload': True,
                       'states': ['REACHABLE', 'PROBE', 'STALE', 'DELAY']}
                      for info in address_map]
     expected_neis += [{'dev': route.swp,
                        'dst': route.via,
+                       'should_exist': True,
+                       'offload': True,
                        'states': ['PERMANENT']}
                       for route in nh_route]
     await verify_dut_neighbors(dent, expected_neis)

@@ -135,6 +135,8 @@ async def test_ipv6_on_bridge(testbed):
     # 5. Verify neighbors resolved
     expected_neis = [{'dev': info.swp,
                       'dst': info.tg_ip,
+                      'should_exist': True,
+                      'offload': True,
                       'states': ['REACHABLE', 'PROBE', 'STALE', 'DELAY']}
                      for info in address_map]
     await verify_dut_neighbors(dent, expected_neis)
@@ -355,6 +357,8 @@ async def test_ipv6_move_host_on_bridge(testbed):
     # 4. Verify neighbors resolved
     expected_neis = [{'dev': info.swp,
                       'dst': info.tg_ip,
+                      'should_exist': True,
+                      'offload': True,
                       'states': ['REACHABLE', 'PROBE', 'STALE', 'DELAY']}
                      for info in address_map]
     learned_macs = await verify_dut_neighbors(dent, expected_neis)

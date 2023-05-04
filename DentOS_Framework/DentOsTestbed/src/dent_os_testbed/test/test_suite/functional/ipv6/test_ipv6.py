@@ -128,6 +128,8 @@ async def test_ipv6_basic_config(testbed):
     # 4. Verify neighbors on DUT
     expected_neis = [{'dev': info.swp,
                       'dst': info.tg_ip,
+                      'should_exist': True,
+                      'offload': True,
                       'states': ['REACHABLE', 'PROBE', 'STALE', 'DELAY']}
                      for info in address_map]
     await verify_dut_neighbors(dent, expected_neis)
