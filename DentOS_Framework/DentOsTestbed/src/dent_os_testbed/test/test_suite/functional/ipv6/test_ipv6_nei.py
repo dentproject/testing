@@ -31,37 +31,20 @@ pytestmark = [
 ]
 
 
-def neigbors_match_expectation(neighbors, expected_neis):
-    status = []
-    for expected in expected_neis:
-        for nei in neighbors:
-            if expected['dev'] == nei['dev'] and \
-               expected['dst'] == nei['dst']:
-                status.append(expected['should_exist'] and
-                              expected['state'] == nei['state'][0])
-                break
-        else:  # none of the neighbors matched expected
-            status.append(not expected['should_exist'])
-    return all(status)
-
-
 async def wait_for_nei_state(dent_dev, expected_neis, timeout=60, poll_interval=10):
     dent_dev.applog.info('Begin neighbor polling')
     start = time.time()
     while time.time() < start + timeout:
-        out = await IpNeighbor.show(input_data=[{dent_dev.host_name: [
-            {'cmd_options': '-j -6'}
-        ]}], parse_output=True)
-        assert out[0][dent_dev.host_name]['rc'] == 0, 'Failed to get DUT neighbors'
-
-        neighbors = out[0][dent_dev.host_name]['parsed_output']
-        if neigbors_match_expectation(neighbors, expected_neis):
+        try:
+            await verify_dut_neighbors(dent_dev.host_name, expected_neis)
+        except (AssertionError, LookupError) as e:
+            dent_dev.applog.debug(f'Neighbors did not match expectation. Trying again in {poll_interval}s\n{e}')
+            await asyncio.sleep(poll_interval)
+        else:
             dent_dev.applog.info(f'Neighbors matched expectation after {(time.time() - start) // 1}s')
             return
-        dent_dev.applog.debug(f'Neighbors did not match expectation. Trying again in {poll_interval}s')
-        await asyncio.sleep(poll_interval)
 
-    raise TimeoutError(f'Expected neighbors {expected_neis}, but not found.\n{neighbors}')
+    raise TimeoutError(f'Neighbors did not have expected state\n{expected_neis}')
 
 
 async def test_ipv6_nei_ageing(testbed):
@@ -177,11 +160,11 @@ async def test_ipv6_nei_ageing(testbed):
     start = time.time()
 
     # 1.3 Check that neighbor entries are STALE
-    expected = [
-        {'dev': info.swp, 'dst': info.tg_ip, 'should_exist': True, 'state': 'STALE'}
+    expected_neis = [
+        {'dev': info.swp, 'dst': info.tg_ip, 'should_exist': True, 'offload': True, 'states': ['STALE']}
         for info in address_map
     ]
-    await wait_for_nei_state(dent_dev, expected)
+    await wait_for_nei_state(dent_dev, expected_neis)
     elapsed = time.time() - start
     assert elapsed < gc_stale_time_s + gc_interval_s, \
         f'Expected neighbors to be STALE after no more than {gc_stale_time_s + gc_interval_s = }s, ' + \
@@ -190,7 +173,7 @@ async def test_ipv6_nei_ageing(testbed):
     # 1.4 Check that neighbor entries are still STALE and not aged
     dent_dev.applog.info(f'Wait for a total of {gc_stale_time_s*3 = }s to make sure that neighbors did not age')
     await asyncio.sleep(start - time.time() + gc_stale_time_s*3)
-    await wait_for_nei_state(dent_dev, expected, timeout=10)
+    await wait_for_nei_state(dent_dev, expected_neis, timeout=10)
 
     # Scenario #2
     # 2.1 Set a large gc_stale_time_s value, set small threshold values
@@ -218,33 +201,27 @@ async def test_ipv6_nei_ageing(testbed):
     start = time.time()
 
     # 2.3 Check that neighbor entries are REACHABLE
-    expected = [
-        {'dev': info.swp, 'dst': info.tg_ip, 'should_exist': True, 'state': 'REACHABLE'}
+    expected_neis = [
+        {'dev': info.swp, 'dst': info.tg_ip, 'should_exist': True, 'offload': True, 'states': ['REACHABLE']}
         for info in address_map
     ]
-    await wait_for_nei_state(dent_dev, expected, poll_interval=nei_update_time_s)
+    await wait_for_nei_state(dent_dev, expected_neis, poll_interval=nei_update_time_s)
     elapsed = time.time() - start
     assert elapsed < base_reach_time_s, \
         f'Expected neighbors to be REACHABLE after no more than {base_reach_time_s = }s, ' + \
         f'but waited for {elapsed // 1}s'
 
     # 2.4 Check that neighbor entries are STALE
-    expected = [
-        {'dev': info.swp, 'dst': info.tg_ip, 'should_exist': True, 'state': 'STALE'}
-        for info in address_map
-    ]
-    await wait_for_nei_state(dent_dev, expected)
+    [nei.update({'states': ['STALE']}) for nei in expected_neis]
+    await wait_for_nei_state(dent_dev, expected_neis)
     elapsed = time.time() - start
     assert elapsed < new_gc_stale_time_s + gc_interval_s, \
         f'Expected neighbors to be STALE after no more than {new_gc_stale_time_s + gc_interval_s = }s, ' + \
         f'but waited for {elapsed // 1}s'
 
     # 2.5 Check that neighbor entries are aged
-    expected = [
-        {'dev': info.swp, 'dst': info.tg_ip, 'should_exist': False}
-        for info in address_map
-    ]
-    await wait_for_nei_state(dent_dev, expected, timeout=new_gc_stale_time_s*2)
+    [nei.update({'should_exist': False}) for nei in expected_neis]
+    await wait_for_nei_state(dent_dev, expected_neis, timeout=new_gc_stale_time_s*2)
     elapsed = time.time() - start
     assert gc_stale_time_s*2 < elapsed < new_gc_stale_time_s*2, \
         f'Expected neighbors to be STALE after no more than {new_gc_stale_time_s*2 = }s, ' + \
@@ -292,12 +269,16 @@ async def test_ipv6_nei_ageing(testbed):
     ])
     assert all(rc == 0 for rc in out), 'Some pings did not have a reply'
 
+    # Changing state from REACHABLE to STALE is random, so don't bother to
+    # keep track of that
+    start = time.time()
+
     # 3.4 Check that neighbor entries are STALE
-    expected = [
-        {'dev': info.swp, 'dst': info.tg_ip, 'should_exist': True, 'state': 'STALE'}
+    expected_neis = [
+        {'dev': info.swp, 'dst': info.tg_ip, 'should_exist': True, 'offload': True, 'states': ['STALE']}
         for info in address_map
     ]
-    await wait_for_nei_state(dent_dev, expected, poll_interval=nei_update_time_s)
+    await wait_for_nei_state(dent_dev, expected_neis, poll_interval=nei_update_time_s)
     elapsed = time.time() - start
     expected_time = base_reach_time_s*1.5 + gc_interval_s*2 + nei_update_time_s
     assert elapsed < expected_time, \
@@ -305,11 +286,15 @@ async def test_ipv6_nei_ageing(testbed):
         f'but waited for {elapsed // 1}s'
 
     # 3.5 Check that neighbor entries are aged only on the first port
-    expected = [
-        {'dev': info.swp, 'dst': info.tg_ip, 'should_exist': info.tg == tg_ports[1], 'state': 'STALE'}
+    expected_neis = [
+        {'dev': info.swp,
+         'dst': info.tg_ip,
+         'should_exist': info.tg == tg_ports[1],
+         'offload': True,
+         'states': ['STALE']}
         for info in address_map
     ]
-    await wait_for_nei_state(dent_dev, expected, timeout=gc_stale_time_s + gc_interval_s*2)
+    await wait_for_nei_state(dent_dev, expected_neis, timeout=gc_stale_time_s + gc_interval_s*2)
     elapsed = time.time() - start
     expected_time = gc_stale_time_s + gc_interval_s*2 + nei_update_time_s
     assert elapsed < expected_time, \
@@ -317,11 +302,8 @@ async def test_ipv6_nei_ageing(testbed):
         f'but waited for {elapsed // 1}s'
 
     # 3.6 Check that neighbor entries on the second port are aged in the next time window
-    expected = [
-        {'dev': info.swp, 'dst': info.tg_ip, 'should_exist': False}
-        for info in address_map
-    ]
-    await wait_for_nei_state(dent_dev, expected)
+    [nei.update({'should_exist': False}) for nei in expected_neis]
+    await wait_for_nei_state(dent_dev, expected_neis)
     elapsed = time.time() - start
     expected_time = gc_stale_time_s + gc_interval_s*3
     assert elapsed < expected_time, \
