@@ -19,7 +19,7 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
 pytestmark = [
     pytest.mark.suite_functional_bridging,
     pytest.mark.asyncio,
-    pytest.mark.usefixtures('cleanup_bridges', 'cleanup_tgen')
+    pytest.mark.usefixtures('cleanup_bridges', 'cleanup_tgen', 'cleanup_mtu')
 ]
 
 
