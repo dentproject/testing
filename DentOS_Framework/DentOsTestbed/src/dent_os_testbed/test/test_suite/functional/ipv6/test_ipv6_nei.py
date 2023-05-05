@@ -157,23 +157,22 @@ async def test_ipv6_nei_ageing(testbed):
     ])
     assert all(rc == 0 for rc in out), 'Some pings did not have a reply'
 
-    start = time.time()
-
     # 1.3 Check that neighbor entries are STALE
     expected_neis = [
         {'dev': info.swp, 'dst': info.tg_ip, 'should_exist': True, 'offload': True, 'states': ['STALE']}
         for info in address_map
     ]
-    await wait_for_nei_state(dent_dev, expected_neis)
-    elapsed = time.time() - start
-    assert elapsed < gc_stale_time_s + gc_interval_s, \
-        f'Expected neighbors to be STALE after no more than {gc_stale_time_s + gc_interval_s = }s, ' + \
-        f'but waited for {elapsed // 1}s'
+    # Neighbor ageing depends on linux behavior.
+    # Changing state from REACHABLE to STALE should take
+    # between base_reach_time_s * 1/2 and base_reach_time_s * 3/2,
+    # but we are waiting a little longer here.
+    # If neighbors did not age in 60s then something is definitely wrong.
+    await wait_for_nei_state(dent_dev, expected_neis, timeout=60)
 
     # 1.4 Check that neighbor entries are still STALE and not aged
-    dent_dev.applog.info(f'Wait for a total of {gc_stale_time_s*3 = }s to make sure that neighbors did not age')
-    await asyncio.sleep(start - time.time() + gc_stale_time_s*3)
-    await wait_for_nei_state(dent_dev, expected_neis, timeout=10)
+    dent_dev.applog.info(f'Wait for a total of {gc_stale_time_s * 3 = }s to make sure that neighbors did not age')
+    await asyncio.sleep(gc_stale_time_s * 3)
+    await verify_dut_neighbors(dent, expected_neis)  # no need for polling here
 
     # Scenario #2
     # 2.1 Set a large gc_stale_time_s value, set small threshold values
@@ -254,11 +253,9 @@ async def test_ipv6_nei_ageing(testbed):
     ])
     assert all(rc == 0 for rc in out), 'Some pings did not have a reply'
 
-    start = time.time()
-
     # 3.3 Resolve neighbors on second port in the next time window
     dent_dev.applog.info(f'Wait {gc_interval_s = }s for the next GC interval')
-    await asyncio.sleep(start - time.time() + gc_interval_s)
+    await asyncio.sleep(gc_interval_s)
 
     out = await tgen_utils_send_ns(tgen_dev, ({'ixp': tg_ports[1]},))
     assert all(rc['success'] for rc in out), 'Failed to send NS from TG'
@@ -270,7 +267,7 @@ async def test_ipv6_nei_ageing(testbed):
     assert all(rc == 0 for rc in out), 'Some pings did not have a reply'
 
     # Changing state from REACHABLE to STALE is random, so don't bother to
-    # keep track of that
+    # check neighbors for REACHABLE state
     start = time.time()
 
     # 3.4 Check that neighbor entries are STALE
