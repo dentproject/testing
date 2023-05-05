@@ -1,4 +1,5 @@
 import math
+
 from dent_os_testbed.lib.devlink.devlink_port import DevlinkPort
 from dent_os_testbed.lib.tc.tc_filter import TcFilter
 
@@ -65,4 +66,4 @@ async def tc_filter_add(dev, vlan_id, src_mac, dst_mac, rate, burst, device_host
                 }
             ]
         )
-    assert out[0][device_host_name]['rc'] == 0, f'Failed to create tc rules.\n{out}
+    assert out[0][device_host_name]['rc'] == 0, f'Failed to create tc rules.\n{out}'
