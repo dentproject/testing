@@ -6,6 +6,6 @@ such as architecture, process, existing issues.
 
 This is the list of maintainers, including their email address for direct communications:
 
-|          Name          |     GitHub Id            |               email            |         Area of expertise       |
-|------------------------|--------------------------|--------------------------------|---------------------------------|
-| Steven Noble           | @sonoble                 | snoble@sonn.com                | Development                     |
+|          Name          |     GitHub Id            |                 email              |         Area of expertise       |
+|------------------------|--------------------------|------------------------------------|---------------------------------|
+| Steven Noble           | @sonoble                 | [snoble@sonn.com](snoble@sonn.com) | Development                     |
