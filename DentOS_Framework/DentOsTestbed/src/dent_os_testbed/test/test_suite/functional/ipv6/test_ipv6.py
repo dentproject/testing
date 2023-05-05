@@ -90,6 +90,7 @@ async def test_ipv6_basic_config(testbed):
 
     expected_routes = [{'dev': info.swp,
                         'dst': info.swp_ip[:-1] + f'/{info.plen}',
+                        'should_exist': True,
                         'flags': ['rt_trap']}
                        for info in address_map]
     await verify_dut_routes(dent, expected_routes)

@@ -205,10 +205,12 @@ async def test_ipv64_nh_reconfig(testbed):
 
         expected_routes = [{'dev': info.swp,
                             'dst': info.swp_ip[:-1] + ('0/' if version == IPV4 else '/') + str(info.plen),
+                            'should_exist': True,
                             'flags': ['rt_trap']}
                            for info in address_map[version]]
         expected_routes += [{'dev': nh_route[version].swp,
                              'dst': f'{nh_route[version].dst}/{nh_route[version].plen}',
+                             'should_exist': True,
                              'flags': ['offload', 'rt_offload']}]
         await verify_dut_routes(dent, expected_routes)
 
@@ -377,10 +379,12 @@ async def test_ipv64_nh_routes(testbed):
     # Verify connected routes added and offloaded
     expected_routes = [{'dev': info.swp,
                         'dst': info.swp_ip[:-1] + ('/' if ':' in info.swp_ip else '0/') + str(info.plen),
+                        'should_exist': True,
                         'flags': ['rt_trap']}
                        for info in address_map]
     expected_routes += [{'dev': route.swp,
                          'dst': f'{route.dst}/{route.plen}',
+                         'should_exist': True,
                          'flags': ['offload', 'rt_offload']}
                         for route in nh_route]
     await verify_dut_routes(dent, expected_routes)

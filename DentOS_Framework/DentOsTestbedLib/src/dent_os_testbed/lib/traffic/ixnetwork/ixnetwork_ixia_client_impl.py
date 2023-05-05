@@ -391,6 +391,9 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
         if 'srcMac' in pkt_data:
             self.__update_field(eth_stack.Field.find(FieldTypeId='ethernet.header.sourceAddress'),
                                 pkt_data['srcMac'])
+        if 'protocol' in pkt_data and pkt_data['protocol'] not in ['ipv6', 'ipv4', 'ip', '802.1Q']:
+            self.__update_field(eth_stack.Field.find(FieldTypeId='ethernet.header.etherType'),
+                                pkt_data['protocol'])
         if 'vlanID' in pkt_data:
             vlan_stack = config_element.Stack.read(
                 eth_stack.AppendProtocol(self.stack_template['vlan'])

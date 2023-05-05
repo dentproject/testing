@@ -39,11 +39,10 @@ async def test_port_isolation_interaction_span_rule(testbed):
     6.  Define SPAN rule with one isolated port as source port and the other isolated port as monitor port.
     7.  Set up stream.
     8.  Transmit traffic by TG.
-    9.  Verify all packets from the source port are copied to the monitor port.
-    10. Verify traffic is not doubled (regular bridge traffic is not received on the isolated monitor port).
-    11. Delete the SPAN rule.
-    12. Transmit traffic by TG again.
-    13. Verify that traffic is not received on the isolated port.
+    9.  Verify all packets from the source port are copied to the monitor port and traffic is not doubled.
+    10. Delete the SPAN rule.
+    11. Transmit traffic by TG again.
+    12. Verify that traffic is not received on the isolated port.
     """
 
     bridge = 'br0'
@@ -126,10 +125,14 @@ async def test_port_isolation_interaction_span_rule(testbed):
     await tgen_utils_stop_traffic(tgen_dev)
 
     # check the traffic stats
-    stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Traffic Item Statistics')
+    stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
     for row in stats.Rows:
         assert tgen_utils_get_loss(row) == 0.000, \
             f"Verify that traffic from {row['Tx Port']} to {row['Rx Port']} forwarded.\n{out}"
+    stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Traffic Item Statistics')
+    collected = {row['Traffic Item']:
+                 {'tx_frames': row['Tx Frames'], 'rx_frames': row['Rx Frames']} for row in stats.Rows}
+    assert collected['bridgeStream']['tx_frames'] == collected['bridgeStream']['rx_frames'], 'Traffic is doubled.'
 
     out = await TcFilter.delete(
         input_data=[{device_host_name: [
@@ -141,7 +144,7 @@ async def test_port_isolation_interaction_span_rule(testbed):
     await tgen_utils_stop_traffic(tgen_dev)
 
     # check the traffic stats
-    stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Traffic Item Statistics')
+    stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
     for row in stats.Rows:
         assert tgen_utils_get_loss(row) == 100.000, \
             f"Verify that traffic from {row['Tx Port']} to {row['Rx Port']} not forwarded.\n{out}"

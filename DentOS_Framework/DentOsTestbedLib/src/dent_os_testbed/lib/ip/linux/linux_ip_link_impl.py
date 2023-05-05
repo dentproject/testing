@@ -44,6 +44,8 @@ class LinuxIpLinkImpl(LinuxIpLink):
             cmd += 'vlan_filtering {} '.format((params['vlan_filtering']))
         if 'vlan_default_pvid' in params:
             cmd += 'vlan_default_pvid {} '.format((params['vlan_default_pvid']))
+        if 'mode' in params:
+            cmd += 'mode {} '.format((params['mode']))
         return cmd
 
     def format_delete(self, command, *argv, **kwarg):

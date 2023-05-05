@@ -53,7 +53,7 @@ async def test_port_isolation_interaction_route_between_vlan_devices(testbed):
     device_host_name = dent_devices[0].host_name
     tg_ports = tgen_dev.links_dict[device_host_name][0]
     ports = tgen_dev.links_dict[device_host_name][1]
-    traffic_duration = 10
+    traffic_duration = 15
     pps_value = 1000
 
     out = await IpLink.add(
@@ -167,7 +167,7 @@ async def test_port_isolation_interaction_route_between_vlan_devices(testbed):
     await tgen_utils_stop_traffic(tgen_dev)
 
     # check the traffic stats
-    stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Traffic Item Statistics')
+    stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
     for row in stats.Rows:
         assert tgen_utils_get_loss(row) == 0.000, \
             f"Verify that traffic from {row['Tx Port']} to {row['Rx Port']} forwarded.\n{out}"

@@ -1,5 +1,6 @@
 import math
 from dent_os_testbed.lib.devlink.devlink_port import DevlinkPort
+from dent_os_testbed.lib.tc.tc_filter import TcFilter
 
 
 async def devlink_rate_value(dev, name, value, cmode=False, device_host_name=True, set=False, verify=False):
@@ -33,3 +34,35 @@ async def verify_expected_rx_rate(kbyte_value, stats, rx_ports, deviation=0.10):
         res = math.isclose(exp_rate, float(collected[rx_name]['rx_rate']), rel_tol=deviation)
         assert res, f"The rate is not limited by storm control, \
                         actual rate {float(collected[rx_name]['rx_rate'])} istead of {exp_rate}."
+
+
+async def tc_filter_add(dev, vlan_id, src_mac, dst_mac, rate, burst, device_host_name=True):
+    out = await TcFilter.add(
+            input_data=[
+                {
+                    device_host_name: [
+                        {
+                            'dev': dev,
+                            'direction': 'ingress',
+                            'protocol': '0x8100',
+                            'filtertype': {
+                                'skip_sw': '',
+                                'vlan_id': vlan_id,
+                                'src_mac': src_mac,
+                                'dst_mac': dst_mac,
+                            },
+                            'action': {
+                                'trap': '',
+                                'police': {
+                                    'rate': rate,
+                                    'burst': burst,
+                                    'conform-exceed': '',
+                                    'drop': '',
+                                }
+                            },
+                        }
+                    ]
+                }
+            ]
+        )
+    assert out[0][device_host_name]['rc'] == 0, f'Failed to create tc rules.\n{out}
