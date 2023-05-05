@@ -139,13 +139,13 @@ async def cleanup_sysctl():
     await RecoverableSysctl.recover()
 
 
-async def cleanup_kbyte_per_sec_rate_value(dev, all_values=False, bc=False, unk_uc=False, unreg_mc=False):
+async def cleanup_kbyte_per_sec_rate_value(dev, tgen_dev, all_values=False, bc=False, unk_uc=False, unreg_mc=False):
     """
     Restore values changed during test viz:
         - all kbyte_per_sec_rate values
         - bc_kbyte_per_sec_rate values
-        - unk_uc_kbyte_per_sec_rate
-        - unreg_mc_kbyte_per_sec_rate
+        - unk_uc_kbyte_per_sec_rate values
+        - unreg_mc_kbyte_per_sec_rate values
     """
     logger = AppLogger(DEFAULT_LOGGER)
     logger.info('Restoring kbyte_per_sec_rate values')
@@ -153,13 +153,15 @@ async def cleanup_kbyte_per_sec_rate_value(dev, all_values=False, bc=False, unk_
         input_data=[{dev.host_name: [{'options': '-j'}]}],
         parse_output=True)
     devlink_entries = out[0][dev.host_name]['parsed_output']
+    rate_names = ['bc_kbyte_per_sec_rate', 'unk_uc_kbyte_per_sec_rate', 'unreg_mc_kbyte_per_sec_rate']
+    device = '/'.join(list(devlink_entries['param'])[0].split('/')[:2]) + '/'
+    ports_num = [num[3:] for num in tgen_dev.links_dict[dev.host_name][1]]
 
     # restoring kbyte_per_sec_rate all values
     if all_values:
         input_data = ({dev.host_name: [
-            {'dev': f'{device}', 'name': f"{item['name']}", 'value': '0', 'cmode': 'runtime'}]}
-            for device in devlink_entries['param']
-            for item in devlink_entries['param'][device]
+            {'dev': f'{device}{num}', 'name': name, 'value': '0', 'cmode': 'runtime'} for num in ports_num]}
+            for name in rate_names
         )
         await DevlinkPort.set(input_data=input_data)
         return
@@ -167,24 +169,24 @@ async def cleanup_kbyte_per_sec_rate_value(dev, all_values=False, bc=False, unk_
     # restoring bc_kbyte_per_sec_rate values
     if bc:
         input_data = ({dev.host_name: [
-            {'dev': f'{device}', 'name': 'bc_kbyte_per_sec_rate', 'value': '0', 'cmode': 'runtime'}]}
-            for device in devlink_entries['param']
+            {'dev': f'{device}{num}', 'name': 'bc_kbyte_per_sec_rate', 'value': '0', 'cmode': 'runtime'}]}
+            for num in ports_num
         )
         await DevlinkPort.set(input_data=input_data)
 
     # restoring unk_uc_kbyte_per_sec_rate values
     if unk_uc:
         input_data = ({dev.host_name: [
-            {'dev': f'{device}', 'name': 'unk_uc_kbyte_per_sec_rate', 'value': '0', 'cmode': 'runtime'}]}
-            for device in devlink_entries['param']
+            {'dev': f'{device}{num}', 'name': 'unk_uc_kbyte_per_sec_rate', 'value': '0', 'cmode': 'runtime'}]}
+            for num in ports_num
         )
         await DevlinkPort.set(input_data=input_data)
 
     # restoring unreg_mc_kbyte_per_sec_rate values
     if unreg_mc:
         input_data = ({dev.host_name: [
-            {'dev': f'{device}', 'name': 'unreg_mc_kbyte_per_sec_rate', 'value': '0', 'cmode': 'runtime'}]}
-            for device in devlink_entries['param']
+            {'dev': f'{device}{num}', 'name': 'unreg_mc_kbyte_per_sec_rate', 'value': '0', 'cmode': 'runtime'}]}
+            for num in ports_num
         )
         await DevlinkPort.set(input_data=input_data)
 
