@@ -587,3 +587,15 @@ async def tb_get_qualified_ports(device, ports, speed, duplex, required_ports=2)
     err_msg = f'Need {required_ports} ports with the same speed of {speed} and duplex {duplex}'
     assert len(speed_ports) >= required_ports, err_msg
     return speed_ports
+
+
+async def get_port_stats(device_host_name, ports):
+    await asyncio.sleep(6)
+    stats = {}
+    for port in ports:
+        out = await Ethtool.show(input_data=[{device_host_name: [
+            {'devname': port, 'options': '-S'}
+        ]}], parse_output=True)
+        assert out[0][device_host_name]['rc'] == 0
+        stats[port] = out[0][device_host_name]['parsed_output']
+    return stats
