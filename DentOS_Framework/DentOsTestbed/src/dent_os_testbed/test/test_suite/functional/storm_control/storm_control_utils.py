@@ -1,7 +1,33 @@
 import math
+import copy
+import asyncio
 
 from dent_os_testbed.lib.devlink.devlink_port import DevlinkPort
 from dent_os_testbed.lib.tc.tc_filter import TcFilter
+from dent_os_testbed.test.test_suite.functional.devlink.devlink_utils import (
+    verify_devlink_cpu_traps_rate_avg, SCT_MAP
+)
+
+
+def get_streams(list_streams, prefixes):
+    filtered_streams = {}
+    for stream_name, stream in list_streams.items():
+        for prefix in prefixes:
+            if stream_name.startswith(prefix):
+                filtered_streams[stream_name] = stream
+                break
+    return filtered_streams
+
+
+async def verify_cpu_rate(dent_dev, deviation):
+    new_map = copy.deepcopy(SCT_MAP)
+    keys_to_delete = ['arp_response', 'ssh', 'telnet', 'bgp', 'local_route', 'mac_to_me', 'icmp', 'acl_code_3']
+    for key in keys_to_delete:
+        if key in new_map:
+            del new_map[key]
+    for trap_name, sct in new_map.items():
+        await verify_devlink_cpu_traps_rate_avg(dent_dev, trap_name, sct['exp'], deviation=deviation, logs=True)
+        await asyncio.sleep(5)
 
 
 async def devlink_rate_value(dev, name, value, cmode=False, device_host_name=True, set=False, verify=False):
