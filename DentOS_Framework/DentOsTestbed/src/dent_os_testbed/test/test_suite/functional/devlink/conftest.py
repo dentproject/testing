@@ -106,3 +106,40 @@ async def define_bash_utils(testbed):
     yield
 
     _, _ = await dent_dev.run_cmd(f'mv {backup} {bashrc}', sudo=True)
+
+
+@pytest_asyncio.fixture()
+async def disable_sct(testbed):
+    tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 4)
+    if not tgen_dev or not dent_devices:
+        pytest.skip('The testbed does not have enough dent with tgen connections')
+    dent_dev = dent_devices[0]
+    sct_path = '/sys/kernel/debug/prestera/sct'
+
+    """
+    all_unspecified_cpu_opcodes: 100 (pps)\n\0
+    sct_acl_trap_queue_0: 4000 (pps)\n\0
+    sct_acl_trap_queue_1: 4000 (pps)\n\0
+    """
+    rc, static_traps = await dent_dev.run_cmd(f'cat {sct_path}/*')
+    assert not rc, 'Failed to get default SCT values'
+
+    restore_cmd = []
+    for trap in static_traps.split('\n\0'):
+        try:
+            key, val = trap.split(': ')
+        except ValueError:
+            continue
+        restore_cmd.append(f'echo {val.split(" ")[0]} > {sct_path}/{key}')
+
+    # disable SCT
+    rc, _ = await dent_dev.run_cmd(f'for sct in `find {sct_path}/*`; do echo 0 > $sct; done')
+    if rc != 0:
+        # restore old values in case some of them were changed
+        await dent_dev.run_cmd(' && '.join(restore_cmd))
+        raise AssertionError('Failed to disable SCT')
+
+    yield  # Run the test
+
+    # restore old values
+    await dent_dev.run_cmd(' && '.join(restore_cmd))
