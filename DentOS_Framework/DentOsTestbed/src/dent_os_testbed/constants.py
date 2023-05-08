@@ -80,6 +80,7 @@ PYTEST_SUITES = {
     'suite_functional_igmp': 'IGMP snooping functional tests',
     'suite_functional_storm_control': 'Functional Storm Control tests',
     'suite_functional_policer': 'Policer functional tests',
+    'suite_functional_devlink': 'Devlink functional tests',
 }
 
 PYTEST_SUITE_GROUPS = {
@@ -125,5 +126,6 @@ PYTEST_SUITE_GROUPS = {
         'suite_functional_igmp',
         'suite_functional_storm_control',
         'suite_functional_policer',
+        'suite_functional_devlink',
     ]
 }

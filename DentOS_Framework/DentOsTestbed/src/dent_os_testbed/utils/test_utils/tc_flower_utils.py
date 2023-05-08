@@ -126,15 +126,15 @@ async def tcutil_cleanup_tc_rules(dent_dev, swp_tgen_ports, swp_tc_rules):
 
 
 def tcutil_tc_rules_to_tgen_streams(swp_tc_rules, streams=None, start=0, cnt=None,
-                                    frame_rate_pps=10, frame_size=256, frame_rate_type=None):
+                                    frame_rate_pps=10, frame_size=256, frame_rate_type='pps_rate'):
     """
-    - swp_tc_rules:   dict
-    - streams:        streams dict that will be modified
-    - start:          used to specify the first rule index, from which the streams will be created
-    - cnt:            used to specify the number of streams to be created
-    - frame_rate_pps: frame rate for each stream
-    - frame_size:     packet size for each stream
-    - frame_rate_type which rate type to use when sending traffic(defaults to pps)
+    - swp_tc_rules:    dict
+    - streams:         streams dict that will be modified
+    - start:           used to specify the first rule index, from which the streams will be created
+    - cnt:             used to specify the number of streams to be created
+    - frame_rate_pps:  frame rate for each stream
+    - frame_size:      packet size for each stream
+    - frame_rate_type: which rate type to use when sending traffic(defaults to pps)
 
     Expects swp_tc_rules to be a dict:
     {
