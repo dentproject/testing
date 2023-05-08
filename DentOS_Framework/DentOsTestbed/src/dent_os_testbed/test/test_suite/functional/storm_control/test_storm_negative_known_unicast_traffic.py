@@ -1,20 +1,22 @@
+import math
 import pytest
 import asyncio
 
+from dent_os_testbed.test.test_suite.functional.storm_control.storm_control_utils import verify_expected_rx_rate
 from dent_os_testbed.test.test_suite.functional.storm_control.storm_control_utils import devlink_rate_value
 from dent_os_testbed.utils.test_utils.cleanup_utils import cleanup_kbyte_per_sec_rate_value
 from dent_os_testbed.lib.bridge.bridge_fdb import BridgeFdb
 from dent_os_testbed.lib.ip.ip_link import IpLink
+from random import randrange
 
 from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_get_dent_devices_with_tgen,
     tgen_utils_traffic_generator_connect,
     tgen_utils_dev_groups_from_config,
-    tgen_utils_clear_traffic_stats,
     tgen_utils_get_traffic_stats,
     tgen_utils_setup_streams,
     tgen_utils_start_traffic,
-    tgen_utils_get_loss
+    tgen_utils_stop_traffic
 )
 
 pytestmark = [
@@ -36,13 +38,15 @@ async def test_storm_negative_known_unicast_traffic(testbed):
     3.  Set entities swp1, swp2 UP state.
     4.  Set bridge br0 admin state UP.
     5.  Add static mac entry (on the first TG port) to the bridge.
-    6.  Set up the following stream:
+    6.  Verify that storm control is disabled by default for unicast traffic
+        by setting the storm control rate limit.
+    7.  Set storm control rate limit rule for unicast traffic on TX port (on the second TG port).
+    8.  Set up the following stream:
         - unicast stream from the second TG port to the first TG port.
-    7.  Set storm control rate limit rule for unicast traffic on TX port (first TG port)
-    8.  Transmit traffic by TG.
-    9.  Verify the RX rate on the RX port is as expected - the rate is not limited by storm control.
-    10. Flush FDB.
-    11. Verify the RX rate on the RX port is as expected - the rate is limited by storm control.
+    9.  Transmit traffic by TG.
+    10. Verify the RX rate on the RX port is as expected - the rate is not limited by storm control.
+    11. Flush FDB.
+    12. Verify the RX rate on the RX port is as expected - the rate is limited by storm control.
     """
 
     bridge = 'br0'
@@ -54,7 +58,8 @@ async def test_storm_negative_known_unicast_traffic(testbed):
     tg_ports = tgen_dev.links_dict[device_host_name][0]
     ports = tgen_dev.links_dict[device_host_name][1]
     traffic_duration = 15
-    pps_value = 1000
+    kbyte_value = 50420
+    deviation = 0.10
 
     out = await IpLink.add(
         input_data=[{device_host_name: [
@@ -78,11 +83,11 @@ async def test_storm_negative_known_unicast_traffic(testbed):
             {'device': ports[0], 'lladdr': '68:16:3d:2e:b4:c8', 'master': True, 'static': True}]}])
     assert out[0][device_host_name]['rc'] == 0, f'Verify that FDB static entry added.\n{out}'
 
-    await devlink_rate_value(dev=f'pci/0000:01:00.0/{ports[0].replace("swp","")}',
+    await devlink_rate_value(dev=f'pci/0000:01:00.0/{ports[1].replace("swp","")}',
                              name='unk_uc_kbyte_per_sec_rate', value=0,
                              device_host_name=device_host_name, verify=True)
-    await devlink_rate_value(dev=f'pci/0000:01:00.0/{ports[0].replace("swp","")}',
-                             name='unk_uc_kbyte_per_sec_rate', value=93420,
+    await devlink_rate_value(dev=f'pci/0000:01:00.0/{ports[1].replace("swp","")}',
+                             name='unk_uc_kbyte_per_sec_rate', value=kbyte_value,
                              cmode='runtime', device_host_name=device_host_name, set=True, verify=True)
 
     try:
@@ -113,8 +118,9 @@ async def test_storm_negative_known_unicast_traffic(testbed):
                 'dstIp': '155.99.214.26',
                 'srcMac': '6c:d5:aa:6f:2c:b7',
                 'dstMac': '68:16:3d:2e:b4:c8',
-                'frameSize': 458,
-                'rate': pps_value,
+                'frameSize': randrange(100, 1500),
+                'frame_rate_type': 'line_rate',
+                'rate': 100,
                 'protocol': '0x0800',
                 'type': 'raw'
             }
@@ -122,20 +128,32 @@ async def test_storm_negative_known_unicast_traffic(testbed):
 
         await tgen_utils_setup_streams(tgen_dev, config_file_name=None, streams=streams)
         await tgen_utils_start_traffic(tgen_dev)
+        await asyncio.sleep(traffic_duration)
 
-        for x in range(2):
-            await asyncio.sleep(traffic_duration)
+        # check the traffic stats
+        stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Port Statistics')
+        collected = {row['Port Name']:
+                     {'tx_rate': row['Bytes Tx. Rate'], 'rx_rate': row['Bytes Rx. Rate']} for row in stats.Rows}
+        for key in collected:
+            if 'rx_rate' in collected[key] and key.endswith(':1'):
+                rx_rate = collected[key]['rx_rate']
+            if 'tx_rate' in collected[key] and key.endswith(':2'):
+                tx_rate = collected[key]['tx_rate']
+        res = math.isclose(float(tx_rate), float(rx_rate), rel_tol=deviation)
+        assert res, f'The rate is limited by storm control, \
+                        actual rate {float(rx_rate)} istead of {float(tx_rate)}.'
 
-            # check the traffic stats
-            stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
-            for row in stats.Rows:
-                loss = tgen_utils_get_loss(row)
-                assert loss == 0, f'Expected loss: 0%, actual: {loss}%'
-            if x == 0:
-                out = await BridgeFdb.delete(
-                    input_data=[{device_host_name: [
-                        {'device': ports[0], 'lladdr': '68:16:3d:2e:b4:c8', 'master': True, 'static': True}]}])
-                assert out[0][device_host_name]['rc'] == 0, f'Verify that FDB static entry deleted.\n{out}'
-                await tgen_utils_clear_traffic_stats(tgen_dev)
+        out = await BridgeFdb.delete(
+            input_data=[{device_host_name: [
+                {'device': ports[0], 'lladdr': '68:16:3d:2e:b4:c8', 'master': True, 'static': True}]}])
+        assert out[0][device_host_name]['rc'] == 0, f'Verify that FDB static entry deleted.\n{out}'
+
+        await asyncio.sleep(traffic_duration)
+
+        # check the traffic stats
+        stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Port Statistics')
+        await verify_expected_rx_rate(kbyte_value, stats, rx_ports=[streams['stream_A']['ip_destination']],
+                                      deviation=deviation)
     finally:
-        await cleanup_kbyte_per_sec_rate_value(dent_dev, unk_uc=True)
+        await tgen_utils_stop_traffic(tgen_dev)
+        await cleanup_kbyte_per_sec_rate_value(dent_dev, tgen_dev, unk_uc=True)

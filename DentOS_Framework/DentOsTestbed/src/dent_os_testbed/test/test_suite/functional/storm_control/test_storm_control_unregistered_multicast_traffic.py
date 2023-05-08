@@ -1,6 +1,7 @@
 import pytest
 import asyncio
 
+from dent_os_testbed.test.test_suite.functional.storm_control.storm_control_utils import verify_expected_rx_rate
 from dent_os_testbed.test.test_suite.functional.storm_control.storm_control_utils import devlink_rate_value
 from dent_os_testbed.utils.test_utils.cleanup_utils import cleanup_kbyte_per_sec_rate_value
 from dent_os_testbed.lib.ip.ip_link import IpLink
@@ -13,7 +14,7 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_get_traffic_stats,
     tgen_utils_setup_streams,
     tgen_utils_start_traffic,
-    tgen_utils_get_loss
+    tgen_utils_stop_traffic
 )
 
 pytestmark = [
@@ -35,11 +36,12 @@ async def test_storm_control_unregistered_multicast_traffic(testbed):
     3.  Set entities swp1, swp2 UP state.
     4.  Set bridge br0 admin state UP.
     5.  Verify that storm control is disabled by default for unregistered multicast traffic
-        by setting the storm control rate limit to unregistered multicast traffic on the TX port.
-    6.  Set up the following stream:
+        by setting the storm control rate limit.
+    6.  Set storm control rate limit rule for unicast traffic on TX port (on the first TG port).
+    7.  Set up the following stream:
         - unregistered multicast traffic stream with random generated packet size on TX port.
-    6.  Transmit continues traffic by TG.
-    7.  Verify the RX rate on the RX port is as expected - the rate is limited by storm control.
+    8.  Transmit continues traffic by TG.
+    9.  Verify the RX rate on the RX port is as expected - the rate is limited by storm control.
     """
 
     bridge = 'br0'
@@ -50,8 +52,8 @@ async def test_storm_control_unregistered_multicast_traffic(testbed):
     device_host_name = dent_dev.host_name
     tg_ports = tgen_dev.links_dict[device_host_name][0]
     ports = tgen_dev.links_dict[device_host_name][1]
-    traffic_duration = 10
-    pps_value = 1000
+    traffic_duration = 15
+    kbyte_value = 118689
 
     out = await IpLink.add(
         input_data=[{device_host_name: [
@@ -74,7 +76,7 @@ async def test_storm_control_unregistered_multicast_traffic(testbed):
                              name='unreg_mc_kbyte_per_sec_rate', value=0,
                              device_host_name=device_host_name, verify=True)
     await devlink_rate_value(dev=f'pci/0000:01:00.0/{ports[0].replace("swp","")}',
-                             name='unreg_mc_kbyte_per_sec_rate', value=118689,
+                             name='unreg_mc_kbyte_per_sec_rate', value=kbyte_value,
                              cmode='runtime', device_host_name=device_host_name, set=True, verify=True)
 
     try:
@@ -104,7 +106,8 @@ async def test_storm_control_unregistered_multicast_traffic(testbed):
                 'srcMac': 'e6:15:12:fc:c8:83',
                 'dstMac': '01:00:5E:46:98:bc',
                 'frameSize': randrange(100, 1500),
-                'rate': pps_value,
+                'frame_rate_type': 'line_rate',
+                'rate': 100,
                 'protocol': '0x0800',
                 'type': 'raw'
             }
@@ -115,9 +118,9 @@ async def test_storm_control_unregistered_multicast_traffic(testbed):
         await asyncio.sleep(traffic_duration)
 
         # check the traffic stats
-        stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
-        for row in stats.Rows:
-            loss = tgen_utils_get_loss(row)
-            assert loss == 0, f'Expected loss: 0%, actual: {loss}%'
+        stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Port Statistics')
+        await verify_expected_rx_rate(kbyte_value, stats, rx_ports=[streams['stream_A']['ip_destination']],
+                                      deviation=0.10)
     finally:
-        await cleanup_kbyte_per_sec_rate_value(dent_dev, unreg_mc=True)
+        await tgen_utils_stop_traffic(tgen_dev)
+        await cleanup_kbyte_per_sec_rate_value(dent_dev, tgen_dev, unreg_mc=True)
