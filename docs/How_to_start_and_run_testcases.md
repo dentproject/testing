@@ -88,7 +88,7 @@ TODO: create a lab BOM
 ```Shell
     sudo apt -y install cpu-checker
     sudo kvm-ok
-    sudo apt -y install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils virtinst virt-manager libosinfo-bin
+    sudo apt -y install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils virtinst virt-manager libosinfo-bin bzip2
     sudo usermod -aG libvirt $USER
     sudo usermod -aG kvm $USER
     sudo systemctl enable libvirtd
