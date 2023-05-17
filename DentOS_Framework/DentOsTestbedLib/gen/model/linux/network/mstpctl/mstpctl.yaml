@@ -1,0 +1,40 @@
+- module: mstpctl
+  description: mstpctl
+  classes:
+  - name: linux_mstpctl
+    desc: |
+      MSTPCTL is used for configuring STP parameters on bridges which have user-space
+      STP enabled. Currently, STP is disabled by default on the bridge. To
+      enable user-space STP, configure "brctl stp <bridge> on" or
+      "ip link set <bridge> type bridge stp_state 1" while ensuring that
+      /sbin/bridge-stp kernel helper script will return success (0) for
+      this operation.
+    implements: "dent:mstpctl:mstpctl"
+    platforms: ['dentos', 'cumulus']
+    commands:
+    - name: set
+      apis: ['set']
+      cmd: ['mstpctl']
+      params: ['options', 'bridge', 'revision', 'name', 'max_age', 'fwd_delay', 'max_hops', 'hello_time', 'tx_hold_count', 'version', 'enable']
+      desc: |
+        Available options are: mstconfid, vid2fid, fid2mstid, maxage,fdelay, maxhops, hello, ageing, forcevers, txholdcount, forcevers,
+              txholdcount, treeprio, portpathcost, portadminedge, portautoedge, portp2p, portrestrrole, treeportcost, tportnetwork,
+              portbpdufilter, bpduguard, treeportprio, treeportcost, portnetwork, portbpdufilter
+    - name: show
+      apis: ['show']
+      cmd: ['mstpctl']
+      params: ['options', 'bridge', 'port']
+      desc: |
+        Available options are: 'bridge', 'mstilist', 'mstconfid', 'vid2fid', 'fid2mstid', 'showport', 'portdetail', 'tree', 'treeport'
+    - name: remove
+      apis: ['remove']
+      cmd: ['mstpctl']
+      params: ['options', 'bridge']
+      desc: |
+       Remove bridges from the mstpd's list. Available options are: 'bridge'
+    - name: add
+      apis: ['add']
+      cmd: ['mstpctl']
+      params: ['options', 'bridge']
+      desc: |
+       Add bridges to the mstpd's list. Available options  are: 'bridge'
