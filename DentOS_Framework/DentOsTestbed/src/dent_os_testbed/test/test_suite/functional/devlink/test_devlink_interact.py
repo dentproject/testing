@@ -2,10 +2,12 @@ from copy import deepcopy
 import asyncio
 import random
 import pytest
+from ipaddress import IPv4Network
 
 from dent_os_testbed.lib.ip.ip_link import IpLink
 from dent_os_testbed.lib.tc.tc_qdisc import TcQdisc
 from dent_os_testbed.lib.tc.tc_filter import TcFilter
+from dent_os_testbed.lib.ip.ip_address import IpAddress
 
 from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_get_dent_devices_with_tgen,
@@ -28,6 +30,9 @@ from dent_os_testbed.test.test_suite.functional.devlink.devlink_utils import (
     verify_devlink_cpu_traps_rate_avg,
     CPU_STAT_CODE_ACL_CODE_3,
     CPU_MAX_PPS,
+    randomize_rule_by_src_dst_field,
+    overwrite_src_dst_stream_fields,
+    get_sct_streams, SCT_MAP,
 )
 
 
@@ -377,4 +382,131 @@ async def test_devlink_interact_static_traps_disabled(testbed):
 
     # 7. Verify CPU trapped packet rate is as expected
     await verify_cpu_rate(dent_dev, exp_rate_pps)
+    await tgen_utils_stop_traffic(tgen_dev)
+
+
+@pytest.mark.usefixtures('cleanup_ip_addrs', 'cleanup_bonds')
+async def test_devlink_interact_sct_lag(testbed):
+    """
+    Test Name: test_devlink_interact_sct_lag
+    Test Suite: suite_functional_devlink
+    Test Overview: Test devlink Sct with port in Lag
+    Test Procedure:
+    1. Create a bond, set link up on it and enslave the first port connected to Ixia to it
+    2. Configure ip address on the bond and connect devices
+    3. Generate random trap rule
+    4. Prepare traffic matching all SCT supported traps and transmit all streams
+    5. Verify each Sct traffic type have expected CPU rate
+    6. Add rule created earlier to trap user defined traffic
+    7. Verify CPU rate for user defined trap as expected
+    """
+
+    tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 2)
+    if not tgen_dev or not dent_devices:
+        pytest.skip('The testbed does not have enough dent with tgen connections')
+    dev_name = dent_devices[0].host_name
+    dent_dev = dent_devices[0]
+    tg_ports = tgen_dev.links_dict[dev_name][0]
+    dut_ports = tgen_dev.links_dict[dev_name][1]
+    frame_size = random.randint(128, 1400)
+    want_ip = random.choice([True, False])
+    want_port = random.choice([True, False]) if want_ip else False
+    want_vlan = random.choice([True, False])
+    ip_network = IPv4Network('192.168.1.0/24')
+    ip_addr = ip_network[4]
+    bond = 'bond1'
+
+    # 1.Create a bond, set link up on it and enslave the first port connected to Ixia to it
+    out = await IpLink.set(
+        input_data=[{dev_name: [
+            {'device': dut_ports[0], 'operstate': 'down'}]}])
+    err_msg = f"Verify that {dut_ports[0]} set to 'DOWN' state.\n{out}"
+    assert not out[0][dev_name]['rc'], err_msg
+
+    out = await IpLink.add(
+        input_data=[{dev_name: [
+            {'name': bond, 'type': 'bond', 'mode': '802.3ad'}]}])
+    err_msg = f'Verify that {bond} was successfully added. \n{out}'
+    assert not out[0][dev_name]['rc'], err_msg
+
+    out = await IpLink.set(
+        input_data=[{dev_name: [
+            {'device': bond, 'operstate': 'up'}]}])
+    err_msg = f"Verify that {bond} set to 'UP' state.\n{out}"
+    assert not out[0][dev_name]['rc'], err_msg
+
+    out = await IpLink.set(
+        input_data=[{dev_name: [
+            {'device': dut_ports[0], 'master': bond}]}])
+    err_msg = f'Verify that {dut_ports[0]} set to master {bond}.\n{out}'
+    assert not out[0][dev_name]['rc'], err_msg
+
+    # 2.Configure ip address on the bond and connect devices
+    out = await IpAddress.add(input_data=[{dev_name: [
+        {'dev': bond, 'prefix': f'{ip_addr}/{ip_network.prefixlen}', 'broadcast': str(ip_network.broadcast_address)}]}])
+    assert not out[0][dev_name]['rc'], f'Failed to add IP addr to {bond}'
+
+    dev_groups = tgen_utils_dev_groups_from_config(
+        [{'ixp': tg_ports[0], 'ip': str(ip_addr + 1), 'gw': str(ip_addr), 'plen': ip_network.prefixlen},
+         {'ixp': tg_ports[1], 'ip': '2.2.2.5', 'gw': '2.2.2.1', 'plen': 24}])
+    await tgen_utils_traffic_generator_connect(tgen_dev, tg_ports, dut_ports, dev_groups)
+
+    # 3.Generate random trap rule
+    rule_selectors = {'action': 'trap',
+                      'skip_sw': True,
+                      'want_mac': True,
+                      'want_vlan': want_vlan,
+                      'want_ip': want_ip,
+                      'want_port': want_port,
+                      'want_tcp': random.choice([True, False]) if want_port else False,
+                      'want_vlan_ethtype': want_ip and want_vlan}
+
+    tc_rule = tcutil_generate_rule_with_random_selectors(dut_ports[0], **rule_selectors)
+    original_rule = deepcopy(tc_rule)
+    randomize_rule_by_src_dst_field(tc_rule, rule_selectors)
+
+    # 4.Prepare traffic matching all SCT supported traps and transmit all streams
+    streams = {}
+    stream = await get_sct_streams(dent_dev, dev_groups, tg_ports[:2], bond)
+    streams.update(stream)
+    custom_stream = {f'custom_stream_{bond}': {
+                    'type': 'raw',
+                    'protocol': '802.1Q' if want_vlan else tc_rule['protocol'],
+                    'ip_source': dev_groups[tg_ports[0]][0]['name'],
+                    'ip_destination': dev_groups[tg_ports[1]][0]['name'],
+                    'srcMac': original_rule['filtertype']['src_mac'],
+                    'dstMac': original_rule['filtertype']['dst_mac'],
+                    'frameSize': frame_size,
+                    'rate': SCT_MAP['acl_code_3']['exp'] + 2000}
+                     }
+    overwrite_src_dst_stream_fields(custom_stream, original_rule, rule_selectors)
+    streams.update(custom_stream)
+    await tgen_utils_setup_streams(tgen_dev, config_file_name=None, streams=streams)
+    await tgen_utils_start_traffic(tgen_dev)
+    await asyncio.sleep(10)
+
+    # 5.Verify each Sct traffic type have expected CPU rate
+    coroutines_cpu_stat = []
+    coroutines_devlink = []
+    for trap_name, sct in SCT_MAP.items():
+        if trap_name == 'acl_code_3':
+            continue
+        coroutines_cpu_stat.append(verify_cpu_traps_rate_code_avg(dent_dev, sct['cpu_code'], sct['exp'], logs=True))
+        coroutines_devlink.append(verify_devlink_cpu_traps_rate_avg(dent_dev, trap_name, sct['exp'], logs=True))
+    # Asyncio may fail when starting 30 tasks on DUT in parallel, separate them into chunks of 15 tasks
+    await asyncio.gather(*coroutines_cpu_stat)
+    await asyncio.gather(*coroutines_devlink)
+
+    # 6.Add rule created earlier to trap user defined traffic
+    out = await TcQdisc.add(
+        input_data=[{dev_name: [
+            {'dev': dut_ports[0], 'direction': 'ingress'}]}])
+    err_msg = f'Verify no error on setting Qdist for {dut_ports[0]}.\n{out}'
+    assert not out[0][dev_name]['rc'], err_msg
+
+    out = await TcFilter.add(input_data=[{dev_name: [tc_rule]}])
+    assert not out[0][dev_name]['rc'], f'Failed to create tc rule \n{out}'
+
+    # 7.Verify CPU rate for user defined trap as expected
+    await verify_cpu_rate(dent_dev, SCT_MAP['acl_code_3']['exp'])
     await tgen_utils_stop_traffic(tgen_dev)
