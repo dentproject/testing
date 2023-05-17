@@ -364,9 +364,10 @@ async def tb_reload_firewall(devices):
     check_asyncio_results(results, 'tb_reload_firewall')
 
 
-async def tb_ping_device(device, target, pkt_loss_treshold=50, dump=False, count=10):
+async def tb_ping_device(device, target, pkt_loss_treshold=50, dump=False, count=10, interval=None):
     pkt_stats = ''
-    cmd = f'ping -c {count} {target}'
+    inter = f'-i {interval}' if interval is not None else ''
+    cmd = f'ping -c {count} {inter} {target}'
     rc, out = await device.run_cmd(cmd, sudo=True)
     if dump:
         device.applog.info(f'Ran {cmd} on {device.host_name} with rc {rc} and out {out}')
