@@ -24,7 +24,7 @@ from dent_os_testbed.utils.test_utils.cleanup_utils import (
 )
 from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_get_dent_devices_with_tgen,
-    tgen_utils_stop_protocols,
+    tgen_utils_stop_traffic,
 )
 
 # Add python files for defining per folder fixtures here
@@ -184,7 +184,7 @@ async def cleanup_ip_addrs(testbed):
 async def cleanup_tgen(testbed):
     yield
     tgen_dev, _ = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 4)
-    await tgen_utils_stop_protocols(tgen_dev)
+    await tgen_utils_stop_traffic(tgen_dev)
 
 
 @pytest_asyncio.fixture
