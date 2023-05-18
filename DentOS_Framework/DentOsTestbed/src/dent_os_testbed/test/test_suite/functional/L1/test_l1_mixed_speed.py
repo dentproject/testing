@@ -4,6 +4,7 @@ import asyncio
 from dent_os_testbed.lib.ip.ip_link import IpLink
 from dent_os_testbed.lib.ethtool.ethtool import Ethtool
 
+from dent_os_testbed.utils.test_utils.tb_utils import tb_get_qualified_ports
 from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_get_dent_devices_with_tgen,
     tgen_utils_traffic_generator_connect,
@@ -58,6 +59,11 @@ async def test_l1_mixed_speed(testbed):
     tg_ports = tgen_dev.links_dict[device_host_name][0]
     ports = tgen_dev.links_dict[device_host_name][1]
     timeout = 10
+    try:
+        for speed, duplex in ((10, 'full'), (100, 'half'), (1000, 'full')):
+            await tb_get_qualified_ports(dent_devices[0], ports, speed, duplex, required_ports=1)
+    except ValueError as e:
+        pytest.skip(str(e))
 
     # 1. Init bridge entity br0.
     out = await IpLink.add(input_data=[{device_host_name: [{'device': bridge, 'type': 'bridge'}]}])
