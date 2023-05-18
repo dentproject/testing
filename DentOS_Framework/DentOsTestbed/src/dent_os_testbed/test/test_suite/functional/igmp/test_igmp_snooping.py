@@ -111,18 +111,23 @@ def verify_expected_rx_rate(stats, tx_port, rx_ports, rate_coef=0, deviation=0.1
         assert res, f"Rx_rate {collected[rx_name]['rx_rate']} on {rx_name} exceeds expected rx_rate {exp_rate}"
 
 
-def verify_mdb_entries(mdb_entries, port_names, grp_addrs):
+def verify_mdb_entries(mdb_entries, port_names, grp_addrs, exp=None):
     """
     Verify that expected Mdb entires are present in Mdb table
     Args:
         mdb_entries (dict): Dict with Mdb entries
         port_names (list): DUT port names expected to be in Mdb entries
         grp_addrs (list): Igmp group address to check
+        exp (int): Expected num of entries
     """
+    ports_count = 0
+    ports_expected = exp if exp else len(port_names)
     for port, group in zip(port_names, grp_addrs):
         for mdb in mdb_entries:
             if mdb['port'] == port:
                 assert mdb['grp'] == group, f'Mdb entry by port {port} is {mdb[port]} expected {group}'
+                ports_count += 1
+    assert ports_count == ports_expected, f'Ports {port_names} absent in Mdb {mdb_entries}'
 
 
 def mcast_ip_to_mac(ip):
@@ -245,7 +250,7 @@ async def test_igmp_snooping_mixed_ver(testbed, igmp_ver, igmp_msg_ver):
 
     # 5.Verify MDB entries were created from clients
     mdb_entires, _ = await get_bridge_mdb(dev_name)
-    verify_mdb_entries(mdb_entires, dut_ports[1:2], mcast_group_addr[:-1])
+    verify_mdb_entries(mdb_entires, dut_ports[1:3], mcast_group_addr[:-1])
 
     # 6.Verify the multicast traffic is flooded to all bridge ports
     await asyncio.sleep(sleep_value)
@@ -254,6 +259,7 @@ async def test_igmp_snooping_mixed_ver(testbed, igmp_ver, igmp_msg_ver):
 
     # 7.Stop traffic, create a general query stream from tx_port and send traffic
     await tgen_utils_stop_traffic(tgen_dev)
+    await asyncio.sleep(6)
     stream_query = {'igmp_query': {
             'type': 'raw',
             'protocol': 'ip',
@@ -309,6 +315,7 @@ async def test_igmp_snooping_mixed_ver(testbed, igmp_ver, igmp_msg_ver):
             'frameCount': 1,
     }}
     await tgen_utils_stop_traffic(tgen_dev)
+    await asyncio.sleep(6)
     await tgen_utils_clear_traffic_items(tgen_dev, traffic_names=['member_report1'])
     await tgen_utils_setup_streams(tgen_dev, config_file_name=None, streams=stream_leave)
     await tgen_utils_start_traffic(tgen_dev)
@@ -446,7 +453,7 @@ async def test_igmp_snooping_diff_source_addrs(testbed):
 
     # 5.Verify Mdb entries were created from clients and router
     mdb_entires, router_entires = await get_bridge_mdb(dev_name)
-    verify_mdb_entries(mdb_entires, dut_ports[1:2], mcast_group_addr[:-1])
+    verify_mdb_entries(mdb_entires, dut_ports[1:3], mcast_group_addr[:-1], exp=4)
     assert len(router_entires), f'No MDB router entries were added to bridge MDB table {len(router_entires)}'
 
     # 6.Verify the multicast traffic is flooded to the client #1 and #2 only
@@ -468,11 +475,161 @@ async def test_igmp_snooping_diff_source_addrs(testbed):
 
     # 8.Verify the Mdb entry for client #1 is deleted
     mdb_entires, _ = await get_bridge_mdb(dev_name)
-    verify_mdb_entries(mdb_entires, [dut_ports[2]], [mcast_group2])
+    verify_mdb_entries(mdb_entires, [dut_ports[2]], [mcast_group2], exp=2)
     for entry in mdb_entires:
         assert dut_ports[1] != entry['port'], f'Mdb entry of port {dut_ports[1]} still exists: \n{mdb_entires}'
 
     # 9.Verify the traffic is not forwarded to client #1 and still is to client #2
+    stats = await tgen_utils_get_traffic_stats(tgen_dev)
+    verify_expected_rx_rate(stats, tx_port, [rx_ports[1]], rate_coef=0.5)
+    # Verify rx_ports have 0 rx_rate possbile deviation 1000 Bps, due to some pkt's can pass through the port
+    for row in stats.Rows:
+        if row['Port Name'] in [rx_ports[0].split('_')[0], rx_ports[2].split('_')[0]]:
+            assert int(row['Bytes Rx. Rate']) <= DEVIATION_BPS, f"Actual rate {row['Bytes Rx. Rate']} expected rate 0"
+    await tgen_utils_stop_traffic(tgen_dev)
+
+
+async def test_igmp_snooping_modified_query(testbed):
+    """
+    Test Name: test_igmp_querier
+    Test Suite: suite_functional_igmp
+    Test Overview: Test IGMP snooping with modified querier interval
+    Test Procedure:
+    1. Create a bridge and enable IGMP Snooping, enable querrier and change query interval
+       Enslave all TG ports to bridge interface and config fastleave on 1st rx_port
+    2. Init interfaces and create 2 multicast Streams
+    3. Create 3 membership report streams, 1 with invalid checksum
+    4. Send Traffic from router port and from clients
+    5. Verify Mdb entries were created for clients and router
+    6. Verify the multicast traffic is flooded to all bridge ports except last client
+    7. Create and send leave stream from 1st client
+    8. Verify MDB entry is deleted
+    9. Verify no traffic is received on the port that left the group
+    """
+
+    bridge = 'br0'
+    querrier_interval = 10
+    sleep_value = 5
+    tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 4)
+    if not tgen_dev or not dent_devices:
+        pytest.skip('The testbed does not have enough dent with tgen connections')
+    dev_name = dent_devices[0].host_name
+    tg_ports = tgen_dev.links_dict[dev_name][0]
+    dut_ports = tgen_dev.links_dict[dev_name][1]
+    mcast_group1 = '227.1.1.1'
+    mcast_group2 = '239.2.2.2'
+    mcast_group_addr = [mcast_group1, mcast_group2, mcast_group2]
+    macs = ['a6:00:00:00:00:01', 'a6:00:00:00:00:02', 'a6:00:00:00:00:03', 'a6:00:00:00:00:04']
+
+    # 1.Create a bridge and enable IGMP Snooping, enable querrier and change query interval
+    #   Config Fastleave on 1st rx_port
+    await common_bridge_and_igmp_setup(dev_name, bridge, 2, dut_ports, querier_interval=querrier_interval)
+
+    out = await BridgeLink.set(
+        input_data=[{dev_name: [
+            {'device': dut_ports[1], 'fastleave': 'on'}]}])
+    err_msg = f'Verify that port entities set to fastleave ON.\n{out}'
+    assert out[0][dev_name]['rc'] == 0, err_msg
+
+    # 2.Init interfaces and create 2 multicast Streams
+    # 3.Create 3 membership report streams, 1 with invalid checksum
+    dev_groups = tgen_utils_dev_groups_from_config(
+        [{'ixp': tg_ports[0], 'ip': '102.0.0.3', 'gw': '102.0.0.1', 'plen': 24},
+         {'ixp': tg_ports[1], 'ip': '100.0.0.3', 'gw': '100.0.0.1', 'plen': 24},
+         {'ixp': tg_ports[2], 'ip': '101.0.0.3', 'gw': '101.0.0.1', 'plen': 24},
+         {'ixp': tg_ports[3], 'ip': '99.0.0.3', 'gw': '99.0.0.1', 'plen': 24}])
+
+    tx_port = dev_groups[tg_ports[0]][0]['name']
+    rx_ports = [dev_groups[tg_ports[1]][0]['name'],
+                dev_groups[tg_ports[2]][0]['name'],
+                dev_groups[tg_ports[3]][0]['name']]
+
+    await tgen_utils_traffic_generator_connect(tgen_dev, tg_ports, dut_ports, dev_groups)
+    streams = {f'mcast_{idx + 1}': {
+            'type': 'raw',
+            'protocol': 'ip',
+            'ip_source': tx_port,
+            'ip_destination': rx_ports[1],
+            'srcMac': macs[0],
+            'dstMac': mcast_ip_to_mac(mcast_group),
+            'srcIp': '0.0.0.0',
+            'dstIp': mcast_group,
+            'frame_rate_type': 'line_rate',
+            'rate': 40,
+        } for idx, mcast_group in enumerate([mcast_group1, mcast_group2])}
+
+    streams.update({f'member_report{idx + 1}': {
+            'type': 'raw',
+            'protocol': 'ip',
+            'ip_source': dev_groups[tg_ports[idx + 1]][0]['name'],
+            'ip_destination': dev_groups[tg_ports[0]][0]['name'],
+            'srcMac': combined[1],
+            'dstMac': mcast_ip_to_mac(combined[0]),
+            'srcIp': dev_groups[tg_ports[idx + 1]][0]['ip'],
+            'dstIp': combined[0],
+            'ipproto': 'igmpv2',
+            'totalLength': '28',
+            'igmpType': '22',
+            'igmpGroupAddr': combined[0],
+            'rate': 1,
+            'transmissionControlType': 'fixedPktCount',
+            'frameCount': 1,
+        } for idx, combined in enumerate(zip(mcast_group_addr, macs[1:]))
+    })
+    streams['member_report3']['igmpChecksum'] = '0'
+    await tgen_utils_setup_streams(tgen_dev, config_file_name=None, streams=streams)
+
+    # 4.Send Traffic from router port and from clients
+    await tgen_utils_start_traffic(tgen_dev)
+    await asyncio.sleep(querrier_interval + 5)
+
+    # 5.Verify Mdb entries were created for clients and router
+    mdb_entires, router_entires = await get_bridge_mdb(dev_name)
+    verify_mdb_entries(mdb_entires, dut_ports[1:3], mcast_group_addr[:-1])
+    assert len(router_entires), f'No MDB router entries were added to bridge MDB table {router_entires}'
+
+    # 6.Verify the multicast traffic is flooded to all bridge ports except last client
+    stats = await tgen_utils_get_traffic_stats(tgen_dev)
+    verify_expected_rx_rate(stats, tx_port, rx_ports[:-1], rate_coef=0.5)
+    # Verify rx_ports have 0 rx_rate possbile deviation 1000 Bps, due to some pkt's can pass through the port
+    for row in stats.Rows:
+        if row['Port Name'] == rx_ports[-1].split('_')[0]:
+            assert int(row['Bytes Rx. Rate']) <= DEVIATION_BPS, f"Actual rate {row['Bytes Rx. Rate']} expected rate 0"
+
+    # 7.Create and send leave stream from 1st client
+    stream_leave = {'igmp_leave': {
+            'type': 'raw',
+            'protocol': 'ip',
+            'frameSize': '74',
+            'ip_source': rx_ports[0],
+            'ip_destination': tx_port,
+            'srcMac': macs[1],
+            'dstMac': mcast_ip_to_mac(IGMP_LEAVE_V2_IP),
+            'srcIp': dev_groups[tg_ports[1]][0]['ip'],
+            'dstIp': IGMP_LEAVE_V2_IP,
+            'ipproto': 'igmpv2',
+            'totalLength': '28',
+            'igmpType': '23',
+            'igmpGroupAddr': mcast_group1,
+            'rate': 1,
+            'transmissionControlType': 'fixedPktCount',
+            'frameCount': 1,
+    }}
+    await tgen_utils_stop_traffic(tgen_dev)
+    await asyncio.sleep(6)
+    await tgen_utils_clear_traffic_items(tgen_dev, traffic_names=['member_report1'])
+    await tgen_utils_setup_streams(tgen_dev, config_file_name=None, streams=stream_leave)
+    await tgen_utils_start_traffic(tgen_dev)
+    await asyncio.sleep(sleep_value)
+
+    # 8.Verify MDB entry is deleted
+    mdb_entires, _ = await get_bridge_mdb(dev_name)
+    verify_mdb_entries(mdb_entires, [dut_ports[2]], [mcast_group2])
+    for entry in mdb_entires:
+        assert dut_ports[1] != entry['port'], f'Mdb entry of port {dut_ports[1]} still exists: \n{mdb_entires}'
+
+    # 9.Verify no traffic is received on the port that left the group
+    await asyncio.sleep(15)
     stats = await tgen_utils_get_traffic_stats(tgen_dev)
     verify_expected_rx_rate(stats, tx_port, [rx_ports[1]], rate_coef=0.5)
     # Verify rx_ports have 0 rx_rate possbile deviation 1000 Bps, due to some pkt's can pass through the port
