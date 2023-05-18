@@ -423,6 +423,7 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                 'dscp_ecn': 'ipv4.header.priority.raw',
                 'ttl': 'ipv4.header.ttl',
                 'totalLength': 'ipv4.header.totalLength',
+                'l3Proto': 'ipv4.header.protocol',
             }
 
         ip_stack = config_element.Stack.find(StackTypeId=f'^{proto}$')
