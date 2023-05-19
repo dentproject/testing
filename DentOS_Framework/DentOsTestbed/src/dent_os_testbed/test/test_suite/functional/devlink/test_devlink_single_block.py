@@ -10,11 +10,10 @@ from dent_os_testbed.lib.tc.tc_qdisc import TcQdisc
 from dent_os_testbed.lib.tc.tc_filter import TcFilter
 
 from dent_os_testbed.test.test_suite.functional.devlink.devlink_utils import (
-    verify_cpu_traps_rate_code_avg,
-    verify_devlink_cpu_traps_rate_avg,
     randomize_rule_by_src_dst_field,
     overwrite_src_dst_stream_fields,
-    CPU_STAT_CODE_ACL_CODE_3, CPU_MAX_PPS, RATE_UNITS)
+    verify_cpu_rate,
+    CPU_MAX_PPS, RATE_UNITS)
 
 from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_get_dent_devices_with_tgen,
@@ -120,7 +119,6 @@ async def test_devlink_basic(testbed, traffic):
     streams = tcutil_tc_rules_to_tgen_streams({dut_ports[0]: out[0][dev_name]['parsed_output']},
                                               frame_rate_pps=100, frame_rate_type='line_rate',
                                               frame_size=frame_size)
-
     await tgen_utils_setup_streams(tgen_dev, config_file_name=None, streams=streams)
     await tgen_utils_start_traffic(tgen_dev)
 
@@ -128,8 +126,7 @@ async def test_devlink_basic(testbed, traffic):
     # Calculate expected pkt rate based on policer rate limitation
     exp_rate = policer_rate / frame_size
     await asyncio.sleep(10)
-    await verify_cpu_traps_rate_code_avg(dent_dev, CPU_STAT_CODE_ACL_CODE_3, exp_rate)
-    await verify_devlink_cpu_traps_rate_avg(dent_dev, 'acl_code_3', exp_rate)
+    await verify_cpu_rate(dent_dev, exp_rate)
     await tgen_utils_stop_traffic(tgen_dev)
 
 
@@ -192,8 +189,6 @@ async def test_devlink_random(testbed):
                       'want_vlan_ethtype': True if want_ip and want_vlan else False}
 
     tc_rule = tcutil_generate_rule_with_random_selectors(dut_ports[0], **rule_selectors)
-    if want_vlan:
-        tc_rule['protocol'] = choice(('0x8100', '802.1q'))
     tc_rule_copy = deepcopy(tc_rule)
     randomize_rule_by_src_dst_field(tc_rule, rule_selectors)
 
@@ -218,8 +213,7 @@ async def test_devlink_random(testbed):
     # Calculate expected pkt rate based on policer rate limitation
     exp_rate = policer_rate / frame_size
     await asyncio.sleep(10)
-    await verify_cpu_traps_rate_code_avg(dent_dev, CPU_STAT_CODE_ACL_CODE_3, exp_rate)
-    await verify_devlink_cpu_traps_rate_avg(dent_dev, 'acl_code_3', exp_rate)
+    await verify_cpu_rate(dent_dev, exp_rate)
     await tgen_utils_stop_traffic(tgen_dev)
 
 
@@ -284,8 +278,6 @@ async def test_devlink_policer_log(testbed):
                       'want_vlan_ethtype': True if want_ip and want_vlan else False}
 
     tc_rule = tcutil_generate_rule_with_random_selectors(dut_ports[0], **rule_selectors)
-    if want_vlan:
-        tc_rule['protocol'] = choice(('0x8100', '802.1q'))
     tc_rule_copy = deepcopy(tc_rule)
     randomize_rule_by_src_dst_field(tc_rule, rule_selectors)
 
@@ -297,8 +289,7 @@ async def test_devlink_policer_log(testbed):
     assert output_rule[0][dev_name]['rc'] == 0, f'Failed to get tc rule \n{output_rule}'
 
     del tc_rule['filtertype']['skip_sw']
-    del tc_rule['action']
-    tc_rule['action'] = 'action xt limit 3/sec -j LOG '
+    tc_rule['action'] = {'xt': {'limit': '3/sec', '-j': 'LOG'}}
 
     out = await TcFilter.add(input_data=[{dev_name: [tc_rule]}])
     assert out[0][dev_name]['rc'] == 0, f'Failed to create tc rule \n{out}'
@@ -322,8 +313,7 @@ async def test_devlink_policer_log(testbed):
     assert tail_res, f'CPU matched packets are not logged {tail_res}'
 
     # 5.Verify CPU trapped packet rate is as expected
-    await verify_cpu_traps_rate_code_avg(dent_dev, CPU_STAT_CODE_ACL_CODE_3, exp_rate)
-    await verify_devlink_cpu_traps_rate_avg(dent_dev, 'acl_code_3', exp_rate)
+    await verify_cpu_rate(dent_dev, exp_rate)
     await tgen_utils_stop_traffic(tgen_dev)
 
 
@@ -389,8 +379,6 @@ async def test_devlink_diff_rate_units(testbed, rate_units):
                       'want_vlan_ethtype': True if want_vlan and want_ip else False}
 
     tc_rule = tcutil_generate_rule_with_random_selectors(dut_ports[0], **rule_selectors)
-    if want_vlan:
-        tc_rule['protocol'] = choice(('0x8100', '802.1q'))
     tc_rule_copy = deepcopy(tc_rule)
     randomize_rule_by_src_dst_field(tc_rule, rule_selectors)
 
@@ -415,6 +403,5 @@ async def test_devlink_diff_rate_units(testbed, rate_units):
     # Calculate expected pkt rate based on policer rate limitation
     exp_rate = policer_rate_bps / (frame_size * RATE_UNITS['bps'])
     await asyncio.sleep(10)
-    await verify_cpu_traps_rate_code_avg(dent_dev, CPU_STAT_CODE_ACL_CODE_3, exp_rate)
-    await verify_devlink_cpu_traps_rate_avg(dent_dev, 'acl_code_3', exp_rate)
+    await verify_cpu_rate(dent_dev, exp_rate)
     await tgen_utils_stop_traffic(tgen_dev)
