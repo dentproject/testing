@@ -104,7 +104,7 @@ async def test_bridging_bum_traffic_bridge_with_rif(testbed):
     list_streams = get_streams(srcMac, self_mac, prefix, dev_groups, tg_ports)
     await tgen_utils_setup_streams(tgen_dev, config_file_name=None, streams=list_streams)
 
-    tcpdump = asyncio.create_task(tb_device_tcpdump(dent_dev, 'swp1', '-n', count_only=False, timeout=5, dump=True))
+    tcpdump = asyncio.create_task(tb_device_tcpdump(dent_dev, ports[0], '-n', count_only=False, timeout=5, dump=True))
 
     await tgen_utils_start_traffic(tgen_dev)
     await asyncio.sleep(traffic_duration)
@@ -222,7 +222,7 @@ async def test_bridging_bum_traffic_bridge_without_rif(testbed):
     list_streams = get_streams(srcMac, self_mac, prefix, dev_groups, tg_ports)
     await tgen_utils_setup_streams(tgen_dev, config_file_name=None, streams=list_streams)
 
-    tcpdump = asyncio.create_task(tb_device_tcpdump(dent_dev, 'swp1', '-n', count_only=False, timeout=5, dump=True))
+    tcpdump = asyncio.create_task(tb_device_tcpdump(dent_dev, ports[0], '-n', count_only=False, timeout=5, dump=True))
 
     await tgen_utils_start_traffic(tgen_dev)
     await asyncio.sleep(traffic_duration)

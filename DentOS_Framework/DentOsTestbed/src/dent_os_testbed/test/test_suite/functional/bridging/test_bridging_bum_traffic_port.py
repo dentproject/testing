@@ -90,14 +90,14 @@ async def test_bridging_bum_traffic_port_with_rif(testbed):
     list_streams = get_streams(srcMac, self_mac, prefix, dev_groups, tg_ports)
     await tgen_utils_setup_streams(tgen_dev, config_file_name=None, streams=list_streams)
 
-    tcpdump = asyncio.create_task(tb_device_tcpdump(dent_dev, 'swp1', '-n', count_only=False, timeout=5, dump=True))
+    tcpdump = asyncio.create_task(tb_device_tcpdump(dent_dev, ports[0], '-n', count_only=False, timeout=5, dump=True))
 
     await tgen_utils_start_traffic(tgen_dev)
     await asyncio.sleep(traffic_duration)
     await tgen_utils_stop_traffic(tgen_dev)
 
     # check the traffic stats
-    stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Traffic Item Statistics')
+    stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
     for row in stats.Rows:
         assert tgen_utils_get_loss(row) == 100.000, \
             f"Verify that traffic from {row['Tx Port']} to {row['Rx Port']} not forwarded.\n{out}"
@@ -170,14 +170,14 @@ async def test_bridging_bum_traffic_port_without_rif(testbed):
     list_streams = get_streams(srcMac, self_mac, prefix, dev_groups, tg_ports)
     await tgen_utils_setup_streams(tgen_dev, config_file_name=None, streams=list_streams)
 
-    tcpdump = asyncio.create_task(tb_device_tcpdump(dent_dev, 'swp1', '-n', count_only=False, timeout=5, dump=True))
+    tcpdump = asyncio.create_task(tb_device_tcpdump(dent_dev, ports[0], '-n', count_only=False, timeout=5, dump=True))
 
     await tgen_utils_start_traffic(tgen_dev)
     await asyncio.sleep(traffic_duration)
     await tgen_utils_stop_traffic(tgen_dev)
 
     # check the traffic stats
-    stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Traffic Item Statistics')
+    stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
     for row in stats.Rows:
         assert tgen_utils_get_loss(row) == 100.000, \
             f"Verify that traffic from {row['Tx Port']} to {row['Rx Port']} not forwarded.\n{out}"
