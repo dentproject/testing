@@ -132,6 +132,7 @@ async def test_storm_negative_known_unicast_traffic(testbed):
 
         # check the traffic stats
         stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Port Statistics')
+        tx_rate = rx_rate = 0
         collected = {row['Port Name']:
                      {'tx_rate': row['Bytes Tx. Rate'], 'rx_rate': row['Bytes Rx. Rate']} for row in stats.Rows}
         for key in collected:
@@ -141,7 +142,7 @@ async def test_storm_negative_known_unicast_traffic(testbed):
                 tx_rate = collected[key]['tx_rate']
         res = math.isclose(float(tx_rate), float(rx_rate), rel_tol=deviation)
         assert res, f'The rate is limited by storm control, \
-                        actual rate {float(rx_rate)} istead of {float(tx_rate)}.'
+                        actual rate {float(rx_rate)} instead of {float(tx_rate)}.'
 
         out = await BridgeFdb.delete(
             input_data=[{device_host_name: [
