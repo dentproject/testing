@@ -55,6 +55,7 @@ async def test_bridging_bum_traffic_port_with_rif(testbed):
     ports = tgen_dev.links_dict[device_host_name][1]
     traffic_duration = 10
     prefix = '100.1.1.253'
+    wait = 6
 
     out = await IpAddress.add(input_data=[{device_host_name: [
         {'dev': ports[0], 'prefix': f'{prefix}/24'},
@@ -103,6 +104,7 @@ async def test_bridging_bum_traffic_port_with_rif(testbed):
             f"Verify that traffic from {row['Tx Port']} to {row['Rx Port']} not forwarded.\n{out}"
 
     await tcpdump
+    await asyncio.sleep(wait)
     print(f'TCPDUMP: packets={tcpdump.result()}')
     data = tcpdump.result()
 
@@ -140,6 +142,7 @@ async def test_bridging_bum_traffic_port_without_rif(testbed):
     ports = tgen_dev.links_dict[device_host_name][1]
     traffic_duration = 10
     prefix = '100.1.1.253'
+    wait = 6
 
     out = await IpLink.set(
         input_data=[{device_host_name: [
@@ -183,6 +186,7 @@ async def test_bridging_bum_traffic_port_without_rif(testbed):
             f"Verify that traffic from {row['Tx Port']} to {row['Rx Port']} not forwarded.\n{out}"
 
     await tcpdump
+    await asyncio.sleep(wait)
     print(f'TCPDUMP: packets={tcpdump.result()}')
     data = tcpdump.result()
 

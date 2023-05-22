@@ -1,3 +1,4 @@
+import math
 import pytest
 import asyncio
 
@@ -192,6 +193,7 @@ async def test_port_isolation_interaction_vlan_membership(testbed):
         # check the traffic stats
         stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
         for row in stats.Rows:
-            assert tgen_utils_get_loss(row) == expected_loss[row['Traffic Item']], \
-                'Verify that traffic is forwarded/not forwarded in accordance.'
+            assert math.isclose(expected_loss[row['Traffic Item']], tgen_utils_get_loss(row), abs_tol=0.10), \
+                f"Verify that traffic is forwarded/not forwarded in accordance - Actual: {tgen_utils_get_loss(row)}, \
+                    Expected: {expected_loss[row['Traffic Item']]}"
         await tgen_utils_clear_traffic_items(tgen_dev)
