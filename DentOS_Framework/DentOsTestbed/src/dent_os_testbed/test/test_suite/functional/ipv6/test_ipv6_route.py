@@ -175,9 +175,9 @@ async def test_ipv6_route_default_offload(testbed):
         assert loss == expected, f'Expected loss: {expected}%, actual: {loss}%'
 
 
-async def test_ipv6_route_hosts_offload(testbed):
+async def test_ipv6_route_lpm(testbed):
     """
-    Test Name: test_ipv6_route_hosts_offload
+    Test Name: test_ipv6_route_lpm
     Test Suite: suite_functional_ipv6
     Test Overview:
         Verify LPM proper processing
