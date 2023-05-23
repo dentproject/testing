@@ -108,82 +108,129 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                 pport = port.split(':')
                 pports.append({'Arg1': pport[0], 'Arg2': int(pport[1]), 'Arg3': int(pport[2])})
             vport_hrefs = [vport.href for vport in IxnetworkIxiaClientImpl.ixnet.Vport.find()]
+
+            # init virtual lags
+            lags = {}
+            for name, group in dev_groups.items():
+                if group[0]['type'] != 'lag':
+                    continue
+                lag_vports = [vports[port][0].href for port in group[0]['lag_members']]
+                lags[name] = {
+                    'vports': lag_vports,
+                    'instance': IxnetworkIxiaClientImpl.ixnet.Lag.add(Name=name, Vports=lag_vports),
+                }
+            lag_ports = [port for lag in lags.values() for port in lag['vports']]
+
             device.applog.info('Assigning ports')
             IxnetworkIxiaClientImpl.ixnet.AssignPorts(pports, [], vport_hrefs, True)
+            self.__update_ports_mode(vports, device)
 
+            # Add ports
             for port, vport in vports.items():
-                card = vport[0].L1Config.NovusTenGigLan or vport[0].L1Config.Ethernet
-                if device.media_mode == 'mixed':
-                    # Get required media mode. Default - copper
-                    required_media = next((link[2] for link in device.links if link[0] == port), 'copper')
-                    device.applog.info(f'Changing port: {port} media mode {required_media}')
-                    card.Media = required_media
-                    card.AutoInstrumentation = 'floating'
-                elif device.media_mode == 'fiber':
-                    device.applog.info('Changing all vports media mode to fiber')
-                    card.Media = 'fiber'
-                    card.AutoInstrumentation = 'floating'
-                else:
-                    device.applog.info('Changing all vports media mode to copper')
-                    card.Media = 'copper'
-                    card.AutoInstrumentation = 'floating'
-
+                if vport[0].href in lag_ports:
+                    continue
                 device.applog.info('Adding interface on ixia port {} swp {}'.format(port, vport[1]))
                 topo = IxnetworkIxiaClientImpl.ixnet.Topology.add(Vports=vport[0])
-                for dev in dev_groups[port]:
-                    device.applog.info('Adding device {}'.format(dev))
-                    is_ipv6 = dev.get('version', 'ipv4') == 'ipv6'
-                    dev_group = topo.DeviceGroup.add(Multiplier=dev.get('count', 2))
-                    if 'vlan' in dev and dev['vlan'] is not None:
-                        eth = dev_group.Ethernet.add(Name=vport[1], UseVlans=True, VlanCount=1)
-                        eth.Vlan.find()[0].VlanId.Single(dev['vlan'])
-                    else:
-                        eth = dev_group.Ethernet.add(Name=vport[1])
-                    if is_ipv6:
-                        ep = eth.Ipv6.add(Name=dev['name'])
-                        ep.Address.Increment(dev['ip'], '::1')
-                    else:
-                        ep = eth.Ipv4.add(Name=dev['name'])
-                        ep.Address.Increment(dev['ip'], '0.0.0.1')
-                    ep.GatewayIp.Single(dev['gw'])
-                    ep.Prefix.Single(dev['plen'])
-                    if dev.get('bgp_peer', {}):
-                        bp = dev['bgp_peer']
-                        if is_ipv6:
-                            bgp_ep = ep.BgpIpv6Peer.add(Name=dev['name'])
-                        else:
-                            bgp_ep = ep.BgpIpv4Peer.add(Name=dev['name'])
-                        bgp_ep.DutIp.Single(dev['gw'])
-                        bgp_ep.Type.Single('external')
-                        bgp_ep.LocalAs2Bytes.Single(bp['local_as'])
-                        bgp_ep.HoldTimer.Single(bp['hold_timer'])
-                        bgp_ep.UpdateInterval.Single(bp['update_interval'])
-                        ng = dev_group.NetworkGroup.add(
-                            Multiplier=len(bp['route_ranges']), Name=dev['name']
-                        )
-                        ng.Enabled.Single(True)
-                        for rr in bp['route_ranges']:
-                            if is_ipv6:
-                                pool = ng.Ipv6PrefixPools.add(
-                                    Name=dev['name'], NumberOfAddresses=rr['number_of_routes']
-                                )
-                            else:
-                                pool = ng.Ipv4PrefixPools.add(
-                                    Name=dev['name'], NumberOfAddresses=rr['number_of_routes']
-                                )
-                            pool.NetworkAddress.Single(rr['first_route'])
-                            IxnetworkIxiaClientImpl.rr_eps.append(pool)
+                self.__add_endpoint(dev_groups, device, topo, port, vport)
 
-                        IxnetworkIxiaClientImpl.bgp_eps.append(bgp_ep)
-                    else:
-                        IxnetworkIxiaClientImpl.bgp_eps.append(ep)
-                        IxnetworkIxiaClientImpl.rr_eps.append(ep)
-                    IxnetworkIxiaClientImpl.ip_eps.append(ep)
-                    IxnetworkIxiaClientImpl.eth_eps.append(eth)
-                    IxnetworkIxiaClientImpl.raw_eps.append(vport[0].Protocols.find())
+            # Add lags
+            for name, lag in lags.items():
+                device.applog.info('Adding lag {} with ports {}'.format(name, lag['vports']))
+                topo = IxnetworkIxiaClientImpl.ixnet.Topology.add(Ports=[lag['instance']])
+                lag['instance'].Vports = lag['vports']
+                lag['instance'].ProtocolStack.add().Ethernet.add().Lagportlacp.add()
+                self.__add_endpoint(dev_groups, device, topo, name, lag['instance'], is_lag=True)
+
         except Exception as e:
             device.applog.info(e)
         return 0, 'Connected!'
+
+    @staticmethod
+    def __add_endpoint(dev_groups, device, topo, name, instance, is_lag=False):
+        """
+        Creates and stores L2/L3 endpoints. Works both with regular ports and lags.
+        """
+        for dev in dev_groups[name]:
+            device.applog.info('Adding device {}'.format(dev))
+            l2_name = name if is_lag else instance[1]
+            is_ipv6 = dev.get('version', 'ipv4') == 'ipv6'
+            dev_group = topo.DeviceGroup.add(Multiplier=dev.get('count', 2))
+            # L2
+            if dev.get('vlan'):
+                eth = dev_group.Ethernet.add(Name=l2_name, UseVlans=True, VlanCount=1)
+                eth.Vlan.find()[0].VlanId.Single(dev['vlan'])
+            else:
+                eth = dev_group.Ethernet.add(Name=l2_name)
+            # L3
+            if is_ipv6:
+                ep = eth.Ipv6.add(Name=dev['name'])
+                ep.Address.Increment(dev['ip'], '::1')
+            else:
+                ep = eth.Ipv4.add(Name=dev['name'])
+                ep.Address.Increment(dev['ip'], '0.0.0.1')
+            ep.GatewayIp.Single(dev['gw'])
+            ep.Prefix.Single(dev['plen'])
+
+            if dev.get('bgp_peer', {}):
+                bp = dev['bgp_peer']
+                if is_ipv6:
+                    bgp_ep = ep.BgpIpv6Peer.add(Name=dev['name'])
+                else:
+                    bgp_ep = ep.BgpIpv4Peer.add(Name=dev['name'])
+                bgp_ep.DutIp.Single(dev['gw'])
+                bgp_ep.Type.Single('external')
+                bgp_ep.LocalAs2Bytes.Single(bp['local_as'])
+                bgp_ep.HoldTimer.Single(bp['hold_timer'])
+                bgp_ep.UpdateInterval.Single(bp['update_interval'])
+                ng = dev_group.NetworkGroup.add(
+                    Multiplier=len(bp['route_ranges']), Name=dev['name']
+                )
+                ng.Enabled.Single(True)
+                for rr in bp['route_ranges']:
+                    if is_ipv6:
+                        pool = ng.Ipv6PrefixPools.add(
+                            Name=dev['name'], NumberOfAddresses=rr['number_of_routes']
+                        )
+                    else:
+                        pool = ng.Ipv4PrefixPools.add(
+                            Name=dev['name'], NumberOfAddresses=rr['number_of_routes']
+                        )
+                    pool.NetworkAddress.Single(rr['first_route'])
+                    IxnetworkIxiaClientImpl.rr_eps.append(pool)
+
+                IxnetworkIxiaClientImpl.bgp_eps.append(bgp_ep)
+            else:
+                IxnetworkIxiaClientImpl.bgp_eps.append(ep)
+                IxnetworkIxiaClientImpl.rr_eps.append(ep)
+            IxnetworkIxiaClientImpl.ip_eps.append(ep)
+            IxnetworkIxiaClientImpl.eth_eps.append(eth)
+            if is_lag:
+                IxnetworkIxiaClientImpl.raw_eps.append(instance)
+            else:
+                IxnetworkIxiaClientImpl.raw_eps.append(instance[0].Protocols.find())
+
+    @staticmethod
+    def __update_ports_mode(vports, device):
+        """
+        Changes media modes for Ixia ports
+        """
+        for port, vport in vports.items():
+            # or vport[0].L1Config.Ethernet
+            card = vport[0].L1Config.NovusTenGigLan
+            if device.media_mode == 'mixed':
+                # Get required media mode. Default - copper
+                required_media = next((link[2] for link in device.links if link[0] == port), 'copper')
+                device.applog.info(f'Changing port: {port} media mode {required_media}')
+                card.Media = required_media
+                card.AutoInstrumentation = 'floating'
+            elif device.media_mode == 'fiber':
+                device.applog.info('Changing all vports media mode to fiber')
+                card.Media = 'fiber'
+                card.AutoInstrumentation = 'floating'
+            else:
+                device.applog.info('Changing all vports media mode to copper')
+                card.Media = 'copper'
+                card.AutoInstrumentation = 'floating'
 
     def parse_connect(self, command, output, *argv, **kwarg):
         return command
