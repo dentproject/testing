@@ -66,7 +66,7 @@ async def test_vlan_with_increment_macs(testbed):
     tolerance = 0.7  # fdb learning tolerance
 
     out = await OnlpSystemInfo.show(input_data=[{device: [{}]}], parse_output=True)
-    model = out[0][device]['parsed_output']['platform_name'].strip().replace('_', '-')
+    model = out[0][device]['parsed_output']['product_name'].strip().replace('_', '-')
 
     mac_table = LocalFileHandler(dent_devices[0].applog).read(PLATFORMS_CONSTANTS)
     mac_count = json.loads(mac_table)
