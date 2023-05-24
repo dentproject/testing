@@ -77,6 +77,30 @@ get_devlink_cpu_traps_rate_avg()
     done
     echo $((counter/10))
 }
+
+# Get drop counters rate by reading hardware drop counters
+get_drops_rate_code()
+{
+    R1=`cat /sys/kernel/debug/prestera/hw_counters/drops/cpu_code_$1_stats | tr -d "\\0"`
+    sleep 1
+    R2=`cat /sys/kernel/debug/prestera/hw_counters/drops/cpu_code_$1_stats | tr -d "\\0"`
+    RXPPS=`expr $R2 - $R1`
+    echo $RXPPS
+}
+
+# Get average drop rate by reading hardware drop counters
+get_drops_rate_code_avg()
+{
+    local start_index=0
+    local end=9
+    local counter=0
+    for((num=start_index; num<=end; num++)); do
+        local temp=$(get_drops_rate_code $1)
+        sleep 1
+        counter=$((counter+temp))
+    done
+    echo $((counter/10))
+}
 '''
 
 
@@ -87,7 +111,8 @@ async def define_bash_utils(testbed):
         pytest.skip('The testbed does not have enough dent with tgen connections')
     dent_dev = dent_devices[0]
     func_list = ['tcpdump_cpu_traps_rate', 'tcpdump_cpu_traps_rate_avg', 'get_cpu_traps_rate_code',
-                 'get_cpu_traps_rate_code_avg', 'get_devlink_cpu_traps_rate', 'get_devlink_cpu_traps_rate_avg']
+                 'get_cpu_traps_rate_code_avg', 'get_devlink_cpu_traps_rate', 'get_devlink_cpu_traps_rate_avg',
+                 'get_drops_rate_code', 'get_drops_rate_code_avg']
     listed_funcs = ' '.join(func_list)
     bashrc = '/root/.bashrc'
     backup = '/root/.bashrc.bak'
