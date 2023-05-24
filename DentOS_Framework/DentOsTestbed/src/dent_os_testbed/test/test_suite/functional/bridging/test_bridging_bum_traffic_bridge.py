@@ -58,7 +58,6 @@ async def test_bridging_bum_traffic_bridge_with_rif(testbed):
     ports = tgen_dev.links_dict[device_host_name][1]
     traffic_duration = 10
     prefix = '100.1.1.253'
-    wait = 6
 
     out = await IpLink.add(
         input_data=[{device_host_name: [
@@ -105,7 +104,7 @@ async def test_bridging_bum_traffic_bridge_with_rif(testbed):
     list_streams = get_streams(srcMac, self_mac, prefix, dev_groups, tg_ports)
     await tgen_utils_setup_streams(tgen_dev, config_file_name=None, streams=list_streams)
 
-    tcpdump = asyncio.create_task(tb_device_tcpdump(dent_dev, ports[0], '-n', count_only=False, timeout=5, dump=True))
+    tcpdump = asyncio.create_task(tb_device_tcpdump(dent_dev, ports[0], '-n', count_only=False, timeout=15, dump=True))
 
     await tgen_utils_start_traffic(tgen_dev)
     await asyncio.sleep(traffic_duration)
@@ -141,10 +140,7 @@ async def test_bridging_bum_traffic_bridge_with_rif(testbed):
         assert tgen_utils_get_loss(row) == expected_loss[row['Traffic Item']], \
             'Verify that traffic from swp1 to swp2 forwarded/not forwarded in accordance.'
 
-    await tcpdump
-    await asyncio.sleep(wait)
-    print(f'TCPDUMP: packets={tcpdump.result()}')
-    data = tcpdump.result()
+    data = await tcpdump
 
     count_of_packets = re.findall(r'(\d+) packets (captured|received|dropped)', data)
     for count, type in count_of_packets:
@@ -183,7 +179,6 @@ async def test_bridging_bum_traffic_bridge_without_rif(testbed):
     ports = tgen_dev.links_dict[device_host_name][1]
     traffic_duration = 10
     prefix = '100.1.1.253'
-    wait = 6
 
     out = await IpLink.add(
         input_data=[{device_host_name: [
@@ -225,7 +220,7 @@ async def test_bridging_bum_traffic_bridge_without_rif(testbed):
     list_streams = get_streams(srcMac, self_mac, prefix, dev_groups, tg_ports)
     await tgen_utils_setup_streams(tgen_dev, config_file_name=None, streams=list_streams)
 
-    tcpdump = asyncio.create_task(tb_device_tcpdump(dent_dev, ports[0], '-n', count_only=False, timeout=5, dump=True))
+    tcpdump = asyncio.create_task(tb_device_tcpdump(dent_dev, ports[0], '-n', count_only=False, timeout=15, dump=True))
 
     await tgen_utils_start_traffic(tgen_dev)
     await asyncio.sleep(traffic_duration)
@@ -261,10 +256,7 @@ async def test_bridging_bum_traffic_bridge_without_rif(testbed):
         assert tgen_utils_get_loss(row) == expected_loss[row['Traffic Item']], \
             'Verify that traffic from swp1 to swp2 forwarded/not forwarded in accordance.'
 
-    await tcpdump
-    await asyncio.sleep(wait)
-    print(f'TCPDUMP: packets={tcpdump.result()}')
-    data = tcpdump.result()
+    data = await tcpdump
 
     count_of_packets = re.findall(r'(\d+) packets (captured|received|dropped)', data)
     for count, type in count_of_packets:
