@@ -589,6 +589,7 @@ async def test_ipv4_arp_reachable_timeout(testbed):
     tg_ports = tgen_dev.links_dict[dent][0]
     ports = tgen_dev.links_dict[dent][1]
     reachable = 'REACHABLE'
+    nei_update_time_s = 5
     address_map = (
         # swp port, tg ports,   swp ip,    tg ip,     plen
         (ports[0], tg_ports[0], '1.1.1.1', '1.1.1.2', 24),
@@ -639,6 +640,7 @@ async def test_ipv4_arp_reachable_timeout(testbed):
         await send_traffic_and_verify(tgen_dev)
 
         # Verify ports are not in REACHABLE mode
+        await asyncio.sleep(nei_update_time_s)
         neighs = await get_neigh_list(dent)
         for nei in neighs:
             if nei['dev'] not in ports:
@@ -657,7 +659,7 @@ async def test_ipv4_arp_reachable_timeout(testbed):
     await send_traffic_and_verify(tgen_dev)
 
     # Wait a few seconds to be sure that arp state is updated
-    await asyncio.sleep(5)
+    await asyncio.sleep(nei_update_time_s)
 
     # Verify ports are in REACHABLE mode
     neighs = await get_neigh_list(dent)
