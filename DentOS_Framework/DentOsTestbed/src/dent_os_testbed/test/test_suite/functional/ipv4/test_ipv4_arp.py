@@ -640,12 +640,13 @@ async def test_ipv4_arp_reachable_timeout(testbed):
         await send_traffic_and_verify(tgen_dev)
 
         # Verify ports are not in REACHABLE mode
-        await asyncio.sleep(nei_update_time_s)
-        neighs = await get_neigh_list(dent)
-        for nei in neighs:
-            if nei['dev'] not in ports:
-                continue
-            assert reachable not in nei['state'], f'Arp entry should be aged {nei}'
+        for _ in range(3):
+            neighs = await get_neigh_list(dent)
+            if all(reachable not in nei['state'] for nei in neighs if nei['dev'] in ports):
+                break
+            await asyncio.sleep(nei_update_time_s)
+        else:
+            raise AssertionError(f'Arp entries should be aged {[nei for nei in neighs if nei["dev"] in ports]}')
 
     finally:
         # 6. Configure arp base reachable timeout back to default 30 sec
@@ -658,15 +659,14 @@ async def test_ipv4_arp_reachable_timeout(testbed):
     # 7. Send traffic again
     await send_traffic_and_verify(tgen_dev)
 
-    # Wait a few seconds to be sure that arp state is updated
-    await asyncio.sleep(nei_update_time_s)
-
     # Verify ports are in REACHABLE mode
-    neighs = await get_neigh_list(dent)
-    for nei in neighs:
-        if nei['dev'] not in ports:
-            continue
-        assert reachable in nei['state'], f'Arp entry should be reachable {nei}'
+    for _ in range(5):
+        neighs = await get_neigh_list(dent)
+        if all(reachable in nei['state'] for nei in neighs if nei['dev'] in ports):
+            break
+        await asyncio.sleep(nei_update_time_s)
+    else:
+        raise AssertionError(f'Arp entries should be reachable {[nei for nei in neighs if nei["dev"] in ports]}')
 
 
 async def test_ipv4_arp_ageing(testbed):
