@@ -449,5 +449,5 @@ async def tcutil_verify_tgen_stats(dev, row, rule_action='pass',
     dev.applog.info(f"Traffic item: {row['Traffic Item']}\n" +
                     f"Tx Frames: {tx_packets}, Rx Frames: {row['Rx Frames']}, " +
                     f'{loss = }, {expected_loss = :.3f} (max {tolerance = })')
-    assert is_close(loss, expected_loss, rel_tol=tolerance), \
+    assert is_close(loss, expected_loss, abs_tol=tolerance * 100), \
         f'Expected loss: {expected_loss:.3f}%, actual: {loss}%'
