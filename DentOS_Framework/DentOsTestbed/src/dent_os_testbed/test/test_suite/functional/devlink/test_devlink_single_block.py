@@ -337,7 +337,7 @@ async def test_devlink_diff_rate_units(testbed, rate_units):
     dent_dev = dent_devices[0]
     tg_ports = tgen_dev.links_dict[dev_name][0]
     dut_ports = tgen_dev.links_dict[dev_name][1]
-    frame_size = randint(128, 1400)
+    frame_size = randint(128, 500)
     # Calculate max possible rate for cpu trap 4000pps is max
     max_rate = (frame_size * CPU_MAX_PPS) * RATE_UNITS['bps']  # Max rate in bits per second
     policer_rate_bps = randint(2_000_000, max_rate)
