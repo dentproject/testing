@@ -5,6 +5,7 @@ from dent_os_testbed.lib.ip.ip_route import IpRoute
 from dent_os_testbed.lib.os.recoverable_sysctl import RecoverableSysctl
 from dent_os_testbed.lib.tc.tc_qdisc import TcQdisc
 from dent_os_testbed.logger.Logger import AppLogger
+from dent_os_testbed.lib.devlink.devlink_port import DevlinkPort
 
 
 async def cleanup_qdiscs(dev):
@@ -69,13 +70,35 @@ async def cleanup_vrfs(dev):
 
 async def cleanup_ip_addrs(dev, tgen_dev):
     """
-    Removes all IP addresses configured during test.
+    Removes all IPv4 and IPv6 addresses configured during test.
+    Restores IPv6 link local address after `ip address flush`.
     Can be used separately or by using `cleanup_addrs` fixture.
     """
     logger = AppLogger(DEFAULT_LOGGER)
     logger.info('Deleting IP addresses from interfaces')
     ports = tgen_dev.links_dict[dev.host_name][1]
-    await IpAddress.flush(input_data=[{dev.host_name: [{'dev': port} for port in ports]}])
+
+    out = await IpAddress.flush(input_data=[{dev.host_name: [{'dev': port} for port in ports]}])
+    if out[0][dev.host_name]['rc'] != 0:
+        return
+
+    out = await IpLink.show(input_data=[{dev.host_name: [
+        {'cmd_options': '-j'}
+    ]}], parse_output=True)
+    if out[0][dev.host_name]['rc'] != 0:
+        return
+
+    cur_state = [(link['ifname'], link['operstate'].lower())
+                 for link in out[0][dev.host_name]['parsed_output']
+                 if link['ifname'] in ports]
+
+    await IpLink.set(input_data=[{dev.host_name: [
+        # setting ports down will also clear their neighbors
+        {'device': port, 'operstate': 'down'} for port in ports
+    ] + [
+        # restore previous port operstate and restore ipv6 link local addr (fe80::/64)
+        {'device': port, 'operstate': state} for port, state in cur_state
+    ]}])
 
 
 async def get_initial_routes(dev):
@@ -114,3 +137,73 @@ async def cleanup_sysctl():
     logger = AppLogger(DEFAULT_LOGGER)
     logger.info('Restoring sysctl values')
     await RecoverableSysctl.recover()
+
+
+async def cleanup_kbyte_per_sec_rate_value(dev, tgen_dev, all_values=False, bc=False, unk_uc=False, unreg_mc=False):
+    """
+    Restore values changed during test viz:
+        - all kbyte_per_sec_rate values
+        - bc_kbyte_per_sec_rate values
+        - unk_uc_kbyte_per_sec_rate values
+        - unreg_mc_kbyte_per_sec_rate values
+    """
+    logger = AppLogger(DEFAULT_LOGGER)
+    logger.info('Restoring kbyte_per_sec_rate values')
+    out = await DevlinkPort.show(
+        input_data=[{dev.host_name: [{'options': '-j'}]}],
+        parse_output=True)
+    devlink_entries = out[0][dev.host_name]['parsed_output']
+    rate_names = ['bc_kbyte_per_sec_rate', 'unk_uc_kbyte_per_sec_rate', 'unreg_mc_kbyte_per_sec_rate']
+    device = '/'.join(list(devlink_entries['param'])[0].split('/')[:2]) + '/'
+    ports_num = [num[3:] for num in tgen_dev.links_dict[dev.host_name][1]]
+
+    # restoring kbyte_per_sec_rate all values
+    if all_values:
+        input_data = ({dev.host_name: [
+            {'dev': f'{device}{num}', 'name': name, 'value': '0', 'cmode': 'runtime'} for num in ports_num]}
+            for name in rate_names
+        )
+        await DevlinkPort.set(input_data=input_data)
+        return
+
+    # restoring bc_kbyte_per_sec_rate values
+    if bc:
+        input_data = ({dev.host_name: [
+            {'dev': f'{device}{num}', 'name': 'bc_kbyte_per_sec_rate', 'value': '0', 'cmode': 'runtime'}]}
+            for num in ports_num
+        )
+        await DevlinkPort.set(input_data=input_data)
+
+    # restoring unk_uc_kbyte_per_sec_rate values
+    if unk_uc:
+        input_data = ({dev.host_name: [
+            {'dev': f'{device}{num}', 'name': 'unk_uc_kbyte_per_sec_rate', 'value': '0', 'cmode': 'runtime'}]}
+            for num in ports_num
+        )
+        await DevlinkPort.set(input_data=input_data)
+
+    # restoring unreg_mc_kbyte_per_sec_rate values
+    if unreg_mc:
+        input_data = ({dev.host_name: [
+            {'dev': f'{device}{num}', 'name': 'unreg_mc_kbyte_per_sec_rate', 'value': '0', 'cmode': 'runtime'}]}
+            for num in ports_num
+        )
+        await DevlinkPort.set(input_data=input_data)
+
+
+async def cleanup_bonds(dev):
+    """
+    Removes all bonds created during test.
+    Can be used separately or by using `cleanup_bonds` fixture.
+    """
+    logger = AppLogger(DEFAULT_LOGGER)
+    logger.info('Deleting bonds')
+    out = await IpLink.show(
+        input_data=[{dev.host_name: [{'cmd_options': '-j -d'}]}],
+        parse_output=True
+    )
+    bonds_info = out[0][dev.host_name]['parsed_output']
+    for name in bonds_info:
+        if name.get('linkinfo', {}).get('info_kind') == 'bond':
+            await IpLink.delete(input_data=[{dev.host_name: [
+                 {'device': f"{name['ifname']}"}]}])

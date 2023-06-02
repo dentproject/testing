@@ -134,7 +134,7 @@ async def test_vlan_with_increment_macs(testbed):
         await tgen_utils_start_traffic(tgen_dev)
         await asyncio.sleep(15)
         await tgen_utils_stop_traffic(tgen_dev)
-
+        await asyncio.sleep(10)
         # 6. Verify no packet loss nor packet leak occurred and all transmitted traffic received
         stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
         ti_to_rx_port_map = get_traffic_port_vlan_mapping(streams, port_map, tg_ports)
@@ -152,4 +152,5 @@ async def test_vlan_with_increment_macs(testbed):
         assert rc == 0, 'Failed getting learned vlans on the ports'
         assert int(number_of_macs.strip()) > (mac_count * tolerance),\
             f'Fail learning all macs with vlan: {vlan}expected {mac_count * tolerance} got {number_of_macs.strip()}'
+        await asyncio.sleep(5)  # in order tgen_utils_stop_traffic() to finish on TG
         await tgen_utils_clear_traffic_items(tgen_dev)

@@ -238,7 +238,7 @@ async def test_vlan_basic_functionality(testbed):
 
     # 6. Verify traffic
     stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
-    ti_to_rx_port_map = get_traffic_port_vlan_mapping(streams, port_map, tg_ports)
+    ti_to_rx_port_map = get_traffic_port_vlan_mapping(streams, port_setup, tg_ports)
     for row in stats.Rows:
         if row['Rx Port'] in ti_to_rx_port_map[row['Traffic Item']]:
             assert tgen_utils_get_loss(row) == 0.000, \
@@ -325,7 +325,7 @@ async def test_vlan_changing_default_pvid(testbed):
 
     # 5. Verify traffic
     stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
-    ti_to_rx_port_map = get_traffic_port_vlan_mapping(streams, port_map, tg_ports, default_pvid=non_default_pvid)
+    ti_to_rx_port_map = get_traffic_port_vlan_mapping(streams, port_setup, tg_ports, default_pvid=non_default_pvid)
     for row in stats.Rows:
         if row['Rx Port'] in ti_to_rx_port_map[row['Traffic Item']]:
             assert tgen_utils_get_loss(row) == 0.000, \

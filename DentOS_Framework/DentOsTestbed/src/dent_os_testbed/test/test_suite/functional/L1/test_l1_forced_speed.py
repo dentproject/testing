@@ -63,7 +63,10 @@ async def test_l1_forced_speed_(testbed, speed, duplex):
     tg_ports = tgen_dev.links_dict[device_host_name][0]
     ports = tgen_dev.links_dict[device_host_name][1][:2]
 
-    speed_ports = await tb_get_qualified_ports(dent_dev, ports, speed, duplex)
+    try:
+        speed_ports = await tb_get_qualified_ports(dent_dev, ports, speed, duplex)
+    except ValueError as e:
+        pytest.skip(str(e))
 
     # 1. Create bridge entity
     out = await IpLink.add(input_data=[{device_host_name: [{'device': 'br0', 'type': 'bridge'}]}])

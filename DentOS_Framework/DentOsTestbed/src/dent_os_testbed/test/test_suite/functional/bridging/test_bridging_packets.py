@@ -1,9 +1,9 @@
 import pytest
 import asyncio
 
+from dent_os_testbed.utils.test_utils.tb_utils import get_port_stats
 from dent_os_testbed.lib.bridge.bridge_link import BridgeLink
 from dent_os_testbed.lib.bridge.bridge_fdb import BridgeFdb
-from dent_os_testbed.lib.ethtool.ethtool import Ethtool
 from dent_os_testbed.lib.ip.ip_link import IpLink
 
 from dent_os_testbed.utils.test_utils.tgen_utils import (
@@ -23,17 +23,6 @@ pytestmark = [
     pytest.mark.asyncio,
     pytest.mark.usefixtures('cleanup_bridges', 'cleanup_tgen')
 ]
-
-
-async def get_port_stats(device_host_name, ports):
-    stats = {}
-    for port in ports:
-        out = await Ethtool.show(input_data=[{device_host_name: [
-            {'devname': port, 'options': '-S'}
-        ]}], parse_output=True)
-        assert out[0][device_host_name]['rc'] == 0
-        stats[port] = out[0][device_host_name]['parsed_output']
-    return stats
 
 
 async def test_bridging_packets_oversize(testbed):

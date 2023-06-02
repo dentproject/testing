@@ -17,13 +17,14 @@ from dent_os_testbed.utils.test_utils.cleanup_utils import (
     cleanup_bridges as _cleanup_bridges,
     cleanup_qdiscs as _cleanup_qdiscs,
     cleanup_routes as _cleanup_routes,
+    cleanup_bonds as _cleanup_bonds,
     cleanup_vrfs as _cleanup_vrfs,
     cleanup_sysctl as _cleanup_sysctl,
     get_initial_routes,
 )
 from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_get_dent_devices_with_tgen,
-    tgen_utils_stop_protocols,
+    tgen_utils_stop_traffic,
 )
 
 # Add python files for defining per folder fixtures here
@@ -183,7 +184,7 @@ async def cleanup_ip_addrs(testbed):
 async def cleanup_tgen(testbed):
     yield
     tgen_dev, _ = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 4)
-    await tgen_utils_stop_protocols(tgen_dev)
+    await tgen_utils_stop_traffic(tgen_dev)
 
 
 @pytest_asyncio.fixture
@@ -201,3 +202,11 @@ async def cleanup_routes(testbed):
 async def cleanup_sysctl():
     yield
     await _cleanup_sysctl()
+
+
+@pytest_asyncio.fixture
+async def cleanup_bonds(testbed):
+    yield
+    _, devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 4)
+    bonds_cleanup = [_cleanup_bonds(dev) for dev in devices]
+    await asyncio.gather(*bonds_cleanup)

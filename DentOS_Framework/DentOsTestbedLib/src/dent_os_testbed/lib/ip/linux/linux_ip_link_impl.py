@@ -44,6 +44,8 @@ class LinuxIpLinkImpl(LinuxIpLink):
             cmd += 'vlan_filtering {} '.format((params['vlan_filtering']))
         if 'vlan_default_pvid' in params:
             cmd += 'vlan_default_pvid {} '.format((params['vlan_default_pvid']))
+        if 'mode' in params:
+            cmd += 'mode {} '.format((params['mode']))
         return cmd
 
     def format_delete(self, command, *argv, **kwarg):
@@ -140,6 +142,8 @@ class LinuxIpLinkImpl(LinuxIpLink):
             cmd += 'mcast_querier {} '.format((params['mcast_querier']))
         if 'mcast_querier_interval' in params:
             cmd += 'mcast_querier_interval {} '.format((params['mcast_querier_interval']))
+        if 'vlan_default_pvid' in params:
+            cmd += 'vlan_default_pvid {} '.format((params['vlan_default_pvid']))
         return cmd
 
     def format_show(self, command, *argv, **kwarg):

@@ -88,7 +88,7 @@ TODO: create a lab BOM
 ```Shell
     sudo apt -y install cpu-checker
     sudo kvm-ok
-    sudo apt -y install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils virtinst virt-manager libosinfo-bin
+    sudo apt -y install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils virtinst virt-manager libosinfo-bin bzip2
     sudo usermod -aG libvirt $USER
     sudo usermod -aG kvm $USER
     sudo systemctl enable libvirtd
@@ -100,29 +100,30 @@ TODO: create a lab BOM
 * setup management port configuration using this sample `/etc/netplan/00-installer-config.yaml`:
 
 ```Yaml
-  ---
-  network:
-    ethernets:
-      ens160:
-        dhcp4: false
-        dhcp6: false
-    bridges:
-      br1:
-        interfaces: [ens160]
-        addresses: [10.36.118.210/24]
-        routes:
-    - to: default
-      via: 10.36.118.1
-        mtu: 1500
-        nameservers:
-          addresses: [4.4.4.4, 8.8.8.8]
-        parameters:
-    stp: false
-    forward-delay: 0
-    max-age: 0
-        dhcp4: false
-        dhcp6: false
-    version: 2
+---
+network:
+  ethernets:
+    ens160:
+      dhcp4: false
+      dhcp6: false
+  bridges:
+    br1:
+      interfaces: [ens160]
+      addresses: [10.36.118.11/24]
+      routes:
+        - to: default
+          via: 10.36.118.1
+      mtu: 1500
+      nameservers:
+        addresses: [1.1.1.1, 8.8.8.8]
+      parameters:
+        stp: false
+        forward-delay: 0
+        max-age: 0
+      dhcp4: false
+      dhcp6: false
+  version: 2
+  renderer: NetworkManager
 ```
 
 * check the yaml file is ok (optional)
