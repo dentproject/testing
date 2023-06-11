@@ -19,7 +19,7 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
 
 pytestmark = [pytest.mark.suite_functional_l1,
               pytest.mark.asyncio,
-              pytest.mark.usefixtures('cleanup_bridges', 'cleanup_tgen')]
+              pytest.mark.usefixtures('cleanup_bridges', 'cleanup_tgen', 'restore_port_speed')]
 
 
 async def test_l1_mixed_speed(testbed):

@@ -111,7 +111,7 @@ async def test_bridging_ageing_refresh(testbed):
     await tgen_utils_stop_traffic(tgen_dev)
 
     # check the traffic stats
-    stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Traffic Item Statistics')
+    stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
     for row in stats.Rows:
         assert tgen_utils_get_loss(row) == 0.000, \
             f"Verify that traffic from {row['Tx Port']} to {row['Rx Port']} forwarded.\n{out}"
@@ -130,7 +130,7 @@ async def test_bridging_ageing_refresh(testbed):
     await tgen_utils_start_traffic(tgen_dev)
 
     # check the traffic stats
-    stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Traffic Item Statistics')
+    stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
     for row in stats.Rows:
         assert tgen_utils_get_loss(row) == 0.000, \
             f"Verify that traffic from {row['Tx Port']} to {row['Rx Port']} forwarded.\n{out}"
@@ -151,7 +151,7 @@ async def test_bridging_ageing_refresh(testbed):
     await asyncio.sleep(2*ageing_time)
 
     # check the traffic stats
-    stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Traffic Item Statistics')
+    stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
     for row in stats.Rows:
         assert tgen_utils_get_loss(row) == 0.000, \
             f"Verify that traffic from {row['Tx Port']} to {row['Rx Port']} forwarded.\n{out}"

@@ -52,6 +52,7 @@ async def test_port_isolation_interaction_ports_inside_lag(testbed):
     ports = tgen_dev.links_dict[device_host_name][1]
     traffic_duration = 15
     pps_value = 1000
+    wait = 6
 
     for x in range(2):
         out = await IpLink.add(
@@ -159,6 +160,7 @@ async def test_port_isolation_interaction_ports_inside_lag(testbed):
         await tgen_utils_start_traffic(tgen_dev)
         await asyncio.sleep(traffic_duration)
         await tgen_utils_stop_traffic(tgen_dev)
+        await asyncio.sleep(wait)
 
         if x == 1:
             expected_loss = {

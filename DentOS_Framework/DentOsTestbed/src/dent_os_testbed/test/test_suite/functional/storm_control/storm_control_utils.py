@@ -60,7 +60,7 @@ async def verify_expected_rx_rate(kbyte_value, stats, rx_ports, deviation=0.10):
         rx_name = port.split('_')[0]
         res = math.isclose(exp_rate, float(collected[rx_name]['rx_rate']), rel_tol=deviation)
         assert res, f"The rate is not limited by storm control, \
-                        actual rate {float(collected[rx_name]['rx_rate'])} istead of {exp_rate}."
+                        actual rate {float(collected[rx_name]['rx_rate'])} instead of {exp_rate}."
 
 
 async def tc_filter_add(dev, vlan_id, src_mac, dst_mac, rate, burst, device_host_name=True):
