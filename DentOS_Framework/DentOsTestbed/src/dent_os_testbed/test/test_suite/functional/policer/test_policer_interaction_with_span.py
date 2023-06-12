@@ -148,7 +148,7 @@ async def test_policer_interaction_span(testbed):
 
     # 5. Transmit traffic from the TX port
     await tgen_utils_start_traffic(tgen_dev)
-    await asyncio.sleep(15)
+    await asyncio.sleep(25)
 
     # 6. Verify RX rate on RX ports is as expected (by the police pass rule)
     # and that in the mirred port equals sum of police rate and transmitted rate multiplied by number of RX ports
@@ -173,10 +173,11 @@ async def test_policer_interaction_span(testbed):
 
     # 7. Transmit traffic from mirred port
     await tgen_utils_start_traffic(tgen_dev)
-    await asyncio.sleep(15)
+    await asyncio.sleep(25)
 
     # 8. Verify RX rate on RX ports is as expected (not affected by the police pass rule)
     # and verify traffic also flows to the TX port
+    stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Port Statistics')
     for row in stats.Rows:
         if row['Port Name'] == tg_ports[0]:
             err_msg = f'Expected {transmit_rate * 3} got : {float(row["Rx. Rate (bps)"])}'
@@ -187,6 +188,7 @@ async def test_policer_interaction_span(testbed):
         mirred_port_rate = transmit_rate * (len(dev_groups) - 1) + police_rate
         err_msg = f'Expected {mirred_port_rate} got : {float(row["Rx. Rate (bps)"])}'
         assert isclose(float(row['Rx. Rate (bps)']), mirred_port_rate, rel_tol=tolerance), err_msg
+    await asyncio.sleep(15)
     stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
     for row in stats.Rows:
         if row['Traffic Item'] == f'stream_{mirred_port}':

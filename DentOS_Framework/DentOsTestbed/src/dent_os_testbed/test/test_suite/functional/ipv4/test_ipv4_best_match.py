@@ -125,6 +125,7 @@ async def test_ipv4_bm_traffic_forwarding(testbed):
         await tgen_utils_stop_traffic(tgen_dev)
 
         # 6. Verify traffic is not forwarded to first Ixia port neighbor
+        await asyncio.sleep(5)
         stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Traffic Item Statistics')
         for row in stats.Rows:
             loss = tgen_utils_get_loss(row)
@@ -154,6 +155,7 @@ async def test_ipv4_bm_traffic_forwarding(testbed):
     await asyncio.sleep(traffic_duration)
     await tgen_utils_stop_traffic(tgen_dev)
 
+    await asyncio.sleep(5)
     stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Traffic Item Statistics')
     for row in stats.Rows:
         loss = tgen_utils_get_loss(row)
