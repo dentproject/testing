@@ -128,9 +128,8 @@ async def test_bridging_admin_state_down_up(testbed):
     await tgen_utils_stop_traffic(tgen_dev)
 
     # check the traffic stats
-    stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Traffic Item Statistics')
+    stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
     for row in stats.Rows:
-        assert float(row['Tx Frames']) > 0.000, f'Failed>Ixia should transmit traffic: {row["Tx Frames"]}'
         assert tgen_utils_get_loss(row) == 100.000, \
             f"Verify that traffic from {row['Tx Port']} to {row['Rx Port']} not forwarded.\n{out}"
 

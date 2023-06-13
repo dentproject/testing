@@ -22,9 +22,9 @@ pytestmark = [
 ]
 
 
-async def test_bridging_unregistered_traffic_ipv6(testbed):
+async def test_bridging_unreg_traffic_ipv6(testbed):
     """
-    Test Name: test_bridging_unregistered_traffic_ipv6
+    Test Name: test_bridging_unreg_traffic_ipv6
     Test Suite: suite_functional_bridging
     Test Overview: Verify bridge flooding behaviour of unregistered IPv6 packets.
     Test Author: Kostiantyn Stavruk
@@ -54,6 +54,7 @@ async def test_bridging_unregistered_traffic_ipv6(testbed):
     traffic_duration = 10
     mac_count = 65000
     pps_value = 30000
+    wait = 6
 
     out = await IpLink.add(
         input_data=[{device_host_name: [
@@ -139,9 +140,10 @@ async def test_bridging_unregistered_traffic_ipv6(testbed):
     await tgen_utils_start_traffic(tgen_dev)
     await asyncio.sleep(traffic_duration)
     await tgen_utils_stop_traffic(tgen_dev)
+    await asyncio.sleep(wait)
 
     # check the traffic stats
-    stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Traffic Item Statistics')
+    stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
     for row in stats.Rows:
         assert tgen_utils_get_loss(row) == 0.000, \
             f"Verify that traffic from {row['Tx Port']} to {row['Rx Port']} forwarded.\n{out}"
@@ -155,9 +157,10 @@ async def test_bridging_unregistered_traffic_ipv6(testbed):
     await tgen_utils_start_traffic(tgen_dev)
     await asyncio.sleep(traffic_duration)
     await tgen_utils_stop_traffic(tgen_dev)
+    await asyncio.sleep(wait)
 
     # check the traffic stats
-    stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Traffic Item Statistics')
+    stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
     for row in stats.Rows:
         assert tgen_utils_get_loss(row) == 100.000, \
             f"Verify that traffic from {row['Tx Port']} to {row['Rx Port']} not forwarded.\n{out}"
@@ -171,9 +174,10 @@ async def test_bridging_unregistered_traffic_ipv6(testbed):
     await tgen_utils_start_traffic(tgen_dev)
     await asyncio.sleep(traffic_duration)
     await tgen_utils_stop_traffic(tgen_dev)
+    await asyncio.sleep(wait)
 
     # check the traffic stats
-    stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Traffic Item Statistics')
+    stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
     for row in stats.Rows:
         assert tgen_utils_get_loss(row) == 0.000, \
             f"Verify that traffic from {row['Tx Port']} to {row['Rx Port']} forwarded.\n{out}"

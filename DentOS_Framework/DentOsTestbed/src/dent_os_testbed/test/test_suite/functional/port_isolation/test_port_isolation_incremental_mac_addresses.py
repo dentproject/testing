@@ -57,6 +57,7 @@ async def test_port_isolation_incremental_mac_addresses(testbed):
     pps_value = 4000
     mac_count = 5000
     tolerance = 0.8
+    wait = 6
 
     out = await IpLink.add(
         input_data=[{device_host_name: [
@@ -167,6 +168,7 @@ async def test_port_isolation_incremental_mac_addresses(testbed):
         await tgen_utils_start_traffic(tgen_dev)
         await asyncio.sleep(traffic_duration)
         await tgen_utils_stop_traffic(tgen_dev)
+        await asyncio.sleep(wait)
 
         if x == 0:
             expected_loss = {

@@ -53,7 +53,8 @@ async def _get_iface_addr_info(dd, iface, info):
         if addr['family'] == 'inet' and addr['scope'] == 'global':
             info['ip'] = addr['local'].split('.')
             info['plen'] = addr['prefixlen']
-            info['broadcast'] = addr['broadcast'].split('.')
+            if 'broadcast' in addr:
+                info['broadcast'] = addr['broadcast'].split('.')
             return True
     dd.applog.info('Cannot find the Vlan GW IP address')
     return False

@@ -154,12 +154,12 @@ async def test_storm_control_rule_set_for_br_and_unk_uc_traffic(testbed):
         assert math.isclose(kbyte_value_bc*1000,
                             float(collected['stream_1']['rx_rate']), rel_tol=deviation), \
             f"The rate is not limited by storm control, \
-                        actual rate {kbyte_value_bc*1000} istead of {float(collected['stream_1']['rx_rate'])}."
+                        actual rate {kbyte_value_bc*1000} instead of {float(collected['stream_1']['rx_rate'])}."
         for x in range(2):
             assert math.isclose(float(collected[f'stream_{x+2}']['tx_rate']),
                                 float(collected[f'stream_{x+2}']['rx_rate']), rel_tol=deviation), \
                 f"The rate is limited by storm control, actual rate {float(collected[f'stream_{x+2}']['tx_rate'])} \
-                    istead of {float(collected[f'stream_{x+2}']['rx_rate'])}."
+                    instead of {float(collected[f'stream_{x+2}']['rx_rate'])}."
 
         await devlink_rate_value(dev=f'pci/0000:01:00.0/{ports[0].replace("swp","")}',
                                  name='bc_kbyte_per_sec_rate', value=0,
@@ -178,10 +178,10 @@ async def test_storm_control_rule_set_for_br_and_unk_uc_traffic(testbed):
             assert math.isclose(float(collected[f'stream_{x+1}']['tx_rate']),
                                 float(collected[f'stream_{x+1}']['rx_rate']), rel_tol=deviation), \
                 f"The rate is limited by storm control, actual rate {float(collected[f'stream_{x+1}']['tx_rate'])} \
-                    istead of {float(collected[f'stream_{x+1}']['rx_rate'])}."
+                    instead of {float(collected[f'stream_{x+1}']['rx_rate'])}."
         assert math.isclose(kbyte_value_unk_uc*1000, float(collected['stream_3']['rx_rate']), rel_tol=deviation), \
             f"The rate is not limited by storm control, \
-                        actual rate {kbyte_value_unk_uc*1000} istead of {float(collected['stream_3']['rx_rate'])}."
+                        actual rate {kbyte_value_unk_uc*1000} instead of {float(collected['stream_3']['rx_rate'])}."
     finally:
         await tgen_utils_stop_traffic(tgen_dev)
         await cleanup_kbyte_per_sec_rate_value(dent_dev, tgen_dev, bc=True, unk_uc=True)

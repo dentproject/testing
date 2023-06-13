@@ -22,7 +22,7 @@ from dent_os_testbed.utils.test_utils.tb_utils import tb_get_qualified_ports
 
 pytestmark = [pytest.mark.suite_functional_l1,
               pytest.mark.asyncio,
-              pytest.mark.usefixtures('cleanup_bridges', 'cleanup_tgen')]
+              pytest.mark.usefixtures('cleanup_bridges', 'cleanup_tgen', 'restore_port_speed')]
 
 
 @pytest.mark.parametrize('speed , duplex',
