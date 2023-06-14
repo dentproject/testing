@@ -95,7 +95,7 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                 stack_type: IxnetworkIxiaClientImpl.ixnet.Traffic.ProtocolTemplate.find(StackTypeId=f'^{stack_type}$')
                 for stack_type in ('ipv4', 'ipv6', 'vlan', 'ethernet', 'tcp', 'udp', 'icmpv1', 'icmpv2', 'icmpv6',
                                    'igmpv2', 'igmpv3MembershipQuery', 'igmpv3MembershipReport',
-                                   'stpCfgBPDU', 'stpTCNBPDU', 'rstpBPDU')
+                                   'stpCfgBPDU', 'stpTCNBPDU', 'rstpBPDU', 'lldp', 'custom_v2')
             }
 
             device.applog.info('Connection to Ixia REST API Server Established')
@@ -389,6 +389,8 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
             ixia_traffic_type = 'ipv4'
         elif traffic_type == 'bpdu':
             ixia_traffic_type = 'raw'
+        elif traffic_type == 'custom':
+            ixia_traffic_type = 'raw'
         else:
             ixia_traffic_type = traffic_type
 
@@ -415,7 +417,7 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                     src, dst = ip1, ip2
                 elif traffic_type == 'bgp':
                     src, dst = rr1, rr2
-                elif traffic_type in ('raw', 'bpdu'):
+                elif traffic_type in ('raw', 'bpdu', 'custom'):
                     src, dst = rep1, rep2
                     src_name, dst_name = ep1.Name, ep2.Name
                 else:
@@ -441,7 +443,7 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
         if 'srcMac' in pkt_data:
             self.__update_field(eth_stack.Field.find(FieldTypeId='ethernet.header.sourceAddress'),
                                 pkt_data['srcMac'])
-        if 'protocol' in pkt_data and pkt_data['protocol'] not in ['ipv6', 'ipv4', 'ip', '802.1Q']:
+        if 'protocol' in pkt_data and pkt_data['protocol'] not in ['ipv6', 'ipv4', 'ip', '802.1Q', 'lldp']:
             self.__update_field(eth_stack.Field.find(FieldTypeId='ethernet.header.etherType'),
                                 pkt_data['protocol'])
         if 'vlanID' in pkt_data:
@@ -458,7 +460,9 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
         return eth_stack
 
     def __configure_l3_stack(self, config_element, pkt_data, track_by, eth_stack):
-        if pkt_data.get('type') == 'ipv6' or pkt_data.get('protocol') == 'ipv6':
+        if pkt_data.get('protocol') == 'lldp':
+            return
+        elif pkt_data.get('type') == 'ipv6' or pkt_data.get('protocol') == 'ipv6':
             proto = 'ipv6'
             fields = {
                 'dstIp': 'ipv6.header.dstIP',
@@ -581,6 +585,52 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                 continue
             self.__update_field(bpdu_stack.Field.find(FieldTypeId=field_type), pkt_data[key])
 
+    def __configure_lldp_stack(self, config_element, pkt_data, eth_stack):
+        if pkt_data.get('protocol') != 'lldp':
+            return
+        else:
+            proto = 'lldp'
+            fields = {
+                # Mandatory TLVs
+                'chassisLen': 'lldp.header.mandatoryTlv.chassisIdTlv.length',
+                'chassisSubtype': 'lldp.header.mandatoryTlv.chassisIdTlv.subtype',
+                'chassisVarLen': 'lldp.header.mandatoryTlv.chassisIdTlv.variableChassisIDLength',
+                'chassisId': 'lldp.header.mandatoryTlv.chassisIdTlv.chassisId',
+                'portLen': 'lldp.header.mandatoryTlv.portIdTlv.length',
+                'portSubtype': 'lldp.header.mandatoryTlv.portIdTlv.subtype',
+                'portVarLen': 'lldp.header.mandatoryTlv.portIdTlv.variablePortIDLength',
+                'portId': 'lldp.header.mandatoryTlv.portIdTlv.portId',
+                'ttlLen': 'lldp.header.mandatoryTlv.ttlTlv.length',
+                'ttlVal': 'lldp.header.mandatoryTlv.ttlTlv.ttl'
+            }
+
+            lldp_stack = config_element.Stack.read(
+                eth_stack.AppendProtocol(self.stack_template[proto])
+            )
+            for key, field_type in fields.items():
+                if key not in pkt_data:
+                    continue
+                self.__update_field(lldp_stack.Field.find(FieldTypeId=field_type), pkt_data[key])
+            return lldp_stack
+
+    def __configure_custom_stack(self, config_element, pkt_data, track_by):
+        proto = 'custom_v2'
+        fields = {
+            'customLength': 'custom_v2.header.length',
+            'customData': 'custom_v2.header.data'
+        }
+
+        eth_stack = self.__configure_l2_stack(config_element, {**pkt_data}, track_by)
+        custom_stack = config_element.Stack.read(
+            eth_stack.AppendProtocol(self.stack_template[proto])
+        )
+
+        for key, field_type in fields.items():
+            if key not in pkt_data:
+                continue
+            self.__update_field(custom_stack.Field.find(FieldTypeId=field_type), pkt_data[key])
+        return custom_stack
+
     def set_traffic(self, device, name, pkt_data):
         for ti, ep_count in self.__create_traffic_items(device, pkt_data, name):
             track_by = {'trackingenabled0', 'sourceDestValuePair0'}
@@ -596,8 +646,12 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                 if pkt_data.get('type') == 'bpdu':
                     self.__configure_bpdu(config_element, pkt_data, track_by)
                     continue
+                elif pkt_data.get('type') == 'custom':
+                    self.__configure_custom_stack(config_element, pkt_data, track_by)
+                    continue
 
                 eth_stack = self.__configure_l2_stack(config_element, pkt_data, track_by)
+                self.__configure_lldp_stack(config_element, pkt_data, eth_stack)
                 ip_stack = self.__configure_l3_stack(config_element, pkt_data, track_by, eth_stack)
                 self.__configure_l4_stack(config_element, pkt_data, track_by, ip_stack)
 
