@@ -17,7 +17,7 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_stop_traffic,
     tgen_utils_get_loss,
 )
-from dent_os_testbed.test.test_suite.functional.qos.constants import (
+from dent_os_testbed.utils.test_utils.data.tgen_constants import (
     RAW_DSCP,
     PCP,
     RX_BYTES,
