@@ -355,7 +355,7 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
             )
             ep_count = 0
             for ip2, ep2, rep2, rr2 in zip(cls.ip_eps, cls.eth_eps, cls.raw_eps, cls.rr_eps):
-                if ep1 == ep2:
+                if ep1 == ep2 and not pkt_data.get('allowSelfDestined', False):
                     continue
                 if any(dst in pkt_data and endpoint.Name not in pkt_data[dst]
                        for dst, endpoint in (('ip_destination', ip2),
@@ -554,6 +554,7 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
 
             ti.Tracking.find()[0].TrackBy = list(track_by)
             ti.BiDirectional = pkt_data.get('bi_directional', False)
+            ti.AllowSelfDestined = pkt_data.get('allowSelfDestined', False)
             self.__configure_egress_tracking(ti, pkt_data)
 
     def run_traffic_item(self, device, command, *argv, **kwarg):
