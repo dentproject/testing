@@ -34,7 +34,9 @@
     - name: add
       apis: ['add']
       cmd: ['ip link']
-      params: ['dev', 'name', 'txqueuelen', 'address', 'broadcast', 'mtu', 'index', 'numtxqueues', 'numrxqueues', 'gso_max_size', 'gso_max_segs', 'type', 'options', 'ageing_time']
+      params: ['dev', 'name', 'txqueuelen', 'address', 'broadcast', 'mtu', 'index', 'numtxqueues', 'numrxqueues',
+               'gso_max_size', 'gso_max_segs', 'type', 'options', 'ageing_time', 'stp_state', 'forward_delay',
+               'hello_time', 'max_age', 'priority', 'group_address', 'id']
       desc: |
         - ip link add [ link DEVICE ] [ ageing_time AGEING_TIME ] [ name ] NAME [ txqueuelen PACKETS ] [ address LLADDR ] [ broadcast LLADDR ]
           [ mtu MTU ] [ index IDX ] [ numtxqueues QUEUE_COUNT ] [ numrxqueues QUEUE_COUNT ] [ gso_max_size BYTES ]
