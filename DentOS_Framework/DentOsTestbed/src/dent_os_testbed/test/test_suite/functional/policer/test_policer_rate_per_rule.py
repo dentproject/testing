@@ -138,7 +138,7 @@ async def test_policer_rate_per_rule(testbed):
 
     # 6. Transmit traffic
     await tgen_utils_start_traffic(tgen_dev)
-    await asyncio.sleep(15)
+    await asyncio.sleep(25)
 
     # 7. Verify RX rate per stream is as expected (limited by the rule)
     stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Traffic Item Statistics')

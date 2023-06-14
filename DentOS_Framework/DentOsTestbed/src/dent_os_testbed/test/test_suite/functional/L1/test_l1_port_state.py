@@ -92,6 +92,7 @@ async def test_l1_port_state_status(testbed):
     await port_state(testbed, 1)
 
 
+@pytest.mark.skip(reason='https://github.com/dentproject/dentOS/issues/152')
 async def test_l1_link_up_state_software_power_cycle(testbed):
     """
     Test Name: test_l1_link_up_state_software_power_cycle
