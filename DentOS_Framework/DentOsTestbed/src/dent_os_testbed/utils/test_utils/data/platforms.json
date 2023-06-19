@@ -1,11 +1,20 @@
 {
     "arm64-delta-tn48m-poe-dn-r0": {
+      "max_acl_rules": 1536,
+      "max_acl_rules_chain": 4096,
+      "route_table_size": 4000,
       "fdb_size": 32000
     },
     "arm64-accton-as5114-48x-r0": {
+      "max_acl_rules": 1536,
+      "max_acl_rules_chain": 9192,
+      "route_table_size": 8000,
       "fdb_size": 32000
     },
     "arm64-accton-as4224-52p-r0": {
+      "max_acl_rules": 1536,
+      "max_acl_rules_chain": 4096,
+      "route_table_size": 8000,
       "fdb_size": 32000
     }
   }
