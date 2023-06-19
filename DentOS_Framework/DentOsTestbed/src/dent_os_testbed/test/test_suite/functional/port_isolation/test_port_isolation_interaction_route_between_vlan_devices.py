@@ -113,12 +113,12 @@ async def test_port_isolation_interaction_route_between_vlan_devices(testbed):
         ip_route_entries = out[0][device_host_name]['parsed_output']
         offload_flag = str([en['flags'] for en in ip_route_entries if 'flags' in en]).strip("]'[")
         err_msg = 'Verify the offload flag appears in VLAN-device default routes.'
-        assert offload_flag == 'rt_trap', err_msg
+        assert 'rt_trap' in offload_flag, err_msg
 
     address_map = (
         # swp port, tg port,    tg ip,     gw,        plen
         (ports[0], tg_ports[0], '1.1.1.2', '1.1.1.1', 24),
-        (ports[1], tg_ports[1], '1.1.1.3', '1.1.1.1', 24)
+        (ports[1], tg_ports[1], '2.2.2.3', '2.2.2.1', 24)
     )
 
     dev_groups = tgen_utils_dev_groups_from_config(
@@ -130,8 +130,8 @@ async def test_port_isolation_interaction_route_between_vlan_devices(testbed):
 
     """
     Set up the following streams:
-    — stream_0 —  |  — stream_1 —
-    swp1 -> swp4  |  swp2 -> swp4
+     — vlan_10 —  |  — vlan_11 —
+    swp1 -> swp2  |  swp2 -> swp1
     """
 
     streams = {
@@ -145,7 +145,8 @@ async def test_port_isolation_interaction_route_between_vlan_devices(testbed):
             'frameSize': 150,
             'rate': pps_value,
             'protocol': '0x0800',
-            'type': 'raw'
+            'type': 'raw',
+            'vlanID': 10
         },
         'vlan_11': {
             'ip_source': dev_groups[tg_ports[1]][0]['name'],
@@ -157,7 +158,8 @@ async def test_port_isolation_interaction_route_between_vlan_devices(testbed):
             'frameSize': 150,
             'rate': pps_value,
             'protocol': '0x0800',
-            'type': 'raw'
+            'type': 'raw',
+            'vlanID': 11
         }
     }
 

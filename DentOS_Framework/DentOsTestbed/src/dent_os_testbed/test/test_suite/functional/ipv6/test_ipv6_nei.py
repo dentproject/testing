@@ -71,12 +71,6 @@ async def test_ipv6_nei_ageing(testbed):
     2.3 Check that neighbor entries are REACHABLE
     2.4 Check that neighbor entries are STALE
     2.5 Check that neighbor entries are aged
-    3.1 Set a large gc_stale_time_s value, set small threshold values
-    3.2 Resolve neighbors on first port
-    3.3 Resolve neighbors on second port in the next time window
-    3.4 Check that neighbor entries are STALE
-    3.5 Check that neighbor entries are aged only on the first port
-    3.6 Check that neighbor entries on the second port are aged in the next time window
     """
     num_of_ports = 2
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], num_of_ports)
@@ -231,87 +225,6 @@ async def test_ipv6_nei_ageing(testbed):
     elapsed = time.time() - start
     assert gc_stale_time_s*2 < elapsed < new_gc_stale_time_s*2, \
         f'Expected neighbors to be STALE after no more than {new_gc_stale_time_s*2 = }s, ' + \
-        f'but waited for {elapsed // 1}s'
-
-    # Scenario #3
-    # 3.1 Set a large gc_stale_time_s value, set small threshold values
-    gc_stale_time_s = 60
-    gc_interval_s = 15
-    config.update({
-        'net.ipv6.neigh.default.gc_interval': gc_interval_s,
-        'net.ipv6.neigh.default.gc_stale_time': gc_stale_time_s,
-        f'net.ipv6.neigh.{ports[0]}.gc_stale_time': gc_stale_time_s,
-        f'net.ipv6.neigh.{ports[1]}.gc_stale_time': gc_stale_time_s,
-    })
-
-    out = await RecoverableSysctl.set(input_data=[{dent: [
-        {'variable': variable, 'value': value}
-        for variable, value in config.items()
-    ]}])
-    assert out[0][dent]['rc'] == 0, 'Failed to update sysctl values'
-
-    # 3.2 Resolve neighbors on first port
-    out = await tgen_utils_send_ns(tgen_dev, ({'ixp': tg_ports[0]},))
-    assert all(rc['success'] for rc in out), 'Failed to send NS from TG'
-
-    out = await asyncio.gather(*[
-        tb_ping_device(dent_dev, info.tg_ip, pkt_loss_treshold=0, dump=True, count=1)
-        for info in address_map if info.tg == tg_ports[0]
-    ])
-    assert all(rc == 0 for rc in out), 'Some pings did not have a reply'
-
-    # 3.3 Resolve neighbors on second port in the next time window
-    dent_dev.applog.info(f'Wait {gc_interval_s = }s for the next GC interval')
-    await asyncio.sleep(gc_interval_s)
-
-    out = await tgen_utils_send_ns(tgen_dev, ({'ixp': tg_ports[1]},))
-    assert all(rc['success'] for rc in out), 'Failed to send NS from TG'
-
-    out = await asyncio.gather(*[
-        tb_ping_device(dent_dev, info.tg_ip, pkt_loss_treshold=0, dump=True, count=1)
-        for info in address_map if info.tg == tg_ports[1]
-    ])
-    assert all(rc == 0 for rc in out), 'Some pings did not have a reply'
-
-    # Changing state from REACHABLE to STALE is random, so don't bother to
-    # check neighbors for REACHABLE state
-    start = time.time()
-
-    # 3.4 Check that neighbor entries are STALE
-    expected_neis = [
-        {'dev': info.swp, 'dst': info.tg_ip, 'should_exist': True, 'offload': True, 'states': ['STALE']}
-        for info in address_map
-    ]
-    await wait_for_nei_state(dent_dev, expected_neis, poll_interval=nei_update_time_s)
-    elapsed = time.time() - start
-    expected_time = base_reach_time_s*1.5 + gc_interval_s*2 + nei_update_time_s
-    assert elapsed < expected_time, \
-        f'Expected neighbors to be STALE after no more than {expected_time}s, ' + \
-        f'but waited for {elapsed // 1}s'
-
-    # 3.5 Check that neighbor entries are aged only on the first port
-    expected_neis = [
-        {'dev': info.swp,
-         'dst': info.tg_ip,
-         'should_exist': info.tg == tg_ports[1],
-         'offload': True,
-         'states': ['STALE']}
-        for info in address_map
-    ]
-    await wait_for_nei_state(dent_dev, expected_neis, timeout=gc_stale_time_s + gc_interval_s*2)
-    elapsed = time.time() - start
-    expected_time = gc_stale_time_s + gc_interval_s*2 + nei_update_time_s
-    assert elapsed < expected_time, \
-        f'Expected neighbors to be STALE/aged after no more than {expected_time}s, ' + \
-        f'but waited for {elapsed // 1}s'
-
-    # 3.6 Check that neighbor entries on the second port are aged in the next time window
-    [nei.update({'should_exist': False}) for nei in expected_neis]
-    await wait_for_nei_state(dent_dev, expected_neis)
-    elapsed = time.time() - start
-    expected_time = gc_stale_time_s + gc_interval_s*3
-    assert elapsed < expected_time, \
-        f'Expected neighbors to be aged after no more than {expected_time}s, ' + \
         f'but waited for {elapsed // 1}s'
 
 

@@ -177,7 +177,7 @@ async def test_policer_interact_with_acl_drop(testbed):
 
     # 11. Send traffic matching the rules selectors
     # waiting for rule to apply on dut
-    await asyncio.sleep(10)
+    await asyncio.sleep(30)
 
     # 12. Verify it is still handled according to the rule with the lowest priority
     stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Port Statistics')

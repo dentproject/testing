@@ -7,10 +7,8 @@ from dent_os_testbed.lib.ip.ip_link import IpLink
 from dent_os_testbed.lib.tc.tc_qdisc import TcQdisc
 from dent_os_testbed.lib.tc.tc_filter import TcFilter
 from dent_os_testbed.test.test_suite.functional.devlink.devlink_utils import (
-    verify_cpu_traps_rate_code_avg,
-    verify_devlink_cpu_traps_rate_avg,
     randomize_rule_by_src_dst_field,
-    CPU_STAT_CODE_ACL_CODE_3, CPU_MAX_PPS)
+    verify_cpu_rate, CPU_MAX_PPS)
 
 from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_get_dent_devices_with_tgen,
@@ -137,9 +135,7 @@ async def test_devlink_same_rule_pref(testbed, block_type):
     # 5.Verify it is handled according to the first rule add action
     exp_rate = policer_rate / frame_size
     await asyncio.sleep(10)
-
-    await verify_cpu_traps_rate_code_avg(dent_dev, CPU_STAT_CODE_ACL_CODE_3, exp_rate)
-    await verify_devlink_cpu_traps_rate_avg(dent_dev, 'acl_code_3', exp_rate)
+    await verify_cpu_rate(dent_dev, exp_rate)
     await tgen_utils_stop_traffic(tgen_dev)
 
     # 6.Delete the first rule and add it again with the same priority as before
@@ -162,8 +158,7 @@ async def test_devlink_same_rule_pref(testbed, block_type):
     await tgen_utils_start_traffic(tgen_dev)
     exp_rate = policer_rate_2 / frame_size
     await asyncio.sleep(10)
-    await verify_cpu_traps_rate_code_avg(dent_dev, CPU_STAT_CODE_ACL_CODE_3, exp_rate)
-    await verify_devlink_cpu_traps_rate_avg(dent_dev, 'acl_code_3', exp_rate)
+    await verify_cpu_rate(dent_dev, exp_rate)
     await tgen_utils_stop_traffic(tgen_dev)
 
 
@@ -249,8 +244,6 @@ async def test_devlink_rule_priority(testbed, block_type):
                       'pref': pref}
 
     tc_rule = tcutil_generate_rule_with_random_selectors(dut_ports[0], **rule_selectors)
-    if want_vlan:
-        tc_rule['protocol'] = choice(('0x8100', '802.1q'))
     if shared_block:
         tc_rule['block'] = block
         del tc_rule['dev']
@@ -299,8 +292,7 @@ async def test_devlink_rule_priority(testbed, block_type):
     # 5.Verify it is handled according to rule with lowest pref (highest priority)
     exp_rate = policer_rate / frame_size
     await asyncio.sleep(10)
-    await verify_cpu_traps_rate_code_avg(dent_dev, CPU_STAT_CODE_ACL_CODE_3, exp_rate)
-    await verify_devlink_cpu_traps_rate_avg(dent_dev, 'acl_code_3', exp_rate)
+    await verify_cpu_rate(dent_dev, exp_rate)
     await tgen_utils_stop_traffic(tgen_dev)
 
     # 6.Delete the first rule and add it again with the same priority as before
@@ -318,8 +310,7 @@ async def test_devlink_rule_priority(testbed, block_type):
     # according to rule with lowest pref (highest priority)
     await tgen_utils_start_traffic(tgen_dev)
     await asyncio.sleep(10)
-    await verify_cpu_traps_rate_code_avg(dent_dev, CPU_STAT_CODE_ACL_CODE_3, exp_rate)
-    await verify_devlink_cpu_traps_rate_avg(dent_dev, 'acl_code_3', exp_rate)
+    await verify_cpu_rate(dent_dev, exp_rate)
     await tgen_utils_stop_traffic(tgen_dev)
 
     # 8.Delete the rule again and add it with higher priority than the other rule
@@ -338,6 +329,5 @@ async def test_devlink_rule_priority(testbed, block_type):
     await tgen_utils_start_traffic(tgen_dev)
     exp_rate = policer_rate_2 / frame_size
     await asyncio.sleep(10)
-    await verify_cpu_traps_rate_code_avg(dent_dev, CPU_STAT_CODE_ACL_CODE_3, exp_rate)
-    await verify_devlink_cpu_traps_rate_avg(dent_dev, 'acl_code_3', exp_rate)
+    await verify_cpu_rate(dent_dev, exp_rate)
     await tgen_utils_stop_traffic(tgen_dev)

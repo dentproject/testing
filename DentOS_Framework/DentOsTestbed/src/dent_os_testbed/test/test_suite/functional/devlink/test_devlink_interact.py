@@ -493,9 +493,12 @@ async def test_devlink_interact_sct_lag(testbed):
             continue
         coroutines_cpu_stat.append(verify_cpu_traps_rate_code_avg(dent_dev, sct['cpu_code'], sct['exp'], logs=True))
         coroutines_devlink.append(verify_devlink_cpu_traps_rate_avg(dent_dev, trap_name, sct['exp'], logs=True))
-    # Asyncio may fail when starting 30 tasks on DUT in parallel, separate them into chunks of 15 tasks
-    await asyncio.gather(*coroutines_cpu_stat)
-    await asyncio.gather(*coroutines_devlink)
+    # Asyncio may fail even with 15 tasks executed in parallel, separate coroutines into chunks of 7-8 tasks
+    tasks_slice = len(coroutines_cpu_stat) // 2
+    await asyncio.gather(*coroutines_cpu_stat[:tasks_slice])
+    await asyncio.gather(*coroutines_cpu_stat[tasks_slice:])
+    await asyncio.gather(*coroutines_devlink[:tasks_slice])
+    await asyncio.gather(*coroutines_devlink[tasks_slice:])
 
     # 6.Add rule created earlier to trap user defined traffic
     out = await TcQdisc.add(
