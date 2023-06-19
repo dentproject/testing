@@ -46,6 +46,20 @@ class LinuxIpLinkImpl(LinuxIpLink):
             cmd += 'vlan_default_pvid {} '.format((params['vlan_default_pvid']))
         if 'mode' in params:
             cmd += 'mode {} '.format((params['mode']))
+        if 'stp_state' in params:
+            cmd += 'stp_state {} '.format(params['stp_state'])
+        if 'forward_delay' in params:
+            cmd += 'forward_delay {} '.format(params['forward_delay'])
+        if 'hello_time' in params:
+            cmd += 'hello_time {} '.format(params['hello_time'])
+        if 'max_age' in params:
+            cmd += 'max_age {} '.format(params['max_age'])
+        if 'priority' in params:
+            cmd += 'priority {} '.format(params['priority'])
+        if 'group_address' in params:
+            cmd += 'group_address {} '.format(params['group_address'])
+        if 'id' in params:
+            cmd += 'id {} '.format((params['id']))
         return cmd
 
     def format_delete(self, command, *argv, **kwarg):

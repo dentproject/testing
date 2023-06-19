@@ -134,3 +134,29 @@
          | -iec | -f[amily] { inet | inet6 | ipx | dnet | link } | -4 | -6 | -I | -D | -B | -0 | -l[oops]
          { maximum-addr-flush-attempts } | -o[neline] | -rc[vbuf] [size] | -t[imestamp] | -ts[hort] |
          -n[etns] name | -a[ll] | -c[olor] | -br[ief] | -j[son] | -p[retty] }
+    - name: stp_state
+      type: int
+      desc: |
+        Turn spanning tree protocol on (STP_STATE > 0) or off (STP_STATE == 0).
+    - name: group_address
+      type: string
+      desc: |
+        Set the MAC address of the multicast group this bridge uses for STP.
+    - name: forward_delay
+      type: int
+      desc: |
+        Only relevant if STP is enabled. Valid values are between 2 and 30.
+    - name: hello_time
+      type: int
+      desc: |
+        Valid values are between 1 and 10.
+    - name: max_age
+      type: int
+      desc: |
+        Valid values are between 6 and 40.
+    - name: priority
+      type: int
+      desc: |
+        PRIORITY is a 16bit unsigned integer.
+    - name: id
+      type: int

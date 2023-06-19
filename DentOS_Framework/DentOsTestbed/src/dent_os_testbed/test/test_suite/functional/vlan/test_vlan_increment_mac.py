@@ -65,8 +65,8 @@ async def test_vlan_with_increment_macs(testbed):
     dut_ports = tgen_dev.links_dict[device][1]
     tolerance = 0.7  # fdb learning tolerance
 
-    out = await OnlpSystemInfo.show(input_data=[{device: [{}]}], parse_output=True)
-    model = out[0][device]['parsed_output']['platform_name'].strip().replace('_', '-')
+    rc, model = await dent_devices[0].run_cmd(f'cat /etc/onl/platform')
+    model = model.strip('\n')
 
     mac_table = LocalFileHandler(dent_devices[0].applog).read(PLATFORMS_CONSTANTS)
     mac_count = json.loads(mac_table)

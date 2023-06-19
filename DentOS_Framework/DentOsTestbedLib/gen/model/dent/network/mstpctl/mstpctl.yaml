@@ -1,0 +1,44 @@
+- module: mstpctl
+  description: mstpctl
+  classes:
+  - name: mstpctl
+    desc: |
+      mstpctl - bridge stp|rstp confiduration
+    apis: ['set', 'add', 'show', 'remove']
+    members:
+    - name: options
+      type: string
+    - name: port
+      type: string
+    - name: revision
+      type: string
+    - name: name
+      type: string
+    - name: max_age
+      type: int
+    - name: fwd_delay
+      type: int
+    - name: hello_time
+      type: int
+    - name: mstid
+      type: int
+    - name: max_hops
+      type: int
+    - name: ageing_time
+      type: int
+    - name: tx_hold_count
+      type: int
+    - name: enable
+      type: bool | string
+      desc: |
+        True : 'yes'
+        False : 'no'
+        String: {'auto'}
+    - name: version
+      type: string
+      desc: |
+        {mstp|rstp|stp}
+    - name: priority
+      type: int
+    - name: bridge
+      type: string

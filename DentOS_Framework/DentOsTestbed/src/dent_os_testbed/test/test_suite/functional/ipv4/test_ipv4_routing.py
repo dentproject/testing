@@ -321,6 +321,7 @@ async def test_ipv4_route_between_vlan_devs(testbed):
     await tgen_utils_stop_traffic(tgen_dev)
 
     # 8. Verify traffic is forwarded to both VLAN-devices` neighbors
+    await asyncio.sleep(5)
     stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
     for row in stats.Rows:
         loss = tgen_utils_get_loss(row)
@@ -356,6 +357,7 @@ async def test_ipv4_route_between_vlan_devs(testbed):
                 f"Route {route['dst']} for dev {route['dev']} should be offloaded"
 
     # 11. Verify traffic is forwarded to both VLAN-devices` neighbors
+    await asyncio.sleep(5)
     stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
     for row in stats.Rows:
         loss = tgen_utils_get_loss(row)

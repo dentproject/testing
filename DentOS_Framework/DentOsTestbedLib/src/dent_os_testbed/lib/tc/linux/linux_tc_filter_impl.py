@@ -47,6 +47,10 @@ class LinuxTcFilterImpl(LinuxTcFilter):
                 cmd += 'action pass '
             if 'drop' in params['action']:
                 cmd += 'action drop '
+            if 'xt' in params['action']:
+                cmd += 'action xt '
+                for field, value in params['action']['xt'].items():
+                    cmd += '{} {} '.format(field, value)
         return cmd
 
     def format_show(self, command, *argv, **kwarg):
