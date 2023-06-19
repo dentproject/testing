@@ -425,6 +425,8 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                 'ttl': 'ipv4.header.ttl',
                 'totalLength': 'ipv4.header.totalLength',
                 'l3Proto': 'ipv4.header.protocol',
+                'ipv4Checksum': 'ipv4.header.checksum',
+                'ipv4HeaderLength': 'ipv4.header.headerLength',
             }
 
         ip_stack = config_element.Stack.find(StackTypeId=f'^{proto}$')
