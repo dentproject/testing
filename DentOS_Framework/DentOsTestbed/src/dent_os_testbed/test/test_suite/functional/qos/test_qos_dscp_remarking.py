@@ -20,7 +20,7 @@ from dent_os_testbed.test.test_suite.functional.qos.conftest import (
     dscp_to_raw,
     raw_to_dscp,
 )
-from dent_os_testbed.test.test_suite.functional.qos.constants import (
+from dent_os_testbed.utils.test_utils.data.tgen_constants import (
     RAW_DSCP,
     TX_PORT,
     RX_PORT,

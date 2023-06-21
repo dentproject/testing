@@ -27,7 +27,7 @@ from dent_os_testbed.test.test_suite.functional.qos.conftest import (
     get_qd_stats,
     dscp_to_raw,
 )
-from dent_os_testbed.test.test_suite.functional.qos.constants import (
+from dent_os_testbed.utils.test_utils.data.tgen_constants import (
     RX_BYTES,
 )
 
