@@ -121,7 +121,11 @@ def tgen_utils_dev_groups_from_config(config):
             'plen': el['plen'],
             'vlan': el.get('vlan', None),
             'version': el.get('version', 'ipv4'),
+            'type': 'port'
         })
+        if el.get('lag_members', None):
+            dev_groups[el['ixp']][0]['lag_members'] = el['lag_members']
+            dev_groups[el['ixp']][0]['type'] = 'lag'
     return dev_groups
 
 
