@@ -1,0 +1,86 @@
+{
+    "devices": [
+        {
+            "friendlyName":"Dent infra1",
+            "os":"dentos",
+            "type" : "INFRA_SWITCH",
+            "hostName": "infra1",
+            "model": "arm64-accton-as4224-52p-r0",
+            "ip": "10.36.118.46",
+            "login":{
+                "userName":"root",
+                "password":"onl"
+            },
+            "serialDev":"/dev/ttyUSB0",
+            "baudrate": 115200,
+            "links" : [
+                ["swp49", "agg1:swp47"],
+                ["swp51", "infra2:swp51"],
+                ["swp52", "infra2:swp52"]
+            ]
+        },
+        {
+            "friendlyName":"Dent infra2",
+            "os":"dentos",
+            "type" : "INFRA_SWITCH",
+            "hostName": "infra2",
+            "model": "arm64-delta-tn48m-poe-dn-r0",
+            "ip": "10.36.118.23",
+            "login":{
+                "userName":"root",
+                "password":"onl"
+            },
+            "serialDev":"/dev/ttyUSB1",
+            "baudrate": 115200,
+            "links" : [
+                ["swp49", "agg1:swp48"],
+                ["swp51", "infra1:swp51"],
+                ["swp52", "infra1:swp52"]
+            ]
+        },
+        {
+            "friendlyName":"Dent agg1",
+            "os":"dentos",
+            "type" : "AGGREGATION_ROUTER",
+            "hostName": "agg1",
+            "model": "arm64-accton-as5114-48x-r0",
+            "ip": "10.36.118.44",
+            "login":{
+                "userName":"root",
+                "password":"onl"
+             },
+            "serialDev":"/dev/ttyUSB2",
+            "baudrate": 115200,
+            "links" : [
+                ["swp47", "infra1:swp49"],
+                ["swp48", "infra2:swp49"]
+            ]
+        },
+        {
+            "friendlyName":"Ixia Traffic Generator",
+            "os":"ixnetwork",
+            "type" : "TRAFFIC_GENERATOR",
+            "hostName": "ixia",
+            "model": "Novus10G",
+            "ip": "10.36.118.213",
+            "login":{
+                "userName":"admin",
+                "password":"admin"
+            },
+            "serialDev":"/dev/ttyUSBXX",
+            "baudrate": 115200,
+            "mediaMode":"mixed",
+            "links" : [
+                ["10.36.118.199:1:5", "agg1:swp1", "fiber"],
+                ["10.36.118.199:1:6", "agg1:swp2", "fiber"],
+                ["10.36.118.199:2:1", "infra1:swp33", "copper"],
+                ["10.36.118.199:2:2", "infra1:swp34", "copper"],
+                ["10.36.118.199:2:5", "infra2:swp33", "copper"],
+                ["10.36.118.199:2:6", "infra2:swp34", "copper"]
+            ]
+        }
+    ],
+    "operator" : "dent",
+    "topology" : "gordion-knot",
+    "force_discovery" : false
+}
