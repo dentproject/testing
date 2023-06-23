@@ -216,8 +216,7 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
         Changes media modes for Ixia ports
         """
         for port, vport in vports.items():
-            # or vport[0].L1Config.Ethernet
-            card = vport[0].L1Config.NovusTenGigLan
+            card = vport[0].L1Config.NovusTenGigLan or vport[0].L1Config.Ethernet
             if device.media_mode == 'mixed':
                 # Get required media mode. Default - copper
                 required_media = next((link[2] for link in device.links if link[0] == port), 'copper')
