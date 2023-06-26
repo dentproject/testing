@@ -128,7 +128,7 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
 
             # Add ports
             for port, vport in vports.items():
-                if vport[0].href in lag_ports:
+                if vport[0].href in lag_ports or port not in dev_groups.keys():
                     continue
                 device.applog.info('Adding interface on ixia port {} swp {}'.format(port, vport[1]))
                 topo = IxnetworkIxiaClientImpl.ixnet.Topology.add(Vports=vport[0])
