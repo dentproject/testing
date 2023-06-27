@@ -423,7 +423,7 @@ async def tgen_utils_setup_streams(device, config_file_name, streams, force_upda
     device.applog.info('Starting Protocols')
     out = await TrafficGen.start_protocols(input_data=[{device.host_name: [{}]}])
     device.applog.info(out)
-    assert out[0][device.host_name]['rc'] == 0
+    assert out[0][device.host_name]['rc'] == 0, out[0][device.host_name]['result']
 
 
 async def tgen_utils_start_traffic(device):
