@@ -94,7 +94,7 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
             IxnetworkIxiaClientImpl.stack_template = {
                 stack_type: IxnetworkIxiaClientImpl.ixnet.Traffic.ProtocolTemplate.find(StackTypeId=f'^{stack_type}$')
                 for stack_type in ('ipv4', 'ipv6', 'vlan', 'ethernet', 'tcp', 'udp', 'icmpv1', 'icmpv2', 'icmpv6',
-                                   'igmpv2', 'igmpv3MembershipQuery', 'igmpv3MembershipReport',
+                                   'igmpv2', 'igmpv3MembershipQuery', 'igmpv3MembershipReport', 'llc',
                                    'stpCfgBPDU', 'stpTCNBPDU', 'rstpBPDU')
             }
 
