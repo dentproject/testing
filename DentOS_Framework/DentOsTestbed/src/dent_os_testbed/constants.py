@@ -84,6 +84,7 @@ PYTEST_SUITES = {
     'suite_functional_devlink': 'Devlink functional tests',
     'suite_functional_hard_drop_counters': 'Hard Drop counters functional tests',
     'suite_functional_table_size': 'Table size functional tests',
+    'suite_functional_lacp': 'LACP functional tests',
 }
 
 PYTEST_SUITE_GROUPS = {
@@ -133,5 +134,6 @@ PYTEST_SUITE_GROUPS = {
         'suite_functional_devlink',
         'suite_functional_hard_drop_counters',
         'suite_functional_table_size',
+        'suite_functional_lacp',
     ]
 }
