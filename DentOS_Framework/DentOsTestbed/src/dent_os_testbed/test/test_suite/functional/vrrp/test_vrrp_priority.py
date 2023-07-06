@@ -71,7 +71,7 @@ async def test_vrrp_priority_on(testbed, setup, configure_vrrp):
     # 4. Verify infra[0] serves as master because it has a higher priority,
     #    Verify infra[1] serves as backup
     await verify_vrrp_ping(agg, infra, ports=(links[0][infra[0]], links[1][infra[1]]),
-                           expected=(count*2, 0), dst=vrrp_ip, count=count)
+                           expected=(count, 0), dst=vrrp_ip, count=count)
 
     # 5. Set infra[1] VRRP priority greater than the infra[0] VRRP priority
     await configure_vrrp(infra[1], state='MASTER', prio=210, vr_ip=vrrp_ip,
@@ -80,4 +80,4 @@ async def test_vrrp_priority_on(testbed, setup, configure_vrrp):
 
     # 6. Verify infra[1] takes over as a master and infra[0] becomes a backup router
     await verify_vrrp_ping(agg, infra, ports=(links[0][infra[0]], links[1][infra[1]]),
-                           expected=(0, count*2), dst=vrrp_ip, count=count)
+                           expected=(0, count), dst=vrrp_ip, count=count)

@@ -134,21 +134,21 @@ async def setup_topo_for_vrrp(testbed, use_bridge=False):
     }
 
 
-async def verify_vrrp_ping(agg, infra, ports, expected, dst, count=10):
-    interval = 0.1
+async def verify_vrrp_ping(agg, infra, ports, expected, dst=None, count=10, interval=0.1, do_ping=True):
+    spinup_time = 1
     tcpdump = [
-        # capture 2x number of sent icmp packets (request + reply)
-        asyncio.create_task(tb_device_tcpdump(dent, port, f'-n -c {count*2} icmp',
-                                              count_only=True, timeout=interval*5 * count))
+        asyncio.create_task(tb_device_tcpdump(dent, port, f'-n -c {count} "icmp && icmp[0] == 0"',
+                                              count_only=True, timeout=interval*3 * count + spinup_time))
         for dent, port in zip(infra, ports)
     ]
-    await asyncio.sleep(1)  # give tcpdump some time to start capturing packets
+    await asyncio.sleep(spinup_time)  # give tcpdump some time to start capturing packets
 
-    rc = await tb_ping_device(agg, dst, dump=True, count=count, interval=interval)
-    if all(exp_pkt == 0 for exp_pkt in expected):
-        assert rc != 0, 'Did not expect pings to have a reply'
-    else:
-        assert rc == 0, 'Some pings did not reach their destination'
+    if do_ping:
+        rc = await tb_ping_device(agg, dst, dump=True, count=count, interval=interval)
+        if all(exp_pkt == 0 for exp_pkt in expected):
+            assert rc != 0, 'Did not expect pings to have a reply'
+        else:
+            assert rc == 0, 'Some pings did not reach their destination'
 
     captured = await asyncio.gather(*tcpdump)
     for dent, exp_pkt, actual_pkt in zip(infra, expected, captured):

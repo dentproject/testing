@@ -76,7 +76,7 @@ async def test_vrrp_basic_on(testbed, setup, configure_vrrp):
     # 4. Verify infra[0] serves as master because it has a higher priority,
     #    Verify infra[1] serves as backup
     await verify_vrrp_ping(agg, infra, ports=(links[0][infra[0]], links[1][infra[1]]),
-                           expected=(count*2, 0), dst=vrrp_ip, count=count)
+                           expected=(count, 0), dst=vrrp_ip, count=count)
 
     # 5. Make infra[0] unavailable
     out = await IpLink.set(input_data=[{
@@ -88,7 +88,7 @@ async def test_vrrp_basic_on(testbed, setup, configure_vrrp):
 
     # 6. Verify infra[1] takes over as master
     await verify_vrrp_ping(agg, infra, ports=(links[0][infra[0]], links[1][infra[1]]),
-                           expected=(0, count*2), dst=vrrp_ip, count=count)
+                           expected=(0, count), dst=vrrp_ip, count=count)
 
     # 7. Make infra[0] active again
     out = await IpLink.set(input_data=[{
@@ -100,7 +100,7 @@ async def test_vrrp_basic_on(testbed, setup, configure_vrrp):
 
     # 8. Expect that it takes over as the master and infra[1] reverts to backup
     await verify_vrrp_ping(agg, infra, ports=(links[0][infra[0]], links[1][infra[1]]),
-                           expected=(count*2, 0), dst=vrrp_ip, count=count)
+                           expected=(count, 0), dst=vrrp_ip, count=count)
 
 
 @pytest.mark.parametrize('setup', ['port', 'bridge'])
@@ -162,7 +162,7 @@ async def test_vrrp_basic_down_on(testbed, setup, configure_vrrp):
     # 4. Verify infra[0] serves as master because it has a higher priority,
     #    Verify infra[1] serves as backup
     await verify_vrrp_ping(agg, infra, ports=(links[0][infra[0]], links[1][infra[1]]),
-                           expected=(count*2, 0), dst=vrrp_ip, count=count)
+                           expected=(count, 0), dst=vrrp_ip, count=count)
 
     # 5. Make infra[0] unavailable
     out = await IpLink.set(input_data=[{
@@ -174,7 +174,7 @@ async def test_vrrp_basic_down_on(testbed, setup, configure_vrrp):
 
     # 6. Verify infra[1] takes over as master
     await verify_vrrp_ping(agg, infra, ports=(links[0][infra[0]], links[1][infra[1]]),
-                           expected=(0, count*2), dst=vrrp_ip, count=count)
+                           expected=(0, count), dst=vrrp_ip, count=count)
 
     # 7. Make infra[1] also unavailable
     out = await IpLink.set(input_data=[{
