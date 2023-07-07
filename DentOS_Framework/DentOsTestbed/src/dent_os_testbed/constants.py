@@ -85,6 +85,7 @@ PYTEST_SUITES = {
     'suite_functional_hard_drop_counters': 'Hard Drop counters functional tests',
     'suite_functional_table_size': 'Table size functional tests',
     'suite_functional_lacp': 'LACP functional tests',
+    'suite_functional_vrrp': 'VRRP functional tests',
     'suite_functional_ecmp': 'Ecmp functional tests',
 }
 
@@ -136,6 +137,7 @@ PYTEST_SUITE_GROUPS = {
         'suite_functional_hard_drop_counters',
         'suite_functional_table_size',
         'suite_functional_lacp',
+        'suite_functional_vrrp',
         'suite_functional_ecmp',
     ]
 }
