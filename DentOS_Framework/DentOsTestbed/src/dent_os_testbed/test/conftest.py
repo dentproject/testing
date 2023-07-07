@@ -175,7 +175,8 @@ async def cleanup_vrfs(testbed):
 @pytest_asyncio.fixture
 async def cleanup_ip_addrs(testbed):
     yield
-    tgen_dev, devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 4)
+    # get all dent devices regardless of number of tg links
+    tgen_dev, devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 0)
     ip_addrs_cleanups = [_cleanup_ip_addrs(dev, tgen_dev) for dev in devices]
     await asyncio.gather(*ip_addrs_cleanups)
 
@@ -207,6 +208,7 @@ async def cleanup_sysctl():
 @pytest_asyncio.fixture
 async def cleanup_bonds(testbed):
     yield
-    _, devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 4)
+    # get all dent devices regardless of number of tg links
+    _, devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 0)
     bonds_cleanup = [_cleanup_bonds(dev) for dev in devices]
     await asyncio.gather(*bonds_cleanup)

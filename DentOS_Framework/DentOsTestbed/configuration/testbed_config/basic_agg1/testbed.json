@@ -16,7 +16,8 @@
             "mediaMode":"fiber",
             "links" : [
                 ["swp5", "agg1:swp6"],
-                ["swp7", "agg1:swp8"]
+                ["swp7", "agg1:swp8"],
+                ["swp9", "agg1:swp10"]
             ]
         },
         {
