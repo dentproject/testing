@@ -62,7 +62,7 @@ async def cleanup_vrfs(dev):
         parse_output=True
     )
     vrfs_info = out[0][dev.host_name]['parsed_output']
-    if all(vrfs_info):
+    if vrfs_info:
         await IpLink.delete(input_data=[{dev.host_name: [
             {'device': vrf_obj['ifname']} for vrf_obj in vrfs_info
         ]}])
