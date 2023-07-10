@@ -96,7 +96,7 @@ async def test_qos_shaper(testbed, trust_mode):
         await configure_dscp_map_and_verify(dent, {ingress_port: dscp_prio_map})
     else:
         dscp_prio_map = {}
-        vlan = random.randint(2, 4095)
+        vlan = random.randint(2, 4094)
         out = await BridgeVlan.delete(input_data=[{dent: [
             {'device': port, 'vid': 1} for port in ports
         ]}])
