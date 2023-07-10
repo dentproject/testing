@@ -51,7 +51,7 @@ async def test_vrrp_preempt_on(testbed, setup, configure_vrrp):
                 ip address 192.168.1.4/24
                 vrrp 40 ip 192.168.1.2 prio 100 (prio 210 nopreempt)
     """
-    wait_for_keepalived = 10
+    wait_for_keepalived = 15
     count = 10
     vrrp_ip = '192.168.1.2'
     vr_id = 40

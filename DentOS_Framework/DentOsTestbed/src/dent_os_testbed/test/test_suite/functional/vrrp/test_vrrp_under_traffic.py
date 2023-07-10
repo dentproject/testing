@@ -69,7 +69,7 @@ async def test_vrrp_under_traffic(testbed, setup, configure_vrrp):
             L0: ip address 192.168.1.5/24
             L1: ip address 192.168.2.2/24
     """
-    wait_for_keepalived = 10
+    wait_for_keepalived = 15
     vrrp_ip = '192.168.1.2'
     vr_id = 40
     packet_size = random.randint(100, 1500)

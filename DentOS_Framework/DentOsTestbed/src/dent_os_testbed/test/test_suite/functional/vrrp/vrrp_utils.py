@@ -1,5 +1,6 @@
 import asyncio
 import pytest
+import math
 
 from dent_os_testbed.Device import DeviceType
 from dent_os_testbed.lib.ip.ip_link import IpLink
@@ -279,6 +280,19 @@ async def verify_vrrp_ping(agg, infra, ports, expected, dst=None, count=10, inte
     captured = await asyncio.gather(*tcpdump)
     for dent, exp_pkt, actual_pkt in zip(infra, expected, captured):
         assert exp_pkt == actual_pkt, f'Expected {dent} to handle {exp_pkt} icmp packets'
+
+
+async def verify_vrrp_advert(dent_dev, port, expected_pkts, filter=None,
+                             options='', timeout=10, tolerance=0.10):
+    flt = ['inbound', 'dst host 224.0.0.18']
+    if type(filter) is list:
+        flt += filter
+
+    captured = await tb_device_tcpdump(dent_dev, port, f'-n {options} \'{" && ".join(flt)}\'',
+                                       count_only=True, timeout=timeout)
+
+    assert math.isclose(expected_pkts, captured, rel_tol=tolerance), \
+        f'Expected {dent_dev} to receive {expected_pkts} vrrp packets, but got {captured}'
 
 
 async def get_rx_bps(dent, port, sleep_for=5):

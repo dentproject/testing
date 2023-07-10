@@ -62,7 +62,7 @@ async def test_vrrp_master_and_backup(testbed, configure_vrrp):
                 vrrp 40 ip 192.168.10.2 prio 100 (BACKUP)
                 vrrp 50 ip 192.168.20.2 prio 200 (MASTER)
     """
-    wait_for_keepalived = 10
+    wait_for_keepalived = 15
     vr_addr = ['192.168.10.2', '192.168.20.2']
     count = 10
 
@@ -146,7 +146,7 @@ async def test_vrrp_multiple_addr(testbed, configure_vrrp):
                 ...
                 vrrp 40 ip 192.168.20.255 prio 100
     """
-    wait_for_keepalived = 10
+    wait_for_keepalived = 15
     vrrp_ips = [f'192.168.20.{ip+1}' for ip in range(255)]
     count = len(vrrp_ips)
     vr_id = 40
@@ -249,7 +249,7 @@ async def test_vrrp_max_instances(testbed, configure_vrrp):
                 ...
                 vrrp 254 ip 192.168.20.254 prio 100
     """
-    wait_for_keepalived = 10
+    wait_for_keepalived = 15
     vr_ids = [id+1 for id in range(254)]
     vrrp_ips = [f'192.168.20.{id}' for id in vr_ids]
     count = len(vrrp_ips)
