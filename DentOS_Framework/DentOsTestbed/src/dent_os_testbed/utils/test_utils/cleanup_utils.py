@@ -76,7 +76,8 @@ async def cleanup_ip_addrs(dev, tgen_dev):
     """
     logger = AppLogger(DEFAULT_LOGGER)
     logger.info('Deleting IP addresses from interfaces')
-    ports = tgen_dev.links_dict[dev.host_name][1]
+    # TG-DUT links + DUT-DUT links
+    ports = tgen_dev.links_dict[dev.host_name][1] + [port for port, _ in dev.links]
 
     out = await IpAddress.flush(input_data=[{dev.host_name: [{'dev': port} for port in ports]}])
     if out[0][dev.host_name]['rc'] != 0:
