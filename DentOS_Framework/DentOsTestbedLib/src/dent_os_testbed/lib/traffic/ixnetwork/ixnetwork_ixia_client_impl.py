@@ -111,13 +111,16 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                 pports.append({'Arg1': pport[0], 'Arg2': int(pport[1]), 'Arg3': int(pport[2])})
             vport_hrefs = [vport.href for vport in IxnetworkIxiaClientImpl.ixnet.Vport.find()]
 
-            try:    # Add throws an error but still adds the port?
+             # Adding a location succeeds but still throws an error?
+            try:   
                 IxnetworkIxiaClientImpl.ixnet.Locations.add(Hostname=pports[0]['Arg1'])
-            except Exception as e:
-                device.applog.info(f"Ixia Add Hack: {repr(e)}")
+             # Log exception cause and give location time to connect
+            except Exception as e: 
+                device.applog.info(f"Ixia VM Workaround Caught: {repr(e)}")
                 time.sleep(3)
             deviceType = IxnetworkIxiaClientImpl.ixnet.Locations.find()[0].DeviceType
             device.applog.info(f'Device Type: {deviceType}')
+
             lags = {}
             lag_ports = []
             if (deviceType != 'Optixia XV'):
