@@ -112,7 +112,7 @@ async def test_link_up_down(testbed):
         link_name = ''
         for link in links:
             if 'sw' in link['ifname'] and link['operstate'] == 'UP':
-                link_name = l['ifname']
+                link_name = link['ifname']
                 break
         if link_name == '':
             print('Not even single swp is UP')
