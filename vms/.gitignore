@@ -1,0 +1,5 @@
+
+*.qcow2
+*.bz2
+*.iso
+*generated.yaml

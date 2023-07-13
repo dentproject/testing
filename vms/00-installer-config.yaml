@@ -1,0 +1,28 @@
+---
+network:
+  ethernets:
+    DEFAULT_NETDEV:   # Connected Ethernet
+      dhcp4: false
+      dhcp6: false
+  bridges:
+    br1:
+      macaddress: CTL_MAC
+      interfaces: [DEFAULT_NETDEV]  # Bridge connected to ethernet
+      addresses: [DEFAULT_IP]       # IP
+      routes:
+        - to: default
+          via: DEFAULT_GATEWAY      # Default Gateway
+      mtu: 1500
+      nameservers:
+        addresses: [1.1.1.1, 8.8.8.8, 156.140.198.11, 156.140.214.11]
+      parameters:
+        stp: false
+        forward-delay: 0
+        max-age: 0
+      dhcp4: false
+      dhcp6: false
+  version: 2
+  # Network Renderer Choice: Network Manager can be installed,
+  # but is unnecessary
+  renderer: networkd
+  # renderer: NetworkManager
