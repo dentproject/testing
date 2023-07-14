@@ -1,6 +1,0 @@
-#
-# ISC dhcpd configuration
-#
-
-
-option domain-name "test";
