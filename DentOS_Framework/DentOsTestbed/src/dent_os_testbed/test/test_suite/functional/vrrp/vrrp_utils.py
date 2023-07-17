@@ -261,7 +261,8 @@ async def setup_topo_for_vrrp(testbed, use_bridge=False, use_vid=None, use_tgen=
     }
 
 
-async def verify_vrrp_ping(agg, infra, ports, expected, dst=None, count=10, interval=0.1, do_ping=True):
+async def verify_vrrp_ping(agg, infra, ports, expected, dst=None, count=10, interval=0.1, do_ping=True,
+                           expect_reply=False):
     spinup_time = 1
     tcpdump = [
         asyncio.create_task(tb_device_tcpdump(dent, port, f'-n -c {count} "icmp && icmp[0] == 0"',
@@ -272,7 +273,7 @@ async def verify_vrrp_ping(agg, infra, ports, expected, dst=None, count=10, inte
 
     if do_ping:
         rc = await tb_ping_device(agg, dst, dump=True, count=count, interval=interval)
-        if all(exp_pkt == 0 for exp_pkt in expected):
+        if all(exp_pkt == 0 for exp_pkt in expected) and not expect_reply:
             assert rc != 0, 'Did not expect pings to have a reply'
         else:
             assert rc == 0, 'Some pings did not reach their destination'

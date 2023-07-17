@@ -459,9 +459,9 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
         return eth_stack
 
     def __configure_l3_stack(self, config_element, pkt_data, track_by, eth_stack):
-        if pkt_data.get('protocol') == 'lldp':
+        if pkt_data.get('protocol') == 'lldp' or pkt_data.get('skipL3'):
             return
-        elif pkt_data.get('type') == 'ipv6' or pkt_data.get('protocol') == 'ipv6':
+        if pkt_data.get('type') == 'ipv6' or pkt_data.get('protocol') == 'ipv6':
             proto = 'ipv6'
             fields = {
                 'dstIp': 'ipv6.header.dstIP',
