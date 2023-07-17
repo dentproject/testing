@@ -1,10 +1,24 @@
+from operator import itemgetter
 import asyncio
 import pytest
 
 from dent_os_testbed.Device import DeviceType
 from dent_os_testbed.lib.ip.ip_link import IpLink
+from dent_os_testbed.lib.tc.tc_qdisc import TcQdisc
+from dent_os_testbed.lib.tc.tc_filter import TcFilter
 from dent_os_testbed.lib.ip.ip_address import IpAddress
 from dent_os_testbed.lib.mstpctl.mstpctl import Mstpctl
+
+from dent_os_testbed.test.test_suite.functional.vrrp.vrrp_utils import (
+    setup_topo_for_vrrp,
+    verify_vrrp_advert,
+    vr_id_to_mac,
+)
+
+from dent_os_testbed.utils.test_utils.tgen_utils import (
+    tgen_utils_setup_streams,
+    tgen_utils_start_traffic,
+)
 
 from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_get_dent_devices_with_tgen,
@@ -79,7 +93,7 @@ async def test_vrrp_and_stp(testbed, configure_vrrp):
         pytest.skip('The testbed does not have enough agg devices')
     agg = agg[0]
 
-    wait_for_keepalived = 10
+    wait_for_keepalived = 15
     convergence_time_s = 40
     vrrp_ip = '192.168.1.2'
     bridge = 'br0'
@@ -177,3 +191,130 @@ async def test_vrrp_and_stp(testbed, configure_vrrp):
 
         await verify_vrrp_ping(agg, infra, ports=(links[0][infra[0]], links[1][infra[1]]),
                                expected=expected, dst=vrrp_ip, count=count)
+
+
+@pytest.mark.usefixtures('cleanup_tgen', 'cleanup_qdiscs')
+async def test_vrrp_and_acl(testbed, configure_vrrp):
+    """
+    Test Name: test_vrrp_and_acl
+    Test Suite: suite_functional_vrrp
+    Test Overview:
+        Verify DUT stability and availability under VRRP advertisements overflow
+    Test Procedure:
+    1. Configure aggregation router
+    2. Configure infra devices
+    3. Configure VRRP on infra devices
+    4. Send VRRPv3 advertisements
+    5. Verify the advertisements are trapped
+    6. Configure ACL to drop VRRP advertisements
+    7. Verify the advertisements are dropped
+
+    Setup:
+                   TG L0     ______
+            agg ------------ |    |
+         ___| |___           |    |
+      L0 |       | L1        | TG |
+         |       |           |    |
+    infra[0]    infra[1]     |____|
+
+    Configure:
+        agg:
+            L0, L1, TG L0: master bridge
+        infra[0]:
+            L0: master bridge
+                ip address 192.168.1.3/24
+                vrrp 40 ip 192.168.1.2 prio 250
+        infra[1]:
+            L1: master bridge
+                ip address 192.168.1.4/24
+                vrrp 40 ip 192.168.1.2 prio 100
+        TG:
+            L0: ip address 192.168.1.5/24
+                vrrp 40 ip 192.168.1.2 prio 200
+    """
+    """
+    [no ethernet header]
+    Protocol: VRRP
+    Source Address: 192.168.1.5
+    Destination Address: 224.0.0.18
+    Virtual Router ID: 40
+    Priority: 250
+    VRRP IP Address: 192.168.1.2
+    """
+    vrrp_packet = '45C0002000010000FF7018EDC0A80105E00000123128FA010064708AC0A80102'
+    wait_for_keepalived = 15
+    vrrp_ip = '192.168.1.2'
+    vr_id = 40
+    pps_rate = 1
+    timeout = 20
+    expected = 10
+
+    # 1. Configure aggregation router
+    # 2. Configure infra devices
+    config = await setup_topo_for_vrrp(testbed, use_bridge=True, use_tgen=True, vrrp_ip=vrrp_ip)
+    infra, tgen_dev, bridge, links, tg_links, dev_groups, ep_ip = \
+        itemgetter('infra', 'tgen_dev', 'bridge', 'links', 'tg_links', 'dev_groups', 'ep_ip')(config)
+    tg_ip = ep_ip.split('/')[0]
+
+    # 3. Configure VRRP on infra devices
+    await asyncio.gather(*[
+        configure_vrrp(dent, state=state, prio=prio, vr_ip=vrrp_ip, vr_id=vr_id, dev=bridge)
+        for dent, state, prio
+        in zip(infra, ['MASTER', 'BACKUP'], [200, 100])])
+    await asyncio.sleep(wait_for_keepalived)
+
+    # 4. Send VRRPv3 advertisements
+    streams = {
+        'vrrp adv traffic': {
+            'type': 'custom',
+            'protocol': '0800',
+            'ip_source': dev_groups[tg_links[0][tgen_dev]][0]['name'],
+            'ip_destination': dev_groups[tg_links[0][tgen_dev]][0]['name'],
+            'allowSelfDestined': True,
+            'srcMac': vr_id_to_mac(vr_id),
+            'dstMac': '01:00:5e:00:00:12',
+            'rate': pps_rate,
+            'frameSize': 100,
+            'customLength': len(vrrp_packet) // 2,
+            'customData': vrrp_packet,
+        }
+    }
+    await tgen_utils_setup_streams(tgen_dev, None, streams)
+
+    await tgen_utils_start_traffic(tgen_dev)
+    # don't stop
+
+    # 5. Verify the advertisements are trapped
+    await asyncio.gather(*[verify_vrrp_advert(dent, port, expected_pkts=expected,
+                                              timeout=timeout, options=f'-c {expected}',
+                                              filter=[f'src host {tg_ip}'])
+                           for dent, port in zip(infra, [links[0][infra[0]], links[1][infra[1]]])])
+
+    # 6. Configure ACL to drop VRRP advertisements
+    out = await TcQdisc.add(input_data=[{
+        dent.host_name: [{'dev': port, 'direction': 'ingress'}]
+        for dent, port in zip(infra, [links[0][infra[0]], links[1][infra[1]]])
+    }])
+    assert all(res[host_name]['rc'] == 0 for res in out for host_name in res), \
+        'Failed to add qdisc'
+
+    out = await TcFilter.add(input_data=[{
+        dent.host_name: [{
+            'dev': port,
+            'action': 'drop',
+            'direction': 'ingress',
+            'protocol': 'ip',
+            'filtertype': {
+                'src_ip': tg_ip,
+            },
+        }]
+        for dent, port in zip(infra, [links[0][infra[0]], links[1][infra[1]]])
+    }])
+    assert all(res[host_name]['rc'] == 0 for res in out for host_name in res), \
+        'Failed to add drop rule'
+
+    # 7. Verify the advertisements are dropped
+    expected = 0
+    await asyncio.gather(*[verify_vrrp_advert(dent, port, expected_pkts=expected,
+                                              timeout=timeout, filter=[f'src host {tg_ip}'])
+                           for dent, port in zip(infra, [links[0][infra[0]], links[1][infra[1]]])])
