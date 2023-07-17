@@ -173,6 +173,8 @@ class LinuxIpLinkImpl(LinuxIpLink):
             params['cmd_options'] = '-j -d'
         cmd = 'ip {} link {} '.format(params.get('cmd_options', ''), command)
         # custom code here
+        if 'master' in params:
+            cmd += 'master '
         if 'device' in params:
             cmd += '{} '.format((params['device']))
         if 'group' in params:
