@@ -1,4 +1,5 @@
 import os
+import sys
 import time
 
 from dent_os_testbed.lib.traffic.ixnetwork.ixnetwork_ixia_client import IxnetworkIxiaClient
@@ -110,22 +111,34 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                 pports.append({'Arg1': pport[0], 'Arg2': int(pport[1]), 'Arg3': int(pport[2])})
             vport_hrefs = [vport.href for vport in IxnetworkIxiaClientImpl.ixnet.Vport.find()]
 
-            # init virtual lags
+            # Adding a location succeeds but still throws an error?
+            try:
+                IxnetworkIxiaClientImpl.ixnet.Locations.add(Hostname=pports[0]['Arg1'])
+            # Log exception cause and give location time to connect
+            except Exception as e:
+                device.applog.info(f'Ixia VM Workaround Caught: {repr(e)}')
+                time.sleep(3)
+            deviceType = IxnetworkIxiaClientImpl.ixnet.Locations.find()[0].DeviceType
+            device.applog.info(f'Device Type: {deviceType}')
+
             lags = {}
-            for name, group in dev_groups.items():
-                if group[0]['type'] != 'lag':
-                    continue
-                lag_vports = [vports[port][0].href for port in group[0]['lag_members']]
-                lags[name] = {
-                    'vports': lag_vports,
-                    'instance': IxnetworkIxiaClientImpl.ixnet.Lag.add(Name=name, Vports=lag_vports),
-                }
-            lag_ports = [port for lag in lags.values() for port in lag['vports']]
+            lag_ports = []
+            if (deviceType != 'Optixia XV'):
+                # init virtual lags
+                for name, group in dev_groups.items():
+                    if group[0]['type'] != 'lag':
+                        continue
+                    lag_vports = [vports[port][0].href for port in group[0]['lag_members']]
+                    lags[name] = {
+                        'vports': lag_vports,
+                        'instance': IxnetworkIxiaClientImpl.ixnet.Lag.add(Name=name, Vports=lag_vports),
+                    }
+                lag_ports = [port for lag in lags.values() for port in lag['vports']]
 
             device.applog.info('Assigning ports')
             IxnetworkIxiaClientImpl.ixnet.AssignPorts(pports, [], vport_hrefs, True)
-            self.__update_ports_mode(vports, device)
-
+            if (deviceType != 'Optixia XV'):
+                self.__update_ports_mode(vports, device)
             # Add ports
             for port, vport in vports.items():
                 if vport[0].href in lag_ports:
@@ -143,7 +156,12 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                 self.__add_endpoint(dev_groups, device, topo, name, lag['instance'], is_lag=True)
 
         except Exception as e:
-            device.applog.info(e)
+            device.applog.info(f'Exception Caught: {repr(e)}')
+
+            exc_type, exc_obj, exc_tb = sys.exc_info()
+            fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+            device.applog.info(f'{exc_type}, {fname}:{exc_tb.tb_lineno}')
+            # return -1, 'Error!'
         return 0, 'Connected!'
 
     @staticmethod
