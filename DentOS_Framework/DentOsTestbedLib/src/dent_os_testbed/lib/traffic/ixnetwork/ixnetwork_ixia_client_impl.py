@@ -628,10 +628,19 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
             self.set_traffic(device, name=param['name'], pkt_data=param['pkt_data'])
         elif command == 'start_traffic':
             device.applog.info('Starting Traffic')
-            IxnetworkIxiaClientImpl.ixnet.Traffic.Start()
+            IxnetworkIxiaClientImpl.ixnet.Traffic.StartStatelessTrafficBlocking()
         elif command == 'stop_traffic':
             device.applog.info('Stopping Traffic')
-            IxnetworkIxiaClientImpl.ixnet.Traffic.Stop()
+            IxnetworkIxiaClientImpl.ixnet.Traffic.StopStatelessTrafficBlocking()
+            attempts = 0
+            while IxnetworkIxiaClientImpl.ixnet.Traffic.IsTrafficRunning and attempts < 3:
+                device.applog.info(
+                    '\tIs Traffic running: ' + str(IxnetworkIxiaClientImpl.ixnet.Traffic.IsTrafficRunning))
+                time_to_sleep = 5
+                time.sleep(time_to_sleep)
+                attempts += 1
+            if attempts > 3:
+                device.applog.info(f'INFO: Traffic not stopped after {attempts * time_to_sleep} Seconds')
         elif command == 'get_stats':
             device.applog.info('Getting Stats')
             stats_type = 'Port Statistics'
