@@ -18,9 +18,11 @@ from dent_os_testbed.utils.test_utils.cleanup_utils import (
     cleanup_qdiscs as _cleanup_qdiscs,
     cleanup_routes as _cleanup_routes,
     cleanup_bonds as _cleanup_bonds,
+    cleanup_vrf_table_ids as _cleanup_vrf_table_ids,
     cleanup_vrfs as _cleanup_vrfs,
     cleanup_sysctl as _cleanup_sysctl,
     get_initial_routes,
+    get_initial_tables,
 )
 from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_get_dent_devices_with_tgen,
@@ -197,6 +199,17 @@ async def cleanup_routes(testbed):
     yield
     routes_cleanups = [_cleanup_routes(dev, initial_routes[dev.host_name]) for dev in devices]
     await asyncio.gather(*routes_cleanups)
+
+
+@pytest_asyncio.fixture
+async def cleanup_vrf_table_ids(testbed):
+    devices = await _get_dent_devs_from_testbed(testbed)
+    initial_tables = dict()
+    for dev in devices:
+        initial_tables[dev.host_name] = await get_initial_tables(dev)
+    yield
+    table_cleanups = [_cleanup_vrf_table_ids(dev, initial_tables[dev.host_name]) for dev in devices]
+    await asyncio.gather(*table_cleanups)
 
 
 @pytest_asyncio.fixture

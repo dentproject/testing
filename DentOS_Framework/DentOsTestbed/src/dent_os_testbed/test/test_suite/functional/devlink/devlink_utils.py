@@ -7,7 +7,9 @@ from dent_os_testbed.utils.test_utils.tgen_utils import tgen_utils_get_swp_info
 
 
 CPU_MAX_PPS = 4000
+CPU_MAX_VRRP_PPS = 200
 CPU_STAT_CODE_ACL_CODE_3 = '195'
+CPU_STAT_CODE_VRRP = '30'
 DEVIATION = 0.1
 RATE_UNITS = {
         'bit':  1,

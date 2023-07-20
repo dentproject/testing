@@ -169,7 +169,7 @@ async def test_ipv6_on_bridge_vlan(testbed):
     wait_for_stats = 10
     plen = 64
     bridge = 'br0'
-    vlans = random.sample(range(1, 4095), 4)
+    vlans = random.sample(range(1, 4094), 4)
     vlan_ifs = [f'{bridge}.{vlan}' for vlan in vlans]
 
     address_map = [

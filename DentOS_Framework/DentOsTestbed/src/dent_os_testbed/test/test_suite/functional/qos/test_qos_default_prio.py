@@ -58,7 +58,7 @@ async def test_qos_default_prio(testbed):
     tg_ports = tgen_dev.links_dict[dent][0][:num_of_ports]
     ports = tgen_dev.links_dict[dent][1][:num_of_ports]
     ingress_port, *egress_ports = ports
-    vlan = random.randint(2, 4095)
+    vlan = random.randint(2, 4094)
     wait_for_qd_stats = 5  # sec
     traffic_duration = 30  # sec
     dscp_not_in_map = 63
