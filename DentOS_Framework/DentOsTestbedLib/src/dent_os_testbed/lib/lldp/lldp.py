@@ -107,3 +107,53 @@ class Lldp(TestLibObject):
 
         """
         return await Lldp._run_command('set', *argv, **kwarg)
+
+    async def configure(*argv, **kwarg):
+        """
+        Platforms: ['dentos', 'cumulus']
+        Usage:
+        Lldp.configure(
+            input_data = [{
+                # device 1
+                'dev1' : [{
+                    # command 1
+                        'interface':'string',
+                        'options':'string',
+                }],
+            }],
+        )
+        Description:
+        Usage:   lldpcli [OPTIONS ...] [COMMAND ...]
+        Version: lldpd 2020-09-23
+        -d          Enable more debugging information.
+        -u socket   Specify the Unix-domain socket used for communication with lldpd(8).
+        -f format   Choose output format (plain, keyvalue, json, json0, xml).
+        see manual page lldpcli(8) for more information
+
+        """
+        return await Lldp._run_command('configure', *argv, **kwarg)
+
+    async def show_lldpcli(*argv, **kwarg):
+        """
+        Platforms: ['dentos', 'cumulus']
+        Usage:
+        Lldp.show_lldpcli(
+            input_data = [{
+                # device 1
+                'dev1' : [{
+                    # command 1
+                        'interface':'string',
+                        'options':'string',
+                }],
+            }],
+        )
+        Description:
+        Usage:   lldpcli [OPTIONS ...] [COMMAND ...]
+        Version: lldpd 2020-09-23
+        -d          Enable more debugging information.
+        -u socket   Specify the Unix-domain socket used for communication with lldpd(8).
+        -f format   Choose output format (plain, keyvalue, json, json0, xml).
+        see manual page lldpcli(8) for more information
+
+        """
+        return await Lldp._run_command('show_lldpcli', *argv, **kwarg)
