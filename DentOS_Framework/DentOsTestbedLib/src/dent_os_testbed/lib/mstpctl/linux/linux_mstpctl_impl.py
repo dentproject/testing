@@ -17,7 +17,7 @@ class LinuxMstpctlImpl(LinuxMstpctl):
         params = kwarg['params']
         cmd = 'mstpctl {} {}{} '.format(params.get('options', ''), command, params['parameter'])
         for key in ['bridge', 'port', 'revision', 'name', 'ageing_time', 'max_age', 'fwd_delay',
-                    'max_hops', 'hello_time', 'version', 'priority', 'tx_hold_count', 'cost']:
+                    'max_hops', 'hello_time', 'version', 'mstid', 'priority', 'tx_hold_count', 'cost']:
             if key in params.keys():
                 cmd += f'{params[key]} '
         if 'enable' in params:

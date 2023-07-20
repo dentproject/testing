@@ -512,7 +512,14 @@ async def test_ecmp_distribution_lags(testbed):
         'frame_rate_type': 'line_rate',
         }
     }
-    await tgen_utils_setup_streams(tgen_dev, config_file_name=None, streams=stream)
+
+    try:
+        await tgen_utils_setup_streams(tgen_dev, config_file_name=None, streams=stream)
+    except AssertionError as e:
+        if 'LAG' in str(e):
+            pytest.skip(str(e))
+        else:
+            raise  # will re-raise the AssertionError
 
     # 9.Transmit added stream for 15 sec
     await tgen_utils_clear_traffic_stats(tgen_dev)

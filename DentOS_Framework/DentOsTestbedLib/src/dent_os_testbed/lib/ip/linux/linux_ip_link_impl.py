@@ -38,6 +38,8 @@ class LinuxIpLinkImpl(LinuxIpLink):
             cmd += 'numrxqueues {} '.format((params['numrxqueues']))
         if 'type' in params:
             cmd += 'type {} '.format((params['type']))
+            if params['type'] == 'vrf':
+                cmd += 'table {} '.format((params['table']))
         if 'ageing_time' in params:
             cmd += 'ageing_time {} '.format((params['ageing_time']))
         if 'vlan_filtering' in params:
@@ -158,6 +160,8 @@ class LinuxIpLinkImpl(LinuxIpLink):
             cmd += 'mcast_querier_interval {} '.format((params['mcast_querier_interval']))
         if 'vlan_default_pvid' in params:
             cmd += 'vlan_default_pvid {} '.format((params['vlan_default_pvid']))
+        if 'stp_state' in params:
+            cmd += 'stp_state {} '.format(params['stp_state'])
         return cmd
 
     def format_show(self, command, *argv, **kwarg):

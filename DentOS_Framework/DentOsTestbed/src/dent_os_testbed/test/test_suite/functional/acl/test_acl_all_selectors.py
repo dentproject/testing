@@ -126,7 +126,7 @@ async def test_acl_all_selectors(testbed, action, use_tagged_traffic, qdisc_type
     use_shared_block = qdisc_type == 'shared_block'
     is_vlan_aware = use_tagged_traffic == 'tagged'
 
-    vlan = random.randint(1, 4095) if is_vlan_aware else 0
+    vlan = random.randint(1, 4094) if is_vlan_aware else 0
     tc_stats_update_time = 5
     traffic_duration = 10
     rate_pps = 10_000
