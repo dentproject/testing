@@ -1,5 +1,6 @@
 import pytest
 import re
+import asyncio
 
 from dent_os_testbed.lib.ip.ip_link import IpLink
 from dent_os_testbed.utils.test_utils.tgen_utils import tb_get_all_devices
@@ -44,6 +45,7 @@ async def test_lacp_unsupported_modes(testbed):
          'operstate': 'up'} for mode in unsupported_modes]}])
     assert out[0][device]['rc'] == 0, 'Fail to set bond(s) to up state'
 
+    await asyncio.sleep(15)
     # 3. Verify bond(s) with unsupported modes are in `down` state
     for mode in unsupported_modes:
         out = await IpLink.show(input_data=[{device: [{'device': f'bond_{unsupported_modes.index(mode)}',

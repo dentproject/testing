@@ -4,7 +4,7 @@
   - name: lldp
     desc: |
       LLDP module
-    apis: ['show', 'set']
+    apis: ['show', 'set', 'configure', 'show_lldpcli']
     members:
     - name: interface
       type: string

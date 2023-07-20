@@ -12,7 +12,6 @@ class LinuxLldp(TestLibObject):
         LLDP module
 
     """
-
     def format_show(self, command, *argv, **kwarg):
         raise NotImplementedError
 
@@ -25,12 +24,30 @@ class LinuxLldp(TestLibObject):
     def parse_set(self, command, output, *argv, **kwarg):
         raise NotImplementedError
 
+    def format_configure(self, command, *argv, **kwarg):
+        raise NotImplementedError
+
+    def parse_configure(self, command, output, *argv, **kwarg):
+        raise NotImplementedError
+
+    def format_show_lldpcli(self, command, *argv, **kwarg):
+        raise NotImplementedError
+
+    def parse_show_lldpcli(self, command, output, *argv, **kwarg):
+        raise NotImplementedError
+
     def format_command(self, command, *argv, **kwarg):
         if command in ['show']:
             return self.format_show(command, *argv, **kwarg)
 
         if command in ['set']:
             return self.format_set(command, *argv, **kwarg)
+
+        if command in ['configure']:
+            return self.format_configure(command, *argv, **kwarg)
+
+        if command in ['show_lldpcli']:
+            return self.format_show_lldpcli(command, *argv, **kwarg)
 
         raise NameError('Cannot find command '+command)
 
@@ -40,5 +57,11 @@ class LinuxLldp(TestLibObject):
 
         if command in ['set']:
             return self.parse_set(command, output, *argv, **kwarg)
+
+        if command in ['configure']:
+            return self.parse_configure(command, output, *argv, **kwarg)
+
+        if command in ['show_lldpcli']:
+            return self.parse_show_lldpcli(command, output, *argv, **kwarg)
 
         raise NameError('Cannot find command '+command)

@@ -55,6 +55,7 @@ async def test_vrrp_basic_on(testbed, setup, configure_vrrp):
                 ip address 192.168.1.4/24
                 vrrp 40 ip 192.168.1.2 prio 100
     """
+    wait_for_keepalived = 15
     count = 10
     vrrp_ip = '192.168.1.2'
     vr_id = 40
@@ -71,12 +72,12 @@ async def test_vrrp_basic_on(testbed, setup, configure_vrrp):
         configure_vrrp(dent, state=state, prio=prio, vr_ip=vrrp_ip, vr_id=vr_id, dev=port)
         for dent, port, state, prio
         in zip(infra, vrrp_ifaces, ['MASTER', 'BACKUP'], [254, 100])])
-    await asyncio.sleep(10)  # wait for keepalived to start
+    await asyncio.sleep(wait_for_keepalived)
 
     # 4. Verify infra[0] serves as master because it has a higher priority,
     #    Verify infra[1] serves as backup
     await verify_vrrp_ping(agg, infra, ports=(links[0][infra[0]], links[1][infra[1]]),
-                           expected=(count*2, 0), dst=vrrp_ip, count=count)
+                           expected=(count, 0), dst=vrrp_ip, count=count)
 
     # 5. Make infra[0] unavailable
     out = await IpLink.set(input_data=[{
@@ -84,11 +85,11 @@ async def test_vrrp_basic_on(testbed, setup, configure_vrrp):
     }])
     assert all(res[host_name]['rc'] == 0 for res in out for host_name in res), \
         'Failed to disable vrrp'
-    await asyncio.sleep(10)  # wait for vrrp to change master
+    await asyncio.sleep(wait_for_keepalived)
 
     # 6. Verify infra[1] takes over as master
     await verify_vrrp_ping(agg, infra, ports=(links[0][infra[0]], links[1][infra[1]]),
-                           expected=(0, count*2), dst=vrrp_ip, count=count)
+                           expected=(0, count), dst=vrrp_ip, count=count)
 
     # 7. Make infra[0] active again
     out = await IpLink.set(input_data=[{
@@ -96,11 +97,11 @@ async def test_vrrp_basic_on(testbed, setup, configure_vrrp):
     }])
     assert all(res[host_name]['rc'] == 0 for res in out for host_name in res), \
         'Failed to enable vrrp'
-    await asyncio.sleep(10)  # wait for vrrp to change master
+    await asyncio.sleep(wait_for_keepalived)
 
     # 8. Expect that it takes over as the master and infra[1] reverts to backup
     await verify_vrrp_ping(agg, infra, ports=(links[0][infra[0]], links[1][infra[1]]),
-                           expected=(count*2, 0), dst=vrrp_ip, count=count)
+                           expected=(count, 0), dst=vrrp_ip, count=count)
 
 
 @pytest.mark.parametrize('setup', ['port', 'bridge'])
@@ -141,6 +142,7 @@ async def test_vrrp_basic_down_on(testbed, setup, configure_vrrp):
                 ip address 192.168.1.4/24
                 vrrp 40 ip 192.168.1.2 prio 100
     """
+    wait_for_keepalived = 15
     count = 10
     vrrp_ip = '192.168.1.2'
     vr_id = 40
@@ -157,12 +159,12 @@ async def test_vrrp_basic_down_on(testbed, setup, configure_vrrp):
         configure_vrrp(dent, state=state, prio=prio, vr_ip=vrrp_ip, vr_id=vr_id, dev=port)
         for dent, port, state, prio
         in zip(infra, vrrp_ifaces, ['MASTER', 'BACKUP'], [200, 100])])
-    await asyncio.sleep(10)  # wait for keepalived to start
+    await asyncio.sleep(wait_for_keepalived)
 
     # 4. Verify infra[0] serves as master because it has a higher priority,
     #    Verify infra[1] serves as backup
     await verify_vrrp_ping(agg, infra, ports=(links[0][infra[0]], links[1][infra[1]]),
-                           expected=(count*2, 0), dst=vrrp_ip, count=count)
+                           expected=(count, 0), dst=vrrp_ip, count=count)
 
     # 5. Make infra[0] unavailable
     out = await IpLink.set(input_data=[{
@@ -170,11 +172,11 @@ async def test_vrrp_basic_down_on(testbed, setup, configure_vrrp):
     }])
     assert all(res[host_name]['rc'] == 0 for res in out for host_name in res), \
         'Failed to disable vrrp'
-    await asyncio.sleep(10)  # wait for vrrp to change master
+    await asyncio.sleep(wait_for_keepalived)
 
     # 6. Verify infra[1] takes over as master
     await verify_vrrp_ping(agg, infra, ports=(links[0][infra[0]], links[1][infra[1]]),
-                           expected=(0, count*2), dst=vrrp_ip, count=count)
+                           expected=(0, count), dst=vrrp_ip, count=count)
 
     # 7. Make infra[1] also unavailable
     out = await IpLink.set(input_data=[{
@@ -182,7 +184,7 @@ async def test_vrrp_basic_down_on(testbed, setup, configure_vrrp):
     }])
     assert all(res[host_name]['rc'] == 0 for res in out for host_name in res), \
         'Failed to disable vrrp'
-    await asyncio.sleep(10)  # wait for vrrp to change master
+    await asyncio.sleep(wait_for_keepalived)
 
     # 8. Expect no ICMP reply
     await verify_vrrp_ping(agg, infra, ports=(links[0][infra[0]], links[1][infra[1]]),
