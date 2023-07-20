@@ -103,27 +103,19 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
             ixia_ports = param['tgen_ports']
             swp_ports = param['swp_ports']
             dev_groups = param['dev_groups']
-            pports = []
+
             vports = {}
             for port, sport in zip(ixia_ports, swp_ports):
-                vports[port] = (IxnetworkIxiaClientImpl.ixnet.Vport.add(Name=port), sport)
-                pport = port.split(':')
-                pports.append({'Arg1': pport[0], 'Arg2': int(pport[1]), 'Arg3': int(pport[2])})
-            vport_hrefs = [vport.href for vport in IxnetworkIxiaClientImpl.ixnet.Vport.find()]
+                # Specify Location on Port Add to simplify assignment
+                vports[port] = (IxnetworkIxiaClientImpl.ixnet.Vport.add(Name=port, Location=port.replace(':', ';')), sport)
 
-            # Adding a location succeeds but still throws an error?
-            try:
-                IxnetworkIxiaClientImpl.ixnet.Locations.add(Hostname=pports[0]['Arg1'])
-            # Log exception cause and give location time to connect
-            except Exception as e:
-                device.applog.info(f'Ixia VM Workaround Caught: {repr(e)}')
-                time.sleep(3)
-            deviceType = IxnetworkIxiaClientImpl.ixnet.Locations.find()[0].DeviceType
-            device.applog.info(f'Device Type: {deviceType}')
+            device.applog.info('Assigning ports')
+            IxnetworkIxiaClientImpl.ixnet.AssignPorts(True)
+            portType = vports[port][0].Type
 
             lags = {}
             lag_ports = []
-            if (deviceType != 'Optixia XV'):
+            if (portType != 'ethernetvm'):
                 # init virtual lags
                 for name, group in dev_groups.items():
                     if group[0]['type'] != 'lag':
@@ -135,9 +127,7 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                     }
                 lag_ports = [port for lag in lags.values() for port in lag['vports']]
 
-            device.applog.info('Assigning ports')
-            IxnetworkIxiaClientImpl.ixnet.AssignPorts(pports, [], vport_hrefs, True)
-            if (deviceType != 'Optixia XV'):
+            if (portType != 'ethernetvm'):
                 self.__update_ports_mode(vports, device)
             # Add ports
             for port, vport in vports.items():
