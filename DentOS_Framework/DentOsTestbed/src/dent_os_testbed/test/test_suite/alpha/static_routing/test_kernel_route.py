@@ -40,7 +40,7 @@ async def test_alpha_lab_static_routing_kernel_route_on_table(testbed):
         return
     dent_dev = dent_devices[0]
     dent = dent_dev.host_name
-    swp = 'ma1'
+    swp, swp_num = 'ma1', 1
 
     await IpLink.show(
         input_data=[{dent: [{'device': swp, 'cmd_options': '-j'}]}],
@@ -48,7 +48,7 @@ async def test_alpha_lab_static_routing_kernel_route_on_table(testbed):
 
     swp_info = {}
     await tgen_utils_get_swp_info(dent_dev, swp, swp_info)
-    sip = '.'.join(swp_info['ip'][:-1] + [str(int(swp[3:]) * 2)])
+    sip = '.'.join(swp_info['ip'][:-1] + [str(swp_num * 2)])
 
     # start from a clean state
     await IpRoute.add(
