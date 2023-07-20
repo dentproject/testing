@@ -146,12 +146,13 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                 self.__add_endpoint(dev_groups, device, topo, name, lag['instance'], is_lag=True)
 
         except Exception as e:
+            # Log Exception with Line Number and Return Error
             device.applog.info(f'Exception Caught: {repr(e)}')
 
             exc_type, exc_obj, exc_tb = sys.exc_info()
             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
             device.applog.info(f'{exc_type}, {fname}:{exc_tb.tb_lineno}')
-            # return -1, 'Error!'
+            return -1, 'Error!'
         return 0, 'Connected!'
 
     @staticmethod
