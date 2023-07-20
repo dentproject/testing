@@ -16,20 +16,20 @@ pytestmark = [
 
 
 @pytest.mark.parametrize('setup', ['port', 'bridge'])
-async def test_vrrp_priority_on(testbed, setup, configure_vrrp):
+async def test_vrrp_preempt_on(testbed, setup, configure_vrrp):
     """
-    Test Name: test_vrrp_priority_on[port|bridge]
+    Test Name: test_vrrp_basic_on[port|bridge]
     Test Suite: suite_functional_vrrp
     Test Overview:
-        Verify that the VR configured over a port with the highest priority becomes the master.
+        Verify basic VRRP configuration
     Test Procedure:
     1. Configure aggregation router
     2. Configure infra devices
     3. Configure VRRP on infra devices
     4. Verify infra[0] serves as master because it has a higher priority,
        Verify infra[1] serves as backup
-    5. Set infra[1] VRRP priority greater than the infra[0] VRRP priority
-    6. Verify infra[1] takes over as a master and infra[0] becomes a backup router
+    5. Change VRRP configuration on infra[1] to have a higher priority and 'nopreempt' flag
+    6. Verify infra[0] is still master
 
     Setup:
             agg
@@ -49,11 +49,12 @@ async def test_vrrp_priority_on(testbed, setup, configure_vrrp):
         infra[1]:
             L1 (port/bridge):
                 ip address 192.168.1.4/24
-                vrrp 40 ip 192.168.1.2 prio 100(210)
+                vrrp 40 ip 192.168.1.2 prio 100 (prio 210 nopreempt)
     """
     wait_for_keepalived = 15
     count = 10
     vrrp_ip = '192.168.1.2'
+    vr_id = 40
     use_bridge = setup == 'bridge'
 
     # 1. Configure aggregation router
@@ -64,7 +65,7 @@ async def test_vrrp_priority_on(testbed, setup, configure_vrrp):
     # 3. Configure VRRP on infra devices
     vrrp_ifaces = [bridge, bridge] if use_bridge else [links[0][infra[0]], links[1][infra[1]]]
     await asyncio.gather(*[
-        configure_vrrp(dent, state=state, prio=prio, vr_ip=vrrp_ip, dev=port)
+        configure_vrrp(dent, state=state, prio=prio, vr_ip=vrrp_ip, vr_id=vr_id, dev=port)
         for dent, port, state, prio
         in zip(infra, vrrp_ifaces, ['MASTER', 'BACKUP'], [200, 100])])
     await asyncio.sleep(wait_for_keepalived)
@@ -74,11 +75,11 @@ async def test_vrrp_priority_on(testbed, setup, configure_vrrp):
     await verify_vrrp_ping(agg, infra, ports=(links[0][infra[0]], links[1][infra[1]]),
                            expected=(count, 0), dst=vrrp_ip, count=count)
 
-    # 5. Set infra[1] VRRP priority greater than the infra[0] VRRP priority
-    await configure_vrrp(infra[1], state='MASTER', prio=210, vr_ip=vrrp_ip,
-                         dev=links[1][infra[1]] if setup == 'port' else bridge)
-    await asyncio.sleep(wait_for_keepalived)  # wait for keepalived to restart
+    # 5. Change VRRP configuration on infra[1] to have a higher priority and 'nopreempt' flag
+    await configure_vrrp(infra[1], state='BACKUP', prio=210, vr_ip=vrrp_ip, vr_id=vr_id,
+                         dev=links[1][infra[1]], additional_opts=['nopreempt'])
+    await asyncio.sleep(wait_for_keepalived)
 
-    # 6. Verify infra[1] takes over as a master and infra[0] becomes a backup router
+    # 6. Verify infra[0] is still MASTER
     await verify_vrrp_ping(agg, infra, ports=(links[0][infra[0]], links[1][infra[1]]),
-                           expected=(0, count), dst=vrrp_ip, count=count)
+                           expected=(count, 0), dst=vrrp_ip, count=count)
