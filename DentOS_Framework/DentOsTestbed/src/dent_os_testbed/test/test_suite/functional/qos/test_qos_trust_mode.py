@@ -107,7 +107,7 @@ async def test_qos_trust_mode(testbed, trust_mode, scheduler_type):
         await configure_dscp_map_and_verify(dent, {ports[0]: dscp_prio_map})
     else:
         # 4. Configure vlans on bridge members
-        vlan = random.randint(2, 4095)
+        vlan = random.randint(2, 4094)
         out = await BridgeVlan.delete(input_data=[{dent: [
             {'device': port, 'vid': 1} for port in ports
         ]}])

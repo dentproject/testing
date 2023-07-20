@@ -106,10 +106,9 @@ get_drops_rate_code_avg()
 
 @pytest_asyncio.fixture()
 async def define_bash_utils(testbed):
-    tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 4)
+    tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 0)
     if not tgen_dev or not dent_devices:
         pytest.skip('The testbed does not have enough dent with tgen connections')
-    dent_dev = dent_devices[0]
     func_list = ['tcpdump_cpu_traps_rate', 'tcpdump_cpu_traps_rate_avg', 'get_cpu_traps_rate_code',
                  'get_cpu_traps_rate_code_avg', 'get_devlink_cpu_traps_rate', 'get_devlink_cpu_traps_rate_avg',
                  'get_drops_rate_code', 'get_drops_rate_code_avg']
@@ -117,20 +116,22 @@ async def define_bash_utils(testbed):
     bashrc = '/root/.bashrc'
     backup = '/root/.bashrc.bak'
 
-    res, _ = await dent_dev.run_cmd(f'type {listed_funcs} > /dev/null 2>&1')
-    if res:
+    for dent_dev in dent_devices:
+        res, _ = await dent_dev.run_cmd(f'type {listed_funcs} > /dev/null 2>&1')
+        if not res:
+            # bash func already defined
+            continue
         dent_dev.applog.info(f'Bash func isnt defined: \n{listed_funcs} \nDefining func in .bashrc')
-        rc, out = await dent_dev.run_cmd(f'cp {bashrc} {backup}', sudo=True)
-        rc, out = await dent_dev.run_cmd(f"echo '{BASH_UTILS}' >> {bashrc}", sudo=True)
-        try:
-            assert not rc
-        except AssertionError:
+        rc1, _ = await dent_dev.run_cmd(f'cp {bashrc} {backup}', sudo=True)
+        rc2, _ = await dent_dev.run_cmd(f"echo '{BASH_UTILS}' >> {bashrc}", sudo=True)
+        if any([rc1, rc2]):
             _, _ = await dent_dev.run_cmd(f'mv {backup} {bashrc}', sudo=True)
-            pytest.skip('Skiping test due defining func failed with rc {}'.format(rc))
+            pytest.skip('Skiping test because defining func failed with rc {}'.format([rc1, rc2]))
 
     yield
 
-    _, _ = await dent_dev.run_cmd(f'mv {backup} {bashrc}', sudo=True)
+    for dent_dev in dent_devices:
+        await dent_dev.run_cmd(f'mv {backup} {bashrc}', sudo=True)
 
 
 @pytest_asyncio.fixture()
