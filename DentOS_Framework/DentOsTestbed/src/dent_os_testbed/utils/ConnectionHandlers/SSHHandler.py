@@ -72,6 +72,8 @@ class SSHConnection:
             Exception: For generic failures
         """
         try:
+            if not cmd:
+                raise ValueError('Empty command is not allowed')
             self.applog.debug(f'Running {cmd}')
             await self._connect()
             self.sshlog.debug(cmd)
