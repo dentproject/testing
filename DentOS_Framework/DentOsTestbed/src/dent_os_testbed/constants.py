@@ -88,6 +88,7 @@ PYTEST_SUITES = {
     'suite_functional_vrrp': 'VRRP functional tests',
     'suite_functional_ecmp': 'Ecmp functional tests',
     'suite_functional_lldp': 'Lldp functional tests',
+    'suite_functional_ifupdown2': 'Ifupdown2 functional tests',
 }
 
 PYTEST_SUITE_GROUPS = {
@@ -141,5 +142,6 @@ PYTEST_SUITE_GROUPS = {
         'suite_functional_vrrp',
         'suite_functional_ecmp',
         'suite_functional_lldp',
+        'suite_functional_ifupdown2',
     ]
 }
