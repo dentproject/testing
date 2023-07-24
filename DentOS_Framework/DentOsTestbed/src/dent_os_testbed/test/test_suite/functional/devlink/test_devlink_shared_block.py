@@ -23,7 +23,7 @@ from dent_os_testbed.utils.test_utils.tc_flower_utils import tcutil_generate_rul
 
 pytestmark = [
     pytest.mark.suite_functional_devlink,
-    pytest.mark.usefixtures('define_bash_utils', 'cleanup_qdiscs'),
+    pytest.mark.usefixtures('define_bash_utils', 'cleanup_tgen', 'cleanup_qdiscs'),
     pytest.mark.asyncio,
 ]
 

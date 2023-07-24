@@ -19,7 +19,7 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
 
 pytestmark = [pytest.mark.suite_functional_igmp,
               pytest.mark.asyncio,
-              pytest.mark.usefixtures('cleanup_bridges')]
+              pytest.mark.usefixtures('cleanup_bridges', 'cleanup_tgen')]
 
 GENERAL_QUERY_IP = '224.0.0.1'
 IGMP_LEAVE_V2_IP = '224.0.0.2'

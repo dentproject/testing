@@ -34,7 +34,7 @@ from dent_os_testbed.utils.test_utils.data.tgen_constants import (
 
 pytestmark = [
     pytest.mark.suite_functional_qos,
-    pytest.mark.usefixtures('cleanup_qdiscs', 'cleanup_bridges', 'cleanup_dscp_prio'),
+    pytest.mark.usefixtures('cleanup_qdiscs', 'cleanup_tgen', 'cleanup_bridges', 'cleanup_dscp_prio'),
     pytest.mark.asyncio,
 ]
 
