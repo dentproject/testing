@@ -126,6 +126,12 @@ async def test_qos_default_prio(testbed):
             'dscp_ecn': dscp_to_send,
             'vlanID': vlan,
         },
+        'learn': {
+            'type': 'ethernet',
+            'ep_source': egress_ports,
+            'ep_destination': ingress_port,
+            'rate': 1,  # pps
+        },
     }
     await tgen_utils_setup_streams(tgen_dev, None, streams)
 
