@@ -27,28 +27,28 @@ With 6-15 active VMs at 4 virtual CPUs each, best performance is achieved with 3
 
 ##### Minimum
 
-* 2 GB reserved for Ubuntu Server
+* 2 GB reserved for Host
 * 4 GB for IxNetwork
 * 2 GB for IxChassis
 * 2 GB per Virtual Load Module
-* 1 GB per DentOS VM
+* 1 GB per dentOS VM
 
-16 GB for 4-port setup, 32 GB for 12-port setup including Dent-VM
+16 GB for 4-port setup, 32 GB for 12-port setup including dentOS VM
 
 ##### Recommended
 
-* 2 GB reserved for Ubuntu Server
+* 2 GB reserved for Host
 * 4 GB per IxNetwork, IxChassis, and Load Module VM
 
-32 GB for 4-port setup, 64 GB for 12-port setup including Dent-VM
+32 GB for 4-port setup, 64 GB for 12-port setup including dentOS VM
 
 #### Disk
 
-* 25 GB for Ubuntu Server Installation
+* 25 GB for Host
 * 13 GB for IxNetwork VM
 * 5 GB for IxChassis VM
 * 2 GB per Virtual Load Module VM
-* 20 GB for DentOS VM
+* 20 GB for dentOS VM
 
 Total: 75-100 GB depending on setup
 
