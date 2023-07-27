@@ -229,8 +229,10 @@ async def test_lldp_rx(testbed, scenario):
     }
     lldp_stream = get_lldp_stream(dev_groups[tg_ports[0]][0]['name'], dev_groups[tg_ports[1]][0]['name'], lldp)
     await tgen_utils_setup_streams(tgen_dev, config_file_name=None, streams=lldp_stream)
-    await tgen_utils_start_traffic(tgen_dev)
-    await asyncio.sleep(10)
+
+    if scenario == 'disable':
+        await tgen_utils_start_traffic(tgen_dev)
+        await asyncio.sleep(10)
 
     # 4.Verifying lldp packet haven't been received on first DUT port
     neighbor_info = await get_neighbors_info(dev_name, port=dut_ports[0])
