@@ -4,6 +4,7 @@ from math import isclose
 
 from dent_os_testbed.lib.ip.ip_link import IpLink
 from dent_os_testbed.lib.mstpctl.mstpctl import Mstpctl
+from dent_os_testbed.lib.ethtool.ethtool import Ethtool
 
 from dent_os_testbed.utils.test_utils.tgen_utils import (tgen_utils_get_dent_devices_with_tgen,
                                                          tgen_utils_setup_streams, tgen_utils_start_traffic,
@@ -12,7 +13,7 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (tgen_utils_get_dent_dev
                                                          tgen_utils_traffic_generator_connect, )
 pytestmark = [pytest.mark.suite_functional_lacp,
               pytest.mark.asyncio,
-              pytest.mark.usefixtures('cleanup_tgen', 'cleanup_bonds', 'cleanup_bridges')]
+              pytest.mark.usefixtures('cleanup_tgen', 'cleanup_bonds', 'cleanup_bridges', 'enable_mstpd')]
 
 
 @pytest.mark.parametrize('version', ['stp', 'rstp'])
@@ -60,6 +61,7 @@ async def test_lacp_traffic_during_topology_convergence(testbed, version):
     bridge_names = list(bridges.keys())
     tolerance = 0.15
     wait_time = 40 if 'version' == 'stp' else 20
+    expected_rate = 0.14  # multiplied by port speed
     # 1. Create 3 bridge entities and 6 bonds and set link up on them
     out = await IpLink.add(input_data=[{dent: [{'device': bond,
                                                 'type': 'bond',
@@ -147,13 +149,17 @@ async def test_lacp_traffic_during_topology_convergence(testbed, version):
     rc, out = await device.run_cmd("echo 'Hello World'")
     assert rc == 0, 'FAIL: DUT crashed due to storming'
     assert out.strip() == 'Hello World', f'Expected <Hello World> got {out}'
+    await asyncio.sleep(wait_time)
 
     # 7. Verify there is a storming
+    out = await Ethtool.show(input_data=[{dent: [{'devname': dut_tgen_ports[2]}]}],  parse_output=True)
+    speed = int(out[0][dent]['parsed_output']['speed'][:-4])
+    expected_rate = round(int(expected_rate * speed), 2)
     stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Port Statistics')
     for row in stats.Rows:
         if row['Port Name'] in tg_ports[:2]:
-            err_msg = 'Expected 1400 got : {float(row["Rx. Rate (Mbps)"])}'
-            assert float(row['Rx. Rate (Mbps)']) > 1400, err_msg
+            err_msg = f'Expected {int(expected_rate * speed)} got : {float(row["Rx. Rate (Mbps)"])}'
+            assert float(row['Rx. Rate (Mbps)']) > expected_rate, err_msg
 
     # 8. Set bridge stp_state to 1.
     out = await IpLink.set(input_data=[{dent: [{
@@ -228,8 +234,8 @@ async def test_lacp_traffic_during_topology_convergence(testbed, version):
     stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Port Statistics')
     for row in stats.Rows:
         if row['Port Name'] == tg_ports[1]:
-            err_msg = 'Expected 1400 got : {float(row["Rx. Rate (Mbps)"])}'
-            assert isclose(float(row['Rx. Rate (Mbps)']), 1400, rel_tol=tolerance), err_msg
+            err_msg = f'Expected 1400 got : {float(row["Rx. Rate (Mbps)"])}'
+            assert isclose(float(row['Rx. Rate (Mbps)']), expected_rate, rel_tol=tolerance), err_msg
 
     # 16. Stop the traffic. Verify there is no storming
     await tgen_utils_stop_traffic(tgen_dev)

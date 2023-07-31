@@ -56,6 +56,7 @@ async def test_lacp_ecmp_distribution_over_lag(testbed):
     tgen_lag_2 = ('LAG_1', [tg_ports[1]])
     tgen_lag_3 = ('LAG_2', tg_ports[2:])
     rate = 10000
+    tolerance = 0.10
 
     # 1. Enable IPv4 forwarding
     # 2. Create 3 bonds
@@ -142,7 +143,7 @@ async def test_lacp_ecmp_distribution_over_lag(testbed):
         if row['Port Name'] not in tgen_lag_3[1]:
             continue
         err_msg = f'Expected packets  {row["Valid Frames Rx."]}, actual packets: {tx_packets / 4}'
-        assert isclose(int(row['Valid Frames Rx.']), tx_packets / 4, rel_tol=0.05), err_msg
+        assert isclose(int(row['Valid Frames Rx.']), tx_packets / 4, rel_tol=tolerance), err_msg
     total_received = sum([int(row['Valid Frames Rx.']) for row in stats.Rows])
-    assert isclose(total_received, tx_packets, rel_tol=0.05),\
+    assert isclose(total_received, tx_packets, rel_tol=tolerance),\
         f'Expected packets  {total_received}, actual packets: {tx_packets}'

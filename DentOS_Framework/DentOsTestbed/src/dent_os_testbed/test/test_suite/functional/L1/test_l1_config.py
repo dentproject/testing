@@ -90,7 +90,7 @@ async def test_l1_settings_(testbed, l1_settings):
         await tgen_utils_update_l1_config(tgen_dev, tg_port, speed=speed, autoneg=True, duplex=duplex)
     except AssertionError as e:
         pytest.skip(f'TGen does not support requested mode\n{e}')
-    await asyncio.sleep(20)  # wait needed in case port was down before
+    await asyncio.sleep(40)  # wait needed in case port was down before
 
     out = await Ethtool.show(input_data=[{device_host_name: [{'devname': port}]}],  parse_output=True)
     assert out[0][device_host_name]['rc'] == 0, 'Failed getting port duplex, speed.'

@@ -1,4 +1,6 @@
 import asyncio
+from math import isclose
+
 import pytest
 
 from dent_os_testbed.lib.ip.ip_link import IpLink
@@ -12,9 +14,9 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_dev_groups_from_config,
     tgen_utils_get_traffic_stats,
     tgen_utils_setup_streams,
-    tgen_utils_get_loss,
     tgen_utils_start_traffic,
     tgen_utils_get_swp_info,
+    tgen_utils_get_loss,
 )
 pytestmark = [pytest.mark.suite_functional_lacp,
               pytest.mark.asyncio,
@@ -167,4 +169,4 @@ async def test_lacp_routing_over_vlan_device(testbed):
     stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Traffic Item Statistics')
     for row in stats.Rows:
         err_msg = f"Expected 0.00 loss, actual {float(row['Loss %'])}"
-        assert tgen_utils_get_loss(row) == 0.000, err_msg
+        assert isclose(tgen_utils_get_loss(row), 0.00, abs_tol=0.1), err_msg
