@@ -111,21 +111,19 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
 
             device.applog.info('Assigning ports')
             IxnetworkIxiaClientImpl.ixnet.AssignPorts(True)
-            portType = vports[port][0].Type
 
             lags = {}
             lag_ports = []
-            if (portType != 'ethernetvm'):
-                # init virtual lags
-                for name, group in dev_groups.items():
-                    if group[0]['type'] != 'lag':
-                        continue
-                    lag_vports = [vports[port][0].href for port in group[0]['lag_members']]
-                    lags[name] = {
-                        'vports': lag_vports,
-                        'instance': IxnetworkIxiaClientImpl.ixnet.Lag.add(Name=name, Vports=lag_vports),
-                    }
-                lag_ports = [port for lag in lags.values() for port in lag['vports']]
+            # init virtual lags
+            for name, group in dev_groups.items():
+                if group[0].get('type') != 'lag':
+                    continue
+                lag_vports = [vports[port][0].href for port in group[0]['lag_members']]
+                lags[name] = {
+                    'vports': lag_vports,
+                    'instance': IxnetworkIxiaClientImpl.ixnet.Lag.add(Name=name, Vports=lag_vports),
+                }
+            lag_ports = [port for lag in lags.values() for port in lag['vports']]
 
             self.__update_ports_mode(vports, device)
             # Add ports
