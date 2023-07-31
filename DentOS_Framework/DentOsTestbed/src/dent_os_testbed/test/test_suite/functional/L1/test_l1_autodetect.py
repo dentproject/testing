@@ -45,7 +45,7 @@ async def test_l1_autodetect(testbed, speed, duplex):
         speed -> None
         autoneg -> off
         advertise -> on
-       Configure ixia ports:
+       Configure TG ports:
         speed -> speed
         autoneg -> on
     4. Verify port duplex and speed was configured
@@ -53,7 +53,6 @@ async def test_l1_autodetect(testbed, speed, duplex):
     6. Send traffic
     7. Verify no traffic loss
     """
-
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 2)
     if not tgen_dev or not dent_devices:
         print('The testbed does not have enough dent with tgen connections')
@@ -62,8 +61,15 @@ async def test_l1_autodetect(testbed, speed, duplex):
     device_host_name = dent_dev.host_name
     tg_ports = tgen_dev.links_dict[device_host_name][0]
     ports = tgen_dev.links_dict[device_host_name][1][:2]
+
+    dev_groups = tgen_utils_dev_groups_from_config(
+        [{'ixp': tg_ports[0], 'ip': '100.1.1.2', 'gw': '100.1.1.6', 'plen': 24},
+         {'ixp': tg_ports[1], 'ip': '100.1.1.3', 'gw': '100.1.1.6', 'plen': 24}])
+    await tgen_utils_traffic_generator_connect(tgen_dev, tg_ports, ports, dev_groups)
+    await asyncio.sleep(10)
+
     try:
-        speed_ports = await tb_get_qualified_ports(dent_dev, ports, speed, duplex)
+        speed_ports = await tb_get_qualified_ports(dent_dev, ports, speed, 'half' if speed < 1000 else 'full')
     except ValueError as e:
         pytest.skip(str(e))
 
@@ -90,12 +96,11 @@ async def test_l1_autodetect(testbed, speed, duplex):
         'duplex': duplex} for port in ports]}])
     assert out[0][device_host_name]['rc'] == 0, 'Failed setting port duplex, speed.'
 
-    dev_groups = tgen_utils_dev_groups_from_config(
-        [{'ixp': tg_ports[0], 'ip': '100.1.1.2', 'gw': '100.1.1.6', 'plen': 24, },
-         {'ixp': tg_ports[1], 'ip': '100.1.1.3', 'gw': '100.1.1.6', 'plen': 24}])
-    await tgen_utils_traffic_generator_connect(tgen_dev, tg_ports, ports, dev_groups)
-    #  Configure ixia ports
-    await tgen_utils_update_l1_config(tgen_dev, tg_ports, speed=None, autoneg=True, duplex=duplex)
+    #  Configure TG ports
+    try:
+        await tgen_utils_update_l1_config(tgen_dev, tg_ports, speed=None, autoneg=True, duplex=duplex)
+    except AssertionError as e:
+        pytest.skip(f'TGen does not support requested mode\n{e}')
     await asyncio.sleep(20)  # wait needed in case port was down before
 
     # 4. Verify port duplex and speed per was configured
