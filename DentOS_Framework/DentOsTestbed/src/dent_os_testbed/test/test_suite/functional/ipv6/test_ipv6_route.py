@@ -439,7 +439,7 @@ async def test_ipv6_nh_state(testbed):
             'type': 'raw',
             'protocol': 'ipv6',
             'ip_source': dev_groups[tg_ports[0]][0]['name'],
-            'rate': 10,  # %
+            'rate': 5,  # %
             'frame_rate_type': 'line_rate',
             'srcMac': '02:00:00:00:00:01',
             'dstMac': dut_mac[tg_to_swp[tg_ports[0]]],
