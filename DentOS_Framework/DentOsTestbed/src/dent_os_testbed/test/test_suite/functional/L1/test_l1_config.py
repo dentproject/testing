@@ -49,7 +49,7 @@ async def test_l1_settings_(testbed, l1_settings):
     await asyncio.sleep(10)
 
     try:
-        await tb_get_qualified_ports(dent_devices[0], tgen_dev.links_dict[device_host_name][1], speed, duplex, required_ports=1)
+        await tb_get_qualified_ports(dent_devices[0], [port], speed, duplex, required_ports=1)
     except ValueError as e:
         pytest.skip(str(e))
 
