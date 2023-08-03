@@ -25,6 +25,8 @@ config
 CONFIG
 conftest
 cp
+CPU
+CPUs
 Ctrl
 DentOS
 dentOS
