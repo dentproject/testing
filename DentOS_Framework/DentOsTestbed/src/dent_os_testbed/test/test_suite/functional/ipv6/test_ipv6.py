@@ -26,7 +26,7 @@ from dent_os_testbed.test.test_suite.functional.ipv6.ipv6_utils import (
 
 pytestmark = [
     pytest.mark.suite_functional_ipv6,
-    pytest.mark.usefixtures('cleanup_ip_addrs', 'enable_ipv6_forwarding', 'cleanup_sysctl'),
+    pytest.mark.usefixtures('cleanup_ip_addrs', 'cleanup_tgen', 'enable_ipv6_forwarding', 'cleanup_sysctl'),
     pytest.mark.asyncio,
 ]
 

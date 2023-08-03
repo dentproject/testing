@@ -13,7 +13,7 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
 
 pytestmark = [
     pytest.mark.suite_functional_stp,
-    pytest.mark.usefixtures('cleanup_bridges', 'enable_mstpd'),
+    pytest.mark.usefixtures('cleanup_bridges', 'cleanup_tgen', 'enable_mstpd'),
     pytest.mark.asyncio,
 ]
 

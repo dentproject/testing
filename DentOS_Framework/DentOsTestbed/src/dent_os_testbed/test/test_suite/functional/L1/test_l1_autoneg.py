@@ -44,7 +44,7 @@ async def test_l1_autoneg(testbed, speed, duplex):
         speed -> speed
         autoneg -> on
         advertise -> on
-       Configure ixia ports:
+       Configure TG ports:
         speed -> none
         autoneg -> on
     4. Verify port duplex and speed configured
@@ -52,7 +52,6 @@ async def test_l1_autoneg(testbed, speed, duplex):
     6. Send traffic
     7. Verify no traffic loss
     """
-
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 2)
     if not tgen_dev or not dent_devices:
         print('The testbed does not have enough dent with tgen connections')
@@ -69,6 +68,13 @@ async def test_l1_autoneg(testbed, speed, duplex):
         '1000_full': '0x020',
         '10000_full': '0x1000'
     }
+
+    dev_groups = tgen_utils_dev_groups_from_config(
+        [{'ixp': tg_ports[0], 'ip': '100.1.1.2', 'gw': '100.1.1.6', 'plen': 24},
+         {'ixp': tg_ports[1], 'ip': '100.1.1.3', 'gw': '100.1.1.6', 'plen': 24}])
+    await tgen_utils_traffic_generator_connect(tgen_dev, tg_ports, ports, dev_groups)
+    await asyncio.sleep(10)
+
     try:
         speed_ports = await tb_get_qualified_ports(dent_dev, ports, speed, duplex)
     except ValueError as e:
@@ -98,18 +104,17 @@ async def test_l1_autoneg(testbed, speed, duplex):
         'duplex': duplex} for port in ports]}])
     assert out[0][device_host_name]['rc'] == 0, 'Failed setting port duplex, speed.'
 
-    dev_groups = tgen_utils_dev_groups_from_config(
-        [{'ixp': tg_ports[0], 'ip': '100.1.1.2', 'gw': '100.1.1.6', 'plen': 24, },
-         {'ixp': tg_ports[1], 'ip': '100.1.1.3', 'gw': '100.1.1.6', 'plen': 24}])
-    await tgen_utils_traffic_generator_connect(tgen_dev, tg_ports, ports, dev_groups)
-
-    #   Configure ixia ports
-    await tgen_utils_update_l1_config(tgen_dev, tg_ports, speed=None, autoneg=True, duplex=duplex)
+    #   Configure TG ports
+    try:
+        await tgen_utils_update_l1_config(tgen_dev, tg_ports, speed=None, autoneg=True, duplex=duplex)
+    except AssertionError as e:
+        pytest.skip(f'TGen does not support requested mode\n{e}')
     await asyncio.sleep(20)  # wait needed in case port was down before
 
     # 4. Verify port duplex and speed was configured correctly
     for port in ports:
         out = await Ethtool.show(input_data=[{device_host_name: [{'devname': port}]}],  parse_output=True)
+        assert out[0][device_host_name]['rc'] == 0, 'Failed getting port duplex, speed.'
         assert speed == int(out[0][device_host_name]['parsed_output']['speed'][:-4]), 'Failed speed test'
         assert duplex.capitalize() == out[0][device_host_name]['parsed_output']['duplex'], 'Failed duplex test'
 

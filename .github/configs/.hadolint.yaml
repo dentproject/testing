@@ -1,6 +1,10 @@
 failure-threshold: warning
 ignored:
+- DL3007 # Using latest is prone to errors if the image will ever update. Pin the version explicitly to a release tag
 - DL3008 # Pin versions in apt get install. Instead of `apt-get install <package>` use `apt-get install <package>=<version>`
 - DL3009 # Delete the apt-get lists after installing something
+- DL3013 # Pin versions in pip. Instead of `pip install <package>` use `pip install <package>==<version>` or `pip install --requirement <requirements file>`
 - DL3015 # Avoid additional packages by specifying `--no-install-recommends`
 - DL3059 # Multiple consecutive `RUN` instructions. Consider consolidation.
+- SC2261 # Multiple redirections compete for stdout. Use cat, tee, or pass filenames instead. bogus error confuses pip version > with redirection
+dockerfile: Dockerfile*

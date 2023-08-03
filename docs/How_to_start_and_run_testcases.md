@@ -194,6 +194,27 @@ Here are an example of how to run the VLAN test suite:
   -k suite_functional_vlan
 ```
 
+### Run VRRP tests/suites
+
+Since VRRP tests require testbed with at least 3 devices, they are skipped if running functional test suite. To run it, there are a few steps required to run them:
+
+1. Setup Testbed Server
+2. Setup the DentOS SIT topology (only 1 DENT-Aggregator and 2 DENT-Infrastructure DUTs required)
+3. Install DentOS on DUT or cleanup configuration if it was used by SIT before.
+**VRRP tests require that the DUTs don't have any bridges/bonds/IP addresses on switching interfaces.**
+To cleanup the DUTs see 'Cleanup DUT configuration'
+4. Optionally, reboot the DUTs and run 'onlpdump' to bring up ports
+5. Run the tests
+
+```Shell
+./run.sh dentos_testbed_runtests --stdout \
+  --config configuration/testbed_config/sit/testbed.json \
+  --config-dir configuration/testbed_config/sit/ \
+  --discovery-reports-dir /tmp \
+  --suite-groups suite_group_functional \
+  -k suite_functional_vrrp
+```
+
 **NOTE:**
 
 1. To avoid re-installing of the DentOS framework on each run command just enter the docker container and run multiple commands from inside.

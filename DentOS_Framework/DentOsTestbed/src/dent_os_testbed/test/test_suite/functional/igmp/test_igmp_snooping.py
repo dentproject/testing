@@ -19,7 +19,7 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
 
 pytestmark = [pytest.mark.suite_functional_igmp,
               pytest.mark.asyncio,
-              pytest.mark.usefixtures('cleanup_bridges')]
+              pytest.mark.usefixtures('cleanup_bridges', 'cleanup_tgen')]
 
 GENERAL_QUERY_IP = '224.0.0.1'
 IGMP_LEAVE_V2_IP = '224.0.0.2'
@@ -187,7 +187,7 @@ async def test_igmp_snooping_mixed_ver(testbed, igmp_ver, igmp_msg_ver):
     await common_bridge_and_igmp_setup(dev_name, bridge, igmp_ver, dut_ports)
     out = await BridgeLink.set(
         input_data=[{dev_name: [
-            {'device': dut_ports[1], 'fastleave': 'on'}]}])
+            {'device': dut_ports[1], 'fastleave': True}]}])
     err_msg = f'Verify that port entities set to fastleave ON.\n{out}'
     assert out[0][dev_name]['rc'] == 0, err_msg
 
@@ -527,7 +527,7 @@ async def test_igmp_snooping_modified_query(testbed):
 
     out = await BridgeLink.set(
         input_data=[{dev_name: [
-            {'device': dut_ports[1], 'fastleave': 'on'}]}])
+            {'device': dut_ports[1], 'fastleave': True}]}])
     err_msg = f'Verify that port entities set to fastleave ON.\n{out}'
     assert out[0][dev_name]['rc'] == 0, err_msg
 

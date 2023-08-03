@@ -1,10 +1,10 @@
-FROM dent-testing-base:latest
+FROM dent/test-framework-base:latest
 
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get -o Acquire::Check-Valid-Until=false update
 RUN apt-get install -y \
     vim \
-    iputils-ping
+    nano
 
 RUN pip3 install --no-cache-dir pdbpp==0.10.3
 

@@ -369,6 +369,7 @@ async def check_member_devices(dev_name, device_members, status='UP'):
         device_members (dict): Dict with mapping of device and its members to check
         status (str): Expected status to check
     """
+    await asyncio.sleep(15)
     for dev, members in device_members.items():
         out = await IpLink.show(input_data=[{dev_name: [{'device': dev, 'cmd_options': '-j'}]}], parse_output=True)
         assert not out[0][dev_name]['rc'], 'Failed to get port info'

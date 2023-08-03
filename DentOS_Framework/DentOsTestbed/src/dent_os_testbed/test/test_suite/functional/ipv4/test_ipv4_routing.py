@@ -28,10 +28,18 @@ pytestmark = [
 
 
 def get_random_ip():
-    ip = [random.randint(11, 126), random.randint(1, 254), random.randint(1, 254), random.randint(1, 253)]
-    peer = ip[:-1] + [ip[-1] ^ 1]
+    def to_str(ip_int): return '.'.join(map(str, ip_int.to_bytes(4, 'big')))
+
+    # 11.0.0.0 - 126.255.255.255
+    ip = random.randint(0b0000_1011, (0b0111_1111 << 24) - 1)
     plen = random.randint(1, 31)
-    return '.'.join(map(str, ip)), '.'.join(map(str, peer)), plen
+    mask = ((1 << (32-plen)) - 1)
+    host = ip & mask
+
+    if ((host + 1) & mask) <= 1:  # if all bits are set or all bits are not set
+        ip ^= 1  # change the first bit so we don't have a multicast/net addr anymore
+
+    return to_str(ip), to_str(ip ^ mask), plen
 
 
 async def test_ipv4_random_routing(testbed):
