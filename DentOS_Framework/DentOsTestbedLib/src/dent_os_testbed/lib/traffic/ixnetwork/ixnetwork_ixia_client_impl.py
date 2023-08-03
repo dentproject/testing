@@ -75,6 +75,7 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                 UserName=device.username,
                 Password=device.password,
                 SessionName='DENT',
+                IgnoreStrongPasswordPolicy=True,
                 ClearConfig=True
             )  # ,LogLevel='info'
             session = gw.Session
