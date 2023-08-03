@@ -23,9 +23,9 @@ pytestmark = [
 ]
 
 
-async def test_port_isolation_stress_incremental_mac_addresses(testbed):
+async def test_port_isolation_incremental_mac_addresses(testbed):
     """
-    Test Name: test_port_isolation_stress_incremental_mac_addresses
+    Test Name: test_port_isolation_incremental_mac_addresses
     Test Suite: suite_functional_port_isolation
     Test Overview: Verify that isolated ports cannot send or receive packets containing
                    incremental destination mac addresses to or from each other but still
@@ -53,10 +53,11 @@ async def test_port_isolation_stress_incremental_mac_addresses(testbed):
     tg_ports = tgen_dev.links_dict[device_host_name][0]
     ports = tgen_dev.links_dict[device_host_name][1]
     ixia_vhost_mac_count = 4
-    traffic_duration = 10
+    traffic_duration = 15
     pps_value = 4000
     mac_count = 5000
     tolerance = 0.8
+    wait = 6
 
     out = await IpLink.add(
         input_data=[{device_host_name: [
@@ -116,7 +117,7 @@ async def test_port_isolation_stress_incremental_mac_addresses(testbed):
                            'start': '40:ee:65:26:69:46',
                            'step': '00:00:00:00:10:00',
                            'count': mac_count},
-                'dstMac': '56:18:0b:25:41:b5',
+                'dstMac': f'56:18:0b:25:41:b{x+1}',
                 'frameSize': 1451,
                 'rate': pps_value,
                 'protocol': '0x0800',
@@ -129,7 +130,7 @@ async def test_port_isolation_stress_incremental_mac_addresses(testbed):
                            'start': '78:d5:fc:e5:42:85',
                            'step': '00:00:00:00:10:00',
                            'count': mac_count},
-                'dstMac': 'f2:c9:74:75:45:38',
+                'dstMac': f'f2:c9:74:75:45:3{x+5}',
                 'frameSize': 1451,
                 'rate': pps_value,
                 'protocol': '0x9200',
@@ -142,7 +143,7 @@ async def test_port_isolation_stress_incremental_mac_addresses(testbed):
                            'start': 'ea:c5:88:37:c9:6f',
                            'step': '00:00:00:00:10:00',
                            'count': mac_count},
-                'dstMac': 'fa:f5:38:5e:1a:18',
+                'dstMac': f'fa:f5:38:5e:1a:1{x+5}',
                 'frameSize': 1451,
                 'rate': pps_value,
                 'protocol': '0x88a8',
@@ -155,7 +156,7 @@ async def test_port_isolation_stress_incremental_mac_addresses(testbed):
                            'start': '28:de:d0:df:49:ca',
                            'step': '00:00:00:00:10:00',
                            'count': mac_count},
-                'dstMac': '6a:e7:c4:5b:02:d1',
+                'dstMac': f'6a:e7:c4:5b:02:d{x+1}',
                 'frameSize': 1451,
                 'rate': pps_value,
                 'protocol': '0x0800',
@@ -167,6 +168,7 @@ async def test_port_isolation_stress_incremental_mac_addresses(testbed):
         await tgen_utils_start_traffic(tgen_dev)
         await asyncio.sleep(traffic_duration)
         await tgen_utils_stop_traffic(tgen_dev)
+        await asyncio.sleep(wait)
 
         if x == 0:
             expected_loss = {

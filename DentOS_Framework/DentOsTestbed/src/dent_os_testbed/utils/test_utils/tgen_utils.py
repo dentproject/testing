@@ -2,6 +2,7 @@ import json
 import os
 import random
 import time
+import asyncio
 from collections import defaultdict
 
 from dent_os_testbed.Device import DeviceType
@@ -53,6 +54,8 @@ async def _get_iface_addr_info(dd, iface, info):
         if addr['family'] == 'inet' and addr['scope'] == 'global':
             info['ip'] = addr['local'].split('.')
             info['plen'] = addr['prefixlen']
+            if 'broadcast' in addr:
+                info['broadcast'] = addr['broadcast'].split('.')
             return True
     dd.applog.info('Cannot find the Vlan GW IP address')
     return False
@@ -119,7 +122,11 @@ def tgen_utils_dev_groups_from_config(config):
             'plen': el['plen'],
             'vlan': el.get('vlan', None),
             'version': el.get('version', 'ipv4'),
+            'type': 'port'
         })
+        if el.get('lag_members', None):
+            dev_groups[el['ixp']][0]['lag_members'] = el['lag_members']
+            dev_groups[el['ixp']][0]['type'] = 'lag'
     return dev_groups
 
 
@@ -417,7 +424,7 @@ async def tgen_utils_setup_streams(device, config_file_name, streams, force_upda
     device.applog.info('Starting Protocols')
     out = await TrafficGen.start_protocols(input_data=[{device.host_name: [{}]}])
     device.applog.info(out)
-    assert out[0][device.host_name]['rc'] == 0
+    assert out[0][device.host_name]['rc'] == 0, out[0][device.host_name]['result']
 
 
 async def tgen_utils_start_traffic(device):
@@ -813,3 +820,29 @@ async def tgen_utils_switch_min_frame_size(device, enable=False):
     out = await TrafficGen.switch_min_frame_size(input_data=[{device.host_name: [{'enable_min_size': enable}]}])
     device.applog.info(out)
     assert out[0][device.host_name]['rc'] == 0, 'Failed to enable/disable min frame sizes'
+
+
+async def tgen_utils_poll(dent_dev, fn, *args, timeout=60, interval=10, **kwargs):
+    """
+    Call *fn* repeatedly for *timeout* seconds untill it no longer raises an exception
+
+    - dent_dev: dent device
+    - fn:       function to call
+    - *args:    positional arguments passed to fn
+    - **kwargs: keyword arguments passed to fn
+    - timeout:  how long to keep calling fn
+    - interval: time between calls
+    """
+    start = time.time()
+    dent_dev.applog.info(f'Start polling {timeout = } {interval = }')
+    while time.time() < start + timeout:
+        try:
+            await fn(*args, **kwargs)
+        except AssertionError as e:
+            dent_dev.applog.info(f'Polling failed. Trying again in {interval}s\n{e}')
+            await asyncio.sleep(interval)
+        else:
+            dent_dev.applog.info(f'Poll successful after {int(time.time() - start)}s')
+            break
+    else:
+        raise TimeoutError(f'Polling failed after {int(time.time() - start)}s')

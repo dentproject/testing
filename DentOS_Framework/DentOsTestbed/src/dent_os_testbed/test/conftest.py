@@ -18,13 +18,15 @@ from dent_os_testbed.utils.test_utils.cleanup_utils import (
     cleanup_qdiscs as _cleanup_qdiscs,
     cleanup_routes as _cleanup_routes,
     cleanup_bonds as _cleanup_bonds,
+    cleanup_vrf_table_ids as _cleanup_vrf_table_ids,
     cleanup_vrfs as _cleanup_vrfs,
     cleanup_sysctl as _cleanup_sysctl,
     get_initial_routes,
+    get_initial_tables,
 )
 from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_get_dent_devices_with_tgen,
-    tgen_utils_stop_protocols,
+    tgen_utils_stop_traffic,
 )
 
 # Add python files for defining per folder fixtures here
@@ -175,7 +177,8 @@ async def cleanup_vrfs(testbed):
 @pytest_asyncio.fixture
 async def cleanup_ip_addrs(testbed):
     yield
-    tgen_dev, devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 4)
+    # get all dent devices regardless of number of tg links
+    tgen_dev, devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 0)
     ip_addrs_cleanups = [_cleanup_ip_addrs(dev, tgen_dev) for dev in devices]
     await asyncio.gather(*ip_addrs_cleanups)
 
@@ -184,7 +187,7 @@ async def cleanup_ip_addrs(testbed):
 async def cleanup_tgen(testbed):
     yield
     tgen_dev, _ = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 4)
-    await tgen_utils_stop_protocols(tgen_dev)
+    await tgen_utils_stop_traffic(tgen_dev)
 
 
 @pytest_asyncio.fixture
@@ -199,6 +202,17 @@ async def cleanup_routes(testbed):
 
 
 @pytest_asyncio.fixture
+async def cleanup_vrf_table_ids(testbed):
+    devices = await _get_dent_devs_from_testbed(testbed)
+    initial_tables = dict()
+    for dev in devices:
+        initial_tables[dev.host_name] = await get_initial_tables(dev)
+    yield
+    table_cleanups = [_cleanup_vrf_table_ids(dev, initial_tables[dev.host_name]) for dev in devices]
+    await asyncio.gather(*table_cleanups)
+
+
+@pytest_asyncio.fixture
 async def cleanup_sysctl():
     yield
     await _cleanup_sysctl()
@@ -207,6 +221,7 @@ async def cleanup_sysctl():
 @pytest_asyncio.fixture
 async def cleanup_bonds(testbed):
     yield
-    _, devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 4)
+    # get all dent devices regardless of number of tg links
+    _, devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 0)
     bonds_cleanup = [_cleanup_bonds(dev) for dev in devices]
     await asyncio.gather(*bonds_cleanup)

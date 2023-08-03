@@ -1,4 +1,5 @@
 import os
+import sys
 import time
 
 from dent_os_testbed.lib.traffic.ixnetwork.ixnetwork_ixia_client import IxnetworkIxiaClient
@@ -93,25 +94,139 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
             IxnetworkIxiaClientImpl.bad_crc = {True: crc[0], False: crc[1]}
             IxnetworkIxiaClientImpl.stack_template = {
                 stack_type: IxnetworkIxiaClientImpl.ixnet.Traffic.ProtocolTemplate.find(StackTypeId=f'^{stack_type}$')
-                for stack_type in ('ipv4', 'ipv6', 'vlan', 'ethernet', 'tcp', 'udp', 'icmpv1', 'icmpv2',
-                                   'igmpv2', 'igmpv3MembershipQuery', 'igmpv3MembershipReport')
+                for stack_type in ('ipv4', 'ipv6', 'vlan', 'ethernet', 'tcp', 'udp', 'icmpv1', 'icmpv2', 'icmpv6',
+                                   'igmpv2', 'igmpv3MembershipQuery', 'igmpv3MembershipReport', 'llc',
+                                   'stpCfgBPDU', 'stpTCNBPDU', 'rstpBPDU', 'lldp', 'custom_v2')
             }
 
             device.applog.info('Connection to Ixia REST API Server Established')
             ixia_ports = param['tgen_ports']
             swp_ports = param['swp_ports']
             dev_groups = param['dev_groups']
-            pports = []
+
             vports = {}
             for port, sport in zip(ixia_ports, swp_ports):
-                vports[port] = (IxnetworkIxiaClientImpl.ixnet.Vport.add(Name=port), sport)
-                pport = port.split(':')
-                pports.append({'Arg1': pport[0], 'Arg2': int(pport[1]), 'Arg3': int(pport[2])})
-            vport_hrefs = [vport.href for vport in IxnetworkIxiaClientImpl.ixnet.Vport.find()]
-            device.applog.info('Assigning ports')
-            IxnetworkIxiaClientImpl.ixnet.AssignPorts(pports, [], vport_hrefs, True)
+                # Specify Location on Port Add to simplify assignment
+                vports[port] = (IxnetworkIxiaClientImpl.ixnet.Vport.add(Name=port, Location=port.replace(':', ';')), sport)
 
+            device.applog.info('Assigning ports')
+            IxnetworkIxiaClientImpl.ixnet.AssignPorts(True)
+
+            lags = {}
+            lag_ports = []
+            # init virtual lags
+            for name, group in dev_groups.items():
+                if group[0].get('type') != 'lag':
+                    continue
+                lag_vports = [vports[port][0].href for port in group[0]['lag_members']]
+                lags[name] = {
+                    'vports': lag_vports,
+                    'instance': IxnetworkIxiaClientImpl.ixnet.Lag.add(Name=name, Vports=lag_vports),
+                }
+            lag_ports = [port for lag in lags.values() for port in lag['vports']]
+
+            self.__update_ports_mode(vports, device)
+            # Add ports
             for port, vport in vports.items():
+                if vport[0].href in lag_ports or port not in dev_groups.keys():
+                    continue
+                device.applog.info('Adding interface on ixia port {} swp {}'.format(port, vport[1]))
+                topo = IxnetworkIxiaClientImpl.ixnet.Topology.add(Vports=vport[0])
+                self.__add_endpoint(dev_groups, device, topo, port, vport)
+
+            # Add lags
+            for name, lag in lags.items():
+                device.applog.info('Adding lag {} with ports {}'.format(name, lag['vports']))
+                topo = IxnetworkIxiaClientImpl.ixnet.Topology.add(Ports=[lag['instance']])
+                lag['instance'].Vports = lag['vports']
+                lag['instance'].ProtocolStack.add().Ethernet.add().Lagportlacp.add()
+                self.__add_endpoint(dev_groups, device, topo, name, lag['instance'], is_lag=True)
+
+        except Exception as e:
+            # Log Exception with Line Number and Return Error
+            device.applog.info(f'Exception Caught: {repr(e)}')
+
+            exc_type, exc_obj, exc_tb = sys.exc_info()
+            fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+            device.applog.info(f'{exc_type}, {fname}:{exc_tb.tb_lineno}')
+            return -1, 'Error!'
+        return 0, 'Connected!'
+
+    @staticmethod
+    def __add_endpoint(dev_groups, device, topo, name, instance, is_lag=False):
+        """
+        Creates and stores L2/L3 endpoints. Works both with regular ports and lags.
+        """
+        for dev in dev_groups[name]:
+            device.applog.info('Adding device {}'.format(dev))
+            l2_name = name if is_lag else instance[1]
+            is_ipv6 = dev.get('version', 'ipv4') == 'ipv6'
+            dev_group = topo.DeviceGroup.add(Multiplier=dev.get('count', 2))
+            # L2
+            if dev.get('vlan'):
+                eth = dev_group.Ethernet.add(Name=l2_name, UseVlans=True, VlanCount=1)
+                eth.Vlan.find()[0].VlanId.Single(dev['vlan'])
+            else:
+                eth = dev_group.Ethernet.add(Name=l2_name)
+            # L3
+            if is_ipv6:
+                ep = eth.Ipv6.add(Name=dev['name'])
+                ep.Address.Increment(dev['ip'], '::1')
+            else:
+                ep = eth.Ipv4.add(Name=dev['name'])
+                ep.Address.Increment(dev['ip'], '0.0.0.1')
+            ep.GatewayIp.Single(dev['gw'])
+            ep.Prefix.Single(dev['plen'])
+
+            if dev.get('bgp_peer', {}):
+                bp = dev['bgp_peer']
+                if is_ipv6:
+                    bgp_ep = ep.BgpIpv6Peer.add(Name=dev['name'])
+                else:
+                    bgp_ep = ep.BgpIpv4Peer.add(Name=dev['name'])
+                bgp_ep.DutIp.Single(dev['gw'])
+                bgp_ep.Type.Single('external')
+                bgp_ep.LocalAs2Bytes.Single(bp['local_as'])
+                bgp_ep.HoldTimer.Single(bp['hold_timer'])
+                bgp_ep.UpdateInterval.Single(bp['update_interval'])
+                ng = dev_group.NetworkGroup.add(
+                    Multiplier=len(bp['route_ranges']), Name=dev['name']
+                )
+                ng.Enabled.Single(True)
+                for rr in bp['route_ranges']:
+                    if is_ipv6:
+                        pool = ng.Ipv6PrefixPools.add(
+                            Name=dev['name'], NumberOfAddresses=rr['number_of_routes']
+                        )
+                    else:
+                        pool = ng.Ipv4PrefixPools.add(
+                            Name=dev['name'], NumberOfAddresses=rr['number_of_routes']
+                        )
+                    pool.NetworkAddress.Single(rr['first_route'])
+                    IxnetworkIxiaClientImpl.rr_eps.append(pool)
+
+                IxnetworkIxiaClientImpl.bgp_eps.append(bgp_ep)
+            else:
+                IxnetworkIxiaClientImpl.bgp_eps.append(ep)
+                IxnetworkIxiaClientImpl.rr_eps.append(ep)
+            IxnetworkIxiaClientImpl.ip_eps.append(ep)
+            IxnetworkIxiaClientImpl.eth_eps.append(eth)
+            if is_lag:
+                IxnetworkIxiaClientImpl.raw_eps.append(instance)
+            else:
+                IxnetworkIxiaClientImpl.raw_eps.append(instance[0].Protocols.find())
+
+    @staticmethod
+    def __update_ports_mode(vports, device):
+        """
+        Changes media modes for Ixia ports
+        """
+        for port, vport in vports.items():
+            if (vport[0].IsVMPort):
+                # Don't Set Media Mode for VM, only AutoInstrumentation Mode
+                vport[0].L1Config.Ethernetvm.AutoInstrumentation = 'floating'
+                vport[0].L1Config.Ethernetvm.PromiscuousMode = True
+            else:
                 card = vport[0].L1Config.NovusTenGigLan or vport[0].L1Config.Ethernet
                 if device.media_mode == 'mixed':
                     # Get required media mode. Default - copper
@@ -127,63 +242,6 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                     device.applog.info('Changing all vports media mode to copper')
                     card.Media = 'copper'
                     card.AutoInstrumentation = 'floating'
-
-                device.applog.info('Adding interface on ixia port {} swp {}'.format(port, vport[1]))
-                topo = IxnetworkIxiaClientImpl.ixnet.Topology.add(Vports=vport[0])
-                for dev in dev_groups[port]:
-                    device.applog.info('Adding device {}'.format(dev))
-                    is_ipv6 = dev.get('version', 'ipv4') == 'ipv6'
-                    dev_group = topo.DeviceGroup.add(Multiplier=dev.get('count', 2))
-                    if 'vlan' in dev and dev['vlan'] is not None:
-                        eth = dev_group.Ethernet.add(Name=vport[1], UseVlans=True, VlanCount=1)
-                        eth.Vlan.find()[0].VlanId.Single(dev['vlan'])
-                    else:
-                        eth = dev_group.Ethernet.add(Name=vport[1])
-                    if is_ipv6:
-                        ep = eth.Ipv6.add(Name=dev['name'])
-                        ep.Address.Increment(dev['ip'], '::1')
-                    else:
-                        ep = eth.Ipv4.add(Name=dev['name'])
-                        ep.Address.Increment(dev['ip'], '0.0.0.1')
-                    ep.GatewayIp.Single(dev['gw'])
-                    ep.Prefix.Single(dev['plen'])
-                    if dev.get('bgp_peer', {}):
-                        bp = dev['bgp_peer']
-                        if is_ipv6:
-                            bgp_ep = ep.BgpIpv6Peer.add(Name=dev['name'])
-                        else:
-                            bgp_ep = ep.BgpIpv4Peer.add(Name=dev['name'])
-                        bgp_ep.DutIp.Single(dev['gw'])
-                        bgp_ep.Type.Single('external')
-                        bgp_ep.LocalAs2Bytes.Single(bp['local_as'])
-                        bgp_ep.HoldTimer.Single(bp['hold_timer'])
-                        bgp_ep.UpdateInterval.Single(bp['update_interval'])
-                        ng = dev_group.NetworkGroup.add(
-                            Multiplier=len(bp['route_ranges']), Name=dev['name']
-                        )
-                        ng.Enabled.Single(True)
-                        for rr in bp['route_ranges']:
-                            if is_ipv6:
-                                pool = ng.Ipv6PrefixPools.add(
-                                    Name=dev['name'], NumberOfAddresses=rr['number_of_routes']
-                                )
-                            else:
-                                pool = ng.Ipv4PrefixPools.add(
-                                    Name=dev['name'], NumberOfAddresses=rr['number_of_routes']
-                                )
-                            pool.NetworkAddress.Single(rr['first_route'])
-                            IxnetworkIxiaClientImpl.rr_eps.append(pool)
-
-                        IxnetworkIxiaClientImpl.bgp_eps.append(bgp_ep)
-                    else:
-                        IxnetworkIxiaClientImpl.bgp_eps.append(ep)
-                        IxnetworkIxiaClientImpl.rr_eps.append(ep)
-                    IxnetworkIxiaClientImpl.ip_eps.append(ep)
-                    IxnetworkIxiaClientImpl.eth_eps.append(eth)
-                    IxnetworkIxiaClientImpl.raw_eps.append(vport[0].Protocols.find())
-        except Exception as e:
-            device.applog.info(e)
-        return 0, 'Connected!'
 
     def parse_connect(self, command, output, *argv, **kwarg):
         return command
@@ -339,6 +397,10 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
             ixia_traffic_type = 'ethernetVlan'
         elif traffic_type == 'bgp':
             ixia_traffic_type = 'ipv4'
+        elif traffic_type == 'bpdu':
+            ixia_traffic_type = 'raw'
+        elif traffic_type == 'custom':
+            ixia_traffic_type = 'raw'
         else:
             ixia_traffic_type = traffic_type
 
@@ -352,7 +414,7 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
             )
             ep_count = 0
             for ip2, ep2, rep2, rr2 in zip(cls.ip_eps, cls.eth_eps, cls.raw_eps, cls.rr_eps):
-                if ep1 == ep2:
+                if ep1 == ep2 and not pkt_data.get('allowSelfDestined', False):
                     continue
                 if any(dst in pkt_data and endpoint.Name not in pkt_data[dst]
                        for dst, endpoint in (('ip_destination', ip2),
@@ -365,7 +427,7 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                     src, dst = ip1, ip2
                 elif traffic_type == 'bgp':
                     src, dst = rr1, rr2
-                elif traffic_type == 'raw':
+                elif traffic_type in ('raw', 'bpdu', 'custom'):
                     src, dst = rep1, rep2
                     src_name, dst_name = ep1.Name, ep2.Name
                 else:
@@ -391,6 +453,9 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
         if 'srcMac' in pkt_data:
             self.__update_field(eth_stack.Field.find(FieldTypeId='ethernet.header.sourceAddress'),
                                 pkt_data['srcMac'])
+        if 'protocol' in pkt_data and pkt_data['protocol'] not in ['ipv6', 'ipv4', 'ip', '802.1Q', 'lldp']:
+            self.__update_field(eth_stack.Field.find(FieldTypeId='ethernet.header.etherType'),
+                                pkt_data['protocol'])
         if 'vlanID' in pkt_data:
             vlan_stack = config_element.Stack.read(
                 eth_stack.AppendProtocol(self.stack_template['vlan'])
@@ -405,11 +470,14 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
         return eth_stack
 
     def __configure_l3_stack(self, config_element, pkt_data, track_by, eth_stack):
+        if pkt_data.get('protocol') == 'lldp' or pkt_data.get('skipL3'):
+            return
         if pkt_data.get('type') == 'ipv6' or pkt_data.get('protocol') == 'ipv6':
             proto = 'ipv6'
             fields = {
                 'dstIp': 'ipv6.header.dstIP',
                 'srcIp': 'ipv6.header.srcIP',
+                'hopLimit': 'ipv6.header.hopLimit',
                 'traffic_class': 'ipv6.header.versionTrafficClassFlowLabel.trafficClass',
             }
         else:
@@ -420,6 +488,9 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                 'dscp_ecn': 'ipv4.header.priority.raw',
                 'ttl': 'ipv4.header.ttl',
                 'totalLength': 'ipv4.header.totalLength',
+                'l3Proto': 'ipv4.header.protocol',
+                'ipv4Checksum': 'ipv4.header.checksum',
+                'ipv4HeaderLength': 'ipv4.header.headerLength',
             }
 
         ip_stack = config_element.Stack.find(StackTypeId=f'^{proto}$')
@@ -439,7 +510,7 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
         return ip_stack
 
     def __configure_l4_stack(self, config_element, pkt_data, track_by, ip_stack):
-        l4_proto_types = ['tcp', 'udp', 'icmpv1', 'icmpv2',
+        l4_proto_types = ['tcp', 'udp', 'icmpv1', 'icmpv2', 'icmpv6',
                           'igmpv2', 'igmpv3MembershipQuery',
                           'igmpv3MembershipReport']
         if 'ipproto' not in pkt_data:
@@ -458,25 +529,117 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
             grp_addr_id = 'header.groupAddress'
             num_srcs_id = 'header.numberOfSources'
 
-        fields = {
-            'dstPort': f'{proto}.header.dstPort',
-            'srcPort': f'{proto}.header.srcPort',
-            'icmpType': f'{proto}.message.messageType',
-            'icmpCode': f'{proto}.message.codeValue',
-            'igmpType': f'{proto}.header.type',
-            'igmpChecksum': f'{proto}.header.checksum',
-            'igmpGroupAddr': f'{proto}.{grp_addr_id}',
-            'igmpRecordType': f'{proto}.header.groupRecords.groupRecord.recordType',
-            'igmpSourceAddr': f'{proto}.header.groupRecords.groupRecord.multicastSources.multicastSource',
-            'numberOfSources': f'{proto}.{num_srcs_id}',
-            'maxResponseCode': f'{proto}.header.maximumResponseCodeunits110Second',
-        }
+        if proto == 'icmpv6':
+            fields = {
+                'icmpType': 'icmpv6.icmpv6Message.icmpv6MessegeType.destinationUnreachableMessage.mesageType',
+                'icmpCode': 'icmpv6.icmpv6Message.icmpv6MessegeType.destinationUnreachableMessage.code',
+            }
+        else:
+            fields = {
+                'dstPort': f'{proto}.header.dstPort',
+                'srcPort': f'{proto}.header.srcPort',
+                'icmpType': f'{proto}.message.messageType',
+                'icmpCode': f'{proto}.message.codeValue',
+                'igmpType': f'{proto}.header.type',
+                'igmpChecksum': f'{proto}.header.checksum',
+                'igmpGroupAddr': f'{proto}.{grp_addr_id}',
+                'igmpRecordType': f'{proto}.header.groupRecords.groupRecord.recordType',
+                'igmpSourceAddr': f'{proto}.header.groupRecords.groupRecord.multicastSources.multicastSource',
+                'numberOfSources': f'{proto}.{num_srcs_id}',
+                'maxResponseCode': f'{proto}.header.maximumResponseCodeunits110Second',
+            }
+
         for key, field_type in fields.items():
             if key not in pkt_data:
                 continue
             self.__update_field(l4_stack.Field.find(FieldTypeId=field_type),
                                 pkt_data[key])
         return l4_stack
+
+    def __configure_bpdu(self, config_element, pkt_data, track_by):
+        version = 'rstpBPDU' if pkt_data['version'] == 'rstp' else 'stpCfgBPDU'
+
+        eth_stack = self.__configure_l2_stack(config_element, {**pkt_data, 'dstMac': '01:80:C2:00:00:00'}, track_by)
+        llc_stack = config_element.Stack.read(
+            eth_stack.AppendProtocol(self.stack_template['llc'])
+        )
+        bpdu_stack = config_element.Stack.read(
+            llc_stack.AppendProtocol(self.stack_template[version])
+        )
+
+        fields = {
+            'protocolIdentifier': f'{version}.header.protocolIdentifier',
+            'protocolVersionIdentifier': f'{version}.header.protocolVersionIdentifier',
+            'topologyChangeAcknowledgement': f'{version}.header.flags.topologyChangeAcknowledgement',
+            'agreement': 'rstpBPDU.header.flags.agreement',
+            'forwarding': 'rstpBPDU.header.flags.forwarding',
+            'learning': 'rstpBPDU.header.flags.learning',
+            'portRole': 'rstpBPDU.header.flags.portRole',
+            'proposal': 'rstpBPDU.header.flags.proposal',
+            'topologyChange': f'{version}.header.flags.topologyChange',
+            'rootIdentifier': f'{version}.header.rootIdentifier',
+            'rootPathCost': 'rstpBPDU.header.externalRootPathCost' if version == 'rstpBPDU' else
+                            'stpCfgBPDU.header.rootPathCost',
+            'bridgeIdentifier': 'rstpBPDU.header.regionalRootIdentifier' if version == 'rstpBPDU' else
+                                'stpCfgBPDU.header.bridgeIdentifier',
+            'portIdentifier': f'{version}.header.portIdentifier',
+            'messageAge': f'{version}.header.messageAge',
+            'maxAge': f'{version}.header.maxAge',
+            'helloTime': f'{version}.header.helloTime',
+            'forwardDelay': f'{version}.header.forwardDelay',
+            'version1Length': 'rstpBPDU.header.version1Length',
+        }
+
+        for key, field_type in fields.items():
+            if key not in pkt_data:
+                continue
+            self.__update_field(bpdu_stack.Field.find(FieldTypeId=field_type), pkt_data[key])
+
+    def __configure_lldp_stack(self, config_element, pkt_data, eth_stack):
+        if pkt_data.get('protocol') != 'lldp':
+            return
+        else:
+            proto = 'lldp'
+            fields = {
+                # Mandatory TLVs
+                'chassisLen': 'lldp.header.mandatoryTlv.chassisIdTlv.length',
+                'chassisSubtype': 'lldp.header.mandatoryTlv.chassisIdTlv.subtype',
+                'chassisVarLen': 'lldp.header.mandatoryTlv.chassisIdTlv.variableChassisIDLength',
+                'chassisId': 'lldp.header.mandatoryTlv.chassisIdTlv.chassisId',
+                'portLen': 'lldp.header.mandatoryTlv.portIdTlv.length',
+                'portSubtype': 'lldp.header.mandatoryTlv.portIdTlv.subtype',
+                'portVarLen': 'lldp.header.mandatoryTlv.portIdTlv.variablePortIDLength',
+                'portId': 'lldp.header.mandatoryTlv.portIdTlv.portId',
+                'ttlLen': 'lldp.header.mandatoryTlv.ttlTlv.length',
+                'ttlVal': 'lldp.header.mandatoryTlv.ttlTlv.ttl'
+            }
+
+            lldp_stack = config_element.Stack.read(
+                eth_stack.AppendProtocol(self.stack_template[proto])
+            )
+            for key, field_type in fields.items():
+                if key not in pkt_data:
+                    continue
+                self.__update_field(lldp_stack.Field.find(FieldTypeId=field_type), pkt_data[key])
+            return lldp_stack
+
+    def __configure_custom_stack(self, config_element, pkt_data, track_by):
+        proto = 'custom_v2'
+        fields = {
+            'customLength': 'custom_v2.header.length',
+            'customData': 'custom_v2.header.data'
+        }
+
+        eth_stack = self.__configure_l2_stack(config_element, {**pkt_data}, track_by)
+        custom_stack = config_element.Stack.read(
+            eth_stack.AppendProtocol(self.stack_template[proto])
+        )
+
+        for key, field_type in fields.items():
+            if key not in pkt_data:
+                continue
+            self.__update_field(custom_stack.Field.find(FieldTypeId=field_type), pkt_data[key])
+        return custom_stack
 
     def set_traffic(self, device, name, pkt_data):
         for ti, ep_count in self.__create_traffic_items(device, pkt_data, name):
@@ -489,12 +652,22 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                 )
                 config_element.Crc = self.bad_crc[pkt_data.get('bad_crc', False)]
                 self.__update_transmission_control(config_element, pkt_data)
+
+                if pkt_data.get('type') == 'bpdu':
+                    self.__configure_bpdu(config_element, pkt_data, track_by)
+                    continue
+                elif pkt_data.get('type') == 'custom':
+                    self.__configure_custom_stack(config_element, pkt_data, track_by)
+                    continue
+
                 eth_stack = self.__configure_l2_stack(config_element, pkt_data, track_by)
+                self.__configure_lldp_stack(config_element, pkt_data, eth_stack)
                 ip_stack = self.__configure_l3_stack(config_element, pkt_data, track_by, eth_stack)
                 self.__configure_l4_stack(config_element, pkt_data, track_by, ip_stack)
 
             ti.Tracking.find()[0].TrackBy = list(track_by)
             ti.BiDirectional = pkt_data.get('bi_directional', False)
+            ti.AllowSelfDestined = pkt_data.get('allowSelfDestined', False)
             self.__configure_egress_tracking(ti, pkt_data)
 
     def run_traffic_item(self, device, command, *argv, **kwarg):
@@ -519,10 +692,19 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
             self.set_traffic(device, name=param['name'], pkt_data=param['pkt_data'])
         elif command == 'start_traffic':
             device.applog.info('Starting Traffic')
-            IxnetworkIxiaClientImpl.ixnet.Traffic.Start()
+            IxnetworkIxiaClientImpl.ixnet.Traffic.StartStatelessTrafficBlocking()
         elif command == 'stop_traffic':
             device.applog.info('Stopping Traffic')
-            IxnetworkIxiaClientImpl.ixnet.Traffic.Stop()
+            IxnetworkIxiaClientImpl.ixnet.Traffic.StopStatelessTrafficBlocking()
+            attempts = 0
+            while IxnetworkIxiaClientImpl.ixnet.Traffic.IsTrafficRunning and attempts < 3:
+                device.applog.info(
+                    '\tIs Traffic running: ' + str(IxnetworkIxiaClientImpl.ixnet.Traffic.IsTrafficRunning))
+                time_to_sleep = 5
+                time.sleep(time_to_sleep)
+                attempts += 1
+            if attempts > 3:
+                device.applog.info(f'INFO: Traffic not stopped after {attempts * time_to_sleep} Seconds')
         elif command == 'get_stats':
             device.applog.info('Getting Stats')
             stats_type = 'Port Statistics'

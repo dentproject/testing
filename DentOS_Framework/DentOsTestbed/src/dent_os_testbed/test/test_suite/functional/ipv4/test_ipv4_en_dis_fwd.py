@@ -99,6 +99,7 @@ async def test_ipv4_en_dis_fwd(testbed):
     await asyncio.sleep(traffic_duration)
     await tgen_utils_stop_traffic(tgen_dev)
 
+    await asyncio.sleep(5)
     stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
     for row in stats.Rows:
         loss = tgen_utils_get_loss(row)
@@ -108,10 +109,10 @@ async def test_ipv4_en_dis_fwd(testbed):
     rc, out = await dent_dev.run_cmd('sysctl -n net.ipv4.ip_forward=0')
     assert rc == 0, 'Failed to disable ip forwarding'
 
-    # 6. Flush neighbor (ARP) table
+    # 6. Flush neighbor (ARP) table twice
     out = await IpNeighbor.flush(input_data=[{dent: [
         {'device': port} for port in ports
-    ]}])
+    ] * 2}])
     assert out[0][dent]['rc'] == 0, 'Failed to flush arp table'
 
     # 7. Transmit traffic with ip fwd disabled
@@ -120,6 +121,7 @@ async def test_ipv4_en_dis_fwd(testbed):
     await tgen_utils_stop_traffic(tgen_dev)
 
     # Verify traffic not routed because neighbors were not resolved
+    await asyncio.sleep(5)
     stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
     for row in stats.Rows:
         loss = tgen_utils_get_loss(row)

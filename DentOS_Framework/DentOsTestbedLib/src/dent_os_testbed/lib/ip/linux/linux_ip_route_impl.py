@@ -40,13 +40,15 @@ class LinuxIpRouteImpl(LinuxIpRoute):
         #            raise NameError("Cannot find prefix " + command)
         params = kwarg['params']
         cmd = 'ip {} route {} '.format(params.get('cmd_options', ''), command)
+        if 'table' in params:
+            cmd += 'table {} '.format(params.get('table'))
+        if 'vrf' in params:
+            cmd += 'vrf {} '.format(params.get('vrf'))
         if 'type' in params:
             cmd += '{} '.format(params.get('type'))
         cmd += params.get('dst', '') + ' '
         if 'tos' in params:
             cmd += 'tos {} '.format(params.get('tos'))
-        if 'table' in params:
-            cmd += 'table {} '.format(params.get('table'))
         if 'protocol' in params:
             cmd += 'proto {} '.format(params.get('protocol'))
         if 'scope' in params:
@@ -108,7 +110,8 @@ class LinuxIpRouteImpl(LinuxIpRoute):
             cmd += 'pref {} '.format(params.get('pref'))
         if 'expires' in params:
             cmd += 'expires {} '.format(params.get('expires'))
-
+        if 'table_id' in params:
+            cmd += ' {} '.format(params.get('table_id'))
         return cmd
 
     def format_get(self, command, *argv, **kwarg):

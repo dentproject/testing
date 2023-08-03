@@ -15,7 +15,8 @@
             "baudrate": 115200,
             "links" : [
                 ["swp5", "infra1:swp6"],
-                ["swp7", "infra1:swp8"]
+                ["swp7", "infra1:swp8"],
+                ["swp9", "infra1:swp10"]
             ]
         },
         {

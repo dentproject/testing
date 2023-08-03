@@ -52,7 +52,7 @@ async def test_port_isolation_maximum_isolated_ports_on_bridge(testbed):
     device_host_name = dent_dev.host_name
     tg_ports = tgen_dev.links_dict[device_host_name][0]
     ports = tgen_dev.links_dict[device_host_name][1]
-    traffic_duration = 10
+    traffic_duration = 15
     pps_value = 1000
     timeout = 30
 
@@ -152,7 +152,7 @@ async def test_port_isolation_maximum_isolated_ports_on_bridge(testbed):
     await asyncio.sleep(traffic_duration)
 
     # check the traffic stats
-    stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Traffic Item Statistics')
+    stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
     for row in stats.Rows:
         assert tgen_utils_get_loss(row) == 100.000, \
             f"Verify that traffic from {row['Tx Port']} to {row['Rx Port']} not forwarded.\n{out}"

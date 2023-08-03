@@ -27,7 +27,7 @@ from dent_os_testbed.test.test_suite.functional.qos.conftest import (
 
 pytestmark = [
     pytest.mark.suite_functional_qos,
-    pytest.mark.usefixtures('cleanup_qdiscs', 'cleanup_bridges', 'cleanup_dscp_prio'),
+    pytest.mark.usefixtures('cleanup_qdiscs', 'cleanup_tgen', 'cleanup_bridges', 'cleanup_dscp_prio'),
     pytest.mark.asyncio,
 ]
 
@@ -58,7 +58,7 @@ async def test_qos_default_prio(testbed):
     tg_ports = tgen_dev.links_dict[dent][0][:num_of_ports]
     ports = tgen_dev.links_dict[dent][1][:num_of_ports]
     ingress_port, *egress_ports = ports
-    vlan = random.randint(2, 4095)
+    vlan = random.randint(2, 4094)
     wait_for_qd_stats = 5  # sec
     traffic_duration = 30  # sec
     dscp_not_in_map = 63
@@ -125,6 +125,12 @@ async def test_qos_default_prio(testbed):
             'rate': 1,  # %
             'dscp_ecn': dscp_to_send,
             'vlanID': vlan,
+        },
+        'learn': {
+            'type': 'ethernet',
+            'ep_source': egress_ports,
+            'ep_destination': ingress_port,
+            'rate': 1,  # pps
         },
     }
     await tgen_utils_setup_streams(tgen_dev, None, streams)

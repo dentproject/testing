@@ -276,7 +276,7 @@ class TestCmdImplPyObject(object):
             parse_cmd_body = tokenize(py_impl_class_common_parse_cmd % cargs)
             methods.append(
                 PyMethod(
-                    'parse_%s' % cmd.name, 'self, command, output, *argv, **kwarg', format_cmd_body, indent=4,
+                    'parse_%s' % cmd.name, 'self, command, output, *argv, **kwarg', parse_cmd_body, indent=4,
                 )
             )
         self._classes.append(

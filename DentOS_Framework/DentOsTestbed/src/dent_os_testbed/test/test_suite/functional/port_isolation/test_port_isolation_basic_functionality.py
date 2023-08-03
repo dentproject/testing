@@ -54,8 +54,9 @@ async def test_port_isolation_basic_functionality(testbed):
     device_host_name = dent_devices[0].host_name
     tg_ports = tgen_dev.links_dict[device_host_name][0]
     ports = tgen_dev.links_dict[device_host_name][1]
-    traffic_duration = 10
+    traffic_duration = 15
     pps_value = 1000
+    wait = 6
 
     out = await IpLink.add(
         input_data=[{device_host_name: [
@@ -111,8 +112,8 @@ async def test_port_isolation_basic_functionality(testbed):
             'stream_0': {
                 'ip_source': dev_groups[tg_ports[0]][0]['name'],
                 'ip_destination': dev_groups[tg_ports[3-x]][0]['name'],
-                'srcMac': '28:be:0d:47:eb:2b',
-                'dstMac': '1c:99:9f:fb:63:15',
+                'srcMac': f'28:be:0d:4{x+4}:eb:2b',
+                'dstMac': f'1c:99:9f:fb:63:1{x+2}',
                 'frameSize': 162,
                 'rate': pps_value,
                 'protocol': '0x0800',
@@ -133,7 +134,7 @@ async def test_port_isolation_basic_functionality(testbed):
             'stream_2': {
                 'ip_source': dev_groups[tg_ports[2]][0]['name'],
                 'ip_destination': dev_groups[tg_ports[3-x if x <= 0 else 2-x]][0]['name'],
-                'srcMac': '2a:3e:13:88:e5:6d',
+                'srcMac': f'2a:3e:13:88:e5:{x+3}d',
                 'dstMac': 'ff:ff:ff:ff:ff:ff',
                 'frameSize': 162,
                 'rate': pps_value,
@@ -143,8 +144,8 @@ async def test_port_isolation_basic_functionality(testbed):
             'stream_3': {
                 'ip_source': dev_groups[tg_ports[3]][0]['name'],
                 'ip_destination': dev_groups[tg_ports[2-x]][0]['name'],
-                'srcMac': 'ea:f9:ca:10:1d:b6',
-                'dstMac': 'ba:2e:c5:2c:fa:8d',
+                'srcMac': f'ea:f9:ca:10:1d:b{x+2}',
+                'dstMac': f'ba:2e:c5:2c:fa:{x+5}d',
                 'frameSize': 162,
                 'rate': pps_value,
                 'protocol': '0x0800',
@@ -156,6 +157,7 @@ async def test_port_isolation_basic_functionality(testbed):
         await tgen_utils_start_traffic(tgen_dev)
         await asyncio.sleep(traffic_duration)
         await tgen_utils_stop_traffic(tgen_dev)
+        await asyncio.sleep(wait)
 
         if x == 0:
             expected_loss = {

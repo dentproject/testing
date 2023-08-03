@@ -17,7 +17,7 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_stop_traffic,
     tgen_utils_get_loss,
 )
-from dent_os_testbed.test.test_suite.functional.qos.constants import (
+from dent_os_testbed.utils.test_utils.data.tgen_constants import (
     RAW_DSCP,
     PCP,
     RX_BYTES,
@@ -34,7 +34,7 @@ from dent_os_testbed.test.test_suite.functional.qos.conftest import (
 
 pytestmark = [
     pytest.mark.suite_functional_qos,
-    pytest.mark.usefixtures('cleanup_qdiscs', 'cleanup_bridges', 'cleanup_dscp_prio'),
+    pytest.mark.usefixtures('cleanup_qdiscs', 'cleanup_tgen', 'cleanup_bridges', 'cleanup_dscp_prio'),
     pytest.mark.asyncio,
 ]
 
@@ -107,7 +107,7 @@ async def test_qos_trust_mode(testbed, trust_mode, scheduler_type):
         await configure_dscp_map_and_verify(dent, {ports[0]: dscp_prio_map})
     else:
         # 4. Configure vlans on bridge members
-        vlan = random.randint(2, 4095)
+        vlan = random.randint(2, 4094)
         out = await BridgeVlan.delete(input_data=[{dent: [
             {'device': port, 'vid': 1} for port in ports
         ]}])

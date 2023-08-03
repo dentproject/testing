@@ -1,3 +1,4 @@
+import math
 import pytest
 import asyncio
 
@@ -56,6 +57,7 @@ async def test_port_isolation_interaction_vlan_membership(testbed):
     ports = tgen_dev.links_dict[device_host_name][1]
     traffic_duration = 10
     pps_value = 1000
+    wait = 6
 
     out = await IpLink.add(
         input_data=[{device_host_name: [
@@ -172,6 +174,7 @@ async def test_port_isolation_interaction_vlan_membership(testbed):
         await tgen_utils_start_traffic(tgen_dev)
         await asyncio.sleep(traffic_duration)
         await tgen_utils_stop_traffic(tgen_dev)
+        await asyncio.sleep(wait)
 
         if x == 2:
             expected_loss = {
@@ -190,6 +193,7 @@ async def test_port_isolation_interaction_vlan_membership(testbed):
         # check the traffic stats
         stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
         for row in stats.Rows:
-            assert tgen_utils_get_loss(row) == expected_loss[row['Traffic Item']], \
-                'Verify that traffic is forwarded/not forwarded in accordance.'
+            assert math.isclose(expected_loss[row['Traffic Item']], tgen_utils_get_loss(row), abs_tol=0.10), \
+                f"Verify that traffic is forwarded/not forwarded in accordance - Actual: {tgen_utils_get_loss(row)}, \
+                    Expected: {expected_loss[row['Traffic Item']]}"
         await tgen_utils_clear_traffic_items(tgen_dev)

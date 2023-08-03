@@ -126,7 +126,7 @@ async def test_acl_all_selectors(testbed, action, use_tagged_traffic, qdisc_type
     use_shared_block = qdisc_type == 'shared_block'
     is_vlan_aware = use_tagged_traffic == 'tagged'
 
-    vlan = random.randint(1, 4095) if is_vlan_aware else 0
+    vlan = random.randint(1, 4094) if is_vlan_aware else 0
     tc_stats_update_time = 5
     traffic_duration = 10
     rate_pps = 10_000
@@ -204,6 +204,7 @@ async def test_acl_all_selectors(testbed, action, use_tagged_traffic, qdisc_type
     await tgen_utils_stop_traffic(tgen_dev)
 
     # 10. Verify "pass" and "trap" traffic was forwarded, "drop" was dropped
+    await asyncio.sleep(5)
     ixia_stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
 
     for row in ixia_stats.Rows:

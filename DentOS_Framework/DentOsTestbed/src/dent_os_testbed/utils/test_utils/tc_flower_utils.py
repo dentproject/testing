@@ -126,14 +126,15 @@ async def tcutil_cleanup_tc_rules(dent_dev, swp_tgen_ports, swp_tc_rules):
 
 
 def tcutil_tc_rules_to_tgen_streams(swp_tc_rules, streams=None, start=0, cnt=None,
-                                    frame_rate_pps=10, frame_size=256):
+                                    frame_rate_pps=10, frame_size=256, frame_rate_type='pps_rate'):
     """
-    - swp_tc_rules:   dict
-    - streams:        streams dict that will be modified
-    - start:          used to specify the first rule index, from which the streams will be created
-    - cnt:            used to specify the number of streams to be created
-    - frame_rate_pps: frame rate for each stream
-    - frame_size:     packet size for each stream
+    - swp_tc_rules:    dict
+    - streams:         streams dict that will be modified
+    - start:           used to specify the first rule index, from which the streams will be created
+    - cnt:             used to specify the number of streams to be created
+    - frame_rate_pps:  frame rate for each stream
+    - frame_size:      packet size for each stream
+    - frame_rate_type: which rate type to use when sending traffic(defaults to pps)
 
     Expects swp_tc_rules to be a dict:
     {
@@ -163,6 +164,7 @@ def tcutil_tc_rules_to_tgen_streams(swp_tc_rules, streams=None, start=0, cnt=Non
                 'dstIp': f'20.0.{swp[3:]}.3',
                 'rate': frame_rate_pps,
                 'frameSize': frame_size,
+                'frame_rate_type': frame_rate_type
             }
             st['type'] = 'ethernetVlan' if rule['protocol'] == '802.1Q' else 'ethernet'
             name = swp
@@ -279,7 +281,7 @@ async def tcutil_iptables_rules_to_tgen_streams(
 def tcutil_generate_rule_with_random_selectors(
     port, pref=None, want_mac=False, want_vlan=False, want_ip=False, want_tcp=False,
     want_port=False, want_icmp=False, action=None, direction='ingress',
-    skip_sw=False, skip_hw=False, want_proto=True,
+    skip_sw=False, skip_hw=False, want_proto=True, want_vlan_ethtype=True
 ):
     """
     Creates a single tc rule with specified selectors:
@@ -307,7 +309,7 @@ def tcutil_generate_rule_with_random_selectors(
     def random_icmp_type():
         return random.choice((0, 3, 4, 5, 8, 11, 12, 13, 14, 15, 16, 17, 18))
     ip_protocols = ('ip', 'ipv4', '0x0800')
-    vlan_protocols = ('0x8100', '0x88a8', '802.1q')
+    vlan_protocols = ('0x8100', '802.1q')
 
     if want_vlan:
         protocols = vlan_protocols
@@ -326,7 +328,7 @@ def tcutil_generate_rule_with_random_selectors(
     filter_t = {}
     rule = {
         'dev': port,
-        'action': random.choice(action_list),
+        'action': action_list if type(action_list) is dict else random.choice(action_list),
         'direction': direction,
         'protocol': random.choice(protocols),
         'filtertype': filter_t,
@@ -345,10 +347,11 @@ def tcutil_generate_rule_with_random_selectors(
         return rule
     if want_vlan:
         filter_t['vlan_id'] = random.randint(1, 4095)
-        if want_ip:
-            filter_t['vlan_ethtype'] = random.choice(ip_protocols)
-        else:
-            filter_t['vlan_ethtype'] = f'0x9{random.randint(1, 3)}00'
+        if want_vlan_ethtype:
+            if want_ip:
+                filter_t['vlan_ethtype'] = random.choice(ip_protocols)
+            else:
+                filter_t['vlan_ethtype'] = f'0x9{random.randint(1, 3)}00'
     if want_ip:
         filter_t['src_ip'] = random_ip()
         filter_t['dst_ip'] = random_ip()
@@ -446,5 +449,5 @@ async def tcutil_verify_tgen_stats(dev, row, rule_action='pass',
     dev.applog.info(f"Traffic item: {row['Traffic Item']}\n" +
                     f"Tx Frames: {tx_packets}, Rx Frames: {row['Rx Frames']}, " +
                     f'{loss = }, {expected_loss = :.3f} (max {tolerance = })')
-    assert is_close(loss, expected_loss, rel_tol=tolerance), \
+    assert is_close(loss, expected_loss, abs_tol=tolerance * 100), \
         f'Expected loss: {expected_loss:.3f}%, actual: {loss}%'

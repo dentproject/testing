@@ -26,7 +26,7 @@ from dent_os_testbed.test.test_suite.functional.ipv6.ipv6_utils import (
 
 pytestmark = [
     pytest.mark.suite_functional_ipv6,
-    pytest.mark.usefixtures('cleanup_ip_addrs', 'enable_ipv6_forwarding', 'enable_ipv4_forwarding'),
+    pytest.mark.usefixtures('cleanup_ip_addrs', 'cleanup_tgen', 'enable_ipv6_forwarding', 'enable_ipv4_forwarding'),
     pytest.mark.asyncio,
 ]
 
@@ -190,10 +190,14 @@ async def test_ipv64_nh_reconfig(testbed):
 
         expected_neis = [{'dev': info.swp,
                           'dst': info.tg_ip,
+                          'should_exist': True,
+                          'offload': True,
                           'states': ['REACHABLE', 'PROBE', 'STALE', 'DELAY']}
                          for info in address_map[version]]
         expected_neis += [{'dev': nh_route[version].swp,
                            'dst': nh_route[version].via,
+                           'should_exist': True,
+                           'offload': True,
                            'states': ['PERMANENT']}]
         await verify_dut_neighbors(dent, expected_neis)
 
@@ -205,10 +209,12 @@ async def test_ipv64_nh_reconfig(testbed):
 
         expected_routes = [{'dev': info.swp,
                             'dst': info.swp_ip[:-1] + ('0/' if version == IPV4 else '/') + str(info.plen),
+                            'should_exist': True,
                             'flags': ['rt_trap']}
                            for info in address_map[version]]
         expected_routes += [{'dev': nh_route[version].swp,
                              'dst': f'{nh_route[version].dst}/{nh_route[version].plen}',
+                             'should_exist': True,
                              'flags': ['offload', 'rt_offload']}]
         await verify_dut_routes(dent, expected_routes)
 
@@ -366,10 +372,14 @@ async def test_ipv64_nh_routes(testbed):
     # 6. Verify neighbors resolved
     expected_neis = [{'dev': info.swp,
                       'dst': info.tg_ip,
+                      'should_exist': True,
+                      'offload': True,
                       'states': ['REACHABLE', 'PROBE', 'STALE', 'DELAY']}
                      for info in address_map]
     expected_neis += [{'dev': route.swp,
                        'dst': route.via,
+                       'should_exist': True,
+                       'offload': True,
                        'states': ['PERMANENT']}
                       for route in nh_route]
     await verify_dut_neighbors(dent, expected_neis)
@@ -377,10 +387,12 @@ async def test_ipv64_nh_routes(testbed):
     # Verify connected routes added and offloaded
     expected_routes = [{'dev': info.swp,
                         'dst': info.swp_ip[:-1] + ('/' if ':' in info.swp_ip else '0/') + str(info.plen),
+                        'should_exist': True,
                         'flags': ['rt_trap']}
                        for info in address_map]
     expected_routes += [{'dev': route.swp,
                          'dst': f'{route.dst}/{route.plen}',
+                         'should_exist': True,
                          'flags': ['offload', 'rt_offload']}
                         for route in nh_route]
     await verify_dut_routes(dent, expected_routes)

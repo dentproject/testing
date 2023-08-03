@@ -4,6 +4,7 @@ import asyncio
 from dent_os_testbed.lib.ip.ip_link import IpLink
 from dent_os_testbed.lib.ethtool.ethtool import Ethtool
 
+from dent_os_testbed.utils.test_utils.tb_utils import tb_get_qualified_ports
 from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_get_dent_devices_with_tgen,
     tgen_utils_traffic_generator_connect,
@@ -18,7 +19,7 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
 
 pytestmark = [pytest.mark.suite_functional_l1,
               pytest.mark.asyncio,
-              pytest.mark.usefixtures('cleanup_bridges', 'cleanup_tgen')]
+              pytest.mark.usefixtures('cleanup_bridges', 'cleanup_tgen', 'restore_port_speed')]
 
 
 async def test_l1_mixed_speed(testbed):
@@ -48,7 +49,6 @@ async def test_l1_mixed_speed(testbed):
     4. Send traffic from Port 1 with bits per second rate of 9_000_000
     5. Verify no packet loss occurred and all transmitted traffic received.
     """
-
     bridge = 'br0'
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 4)
     if not tgen_dev or not dent_devices:
@@ -58,6 +58,20 @@ async def test_l1_mixed_speed(testbed):
     tg_ports = tgen_dev.links_dict[device_host_name][0]
     ports = tgen_dev.links_dict[device_host_name][1]
     timeout = 10
+
+    dev_groups = tgen_utils_dev_groups_from_config(
+        [{'ixp': tg_ports[0], 'ip': '100.1.1.2', 'gw': '100.1.1.6', 'plen': 24},
+         {'ixp': tg_ports[1], 'ip': '100.1.1.3', 'gw': '100.1.1.6', 'plen': 24},
+         {'ixp': tg_ports[2], 'ip': '100.1.1.4', 'gw': '100.1.1.6', 'plen': 24},
+         {'ixp': tg_ports[3], 'ip': '100.1.1.5', 'gw': '100.1.1.6', 'plen': 24}])
+    await tgen_utils_traffic_generator_connect(tgen_dev, tg_ports, ports, dev_groups)
+    await asyncio.sleep(10)
+
+    try:
+        for speed, duplex in ((10, 'full'), (100, 'half'), (1000, 'full')):
+            await tb_get_qualified_ports(dent_devices[0], ports, speed, duplex, required_ports=1)
+    except ValueError as e:
+        pytest.skip(str(e))
 
     # 1. Init bridge entity br0.
     out = await IpLink.add(input_data=[{device_host_name: [{'device': bridge, 'type': 'bridge'}]}])
@@ -79,38 +93,26 @@ async def test_l1_mixed_speed(testbed):
         {'devname': ports[0],
          'speed': 1000,
          'autoneg': 'off',
-         'duplex': 'full'}]}])
+         'duplex': 'full'},
+        {'devname': ports[1],
+         'speed': 100,
+         'autoneg': 'on',
+         'duplex': 'half'},
+        {'devname': ports[2],
+         'speed': 10,
+         'autoneg': 'off',
+         'duplex': 'full'},
+        {'devname': ports[3],
+         'autoneg': 'on',
+         'advertise': '0x004'},
+    ]}])
     assert out[0][device_host_name]['rc'] == 0, 'Verify port settings has been changed '
 
-    out = await Ethtool.set(input_data=[{device_host_name: [{
-        'devname': ports[1],
-        'speed': 100,
-        'autoneg': 'on',
-        'duplex': 'half'}]}])
-    assert out[0][device_host_name]['rc'] == 0, 'Verify port settings has been changed '
-
-    out = await Ethtool.set(input_data=[{device_host_name: [{
-        'devname': ports[2],
-        'speed': 10,
-        'autoneg': 'off',
-        'duplex': 'full'}]}])
-    assert out[0][device_host_name]['rc'] == 0, 'Verify port settings has been changed '
-
-    out = await Ethtool.set(input_data=[{device_host_name: [{
-        'devname': ports[3],
-        'autoneg': 'off',
-        'advertise': '0x004'}]}])
-    assert out[0][device_host_name]['rc'] == 0, 'Verify port settings has been changed '
-
-    dev_groups = tgen_utils_dev_groups_from_config(
-        [{'ixp': tg_ports[0], 'ip': '100.1.1.2', 'gw': '100.1.1.6', 'plen': 24},
-         {'ixp': tg_ports[1], 'ip': '100.1.1.3', 'gw': '100.1.1.6', 'plen': 24},
-         {'ixp': tg_ports[2], 'ip': '100.1.1.4', 'gw': '100.1.1.6', 'plen': 24},
-         {'ixp': tg_ports[3], 'ip': '100.1.1.5', 'gw': '100.1.1.6', 'plen': 24}])
-    await tgen_utils_traffic_generator_connect(tgen_dev, tg_ports, ports, dev_groups)
-
-    # Set autoneg on all connected IXIA ports
-    await tgen_utils_update_l1_config(tgen_dev, tg_ports, speed=None, autoneg=True)
+    # Set autoneg on all connected TG ports
+    try:
+        await tgen_utils_update_l1_config(tgen_dev, tg_ports, speed=None, autoneg=True)
+    except AssertionError as e:
+        pytest.skip(f'TGen does not support requested mode\n{e}')
     await asyncio.sleep(timeout)
 
     # 4. Send traffic by TG with  bits per second rate of 9_000_000

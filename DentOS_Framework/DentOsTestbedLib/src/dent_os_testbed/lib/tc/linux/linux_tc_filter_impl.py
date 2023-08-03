@@ -37,12 +37,20 @@ class LinuxTcFilterImpl(LinuxTcFilter):
                 for field, value in params['filtertype'].items():
                     cmd += '{} {} '.format(field, value)
         if 'action' in params:
+            if 'trap' in params['action']:
+                cmd += 'action trap '
             if 'police' in params['action']:
                 cmd += 'action police '
                 for field, value in params['action']['police'].items():
                     cmd += '{} {} '.format(field, value)
-            else:
-                cmd += 'action {} '.format(params['action'])
+            if 'pass' in params['action']:
+                cmd += 'action pass '
+            if 'drop' in params['action']:
+                cmd += 'action drop '
+            if 'xt' in params['action']:
+                cmd += 'action xt '
+                for field, value in params['action']['xt'].items():
+                    cmd += '{} {} '.format(field, value)
         return cmd
 
     def format_show(self, command, *argv, **kwarg):

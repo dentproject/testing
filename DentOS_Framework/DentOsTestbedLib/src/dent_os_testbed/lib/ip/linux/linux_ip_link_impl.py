@@ -38,12 +38,30 @@ class LinuxIpLinkImpl(LinuxIpLink):
             cmd += 'numrxqueues {} '.format((params['numrxqueues']))
         if 'type' in params:
             cmd += 'type {} '.format((params['type']))
+            if params['type'] == 'vrf':
+                cmd += 'table {} '.format((params['table']))
         if 'ageing_time' in params:
             cmd += 'ageing_time {} '.format((params['ageing_time']))
         if 'vlan_filtering' in params:
             cmd += 'vlan_filtering {} '.format((params['vlan_filtering']))
         if 'vlan_default_pvid' in params:
             cmd += 'vlan_default_pvid {} '.format((params['vlan_default_pvid']))
+        if 'mode' in params:
+            cmd += 'mode {} '.format((params['mode']))
+        if 'stp_state' in params:
+            cmd += 'stp_state {} '.format(params['stp_state'])
+        if 'forward_delay' in params:
+            cmd += 'forward_delay {} '.format(params['forward_delay'])
+        if 'hello_time' in params:
+            cmd += 'hello_time {} '.format(params['hello_time'])
+        if 'max_age' in params:
+            cmd += 'max_age {} '.format(params['max_age'])
+        if 'priority' in params:
+            cmd += 'priority {} '.format(params['priority'])
+        if 'group_address' in params:
+            cmd += 'group_address {} '.format(params['group_address'])
+        if 'id' in params:
+            cmd += 'id {} '.format((params['id']))
         return cmd
 
     def format_delete(self, command, *argv, **kwarg):
@@ -142,6 +160,8 @@ class LinuxIpLinkImpl(LinuxIpLink):
             cmd += 'mcast_querier_interval {} '.format((params['mcast_querier_interval']))
         if 'vlan_default_pvid' in params:
             cmd += 'vlan_default_pvid {} '.format((params['vlan_default_pvid']))
+        if 'stp_state' in params:
+            cmd += 'stp_state {} '.format(params['stp_state'])
         return cmd
 
     def format_show(self, command, *argv, **kwarg):
@@ -153,6 +173,8 @@ class LinuxIpLinkImpl(LinuxIpLink):
             params['cmd_options'] = '-j -d'
         cmd = 'ip {} link {} '.format(params.get('cmd_options', ''), command)
         # custom code here
+        if 'master' in params:
+            cmd += 'master '
         if 'device' in params:
             cmd += '{} '.format((params['device']))
         if 'group' in params:

@@ -364,9 +364,10 @@ async def tb_reload_firewall(devices):
     check_asyncio_results(results, 'tb_reload_firewall')
 
 
-async def tb_ping_device(device, target, pkt_loss_treshold=50, dump=False):
+async def tb_ping_device(device, target, pkt_loss_treshold=50, dump=False, count=10, interval=None):
     pkt_stats = ''
-    cmd = f'ping -c 10 {target}'
+    inter = f'-i {interval}' if interval is not None else ''
+    cmd = f'ping -c {count} {inter} {target}'
     rc, out = await device.run_cmd(cmd, sudo=True)
     if dump:
         device.applog.info(f'Ran {cmd} on {device.host_name} with rc {rc} and out {out}')
@@ -579,11 +580,32 @@ async def tb_get_qualified_ports(device, ports, speed, duplex, required_ports=2)
     for port in ports:
         out = await Ethtool.show(input_data=[{device.host_name: [{'devname': port}]}], parse_output=True)
         assert out[0][device.host_name]['rc'] == 0, f'Ethtool show failed: {out}'
-        supported_speeds = '{}baseT/{}' if 'TP' in out[0][device.host_name]['parsed_output'][
-            'supported_ports'] else '{}baseSR/{}'
-        if supported_speeds.format(speed, duplex.capitalize()) in out[0][device.host_name]['result']:
-            speed_ports[port] = {'speed': speed,
-                                 'duplex': duplex}
-    err_msg = f'Need {required_ports} ports with the same speed of {speed} and duplex {duplex}'
-    assert len(speed_ports) >= required_ports, err_msg
+        parsed = out[0][device.host_name]['parsed_output']
+
+        if 'TP' in parsed['supported_ports']:
+            supported_speed = f'{speed}baseT/{duplex.capitalize()}'
+            if supported_speed in parsed['supported_link_modes'] and \
+               supported_speed in parsed['link_partner_advertised_link_modes']:
+                #
+                speed_ports[port] = {'speed': speed, 'duplex': duplex}
+        else:  # sfp
+            supported_speed = f'{speed}baseSR/{duplex.capitalize()}'
+            if supported_speed in parsed['supported_link_modes']:
+                speed_ports[port] = {'speed': speed, 'duplex': duplex}
+
+    if len(speed_ports) < required_ports:
+        raise ValueError(f'Need {required_ports} ports with the same speed of {speed} and duplex {duplex}')
+
     return speed_ports
+
+
+async def get_port_stats(device_host_name, ports):
+    await asyncio.sleep(6)
+    stats = {}
+    for port in ports:
+        out = await Ethtool.show(input_data=[{device_host_name: [
+            {'devname': port, 'options': '-S'}
+        ]}], parse_output=True)
+        assert out[0][device_host_name]['rc'] == 0
+        stats[port] = out[0][device_host_name]['parsed_output']
+    return stats

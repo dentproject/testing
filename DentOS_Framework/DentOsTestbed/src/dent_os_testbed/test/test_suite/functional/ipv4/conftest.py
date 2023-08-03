@@ -11,32 +11,32 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
 
 @pytest_asyncio.fixture()
 async def enable_ipv4_forwarding(testbed):
-    tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 4)
-    if not tgen_dev or not dent_devices:
-        print('The testbed does not have enough dent with tgen connections')
-        return
-    dent = dent_devices[0].host_name
+    _, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 0)
+    dent_host_name = [dent.host_name for dent in dent_devices]
     ip_forward = 'net.ipv4.ip_forward'
 
     # Get ip_forward to restore it later
     out = await Sysctl.get(input_data=[{dent: [
         {'variable': ip_forward, 'options': '-n'}
-    ]}])
-    assert out[0][dent]['rc'] == 0
-    default_value = int(out[0][dent]['result'])
+    ]} for dent in dent_host_name])
+    assert all(res[host_name]['rc'] == 0 for res in out for host_name in res)
+    default_value = {
+        host_name: int(res[host_name]['result'])
+        for res in out for host_name in res
+    }
 
     # Enable ipv4 forwarding
     out = await Sysctl.set(input_data=[{dent: [
         {'variable': ip_forward, 'value': 1}
-    ]}])
-    assert out[0][dent]['rc'] == 0
+    ]} for dent in dent_host_name])
+    assert all(res[host_name]['rc'] == 0 for res in out for host_name in res)
 
     yield  # Run the test
 
     # Restore original value
     out = await Sysctl.set(input_data=[{dent: [
-        {'variable': ip_forward, 'value': default_value}
-    ]}])
+        {'variable': ip_forward, 'value': value}
+    ]} for dent, value in default_value.items()])
 
 
 @pytest_asyncio.fixture()
@@ -94,14 +94,13 @@ async def remove_default_gateway(testbed):
 
 
 @pytest_asyncio.fixture()
-async def change_port_mtu(testbed):
+async def cleanup_mtu(testbed):
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 4)
     if not tgen_dev or not dent_devices:
         print('The testbed does not have enough dent with tgen connections')
         return
     dent = dent_devices[0].host_name
     ports = tgen_dev.links_dict[dent][1]
-    mtu = 1000
 
     # Get current mtu to restore it later
     out = await IpLink.show(input_data=[{dent: [
@@ -110,12 +109,6 @@ async def change_port_mtu(testbed):
     assert out[0][dent]['rc'] == 0, 'Failed to get ports'
 
     def_mtu_map = [link for link in out[0][dent]['parsed_output'] if link['ifname'] in ports]
-
-    # Configure new mtu
-    out = await IpLink.set(input_data=[{dent: [
-        {'device': port, 'mtu': mtu} for port in ports
-    ]}])
-    assert out[0][dent]['rc'] == 0, 'Failed to set port mtu'
 
     yield  # Run the test
 

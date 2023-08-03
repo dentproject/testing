@@ -1,0 +1,26 @@
+FROM ubuntu:jammy
+
+ARG DEBIAN_FRONTEND=noninteractive
+ENV TZ=US/Pacific
+
+RUN apt-get -o Acquire::Check-Valid-Until=false update
+RUN apt-get -y upgrade
+
+# Are those packages used anywhere?
+RUN apt-get -y install build-essential
+RUN apt-get -y install git
+RUN apt-get -y install wget
+RUN apt-get -y install iproute2
+RUN apt-get -y install python3
+RUN apt-get -y install python3-pip
+RUN apt-get -y install python-is-python3
+RUN apt-get -y install iputils-ping
+
+RUN pip3 install --no-cache-dir -U pip>=23.0.1 wheel>=0.38.4 setuptools>=67.6.0
+
+RUN apt-get clean
+RUN rm -rf /var/lib/apt/lists/*
+
+LABEL author="Mircea Dan Gheorghe <mircea-dan.gheorghe@keysight.com>"
+LABEL version="1.0"
+LABEL description="DENT env for auto runs"

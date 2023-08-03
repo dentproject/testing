@@ -16,7 +16,8 @@
             "mediaMode":"copper",
             "links" : [
                 ["swp5", "infra2:swp6"],
-                ["swp7", "infra2:swp8"]
+                ["swp7", "infra2:swp8"],
+                ["swp9", "infra2:swp10"]
             ]
         },
         {

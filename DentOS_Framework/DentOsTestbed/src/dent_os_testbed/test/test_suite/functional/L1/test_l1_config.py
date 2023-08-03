@@ -4,6 +4,7 @@ import asyncio
 from dent_os_testbed.lib.ip.ip_link import IpLink
 from dent_os_testbed.lib.ethtool.ethtool import Ethtool
 
+from dent_os_testbed.utils.test_utils.tb_utils import tb_get_qualified_ports
 from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_get_dent_devices_with_tgen,
     tgen_utils_dev_groups_from_config,
@@ -13,7 +14,7 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
 
 pytestmark = [pytest.mark.suite_functional_l1,
               pytest.mark.asyncio,
-              pytest.mark.usefixtures('cleanup_bridges', 'cleanup_tgen')]
+              pytest.mark.usefixtures('cleanup_bridges', 'cleanup_tgen', 'restore_port_speed')]
 
 
 @pytest.mark.parametrize('l1_settings', ['autodetect', 'autoneg'])
@@ -32,7 +33,6 @@ async def test_l1_settings_(testbed, l1_settings):
     7. Verify "Link Partner Advertised Link Modes" is set to configured speed/duplex
     8. Verify "Advertised Link Modes" is set to configured speed/duplex
     """
-
     tgen_dev, dent_devices = await tgen_utils_get_dent_devices_with_tgen(testbed, [], 1)
     if not tgen_dev or not dent_devices:
         pytest.skip('The testbed does not have enough dent with tgen connections')
@@ -42,6 +42,16 @@ async def test_l1_settings_(testbed, l1_settings):
     speed = 1000
     duplex = 'full'
     advertise = '0x020'
+
+    dev_groups = tgen_utils_dev_groups_from_config(
+        [{'ixp': tg_port, 'ip': '100.1.1.2', 'gw': '100.1.1.6', 'plen': 24}])
+    await tgen_utils_traffic_generator_connect(tgen_dev, [tg_port], [port], dev_groups)
+    await asyncio.sleep(10)
+
+    try:
+        await tb_get_qualified_ports(dent_devices[0], tgen_dev.links_dict[device_host_name][1], speed, duplex, required_ports=1)
+    except ValueError as e:
+        pytest.skip(str(e))
 
     options = {
         'autodetect':
@@ -73,19 +83,17 @@ async def test_l1_settings_(testbed, l1_settings):
 
     # 3. Set up port(s) duplex, speed, advertise
     out = await Ethtool.set(input_data=[{device_host_name: [options[l1_settings]]}])
-
     assert out[0][device_host_name]['rc'] == 0, 'Failed setting port duplex, speed.'
 
-    dev_groups = tgen_utils_dev_groups_from_config(
-        [{'ixp': tg_port, 'ip': '100.1.1.2', 'gw': '100.1.1.6', 'plen': 24}])
-    await tgen_utils_traffic_generator_connect(tgen_dev, tg_port, port, dev_groups)
-
-    # update settings on IXIA port
-    await tgen_utils_update_l1_config(tgen_dev, tg_port, speed=speed, autoneg=True, duplex=duplex)
-
+    # update settings on TG port
+    try:
+        await tgen_utils_update_l1_config(tgen_dev, tg_port, speed=speed, autoneg=True, duplex=duplex)
+    except AssertionError as e:
+        pytest.skip(f'TGen does not support requested mode\n{e}')
     await asyncio.sleep(20)  # wait needed in case port was down before
 
     out = await Ethtool.show(input_data=[{device_host_name: [{'devname': port}]}],  parse_output=True)
+    assert out[0][device_host_name]['rc'] == 0, 'Failed getting port duplex, speed.'
 
     # 4. Verify port mode: speed 1000 duplex full
     actual_speed = int(out[0][device_host_name]['parsed_output']['speed'][:-4])

@@ -27,14 +27,14 @@ from dent_os_testbed.test.test_suite.functional.qos.conftest import (
     get_qd_stats,
     dscp_to_raw,
 )
-from dent_os_testbed.test.test_suite.functional.qos.constants import (
+from dent_os_testbed.utils.test_utils.data.tgen_constants import (
     RX_BYTES,
 )
 
 
 pytestmark = [
     pytest.mark.suite_functional_qos,
-    pytest.mark.usefixtures('cleanup_qdiscs', 'cleanup_bridges', 'cleanup_dscp_prio'),
+    pytest.mark.usefixtures('cleanup_qdiscs', 'cleanup_tgen', 'cleanup_bridges', 'cleanup_dscp_prio'),
     pytest.mark.asyncio,
 ]
 
@@ -96,7 +96,7 @@ async def test_qos_shaper(testbed, trust_mode):
         await configure_dscp_map_and_verify(dent, {ingress_port: dscp_prio_map})
     else:
         dscp_prio_map = {}
-        vlan = random.randint(2, 4095)
+        vlan = random.randint(2, 4094)
         out = await BridgeVlan.delete(input_data=[{dent: [
             {'device': port, 'vid': 1} for port in ports
         ]}])
