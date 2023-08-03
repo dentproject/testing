@@ -66,11 +66,25 @@ async def verify_dut_neighbors(dent, expected_neis):
             if expected_nei['should_exist']:
                 raise LookupError(f'Neighbor {expected_nei} expected, but not found')
 
+
+async def get_dut_neighbors(dent):
+    out = await IpNeighbor.show(input_data=[{dent: [
+        {'cmd_options': '-j -4'},
+    ]}], parse_output=True)
+    assert out[0][dent]['rc'] == 0, 'Failed to get IPv4 neighbors'
+    neighbors = out[0][dent]['parsed_output']
+
+    out = await IpNeighbor.show(input_data=[{dent: [
+        {'cmd_options': '-j -6'},
+    ]}], parse_output=True)
+    assert out[0][dent]['rc'] == 0, 'Failed to get IPv6 neighbors'
+    neighbors += out[0][dent]['parsed_output']
+
     learned_macs = {}
     for nei in neighbors:
         if nei['dev'] not in learned_macs:
             learned_macs[nei['dev']] = []
-        if 'lladdr' in nei:
+        if 'lladdr' in nei and not nei.get('dst', '').startswith('fe80'):  # ignore mcast
             learned_macs[nei['dev']].append(nei['lladdr'])
     return learned_macs
 

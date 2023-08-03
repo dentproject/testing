@@ -580,14 +580,22 @@ async def tb_get_qualified_ports(device, ports, speed, duplex, required_ports=2)
     for port in ports:
         out = await Ethtool.show(input_data=[{device.host_name: [{'devname': port}]}], parse_output=True)
         assert out[0][device.host_name]['rc'] == 0, f'Ethtool show failed: {out}'
-        supported_speeds = '{}baseT/{}' if 'TP' in out[0][device.host_name]['parsed_output'][
-            'supported_ports'] else '{}baseSR/{}'
-        if supported_speeds.format(speed, duplex.capitalize()) in out[0][device.host_name]['result']:
-            speed_ports[port] = {'speed': speed,
-                                 'duplex': duplex}
-    err_msg = f'Need {required_ports} ports with the same speed of {speed} and duplex {duplex}'
+        parsed = out[0][device.host_name]['parsed_output']
+
+        if 'TP' in parsed['supported_ports']:
+            supported_speed = f'{speed}baseT/{duplex.capitalize()}'
+            if supported_speed in parsed['supported_link_modes'] and \
+               supported_speed in parsed['link_partner_advertised_link_modes']:
+                #
+                speed_ports[port] = {'speed': speed, 'duplex': duplex}
+        else:  # sfp
+            supported_speed = f'{speed}baseSR/{duplex.capitalize()}'
+            if supported_speed in parsed['supported_link_modes']:
+                speed_ports[port] = {'speed': speed, 'duplex': duplex}
+
     if len(speed_ports) < required_ports:
-        raise ValueError(err_msg)
+        raise ValueError(f'Need {required_ports} ports with the same speed of {speed} and duplex {duplex}')
+
     return speed_ports
 
 

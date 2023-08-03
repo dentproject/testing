@@ -25,6 +25,8 @@ config
 CONFIG
 conftest
 cp
+CPU
+CPUs
 Ctrl
 DentOS
 dentOS
@@ -94,6 +96,7 @@ ok
 ONIE
 onie
 ONL
+onlpdump
 os
 parameterizing
 Passthrough
@@ -134,6 +137,7 @@ vm
 vms
 VMs
 VRF
+VRRP
 VTYSH
 xjf
 YAML

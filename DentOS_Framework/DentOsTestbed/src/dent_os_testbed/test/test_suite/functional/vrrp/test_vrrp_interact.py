@@ -31,7 +31,7 @@ from dent_os_testbed.test.test_suite.functional.vrrp.vrrp_utils import (
 
 pytestmark = [
     pytest.mark.suite_functional_vrrp,
-    pytest.mark.usefixtures('cleanup_ip_addrs', 'enable_ipv4_forwarding', 'cleanup_bridges'),
+    pytest.mark.usefixtures('cleanup_ip_addrs', 'cleanup_tgen', 'enable_ipv4_forwarding', 'cleanup_bridges'),
     pytest.mark.asyncio,
 ]
 

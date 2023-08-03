@@ -112,24 +112,21 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
 
             device.applog.info('Assigning ports')
             IxnetworkIxiaClientImpl.ixnet.AssignPorts(True)
-            portType = vports[port][0].Type
 
             lags = {}
             lag_ports = []
-            if (portType != 'ethernetvm'):
-                # init virtual lags
-                for name, group in dev_groups.items():
-                    if group[0]['type'] != 'lag':
-                        continue
-                    lag_vports = [vports[port][0].href for port in group[0]['lag_members']]
-                    lags[name] = {
-                        'vports': lag_vports,
-                        'instance': IxnetworkIxiaClientImpl.ixnet.Lag.add(Name=name, Vports=lag_vports),
-                    }
-                lag_ports = [port for lag in lags.values() for port in lag['vports']]
+            # init virtual lags
+            for name, group in dev_groups.items():
+                if group[0].get('type') != 'lag':
+                    continue
+                lag_vports = [vports[port][0].href for port in group[0]['lag_members']]
+                lags[name] = {
+                    'vports': lag_vports,
+                    'instance': IxnetworkIxiaClientImpl.ixnet.Lag.add(Name=name, Vports=lag_vports),
+                }
+            lag_ports = [port for lag in lags.values() for port in lag['vports']]
 
-            if (portType != 'ethernetvm'):
-                self.__update_ports_mode(vports, device)
+            self.__update_ports_mode(vports, device)
             # Add ports
             for port, vport in vports.items():
                 if vport[0].href in lag_ports or port not in dev_groups.keys():
@@ -226,21 +223,26 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
         Changes media modes for Ixia ports
         """
         for port, vport in vports.items():
-            card = vport[0].L1Config.NovusTenGigLan or vport[0].L1Config.Ethernet
-            if device.media_mode == 'mixed':
-                # Get required media mode. Default - copper
-                required_media = next((link[2] for link in device.links if link[0] == port), 'copper')
-                device.applog.info(f'Changing port: {port} media mode {required_media}')
-                card.Media = required_media
-                card.AutoInstrumentation = 'floating'
-            elif device.media_mode == 'fiber':
-                device.applog.info('Changing all vports media mode to fiber')
-                card.Media = 'fiber'
-                card.AutoInstrumentation = 'floating'
+            if (vport[0].IsVMPort):
+                # Don't Set Media Mode for VM, only AutoInstrumentation Mode
+                vport[0].L1Config.Ethernetvm.AutoInstrumentation = 'floating'
+                vport[0].L1Config.Ethernetvm.PromiscuousMode = True
             else:
-                device.applog.info('Changing all vports media mode to copper')
-                card.Media = 'copper'
-                card.AutoInstrumentation = 'floating'
+                card = vport[0].L1Config.NovusTenGigLan or vport[0].L1Config.Ethernet
+                if device.media_mode == 'mixed':
+                    # Get required media mode. Default - copper
+                    required_media = next((link[2] for link in device.links if link[0] == port), 'copper')
+                    device.applog.info(f'Changing port: {port} media mode {required_media}')
+                    card.Media = required_media
+                    card.AutoInstrumentation = 'floating'
+                elif device.media_mode == 'fiber':
+                    device.applog.info('Changing all vports media mode to fiber')
+                    card.Media = 'fiber'
+                    card.AutoInstrumentation = 'floating'
+                else:
+                    device.applog.info('Changing all vports media mode to copper')
+                    card.Media = 'copper'
+                    card.AutoInstrumentation = 'floating'
 
     def parse_connect(self, command, output, *argv, **kwarg):
         return command

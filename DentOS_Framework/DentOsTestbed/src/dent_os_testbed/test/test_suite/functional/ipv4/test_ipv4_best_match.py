@@ -93,6 +93,7 @@ async def test_ipv4_bm_traffic_forwarding(testbed):
     try:  # make sure that ip addr on loopback will be flushed
 
         # 3. Verify offload flag does not appear in the route of the first port connected to Ixia
+        await asyncio.sleep(10)
         out = await IpRoute.show(input_data=[{dent: [
             {'cmd_options': '-j'}
         ]}], parse_output=True)

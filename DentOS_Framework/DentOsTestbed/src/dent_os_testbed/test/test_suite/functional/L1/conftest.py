@@ -42,7 +42,6 @@ async def restore_port_speed(testbed):
             for port in ports
         ]}])
         assert out[0][dent]['rc'] == 0, 'Failed to set operstate up'
-
         await asyncio.sleep(10)
 
     ethtool = await asyncio.gather(*[
