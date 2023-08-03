@@ -8,7 +8,7 @@ SCRIPT_DIR=$(dirname "$0")
 DOCKERFILE_DIR=$SCRIPT_DIR
 
 # Build base image
-docker build -f "$DOCKERFILE_DIR"/Dockerfile -t dent-testing-base:latest .
+docker build -f "$DOCKERFILE_DIR"/Dockerfile.base -t dent-testing-base:latest .
 
 # Build working image
 docker build -f "$DOCKERFILE_DIR"/Dockerfile.testing -t dent-testing:latest .

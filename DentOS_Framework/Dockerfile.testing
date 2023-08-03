@@ -20,11 +20,11 @@ RUN pip3 install --no-cache-dir pdbpp==0.10.3
 WORKDIR /DENT/DentOsTestbed
 
 # Install each time DentOS Framework to use the latest changes from GIT
-RUN printf "#!/bin/bash\nDENT_PACKAGES=(\"/DENT/DentOsTestbed\" \"/DENT/DentOsTestbedDiscovery\" \"/DENT/DentOsTestbedLib\")\n" > /entrypoint.sh
-RUN printf "pip3 cache purge" >> /entrypoint.sh
-RUN printf "[ -z $SKIP_INSTALL ] && for pkg in \${DENT_PACKAGES[@]}; do cd \$pkg; pip3 install --no-cache-dir --root-user-action=ignore .; done" >> /entrypoint.sh
+RUN echo "#!/bin/bash\nDENT_PACKAGES=(\"/DENT/DentOsTestbed\" \"/DENT/DentOsTestbedDiscovery\" \"/DENT/DentOsTestbedLib\")\n" > /entrypoint.sh
+RUN echo "pip3 cache purge" >> /entrypoint.sh
+RUN echo "[ -z $SKIP_INSTALL ] && for pkg in \${DENT_PACKAGES[@]}; do cd \$pkg; pip3 install --no-cache-dir --root-user-action=ignore .; done" >> /entrypoint.sh
 # `pip3 install --editable` does not work for the packages from above
-RUN printf "cd /DENT/DentOsTestbed\n\$@\n" >> /entrypoint.sh
+RUN echo "cd /DENT/DentOsTestbed\n\$@\n" >> /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
