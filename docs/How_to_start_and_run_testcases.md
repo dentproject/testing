@@ -202,10 +202,11 @@ Since VRRP tests require testbed with at least 3 devices, they are skipped if ru
 1. Setup Testbed Server
 2. Setup the DentOS SIT topology (only 1 DENT-Aggregator and 2 DENT-Infrastructure DUTs required)
 3. Install DentOS on DUT or cleanup configuration if it was used by SIT before.
-   **VRRP tests require that the DUTs don't have any bridges/bonds/qdiscs or any IP addresses on switching interfaces.**
-   To cleanup the DUTs see '[Cleanup DUT configuration](#Cleanup DUT configuration)'
+**VRRP tests require that the DUTs don't have any bridges/bonds/qdiscs or any IP addresses on switching interfaces.**
+To cleanup the DUTs see 'Cleanup DUT configuration'
 5. Optionally, reboot the DUTs and run 'onlpdump' to bring up ports
 6. Run the tests
+
 ```Shell
 ./run.sh dentos_testbed_runtests --stdout \
   --config configuration/testbed_config/sit/testbed.json \
@@ -214,6 +215,7 @@ Since VRRP tests require testbed with at least 3 devices, they are skipped if ru
   --suite-groups suite_group_functional \
   -k suite_functional_vrrp
 ```
+
 7. Check Logs locally at ./DentOS_Framework/DentOsTestbed/logs
 
 **NOTE:**
