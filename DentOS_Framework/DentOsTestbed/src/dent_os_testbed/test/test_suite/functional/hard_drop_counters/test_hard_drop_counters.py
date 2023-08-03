@@ -23,7 +23,7 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
 
 pytestmark = [
     pytest.mark.suite_functional_hard_drop_counters,
-    pytest.mark.usefixtures('define_bash_utils', 'cleanup_ip_addrs'),
+    pytest.mark.usefixtures('define_bash_utils', 'cleanup_tgen', 'cleanup_ip_addrs'),
     pytest.mark.asyncio,
 ]
 

@@ -21,11 +21,12 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
 from dent_os_testbed.test.test_suite.functional.ipv6.ipv6_utils import (
     verify_dut_neighbors,
     verify_dut_routes,
+    get_dut_neighbors,
 )
 
 pytestmark = [
     pytest.mark.suite_functional_ipv6,
-    pytest.mark.usefixtures('cleanup_ip_addrs', 'enable_ipv6_forwarding', 'cleanup_bridges'),
+    pytest.mark.usefixtures('cleanup_ip_addrs', 'cleanup_tgen', 'enable_ipv6_forwarding', 'cleanup_bridges'),
     pytest.mark.asyncio,
 ]
 
@@ -361,7 +362,9 @@ async def test_ipv6_move_host_on_bridge(testbed):
                       'offload': True,
                       'states': ['REACHABLE', 'PROBE', 'STALE', 'DELAY']}
                      for info in address_map]
-    learned_macs = await verify_dut_neighbors(dent, expected_neis)
+    await verify_dut_neighbors(dent, expected_neis)
+
+    learned_macs = await get_dut_neighbors(dent)
 
     # 5. Delete host from TG port#2. Add host to TG port#3
     address_map = (
@@ -407,6 +410,8 @@ async def test_ipv6_move_host_on_bridge(testbed):
     await verify_dut_routes(dent, expected_routes)
 
     # 8. Verify neighbors resolved
-    new_learned_macs = await verify_dut_neighbors(dent, expected_neis)
+    await verify_dut_neighbors(dent, expected_neis)
+
+    new_learned_macs = await get_dut_neighbors(dent)
     for mac in new_learned_macs[bridge]:
         assert mac not in learned_macs[bridge], 'Expected learned mac to change'
