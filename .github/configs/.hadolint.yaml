@@ -5,5 +5,3 @@ ignored:
 - DL3015 # Avoid additional packages by specifying `--no-install-recommends`
 - DL3059 # Multiple consecutive `RUN` instructions. Consider consolidation.
 dockerfile: Dockerfile*
-recursive: true
-verbose: true
