@@ -20,6 +20,7 @@ jobs:
       with:
         recursive: true
         verbose: true
+        dockerfile: Dockerfile*
         config: .github/configs/.hadolint.yaml
 
   lint-shell:
