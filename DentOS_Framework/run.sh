@@ -8,10 +8,10 @@ SCRIPT_DIR=$(dirname "$0")
 DOCKERFILE_DIR=$SCRIPT_DIR
 
 # Build base image
-docker build -f "$DOCKERFILE_DIR"/Dockerfile.base -t dent-testing-base:latest .
+docker build -f "$DOCKERFILE_DIR"/Dockerfile.base -t dent/test-framework-base:latest .
 
 # Build working image
-docker build -f "$DOCKERFILE_DIR"/Dockerfile.testing -t dent-testing:latest .
+docker build -f "$DOCKERFILE_DIR"/Dockerfile.auto -t dent/test-framework-dev:latest .
 
 if [ -n "$1" ]; then
     COMMAND="$*"
@@ -23,5 +23,5 @@ docker run \
     --mount=type=bind,target=/DENT/DentOsTestbedDiscovery,source="$PWD"/DentOsTestbedDiscovery \
     --mount=type=bind,target=/DENT/DentOsTestbedLib,source="$PWD"/DentOsTestbedLib \
     --name dent-testing-"$USER" \
-    dent-testing:latest \
+    dent/test-framework-dev:latest \
     "$COMMAND"
