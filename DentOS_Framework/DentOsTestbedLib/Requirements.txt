@@ -1,3 +1,2 @@
 pyyaml
 pykwalify
-ixnetwork_restpy
