@@ -4,7 +4,7 @@ import time
 
 from dent_os_testbed.lib.traffic.ixnetwork.ixnetwork_ixia_client import IxnetworkIxiaClient
 from ixnetwork_restpy.assistants.statistics.statviewassistant import StatViewAssistant as SVA
-from ixnetwork_restpy import SessionAssistant, Files
+from ixnetwork_restpy import SessionAssistant, Files, BatchAdd, BatchFind
 
 
 class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
@@ -105,10 +105,20 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
             swp_ports = param['swp_ports']
             dev_groups = param['dev_groups']
 
+            # Batch Add all ixia ports to prevent 1 at a time restarting
+            with BatchAdd(IxnetworkIxiaClientImpl.ixnet):
+                for port in ixia_ports:
+                    IxnetworkIxiaClientImpl.ixnet.Vport.add(Name=port, Location=port.replace(':', ';'))
+            # Batch Find to retrieve list of added port objects
+            with BatchFind(IxnetworkIxiaClientImpl.ixnet) as bf:
+                IxnetworkIxiaClientImpl.ixnet.Vport.find()
+            # Use Batch Find results to create name-addressable vport dict
+            vport_objects = {vport.Name: vport for vport in bf.results.vport}
+
             vports = {}
-            for port, sport in zip(ixia_ports, swp_ports):
-                # Specify Location on Port Add to simplify assignment
-                vports[port] = (IxnetworkIxiaClientImpl.ixnet.Vport.add(Name=port, Location=port.replace(':', ';')), sport)
+            for port, swp_port in zip(ixia_ports, swp_ports):
+                # Vports dict uses port name to store vport object and swp port name
+                vports[port] = (vport_objects[port], swp_port)
 
             device.applog.info('Assigning ports')
             IxnetworkIxiaClientImpl.ixnet.AssignPorts(True)
@@ -762,7 +772,12 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
         if command == 'start_protocols':
             device.applog.info('Starting All Protocols')
             IxnetworkIxiaClientImpl.ixnet.StartAllProtocols(Arg1='sync')
-            time.sleep(15)
+            # Check that Protocols are Started and Up
+            protocolsSummary = SVA(IxnetworkIxiaClientImpl.ixnet, 'Protocols Summary')
+            device.applog.info('Waiting for Protocols for up to 20 seconds')
+            protocolsSummary.CheckCondition('Sessions Not Started', SVA.EQUAL, 0, Timeout=10, RaiseException=False)
+            protocolsSummary.CheckCondition('Sessions Down', SVA.EQUAL, 0, Timeout=10, RaiseException=False)
+
             for ep in IxnetworkIxiaClientImpl.ip_eps:
                 device.applog.info('Sending ARP on ' + ep.Name)
                 ep.Start()
