@@ -25,7 +25,7 @@
             "type" : "TRAFFIC_GENERATOR",
             "hostName": "ixia",
             "model": "Novus10G",
-            "ip": "10.36.118.213",
+            "ip": "10.36.118.111",
             "login":{
                 "userName":"admin",
                 "password":"admin"
