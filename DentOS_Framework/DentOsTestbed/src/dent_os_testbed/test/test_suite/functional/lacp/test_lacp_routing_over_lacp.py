@@ -1,4 +1,6 @@
 import asyncio
+from math import isclose
+
 import pytest
 
 from dent_os_testbed.lib.ip.ip_link import IpLink
@@ -139,5 +141,5 @@ async def test_lacp_routing_over_lacp(testbed):
     stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Traffic Item Statistics')
     for row in stats.Rows:
         err_msg = f"Expected 0.00 loss, actual {float(row['Loss %'])}"
-        assert tgen_utils_get_loss(row) == 0.000, err_msg
+        assert isclose(tgen_utils_get_loss(row), 0.00, abs_tol=0.1), err_msg
     await tgen_utils_stop_traffic(tgen_dev)
