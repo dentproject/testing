@@ -11,6 +11,14 @@
                 "userName":"root",
                 "password":"onl"
             },
+            "cpuArchitecture": "arm",
+            "macAddress": "90:3C:B3:8B:EF:32",
+            "serialConsoleIp": "10.36.118.200",
+            "serialConsolePort": 7003,
+            "pduIp": "10.36.118.201",
+            "pduLogin": "dent",
+            "pduPassword": "dent123!",
+            "pduNumber": 3,
             "serialDev":"/dev/ttyUSB0",
             "baudrate": 115200,
             "links" : [

@@ -11,6 +11,14 @@
                 "userName":"root",
                 "password":"onl"
             },
+            "cpuArchitecture": "arm",
+    	    "macAddress": "90:3C:B3:8B:EF:32",
+	    "serialConsoleIp": "10.36.118.200",
+	    "serialConsolePort": 7003,
+	    "pduIp": "10.36.118.201",
+            "pduLogin": "dent",
+            "pduPassword": "dent123!",
+	    "pduNumber": 3,
             "serialDev":"/dev/ttyUSB0",
             "baudrate": 115200,
             "links" : [
@@ -20,7 +28,7 @@
                 ["swp52", "infra2:swp52"],
 		["swp5", "infra1:swp6"],
 		["swp7", "infra1:swp8"],
-		["swp9", "infra1:swp10"]		
+		["swp9", "infra1:swp10"]
             ]
         },
         {
@@ -34,6 +42,14 @@
                 "userName":"root",
                 "password":"onl"
             },
+            "cpuArchitecture": "arm",
+    	    "macAddress": "18:BE:92:13:64:80",
+	    "serialConsoleIp": "10.36.118.200",
+	    "serialConsolePort": 7011,
+	    "pduIp": "10.36.118.201",
+            "pduLogin": "dent",
+            "pduPassword": "dent123!",
+	    "pduNumber": "4",
             "serialDev":"/dev/ttyUSB1",
             "baudrate": 115200,
             "links" : [
@@ -43,12 +59,12 @@
                 ["swp52", "infra2:swp52"],
 		["swp5", "infra2:swp6"],
 		["swp7", "infra2:swp8"],
-		["swp9", "infra2:swp10"]		
+		["swp9", "infra2:swp10"]
             ]
         },
         {
             "friendlyName":"Dent agg1",
-            "os":"dentos",
+            "os": "dentos",
             "type" : "AGGREGATION_ROUTER",
             "hostName": "agg1",
             "model": "arm64-accton-as5114-48x-r0",
@@ -56,7 +72,15 @@
             "login":{
                 "userName":"root",
                 "password":"onl"
-             },
+            },
+            "cpuArchitecture": "arm",
+    	    "macAddress": "34:EF:B6:EC:38:02",
+	    "serialConsoleIp": "10.36.118.200",
+	    "serialConsolePort": 7005,
+	    "pduIp": "10.36.118.201",
+            "pduLogin": "dent",
+            "pduPassword": "dent123!",
+	    "pduNumber": 5,	    
             "serialDev":"/dev/ttyUSB2",
             "baudrate": 115200,
             "links" : [
@@ -65,12 +89,12 @@
                 ["swp48", "infra2:swp49"],
 		["swp5", "agg1:swp6"],
 		["swp7", "agg1:swp8"],
-		["swp9", "agg1:swp10"]		
+		["swp9", "agg1:swp10"]
             ]
         },
         {
             "friendlyName":"Dent agg2",
-            "os":"dentos",
+            "os": "dentos",
             "type" : "AGGREGATION_ROUTER",
             "hostName": "agg2",
             "model": "arm64-accton-as5114-48x-r0",
@@ -79,6 +103,14 @@
                 "userName":"root",
                 "password":"onl"
             },
+            "cpuArchitecture": "arm",
+    	    "macAddress": "34:EF:B6:EC:2A:4C",
+	    "serialConsoleIp": "10.36.118.200",
+	    "serialConsolePort": 7008,
+	    "pduIp": "10.36.118.201",
+            "pduLogin": "dent",
+            "pduPassword": "dent123!",
+	    "pduNumber": 8,
             "serialDev":"/dev/ttyUSB3",
             "baudrate": 115200,
             "links" : [
@@ -87,7 +119,7 @@
                 ["swp48", "infra2:swp50"],
 		["swp5", "agg2:swp6"],
 		["swp7", "agg2:swp8"],
-		["swp9", "agg2:swp10"]		
+		["swp9", "agg2:swp10"]
             ]
         },
         {
@@ -101,6 +133,14 @@
                 "userName":"root",
                 "password":"onl"
             },
+            "cpuArchitecture": "arm",
+    	    "macAddress": "34:EF:B6:EC:26:BE",
+	    "serialConsoleIp": "10.36.118.200",
+	    "serialConsolePort": 7006,
+	    "pduIp": "10.36.118.201",
+            "pduLogin": "dent",
+            "pduPassword": "dent123!",
+	    "pduNumber": 6,
             "serialDev":"/dev/ttyUSB3",
             "baudrate": 115200,
             "links" : [
