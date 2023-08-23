@@ -15,6 +15,7 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_get_traffic_stats,
     tgen_utils_setup_streams,
     tgen_utils_start_traffic,
+    tgen_utils_stop_traffic,
     tgen_utils_get_swp_info,
     tgen_utils_get_loss,
 )
@@ -164,6 +165,7 @@ async def test_lacp_routing_over_vlan_device(testbed):
             raise  # will re-raise the AssertionError
     await tgen_utils_start_traffic(tgen_dev)
     await asyncio.sleep(25)
+    await tgen_utils_stop_traffic(tgen_dev)
 
     # 9. Verify no traffic loss
     stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Traffic Item Statistics')

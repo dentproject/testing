@@ -136,10 +136,10 @@ async def test_lacp_routing_over_lacp(testbed):
             raise  # will re-raise the AssertionError
     await tgen_utils_start_traffic(tgen_dev)
     await asyncio.sleep(25)
+    await tgen_utils_stop_traffic(tgen_dev)
 
     # 9. Verify no traffic loss
     stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Traffic Item Statistics')
     for row in stats.Rows:
         err_msg = f"Expected 0.00 loss, actual {float(row['Loss %'])}"
         assert isclose(tgen_utils_get_loss(row), 0.00, abs_tol=0.1), err_msg
-    await tgen_utils_stop_traffic(tgen_dev)
