@@ -15,7 +15,7 @@
     	    "macAddress": "90:3C:B3:8B:EF:32",
 	    "serialConsole": {
 		"ip": "10.36.118.200",
-		"port": 7003,
+		"port": 7003
 	    },
 	    "pdu": {
 		"ip": "10.36.118.201",
