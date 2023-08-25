@@ -1,7 +1,7 @@
 {
     "devices": [
         {
-            "friendlyName":"DENT aggregation 1",
+            "friendlyName":"Dent agg1",
             "os":"dentos",
             "type" : "INFRA_SWITCH",
             "hostName": "agg1",
@@ -13,12 +13,16 @@
             },
             "cpuArchitecture": "arm",
             "macAddress": "34:EF:B6:EC:38:02",
-            "serialConsoleIp": "10.36.118.200",
-            "serialConsolePort": 7005,
-            "pduIp": "10.36.118.201",
-            "pduLogin": "dent",
-            "pduPassword": "dent123!",
-            "pduNumber": 5,
+            "serialConsole": {
+		"ip": "10.36.118.200",
+		"port": 7005
+	    },
+	    "pdu": {
+		"ip": "10.36.118.201",
+		"login": "dent",
+		"password": "dent123!",
+		"number": 5
+	    },
             "serialDev":"/dev/ttyUSB0",
             "baudrate": 115200,
             "mediaMode":"fiber",
@@ -34,7 +38,7 @@
             "type" : "TRAFFIC_GENERATOR",
             "hostName": "ixia",
             "model": "Novus10G",
-            "ip": "10.36.118.213",
+            "ip": "10.36.118.111",
             "login":{
                 "userName":"admin",
                 "password":"admin"
