@@ -152,6 +152,7 @@ async def _test_dentv2_acl_perf_load_helper(infra_devices, chain_input, filter_i
                 filter_input[0]['pref'] += 1
                 filter_input[0]['filtertype']['src_ip'] += 1
                 num_rules += 1
+                assert loadtime < 166, f'Load time: {loadtime}s, num rules: {num_rules}'
 
             # Delete the chain and all the rules it holds
             unloadtime = 0
@@ -187,5 +188,4 @@ async def _test_dentv2_acl_perf_load_helper(infra_devices, chain_input, filter_i
             endtime = time.time()
             unloadtime += endtime - starttime
             tb_restore_qdisc(dd, swp, 'ingress')
-            assert loadtime < 166, f'Load time: {loadtime}s, num rules: {num_rules}'
             assert unloadtime < 20, f'Unload time: {unloadtime}s'
