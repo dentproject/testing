@@ -1,7 +1,7 @@
 {
     "devices": [
         {
-            "friendlyName":"DENT distribution 1",
+            "friendlyName":"Dent dist1",
             "os":"dentos",
             "type" : "INFRA_SWITCH",
             "hostName": "dist1",
@@ -11,6 +11,18 @@
                 "userName":"root",
                 "password":"onl"
             },
+            "cpuArchitecture": "arm",
+            "macAddress": "34:EF:B6:EC:26:BE",
+            "serialConsole": {
+		"ip": "10.36.118.200",
+		"port": 7006
+	    },
+	    "pdu": {
+		"ip": "10.36.118.201",
+		"login": "dent",
+		"password": "dent123!",
+		"number": 6
+	    },
             "serialDev":"/dev/ttyUSB0",
             "baudrate": 115200,
             "mediaMode":"fiber",
@@ -26,7 +38,7 @@
             "type" : "TRAFFIC_GENERATOR",
             "hostName": "ixia",
             "model": "Novus10G",
-            "ip": "10.36.118.213",
+            "ip": "10.36.118.111",
             "login":{
                 "userName":"admin",
                 "password":"admin"
