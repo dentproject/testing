@@ -4,7 +4,7 @@ import time
 
 from dent_os_testbed.lib.traffic.ixnetwork.ixnetwork_ixia_client import IxnetworkIxiaClient
 from ixnetwork_restpy.assistants.statistics.statviewassistant import StatViewAssistant as SVA
-from ixnetwork_restpy import SessionAssistant, Files, BatchAdd, BatchFind
+from ixnetwork_restpy import SessionAssistant, Files, BatchAdd, BatchFind, BatchUpdate
 
 
 class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
@@ -57,7 +57,6 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                 IxnetworkIxiaClientImpl.ip_eps = []
                 IxnetworkIxiaClientImpl.eth_eps = []
                 IxnetworkIxiaClientImpl.raw_eps = []
-                IxnetworkIxiaClientImpl.tis = None
             return 0, ''
         params = kwarg['params']
         if not params or not params[0] or 'test' in device.host_name:
@@ -90,7 +89,6 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
             IxnetworkIxiaClientImpl.ip_eps = []
             IxnetworkIxiaClientImpl.eth_eps = []
             IxnetworkIxiaClientImpl.raw_eps = []
-            IxnetworkIxiaClientImpl.tis = None
             crc = IxnetworkIxiaClientImpl.ixnet.Traffic.TrafficItem.ConfigElement._SDM_ENUM_MAP['crc']
             IxnetworkIxiaClientImpl.bad_crc = {True: crc[0], False: crc[1]}
             IxnetworkIxiaClientImpl.stack_template = {
@@ -285,8 +283,6 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
             if not found:
                 out = IxnetworkIxiaClientImpl.session.UploadFile(fname, name)
             out = IxnetworkIxiaClientImpl.ixnet.LoadConfig(Files(name))
-            # get the traffic items back
-            IxnetworkIxiaClientImpl.tis = IxnetworkIxiaClientImpl.ixnet.Traffic.TrafficItem.find()
         elif command == 'save_config':
             out = IxnetworkIxiaClientImpl.ixnet.SaveConfig(Files(name))
             out += IxnetworkIxiaClientImpl.session.DownloadFile(name, fname)
@@ -427,19 +423,17 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
             if not any(dst in pkt_data and endpoint_names[endpoint] not in pkt_data[dst]
                        for dst, endpoint in (('ip_destination', ip), ('ep_destination', ep), ('bgp_destination', rr))):
                 endpoint_dests.append((ip, ep, rep, rr))
-        # Batch Add Traffic Items
-        with BatchAdd(IxnetworkIxiaClientImpl.ixnet):
-            for _ in range(len(endpoint_sources)):
-                device.applog.info(f'Creating {traffic_type} traffic stream')
-                cls.ixnet.Traffic.TrafficItem.add(
-                    Name=name, TrafficType=ixia_traffic_type, Enabled=True
-                )
+        # Add Traffic Items
+        tis = []
+        for _ in range(len(endpoint_sources)):
+            device.applog.info(f'Creating {traffic_type} traffic stream')
+            tis.append(cls.ixnet.Traffic.TrafficItem.add(
+                Name=name, TrafficType=ixia_traffic_type, Enabled=True
+            ))
 
-        # Collect and Save Traffic Items
-        cls.tis = IxnetworkIxiaClientImpl.ixnet.Traffic.TrafficItem.find()
         # Batch Add Endpoints to Traffic Items
         with BatchAdd(IxnetworkIxiaClientImpl.ixnet):
-            for (ip1, ep1, rep1, rr1), ti in zip(endpoint_sources, cls.tis):
+            for (ip1, ep1, rep1, rr1), ti in zip(endpoint_sources, tis):
                 for ip2, ep2, rep2, rr2 in endpoint_dests:
                     if ep1 == ep2 and not pkt_data.get('allowSelfDestined', False):
                         continue
@@ -458,6 +452,7 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                         src_name, dst_name = endpoint_names[src], endpoint_names[dst]
                     device.applog.info(f'Adding endpoint {src_name} to {dst_name}')
                     ti.EndpointSet.add(Sources=src, Destinations=dst)
+        return tis
 
     def __configure_l2_stack(self, config_element, pkt_data, track_by):
         eth_stack = config_element.Stack.find(StackTypeId='^ethernet$')
@@ -657,17 +652,22 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
         return custom_stack
 
     def set_traffic(self, device, name, pkt_data):
-        self.__create_traffic_items(device, pkt_data, name)
-        for ti in IxnetworkIxiaClientImpl.tis:
-            track_by = {'trackingenabled0', 'sourceDestValuePair0'}
+        track_by = {'trackingenabled0', 'sourceDestValuePair0'}
+        tis = self.__create_traffic_items(device, pkt_data, name)
+        with BatchUpdate(IxnetworkIxiaClientImpl.ixnet):
+            for ti in tis:
+                for config_element in ti.ConfigElement.find():
+                    self.__update_frame_rate(config_element, pkt_data)
+                    config_element.FrameSize.update(
+                        Type='fixed', FixedSize=pkt_data.get('frameSize', '512')
+                    )
+                    config_element.Crc = self.bad_crc[pkt_data.get('bad_crc', False)]
+                    self.__update_transmission_control(config_element, pkt_data)
+                ti.Tracking.find()[0].TrackBy = list(track_by)
+                ti.BiDirectional = pkt_data.get('bi_directional', False)
+                ti.AllowSelfDestined = pkt_data.get('allowSelfDestined', False)
+        for ti in tis:
             for config_element in ti.ConfigElement.find():
-                self.__update_frame_rate(config_element, pkt_data)
-                config_element.FrameSize.update(
-                    Type='fixed', FixedSize=pkt_data.get('frameSize', '512')
-                )
-                config_element.Crc = self.bad_crc[pkt_data.get('bad_crc', False)]
-                self.__update_transmission_control(config_element, pkt_data)
-
                 if pkt_data.get('type') == 'bpdu':
                     self.__configure_bpdu(config_element, pkt_data, track_by)
                     continue
@@ -679,10 +679,6 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                 self.__configure_lldp_stack(config_element, pkt_data, eth_stack)
                 ip_stack = self.__configure_l3_stack(config_element, pkt_data, track_by, eth_stack)
                 self.__configure_l4_stack(config_element, pkt_data, track_by, ip_stack)
-
-            ti.Tracking.find()[0].TrackBy = list(track_by)
-            ti.BiDirectional = pkt_data.get('bi_directional', False)
-            ti.AllowSelfDestined = pkt_data.get('allowSelfDestined', False)
             self.__configure_egress_tracking(ti, pkt_data)
 
     def run_traffic_item(self, device, command, *argv, **kwarg):
@@ -745,13 +741,12 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
             IxnetworkIxiaClientImpl.ixnet.ClearStats()
         elif command == 'clear_traffic':
             traffic_names = kwarg['params'][0]['traffic_names']
-            tis_to_remove = IxnetworkIxiaClientImpl.tis[:]
+            tis_to_remove = IxnetworkIxiaClientImpl.ixnet.Traffic.TrafficItem.find()
             if traffic_names:
                 tis_to_remove = filter(lambda ti: ti.Name in traffic_names, tis_to_remove)
             for traffic_item in tis_to_remove:
                 device.applog.info(f'TI to be removed: {traffic_item.Name}')
                 traffic_item.remove()
-                IxnetworkIxiaClientImpl.tis.remove(traffic_item)
         return 0, ''
 
     def parse_traffic_item(self, command, output, *argv, **kwarg):
@@ -792,7 +787,7 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                         ep.SendNs()  # ipv6
                 time.sleep(5)
             device.applog.info('Generating Traffic')
-            IxnetworkIxiaClientImpl.tis.Generate()
+            IxnetworkIxiaClientImpl.ixnet.Traffic.TrafficItem.find().Generate()
             device.applog.info('Applying Traffic')
             IxnetworkIxiaClientImpl.ixnet.Traffic.Apply()
         elif command == 'stop_protocols':
