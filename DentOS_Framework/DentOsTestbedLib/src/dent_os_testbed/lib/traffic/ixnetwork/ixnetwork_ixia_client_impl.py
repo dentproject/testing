@@ -4,7 +4,7 @@ import time
 
 from dent_os_testbed.lib.traffic.ixnetwork.ixnetwork_ixia_client import IxnetworkIxiaClient
 from ixnetwork_restpy.assistants.statistics.statviewassistant import StatViewAssistant as SVA
-from ixnetwork_restpy import SessionAssistant, Files, BatchAdd, BatchFind, BatchUpdate
+from ixnetwork_restpy import SessionAssistant, Files, BatchAdd, BatchFind
 
 
 class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
@@ -652,33 +652,32 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
         return custom_stack
 
     def set_traffic(self, device, name, pkt_data):
-        track_by = {'trackingenabled0', 'sourceDestValuePair0'}
         tis = self.__create_traffic_items(device, pkt_data, name)
-        with BatchUpdate(IxnetworkIxiaClientImpl.ixnet):
-            for ti in tis:
-                for config_element in ti.ConfigElement.find():
-                    self.__update_frame_rate(config_element, pkt_data)
-                    config_element.FrameSize.update(
-                        Type='fixed', FixedSize=pkt_data.get('frameSize', '512')
-                    )
-                    config_element.Crc = self.bad_crc[pkt_data.get('bad_crc', False)]
-                    self.__update_transmission_control(config_element, pkt_data)
-                ti.Tracking.find()[0].TrackBy = list(track_by)
-                ti.BiDirectional = pkt_data.get('bi_directional', False)
-                ti.AllowSelfDestined = pkt_data.get('allowSelfDestined', False)
         for ti in tis:
+            track_by = {'trackingenabled0', 'sourceDestValuePair0'}
             for config_element in ti.ConfigElement.find():
+
+                self.__update_frame_rate(config_element, pkt_data)
+                config_element.FrameSize.update(
+                    Type='fixed', FixedSize=pkt_data.get('frameSize', '512')
+                )
+                config_element.Crc = self.bad_crc[pkt_data.get('bad_crc', False)]
+                self.__update_transmission_control(config_element, pkt_data)
+
                 if pkt_data.get('type') == 'bpdu':
                     self.__configure_bpdu(config_element, pkt_data, track_by)
                     continue
                 elif pkt_data.get('type') == 'custom':
                     self.__configure_custom_stack(config_element, pkt_data, track_by)
                     continue
-
                 eth_stack = self.__configure_l2_stack(config_element, pkt_data, track_by)
                 self.__configure_lldp_stack(config_element, pkt_data, eth_stack)
                 ip_stack = self.__configure_l3_stack(config_element, pkt_data, track_by, eth_stack)
                 self.__configure_l4_stack(config_element, pkt_data, track_by, ip_stack)
+
+            ti.Tracking.find()[0].TrackBy = list(track_by)
+            ti.BiDirectional = pkt_data.get('bi_directional', False)
+            ti.AllowSelfDestined = pkt_data.get('allowSelfDestined', False)
             self.__configure_egress_tracking(ti, pkt_data)
 
     def run_traffic_item(self, device, command, *argv, **kwarg):
