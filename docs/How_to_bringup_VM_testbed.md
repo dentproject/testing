@@ -9,7 +9,7 @@ This file documents the VM Testbed setup using IxNetwork, IxChassis, and Card/Lo
 1. [Hardware Requirements](#hardware-requirements)
 1. [Hardware Setup](#hardware-setup)
 1. [VM Installation Steps](#vm-installation-steps)
-1. [License VMs](#license-vms)
+1. [VM Bringup](#vm-bringup)
 
 ## Hardware Requirements
 
@@ -64,29 +64,29 @@ Total: 75-100 GB depending on setup
 * Install Ubuntu prerequisites
 
 ```Shell
-    sudo apt -y update
-    sudo apt -y upgrade
-    sudo apt -y autoremove
-    sudo apt -y install \
-      python3 \
-      python3-pip \
-      net-tools \
-      curl \
-      git \
-      make \
-      lbzip2
+sudo apt -y update
+sudo apt -y upgrade
+sudo apt -y autoremove
+sudo apt -y install \
+  python3 \
+  python3-pip \
+  net-tools \
+  curl \
+  git \
+  make \
+  lbzip2
 ```
 
 * Install KVM prerequisites
 
 ```Shell
-    sudo apt -y install cpu-checker
-    sudo kvm-ok
-    sudo apt -y install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils virtinst virt-manager libosinfo-bin bzip2
-    sudo usermod -aG libvirt $USER
-    sudo usermod -aG kvm $USER
-    sudo systemctl enable libvirtd
-    sudo systemctl start libvirtd
+sudo apt -y install cpu-checker
+sudo kvm-ok
+sudo apt -y install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils virtinst virt-manager libosinfo-bin bzip2
+sudo usermod -aG libvirt $USER
+sudo usermod -aG kvm $USER
+sudo systemctl enable libvirtd
+sudo systemctl start libvirtd
 ```
 
 ### Configure PCI Passthrough
@@ -115,7 +115,20 @@ Download the following three compressed VM images to `dent-testing/vms` or `dent
 
 * [IxLoadModule / Card VM](https://downloads.ixiacom.com/support/downloads_and_updates/public/IxVM/9.30/9.30.0.328/Ixia_Virtual_Load_Module_IXN_9.30_KVM.qcow2.tar.bz2)
 
-### Configure MAC Addresses and PCI Addresses
+* [dentOS VM](https://repos.refinery.dev/repository/dent/public/org/test/vm/dent-vm.tar.bz2)
+
+### Configure Installation
+
+#### Pick Installation Targets
+
+By default, the Makefile installer deploys two separate VM test beds.
+
+* The hard testbed topology connects Load Module VMs to physical interfaces for a hardware DUT
+  * To disable hard testbed installation, comment out the `HARD_TESTBED` line at the start of the Makefile.
+* The soft testbed topology has its own Load Module VM connected virtually to a dentOS VM DUT.
+  * To disable soft testbed installation, comment out the `SOFT_TESTBED` line at the start of the Makefile.
+
+#### MAC Addresses
 
 This network setup is intended to work with static IP reservations rather than with DHCP requests. This means that the Ubuntu Server, IxNetwork VM, IxChassis VM, and any number of IxLoadModule VMs need to be given IP reservations by your network's router or DHCP Server.
 
@@ -125,6 +138,8 @@ Edit the `MANUAL CONFIG` section of the Makefile in the dent-testing/vms folder:
 * Edit the `CTL_MAC` to a hold unique mac addresses to be used for a network bridge on the server.
 * Assign both your server's primary ethernet mac address and the `CTL_BRIDGE` mac address an identical IP. This way, when a bridge is created on the network adapter, the server's primary IP will not change.
 With these mac addresses and reservations, the VMS should start with known IP addresses.
+
+#### PCI Passthrough Devices
 
 The Ethernet Ports to be used with PCI Passthrough also need to be set up in  `MANUAL CONFIG`  for automated installation:
 
@@ -225,7 +240,7 @@ For the IxNetwork and IxChassis VMs, install using this formula:
 ```Shell
 virt-install --name IxNetwork-930 --memory 8000 --vcpus 4 \
     --disk CLIENT.qcow2,bus=sata --import --os-variant centos7.0 \
-    --network bridge=br1,model=virtio,mac=CLIENT_MAC--noautoconsole
+    --network bridge=br1,model=virtio,mac=CLIENT_MAC --noautoconsole
 virsh autostart IxNetwork-930
 ```
 
@@ -237,6 +252,12 @@ virt-install --name IxLoadN-930 --memory 4000 --vcpus 4 \
     --network bridge=br1,model=virtio,mac=LOAD_MAC_N --noautoconsole \
     --host-device=PCI_N
 virsh autostart IxLoadN-930
+```
+
+For the dentOS VM, installation is built into the given `xml` file:
+
+```Shell
+virsh define dent/dent-vm.xml
 ```
 
 * Check that the VMs have expected IP for each VM:
@@ -265,6 +286,19 @@ virsh autostart IxLoadN-930
   To change the IP address, log in as admin (password: admin) below
 ```
 
-## License VMs
+## VM Bringup
 
-Before tests can be run, IxNetwork VE and IxChassis VE must be licensed. The IxLoadModule VMs will use licenses based on their connected Chassis. From the start page of the IxNetwork and IxChassis, navigate Settings Gear -> Administration/System -> License Manager for an easy way to locally host a license. Once licensed, see the doc on [running test cases](How_to_start_and_run_testcases.md).
+### Adding Cards to Chassis
+
+Each Virtual Load Module should be added to a managing Chassis. Connect to the Chassis VM over HTML by its IP address and navigate to Chassis -> Attach Virtual Module to this Chassis. The Load Modules can now be added by IP.
+
+### Adding Licenses to Network/Chassis
+
+Before tests can be run, IxNetwork VE and IxChassis VE must be licensed. The Load Module VMs will use licenses based on their connected Network/Chassis.
+
+* From the start page of the IxNetwork and IxChassis, navigate Settings Gear -> Administration/System -> License Manager for an easy way to locally host a license.
+* Once licensed, see the doc on [running test cases](How_to_start_and_run_testcases.md).
+
+### Configuring dentOS VM
+
+See the [dentOS bringup document](DentOS_VM_bringup.MD) for post-installation configuration.
