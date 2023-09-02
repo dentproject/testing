@@ -7,6 +7,7 @@ This is the directory to document how to run test cases once your HW or VM testb
 1. [Getting Started](#getting-started)
 1. [Running DentOS SIT tests](#running-dentos-sit-tests)
 1. [Running DentOS Functional tests](#running-dentos-functional-tests)
+1. [Example Runs for VM Testbed](#example-runs-for-vm-testbed)
 
 ## Getting Started
 
@@ -232,4 +233,89 @@ dentos_testbed_runtests --stdout \
   --collectonly --pdb
 ```
 
----
+## Example Runs for VM Testbed
+
+The following are examples of full-testbed runs done on the VM testbed with Hardware DUT setup and the VM testbed with VM DUT setup.
+
+### VM Testbed with Hardware DUT
+
+```Shell
+# Clean for Functional
+dentos_testbed_runtests -d --stdout \
+  --config configuration/testbed_config/basic_infra1/testbed_vm.json \
+  --config-dir configuration/testbed_config/basic_infra1/ \
+  --suite-groups suite_group_clean_config \
+  --discovery-reports-dir ./reports \
+  --discovery-path ../DentOsTestbedLib/src/dent_os_testbed/discovery/modules/
+# Run Functional
+dentos_testbed_runtests -d --stdout \
+  --config configuration/testbed_config/basic_infra1/testbed_vm.json \
+  --config-dir configuration/testbed_config/basic_infra1/ \
+  --suite-groups  suite_group_functional\
+  --discovery-reports-dir ./reports \
+  --discovery-path ../DentOsTestbedLib/src/dent_os_testbed/discovery/modules/
+# Clean for SIT
+dentos_testbed_runtests -d --stdout \
+  --config configuration/testbed_config/basic_infra1/testbed_vm.json \
+  --config-dir configuration/testbed_config/sit_vm/ \
+  --suite-groups suite_group_clean_config \
+  --discovery-reports-dir ./reports \
+  --discovery-path ../DentOsTestbedLib/src/dent_os_testbed/discovery/modules/
+# Run SIT
+dentos_testbed_runtests -d --stdout \
+  --config configuration/testbed_config/basic_infra1/testbed_vm.json \
+  --config-dir configuration/testbed_config/sit_vm/ \
+  --suite-groups suite_group_test suite_group_l3_tests \
+                 suite_group_basic_trigger_tests \
+                 suite_group_traffic_tests suite_group_tc_tests \
+                 suite_group_bgp_tests \
+                 suite_group_stress_tests \
+                 suite_group_system_wide_testing \
+                 suite_group_system_health suite_group_store_bringup \
+                 suite_group_alpha_lab_testing \
+                 suite_group_dentv2_testing suite_group_connection suite_group_platform \
+  --discovery-reports-dir ./reports \
+  --discovery-path ../DentOsTestbedLib/src/dent_os_testbed/discovery/modules/
+```
+
+### VM Testbed with dentOS VM DUT
+
+```Shell
+# Clean Sit
+dentos_testbed_runtests -d --stdout \
+  --config configuration/testbed_config/sit_vm/testbed_dentvm.json \
+  --config-dir configuration/testbed_config/sit_vm/ \
+  --suite-groups suite_group_clean_config \
+  --discovery-reports-dir ./reports \
+  --discovery-path ../DentOsTestbedLib/src/dent_os_testbed/discovery/modules/
+
+# Run SIT
+dentos_testbed_runtests -d --stdout \
+  --config configuration/testbed_config/sit_vm/testbed_dentvm.json \
+  --config-dir configuration/testbed_config/sit_vm/ \
+  --suite-groups suite_group_test suite_group_l3_tests \
+                 suite_group_basic_trigger_tests suite_group_traffic_tests \
+                 suite_group_tc_tests suite_group_bgp_tests \
+                 suite_group_stress_tests suite_group_system_wide_testing \
+                 suite_group_system_health suite_group_store_bringup \
+                 suite_group_alpha_lab_testing \
+                 suite_group_dentv2_testing suite_group_connection \
+                 suite_group_platform \
+  --discovery-reports-dir ./reports \
+  --discovery-path ../DentOsTestbedLib/src/dent_os_testbed/discovery/modules/
+
+# Clean for Functional
+dentos_testbed_runtests -d --stdout \
+  --config configuration/testbed_config/basic_infra1/testbed_dentvm.json \
+  --config-dir configuration/testbed_config/basic_infra1/ \
+  --suite-groups suite_group_clean_config \
+  --discovery-reports-dir ./reports \
+  --discovery-path ../DentOsTestbedLib/src/dent_os_testbed/discovery/modules/
+# Run Functional
+dentos_testbed_runtests -d --stdout \
+  --config configuration/testbed_config/basic_infra1/testbed_dentvm.json \
+  --config-dir configuration/testbed_config/basic_infra1/ \
+  --suite-groups  suite_group_functional \
+  --discovery-reports-dir ./reports \
+  --discovery-path ../DentOsTestbedLib/src/dent_os_testbed/discovery/modules/
+```

@@ -1,0 +1,84 @@
+#
+# ONL format of dent interfaces
+#
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+source /etc/network/interfaces.d/*.intf
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+    address 20.20.0.101/32
+
+# The management interface
+auto ma1
+iface ma1 inet dhcp
+
+auto vlan100
+iface vlan100 inet static
+    address 20.1.4.1/22
+    vlan-id 100
+    vlan-raw-device bridge
+
+auto vlan300
+iface vlan300 inet static
+    address 20.2.4.1/22
+    vlan-id 300
+    vlan-raw-device bridge
+
+auto vlan400
+iface vlan400 inet static
+    address 20.3.4.1/22
+    vlan-id 400
+    vlan-raw-device bridge
+
+auto vlan500
+iface vlan500 inet static
+    address 20.4.4.1/22
+    vlan-id 500
+    vlan-raw-device bridge
+
+auto vlan600
+iface vlan600 inet static
+    address 20.5.4.1/22
+    vlan-id 600
+    vlan-raw-device bridge
+
+auto bridge
+iface bridge inet static
+alias Vlan Aware Bridge
+    bridge-ageing 600
+    bridge-ports swp1 swp2 swp3 swp4
+    bridge-vids 100 300 400 500 600
+    # Turns on STP
+    bridge-stp on
+   # Puts each port into an edge mode swp1-48
+    mstpctl-portadminedge swp1=yes swp2=yes swp3=yes swp4=yes
+   # Adds BPDU Guard to all ports swp1-48
+    mstpctl-bpduguard swp1=yes swp2=yes swp3=yes swp4=yes
+    bridge-vlan-aware yes
+
+auto swp1
+iface swp1
+alias IXIA LINK
+    bridge-pvid 100
+    bridge-vids 300 400 500 600
+
+auto swp2
+iface swp2
+alias IXIA LINK
+    bridge-pvid 100
+    bridge-vids 300 400 500 600
+
+auto swp3
+iface swp3
+alias IXIA LINK
+    bridge-pvid 100
+    bridge-vids 300 400 500 600
+
+auto swp4
+iface swp4
+alias IXIA LINK
+    bridge-pvid 100
+    bridge-vids 300 400 500 600
