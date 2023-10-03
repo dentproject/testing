@@ -151,7 +151,7 @@ async def tgen_utils_traffic_generator_connect(device, tgen_ports, swp_ports, de
         ]
     )
     device.applog.info(out)
-    assert out[0][device.host_name]['rc'] == 0
+    assert out[0][device.host_name]['rc'] == 0, f'TrafficGen Connect Failed:\n{out}'
 
 
 async def tgen_utils_connect_to_tgen(device, dent_dev):
