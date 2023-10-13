@@ -1,0 +1,693 @@
+#!/usr/bin/python3
+
+"""
+Dent CI Automation Framework
+
+Automating the following stages:
+   Stage 1: Clone test repo
+   Stage 1: Download new builds
+   Stage 2: Install Dent OS
+   Stage 2: Deploy IxNetwork
+   Stage 2: Deploy Dent test containers
+   Stage 3: Run Test
+
+Usage:
+   For Jenkins CI, must include -testName that begins with jenkinsCI_<label>
+   This will create result path in a file for Jenkin's CI operators to retrieve
+
+   # Quick Test
+   runDentCi -testSuite cleanConfig -testName devMode
+   runDentCi -testSuite cleanConfig -repo https://github.com/dentproject/testing.git -testName myDev
+
+   # dev mode: disable all
+   runDentCi -testSuite cleanConfig -testName devMode -disableCloneTestRepo -disableDownloadNewBuilds -disableInstallDentOS -disableDeployDentTestContainer -disableRunTest
+
+   # Dent repo with a specific branch name
+   runDentCi -testSuite fullRegression.yml -repo https://github.com/dentproject/testing.git -branchName pr_update_testbed_configs2 -keepTestBranch
+
+   # Don't remove the test branch after the test using -keepTestBranch
+   runDentCi -testSuite cleanConfig -keepTestBranch -repo https://github.com/dentproject/testing.git -builds
+"""
+
+import sys
+import os
+import traceback
+from threading import Thread, Lock
+from datetime import datetime
+from re import search
+from time import sleep
+from glob import glob
+from shutil import rmtree
+
+import Utilities
+import globalSettings
+from DentCiArgParse import DentCiArgParse
+from CloneTestingRepo import GitCloneTestingRepo
+from DownloadBuilds import downloadBuilds
+from DeployIxNetwork import deployIxNetworkInit
+from DeployDent import updateDent
+from DeployTestContainers import DeployTestContainers
+from TestMgmt import TestMgmt
+from TestbedReservation import ManageTestbed
+
+pid = os.getpid()
+threadLock = Lock()
+whoami = Utilities.runLinuxCmd('whoami')[0]
+
+
+class ciVars:
+    """
+    This class declares and contains all variables and share across all modules
+    """
+    # Stages are set in DentCiArgParse.py
+
+    # Stage 1
+    cloneTestRepo:             bool = True
+    downloadNewBuilds:         bool = True
+    # Stage 2
+    installDentOS:             bool = True  # requires cloneTestRepo for testbed configs
+    # IxNetwork is always enabled. No need to deploy until new IxNetwork is released
+    deployIxNetwork:           bool = False
+    deployDentTestContainers:  bool = True
+    # Stage 3
+    runTest:                   bool = True  # requires cloneTestRepo for testbed configs
+
+    # The test ID timestamp (without the appended testName)
+    timestamp:                str = ''
+    # The follows are set in DentCiArgParse.py
+    testId:                   str = ''
+    # A name to identify a test
+    testName:                 str = ''
+    # /home/dent/DentCiMgmt/TestResults/<testId>
+    testSessionFolder:        str = ''
+    # '{testSessionFolder}/CI_Logs'
+    testSessionLogsFolder:    str = ''
+    # '{testSessionLogsFolder}/sessionLogs'
+    testSessionLogsFile:      str = ''
+    # '{testSessionLogsFolder}/deployIxNetworkLogs'
+    ixNetworkLogsFile:        str = ''
+    # '{testSessionLogsFolder}/deployTestContainersLogs'
+    testContainersLogFile:    str = ''
+    # '{testSessionFolder}/ciOverallSummary.json'
+    overallSummaryFile:       str = ''
+    # '{testSessionFolder}/ciTestReport'
+    reportFile:               str = ''
+
+    # The CI test object
+    ciObj:                    object = None
+
+    # File to store all test result paths for Jenkins CI/CT/CD
+    ciResultPathFolderName:   str = 'CiResultPaths'
+    ciResultPathsFile:        str = f'{globalSettings.dentCiMgmtPath}/{ciResultPathFolderName}/ciResultPaths.json'
+
+    testSuiteFolder:          str = f'{globalSettings.dentCiFrameworkPath}/TestSuites'
+    installBuildResultFolder: str = f'{globalSettings.dentCiMgmtPath}/installBuildResultsTempFolder'
+
+    # Where to store IxNetwork VM downloads
+    ixNetworkVMFolder:        str = f'{globalSettings.dentCiMgmtPath}/IxNetworkVMs'
+    # If user did not specify a repo to pull for testing, default to Dent's main branch
+    gitCloneDefaultRepo:      str = globalSettings.gitCloneDefaultRepo
+    repo:                     str = None
+    branchName:               str = ''
+    # dockerImageTag = Each testId creates a docker image name for identification
+    #                  Set in CloneTestingRepo.py::clone
+    dockerImageTag:           str = None
+
+    testBranchFolder:         str = f'{globalSettings.dentCiMgmtPath}/TestBranches'
+    deleteTestBranchAfterTest: bool = True
+
+    # This is set in DentCiArgParse.py
+    # This framework will change the cloned test branch name to the testId as the
+    # name of the test branch and delete it when test is done
+    testIdTestingBranch:      str = ''
+
+    # A repo test branch already pulled on local server. User wants to use this branch for testing
+    localTestBranch:          str = None
+
+    # Either http|tftp set below this class: http://<ip>/dentInstallation
+    serverPrefixPath:         str = ''
+    # /DentBuildReleases/<testId> or /tftpMainPath/<testId>. Set below this class.
+    downloadToServerFolder:   str = ''
+
+    # Set in DentCiArgParse.py. Default to http
+    installMethod:            str = 'http'
+    testBranch:               str = ''
+    # testbeds includes the entire testbed config json data for Dent updates
+    testbeds:                 list = []
+    # testIdTestbeds are just the testbed names for reservation
+    testIdTestbeds:           list = []
+    pid:                      int = pid
+    user:                     str = whoami
+    sessionLog:               object = None
+    builds:                   list = []
+    testSuites:               list = []
+    abortTestOnError:         bool = False
+    lock:                     object = threadLock
+    exitCode:                 str = None
+
+
+class DentCI:
+    def __init__(self):
+        ciVars.testIdTestingBranch = f'{ciVars.testBranchFolder}/{ciVars.testId}'
+
+        if ciVars.installMethod == 'http':
+            # /dentInstallations/<testId>
+            ciVars.downloadToServerFolder = f'{globalSettings.httpServerFolder}/{ciVars.testId}'
+            # http://<ip>/dentInstallations/<testId>
+            ciVars.serverPrefixPath = f'{globalSettings.httpServerPath}/{ciVars.testId}'
+        if ciVars.installMethod == 'tftp':
+            # /srv/tftp/<testId>
+            ciVars.downloadToServerFolder = f'{globalSettings.tftpServerFolder}/{ciVars.testId}'
+            # tftp://<ip>/srv/tftp/<testId>
+            ciVars.serverPrefixPath = f'{globalSettings.tftpServerPath}/{ciVars.testId}'
+
+        self.removePastResults()
+        self.removeStaleTestBranches()
+        self.removePastBuildDownloads()
+        self.removeDockerStaleImages()
+
+        self.testMgmtData = {'pid': ciVars.pid,
+                             'testId': ciVars.testId,
+                             'testName': ciVars.testName,
+                             'startTime': datetime.now().strftime('%m-%d-%Y %H:%M:%S:%f'),
+                             'stopTime': None,
+                             'testDuration': None,
+                             'error': None,
+                             'result': None,
+                             'abortTestOnError': ciVars.abortTestOnError,
+                             'testSuites': ciVars.testSuites,
+                             'testbeds': ciVars.testIdTestbeds,
+                             'builds': ciVars.builds,
+                             'buildDate': None,
+                             'buildNumber': None,
+                             'repo': ciVars.repo,
+                             'branchName': ciVars.branchName,
+                             'tempTestBranchPath': ciVars.testIdTestingBranch,
+                             'dockerImageTag': ciVars.dockerImageTag,
+                             'deleteTestBranchAfterTest': ciVars.deleteTestBranchAfterTest,
+                             'user': ciVars.user,
+                             'logDir': ciVars.testSessionFolder,
+                             'status': 'Started',
+                             'stageOrder': [('stage 1', 'cloneTestRepo'), ('stage 1', 'downloadNewBuilds'),
+                                            ('stage 2', 'installDentOS'), ('stage 2', 'deployIxNetwork'),
+                                            ('stage 2', 'deployDentTestContainers'), ('stage 3', 'runTest')],
+                             'stages': {'cloneTestRepo':   {'status': None, 'result': None, 'error': []},
+                                        'downloadNewBuilds':  {'status': None, 'result': None, 'error': []},
+                                        'installDentOS':   {'status': None, 'result': None, 'error': []},
+                                        'deployIxNetwork': {'status': None, 'result': None, 'error': []},
+                                        'deployDentTestContainers': {'status': None, 'result': None, 'error': []},
+                                        'runTest': {'status': None, 'result': None, 'error': []},
+                                        },
+                             'testcases': {}
+                             }
+
+        # Create a unique test session timestamp folder
+        Utilities.runLinuxCmd(f'mkdir -p {ciVars.testSessionFolder}', logObj=None)
+        Utilities.runLinuxCmd(f'mkdir -p {ciVars.testSessionLogsFolder}', logObj=None)
+        Utilities.writeToJson(jsonFile=ciVars.overallSummaryFile, data=self.testMgmtData, mode='w')
+
+        ciVars.sessionLog = Utilities.CreateLogObj(ciVars.testSessionLogsFile)
+        if os.path.exists(ciVars.installBuildResultFolder) is False:
+            Utilities.runLinuxCmd(f'mkdir -p {ciVars.installBuildResultFolder}', logObj=ciVars.sessionLog)
+
+        ciVars.sessionLog.info(f'PID: {ciVars.pid}')
+        ciVars.sessionLog.info(f'Test ID: {ciVars.testId}')
+        ciVars.sessionLog.info(f'Builds: {ciVars.builds}')
+        ciVars.sessionLog.info(f'Test session folder: {ciVars.testSessionFolder}')
+        ciVars.sessionLog.info(f'Install Method: {ciVars.installMethod}')
+        ciVars.sessionLog.info(f'Testing repo: {ciVars.repo}')
+        ciVars.sessionLog.info(f'Install branchName: {ciVars.branchName}')
+
+        # Wait at this point until the CI system is enabled
+        self.isCiSystemEnabled()
+
+        # If user wants to install IxNetwork, must disable
+        # the CI system so no new incoming test could run
+        if ciVars.deployIxNetwork:
+            ciVars.sessionLog.info('The CI framework is going to install a new version of IxNetwork as soon as all the current tests are done. Please wait.')
+            Utilities.runLinuxCmd(f'touch {globalSettings.disableSystemFilename}', cwd=globalSettings.dentCiMgmtPath)
+            # Wait until all current tests are done before running *this* test that installs IxNetwork VM
+            while True:
+                currentlyRunningPids = Utilities.getDentCiRunningProcessIds(processName='testSuite')
+                if str(ciVars.pid) in currentlyRunningPids:
+                    index = currentlyRunningPids.index(str(ciVars.pid))
+                    currentlyRunningPids.pop(index)
+
+                if len(currentlyRunningPids) > 0:
+                    ciVars.sessionLog.info(f'There are still {len(currentlyRunningPids)} dent tests running')
+                    sleep(10)
+                else:
+                    ciVars.sessionLog.info('No Dent test running')
+                    break
+
+        Utilities.createCiResultPathFolder(dentCiMgmtPath=globalSettings.dentCiMgmtPath,
+                                           ciResultPathFolderName=ciVars.ciResultPathFolderName)
+
+        Utilities.removeJenkinsCiOldResults(jenkinsCiResultFile=ciVars.ciResultPathsFile,
+                                            removeAfterDays=globalSettings.removeTestResultsAfterNumberOfDays,
+                                            threadLock=ciVars.lock)
+
+        Utilities.updateTestMgmtData(ciVars.overallSummaryFile, updateProperties={'status': 'running'}, threadLock=ciVars.lock)
+
+        dtfObj = ciVars()
+        for eachStage in ['cloneTestRepo', 'downloadNewBuilds', 'installDentOS',
+                          'deployIxNetwork', 'deployDentTestContainers', 'runTest']:
+            if getattr(dtfObj, eachStage):
+                Utilities.updateStage(ciVars.overallSummaryFile, stage=eachStage, status='not-started', threadLock=ciVars.lock)
+            else:
+                Utilities.updateStage(ciVars.overallSummaryFile, stage=eachStage, status='disabled', threadLock=ciVars.lock)
+
+        self.createDockerImageTag()
+        self.lockTestbeds()
+
+    def createDockerImageTag(self):
+        """
+        Create a docker image tag for each test
+        Docker will overwrite existing tags except for the latest.
+        This CI framework will remove the created tag image at the end
+        of the test.
+        """
+        if ciVars.localTestBranch:
+            # Show the last x-paths
+            repoName = ciVars.localTestBranch.replace('/', '-')
+            repoName = f'localBranch{repoName}'
+        else:
+            regexMatch = search(r'.*.com/(.*)\.git', ciVars.repo)
+            repoName = regexMatch.group(1).replace('/', '-')
+
+        # randomLetters = Utilities.generatorRandom(6, 'abcdef')
+        randomNumbers = ciVars.timestamp.split('-')[-1]
+
+        # Defined the docker image tag here for DeployTestContainers to use
+        if ciVars.branchName:
+            ciVars.dockerImageTag = f'CI-{repoName}-{branchName}-{randomNumbers}'
+        else:
+            ciVars.dockerImageTag = f'CI-{repoName}-main-{randomNumbers}'
+
+        self.testMgmtData.update({'dockerImageTag': ciVars.dockerImageTag})
+        Utilities.writeToJson(jsonFile=ciVars.overallSummaryFile, data=self.testMgmtData, mode='w')
+
+    def isDockerImageTagExists(self):
+        """
+        REPOSITORY                 TAG                                     IMAGE ID       CREATED          SIZE
+        dent/test-framework        CI-dentproject-testing-main             9eb2da646f95   24 minutes ago   897MB
+        dent/test-framework        CI-localBranch-home-dent-testing-main   3ef4db5d132e   24 hours ago     897MB
+        dent/test-framework-base   latest                                  1a91767e8243   44 hours ago     539MB
+        """
+        output = Utilities.runLinuxCmd('docker images', logObj=ciVars.sessionLog)
+        for lineOutput in output:
+            if bool(search(f'[^ ]+ +{ciVars.dockerImageTag} .+', lineOutput)):
+                return True
+
+    def lockTestbeds(self):
+        # getTestbeds will populate ciVars.testIdTestbeds
+        Utilities.getTestbeds(ciVars)
+        self.testbedMgmtObj = ManageTestbed(ciVars=ciVars)
+        self.testbedMgmtObj.waitForTestbeds()
+
+        self.testMgmtData.update({'testbeds': ciVars.testIdTestbeds})
+        Utilities.writeToJson(jsonFile=ciVars.overallSummaryFile, data=self.testMgmtData, mode='w')
+
+    def isGitCloneSafeToRun(self):
+        """
+        git clone is not thread safe. Must verify if git is cloning.
+        If yes, wait until the it is done
+        """
+        while True:
+            if Utilities.processExists(processName='git clone'):
+                ciVars.sessionLog.info('git clone is running. Waiting 3 seconds ...')
+                sleep(3)
+            else:
+                ciVars.sessionLog.info('git clone is not running. Safe to do git clone.')
+                break
+
+        sleep(3)
+
+    def isCiSystemEnabled(self):
+        """
+        Pause the test if Dent CI framework is disabled.
+        Dent CI looks for the "disabledCiSystem" file in the /home/dent/DentCiMgmt folder
+
+        When the CI automation framework is avaialble for testing, each test
+        will reserve the testbed or go to testbed waiting list -> self governing
+        """
+        showOnce = True
+        while True:
+            if os.path.exists(f'{globalSettings.dentCiMgmtPath}/{globalSettings.disableSystemFilename}'):
+                if showOnce:
+                    ciVars.sessionLog.info('The Dent CI Framework is currently disabled for maintenace. The test will run when it is enabled.')
+                    Utilities.updateTestMgmtData(ciVars.overallSummaryFile,
+                                                 updateProperties={'status': 'system-is-disabled | waiting-for-system'},
+                                                 threadLock=ciVars.lock)
+                    showOnce = False
+                sleep(3)
+            else:
+                break
+
+    def isTestIdTestBranchExists(self, stage=None):
+        """
+        Verify if the testing branch successfully got cloned
+        """
+        if os.path.exists(ciVars.testIdTestingBranch) is False:
+            errorMsg = f'Stage={stage}: Is cloneTestBranch == True?  The testID test branch does not exists: {ciVars.testIdTestingBranch}.'
+            ciVars.sessionLog.error(errorMsg)
+
+            if stage:
+                Utilities.updateStage(ciVars.overallSummaryFile, stage=stage,
+                                      status='aborted', result=None, error=errorMsg, threadLock=ciVars.lock)
+
+            self.testbedMgmtObj.unlockTestbeds()
+            Utilities.closeTestMgmtStatus(overallSummaryFile=ciVars.overallSummaryFile,
+                                          status='aborted', result='None', threadLock=ciVars.lock)
+            Utilities.sysExit(ciVars, errorMsg)
+
+    def removeDockerStaleImages(self):
+        # REPOSITORY                 TAG                                  IMAGE ID       CREATED         SIZE
+        # dent/test-framework        CI-dentproject-testing-main-eaafaf   0a19af8a32ea   4 minutes ago   897MB
+        # dent/test-framework-base   latest                               1a91767e8243   47 hours ago    539MB
+        dockerImages = Utilities.runLinuxCmd('docker images')
+
+        # docker container ps -a
+        # bbdac6c0735d   dent/test-framework:CI-dentproject-testing-main-eaafaf   "dentos_testbed_runt…"   37 seconds ago
+        # Up 37 seconds             suite_group_clean_config_10-05-2023-20-47-10-738249_myDev
+
+        dockerContainers = Utilities.runLinuxCmd('docker container  ps -a', logObj=ciVars.sessionLog)
+
+        if len(dockerContainers) == 0:
+            for dockerImage in dockerImages:
+                regexMatch = search('[^ ]+ +(CI-[^ ]+) +([^ ]+) .+', dockerImage)
+                if regexMatch:
+                    tag = regexMatch.group(1)
+                    imageId = regexMatch.group(2)
+
+                    if tag != 'latest':
+                        Utilities.runLinuxCmd(f'docker rmi -f {imageId}', logObj=ciVars.sessionLog)
+        else:
+            for dockerImage in dockerImages:
+                regexMatch = search('[^ ]+ +(CI-[^ ]+) +([^ ]+) .+', dockerImage)
+                if regexMatch:
+                    tag = regexMatch.group(1)
+                    imageId = regexMatch.group(2)
+                    removeDockerImage = True
+
+                    for openedContainer in dockerContainers:
+                        # Don't remove the docker image if a container is using it
+                        if bool(search(f'[^ ]+ +:{tag} .+', openedContainer)):
+                            removeDockerImage = False
+                            break
+
+                    if removeDockerImage:
+                        Utilities.runLinuxCmd(f'docker rmi -f {imageId}', logObj=ciVars.sessionLog)
+
+    def parseForTestbeds(self, configFullPath):
+        """
+        Get all testbeds from test suites "config" parameter
+        """
+        if os.path.exists(configFullPath) is False:
+            Utilities.sysExit(ciVars, f'Test Suite file has an incorrect "config" path: {configFullPath}')
+
+        testbedContents = Utilities.readJson(configFullPath)
+        for eachTestbedInSit in testbedContents['devices']:
+            hostName = eachTestbedInSit['hostName']
+
+            if eachTestbedInSit['os'] == 'dentos':
+                deviceAlreadyInTheTestbedList = False
+
+                # Check the current testbed list for the Dent device
+                for existingTestbed in ciVars.testbeds:
+                    if existingTestbed['hostName'] == hostName:
+                        deviceAlreadyInTheTestbedList = True
+
+                if deviceAlreadyInTheTestbedList is False:
+                    ciVars.testbeds.append(eachTestbedInSit)
+
+    def removePastResults(self):
+        """
+        Self clean up all past test results to free up storage space
+        """
+        Utilities.removePastResults(folder=globalSettings.dentTestResultsFolder,
+                                    removeDaysOlderThan=globalSettings.removeTestResultsAfterNumberOfDays)
+
+        testIdList = glob(f'{globalSettings.dentTestResultsFolder}/*')
+
+        # Remove stale running process IDs that doesn't have a ciOverallSummary.json file
+        for testIdFullPath in testIdList:
+            testIdName = testIdFullPath.split('/')[-1]
+            ciSummaryFile = f'{testIdFullPath}/ciOverallSummary.json'
+
+            if os.path.exists(ciSummaryFile) is False:
+                # The testId has no ciOverallSummary file. Just remove it.
+                print(f'Removing stale testId result folder that does not have a ciOverallSummary.json file: {testIdName}')
+                try:
+                    rmtree(testIdFullPath)
+                except Exception as errMsg:
+                    print(f'Failed to remove testId: {testIdName}. Error: {errMsg}')
+
+    def removePastBuildDownloads(self):
+        # Exampe: /DentBuildReleases/09-28-2023-16-25-52-377875_myDev3
+        Utilities.removeBuildReleases(folder=globalSettings.httpServerFolder, removeDaysOlderThan=1)
+
+    def removeStaleTestBranches(self):
+        """
+        Remove left-over past test branches if:
+            - They were not deleted
+            - The testId is removed in TestResults folder
+        """
+        if os.path.exists(f'{globalSettings.dentTestResultsFolder}'):
+            existingTestIds = glob(f'{globalSettings.dentTestResultsFolder}/*')
+
+            # /home/dent/DentCiMgmt/TestBranches/09-01-2023-23-07-28
+            for clonedTestRepoPath in glob(f'{ciVars.testBranchFolder}/*'):
+                if ciVars.testIdTestingBranch == clonedTestRepoPath:
+                    # Don't delete the current testing branch
+                    continue
+
+                clonedTestRepo = clonedTestRepoPath.split('/')[-1]
+
+                if clonedTestRepo not in existingTestIds:
+                    Utilities.runLinuxCmd(f'rm -rf {clonedTestRepoPath}', logObj=ciVars.sessionLog)
+                else:
+                    testIdOverallSummary = f'{globalSettings.dentTestResultsFolder}/{clonedTestRepo}/dtfOverallSummary.json'
+                    if os.path.exists(testIdOverallSummary):
+                        data = readJson(testIdOverallSummary)
+                        pid = data['pid']
+
+                        if Utilities.isPidRunning(pid, stdout=True) is False:
+                            Utilities.runLinuxCmd(f'rm -rf {clonedTestRepoPath}', logObj=ciVars.sessionLog)
+                    else:
+                        # Something went wrong with the test session if there is no dtfOverallSummary.json file
+                        # Remove the repo branch
+                        Utilities.runLinuxCmd(f'rm -rf {clonedTestRepoPath}', logObj=ciVars.sessionLog)
+
+    def cloneTestRepo(self):
+        """
+        STAGE 1: Git clone test repo to the /TestBranches folder
+        and name it the testId
+        """
+        if ciVars.cloneTestRepo is False:
+            return
+
+        self.isGitCloneSafeToRun()
+        # Avoid: No Such File or Directory (tmp_pack_XXXXXX)
+        Utilities.runLinuxCmd('git config --global core.fscache false', logObj=ciVars.sessionLog)
+
+        try:
+            result = False
+            cloneObj = GitCloneTestingRepo(ciVars)
+            result = cloneObj.clone()
+
+        except Exception as errMsg:
+            ciVars.sessionLog.error(traceback.format_exc(None, errMsg))
+            self.testbedMgmtObj.unlockTestbeds()
+            Utilities.closeTestMgmtStatus(overallSummaryFile=ciVars.overallSummaryFile,
+                                          status='aborted', result='failed', threadLock=ciVars.lock)
+            Utilities.sysExit(ciVars, 'Clone Dent test repo failed')
+
+        if result:
+            # Parse out all testbeds from test suite files and from the cloned repo
+            for testSuite in ciVars.testSuites:
+                contents = Utilities.readYaml(testSuite)
+
+                for suiteGroup in contents['suiteGroups'].get('runInSeries', []) + contents['suiteGroups'].get('runInParallel', []):
+                    # config: ./DentOsTestbed/configuration/testbed_config/sit/testbed.json
+                    config = suiteGroup['config']
+
+                    matchRegex = search('.+/(DentOsTestbed/configuration/testbed_config/(sit/)?.+)', config)
+                    if matchRegex:
+                        userDefinedSitPath = matchRegex.group(1)
+                        # /home/dent/testing
+                        configFullPath = f'{ciVars.testIdTestingBranch}/DentOS_Framework/{userDefinedSitPath}'
+                        self.parseForTestbeds(configFullPath)
+            sleep(3)
+
+        else:
+            # Cloning repo failed
+            Utilities.closeTestMgmtStatus(overallSummaryFile=ciVars.overallSummaryFile,
+                                          status='aborted', result='failed', threadLock=ciVars.lock)
+            # This will unlocktestbed, remove testId test branch, create jenkinsCI result path
+            Utilities.sysExit(ciVars, 'Clone Dent test repo failed on clone verification')
+
+    def downloadBuilds(self):
+        """
+        STAGE 1: Download Dent build image to tftp server /srv/tftp
+        """
+        if ciVars.downloadNewBuilds is False:
+            return
+
+        downloadBuildsResults = downloadBuilds(ciVars)
+        if downloadBuildsResults is False:
+            self.testbedMgmtObj.unlockTestbeds()
+            Utilities.sysExit(ciVars, 'Download builds failed')
+
+    def installDentOS(self):
+        """
+        STAGE 2: Install build on Dent
+        """
+        if ciVars.installDentOS is False:
+            return
+
+        stage = 'installDentOS'
+
+        # Requires pulling the branch for testbed configs
+        self.isTestIdTestBranchExists(stage=stage)
+        updateDentResult = updateDent(ciVars)
+
+        # Remove the downloaded build to clean up
+        # Example: /DentBuildReleases/09-28-2023-16-25-52-377875_myDev3
+        Utilities.runLinuxCmd(f'rm -rf {ciVars.downloadToServerFolder}')
+
+        if updateDentResult is False:
+            Utilities.closeTestMgmtStatus(overallSummaryFile=ciVars.overallSummaryFile,
+                                          status='aborted', result='failed', threadLock=ciVars.lock)
+            Utilities.sysExit(ciVars, 'failed')
+
+        ciVars.sessionLog.info(f'{stage}: passed')
+
+    def deployIxNetwork(self):
+        """
+        STAGE 2: Deploy IxNetwork
+        """
+        if ciVars.deployIxNetwork is False:
+            return
+
+        deployIxNetworkResult = deployIxNetworkInit(ciVars=ciVars)
+        if deployIxNetworkResult is False:
+            Utilities.closeTestMgmtStatus(overallSummaryFile=ciVars.overallSummaryFile,
+                                          status='aborted', result='failed', threadLock=ciVars.lock)
+            Utilities.sysExit(ciVars, 'failed')
+
+        # Enable back the CI system for other test to run
+        if os.path.exists(f'{globalSettings.dentCiMgmtPath}/{globalSettings.disableSystemFilename}'):
+            Utilities.runLinuxCmd(f'rm {globalSettings.disableSystemFilename}',
+                                  cwd=globalSettings.dentCiMgmtPath,
+                                  logObj=ciVars.sessionLog)
+
+    def deployDentTestContainers(self):
+        """
+        STAGE 2: Deploy test containers
+        """
+        if ciVars.deployDentTestContainers is False:
+            return
+
+        dentContainerObj = DeployTestContainers(ciVars.testContainersLogFile, ciVars)
+        result = dentContainerObj.removeAndBuild()
+
+        if result is False:
+            Utilities.closeTestMgmtStatus(overallSummaryFile=ciVars.overallSummaryFile,
+                                          status='aborted', result='failed', threadLock=ciVars.lock)
+            Utilities.sysExit(ciVars, 'failed')
+
+    def runTest(self):
+        """
+        STAGE 3: Run test
+        """
+        if ciVars.runTest is False:
+            return
+
+        stage = 'runTest'
+
+        # Verify if test branch exists
+        self.isTestIdTestBranchExists(stage=stage)
+
+        # Verify if Dent docker images are indeed running
+        dentContainerObj = DeployTestContainers(ciVars.testContainersLogFile, ciVars)
+
+        if dentContainerObj.isDockerImagesExists() is False:
+            Utilities.updateStage(ciVars.overallSummaryFile, stage=stage, result='failed',
+                                  status='aborted', error='Dent docker images are not running',
+                                  threadLock=ciVars.lock)
+            Utilities.closeTestMgmtStatus(overallSummaryFile=ciVars.overallSummaryFile,
+                                          status='aborted', result='failed', threadLock=ciVars.lock)
+            Utilities.sysExit(ciVars, 'failed')
+
+        runTestObj = TestMgmt(ciVars)
+        testResult = runTestObj.overallTestResult
+
+        ciVars.sessionLog.info(f'Test is complete! Test result: {testResult}')
+        Utilities.closeTestMgmtStatus(overallSummaryFile=ciVars.overallSummaryFile,
+                                      status='completed', result=testResult, threadLock=ciVars.lock)
+
+        if testResult == 'Passed':
+            Utilities.sysExit(ciVars)
+        else:
+            Utilities.sysExit(ciVars, 'failed')
+
+
+try:
+    DentCiArgParse(ciVars).parse()
+    ci = DentCI()
+    ciVars.ciObj = ci
+
+    # Stage 1
+    threads = []
+    if ciVars.cloneTestRepo:
+        threads.append(Thread(target=ci.cloneTestRepo, name='cloneTestRepo'))
+
+    if ciVars.downloadNewBuilds:
+        threads.append(Thread(target=ci.downloadBuilds, name='downloadNewBuilds'))
+
+    if threads:
+        Utilities.runThreads(ciVars, threads)
+
+    # Stage 2
+    threads = []
+    if ciVars.installDentOS:
+        threads.append(Thread(target=ci.installDentOS, name='installDentOS'))
+
+    if ciVars.deployIxNetwork:
+        threads.append(Thread(target=ci.deployIxNetwork, name='deployIxNetwork'))
+
+    if ciVars.deployDentTestContainers:
+        threads.append(Thread(target=ci.deployDentTestContainers, name='deployDentTestContainers'))
+
+    if threads:
+        Utilities.runThreads(ciVars, threads)
+
+    # Stage 3
+    if ciVars.runTest:
+        ci.runTest()
+
+    # If in dev mode, it might not call sysExit.
+    # So call it to unlocktestbed
+    if ciVars.exitCode is None:
+        Utilities.sysExit(ciVars)
+
+except KeyboardInterrupt:
+    Utilities.closeTestMgmtStatus(overallSummaryFile=ciVars.overallSummaryFile,
+                                  status='ctrl-c aborted', result=None, threadLock=ciVars.lock)
+    Utilities.sysExit(ciVars, errorMsg='ctrl-c aborted')
+
+except Exception as errMsg:
+    errorMsg = traceback.format_exc(None, errMsg)
+    print(f'\nException error:\n\n{errorMsg}')
+    if 'ci' in locals():
+        ciVars.sessionLog.error(f'runDentCi exception: {errorMsg}')
+        Utilities.closeTestMgmtStatus(overallSummaryFile=ciVars.overallSummaryFile,
+                                      status='Aborted', result=None,
+                                      updateProperties={'error': errorMsg},
+                                      threadLock=ciVars.lock)
+    Utilities.sysExit(ciVars, errorMsg=errorMsg)
+
+finally:
+    print(f'\nrunDentCi sysexit({ciVars.exitCode})')
+    sys.exit(ciVars.exitCode)
