@@ -5,23 +5,24 @@ Dent CI Automation
    - Framework desgined and developed by: Hubert.Gee@Keysight
 
 
-Table Of Contents:
-------------------
+Table Of Contents
+-----------------
    - What this framework does
    - Key features
    - Installation & requirements
    - Test Suite file
    - CLI parameters
-   - Run Test
+   - How to run test
    - ciUtils:  A utility to view test status, results and more
    - Results location
    - Disable the CI framework for maintenance
    - CI framework and test procedures and workflow
+   - CI stage logs
    - Known issues
 
 
-What this framework does:
--------------------------
+What this framework does
+------------------------
    Stage 1: Clone test repo
    Stage 1: Download new builds
 
@@ -41,8 +42,9 @@ What this framework does:
         - IxNetwork shuts down and reinstalled when Keysight release a new version and user
 	  must include the CLI paramter -deployIxNetwork
 
-Key features:
--------------
+
+Key features
+------------
     - Download builds:
        - Automatically download the latest builds (ARM and AMD)
        - You could also specify which builds to download
@@ -93,16 +95,17 @@ Key features:
        - The test result path is appended to /home/dent/DentCiMgmt/CiResultPaths/ciResultPaths.json
        - The CI framework will automatically remove older than 10+ days results
 
-Installation & requirements:
-----------------------------
+
+Installation & requirements
+---------------------------
     - The installation has a dedicate page
     - Please view the installation file
     - Please finish reading the rest of this file first!
 
 
-Test Suite file:
-----------------
-   - Test suite yaml files are custom selection of Dent suite_group testcases to run.
+Test Suite file
+---------------
+   - Test suite yaml files are custom selections of Dent suite_group testcases to run.
 
    - You group suite_group testcases in "runInSeries" and in "runInParallel"
      NOTE: If grouping testcases in runInParallel, each testcase must use a different testbed.
@@ -111,9 +114,16 @@ Test Suite file:
 
    - Create your own test suite files in this directory
 
-   - A quick view of a test suite example:
+   - Current test suites:
+          fullRegression: All of SIT testings and functional testings (Takes 2 days to complete)
+	  sitTestl:       Only testing SIT test cases
+	  functional:     Only testing functional test cases
+          l3tests:        A quick test with traffic (10 minutes)
+	  cleanConfig:    A quick test for CI framework development (few minutes)
 
-     NOTE: Every "name" must be unique! Otherwise, only the last test with the same name will get executed.
+   - Below shows a preview of a test suite example:
+
+     NOTE: Every "name" MUST BE UNIQUE! Otherwise, only the last test with the same name will be executed
 
      suiteGroups:
        runInParallel:
@@ -139,8 +149,8 @@ Test Suite file:
                - suite_group_clean_config
 
 
-CLI Parameters:
----------------
+CLI Parameters
+--------------
    -testName:         Optional: A test name to identify your test
                       Especially for Jenkins CI testing!
                       Begin the testName with jenkinsCI_<unique label>
@@ -164,33 +174,38 @@ CLI Parameters:
 		            To disable this CI framework, touch a file called "disableSystem" in /path/DentCI folder
 
 
-Run Test:
----------
+How To Run Test
+----------------
+   CLI command on how to run test
+
    NOTE:
        - You could enter runDentCi anywhere in the filesystem or enter
          "python3 /home/dent/testing/CI_Automation/runDentCi.py"
 
    # Most simplest:  This will automatically download the latest builds and pull Dent testing repo from the main branch
-   runDentCi   -testSuite   l3tests    -testName    myTestName
+   runDentCi   -testSuite   <test_suite_name>    -testName    myTestName
 
    # Download the latest build and pull from a specific repo
-   runDentCi   -testSuite   l3tests    -repo     https://github.com/dentproject/testing.git  -testName   myTestName
+   runDentCi   -testSuite   <test_suite_name>    -repo     https://github.com/dentproject/testing.git  -testName   myTestName
 
    # Pull a specific branch from the repo and download specific build release (URLs)
    runDentCi   -testSuite    fullRegression.yml    -repo https://github.com/dentproject/testing.git \
       -branchName   repoBranchName   -keepTestBranch    -builds    <url_amd>     <url_arm>
 
    # Test a local branch on the Linux server that is already pulled from github
-   runDentCi   -testSuite    l3tests     -testName   myTestName    -localBranch     /home/dent/testing
+   runDentCi   -testSuite    <test_suite_name>   -testName   myTestName    -localBranch     /home/dent/testing
+
+   # To install IxNetwork Server (This is rarely done.  Once or twice a year when Keysight releases a new version)
+   runDentCi   -testSuite   <test_suite_name>   -deployIxNetwork
 
 
 ciUtils
-----------
+-------
+   Use this utility to do the followings
+
    NOTE:
        - You could enter ciUtils anywhere in the filesystem or enter
          "python3 /home/dent/testing/CI_Automation/ciUtils.py"
-
-   Use this utility to do the followings
 
        -showtests                       Show all past and current tests to get the testId for viewing
        -showstatus <testId>             Show a testId status
@@ -209,8 +224,9 @@ ciUtils
        -enableci                        This will enable the CI framework for testing
        -iscienabled                     Check if the CI framework is enabled
 
-Results location:
------------------
+
+Results location
+----------------
    - Results are stored in /home/dent/testing/CI_Automation/TestResults
    - Automatically remove results after 10 days to clean up storage
    - View on web browser: http://10.36.118.11/TestResults
@@ -243,22 +259,19 @@ Results location:
   }
 
 
-Disable the CI framework for maintenance:
-------------------------------------------
-   - Once or twice a year, you will upgrade IxNetwork VM.
-
-   - To do this, you must disable the system from runnning incoming test executions and
-     make sure no test is currently running.
-
+Disable the CI framework for maintenance
+-----------------------------------------
    - To disable or enable this CI framework, use ciUtils:
           ciUtils  -disableci | -enableci
+
+   - To verify if the CI framework is enabled, enter: ciUtils -iscienabled
 
    Note:
        - If disabled, all incoming tests will wait until the CI framework is enabled
 
 
-CI framework process flow:
---------------------------
+CI framework process flow
+-------------------------
    - Incoming test ->
       - Perform some system clean ups:
          - Remove all 10+ days  old test results
@@ -299,19 +312,41 @@ CI framework process flow:
         - Testbeds are unlocked
 	- Remove the test branch
 	- Remove the downloaded builds
-        - Remove docker image
-	- Exit code 0 for no error
+        - Remove the testId docker image
+	- Exit code 0 for failed and no error
 	- Exit code 1 for failed and error
 
-Known issues:
--------------
-   - Git clone fatal error:
-        Problem: Running git clone command by multiple tests at the same time will
-              encounter fatal error.
-	      The test will abort and unlock the testbed while the multithread's build download
-	      thread is still running.
 
-        Error:
+CI Stage Logs
+-------------
+    Note: This Logs folder contains both Dent project test logs and CI framework logs
+          The below only shows the CI framework logs
+
+    - CI framework stage logs are in: /home/dent/DentCiMgmt/TestResults/<testId>
+    - ciOverallSummary.json: This shows the test ID's metadatas
+    - ciTestReport:          This shows the overall test results
+    - CI_Logs folder:
+         - ciSessionLogs
+	 - deployTestContainersLogs
+
+         Each Dent switch OS upgrade has its own log file
+            - Dent_infra1_updateLogs
+	    - Dent_infra2_updateLogs
+	    - Dent_agg1_updateLogs
+	    - Dent_agg2_updateLogs
+	    - Dent_dist1_updateLogs
+
+
+Known issues
+------------
+   - Git clone fatal error:
+        Problem: Running "git clone" command by multiple tests at the same time
+                 encounter fatal error.
+
+	         The test will abort and unlock the testbed while the multithread's build download
+	         thread is still running.
+
+        Error example:
            fatal: could not open '/home/dent/DentCiMgmt/TestBranches/09-26-2023-17-52-29-832785_myDev/.git/objects/pack/tmp_pack_cnaNCX'
            for reading: No such file or directory
            fatal: fetch-pack: invalid index-pack output
@@ -322,11 +357,17 @@ Known issues:
         [Solution]: The CI framework keep checking the "git clone" process name until it doesn't exists.
 	            Then the next test could do a git clone safely.  Hopefully!
 
+        [Note]: This is still not guaranteed to work
+
+
     - Installing DentOS:
         Problem: Sometimes one or more Dent switches times out waiting to get the Linux OS prompt
 
 	[Solution]: Might have to detach DeployDent from multithreading.
-	            And set a longer timeout value.
+	            Or set a longer timeout value.
+
+        [Note]: Must rerun the test
+
 
      - Setup issues:
          Problem: Sometimes the traffic generator crashed or a Dent switch is unreachable during the test.
@@ -334,3 +375,7 @@ Known issues:
 
         [Solution]: You have to look at the failed logs to get an understanding of the failure.
 	            Future enhancements will include checkpoints before starting the test.
+
+        [Note]: The Keysight Novus traffic generator is currently a Windows chassis.
+	        There is no API support to verify card UP, reboot the card and reboot services.
+		Switching to a Linux based chassis that supports verifying the above has been requested.
