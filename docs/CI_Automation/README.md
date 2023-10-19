@@ -212,10 +212,11 @@ runDentCi   -testSuite   <test_suite_name>    -testName    myTestName
 
 Download the latest build and pull from a specific repo
 runDentCi   -testSuite   <test_suite_name>
-   -repo     https://github.com/dentproject/testing.git  -testName   myTestName
+   -repo     [https://github.com/dentproject/testing.git]  -testName   myTestName
 
 Pull a specific branch from the repo and download specific build release (URLs)
-runeDentCi   -testSuite    fullRegression.yml    -repo https://github.com/dentproject/testing.git
+runeDentCi   -testSuite    fullRegression.yml
+  -repo   [https://github.com/dentproject/testing.git]
   -branchName   repoBranchName   -keepTestBranch    -builds    <url_amd>     <url_arm>
 
 Test a local branch on the Linux server that is already pulled from github
@@ -264,7 +265,7 @@ You could enter ciUtils anywhere in the filesystem or enter
 
 - Results are stored in /home/dent/testing/CI_Automation/TestResults
 - Automatically remove results after 10 days to clean up storage
-- View on web browser: \http://10.36.118.11/TestResults
+- View on web browser: [http://10.36.118.11/TestResults]
 - ciUtils  -showtestresults \<testId\>
 - For public access viewing, results are store in Jenkin's cloud
   service under each Jenkin test ID
