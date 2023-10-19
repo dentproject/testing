@@ -2,7 +2,7 @@
 
 - Purpose: Automate Dent CI/CT process in stages
 - First released in: 10/2023
-- Framework desgined and developed by: Hubert.Gee@Keysight
+- Framework designed and developed by: Hubert.Gee@Keysight
 
 ## Table Of Contents
 
@@ -79,7 +79,7 @@ must include the CLI paramter -deployIxNetwork
       - New test that wants to use the same testbeds will go to the Waiting folder
       - Testbed usage is first-come first-server
       - Self recovery
-        - Locked testbeds are verifyed if they're actively in used.  The PID is checked.
+        - Locked testbeds are verified if they're actively in used.  The PID is checked.
         - If not in used, the CI framework will unlock the testbeds so other
           test could use it
 
@@ -124,7 +124,7 @@ must include the CLI paramter -deployIxNetwork
 - Current test suites
   - fullRegression: All of SIT testings and functional testings
                     (Takes 2 days to complete)
-  - sitTestl:       Only testing SIT test cases
+  - sitTest:       Only testing SIT test cases
   - functional:     Only testing functional test cases
   - l3tests:        A quick test with traffic (10 minutes)
   - cleanConfig:    A quick test for CI framework development
