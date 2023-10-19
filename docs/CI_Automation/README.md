@@ -268,7 +268,7 @@ You could enter ciUtils anywhere in the filesystem or enter
 - View on web browser: [http://10.36.118.11/TestResults]
 - ciUtils  -showtestresults \<testId\>
 - For public access viewing, results are store in Jenkins cloud
-  service under each Jenkin test ID
+  service under each Jenkins test ID
 
   For Jenkins CI testing, read this json file to get the test result path
 
