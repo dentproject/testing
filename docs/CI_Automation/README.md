@@ -272,7 +272,7 @@ You could enter ciUtils anywhere in the filesystem or enter
 
   For Jenkins CI testing, read this json file to get the test result path
 
-  - /home/dent/DentCiMgmt/CiResultPaths/ciResultPath.json
+  - /home/dent/DentCiMgmt/CiResultPaths/ciResultPaths.json
   - Automatically removes 10 days and older results
 
 ```text
