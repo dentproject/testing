@@ -166,7 +166,7 @@ iscienabled
 enableci
 disableci
 ciUtils
-ciResultPath
+ciResultPaths
 CiResultPaths
 Jenkins
 showtestresults
