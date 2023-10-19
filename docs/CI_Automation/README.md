@@ -66,9 +66,9 @@ must include the CLI paramter -deployIxNetwork
   ```text
   Example
 
-  REPOSITORY                 TAG                                  IMAGE ID
-  dent/test-framework        CI-dentproject-testing-main-525761   97d10da0af22
-  dent/test-framework-base   latest                               1a91767e8243
+  REPOSITORY                 TAG
+  dent/test-framework        CI-dentproject-testing-main-525761
+  dent/test-framework-base   latest
   ```
 
   - The testing docker image will be removed after the test
@@ -267,7 +267,7 @@ You could enter ciUtils anywhere in the filesystem or enter
 - Automatically remove results after 10 days to clean up storage
 - View on web browser: [http://10.36.118.11/TestResults]
 - ciUtils  -showtestresults \<testId\>
-- For public access viewing, results are store in Jenkin's cloud
+- For public access viewing, results are store in Jenkins cloud
   service under each Jenkin test ID
 
   For Jenkins CI testing, read this json file to get the test result path
