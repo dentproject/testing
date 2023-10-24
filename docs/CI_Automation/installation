@@ -1,0 +1,206 @@
+Requirements:
+-------------
+   - You must have read the Readme file FIRST!
+   - You must have SUDO privileges
+   - python version 3. Ideally python3.8+
+   - Must have a python3 symbolic link in the /usr/bin folder
+   - pip install python-dotenv pre-commit
+   - Linux OS (No Windows support)
+   - Install nginx, git, wget on your Linux server
+   - DHCP server configuration
+   - KVM: You must have installed KVM (Qemu) on your Linux server
+          This is used for running IxNetwork VM
+   - Testbed files using your environment equipments
+
+Pre-installation:
+-----------------
+   1> Testbed json files in Dent testing repo
+   2> Create a dent user on your Linux server
+   3> Make dent user a SUDO user
+   4> Create a DentCiMgmt folder
+   5> Configure Linux server as a DHCP server
+   6> Configure Linux server as a web server using nginx
+   7> Download & install IxNetwork VM
+
+   1> Testbed json files
+      ------------------
+         - You MUST have created testbed json files that reflects your environment and
+	   put them under:
+	      /home/dent/testing/DentOS_Framework/DentOsTestbed/configuration/testbed_config/
+
+         - Follow examples from existing testbed json files
+	 - You could optionally create your own namespace folder which groups your testbeds
+	   in the testbed_config directory mentioned above
+
+           Example:
+   	      - /home/dent/testing/DentOS_Framework/DentOsTestbed/configuration/testbed_config/<my_testbeds>/dut1.json
+	      - Or simply add dut1.json in the testbed_config directory
+
+   2> Create a dent user on your Linux server
+      ---------------------------------------
+         - adduser dent
+         - passwd dent
+
+   3> Make dent user a sudo user
+      --------------------------
+         - edit: /etc/sudoers
+         - add:  dent ALL=(ALL) NOPASSWD:ALL
+
+   -->> AT THIS POINT, LOGOUT AND LOG IN AS dent user <<--
+
+   4> Create a DentCiMgmt folder
+      --------------------------
+      - In the /home/dent directory
+      - Enter: mkdir DentCiMgmt
+      - Now you should have /home/dent/DentCiMgmt folder
+
+   5> Configure your Linux server as a DHCP server
+      --------------------------------------------
+      You need to configure a DHCP server for IxNetwork VM to have a persistent IP address.
+      The example below states the mac address 00:1a:c5:00:00:12 to listen for.
+      You will use this same mac address in step #6
+      The DHCP server will provide the same IP address 10.36.118.111. (Change this IP address to use your network IP)
+
+      On Ubuntu:
+         - sudo apt install isc-dhcp-serverr
+         - edit /etc/dhcp/dhcpd.conf
+
+	 option domain-name "testdent.dev";
+         option domain-name-servers x.x.x.x, x.x.x.x; <- Use your domain server IP addresses
+         option routers 10.36.118.1;
+
+	 # Use your network IP address. This is just an example.
+         subnet 10.36.118.0 netmask 255.255.255.0 {
+	   range 10.36.118.210 10.36.118.250;
+           option routers 10.36.118.1;
+         }
+
+         # This mac address is made up.  You must use this same mac address in step #6.
+	 host ixnetwork {
+           hardware ethernet 00:1a:c5:00:00:12;
+           fixed-address 10.36.118.111;
+         }
+
+       When done editing the /etc/dhcp/dhcpd.conf file, exit and enter:
+          [Assuming you are using Ubuntu]
+
+          sudo systemctl restart isc-dhcp-server
+          sudo systemctl enable isc-dhcp-server
+
+   6> Configure Linux server as a web server using nginx
+      --------------------------------------------------
+       - cd /  (root directory)
+       - sudo mkdir DentBuildReleases
+       - sudo chmod -R 776 DentBuildReleases
+            - It is important that the "other" user group has executable privilege
+	      for installing the build on the Dent switches.
+
+       - sudo chown -R dent:dent DentBuildReleases
+
+       - Edit: /etc/nginx/sites-available/default
+
+           # This path will store all Dent OS build downloads
+           location /DentBuildReleases {
+                root /;
+           }
+
+           # This path will store all Dent test results
+	   # You could go on a web browser to view all the test results
+	   # Example: http://<your ip>/TestResults
+           location /TestResults {
+             	# State the path to where you want the DentCiMgmt folder from step #1
+                root /home/dent/DentCiMgmt;
+           }
+
+        - sudo systemctl restart nginx
+	- sudo systemctl enable nginx
+
+   7> Download & install IxNetwork VM
+      -------------------------------
+       As of this writing, IxNetwork version is 9.30
+       You normally do not need to download/install IxNetwork
+       This is only done once or twice a year and the VM must be left enabled (Never shutdown)
+
+       - cd /home/dent/DentCiMgmt
+
+       - mkdir IxNetworkVMs
+
+       - Download to IxNetworkVMs folder:
+             https://downloads.ixiacom.com/support/downloads_and_updates/public/ixnetwork/9.30/IxNetworkWeb_KVM_9.30.2212.22.qcow2.tar.bz2
+
+       - Decompress file: bzip2 IxNetworWeb_KVM_xxx
+
+       # NOTE:  The Mac address is made up. You need to use this mac address for the DHCP server to listen for in
+       #        order to provide a persistent IP address
+       - virt-install --name IxNetwork-9.30 --memory 32000 --vcpus 16 --disk /home/dent/DentCiMgmt/IxNetworkVMs/IxNetworkWeb_KVM_9.30.2212.22.qcow2,bus=sata --import --os-variant centos7.0 --network bridge=br1,model=virtio,mac=00:1a:c5:00:00:12 --noautoconsole
+
+       - virsh autostart IxNetwork-9.30
+
+       - virsh start IxNetwork-9.30
+
+       To show the IxNetwork-VM mac address:
+
+          Enter: virsh domiflist IxNetwork-9.30
+
+          Interface   Type     Source   Model    MAC
+          --------------------------------------------------------
+          vnet15      bridge   br1      virtio   00:1a:c5:00:00:12
+
+
+Installation:
+-------------
+   1> Git clone dentproject/testing repo
+   2> Copy/paste settings.sh file in the DentCiMgmt folder and edit param values
+   3> Create a symbolic link for runDentCi and ciUtils
+
+   1> Git clone dentproject/testing repo
+      ----------------------------------
+      Note: The CI Automation is in the Dent testing repo in github:
+
+      - In the directory /home/dent, enter:
+            git clone https://github.com/dentproject/testing.git
+
+   2> Create a settings.sh file
+      -------------------------
+      Note: The CI framework looks for a settings.sh file in /home/dent/DentCiMgmt directory
+            This file contains your Linux IP address and the IxNetwork VM mac address
+
+      - cp /home/dent/testing/CI_Automation/settingsExample.sh  /home/dent/DentCiMgmt/settings.sh
+
+      - edit settings.sh file
+
+      	  # Use your own IP ADDRESS!
+          export DENT_SERVER_IP_ADDRESS="Your IP Address"
+
+	  # This mac address must be the same from step #4 & #6
+          export DENT_IxNETWORK_VM_DHCP_MAC_ADDRESS="00:1a:c5:00:00:12"
+
+   3> Create a symbolic link for runDentCi and ciUtils
+      ------------------------------------------------
+      - cd /usr/bin
+      - sudo ln -s /home/dent/testing/CI_Automation/runDentCi.py runDentCi
+      - sudo ln -s /home/dent/testing/CI_Automation/ciUtils.py ciUtils
+
+      - At this point, assuming that your Linux OS has 'python3', you
+        should be able to enter runDentCi and ciUtils anywhere in your filesystem.
+	If you don't have 'python3', then create a symbolic link for python3:
+
+	   1> Get the full path to your python<version>
+	      For example if the python command is python3.10, enter: which python3.10
+	      output = /usr/bin/python3.10
+
+	   2> In the /usr/bin directory, enter:
+	      sudo ln -s /usr/bin/python3.10 python3
+
+
+Run it:
+-------
+    # This command will run a quick test to see if everything is working
+    runDentCi -testSuite cleanConfig -testName myTest
+
+    # After you entered the above command to run a test, use ciUtils.py to check the status
+       1> ciUtils -showtests
+
+       2> ciUtils -showstatus <testId>
+
+       3> ciUtils -showtestresults <testId>
