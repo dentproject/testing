@@ -332,6 +332,7 @@ async def test_stp_switching_off_on(testbed, version):
 
         # 7. Verify traffic is forwarded  and port 2 doesn't receive any traffic
         stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Flow Statistics')
+        await asyncio.sleep(10)
         for row in stats.Rows:
             if row['Traffic Item'] == traffic and row['Rx Port'] == tg_ports[1]:
                 err_msg = f'Expected 0.0 got : {float(row["Rx Rate (Mbps)"])}'

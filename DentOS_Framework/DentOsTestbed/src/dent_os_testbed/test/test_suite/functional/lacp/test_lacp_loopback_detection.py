@@ -4,6 +4,7 @@ from math import isclose
 
 from dent_os_testbed.lib.ip.ip_link import IpLink
 from dent_os_testbed.lib.mstpctl.mstpctl import Mstpctl
+from dent_os_testbed.lib.ethtool.ethtool import Ethtool
 
 from dent_os_testbed.utils.test_utils.tgen_utils import (tgen_utils_get_dent_devices_with_tgen,
                                                          tgen_utils_setup_streams, tgen_utils_start_traffic,
@@ -45,6 +46,7 @@ async def test_lacp_loopback_detection(testbed, version):
         bonds[f'bond_{idx+1}'] = port
     bridge = 'bridge_1'
     wait_time = 40 if version == 'stp' else 20
+    expected_rate = 0.14  # multiplied by port speed
 
     # 1. Create bridge entities and 6 bonds and set link up on them
     out = await IpLink.add(input_data=[{dent: [{'device': bond,
@@ -123,6 +125,9 @@ async def test_lacp_loopback_detection(testbed, version):
     await tgen_utils_stop_traffic(tgen_dev)
 
     # 7. Verify device remain stable afterwards (during storming).
+    out = await Ethtool.show(input_data=[{dent: [{'devname': dut_ixia_ports[2]}]}],  parse_output=True)
+    speed = int(out[0][dent]['parsed_output']['speed'][:-4])
+    expected_rate = int(expected_rate * speed)
     rc, out = await device.run_cmd("echo 'Hello World'")
     assert rc == 0, 'FAIL: DUT crashed due to storming'
     assert out.strip() == 'Hello World', f'Expected <Hello World> got {out}'
@@ -131,8 +136,8 @@ async def test_lacp_loopback_detection(testbed, version):
     # Verify there is storming
     for row in stats.Rows:
         if row['Port Name'] == tg_ports[0]:
-            err_msg = f'Expected 1400 got : {float(row["Rx. Rate (Mbps)"])}'
-            assert float(row['Rx. Rate (Mbps)']) > 1400, err_msg
+            err_msg = f'Expected {expected_rate} got : {float(row["Rx. Rate (Mbps)"])}'
+            assert float(row['Rx. Rate (Mbps)']) > expected_rate, err_msg
 
     # 8. Set bridge stp_state to 1.
     out = await IpLink.set(input_data=[{dent: [{

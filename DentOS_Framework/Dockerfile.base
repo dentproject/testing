@@ -3,7 +3,7 @@ FROM ubuntu:jammy
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=US/Pacific
 
-RUN apt-get -o Acquire::Check-Valid-Until=false update
+RUN apt-get update
 RUN apt-get -y upgrade
 
 # Are those packages used anywhere?

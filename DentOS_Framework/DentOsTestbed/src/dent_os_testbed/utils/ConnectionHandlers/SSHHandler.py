@@ -75,9 +75,15 @@ class SSHConnection:
             if not cmd:
                 raise ValueError('Empty command is not allowed')
             self.applog.debug(f'Running {cmd}')
-            await self._connect()
+            if not self.conn:
+                await self._connect()
             self.sshlog.debug(cmd)
-            result = await self.conn.run(cmd, bufsize=bufsize, input=input)
+            try:
+                result = await self.conn.run(cmd, bufsize=bufsize, input=input)
+            except Exception as e:
+                await self._connect()
+                self.sshlog.debug(f'Caught SSH {e} Error, Re-Running {cmd}')
+                result = await self.conn.run(cmd, bufsize=bufsize, input=input)
             self.applog.debug(f'Executed {cmd}; exit_status {result.exit_status}')
             self.sshlog.debug(result.stdout + result.stderr)
             return result.exit_status, result.stdout + result.stderr

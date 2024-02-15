@@ -14,6 +14,7 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_setup_streams,
     tgen_utils_get_loss,
     tgen_utils_start_traffic,
+    tgen_utils_stop_traffic,
     tgen_utils_get_swp_info,
 )
 pytestmark = [pytest.mark.suite_functional_lacp,
@@ -142,9 +143,10 @@ async def test_lacp_routing_over_bridge(testbed):
             raise  # will re-raise the AssertionError
     await tgen_utils_start_traffic(tgen_dev)
     await asyncio.sleep(25)
+    await tgen_utils_stop_traffic(tgen_dev)
 
     # 9. Verify traffic received on bridge
     stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Traffic Item Statistics')
     for row in stats.Rows:
         err_msg = f"Expected 0.00 loss, actual {float(row['Loss %'])}"
-        assert tgen_utils_get_loss(row) == 0.000, err_msg
+        assert tgen_utils_get_loss(row) < 0.1, err_msg

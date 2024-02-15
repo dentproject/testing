@@ -4,6 +4,7 @@ from math import isclose
 
 from dent_os_testbed.lib.ip.ip_link import IpLink
 from dent_os_testbed.lib.mstpctl.mstpctl import Mstpctl
+from dent_os_testbed.lib.ethtool.ethtool import Ethtool
 
 from dent_os_testbed.utils.test_utils.tgen_utils import (tgen_utils_get_dent_devices_with_tgen,
                                                          tgen_utils_setup_streams, tgen_utils_start_traffic,
@@ -45,6 +46,7 @@ async def test_stp_loopback_detection(testbed, version):
     loopback_ports = {}
     for idx, port in enumerate(device.links_dict[dent][0] + device.links_dict[dent][1]):
         loopback_ports[f'loopback_{idx+1}'] = port
+    expected_rate = 0.14  # multiplied by port speed
 
     # 1. Create bridge entity
     out = await IpLink.add(input_data=[{dent: [{
@@ -114,12 +116,16 @@ async def test_stp_loopback_detection(testbed, version):
     assert rc == 0, 'FAIL: DUT crashed due to storming'
     assert out.strip() == 'Hello World', f'Expected <Hello World> got {out}'
 
+    out = await Ethtool.show(input_data=[{dent: [{'devname': dut_ixia_ports[2]}]}],  parse_output=True)
+    speed = int(out[0][dent]['parsed_output']['speed'][:-4])
+    expected_rate = round(int(expected_rate * speed), 2)
     stats = await tgen_utils_get_traffic_stats(tgen_dev, 'Port Statistics')
+
     # Verify there is storming
     for row in stats.Rows:
         if row['Port Name'] == tg_ports[0]:
-            err_msg = f'Expected 1400 got : {float(row["Rx. Rate (Mbps)"])}'
-            assert float(row['Rx. Rate (Mbps)']) > 1400, err_msg
+            err_msg = f'Expected {int(expected_rate * speed)} got : {float(row["Rx. Rate (Mbps)"])}'
+            assert float(row['Rx. Rate (Mbps)']) > expected_rate, err_msg
 
     # 8. Set bridge stp_state to 1.
     out = await IpLink.set(input_data=[{dent: [{

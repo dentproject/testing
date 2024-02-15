@@ -39,3 +39,13 @@ auto swp2
 iface swp2 inet static
 alias IXIA LINK
     address 22.1.10.1/24
+
+auto swp3
+iface swp3 inet static
+alias IXIA LINK
+    address 22.1.11.1/24
+
+auto swp4
+iface swp4 inet static
+alias IXIA LINK
+    address 22.1.12.1/24
