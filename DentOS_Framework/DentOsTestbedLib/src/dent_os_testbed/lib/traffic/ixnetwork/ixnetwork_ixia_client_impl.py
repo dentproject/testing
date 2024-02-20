@@ -4,8 +4,7 @@ import time
 
 from dent_os_testbed.lib.traffic.ixnetwork.ixnetwork_ixia_client import IxnetworkIxiaClient
 from ixnetwork_restpy.assistants.statistics.statviewassistant import StatViewAssistant as SVA
-from ixnetwork_restpy import SessionAssistant, Files, BatchAdd, BatchFind
-from ixnetwork_restpy import TestPlatform
+from ixnetwork_restpy import Files, BatchAdd, BatchFind, TestPlatform
 
 
 class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
@@ -67,13 +66,13 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
             if not caddr:
                 return 0, 'No Address to connect!'
             cport = param.get('client_port', 443)
-            
+
             test_platform = TestPlatform(caddr, cport)
             test_platform.Authenticate(device.username, device.password)
-            session = test_platform.Sessions.find(Name="DENT")
-            if len(session) == 0 or session.State != "ACTIVE":
+            session = test_platform.Sessions.find(Name='DENT')
+            if len(session) == 0 or session.State != 'ACTIVE':
                 session.remove()
-                session.add(Name="DENT")
+                session.add(Name='DENT')
 
             device.applog.info('Connected to Linux Gateway Session ID: %d' % session.Id)
             IxnetworkIxiaClientImpl.session = session
@@ -154,7 +153,7 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
 
             exc_type, exc_obj, exc_tb = sys.exc_info()
             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-            device.applog.info(f'{exc_type}, {fname}:{exc_tb.tb_lineno}')
+            device.applog.info(f'{exc_type}, {fname}: {exc_tb.tb_lineno}')
             return -1, 'Error!'
         return 0, 'Connected!'
 
