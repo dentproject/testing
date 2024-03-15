@@ -28,6 +28,7 @@ from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_get_dent_devices_with_tgen,
     tgen_utils_stop_traffic,
 )
+reboot_after_test = None
 
 # Add python files for defining per folder fixtures here
 # And depending on the scope of fixtures, they can be used
@@ -78,6 +79,15 @@ def pytest_unconfigure(config):
     # Save and parameters for each suite run
 
 
+def pytest_collection_finish(session):
+    global reboot_after_test
+    for item in session.items:
+        # Save the name of the last L1 test in session
+        if 'test_l1' in item.name:
+            reboot_after_test = session.items[-1]
+            break
+
+
 def pytest_runtest_setup(item):
     logger = AppLogger(DEFAULT_LOGGER)
     if logger:
@@ -88,6 +98,11 @@ def pytest_runtest_setup(item):
             % (item.name, item.name, item.fspath)
         )
         logger.info('=================================================================')
+
+    if reboot_after_test:
+        if reboot_after_test.name == item.name:
+            # Add `reboot_device` fixture to last L1 test
+            item.fixturenames.append('reboot_device')
 
 
 def pytest_runtest_teardown(item, nextitem):
@@ -127,6 +142,12 @@ def pytest_collection_modifyitems(session, config, items):
             if mark and mark.name.startswith('feature'):
                 if logger:
                     logger.info('pytest %s has feature markers:%s' % (item.name, item.own_markers))
+
+    for item in items:
+        # Move l1 tests to the end of the list
+        if 'test_l1' in item.name:
+            items.sort(key=lambda item: 'test_l1' in item.name)
+            break
     return False
 
 
@@ -148,6 +169,16 @@ def pytest_runtest_makereport(item, call):
 async def _get_dent_devs_from_testbed(testbed):
     devs = await tb_get_all_devices(testbed)
     return devs
+
+
+@pytest_asyncio.fixture()
+async def reboot_device(testbed):
+    yield
+    devices = await _get_dent_devs_from_testbed(testbed)
+    to_reboot = [dev.reboot() for dev in devices]
+    up_ports = [dev.run_cmd('onlpd') for dev in devices]
+    await asyncio.gather(*to_reboot)
+    await asyncio.gather(*up_ports)
 
 
 @pytest_asyncio.fixture()
