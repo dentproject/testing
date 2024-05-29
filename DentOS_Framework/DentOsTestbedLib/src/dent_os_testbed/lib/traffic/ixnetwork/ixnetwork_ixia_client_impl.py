@@ -1,6 +1,7 @@
 import os
 import sys
 import time
+from tabulate import tabulate
 
 from dent_os_testbed.lib.traffic.ixnetwork.ixnetwork_ixia_client import IxnetworkIxiaClient
 from ixnetwork_restpy.assistants.statistics.statviewassistant import StatViewAssistant as SVA
@@ -48,6 +49,7 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
         if command == 'disconnect':
             if IxnetworkIxiaClientImpl.session is not None:
                 device.applog.info('Removing Session ID: %d' % IxnetworkIxiaClientImpl.session.Id)
+                self._CheckErrorsLog(device)
                 IxnetworkIxiaClientImpl.session.remove()
                 IxnetworkIxiaClientImpl.session = None
                 IxnetworkIxiaClientImpl.ixnet = None
@@ -279,6 +281,8 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
             if not found:
                 out = IxnetworkIxiaClientImpl.session.UploadFile(fname, name)
             out = IxnetworkIxiaClientImpl.ixnet.LoadConfig(Files(name))
+            # get the traffic items back
+            IxnetworkIxiaClientImpl.tis = IxnetworkIxiaClientImpl.ixnet.Traffic.TrafficItem.find()
         elif command == 'save_config':
             out = IxnetworkIxiaClientImpl.ixnet.SaveConfig(Files(name))
             out += IxnetworkIxiaClientImpl.session.DownloadFile(name, fname)
@@ -356,6 +360,19 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
             raise ValueError(f'Unable to set {value} for field {field.Name}')
         field.Auto = False
         field.update(**param)
+
+    def _CheckErrorsLog(self, device):
+        device.applog.info('CheckIxNetwork Errors Log')
+        ixnet = IxnetworkIxiaClientImpl.ixnet
+        try:
+            errors = ixnet.Globals.AppErrors.find().Error.find()
+            columns = ['LastModified', 'Type', 'Code', 'Count', 'Description']
+            rows = [[i.LastModified, i.ErrorLevel, i.ErrorCode, i.InstanceCount, i.Name + ':' + i.Description] for i in errors]
+            device.applog.info(os.linesep + tabulate(rows, headers=columns, tablefmt='grid'))
+            return 0
+        except Exception as ex:
+            device.applog.info('ERROR:'+str(ex))
+            return 1
 
     def __update_frame_rate(self, config_element, pkt_data):
         """
@@ -712,11 +729,11 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
             if attempts > 3:
                 device.applog.info(f'INFO: Traffic not stopped after {attempts * time_to_sleep} Seconds')
         elif command == 'get_stats':
-            device.applog.info('Getting Stats')
             stats_type = 'Port Statistics'
             params = kwarg['params']
             if params or params[0]:
                 stats_type = params[0].get('stats_type', stats_type)
+            device.applog.info('Getting Stats {}'.format(stats_type))
             stats = SVA(IxnetworkIxiaClientImpl.ixnet, stats_type)
             # device.applog.info(stats)
             return 0, stats
@@ -781,13 +798,22 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                     else:
                         ep.SendNs()  # ipv6
                 time.sleep(5)
-            device.applog.info('Generating Traffic')
-            IxnetworkIxiaClientImpl.ixnet.Traffic.TrafficItem.find().Generate()
-            device.applog.info('Applying Traffic')
-            IxnetworkIxiaClientImpl.ixnet.Traffic.Apply()
+            try:
+                device.applog.info('Generating Traffic')
+                IxnetworkIxiaClientImpl.ixnet.Traffic.TrafficItem.find().Generate()
+                device.applog.info('Applying Traffic')
+                IxnetworkIxiaClientImpl.ixnet.Traffic.Apply()
+            finally:
+                device.applog.info('Check Error if any while Applying Traffic')
+                self._CheckErrorsLog(device)
+
         elif command == 'stop_protocols':
             device.applog.info('Stopping All Protocols')
             IxnetworkIxiaClientImpl.ixnet.StopAllProtocols(Arg1='sync')
+            protocolsSummary = SVA(IxnetworkIxiaClientImpl.ixnet, 'Protocols Summary')
+            device.applog.info('Protocols not stopped properly.')
+            self._CheckErrorsLog(device)
+
         elif command == 'set_protocol':
             params = kwarg['params']
             param = params[0]
