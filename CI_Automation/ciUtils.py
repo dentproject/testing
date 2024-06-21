@@ -11,6 +11,7 @@ TODOs:
    - Support manual testbed locking
 
 """
+from tabulate import tabulate
 from typing import Union
 import argparse
 import os
@@ -40,11 +41,24 @@ parser.add_argument('-kill',               nargs='?',           default=False, h
 args: object = parser.parse_args()
 
 
+def createTestResultFolder():
+    if os.path.exists(globalSettings.dentTestResultsFolder) is False:
+        Utilities.makeFolder(globalSettings.dentTestResultsFolder)
+
+
+def removeFolder(testIdFullPath, testIdName):
+    try:
+        rmtree(testIdFullPath)
+    except Exception as errMsg:
+        print(f'Failed to remove testId: {testIdName}. Error: {errMsg}')
+
+
 class ShowTests:
     """
     Show all the test IDs
     """
     def show(self):
+        createTestResultFolder()
         Utilities.runLinuxCmd(f'ls {globalSettings.dentTestResultsFolder}', showStdout=True)
 
 
@@ -92,6 +106,9 @@ class ShowStatus:
                 buildNumber = testIdDetails['buildNumber']
                 testbeds = testIdDetails['testbeds']
                 dockerImageTag = testIdDetails['dockerImageTag']
+                startTime = testIdDetails['startTime']
+                stopTime = testIdDetails['stopTime']
+                testDuration = testIdDetails['testDuration']
                 testSuites = []
                 for testSuite in testIdDetails['testSuites']:
                     regexMatch = search('.*/TestSuites/(.+)', testSuite)
@@ -103,6 +120,8 @@ class ShowStatus:
                 print(f'\tBuild Release: {buildDate}-{buildNumber}')
                 print(f'\tTestSuites: {", ".join(testSuites)}')
                 print(f'\tDocker Image Tag: {dockerImageTag}')
+                print(f'\tStartTime: {startTime}    StopTime: {stopTime}')
+                print(f'\tTestDuration: {testDuration}')
                 testbedlist = ''
                 for index, testbed in enumerate(testbeds):
                     # basic_infra1_10-06-2023-17-50-02-010517_fullRegression
@@ -111,23 +130,35 @@ class ShowStatus:
                 testbedlist = testbedlist.replace(' ', ', ')[:-2]
                 print(f'\tTestbeds: {testbedlist}')
 
-                print()
-                print(f'   {"Stage":10} {"Stage Name":27} {"Status":12} {"Result":10} Errors')
-                print(f'   {"-"*69}')
+                stageRow = ['Stage', 'Stage Name', 'Status', 'Result', 'Errors']
+                stageTable = [stageRow]
 
+                print()
+                stageData = []
                 for stage in testIdDetails['stageOrder']:
-                    stageNumber = stage[0]
+                    # stage = ['stage 1', 'cloneTestRepo']
+                    stageNumber = stage[0].split(' ')[1]
                     stageName = stage[1]
                     status = testIdDetails['stages'][stageName]['status']
                     result = testIdDetails['stages'][stageName]['result']
                     error = testIdDetails['stages'][stageName]['error']
-                    print(f'   {stageNumber:10} {stageName:27} {str(status):12} {str(result):10} {str(error)}')
+                    if len(error) > 0:
+                        allErrors = ''
+                        for eachError in error:
+                            allErrors += f'{eachError}\n'
+                    else:
+                        allErrors = []
 
+                    stageData = [stageNumber, stageName, status, result, allErrors]
+                    stageTable.append(stageData)
+
+                print(tabulate(stageTable, headers='firstrow', tablefmt='fancy_grid', numalign='center'))
                 print()
-                print(f'   {"Suite Group":30} {"Testbed":30} {"Test Conduct":15} {"Status":20}')
-                print(f'   {"-"*88}')
 
                 testcases = testIdDetails['testcases']
+                testRow = ['Suite Group', 'Testbed', 'Test Conduct', 'Status']
+                testTable = [testRow]
+                testData = []
 
                 for index, testcase in enumerate(testcases):
                     testbed = str(testIdDetails['testcases'][testcase]['testbed'])
@@ -139,13 +170,10 @@ class ShowStatus:
                     if status == 'Aborted':
                         result = 'None'
 
-                    if index == 0:
-                        print(f'   {testcase:30} {testbed:30} {testConduct:15} {status:20}')
-                    else:
-                        if status == 'Running':
-                            print(f'   {testcase:30} {testbed:30} {testConduct:15} \033[32;5m{status:20}\033[0m')
-                        else:
-                            print(f'   {testcase:30} {testbed:30} {testConduct:15} {status:20}')
+                    testData = [testcase, testbed, testConduct, status]
+                    testTable.append(testData)
+
+                print(tabulate(testTable, headers='firstrow', tablefmt='fancy_grid'))
 
 
 class ShowTestbeds:
@@ -279,23 +307,20 @@ class Remove:
             ciSummaryFile = f'{testIdFullPath}/ciOverallSummary.json'
 
             if os.path.exists(ciSummaryFile):
-                testIdData = Utilities.readJson(ciSummaryFile)
-                testIdPid = str(testIdData['pid'])
-
-                if testIdPid not in currentlyRunningPids:
-                    print(f'Removing: {testIdName}')
-
-                    try:
-                        rmtree(testIdFullPath)
-
-                    except Exception as errMsg:
-                        print(f'Failed to remove testId: {testIdName}. Error: {errMsg}')
+                try:
+                    testIdData = Utilities.readJson(ciSummaryFile)
+                    testIdPid = str(testIdData['pid'])
+                    if testIdPid not in currentlyRunningPids:
+                        print(f'Removing: {testIdName}')
+                        removeFolder(testIdFullPath)
+                except Exception:
+                    removeFolder(testIdFullPath, testIdName)
             else:
                 # The testId has no ciOverallSummary file. Just remove it.
                 print(f'Removing stale testId result that does not have a ciOverallSummary.json file: {testIdName}')
                 try:
                     print(f'Removing: {testIdFullPath}')
-                    rmtree(testIdFullPath)
+                    rmtree(testIdFullPath, testIdName)
                 except Exception as errMsg:
                     print(f'Failed to remove testId: {testIdName}. Error: {errMsg}')
 

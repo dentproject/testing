@@ -19,6 +19,8 @@ class GitCloneTestingRepo:
         Utilities.updateStage(self.ciVars.overallSummaryFile, stage='cloneTestRepo',
                               status='running', result='None', threadLock=self.lock)
 
+        self.log.info(f'clone: testIdTestingBranch: {self.testIdTestingBranch}')
+
         # Create the TestBranch folder to hold all testId testing repos
         if os.path.exists(self.testBranchFolder) is False:
             Utilities.runLinuxCmd(f'mkdir -p {self.testBranchFolder}')
@@ -41,7 +43,7 @@ class GitCloneTestingRepo:
         Utilities.runLinuxCmd(f'chmod 770 {self.testIdTestingBranch}')
 
         if self.ciVars.localTestBranch:
-            Utilities.runLinuxCmd(f'cp -r {self.ciVars.localTestBranch} {self.testIdTestingBranch}', logObj=self.log)
+            Utilities.runLinuxCmd(f'cp -r {self.ciVars.localTestBranch}/* {self.testIdTestingBranch}', logObj=self.log)
         else:
             if self.branchName:
                 cmd = f'git clone --branch {self.branchName} {self.repo} {self.testIdTestingBranch}'
@@ -62,7 +64,7 @@ class GitCloneTestingRepo:
             self.log.info('Verify if cloned repo test branch has files in it')
             output = Utilities.runLinuxCmd('ls', cwd=self.testIdTestingBranch, logObj=self.log)
             if len(output) > 0:
-                self.log.info('Verified cloned files!')
+                self.log.info('Verified cloned files')
                 verified = True
                 Utilities.updateStage(self.ciVars.overallSummaryFile, stage='cloneTestRepo',
                                       status='completed', result='passed', threadLock=self.lock)

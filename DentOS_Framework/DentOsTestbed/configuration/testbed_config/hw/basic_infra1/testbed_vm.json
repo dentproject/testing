@@ -1,0 +1,48 @@
+{
+    "devices": [
+        {
+            "friendlyName":"DENT infrastructure 1",
+            "os":"dentos",
+            "type" : "INFRA_SWITCH",
+            "hostName": "infra1",
+            "model": "arm64-accton-as5114-48x-r0",
+            "ip": "10.36.118.45",
+            "login":{
+                "userName":"root",
+                "password":"onl"
+            },
+            "serialDev":"/dev/ttyUSB0",
+            "baudrate": 115200,
+            "mediaMode":"fiber",
+            "links" : [
+                ["swp5", "infra1:swp6"],
+                ["swp7", "infra1:swp8"],
+                ["swp9", "infra1:swp10"]
+            ]
+        },
+        {
+            "friendlyName":"Ixia Traffic Generator",
+            "os":"ixnetwork",
+            "type" : "TRAFFIC_GENERATOR",
+            "hostName": "ixia",
+            "model": "VM",
+            "ip": "10.36.118.112",
+            "login":{
+                "userName":"admin",
+                "password":"dentTestPass_121314"
+            },
+            "serialDev":"/dev/ttyUSBXX",
+            "baudrate": 115200,
+            "mediaMode":"fiber",
+            "links" : [
+                ["10.36.118.150:1:1", "infra1:swp1", "fiber"],
+                ["10.36.118.150:2:1", "infra1:swp2", "fiber"],
+                ["10.36.118.150:3:1", "infra1:swp3", "fiber"],
+                ["10.36.118.150:4:1", "infra1:swp4", "fiber"]
+            ]
+        }
+    ],
+    "operator" : "dent",
+    "topology" : "bachelor",
+    "force_discovery" : false
+}

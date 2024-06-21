@@ -1,0 +1,211 @@
+{
+    "devices": [
+        {
+            "friendlyName":"Dent infra1",
+            "os":"dentos",
+            "type" : "INFRA_SWITCH",
+            "hostName": "infra1",
+            "model": "arm64-accton-as4224-52p-r0",
+            "ip": "10.36.118.46",
+            "login":{
+                "userName":"root",
+                "password":"onl"
+            },
+            "cpuArchitecture": "arm",
+    	    "macAddress": "90:3C:B3:8B:EF:32",
+	    "serialConsole": {
+		"ip": "10.36.118.200",
+		"port": 7003
+	    },
+	    "pdu": {
+		"ip": "10.36.118.201",
+		"login": "dent",
+		"password": "dent123!",
+		"number": 3
+	    },
+            "serialDev":"/dev/ttyUSB0",
+            "baudrate": 115200,
+            "links" : [
+                ["swp49", "agg1:swp47"],
+                ["swp50", "agg2:swp47"],
+                ["swp51", "infra2:swp51"],
+                ["swp52", "infra2:swp52"],
+		["swp5", "infra1:swp6"],
+		["swp7", "infra1:swp8"],
+		["swp9", "infra1:swp10"]
+            ]
+        },
+        {
+            "friendlyName":"Dent infra2",
+            "os":"dentos",
+            "type" : "INFRA_SWITCH",
+            "hostName": "infra2",
+            "model": "arm64-delta-tn48m-poe-dn-r0",
+            "ip": "10.36.118.23",
+            "login":{
+                "userName":"root",
+                "password":"onl"
+            },
+            "cpuArchitecture": "arm",
+    	    "macAddress": "18:BE:92:13:64:80",
+	    "serialConsole": {
+		"ip": "10.36.118.200",
+		"port": 7011
+	    },
+	    "pdu": {
+		"ip": "10.36.118.201",
+		"login": "dent",
+		"password": "dent123!",
+		"number": "4"
+	    },
+            "serialDev":"/dev/ttyUSB1",
+            "baudrate": 115200,
+            "links" : [
+                ["swp49", "agg1:swp48"],
+                ["swp50", "agg2:swp48"],
+                ["swp51", "infra2:swp51"],
+                ["swp52", "infra2:swp52"],
+		["swp5", "infra2:swp6"],
+		["swp7", "infra2:swp8"],
+		["swp9", "infra2:swp10"]
+            ]
+        },
+        {
+            "friendlyName":"Dent agg1",
+            "os": "dentos",
+            "type" : "AGGREGATION_ROUTER",
+            "hostName": "agg1",
+            "model": "arm64-accton-as5114-48x-r0",
+            "ip": "10.36.118.44",
+            "login":{
+                "userName":"root",
+                "password":"onl"
+            },
+            "cpuArchitecture": "arm",
+    	    "macAddress": "34:EF:B6:EC:38:02",
+	    "serialConsole": {
+		"ip": "10.36.118.200",
+		"port": 7005
+	    },
+	    "pdu": {
+		"ip": "10.36.118.201",
+		"login": "dent",
+		"password": "dent123!",
+		"number": 5
+	    },
+            "serialDev":"/dev/ttyUSB2",
+            "baudrate": 115200,
+            "links" : [
+                ["swp13", "dist1:swp13"],
+                ["swp47", "infra1:swp49"],
+                ["swp48", "infra2:swp49"],
+		["swp5", "agg1:swp6"],
+		["swp7", "agg1:swp8"],
+		["swp9", "agg1:swp10"]
+            ]
+        },
+        {
+            "friendlyName":"Dent agg2",
+            "os": "dentos",
+            "type" : "AGGREGATION_ROUTER",
+            "hostName": "agg2",
+            "model": "arm64-accton-as5114-48x-r0",
+            "ip": "10.36.118.41",
+            "login":{
+                "userName":"root",
+                "password":"onl"
+            },
+            "cpuArchitecture": "arm",
+    	    "macAddress": "34:EF:B6:EC:2A:4C",
+	    "serialConsole": {
+		"ip": "10.36.118.200",
+		"port": 7008
+	    },
+	    "pdu": {
+		"ip": "10.36.118.201",
+		"login": "dent",
+		"password": "dent123!",
+		"number": 8
+	    },
+	    "serialDev":"/dev/ttyUSB3",
+            "baudrate": 115200,
+            "links" : [
+                ["swp14", "dist1:swp14"],
+                ["swp47", "infra1:swp50"],
+                ["swp48", "infra2:swp50"],
+		["swp5", "agg2:swp6"],
+		["swp7", "agg2:swp8"],
+		["swp9", "agg2:swp10"]
+            ]
+        },
+        {
+            "friendlyName":"Dent dist1",
+            "os":"dentos",
+            "type" : "DISTRIBUTION_ROUTER",
+            "hostName": "dist1",
+            "model": "arm64-accton-as5114-48x-r0",
+            "ip": "10.36.118.43",
+            "login":{
+                "userName":"root",
+                "password":"onl"
+            },
+            "cpuArchitecture": "arm",
+    	    "macAddress": "34:EF:B6:EC:26:BE",
+	    "serialConsole": {
+		"ip": "10.36.118.200",
+		"port": 7006
+	    },
+	    "pdu": {
+		"ip": "10.36.118.201",
+		"login": "dent",
+		"password": "dent123!",
+		"number": 6
+	    },
+            "serialDev":"/dev/ttyUSB3",
+            "baudrate": 115200,
+            "links" : [
+                ["swp13", "agg1:swp13"],
+                ["swp14", "agg2:swp14"],
+		["swp5", "dist1:swp6"],
+		["swp7", "dist1:swp8"],
+		["swp9", "dist1:swp10"]
+            ]
+        },
+        {
+            "friendlyName":"Ixia Traffic Generator",
+            "os":"ixnetwork",
+            "type" : "TRAFFIC_GENERATOR",
+            "hostName": "ixia",
+            "model": "Novus10G",
+            "ip": "10.36.118.111",
+            "login":{
+                "userName":"admin",
+                "password":"admin"
+            },
+            "serialDev":"/dev/ttyUSBXX",
+            "baudrate": 115200,
+            "mediaMode":"mixed",
+            "links" : [
+                ["10.36.118.199:1:1",  "dist1:swp1",   "fiber"],
+                ["10.36.118.199:1:2",  "dist1:swp2",   "fiber"],
+                ["10.36.118.199:1:3",  "dist1:swp3",   "fiber"],
+                ["10.36.118.199:1:4",  "dist1:swp4",   "fiber"],
+                ["10.36.118.199:1:5",  "agg1:swp1",    "fiber"],
+                ["10.36.118.199:1:6",  "agg1:swp2",    "fiber"],
+		["10.36.118.199:1:7",  "agg1:swp3",    "fiber"],
+		["10.36.118.199:1:8",  "agg1:swp4",    "fiber"],
+                ["10.36.118.199:1:9",  "agg2:swp1",    "fiber"],
+                ["10.36.118.199:1:10", "agg2:swp2",    "fiber"],
+                ["10.36.118.199:1:11", "infra1:swp3",  "copper"],
+                ["10.36.118.199:1:12", "infra1:swp4",  "copper"],
+                ["10.36.118.199:1:13", "infra2:swp1",  "copper"],
+                ["10.36.118.199:1:14", "infra2:swp2",  "copper"],
+		["10.36.118.199:1:15", "infra2:swp3",  "copper"],
+		["10.36.118.199:1:16", "infra2:swp4",  "copper"]
+            ]
+        }
+    ],
+    "operator" : "dent",
+    "topology" : "gordion-knot",
+    "force_discovery" : false
+}

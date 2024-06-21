@@ -1,0 +1,6 @@
+suiteGroups:
+   runInSeries:
+      - name: suite_group_clean_config_agg1
+        config: ./DentOsTestbed/configuration/testbed_config/basic_agg1/testbed.json
+        suiteGroups:
+           - suite_group_clean_config

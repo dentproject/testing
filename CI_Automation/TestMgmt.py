@@ -57,8 +57,9 @@ class TestMgmt():
         # Testbed reservation
         self.testbedMgmtFolder = globalSettings.testbedMgmtFolder
         self.testbedWaitingFolder = globalSettings.testbedMgmtWaitingFolder
-        # Test session folder: /home/dent/testing
+        # Test session folder: /home/dent/DentCiMgmt/TestResults/06-14-2024-16-18-45-420609
         self.testSessionFolder = ciVars.testSessionFolder
+        # testIdTestingBranch: /path/DentCiMgmt/TestBranches/06-14-2024-16-18-45-420609_devMode
         self.testIdTestingBranch = ciVars.testIdTestingBranch
         # The Linux host logged in user running the test
         self.user = ciVars.user
@@ -71,9 +72,10 @@ class TestMgmt():
         self.overallSummaryFile = ciVars.overallSummaryFile
         self.reportFile = ciVars.reportFile
         self.abortTestOnError = ciVars.abortTestOnError
-        self.overallTestResult = 'Passed'
+        self.overallTestResult = 'None'
         self.testIdTestbeds = []
         self.setTestcases()
+        self.isThereAnyResultInReport = None
 
         self.log.info(f'RunTest: testSuites={self.testSuites}')
         self.log.info(f'RunTest: logDir={self.testSessionFolder}')
@@ -166,11 +168,13 @@ class TestMgmt():
         But within each suite group has many testcases with results.
         """
         testResult = None
+
+        # /path/DentCiMgmt/tools/test_utils.py
         result = Utilities.runLinuxCmd(f'{sys.executable} {globalSettings.dentToolsPath}/test_utils.py csv -d {self.testSessionFolder}',
                                        logObj=self.log)
+
         if result:
             report = ''
-            testResult = 'passed'
             # ['Name,Group,Subgroup,Status,Message', 'test_clean_config,basic_triggers,test_clean_config,pass,""']
             for index, line in enumerate(result):
                 if not line:
@@ -185,6 +189,7 @@ class TestMgmt():
                     if len(line) != 5:
                         continue
 
+                    self.isThereAnyResultInReport = True
                     status = line[3]
                     # pass | failure
                     if status != 'pass':
@@ -192,6 +197,13 @@ class TestMgmt():
                         self.overallTestResult = 'Failed'
 
                     report += f'{line[0]:25} {line[1]:20} {line[2]:20} {line[3]:20} {line[4]:30}\n'
+
+            if self.isThereAnyResultInReport and testResult is None:
+                testResult = 'passed'
+            if self.isThereAnyResultInReport and testResult == 'failed':
+                testResult = 'failed'
+            if self.isThereAnyResultInReport is None and testResult is None:
+                testResult = 'none'
 
             self.log.info(f'{report}', noTimestamp=True)
             Utilities.writeToFile(report, filename=self.reportFile, mode='w', printToStdout=False)
@@ -269,23 +281,34 @@ class TestMgmt():
             testDeltaTime = str((stopTime - startTime))
             if aborted:
                 status = 'aborted'
-                self.overallTestResult = 'unknown'
+                self.overallTestResult = 'Aborted'
             else:
                 status = 'completed'
 
-            testResult = self.report()
+            if status == 'completed':
+                if self.isThereAnyResultInReport and self.overallTestResult not in ['Aborted', 'Failed']:
+                    self.overallTestResult = 'Passed'
+
+                if self.isThereAnyResultInReport and self.overallTestResult in ['Aborted', 'Failed']:
+                    self.overallTestResult = 'Failed'
+
+                if self.isThereAnyResultInReport is None:
+                    self.overallTestResult = 'Failed'
+                    errorMsg = 'There were no test case results hmtl files found in the test branch folder. No result.'
+
+            self.report()
             Utilities.updateTestMgmtData(self.overallSummaryFile,
                                          {'status': status,
                                           'stopTime': stopTime.strftime('%m-%d-%Y %H:%M:%S:%f'),
                                           'testDuration': testDeltaTime,
                                           'error': errorMsg,
                                           'aborted': aborted,
-                                          'result': testResult
+                                          'result': self.overallTestResult
                                           },
                                          threadLock=self.lock)
 
             Utilities.updateStage(self.overallSummaryFile, stage='runTest', status=status,
-                                  result=testResult, error=None, threadLock=self.lock)
+                                  result=self.overallTestResult, error=None, threadLock=self.lock)
 
             if aborted and self.abortTestOnError:
                 self.killTest(status='AbortTestOnError')
@@ -389,7 +412,7 @@ class TestMgmt():
             Utilities.updateStage(self.overallSummaryFile, stage='runTest', status='error',
                                   result='None', error=errorMsg, threadLock=self.lock)
             self.log.error(errorMsg)
-            self.overallTestResult = 'unknown'
+            self.overallTestResult = 'Aborted'
             print(f'runSuiteGroup error: {errorMsg}')
 
         finally:

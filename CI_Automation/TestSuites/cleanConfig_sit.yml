@@ -1,0 +1,11 @@
+suiteGroups:
+   runInSeries:
+      - name: suite_group_clean_config
+        config: ./DentOsTestbed/configuration/testbed_config/sit_vm/testbed.json
+        suiteGroups:
+           - suite_group_clean_config
+
+      #- name: suite_group_functional
+      #  config: ./DentOsTestbed/configuration/testbed_config/sit/testbed.json
+      #  suiteGroups:
+      #     - suite_group_functional
