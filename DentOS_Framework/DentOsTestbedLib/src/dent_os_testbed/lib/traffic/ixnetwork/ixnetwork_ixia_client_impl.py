@@ -4,7 +4,7 @@ import time
 
 from dent_os_testbed.lib.traffic.ixnetwork.ixnetwork_ixia_client import IxnetworkIxiaClient
 from ixnetwork_restpy.assistants.statistics.statviewassistant import StatViewAssistant as SVA
-from ixnetwork_restpy import SessionAssistant, Files, BatchAdd, BatchFind
+from ixnetwork_restpy import Files, BatchAdd, BatchFind, TestPlatform
 
 
 class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
@@ -51,7 +51,6 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                 IxnetworkIxiaClientImpl.session.remove()
                 IxnetworkIxiaClientImpl.session = None
                 IxnetworkIxiaClientImpl.ixnet = None
-                IxnetworkIxiaClientImpl.session = None
                 IxnetworkIxiaClientImpl.rr_eps = []
                 IxnetworkIxiaClientImpl.bgp_eps = []
                 IxnetworkIxiaClientImpl.ip_eps = []
@@ -64,23 +63,18 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
         param = params[0]
         try:
             caddr = param['client_addr']
-            cport = param.get('client_port', 443)
             if not caddr:
                 return 0, 'No Address to connect!'
+            cport = param.get('client_port', 443)
 
-            gw = SessionAssistant(
-                IpAddress=caddr,
-                RestPort=cport,
-                UserName=device.username,
-                Password=device.password,
-                SessionName='DENT',
-                ClearConfig=True,
-                IgnoreStrongPasswordPolicy=True
-            )  # ,LogLevel='info'
-            session = gw.Session
+            test_platform = TestPlatform(caddr, cport)
+            test_platform.Authenticate(device.username, device.password)
+            session = test_platform.Sessions.find(Name='DENT')
+            if len(session) == 0 or session.State != 'ACTIVE':
+                session.remove()
+                session.add(Name='DENT')
 
             device.applog.info('Connected to Linux Gateway Session ID: %d' % session.Id)
-            device.applog.info('Reserving test ports, and may take a minute...')
             IxnetworkIxiaClientImpl.session = session
             IxnetworkIxiaClientImpl.ixnet = session.Ixnetwork
             IxnetworkIxiaClientImpl.ixnet.NewConfig()
@@ -118,6 +112,7 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                 # Vports dict uses port name to store vport object and swp port name
                 vports[port] = (vport_objects[port], swp_port)
 
+            device.applog.info('Reserving test ports, and may take a minute...')
             device.applog.info('Assigning ports')
             IxnetworkIxiaClientImpl.ixnet.AssignPorts(True)
 
@@ -134,6 +129,7 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                 }
             lag_ports = [port for lag in lags.values() for port in lag['vports']]
 
+            device.applog.info('Changes media modes for Ixia ports')
             self.__update_ports_mode(vports, device)
             # Add ports
             for port, vport in vports.items():
@@ -157,7 +153,7 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
 
             exc_type, exc_obj, exc_tb = sys.exc_info()
             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-            device.applog.info(f'{exc_type}, {fname}:{exc_tb.tb_lineno}')
+            device.applog.info(f'{exc_type}, {fname}: {exc_tb.tb_lineno}')
             return -1, 'Error!'
         return 0, 'Connected!'
 
