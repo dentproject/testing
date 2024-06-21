@@ -23,7 +23,8 @@ class DentCiArgParse:
     def parse(self):
         parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
         parser.add_argument('-testName',          nargs='+', default=None, help='Give a test name to identify your test ID.')
-        parser.add_argument('-builds',            nargs='+', default=None, help='Both ARM and AMD full path URLs for the builds')
+        parser.add_argument('-builds',            nargs='+', default=None, help='Get from Dent website. Both ARM and AMD full path URLs for the builds')
+        parser.add_argument('-localBuilds',       nargs='+', default=None, help='Local path to builds. Both ARM and AMD full path URLs for the builds')
         parser.add_argument('-testSuites',        nargs='+', default=None, help='The test suite to run')
         parser.add_argument('-repo',              nargs='+', default=None, help='The repo to clone for testing')
         parser.add_argument('-localBranch',       nargs='+', default=None, help='Test with a local branch that is already cloned. Provide the path.')
@@ -73,6 +74,11 @@ class DentCiArgParse:
         else:
             self.ciVars.builds = args.builds
 
+        if args.localBuilds is None:
+            self.ciVars.localBuilds = []
+        else:
+            self.ciVars.localBuilds = args.localBuilds
+
         if args.repo is None:
             # Default pulling the main branch
             self.ciVars.repo = self.ciVars.gitCloneDefaultRepo
@@ -92,8 +98,12 @@ class DentCiArgParse:
                     localBranch = args.localBranch[0]
 
                 self.ciVars.localTestBranch = localBranch
+                self.ciVars.repo = localBranch
             else:
-                Utilities.sysExit(self.ciVars, f'No such local test branch: {args.localBranch[0]}')
+                print(f'No such local test branch: {args.localBranch[0]}')
+                sys.exit(f'No such local test branch: {args.localBranch[0]}')
+        else:
+            self.ciVars.localTestBranch = None
 
         if args.tftp is False and args.http is False:
             # Default to use http
@@ -116,7 +126,6 @@ class DentCiArgParse:
 
         if args.disableDownloadNewBuilds:
             self.ciVars.downloadNewBuilds = False
-            self.ciVars.builds = []
         else:
             if args.builds:
                 self.ciVars.builds = args.builds

@@ -1,0 +1,100 @@
+suiteGroups:
+   runInSeries:
+      - name: clean_config_for_sit
+        config: ./DentOsTestbed/configuration/testbed_config/hw/sit/testbed.json
+        suiteGroups:
+           - suite_group_clean_config
+
+      - name: suite_group_test
+        config: ./DentOsTestbed/configuration/testbed_config/hw/sit/testbed.json
+        suiteGroups:
+           - suite_group_test
+
+      - name: suite_group_l3_tests
+        config: ./DentOsTestbed/configuration/testbed_config/hw/sit/testbed.json
+        suiteGroups:
+           - suite_group_l3_tests
+
+      - name: suite_group_basic_trigger_tests
+        config: ./DentOsTestbed/configuration/testbed_config/hw/sit/testbed.json
+        suiteGroups:
+           - suite_group_basic_trigger_tests
+
+      - name: suite_group_traffic_tests
+        config: ./DentOsTestbed/configuration/testbed_config/hw/sit/testbed.json
+        suiteGroups:
+           - suite_group_traffic_tests
+
+      - name: suite_group_tc_tests
+        config: ./DentOsTestbed/configuration/testbed_config/hw/sit/testbed.json
+        suiteGroups:
+           - suite_group_tc_tests
+
+      - name: suite_group_bgp_tests
+        config: ./DentOsTestbed/configuration/testbed_config/hw/sit/testbed.json
+        suiteGroups:
+           - suite_group_bgp_tests
+
+      - name: suite_group_system_wide_testing
+        config: ./DentOsTestbed/configuration/testbed_config/hw/sit/testbed.json
+        suiteGroups:
+           - suite_group_system_wide_testing
+
+      - name: suite_group_system_health
+        config: ./DentOsTestbed/configuration/testbed_config/hw/sit/testbed.json
+        suiteGroups:
+           - suite_group_system_health
+
+      - name: suite_group_system_health
+        config: ./DentOsTestbed/configuration/testbed_config/hw/sit/testbed.json
+        suiteGroups:
+           - suite_group_system_health
+
+      - name: suite_group_store_bringup
+        config: ./DentOsTestbed/configuration/testbed_config/hw/sit/testbed.json
+        suiteGroups:
+           - suite_group_store_bringup
+
+      - name: suite_group_alpha_lab_testing
+        config: ./DentOsTestbed/configuration/testbed_config/hw/sit/testbed.json
+        suiteGroups:
+           - suite_group_alpha_lab_testing
+
+      - name: suite_group_dentv2_testing
+        config: ./DentOsTestbed/configuration/testbed_config/hw/sit/testbed.json
+        suiteGroups:
+           - suite_group_dentv2_testing
+
+      - name: suite_group_connection
+        config: ./DentOsTestbed/configuration/testbed_config/hw/sit/testbed.json
+        suiteGroups:
+           - suite_group_connection
+
+      - name: suite_group_platform
+        config: ./DentOsTestbed/configuration/testbed_config/hw/sit/testbed.json
+        suiteGroups:
+           - suite_group_platform
+
+      - name: suite_group_stress_tests
+        config: ./DentOsTestbed/configuration/testbed_config/hw/sit/testbed.json
+        suiteGroups:
+           - suite_group_stress_tests
+
+#   - name: dentos_testbed_runtests
+#     config: ./DentOsTestbed/configuration/testbed_config/hw/sit/testbed.json
+#     suiteGroups:
+#        - suite_group_test
+#        - suite_group_l3_tests
+#        - suite_group_basic_trigger_tests
+#        - suite_group_traffic_tests
+#        - suite_group_tc_tests
+#        - suite_group_bgp_tests
+#        - suite_group_system_wide_testing
+#        - suite_group_system_health
+#        - suite_group_store_bringup
+#        - suite_group_alpha_lab_testing
+#        - suite_group_dentv2_testing
+#        - suite_group_connection
+#        - suite_group_platform
+#        - suite_group_stress_tests
+#        - suite_group_functional

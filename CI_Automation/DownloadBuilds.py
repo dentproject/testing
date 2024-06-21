@@ -23,8 +23,8 @@ class DownloadBuilds:
         self.log = ciVars.sessionLog
 
         # Every test has its down testId folder to store the builds download
+        # /DentBuildReleases/06-11-2024-19-34-49-119160_devMode
         Utilities.runLinuxCmd(f'mkdir -p {self.downloadToServerFolder}', logObj=self.log)
-
     '''
     def getPullRequestList(self):
         """
@@ -217,6 +217,24 @@ class DownloadBuilds:
         else:
             return False
 
+    def copyLocalBuildsToHttpServerTestIdFolder(self):
+        print('\ncopyLocalBuildsToHttpServerTestIdFolder')
+        for srcBuild in self.ciVars.localBuilds:
+            buildName = srcBuild.split('/')[-1]
+            downloadToDestPath = f'{self.downloadToServerFolder}/{buildName}'
+
+            doOnce = True
+            if doOnce:
+                # buildName: DENTOS-HEAD_ONL-OS10_2023-09-20.1438-a00d7f6_ARM64_INSTALLED_INSTALLER
+                matchReg = search(r'DENTOS.*_([0-9]+-[0-9]+-[0-9]+)\.([0-9]+)-.*', buildName)
+                if matchReg:
+                    data = Utilities.readJson(self.ciVars.overallSummaryFile)
+                    data.update({'buildDate': matchReg.group(1), 'buildNumber': matchReg.group(2)})
+                    Utilities.writeToJson(jsonFile=self.ciVars.overallSummaryFile, data=data, mode='w', threadLock=self.ciVars.lock)
+                    doOnce = False
+
+            Utilities.runLinuxCmd(f'cp {srcBuild} {downloadToDestPath}', logObj=self.log)
+
 
 def downloadBuilds(ciVars: object) -> bool:
     """
@@ -227,6 +245,12 @@ def downloadBuilds(ciVars: object) -> bool:
                           status='running', result=None, threadLock=ciVars.lock)
     downloadBuildsObj = DownloadBuilds(ciVars)
     srcBuildList = ciVars.builds
+
+    if ciVars.localBuilds:
+        downloadBuildsObj.copyLocalBuildsToHttpServerTestIdFolder()
+        Utilities.updateStage(ciVars.overallSummaryFile, stage='downloadNewBuilds',
+                              status='completed', result='passed', threadLock=ciVars.lock)
+        return True
 
     if ciVars.builds == []:
         # User did not provide builds. Scrape for the latest builds from the main branch in github

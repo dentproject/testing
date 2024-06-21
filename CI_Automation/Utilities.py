@@ -11,6 +11,7 @@ from time import sleep
 from shutil import rmtree
 from glob import glob
 from re import search, findall
+import socket
 
 
 def getTimestamp(includeMillisecond: bool = True) -> str:
@@ -222,16 +223,16 @@ def generatorRandom(size=6, chars=string.ascii_uppercase + string.digits):
     return ''.join(random.choice(chars) for _ in range(size))
 
 
-def sysExit(ciVars: object, errorMsg: str = ''):
+def runDentCiTearDown(ciVars: object, errorMsg: str = ''):
     # In case the testID test branch did not get removed
     if ciVars.deleteTestBranchAfterTest and os.path.exists(ciVars.testIdTestingBranch):
         try:
-            ciVars.sessionLog.info(f'sysExit: Removing testId test branch: {ciVars.testIdTestingBranch}')
+            ciVars.sessionLog.info(f'runDentCiTearDown: Removing testId test branch: {ciVars.testIdTestingBranch}')
             rmtree(ciVars.testIdTestingBranch)
         except Exeption:
             pass
 
-    ciVars.sessionLog.info(f'sysExit: removeDockerImage: {ciVars.dockerImageTag}')
+    ciVars.sessionLog.info(f'runDentCiTearDown: removeDockerImage: {ciVars.dockerImageTag}')
     removeDockerImage(ciVars.dockerImageTag, ciVars.sessionLog)
 
     if ciVars.ciObj:
@@ -250,9 +251,6 @@ def sysExit(ciVars: object, errorMsg: str = ''):
         ciVars.exitCode = 1
     else:
         ciVars.exitCode = 0
-
-    # This will stop the test from running. It won't exit the main script.
-    sys.exit()
 
 
 def closeTestMgmtStatus(overallSummaryFile: str = None,
@@ -426,6 +424,7 @@ def removeTestingRepo(path):
     Remove the testing branch
     """
     if os.path.exists(path):
+        print(f'\nremoveTestingRepo: {path}')
         rmtree(path)
 
 
@@ -552,12 +551,14 @@ def getTestbeds(ciVars):
                 #          /testbed_config/basic_infra1/testbed.json
                 config = test['config'].split('configuration')[-1]
 
-                regexMatch = search('testbed_config/(.+)/testbed.json', config)
+                regexMatch = search('testbed_config/(.+)', config)
                 if regexMatch is False:
                     ciVars.sessionLog.error(f'getTestbeds: Expecting config pattern /testbed_config/<testbed_name>/testbed.json, but got pattern: {config}')
-                    sysExit(ciVars, errorMsg=True)
+                    runDentCiTearDown(ciVars, errorMsg=True)
 
-                testbedName = regexMatch.group(1)
+                # lockTestbed touches a testbed file that begins with sit/<testbed> (slash), but touch
+                # errors out because it see's slashes as paths. Need to replace slashes with dashes
+                testbedName = regexMatch.group(1).replace('/', '-')
                 # Get a list of all the testId testbeds so the framework knows which testbed to unlock
 
                 testbedNameWithTestId = f'{testbedName.split(".json")[0]}_{ciVars.testId}'
@@ -655,6 +656,26 @@ def removeDockerImage(dockerTag: str, logObj: object):
     except Exception as errMsg:
         logObj.error(f'removeDockerImage error: {traceback.format_exc(None, errMsg)}')
         return False
+
+
+def isReachable(ipOrName, port, timeout=3):
+    """
+    If your server does not support ICMP (firewall might block it),
+    it most probably still offers a service on a TCP port.
+    In this case, you can perform a TCP ping (platform independently and
+    without installing additional python modules) like this.
+    """
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.settimeout(timeout)
+
+    try:
+        s.connect((ipOrName, int(port)))
+        s.shutdown(socket.SHUT_RDWR)
+        return True
+    except Exception:
+        return False
+    finally:
+        s.close()
 
 
 class CreateLogObj:
