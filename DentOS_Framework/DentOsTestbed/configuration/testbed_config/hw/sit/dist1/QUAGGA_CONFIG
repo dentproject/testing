@@ -1,0 +1,50 @@
+username cumulus nopassword
+!
+service integrated-vtysh-config
+!
+log timestamp precision 6
+!
+no zebra nexthop kernel enable
+!
+router bgp 65535
+ bgp router-id 20.20.0.1
+ no bgp ebgp-requires-policy
+ neighbor INFRA peer-group
+ neighbor INFRA remote-as 65534
+ neighbor INFRA timers 3 10
+ neighbor IXIA peer-group
+ neighbor IXIA remote-as 200
+ neighbor IXIA timers 3 10
+ neighbor POD peer-group
+ neighbor POD remote-as 65511
+ neighbor POD timers 3 10
+  neighbor 20.20.96.2 peer-group POD
+  neighbor 20.20.96.126 peer-group POD
+  neighbor 21.1.7.2 peer-group IXIA
+ !
+ address-family ipv4 unicast
+  network 20.20.0.1/32
+  redistribute connected
+  neighbor POD next-hop-self
+  neighbor POD soft-reconfiguration inbound
+  neighbor POD route-map FROM-POD in
+  neighbor INFRA next-hop-self
+  neighbor INFRA soft-reconfiguration inbound
+  neighbor INFRA route-map TO-INFRA out
+  neighbor IXIA soft-reconfiguration inbound
+ exit-address-family
+!
+ip prefix-list DEFAULT-ROUTE seq 10 permit 0.0.0.0/0
+!
+route-map FROM-POD deny 10
+ match ip address prefix-list DEFAULT-ROUTE
+!
+route-map FROM-POD permit 20
+!
+route-map TO-INFRA permit 10
+ set community no-advertise
+!
+line vty
+!
+end
+!

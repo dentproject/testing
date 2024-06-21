@@ -1,0 +1,41 @@
+#
+# ONL format of dent interfaces
+#
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+source /etc/network/interfaces.d/*.intf
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+    address 20.20.0.4/32
+
+# The management interface
+auto ma1
+iface ma1 inet dhcp
+
+auto swp14
+iface swp14 inet static
+alias DIST1 SWP14
+    address 20.20.96.126/30
+
+auto swp47
+iface swp47 inet static
+alias INFRA1 SWP50
+    address 20.20.96.26/30
+
+auto swp48
+iface swp48 inet static
+alias INFRA2 SWP50
+    address 20.20.96.30/30
+
+auto swp1
+iface swp1 inet static
+alias IXIA LINK
+    address 22.2.9.1/24
+
+auto swp2
+iface swp2 inet static
+alias IXIA LINK
+    address 22.2.10.1/24
