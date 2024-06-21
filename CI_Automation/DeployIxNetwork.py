@@ -32,6 +32,9 @@ Generate notes and steps:
    echo 'start the vm'
    virsh autostart IxNetwork-930
    virsh start IxNetwork-930
+
+Debug:
+   virsh console IxNetwork-9.30
 """
 import os
 import time
@@ -81,11 +84,11 @@ class DeployIxNetwork:
     def isIxNetworkVMExists(self) -> bool:
         vmExists = False
 
-        # Attempt to verify up to 5 times. Sometimes, this command
+        # Attempt to verify up to 5 times. Sometimes this command
         # is either delayed or doesn't show anything
         for counter in range(0, 5):
             output = Utilities.runLinuxCmd('virsh list', logObj=self.log)
-            self.log.info(f'isNetworkVMExists: output {counter}/5: {output}')
+            self.log.info(f'isNetworkVMExists: Verifying {counter}/5x: {output}')
 
             if output:
                 for line in output:

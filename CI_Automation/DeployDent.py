@@ -94,9 +94,12 @@ class DeployDent():
         # http://10.36.118.11/DentBuildReleases/09-27-2023-00-15-49-343919_jenkinsCI_devTest
         self.serverPrefixPath = ciVars.serverPrefixPath
         # http path to download new build
-        self.srcBuildList = ciVars.builds
+        if ciVars.builds:
+            self.srcBuildList = ciVars.builds
+        if ciVars.localBuilds:
+            self.srcBuildList = ciVars.localBuilds
         self.spawnId = None
-        # This variable will get set by self.parseForRightImageToInstail()
+        # This variable will get set by self.parseForArmOrAmdImageToInstall()
         self.installBuild = None
         self.result = None
         self.checkIfItIsRebooting = False
@@ -128,7 +131,7 @@ class DeployDent():
             build = buildUrl.split('/')[-1]
             if self.cpuArchitecture.upper() in build:
                 self.installBuild = build
-                self.log.info(f'DentOS {self.name} has CPU architecture: {self.cpuArchitecture}. Set image to: {build}')
+                self.log.info(f'parseForArmOrAmdImageToInstall: DentOS {self.name} has CPU architecture: {self.cpuArchitecture}. Set image to: {build}')
 
     def createMacAddressFolderInTftp(self):
         """
@@ -144,7 +147,7 @@ class DeployDent():
             if os.path.exists(self.dentSwitchMacAddressTftpFolder) is False:
                 Utilities.runLinuxCmd(f'mkdir -p {self.dentSwitchMacAddressTftpFolder}', logObj=self.log)
             else:
-                self.log.info(f'A Mac Address folder already exists: {self.dentSwitchMacAddressTftpFolder}')
+                self.log.info(f'createMacAddressFolderInTftp: A Mac Address folder already exists: {self.dentSwitchMacAddressTftpFolder}')
 
     def createOnieDefaultImageInTftp(self):
         """
@@ -167,13 +170,13 @@ class DeployDent():
                     defaultDentFilename = f'{self.dentSwitchMacAddressTftpFolder}/onie-installer-arm64-accton_as4224_52p-r0'
                     Utilities.runLinuxCmd(f'cp {self.tftpServerFolder}/{self.installBuild} {defaultDentFilename}', logObj=self.log)
             else:
-                self.log.error(f'Build not found in tftp server for Dent {self.name}: {self.tftpServerFolder}/{self.installBuild}')
+                self.log.error(f'createOnieDefaultImageInTftp: Build not found in tftp server for Dent {self.name}: {self.tftpServerFolder}/{self.installBuild}')
                 return False
         except Exception as errMsg:
             self.log.error(f'createOnieDefaultImageInTftp: Error on Dent {self.name}: {traceback.format.exc(None, errMsg)}')
             return False
 
-    def updateDent(self, spawnTelnet=True, timeout=5) -> bool:
+    def updateDent(self, spawnTelnet=True, timeout=10) -> bool:
         """
         Parameters:
            spawnTelent: <bool>: If 'Type the hot key to suspend the connection' is snagged, it will call itself with spawnTelnet=False.
@@ -184,7 +187,7 @@ class DeployDent():
         """
         try:
             if spawnTelnet:
-                self.log.info(f'updateDent {self.name}: Telnet to serial console: {self.serialConsoleIp} {self.serialConsolePort}')
+                self.log.info(f'updateDent: {self.name}: Telnet to serial console: {self.serialConsoleIp} {self.serialConsolePort}')
                 self.spawnId = pexpect.spawn(f'telnet {self.serialConsoleIp} {self.serialConsolePort}')
                 # 1 = turn on buffering
                 self.spawnId.maxsize = 1
@@ -192,43 +195,48 @@ class DeployDent():
 
             # '.*localhost login.*'
             # 'root@localhost:~# *'
-            expectIndex = self.send('\n', expect=['Type the hot key to suspend the connection',
-                                                  '.*ONIE:/.*',
-                                                  '.*login:.*',
-                                                  'Marvell>>',
-                                                  'root@.*',
-                                                  '.*This connection is in use.*'
-                                                  ], timeout=timeout)
+            while True:
+                expectIndex = self.send('\n', expect=['Type the hot key to suspend the connection',
+                                                      '.*ONIE:/.*',
+                                                      '.*login:.*',
+                                                      'Marvell>>',
+                                                      'root@.*',
+                                                      '.*This connection is in use.*'
+                                                      ], timeout=timeout)
+                if expectIndex in [0, 1, 2, 3, 4, 5, 6]:
+                    break
+                else:
+                    time.sleep(1)
 
             if expectIndex == 0:
                 self.updateDent(spawnTelnet=False)
 
             if expectIndex == 1:
-                self.log.info(f'Dent:{self.name}: got ONIE prompt')
+                self.log.info(f'UpdteDent: {self.name}: got ONIE prompt')
                 if self.install() is False:
                     self.updateDentResult('failed')
                 else:
-                    self.updateDentResult('passd')
-                self.log.info(f'Dent:{self.name}: End of update from ONIE. Final result: {self.result}')
+                    self.updateDentResult('passed')
+                self.log.info(f'UpdateDent: {self.name}: End of update from ONIE. Final result: {self.result}')
 
             if expectIndex == 2:
-                self.log.info('Got Linux shell login prompt')
+                self.log.info(f'UpdateDent: {self.name}: Got Linux shell login prompt')
                 if self.login():
                     if self.goToOnieFromLinuxShell() is False:
                         self.updateDentResult('failed')
                     else:
-                        self.log.info(f'Dent device: {self.name}: Back to updateDent(). Calling install() ...')
+                        self.log.info(f'UpdateDent: {self.name}: Back to updateDent(). Calling install() ...')
                         if self.install() is False:
                             self.updateDentResult('failed')
                         else:
                             self.updateDentResult('passed')
 
-                        self.log.info(f'End of update from Linux shell login prompt. Final result: {self.result}')
+                        self.log.info(f'UpdateDent: {self.name}: End of update from Linux shell login prompt. Final result: {self.result}')
                 else:
                     self.updateDentResult('failed')
 
             if expectIndex == 3:
-                self.log.info('Got Marvell prompt')
+                self.log.info(f'UpdateDent: {self.name}: Got Marvell prompt')
                 if self.goToOniePromptFromMarvellPrompt() is False:
                     self.updateDentResult('failed')
                 else:
@@ -237,10 +245,10 @@ class DeployDent():
                     else:
                         self.updateDentResult('passed')
 
-                    self.log.info(f'End of update from Marvell. Final result: {self.result}')
+                    self.log.info(f'UpdateDent: {self.name}: End of update from Marvell. Final result: {self.result}')
 
             if expectIndex == 4:
-                self.log.info('Linux shell prompt')
+                self.log.info(f'UpdateDent: {self.name}: Linux shell prompt')
                 if self.goToOnieFromLinuxShell() is False:
                     self.updateDentResult('failed')
                 else:
@@ -249,15 +257,15 @@ class DeployDent():
                     else:
                         self.updateDentResult('passed')
 
-                    self.log.info(f'End of update from Linux shell prompt. Final result: {self.result}')
+                    self.log.info(f'UpdateDent: {self.name}: End of update from Linux shell prompt. Final result: {self.result}')
 
             if expectIndex == 5:
-                self.log.failed(f'Somebody is using this serial console: {self.serialConsoleIp} {self.serialConsolePort}')
+                self.log.failed(f'UpdateDent: {self.name}: Somebody is using this serial console: {self.serialConsoleIp} {self.serialConsolePort}')
                 self.updateDentResult('failed')
 
             # pexpect.TIMEOUT
             if expectIndex == 6:
-                self.log.failed(f'Failed to telnet into device: {self.serialConsoleIp} {self.serialConsolePort}.  Somebody could be using the serial console!')
+                self.log.failed(f'UpdateDent timed out: {self.name}: Telnet serial console: {self.serialConsoleIp} {self.serialConsolePort}.  Somebody could be using the serial console!')
                 # Dent could be in the middle of rebooting
                 if self.checkIfItIsRebooting is False:
                     self.checkIfItIsRebooting = True
@@ -266,11 +274,11 @@ class DeployDent():
                 self.updateDentResult('failed')
 
         except pexpect.ExceptionPexpect:
-            self.log.failed(f'updateDent:{self.name}: {self.serialConsoleIp} {self.serialConsolePort} Expect timeout exceeded.')
+            self.log.failed(f'updateDent error 1: {self.name}: Telnet {self.serialConsoleIp} {self.serialConsolePort} timed out.')
             self.updateDentResult('failed')
 
         except Exception as errMsg:
-            self.log.failed(f'updateDenterror: {self.name}:  {traceback.format_exc(None, errMsg)}')
+            self.log.failed(f'updateDent error 2: {self.name}:  {traceback.format_exc(None, errMsg)}')
             self.updateDentResult('failed')
 
     def send(self, cmd: str, expect: list = [], timeout: int = 10) -> None:
@@ -306,12 +314,18 @@ class DeployDent():
     def getCurrentShell(self, timeout=5):
         # '.*localhost login.*',
         # '.*root@localhost:.*',
-        expectIndex = self.send('\n', expect=['ONIE:.*',
-                                              '.*Marvell>>.*',
-                                              '.*login:.*',
-                                              '.*root@.*',
-                                              '.*This connection is in use.*'
-                                              ], timeout=timeout)
+        while True:
+            expectIndex = self.send('\n', expect=['ONIE:.*',
+                                                  '.*Marvell>>.*',
+                                                  '.*login:.*',
+                                                  '.*root@.*',
+                                                  '.*This connection is in use.*'
+                                                  ], timeout=timeout)
+            if expectIndex in [0, 1, 2, 3, 4, 5, 6]:
+                break
+            else:
+                time.sleep(1)
+
         if expectIndex == 0:
             return 'onie'
         elif expectIndex == 1:
@@ -328,7 +342,7 @@ class DeployDent():
     def login(self) -> bool:
         expectIndex = self.send(cmd=self.linuxShellLogin, expect=['Password.*'])
         if expectIndex != 0:
-            self.log.failed(f'Dent device: {self.name}: Failed to log into Linux shell with username: {self.linuxShellLogin}')
+            self.log.failed(f'login: Dent device: {self.name}: Failed to log into Linux shell with username: {self.linuxShellLogin}')
             return False
         else:
             self.log.info('Got password prompt')
@@ -345,7 +359,7 @@ class DeployDent():
                 return True
 
             if expectIndex == 1:
-                self.log.failed(f'log into the Linux shell failed for Dent: {self.name}')
+                self.log.failed(f'login: log into the Linux shell failed for Dent: {self.name}')
                 return False
 
     def goToOniePrompt(self):
@@ -354,24 +368,39 @@ class DeployDent():
         onie-discovery-stop
         """
         # 'root@localhost:~# *'
-        expectResult = self.send(cmd='\n', expect=['ONIE:.*', 'Marvell>>', 'root@.*'], timeout=3)
+        while True:
+            expectResult = self.send(cmd='\n', expect=['ONIE:.*', 'Marvell>>', 'root@.*'], timeout=3)
+            if expectResult in [0, 1, 2, 3]:
+                break
+            else:
+                time.sleep(1)
+
         if expectResult == 0:
-            self.log.info('Got ONIE prompt. Done')
+            self.log.info(f'goToOniePrompt: {self.name}: Got ONIE prompt. Done')
             return True
 
         # Got Marvell>> prompt
         if expectResult == 1:
-            self.log.info('Got Marvell prompt')
-            self.log.info('Sending: run onie_bootcmd. Waiting up to 80 seconds  ...')
+            self.log.info('goToOniePrompt: {self.name}: Got Marvell prompt')
+            self.log.info('goToOniePrompt: {self.name}: Sending: run onie_bootcmd. Waiting up to 80 seconds  ...')
             return self.goToOniePromptFromMarvellPrompt()
 
         # Got into the Linux shell
         if expectResult == 2:
             expectIndex = self.send(cmd='reboot', expect=['Hit any key to stop autoboot'], timeout=60)
             if expectIndex == 0:
-                expectIndex = self.send(cmd='\n', expect=['Marvell>>'], timeout=120)
+                while True:
+                    expectIndex = self.send(cmd='\n', expect=['Marvell>>'], timeout=120)
+                    if expectIndex in [0, 1]:
+                        break
+                    else:
+                        time.sleep(1)
+
                 if expectIndex == 0:
                     return self.goToOniePromptFromMarvellPrompt()
+
+        if expectResult == 3:
+            self.log.failed(f'goToOniePrompt: {self.name}: timedout expecting prompts: ONIE:, Marvell>>, root@localhst')
 
         return False
 
@@ -380,7 +409,13 @@ class DeployDent():
             self.spawnId.expect(r'.+')
 
         timeout = 120
-        expectIndex = self.send('\n', expect=['Marvell>>'], timeout=5)
+        while True:
+            expectIndex = self.send('\n', expect=['Marvell>>'], timeout=5)
+            if expectIndex in [0, 1]:
+                break
+            else:
+                time.sleep(1)
+
         if expectIndex == 2:
             self.log.failed('goToOniePromptFromMarvellPrompt: Dent:{self.name}: Failed to get the Marvell>> prompt. Cannot continue.')
             return False
@@ -392,10 +427,10 @@ class DeployDent():
             self.log.info(f'goToOniePromptFromMarvellPrompt: Dent:{self.name} -> Sending onie-discovery-stop ...')
             expectIndex1 = self.send(cmd='onie-discovery-stop', expect=['.*ONIE:.*'], timeout=20)
             if expectIndex1 == 0:
-                self.log.info('goToOniePromptFromMarvellPrompt: Got ONIE prompt.  Auto-discovery stopped.')
+                self.log.info('goToOniePromptFromMarvellPrompt: {self.name}: Got ONIE prompt.  Auto-discovery stopped.')
                 return True
             if expectIndex1 == 1:
-                self.log.failed('goToOniePromptFromMarvellPrompt: Did not get ONIE prompt after sending onei-discovery-stop')
+                self.log.failed('goToOniePromptFromMarvellPrompt: {self.name}: Did not get ONIE prompt after sending onei-discovery-stop')
                 return False
 
         return False
@@ -407,24 +442,30 @@ class DeployDent():
            If "123" was entered, it goes into the Marvell>> mode immediately.
            Otherwise, it goes into mode.
         """
-        expectIndex = self.send(cmd='reboot', expect=['Hit any key to stop autoboot',
+        while True:
+            expectIndex = self.send(cmd='\n', expect=['Hit any key to stop autoboot',
                                                       '.*Type 123<ENTER> to STOP autoboot.*'], timeout=80)
+            if expectIndex in [0, 1, 2]:
+                break
+            else:
+                time.sleep(1)
+
         if expectIndex == 0:
             return self.goToOniePromptFromMarvellPrompt()
 
         if expectIndex == 1:
-            self.log.info(f'Dent device: {self.name}: Got Type 123 <Enter> on serial console. Sening 123 to go into Marvell>> ...')
+            self.log.info(f'goToOnieFromLinuxShell: Dent device: {self.name}: Got Type 123 <Enter> on serial console. Sening 123 to go into Marvell>> ...')
             if self.spawnId.before:
                 self.spawnId.expect(r'.+')
 
             self.spawnId.sendline('123\r\n')
             expectIndex1 = self.spawnId.expect(['.*Marvell>>.*', pexpect.TIMEOUT], timeout=5)
 
-            self.log.debug(f'spawnId.after: {self.spawnId.after}')
+            self.log.debug(f'goToOnieFromLinuxShell: {self.name}: spawnId.after: {self.spawnId.after}')
             # self.spawnId.after => got back after: b'Marvell>> \r\nMarvell>> \r\nMarvell>> '
 
             if expectIndex1 == 0 or 'Marvell' in self.spawnId.after.decode('utf'):
-                self.log.info(f'Dent device: {self.name}: Got Marvell>> prompt.')
+                self.log.info(f'goToOnieFromLinuxShell: {self.name}: Got Marvell>> prompt.')
                 result = self.goToOniePromptFromMarvellPrompt()
                 return result
 
@@ -432,7 +473,7 @@ class DeployDent():
             if expectIndex1 == 1:
                 self.log.failed(f'goToOnieFromLinuxShell: Waiting for Marvell prompt timedout on Dent: {self.name}')
                 currentShell = self.getCurrentShell()
-                self.log.debug(f'Dent device: {self.name}: Current mode is {currentShell}')
+                self.log.debug(f'goToOnieFromLinuxShell: {self.name}: Current mode is {currentShell}')
                 if currentShell == 'marvell':
                     result = self.goToOniePromptFromMarvellPrompt()
                     return result
@@ -461,8 +502,7 @@ class DeployDent():
         installServerPath = f'{self.serverPrefixPath}/{self.installBuild}'
 
         """
-        onie-nos-install http://10.36.118.11/dentInstallations/DENTOS-HEAD_ONL-
-        OS10_2023-08-11.1533-be121f3_ARM64_INSTALLED_INSTALLER
+        onie-nos-install http://10.36.118.11/dentBuildReleases/DENTOS-HEAD_ONL-OS10_2023-12-13.1632-67e7fe4_ARM64_INSTALLED_INSTALLER
         discover: installer mode detected.
         Stopping: discover... done.
         Info: Attempting http://10.36.118.11/dentInstallations/DENTOS-HEAD_ONL-OS10_2023-08-11.1533-be121f3_ARM64_INSTALLED_INSTALLER ...
@@ -476,18 +516,30 @@ class DeployDent():
         self.spawnId.timeout = timeout
 
         cmd = f'onie-nos-install {installServerPath}'
-        self.log.info(f'sending cmd on Dent: {self.name}: {cmd} ...')
+        self.log.info(f'install: sending cmd on Dent: {self.name}: {cmd} ...')
 
         # Must use sendline() instead of send()
-        self.log.info(f'Dent: {self.name}: Waiting for installation to complete and reboot to Linux mode ...')
+        self.log.info(f'install: Dent: {self.name}: Waiting for installation to complete and reboot to Linux mode ...')
         self.spawnId.sendline(cmd)
+        self.spawnId.expect(['.*'], timeout=3)
 
         # '.*localhost login.*'
-        expectIndex = self.spawnId.expect(['.*login:.*'], timeout=timeout)
+        while True:
+            expectIndex = self.send(cmd='\n', expect=['.*404 Not Found',
+                                                      '.*login:.*'], timeout=80)
+
+            if expectIndex in [0, 1, 2]:
+                break
+            else:
+                time.sleep(1)
 
         if expectIndex == 0:
-            self.log.info(f'Installation is complete for Dent device: {self.name}')
-            self.log.info(f'Logging into Dent Linux shell: {self.name} ...')
+            self.log.failed(f'install: {self.name}: wget: server returned error: HTTP/1.1 404 Not Found')
+            return False
+
+        if expectIndex == 1:
+            self.log.info(f'install: Installation is complete for Dent device: {self.name}')
+            self.log.info(f'install: Logging into Dent Linux shell: {self.name} ...')
 
             if self.login():
                 result = self.verifyCurrentBuild()
@@ -497,21 +549,21 @@ class DeployDent():
 
         # pexpect.TIMEOUT
         if expectIndex == 1:
-            self.log.failed(f'Timed out waiting for Linux login after onie installation for Dent device: {self.name}')
-            self.log.debug(f'Verifying which shell mode the Dent switch is in: {self.name}')
+            self.log.failed(f'install: Timed out waiting for Linux login after onie installation for Dent device: {self.name}')
+            self.log.debug(f'install: Verifying which shell mode the Dent switch is in: {self.name}')
             currentShell = self.getCurrentShell()
-            self.log.debug(f'The current shell for Dent device: {self.name} == {currentShell}')
+            self.log.debug(f'install: The current shell for Dent device: {self.name} == {currentShell}')
 
             if currentShell == 'onie':
                 if retry is False:
-                    self.log.warning(f'Dent device: {self.name}: Failed to install build. Still in ONIE mode. Attempt to install one more time ...')
+                    self.log.warning(f'install: Dent device: {self.name}: Failed to install build. Still in ONIE mode. Attempt to install one more time ...')
                     self.install(retry=True)
                 if retry:
-                    self.log.failed('Retried to install build failed again. Still in ONIE mode. Expecting the installation to complete in Linux mode')
+                    self.log.failed('install: Retried to install build failed again. Still in ONIE mode. Expecting the installation to complete in Linux mode')
                     return False
 
             if currentShell == 'linuxLogin':
-                self.log.debug('Since it is in the Linux login prompt, the installation is complete')
+                self.log.debug('install: Since it is in the Linux login prompt, the installation is complete')
                 if self.login():
                     result = self.verifyCurrentBuild()
                     return result
@@ -521,7 +573,7 @@ class DeployDent():
             return False
 
     def verifyCurrentBuild(self):
-        self.log.info(f'verifyCurrentBuild for Dent device: {self.name} ...')
+        self.log.info(f'verifyCurrentBuild: Dent device: {self.name} ...')
         if self.spawnId.before:
             self.spawnId.expect(r'.+')
 
@@ -546,10 +598,10 @@ class DeployDent():
                     hashTag = hashTag.replace("'", '')
 
                 if bool(search(f'.*{hashTag}.*', self.installBuild)):
-                    self.log.info(f'Verify Build: Passed: Dent device: {self.name}: {hashTag}')
+                    self.log.info(f'verifyCurrentBuild: Passed: Dent device: {self.name}: {hashTag}')
                     return True
                 else:
-                    self.log.failed(f'Verifying Build: Failed: Dent device {self.name}. The installed build is {self.installBuild}. Expecting build with hash tag: {hashTag}')
+                    self.log.failed(f'verifyCurrentBuild: Failed: Dent device {self.name}. The installed build is {self.installBuild}. Expecting build with hash tag: {hashTag}')
                     return False
 
                 # Search for: /etc/onl/loader/versions.json:3:  "VERSION_STRING": "DENT OS DENTOS-HEAD, 2023-08-11.15:33-be121f3",
@@ -558,7 +610,7 @@ class DeployDent():
                 self.log.failed(f'verifyCurrentBuild: grep had no output for Dent device: {self.name}')
 
         if expectIndex == 1:
-            self.log.failed(f'Attempted to verify the installed image on Dent {self.name}, but failed to get grep output')
+            self.log.failed(f'verifyCurrentBuild Attempted to verify the installed image on Dent {self.name}, but failed to get grep output')
             return False
 
     def getCPUArchitecture(self) -> str:
@@ -832,6 +884,13 @@ def updateDent(ciVars: object) -> bool:
     objectList = []
 
     Utilities.updateStage(ciVars.overallSummaryFile, stage='installDentOS', status='running', threadLock=ciVars.lock)
+
+    if len(ciVars.testbeds) == 0:
+        ciVars.sessionLog.error('updateDent: ciVars.testbeds has no testbeds!')
+        finalResult = False
+        Utilities.updateStage(ciVars.overallSummaryFile, stage='installDentOS', status='stopped',
+                              result='failed', threadLock=ciVars.lock)
+        return finalResult
 
     for testbed in ciVars.testbeds:
         if testbed['os'] != 'dentos':
