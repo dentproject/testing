@@ -1,0 +1,29 @@
+suiteGroups:
+   runInParallel:
+      - name: clean_config_infra1
+        config: ./DentOsTestbed/configuration/testbed_config/hw/sit/basic_infra1/testbed.json
+        suiteGroups:
+           - suite_group_clean_config
+
+      - name: clean_config_infra2
+        config: ./DentOsTestbed/configuration/testbed_config/hw/sit/basic_infra2/testbed.json
+        suiteGroups:
+           - suite_group_clean_config
+
+      #- name: suite_group_test
+      #  config: ./DentOsTestbed/configuration/testbed_config/hw/sit/basic_infra1/testbed.json
+      #  suiteGroups:
+      #     - suite_group_test
+      #  additionalParams:
+      #     - -k "ipv4" --discovery-path ./DentOsTestbedLib/src/dent_os_testbed/discovery/modules/
+
+   runInSeries:
+      - name: clean_config_agg1
+        config: ./DentOsTestbed/configuration/testbed_config/hw/sit/basic_agg1/testbed.json
+        suiteGroups:
+           - suite_group_clean_config
+
+      - name: clean_config_agg2
+        config: ./DentOsTestbed/configuration/testbed_config/hw/sit/basic_agg2/testbed.json
+        suiteGroups:
+           - suite_group_clean_config

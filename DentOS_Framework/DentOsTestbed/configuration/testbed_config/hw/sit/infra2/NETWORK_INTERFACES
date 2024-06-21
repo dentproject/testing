@@ -1,0 +1,102 @@
+#
+# ONL format of dent interfaces
+#
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+source /etc/network/interfaces.d/*.intf
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+    address 20.20.0.102/32
+
+# The management interface
+auto ma1
+iface ma1 inet dhcp
+
+auto swp49
+iface swp49 inet static
+alias AGG1 SWP48
+    address 20.20.96.21/30
+
+auto swp50
+iface swp50 inet static
+alias AGG2 SWP48
+    address 20.20.96.29/30
+
+auto bond0
+iface bond0 inet static
+alias LAG to INFRA-SW1 SWP51 and SWP52
+    bond-slaves swp51 swp52
+    bond-mode 802.3ad
+      bridge-vids 100 300 400 500 600
+      bridge-vids 100 300 400 500 600
+
+auto vlan100
+iface vlan100 inet static
+    address 20.1.4.3/22
+    vlan-id 100
+    vlan-raw-device bridge
+
+auto vlan300
+iface vlan300 inet static
+    address 20.2.4.3/22
+    vlan-id 300
+    vlan-raw-device bridge
+
+auto vlan400
+iface vlan400 inet static
+    address 20.3.4.3/22
+    vlan-id 400
+    vlan-raw-device bridge
+
+auto vlan500
+iface vlan500 inet static
+    address 20.4.4.3/22
+    vlan-id 500
+    vlan-raw-device bridge
+
+auto vlan600
+iface vlan600 inet static
+    address 20.5.4.3/22
+    vlan-id 600
+    vlan-raw-device bridge
+
+auto bridge
+iface bridge inet static
+alias Vlan Aware Bridge
+    bridge-ageing 600
+    bridge-ports swp1 swp2 swp3 swp4 swp5 swp6 swp7 swp8 swp9 swp10 swp11 swp12 swp13 swp14 swp15 swp16 swp17 swp18 swp19 swp20 swp21 swp22 swp23 swp24 swp25 swp26 swp27 swp28  swp29 swp30 swp31 swp32 swp33 swp34 swp35 swp36 swp37 swp38 swp39 swp40 swp41 swp42 swp43 swp44 swp45 swp46 swp47 swp48
+    bridge-vids 100 300 400 500 600
+    # Turns on STP
+    bridge-stp on
+   # Puts each port into an edge mode swp1-48
+    mstpctl-portadminedge swp1=yes swp2=yes swp3=yes swp4=yes swp5=yes swp6=yes swp7=yes swp8=yes swp9=yes swp10=yes swp11=yes swp12=yes    swp13=yes swp14=yes swp15=yes swp16=yes swp17=yes swp18=yes swp19=yes swp20=yes swp21=yes swp22=yes swp23=yes swp24=yes swp25=yes swp26=yes    swp27=yes swp28=yes swp29=yes swp30=yes swp31=yes swp32=yes swp33=yes swp34=yes swp35=yes swp36=yes swp37=yes swp38=yes swp39=yes swp40=yes swp41=yes swp42=yes swp43=yes swp44=yes swp45=yes swp46=yes swp47=yes swp48=yes
+   # Adds BPDU Guard to all ports swp1-48
+    mstpctl-bpduguard swp1=yes swp2=yes swp3=yes swp4=yes swp5=yes swp6=yes swp7=yes swp8=yes swp9=yes swp10=yes swp11=yes swp12=yes swp13=yes    swp14=yes swp15=yes swp16=yes swp17=yes swp18=yes swp19=yes swp20=yes swp21=yes swp22=yes swp23=yes swp24=yes swp25=yes swp26=yes swp27=yes swp28=yes swp29=yes swp30=yes swp31=yes swp32=yes swp33=yes swp34=yes swp35=yes swp36=yes swp37=yes swp38=yes swp39=yes swp40=yes swp41=yes swp42=yes swp43=yes swp44=yes swp45=yes swp46=yes swp47=yes swp48=yes
+    bridge-vlan-aware yes
+
+auto swp1
+iface swp1
+alias IXIA LINK
+    bridge-pvid 100
+    bridge-vids 300 400 500 600
+
+auto swp2
+iface swp2
+alias IXIA LINK
+    bridge-pvid 100
+    bridge-vids 300 400 500 600
+
+auto swp3
+iface swp3
+alias IXIA LINK
+    bridge-pvid 100
+    bridge-vids 300 400 500 600
+
+auto swp4
+iface swp4
+alias IXIA LINK
+    bridge-pvid 100
+    bridge-vids 300 400 500 600

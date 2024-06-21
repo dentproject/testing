@@ -43,7 +43,7 @@ class DeployTestContainers:
         if self.isDockerImagesExists():
             Utilities.updateStage(self.overallSummaryFile, stage=stage,
                                   status='completed', result='passed', threadLock=self.lock)
-            self.sessionLog.info(f'dentContainerTag: {self.dentContainerTag}')
+            self.sessionLog.info(f'dentContainerTag: {self.ciVars.dockerImageTag}')
             return True
         else:
             errorMsg = 'Dent test docker images not found'
