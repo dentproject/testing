@@ -9,3 +9,4 @@ pytest-html
 pytest-repeat
 ixnetwork_restpy>=1.1.10
 pyvis == 0.1.9
+tabulate
