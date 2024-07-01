@@ -1,0 +1,57 @@
+username cumulus nopassword
+!
+service integrated-vtysh-config
+!
+log timestamp precision 6
+!
+no zebra nexthop kernel enable
+!
+router bgp 65511
+ bgp router-id 20.20.0.4
+ no bgp ebgp-requires-policy
+ neighbor INFRA peer-group
+ neighbor INFRA remote-as 65534
+ neighbor INFRA timers 3 10
+ neighbor IXIA peer-group
+ neighbor IXIA remote-as 200
+ neighbor IXIA timers 3 10
+ neighbor SPINE peer-group
+ neighbor SPINE remote-as 65535
+ neighbor SPINE timers 3 10
+  neighbor 20.20.96.125 peer-group SPINE
+  neighbor 20.20.96.25 peer-group INFRA
+  neighbor 20.20.96.29 peer-group INFRA
+  neighbor 22.2.9.2 peer-group IXIA
+ !
+ address-family ipv4 unicast
+  network 20.20.0.3/32
+  redistribute connected
+  neighbor ACCESS next-hop-self
+  neighbor ACCESS soft-reconfiguration inbound
+  neighbor ACCESS route-map TO-INFRA out
+  neighbor INFRA next-hop-self
+  neighbor INFRA soft-reconfiguration inbound
+  neighbor INFRA route-map TO-INFRA out
+  neighbor SPINE next-hop-self
+  neighbor SPINE soft-reconfiguration inbound
+  neighbor IXIA soft-reconfiguration inbound
+ exit-address-family
+!
+ip prefix-list DEFAULT-ROUTE seq 10 permit 0.0.0.0/0
+!
+route-map TO-SPINE-SHIFT-OFF deny 20
+ match ip address prefix-list DEFAULT-ROUTE
+!
+route-map TO-SPINE-SHIFT-OFF permit 40
+ set metric 100000
+!
+route-map TO-INFRA-SHIFT-OFF permit 10
+ set community no-advertise
+ set metric 100000
+!
+route-map TO-INFRA permit 10
+ set community no-advertise
+!
+line vty
+!
+end

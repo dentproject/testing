@@ -1,0 +1,59 @@
+{
+    "devices": [
+        {
+            "friendlyName": "Dent infra1",
+            "os":"dentos",
+            "type" : "INFRA_SWITCH",
+            "hostName": "infra1",
+            "model": "arm64-accton-as4224-52p-r0",
+            "ip": "10.36.118.46",
+            "login":{
+                "userName":"root",
+                "password":"onl"
+            },
+            "cpuArchitecture": "arm",
+            "macAddress": "90:3C:B3:8B:EF:32",
+            "serialConsole": {
+		"ip": "10.36.118.200",
+		"port": 7003
+	    },
+	    "pdu": {
+		"ip": "10.36.118.201",
+		"login": "dent",
+		"password": "dent123!",
+		"number": 3
+	    },
+            "serialDev":"/dev/ttyUSB0",
+            "baudrate": 115200,
+            "links" : [
+                ["swp5", "infra1:swp6"],
+                ["swp7", "infra1:swp8"],
+                ["swp9", "infra1:swp10"]
+            ]
+        },
+        {
+            "friendlyName":"Ixia Traffic Generator",
+            "os":"ixnetwork",
+            "type" : "TRAFFIC_GENERATOR",
+            "hostName": "ixia",
+            "model": "Novus10G",
+            "ip": "10.36.118.111",
+            "login":{
+                "userName":"admin",
+                "password":"admin"
+            },
+            "serialDev":"/dev/ttyUSBXX",
+            "baudrate": 115200,
+            "mediaMode":"mixed",
+            "links" : [
+                ["10.36.118.199:1:9", "infra1:swp1", "copper"],
+                ["10.36.118.199:1:10", "infra1:swp2", "copper"],
+                ["10.36.118.199:1:11", "infra1:swp3", "copper"],
+                ["10.36.118.199:1:12", "infra1:swp4", "copper"]
+            ]
+        }
+    ],
+    "operator" : "dent",
+    "topology" : "bachelor",
+    "force_discovery" : false
+}

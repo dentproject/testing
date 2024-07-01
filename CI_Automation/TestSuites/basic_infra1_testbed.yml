@@ -1,0 +1,6 @@
+suiteGroups:
+   runInSeries:
+      - name: suite_group_clean_config_infra1
+        config: ./DentOsTestbed/configuration/testbed_config/basic_infra1/testbed.json
+        suiteGroups:
+           - suite_group_clean_config

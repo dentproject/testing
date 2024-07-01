@@ -1,0 +1,6 @@
+suiteGroups:
+   runInSeries:
+      - name: suite_group_clean_config
+        config: ./DentOsTestbed/configuration/testbed_config/hw/sit/testbed.json
+        suiteGroups:
+           - suite_group_clean_config
