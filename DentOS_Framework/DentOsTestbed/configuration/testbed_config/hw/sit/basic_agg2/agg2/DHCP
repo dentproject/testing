@@ -1,0 +1,6 @@
+#
+# ISC dhcpd configuration
+#
+
+
+option domain-name "dentlab-agg2";

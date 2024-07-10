@@ -3,6 +3,7 @@ import os
 import argparse
 import Utilities
 import globalSettings
+from re import search
 
 timestamp = Utilities.getTimestamp(includeMillisecond=True).replace(':', '-')
 
@@ -47,6 +48,7 @@ class DentCiArgParse:
         else:
             self.ciVars.testId = timestamp
 
+        self.ciVars.cmdLine:                  str = ' '.join(sys.argv)
         self.ciVars.timestamp:                str = timestamp
         self.ciVars.testSessionFolder:        str = f'{globalSettings.dentTestResultsFolder}/{self.ciVars.testId}'
         self.ciVars.testSessionLogsFolder:    str = f'{self.ciVars.testSessionFolder}/CI_Logs'
@@ -58,14 +60,17 @@ class DentCiArgParse:
         self.ciVars.reportFile:               str = f'{self.ciVars.testSessionFolder}/ciTestReport'
 
         if args.testSuites is None:
-            sys.exit(1, '-testSuites parameter is required with test suites to use for testing')
+            sys.exit('-testSuites parameter is required with test suites to use for testing')
         else:
             # Verify for user defined testSuites existence
             for eachTestSuite in args.testSuites:
                 testSuite = eachTestSuite.replace('.yml', '')
-                testSuiteFile = f'{self.ciVars.testSuiteFolder}/{testSuite}.yml'
-                if os.path.exists(testSuiteFile) is False:
-                    Utilities.sysExit(self.ciVars, f'No such test suite name found: {eachTestSuite}')
+                regexMatch = search('.*((hw|vm)/.*)', testSuite)
+                if regexMatch:
+                    testSuite = regexMatch.group(1)
+                    testSuiteFile = f'{self.ciVars.testSuiteFolder}/{testSuite}.yml'
+                else:
+                    testSuiteFile = f'{self.ciVars.testSuiteFolder}/{testSuite}.yml'
 
                 self.ciVars.testSuites.append(testSuiteFile)
 

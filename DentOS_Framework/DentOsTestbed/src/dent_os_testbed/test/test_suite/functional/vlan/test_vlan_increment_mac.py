@@ -3,7 +3,6 @@ import pytest
 import json
 
 from dent_os_testbed.lib.ip.ip_link import IpLink
-from dent_os_testbed.lib.onlp.onlp_system_info import OnlpSystemInfo
 from dent_os_testbed.constants import PLATFORMS_CONSTANTS
 from dent_os_testbed.utils.FileHandlers.LocalFileHandler import LocalFileHandler
 
@@ -65,7 +64,7 @@ async def test_vlan_with_increment_macs(testbed):
     dut_ports = tgen_dev.links_dict[device][1]
     tolerance = 0.7  # fdb learning tolerance
 
-    rc, model = await dent_devices[0].run_cmd(f'cat /etc/onl/platform')
+    rc, model = await dent_devices[0].run_cmd('cat /etc/onl/platform')
     model = model.strip('\n')
 
     mac_table = LocalFileHandler(dent_devices[0].applog).read(PLATFORMS_CONSTANTS)

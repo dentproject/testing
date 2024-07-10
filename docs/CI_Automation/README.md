@@ -124,11 +124,11 @@ must include the CLI paramter -deployIxNetwork
 - Current test suites
   - fullRegression: All of SIT testings and functional testings
                     (Takes 2 days to complete)
-  - sitTest:       Only testing SIT test cases
+  - sitTest:        Only testing SIT test cases
   - functional:     Only testing functional test cases
   - l3tests:        A quick test with traffic (10 minutes)
   - cleanConfig:    A quick test for CI framework development
-                   (few minutes)
+                    (few minutes)
 
 - Below shows a preview of a test suite example
 
@@ -140,23 +140,23 @@ must include the CLI paramter -deployIxNetwork
   suiteGroups:
      runInParallel:
           - name: clean_config_infra1
-            config: ./DentOsTestbed/configuration/testbed_config/basic_infra1/testbed.json
+            config: ./DentOsTestbed/configuration/testbed_config/hw/sit/basic_infra1/testbed.json
             suiteGroups:
                 - suite_group_clean_config
 
           - name: clean_config_infra2
-            config: ./DentOsTestbed/configuration/testbed_config/basic_infra2/testbed.json
+            config: ./DentOsTestbed/configuration/testbed_config/hw/sit/basic_infra2/testbed.json
             suiteGroups:
                 - suite_group_clean_config
 
      runInSeries:
           - name: clean_config_agg1
-            config: ./DentOsTestbed/configuration/testbed_config/basic_agg1/testbed.json
+            config: ./DentOsTestbed/configuration/testbed_config/hw/sit/basic_agg1/testbed.json
             suiteGroups:
                 - suite_group_clean_config
 
           - name: clean_config_agg2
-            config: ./DentOsTestbed/configuration/testbed_config/basic_agg2/testbed.json
+            config: ./DentOsTestbed/configuration/testbed_config/hw/sit/basic_agg2/testbed.json
             suiteGroups:
                 - suite_group_clean_config
 ```
@@ -184,6 +184,8 @@ Supporting parameters
 
   -localBranch:      Optional: Test with a local branch that is already
                      cloned. Provide the full path.
+
+  -localBuilds:      Optional: The full paths to the AMD and ARM builds in the local dent server
 
   -keepTestBranch:   Optional: Do not delete the test branch after the
                      test for debugging purpose.

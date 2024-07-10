@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 
 """
+version = v10
+
 Dent CI Automation Framework
 
 Automating the following stages:
@@ -74,6 +76,8 @@ class CiVars:
     deployDentTestContainers:  bool = True
     # Stage 3
     runTest:                   bool = True  # requires cloneTestRepo for testbed configs
+
+    cmdLine:                  str = ''
 
     # The test ID timestamp (without the appended testName)
     timestamp:                str = ''
@@ -155,6 +159,9 @@ class CiVars:
 class DentCI:
     def __init__(self, ciVars):
         self.ciVars = ciVars
+        self.stage1Result = None
+        self.stage2Result = None
+        self.stage3Result = None
 
         self.ciVars.testIdTestingBranch = f'{self.ciVars.testBranchFolder}/{self.ciVars.testId}'
 
@@ -176,6 +183,7 @@ class DentCI:
         self.removeDockerStaleImages()
 
         self.testMgmtData = {'pid': self.ciVars.pid,
+                             'cmdLine': self.ciVars.cmdLine,
                              'testId': self.ciVars.testId,
                              'testName': self.ciVars.testName,
                              'startTime': datetime.now().strftime('%m-%d-%Y %H:%M:%S:%f'),
@@ -229,6 +237,8 @@ class DentCI:
         self.ciVars.sessionLog.info(f'Testing repo: {self.ciVars.repo}')
         self.ciVars.sessionLog.info(f'Install branchName: {self.ciVars.branchName}')
 
+        self.verifyTestSuites()
+
         # Wait at this point until the CI system is enabled
         self.isCiSystemEnabled()
 
@@ -269,6 +279,13 @@ class DentCI:
 
         self.createDockerImageTag()
         self.lockTestbeds()
+
+    def verifyTestSuites(self):
+        # Verify for user defined testSuite
+        for eachTestSuiteFile in self.ciVars.testSuites:
+            if os.path.exists(eachTestSuiteFile) is False:
+                self.ciVars.sessionLog.error(f'No such test suite: {eachTestSuiteFile}')
+                sys.exit(1)
 
     def createDockerImageTag(self):
         """
@@ -359,6 +376,12 @@ class DentCI:
         """
         Verify if the testing branch successfully got cloned
         """
+        # Show the cloned test branch in the testIdTestingBranch directory for visibility and confirmation
+        self.ciVars.sessionLog.info(f'isTestIdTestBranchExists: Looking for testID: {self.ciVars.testId}')
+        output = Utilities.runLinuxCmd('ls -l', cwd=self.ciVars.testBranchFolder)
+        for line in output:
+            self.ciVars.sessionLog.info(line.strip())
+
         if os.path.exists(self.ciVars.testIdTestingBranch) is False:
             errorMsg = f'Stage={stage}: Is cloneTestBranch == True?  The testID test branch does not exists: {self.ciVars.testIdTestingBranch}.'
             self.ciVars.sessionLog.error(errorMsg)
@@ -415,7 +438,7 @@ class DentCI:
         Get all testbeds from test suites "config" parameter
         """
         if os.path.exists(configFullPath) is False:
-            print(f'Test Suite config does not exists: {configFullPath}')
+            self.ciVars.sessionLog.error(f'Test Suite config does not exists: {configFullPath}')
             Utilities.runDentCiTearDown(ciVars, f'Test Suite file has an incorrect "config" path: {configFullPath}')
 
         testbedContents = Utilities.readJson(configFullPath)
@@ -514,6 +537,7 @@ class DentCI:
         and name it the testId
         """
         if self.ciVars.cloneTestRepo is False:
+            self.stage1Result = 'failed'
             return
 
         self.isGitCloneSafeToRun()
@@ -530,9 +554,10 @@ class DentCI:
             self.testbedMgmtObj.unlockTestbeds()
             Utilities.closeTestMgmtStatus(overallSummaryFile=self.ciVars.overallSummaryFile,
                                           status='aborted', result='failed', threadLock=self.ciVars.lock)
-            Utilities.runDentCiTearDown(self.ciVars, 'Clone Dent test repo failed')
+            Utilities.runDentCiTearDown(self.ciVars, 'Cloning Dent test repo failed')
+            self.stage1Result = 'failed'
 
-        if result:
+        if self.stage1Result != 'failed' and result:
             # Parse out all testbeds from test suite files and from the cloned repo
             for testSuite in self.ciVars.testSuites:
                 contents = Utilities.readYaml(testSuite)
@@ -556,29 +581,34 @@ class DentCI:
                                           status='aborted', result='failed', threadLock=self.ciVars.lock)
             # This will unlocktestbed, remove testId test branch, create jenkinsCI result path
             Utilities.runDentCiTearDown(self.ciVars, 'Clone Dent test repo failed on clone verification')
+            self.stage1Result = 'failed'
 
         self.verifyIxNetworkVMFunctionality()
+        self.stage1Result = 'passed'
 
     def downloadBuilds(self):
         """
         STAGE 1: Download Dent build image to tftp server /srv/tftp
         """
         if self.ciVars.downloadNewBuilds is False:
+            self.stage1Result = 'failed'
             return
 
         downloadBuildsResults = downloadBuilds(self.ciVars)
         if downloadBuildsResults is False:
+            self.stage1Result = 'failed'
             self.testbedMgmtObj.unlockTestbeds()
             Utilities.runDentCiTearDown(self.ciVars, 'Download builds failed')
+        else:
+            if self.stage1Result != 'failed':
+                self.stage1Result = 'passed'
 
-    def installDentOS(self):
+    def installDentOS(self, stage='installDentOS'):
         """
         STAGE 2: Install build on Dent
         """
-        if self.ciVars.installDentOS is False:
+        if self.stage1Result == 'failed' or self.ciVars.installDentOS is False:
             return
-
-        stage = 'installDentOS'
 
         # Requires pulling the branch for testbed configs
         self.isTestIdTestBranchExists(stage=stage)
@@ -589,24 +619,31 @@ class DentCI:
         Utilities.runLinuxCmd(f'rm -rf {self.ciVars.downloadToServerFolder}')
 
         if updateDentResult is False:
+            self.stage2Result = 'failed'
             Utilities.closeTestMgmtStatus(overallSummaryFile=self.ciVars.overallSummaryFile,
                                           status='aborted', result='failed', threadLock=self.ciVars.lock)
             Utilities.runDentCiTearDown(self.ciVars, 'failed')
-
-        self.ciVars.sessionLog.info(f'{stage}: passed')
+        else:
+            if self.stage2Result != 'failed':
+                self.stage2Result = 'passed'
+                self.ciVars.sessionLog.info(f'{stage}: passed')
 
     def deployIxNetwork(self, forceBringUp=False):
         """
         STAGE 2: Deploy IxNetwork
         """
-        if self.ciVars.deployIxNetwork is False and forceBringUp is False:
+        if self.stage1Result != 'failed' and self.ciVars.deployIxNetwork is False and forceBringUp is False:
             return
 
         deployIxNetworkResult = deployIxNetworkInit(ciVars=self.ciVars)
         if deployIxNetworkResult is False:
+            self.stage2Result = 'failed'
             Utilities.closeTestMgmtStatus(overallSummaryFile=self.ciVars.overallSummaryFile,
                                           status='aborted', result='failed', threadLock=self.ciVars.lock)
             Utilities.runDentCiTearDown(self.ciVars, 'failed')
+        else:
+            if self.stage2Result != 'failed':
+                self.stage2Result = 'passed'
 
         # Enable back the CI system for other test to run
         if os.path.exists(f'{globalSettings.dentCiMgmtPath}/{globalSettings.disableSystemFilename}'):
@@ -618,25 +655,27 @@ class DentCI:
         """
         STAGE 2: Deploy test containers
         """
-        if self.ciVars.deployDentTestContainers is False:
+        if self.stage2Result != 'failed' or self.ciVars.deployDentTestContainers is False:
             return
 
         dentContainerObj = DeployTestContainers(self.ciVars.testContainersLogFile, self.ciVars)
         result = dentContainerObj.removeAndBuild()
 
         if result is False:
+            self.stage2Result = 'failed'
             Utilities.closeTestMgmtStatus(overallSummaryFile=self.ciVars.overallSummaryFile,
                                           status='aborted', result='failed', threadLock=self.ciVars.lock)
             Utilities.runDentCiTearDown(self.ciVars, 'failed')
+        else:
+            if self.stage2Result != 'failed':
+                self.stage2Result = 'passed'
 
-    def runTest(self):
+    def runTest(self, stage='runTest'):
         """
         STAGE 3: Run test
         """
-        if self.ciVars.runTest is False:
+        if self.stage2Result != 'failed' or self.ciVars.runTest is False:
             return
-
-        stage = 'runTest'
 
         # Verify if test branch exists
         self.isTestIdTestBranchExists(stage=stage)
@@ -684,23 +723,29 @@ try:
         Utilities.runThreads(ciVars, threads)
 
     # Stage 2
-    threads = []
-    if ciVars.installDentOS:
-        ci.installDentOS()
-        # threads.append(Thread(target=ci.installDentOS, name='installDentOS'))
+    if ci.stage1Result == 'passed':
+        threads = []
+        if ciVars.installDentOS:
+            ci.installDentOS()
+            # threads.append(Thread(target=ci.installDentOS, name='installDentOS'))
 
-    if ciVars.deployIxNetwork:
-        threads.append(Thread(target=ci.deployIxNetwork, name='deployIxNetwork'))
+        if ciVars.deployIxNetwork:
+            threads.append(Thread(target=ci.deployIxNetwork, name='deployIxNetwork'))
 
-    if ciVars.deployDentTestContainers:
-        threads.append(Thread(target=ci.deployDentTestContainers, name='deployDentTestContainers'))
+        if ciVars.deployDentTestContainers:
+            threads.append(Thread(target=ci.deployDentTestContainers, name='deployDentTestContainers'))
 
-    if threads:
-        Utilities.runThreads(ciVars, threads)
+        if threads:
+            Utilities.runThreads(ciVars, threads)
+    else:
+        raise Exception('Stage 1 failed. Aborting test.')
 
     # Stage 3
-    if ciVars.runTest:
-        ci.runTest()
+    if ci.stage2Result == 'passed':
+        if ciVars.runTest:
+            ci.runTest()
+    else:
+        raise Exception('Stage 2 failed. Aborting test.')
 
     # If in dev mode, it might not call runDentCiTearDown.
     # So call it to unlocktestbed
