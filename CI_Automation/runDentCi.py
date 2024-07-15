@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 """
-version = v10
+version = v11
 
 Dent CI Automation Framework
 
@@ -591,8 +591,11 @@ class DentCI:
         STAGE 1: Download Dent build image to tftp server /srv/tftp
         """
         if self.ciVars.downloadNewBuilds is False:
-            self.stage1Result = 'failed'
-            return
+            if self.stage1Result != 'failed':
+                self.stage1Result = 'passed'
+                return
+            else:
+                return
 
         downloadBuildsResults = downloadBuilds(self.ciVars)
         if downloadBuildsResults is False:
@@ -607,8 +610,15 @@ class DentCI:
         """
         STAGE 2: Install build on Dent
         """
-        if self.stage1Result == 'failed' or self.ciVars.installDentOS is False:
+        if self.stage1Result == 'failed':
             return
+
+        if self.ciVars.installDentOS is False:
+            if self.stage2Result != 'failed':
+                self.stage2Result = 'passed'
+                return
+            else:
+                return
 
         # Requires pulling the branch for testbed configs
         self.isTestIdTestBranchExists(stage=stage)
@@ -632,8 +642,14 @@ class DentCI:
         """
         STAGE 2: Deploy IxNetwork
         """
-        if self.stage1Result != 'failed' and self.ciVars.deployIxNetwork is False and forceBringUp is False:
+        if self.stage1Result == 'failed':
             return
+
+        if forceBringUp is False:
+            if self.ciVars.deployIxNetwork is False:
+                if self.stage2Result != 'failed':
+                    self.stage2Result = 'passed'
+                    return
 
         deployIxNetworkResult = deployIxNetworkInit(ciVars=self.ciVars)
         if deployIxNetworkResult is False:
@@ -655,8 +671,13 @@ class DentCI:
         """
         STAGE 2: Deploy test containers
         """
-        if self.stage2Result != 'failed' or self.ciVars.deployDentTestContainers is False:
+        if self.stage1Result == 'failed':
             return
+
+        if self.ciVars.deployDentTestContainers is False:
+            if self.stage2Result != 'failed':
+                self.stage2Result = 'passed'
+                return
 
         dentContainerObj = DeployTestContainers(self.ciVars.testContainersLogFile, self.ciVars)
         result = dentContainerObj.removeAndBuild()
@@ -674,7 +695,10 @@ class DentCI:
         """
         STAGE 3: Run test
         """
-        if self.stage2Result != 'failed' or self.ciVars.runTest is False:
+        if self.stage2Result == 'failed':
+            return
+
+        if self.ciVars.runTest is False:
             return
 
         # Verify if test branch exists
@@ -722,6 +746,7 @@ try:
     if threads:
         Utilities.runThreads(ciVars, threads)
 
+    ciVars.sessionLog.info(f'Stage 1 result: {ci.stage1Result}')
     # Stage 2
     if ci.stage1Result == 'passed':
         threads = []
@@ -741,6 +766,7 @@ try:
         raise Exception('Stage 1 failed. Aborting test.')
 
     # Stage 3
+    ciVars.sessionLog.info(f'Stage 2 result: {ci.stage2Result}')
     if ci.stage2Result == 'passed':
         if ciVars.runTest:
             ci.runTest()
